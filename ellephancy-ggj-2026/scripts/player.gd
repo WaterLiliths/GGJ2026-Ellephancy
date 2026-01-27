@@ -10,7 +10,7 @@ extends CharacterBody2D
 @onready var pin_joint_agarrar: PinJoint2D = %PinJointAgarrar
 
 
-
+#probando
 var objeto_arrastrado : ObjetoEmpujable = null
 var esta_arrastrando : bool = false
 
