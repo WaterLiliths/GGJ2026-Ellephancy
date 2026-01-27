@@ -9,11 +9,22 @@ extends CharacterBody2D
 @onready var animated_sprite_pj: AnimatedSprite2D = %AnimatedSpritePJ
 @onready var timer_coyote_time : Timer = %TimerCoyoteTime
 var estaba_en_el_piso : bool = false
+@onready var mascara_tiempo: Node2D = %MascaraTiempos
+
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("1"):
+		mascara_tiempo.usar() #siempre y cuando nos aseguremos que esta mascara tiene la funcion usar
+		#pq si no la tiene rompemos todo wacho :(
+	if Input.is_action_just_pressed("2"):
+		pass
+	if Input.is_action_just_pressed("3"):
+		pass
 
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor(): #gravedad
-		velocity += get_gravity() * delta
+		velocity += get_gravity() * delta * 1.2
 	
 	# salto + coyote timer
 	if Input.is_action_just_pressed("w") and (is_on_floor() or timer_coyote_time.time_left > 0):
