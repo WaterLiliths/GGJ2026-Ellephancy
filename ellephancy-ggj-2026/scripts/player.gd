@@ -2,10 +2,14 @@ class_name Player
 extends CharacterBody2D
 
 
-
+@export var aceleracion : float = 1800.0
+@export var desaceleracion : float = 2200.0
+@export var velocidad_max : float = 250.0
+@export var gravedad_subiendo : float = 1.0
+@export var gravedad_bajando : float = 1.4
 @export var velocidad : float = 250.0
 @export var velocidad_salto: float = -555
-@export var desaceleración_al_saltar : float = 0.0001 #arreglar
+@export var desaceleración_al_saltar : float = 0.5 #arreglar igual 0.5 safa
 @export var desaceleracion_horizontal : float = 0.07 #ajustable a gusto
 var velocidad_inicial_salto : float
 var velocidad_inicial : float 
@@ -54,8 +58,10 @@ func _input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if not is_on_floor(): #gravedad
-		velocity += get_gravity() * delta * 1.2
+	if velocity.y<0:
+		velocity += get_gravity() * gravedad_subiendo * delta
+	else:
+		velocity += get_gravity() * gravedad_bajando * delta
 	
 	# salto + coyote timer
 	if Input.is_action_just_pressed("w") and (is_on_floor() or puedo_usar_coyote()):
@@ -68,11 +74,11 @@ func _physics_process(delta: float) -> void:
 	#movimiento con w a s d
 	var direction := Input.get_axis("a", "d")
 	if direction:
-		velocity.x = direction * velocidad
+		velocity.x = move_toward(velocity.x , direction * velocidad_max, aceleracion * delta)
 		animated_sprite_pj.flip_h = direction < 0 #rotar pj segun para donde se mueve
 		animated_sprite_pj.play("caminar")
 	else:
-		velocity.x = move_toward(velocity.x, direction * velocidad, velocidad * desaceleracion_horizontal)
+		velocity.x = move_toward(velocity.x, 0, desaceleracion*delta)
 		animated_sprite_pj.play("idle")
 
 
