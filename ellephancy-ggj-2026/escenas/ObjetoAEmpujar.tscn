@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://t3ox75glka3s"]
+
+[ext_resource type="Script" uid="uid://cmqqpgbgf8ayt" path="res://scripts/objeto_a_empujar.gd" id="1_xh1mv"]
+[ext_resource type="Texture2D" uid="uid://dt8gpftbw4txl" path="res://assets/icon.svg" id="2_8dhx0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6a1yu"]
+size = Vector2(126, 128)
+
+[node name="ObjetoAEmpujar" type="RigidBody2D" unique_id=1271610091]
+lock_rotation = true
+linear_damp = 1.0
+script = ExtResource("1_xh1mv")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1518594336]
+texture = ExtResource("2_8dhx0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=759325983]
+shape = SubResource("RectangleShape2D_6a1yu")
