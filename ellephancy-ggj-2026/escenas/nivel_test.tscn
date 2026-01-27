@@ -7,7 +7,7 @@
 [node name="NivelTest" type="Node2D"]
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
-bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank"]
+bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(552.8889, 311)
@@ -28,5 +28,12 @@ collision_visibility_mode = 1
 [node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Ambiente/ambiente"
 event_guid = "{9318ebbc-5ee4-4da9-87ef-a11bf476df3b}"
+attached = false
+autoplay = true
+volume = 0.685
+
+[node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Musica/Musica"
+event_guid = "{531f5736-0242-456e-96ac-14d316a2be4e}"
 attached = false
 autoplay = true

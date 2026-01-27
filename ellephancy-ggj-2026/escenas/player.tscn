@@ -115,7 +115,7 @@ unique_name_in_owner = true
 texture_filter = 1
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_w7fad")
-animation = &"idle"
+animation = &"caminar"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kkt6c")
@@ -134,3 +134,7 @@ fmod_parameters/Superficie/id = -5155162075446807488
 fmod_parameters/Superficie = "pasto"
 fmod_parameters/Superficie/labels = PackedStringArray("pasto", "madera", "piedra")
 fmod_parameters/Superficie/variant_type = 4
+
+[node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Personaje/Movimiento/salto"
+event_guid = "{f53bcf20-29b6-434f-bdfb-043bdc67c2fb}"

@@ -10,7 +10,8 @@ extends CharacterBody2D
 @onready var timer_coyote_time : Timer = %TimerCoyoteTime
 var estaba_en_el_piso : bool = false
 var timer_pasos = 0
-var timer_pasos_reset = 0.4
+var timer_pasos_reset = 0.36
+
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor(): #gravedad
@@ -20,6 +21,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("w") and (is_on_floor() or timer_coyote_time.time_left > 0):
 		velocity.y = velocidad_salto
 		timer_coyote_time.stop()
+		$FmodEventEmitter2D2.play_one_shot()
 		#TODO agregar aca animacion de salto
 	if Input.is_action_just_released("w") and velocity.y < 0:
 		velocity.y *= desaceleración_al_saltar
@@ -30,6 +32,8 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * velocidad
 		animated_sprite_pj.flip_h = direction < 0 #rotar pj segun para donde se mueve
 		animated_sprite_pj.play("caminar")
+		#if animated_sprite_pj.
+			#$FmodEventEmitter2D.play_one_shot()
 		if timer_pasos <= 0 && is_on_floor():
 			$FmodEventEmitter2D.play_one_shot()
 			timer_pasos = timer_pasos_reset
