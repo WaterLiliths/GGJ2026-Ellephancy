@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://d1p6o2ixegcp2" path="res://scripts/player.gd" id="1_esbpa"]
 [ext_resource type="Texture2D" uid="uid://b3y87vf4oiey5" path="res://assets/personaje-test/correr.png" id="2_kkt6c"]
 [ext_resource type="Texture2D" uid="uid://cm0c47duyxhoi" path="res://assets/personaje-test/idle.png" id="3_j7xnp"]
+[ext_resource type="PackedScene" uid="uid://45apkf4ddmvr" path="res://escenas/mascara_tiempos.tscn" id="4_k4kro"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j7xnp"]
 atlas = ExtResource("2_kkt6c")
@@ -125,6 +126,7 @@ shape = SubResource("CircleShape2D_kkt6c")
 
 [node name="MASCARA" type="Node2D" parent="." unique_id=604400555]
 
+
 [node name="AreaTirar" type="Area2D" parent="." unique_id=676553871]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaTirar" unique_id=1927286944]
@@ -139,3 +141,12 @@ node_b = NodePath("..")
 
 [connection signal="body_entered" from="AreaTirar" to="." method="_on_area_tirar_body_entered"]
 [connection signal="body_exited" from="AreaTirar" to="." method="_on_area_tirar_body_exited"]
+
+[node name="TimerCoyoteTime" type="Timer" parent="." unique_id=553024978]
+unique_name_in_owner = true
+wait_time = 0.25
+one_shot = true
+
+[node name="MascaraTiempos" parent="." unique_id=944126025 instance=ExtResource("4_k4kro")]
+unique_name_in_owner = true
+
