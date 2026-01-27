@@ -74,7 +74,7 @@ func _physics_process(delta: float) -> void:
 	#movimiento con w a s d
 	var direction := Input.get_axis("a", "d")
 	if direction:
-		velocity.x = move_toward(velocity.x , direction * velocidad_max, aceleracion * delta)
+		velocity.x = move_toward(velocity.x , direction * velocidad, aceleracion * delta)
 		animated_sprite_pj.flip_h = direction < 0 #rotar pj segun para donde se mueve
 		animated_sprite_pj.play("caminar")
 	else:
