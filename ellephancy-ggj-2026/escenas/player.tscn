@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://b3y87vf4oiey5" path="res://assets/personaje-test/correr.png" id="2_kkt6c"]
 [ext_resource type="Texture2D" uid="uid://cm0c47duyxhoi" path="res://assets/personaje-test/idle.png" id="3_j7xnp"]
 [ext_resource type="PackedScene" uid="uid://45apkf4ddmvr" path="res://escenas/mascara_tiempos.tscn" id="4_k4kro"]
+[ext_resource type="PackedScene" uid="uid://vtcvameos4xx" path="res://escenas/mascara_fuerza.tscn" id="5_t3yu4"]
+[ext_resource type="PackedScene" uid="uid://x51x8ch6wkl2" path="res://escenas/mascara_traducciones.tscn" id="6_r4hsq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j7xnp"]
 atlas = ExtResource("2_kkt6c")
@@ -110,6 +112,7 @@ radius = 41.880783
 
 [node name="Player" type="CharacterBody2D" unique_id=1426217352]
 script = ExtResource("1_esbpa")
+velocidad_al_agarrar = 50.35
 
 [node name="AnimatedSpritePJ" type="AnimatedSprite2D" parent="." unique_id=1927840117]
 unique_name_in_owner = true
@@ -124,9 +127,6 @@ position = Vector2(8.799999, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=85702518]
 shape = SubResource("CircleShape2D_kkt6c")
 
-[node name="MASCARA" type="Node2D" parent="." unique_id=604400555]
-
-
 [node name="AreaTirar" type="Area2D" parent="." unique_id=676553871]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaTirar" unique_id=1927286944]
@@ -139,9 +139,6 @@ position = Vector2(44, 0)
 node_a = NodePath("..")
 node_b = NodePath("..")
 
-[connection signal="body_entered" from="AreaTirar" to="." method="_on_area_tirar_body_entered"]
-[connection signal="body_exited" from="AreaTirar" to="." method="_on_area_tirar_body_exited"]
-
 [node name="TimerCoyoteTime" type="Timer" parent="." unique_id=553024978]
 unique_name_in_owner = true
 wait_time = 0.25
@@ -149,4 +146,28 @@ one_shot = true
 
 [node name="MascaraTiempos" parent="." unique_id=944126025 instance=ExtResource("4_k4kro")]
 unique_name_in_owner = true
+id = 1
 
+[node name="RayCastIzq" type="RayCast2D" parent="." unique_id=2069682110]
+unique_name_in_owner = true
+position = Vector2(-47, 0)
+target_position = Vector2(0, 55)
+
+[node name="RayCastDer" type="RayCast2D" parent="." unique_id=1435639551]
+unique_name_in_owner = true
+position = Vector2(47, 0)
+target_position = Vector2(0, 55)
+
+[node name="MascaraFuerza" parent="." unique_id=1419347420 instance=ExtResource("5_t3yu4")]
+unique_name_in_owner = true
+id = 2
+
+[node name="MascaraTraducciones" parent="." unique_id=1590888524 node_paths=PackedStringArray("referencia_player") instance=ExtResource("6_r4hsq")]
+unique_name_in_owner = true
+referencia_player = NodePath("..")
+id = 3
+
+[connection signal="animation_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_animation_changed"]
+[connection signal="frame_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_frame_changed"]
+[connection signal="body_entered" from="AreaTirar" to="." method="_on_area_tirar_body_entered"]
+[connection signal="body_exited" from="AreaTirar" to="." method="_on_area_tirar_body_exited"]
