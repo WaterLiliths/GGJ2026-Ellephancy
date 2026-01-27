@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://45apkf4ddmvr"]
 
-[ext_resource type="Script" uid="uid://c828ri1fboaoq" path="res://escenas/mascara_tiempos.gd" id="1_v8jvp"]
+[ext_resource type="Script" uid="uid://c828ri1fboaoq" path="res://scripts/mascara_tiempos.gd" id="1_v8jvp"]
 
 [node name="MascaraTiempos" type="Node2D" unique_id=944126025]
 script = ExtResource("1_v8jvp")
