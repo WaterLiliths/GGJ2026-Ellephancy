@@ -118,7 +118,7 @@ sprite_frames = SubResource("SpriteFrames_w7fad")
 animation = &"idle"
 
 [node name="MarkerTirar" type="Marker2D" parent="AnimatedSpritePJ" unique_id=743198030]
-position = Vector2(7.2, 0)
+position = Vector2(8.799999, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=85702518]
 shape = SubResource("CircleShape2D_kkt6c")
@@ -130,6 +130,12 @@ shape = SubResource("CircleShape2D_kkt6c")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaTirar" unique_id=1927286944]
 shape = SubResource("CircleShape2D_j7xnp")
 debug_color = Color(1.2513996e-06, 0.6431121, 0.31144592, 0.41960785)
+
+[node name="PinJointAgarrar" type="PinJoint2D" parent="." unique_id=1364335893]
+unique_name_in_owner = true
+position = Vector2(44, 0)
+node_a = NodePath("..")
+node_b = NodePath("..")
 
 [connection signal="body_entered" from="AreaTirar" to="." method="_on_area_tirar_body_entered"]
 [connection signal="body_exited" from="AreaTirar" to="." method="_on_area_tirar_body_exited"]
