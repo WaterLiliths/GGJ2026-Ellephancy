@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://vtcvameos4xx"]
+[gd_scene load_steps=0 format=3 uid="uid://vtcvameos4xx"]
 
 [ext_resource type="Script" uid="uid://b1yf8uvgg21ac" path="res://scripts/mascara_fuerza.gd" id="1_1j6gb"]
 

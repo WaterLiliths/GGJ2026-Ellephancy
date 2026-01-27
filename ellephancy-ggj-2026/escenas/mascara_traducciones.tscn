@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://x51x8ch6wkl2"]
+[gd_scene load_steps=0 format=3 uid="uid://x51x8ch6wkl2"]
 
 [ext_resource type="Script" uid="uid://bw07pfdfa5lgv" path="res://scripts/mascara_traducciones.gd" id="1_t3euv"]
 
