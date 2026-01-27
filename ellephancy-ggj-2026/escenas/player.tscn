@@ -104,6 +104,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_kkt6c"]
 radius = 32.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_j7xnp"]
+radius = 41.880783
+
 [node name="Player" type="CharacterBody2D" unique_id=1426217352]
 script = ExtResource("1_esbpa")
 
@@ -114,7 +117,19 @@ scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_w7fad")
 animation = &"idle"
 
+[node name="MarkerTirar" type="Marker2D" parent="AnimatedSpritePJ" unique_id=743198030]
+position = Vector2(7.2, 0)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=85702518]
 shape = SubResource("CircleShape2D_kkt6c")
 
 [node name="MASCARA" type="Node2D" parent="." unique_id=604400555]
+
+[node name="AreaTirar" type="Area2D" parent="." unique_id=676553871]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaTirar" unique_id=1927286944]
+shape = SubResource("CircleShape2D_j7xnp")
+debug_color = Color(1.2513996e-06, 0.6431121, 0.31144592, 0.41960785)
+
+[connection signal="body_entered" from="AreaTirar" to="." method="_on_area_tirar_body_entered"]
+[connection signal="body_exited" from="AreaTirar" to="." method="_on_area_tirar_body_exited"]

@@ -1,17 +1,21 @@
+class_name ObjetoEmpujable 
 extends RigidBody2D
 
+var es_arrastrada : bool = false
+var arrastra : Node2D = null
 
-func _ready() -> void:
-	freeze = false
+func _physics_process(delta: float) -> void:
+#	pass
+	if es_arrastrada and arrastra:
+		global_position = arrastra.global_position
 
-
-func _process(delta: float) -> void:
-	pass
-
-func tirar(posicion_jugador: Vector2):
+#-----------------FUNCIONES--------------
+func empezar_arrastrar(marker : Node2D):
+	es_arrastrada = true
+	arrastra = marker
 	freeze = true
-	
-	var direccion : Vector2 = (posicion_jugador - global_position).normalized()
 
-func soltar():
+func dejar_arrastrar():
+	es_arrastrada = false
+	arrastra = null
 	freeze = false
