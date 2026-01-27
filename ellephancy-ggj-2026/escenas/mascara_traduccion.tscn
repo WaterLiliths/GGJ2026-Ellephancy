@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cw65y5e16wqr3"]
+
+[ext_resource type="Script" uid="uid://dfcfq6oapiv0d" path="res://escenas/mascara_traduccion.gd" id="1_j2lk1"]
+
+[node name="MascaraTraduccion" type="Node2D" unique_id=1726241223]
+script = ExtResource("1_j2lk1")

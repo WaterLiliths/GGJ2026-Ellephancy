@@ -10,14 +10,14 @@ extends CharacterBody2D
 @onready var timer_coyote_time : Timer = %TimerCoyoteTime
 var estaba_en_el_piso : bool = false
 @onready var mascara_tiempo: Node2D = %MascaraTiempos
+@onready var mascara_traduccion: Node2D = %MascaraTraduccion
 
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("1"):
-		mascara_tiempo.usar() #siempre y cuando nos aseguremos que esta mascara tiene la funcion usar
-		#pq si no la tiene rompemos todo wacho :(
+		mascara_tiempo.usar() 
 	if Input.is_action_just_pressed("2"):
-		pass
+		mascara_traduccion.usar()
 	if Input.is_action_just_pressed("3"):
 		pass
 

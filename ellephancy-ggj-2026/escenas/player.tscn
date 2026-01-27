@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b3y87vf4oiey5" path="res://assets/personaje-test/correr.png" id="2_kkt6c"]
 [ext_resource type="Texture2D" uid="uid://cm0c47duyxhoi" path="res://assets/personaje-test/idle.png" id="3_j7xnp"]
 [ext_resource type="PackedScene" uid="uid://45apkf4ddmvr" path="res://escenas/mascara_tiempos.tscn" id="4_k4kro"]
+[ext_resource type="PackedScene" uid="uid://cw65y5e16wqr3" path="res://escenas/mascara_traduccion.tscn" id="5_6nxto"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j7xnp"]
 atlas = ExtResource("2_kkt6c")
@@ -126,4 +127,7 @@ wait_time = 0.25
 one_shot = true
 
 [node name="MascaraTiempos" parent="." unique_id=944126025 instance=ExtResource("4_k4kro")]
+unique_name_in_owner = true
+
+[node name="MascaraTraduccion" parent="." unique_id=1726241223 instance=ExtResource("5_6nxto")]
 unique_name_in_owner = true

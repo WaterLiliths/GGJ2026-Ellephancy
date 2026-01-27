@@ -103,6 +103,8 @@ func conexion_fallida_mostrar_botones():
 func probando(cmd_info : CommandInfo):
 	print("SE ESCRIBIO EL MENSAJE PROBANDO EN EL CHAT, SI VES ESTO ENTONCES FUNCIONA!!!")
 
+func globalgamejam(cmd_info : CommandInfo):
+	Global.mascara_tiempo_activa.emit()
 
 #func join(cmd_info : CommandInfo):
 	#if !Global.hay_lugar_lobby() or !Global.lobby_esta_abierto(): #si no hay lugar o el lobby esta cerrado
@@ -184,6 +186,7 @@ func _on_button_conectar_con_twitch_pressed() -> void:
 	# #####   Agregar comandos, pueden ser personalizados como el de sonido  #####
 	cmd_handler.add_command("helloworld", hello)
 	cmd_handler.add_command("probando", probando)
+	cmd_handler.add_command("globalgamejam", globalgamejam)
 	cmd_handler.add_alias("helloworld", "hello")
 	cmd_handler.add_command("list", list, -1, 1)
 #	cmd_handler.add_command("join", join)

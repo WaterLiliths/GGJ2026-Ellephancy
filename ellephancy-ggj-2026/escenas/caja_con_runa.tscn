@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dms4gyleto0rl"]
+
+[ext_resource type="Texture2D" uid="uid://dt8gpftbw4txl" path="res://assets/icon.svg" id="1_koe8j"]
+[ext_resource type="Script" uid="uid://d3lf7qb371cpb" path="res://escenas/caja_con_runa.gd" id="1_pt6pe"]
+[ext_resource type="Texture2D" uid="uid://d0wu3o7g3cva1" path="res://assets/TILES-TEST/runa-test.jpg" id="2_5j0wx"]
+[ext_resource type="Texture2D" uid="uid://chrklqppnkf10" path="res://assets/TILES-TEST/letra-a.jpg" id="2_88tsu"]
+
+[node name="CajaConRuna" type="Node2D" unique_id=192953757]
+script = ExtResource("1_pt6pe")
+
+[node name="SpriteNormal" type="Sprite2D" parent="." unique_id=2138242404]
+unique_name_in_owner = true
+texture = ExtResource("1_koe8j")
+
+[node name="SpriteTraducido" type="Sprite2D" parent="." unique_id=999127732]
+unique_name_in_owner = true
+visible = false
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_88tsu")
+
+[node name="SpriteRuna" type="Sprite2D" parent="." unique_id=767108012]
+unique_name_in_owner = true
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_5j0wx")
