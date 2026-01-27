@@ -7,9 +7,19 @@ extends CharacterBody2D
 @export var fuerza_empuje : float = 100.0
 @export var velocidad_arrastrando : float = 100.0
 @onready var animated_sprite_pj: AnimatedSprite2D = %AnimatedSpritePJ
+@onready var pin_joint_agarrar: PinJoint2D = %PinJointAgarrar
+
+
 
 var objeto_arrastrado : ObjetoEmpujable = null
 var esta_arrastrando : bool = false
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("tirar") and objeto_arrastrado:
+		conectar_caja_con_joint()
+	if Input.is_action_just_released("tirar") and objeto_arrastrado:
+		desconectar_caja_con_joint()
+
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor(): #gravedad
@@ -33,13 +43,14 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, velocidad)
 		animated_sprite_pj.play("idle")
 
-	arrastrar_objeto()
+
+#	arrastrar_objeto()
 	move_and_slide()
 	empujar_objetos()
 
 
 #-------------------------FUNCIONES-----------------------
-func empujar_objetos() -> void:
+func empujar_objetos() -> void: #se queda 
 	if Input.is_action_pressed("tirar"):
 		return
 	
@@ -57,7 +68,8 @@ func arrastrar_objeto() -> void:
 	if Input.is_action_pressed("tirar") and objeto_arrastrado and direction != 0:
 		if not esta_arrastrando:
 			esta_arrastrando = true
-			objeto_arrastrado.empezar_arrastrar($AnimatedSpritePJ/MarkerTirar)
+			pin_joint_agarrar.node_b = objeto_arrastrado.get_path()
+			#objeto_arrastrado.empezar_arrastrar($AnimatedSpritePJ/MarkerTirar)
 	else:
 		if esta_arrastrando and objeto_arrastrado:
 			objeto_arrastrado.dejar_arrastrar()
@@ -68,10 +80,16 @@ func _on_area_tirar_body_entered(body: Node2D) -> void:
 	if body is ObjetoEmpujable:
 		objeto_arrastrado = body
 
+func conectar_caja_con_joint():
+	pin_joint_agarrar.node_b = objeto_arrastrado.get_path()
 
+func desconectar_caja_con_joint():
+	pin_joint_agarrar.node_b = self.get_path()# me vuelvo a conectar a mi mismo
+	objeto_arrastrado = null
 
 func _on_area_tirar_body_exited(body: Node2D) -> void:
 	if body == objeto_arrastrado:
-		if objeto_arrastrado.es_arrastrada:
-			objeto_arrastrado.dejar_arrastrar()
 		objeto_arrastrado = null
+		#if objeto_arrastrado.es_arrastrada:
+			#objeto_arrastrado.dejar_arrastrar()
+		#objeto_arrastrado = null

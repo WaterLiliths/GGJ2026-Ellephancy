@@ -11,11 +11,13 @@ func _physics_process(delta: float) -> void:
 
 #-----------------FUNCIONES--------------
 func empezar_arrastrar(marker : Node2D):
+#	freeze = true
 	es_arrastrada = true
 	arrastra = marker
 	freeze = true
 
 func dejar_arrastrar():
+#	freeze = false
 	es_arrastrada = false
 	arrastra = null
 	freeze = false
