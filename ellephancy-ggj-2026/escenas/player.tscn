@@ -118,3 +118,8 @@ animation = &"idle"
 shape = SubResource("CircleShape2D_kkt6c")
 
 [node name="MASCARA" type="Node2D" parent="." unique_id=604400555]
+
+[node name="TimerCoyoteTime" type="Timer" parent="." unique_id=553024978]
+unique_name_in_owner = true
+wait_time = 0.25
+one_shot = true
