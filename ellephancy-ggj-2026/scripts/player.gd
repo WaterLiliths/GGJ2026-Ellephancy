@@ -9,7 +9,8 @@ extends CharacterBody2D
 @onready var animated_sprite_pj: AnimatedSprite2D = %AnimatedSpritePJ
 @onready var timer_coyote_time : Timer = %TimerCoyoteTime
 var estaba_en_el_piso : bool = false
-
+var timer_pasos = 0
+var timer_pasos_reset = 0.4
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor(): #gravedad
@@ -29,6 +30,10 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * velocidad
 		animated_sprite_pj.flip_h = direction < 0 #rotar pj segun para donde se mueve
 		animated_sprite_pj.play("caminar")
+		if timer_pasos <= 0 && is_on_floor():
+			$FmodEventEmitter2D.play_one_shot()
+			timer_pasos = timer_pasos_reset
+		timer_pasos -= delta
 	else:
 		velocity.x = move_toward(velocity.x, direction * velocidad, velocidad * desaceleracion_horizontal)
 		animated_sprite_pj.play("idle")

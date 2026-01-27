@@ -8,15 +8,25 @@
 
 config_version=5
 
+[Fmod]
+
+General/banks_path="res://assets/audio/FmodBanks/Desktop"
+
 [application]
 
 config/name="Ellephancy_GGJ2026"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+run/main_scene="uid://cck5uwpwq01uo"
+config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://assets/icon.svg"
 
 [autoload]
 
 Global="*uid://bquwd2lw2fknr"
+FmodManager="*res://addons/fmod/FmodManager.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/fmod/plugin.cfg")
 
 [file_customization]
 
