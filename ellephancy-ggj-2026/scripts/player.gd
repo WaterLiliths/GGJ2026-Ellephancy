@@ -34,7 +34,7 @@ func _input(event: InputEvent) -> void:
 		pass
 	if Input.is_action_just_pressed("3"):
 		pass
-   if Input.is_action_just_pressed("tirar") and objeto_arrastrado:
+	if Input.is_action_just_pressed("tirar") and objeto_arrastrado:
 		conectar_caja_con_joint()
 	if Input.is_action_just_released("tirar") and objeto_arrastrado:
 		desconectar_caja_con_joint()
@@ -68,7 +68,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 	empujar_objetos()
-  comprobar_coyote_timer()
+	comprobar_coyote_timer()
 	if is_on_floor():
 		timer_coyote_time.stop()
 	estaba_en_el_piso = is_on_floor()
@@ -124,4 +124,3 @@ func _on_area_tirar_body_exited(body: Node2D) -> void:
 func comprobar_coyote_timer():
 	if estaba_en_el_piso and not is_on_floor():#osea que recien salto
 		timer_coyote_time.start()
-
