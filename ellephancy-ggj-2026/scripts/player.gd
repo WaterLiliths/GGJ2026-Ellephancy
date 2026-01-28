@@ -197,6 +197,7 @@ func detectar_caida():
 
 func _on_timer_tiempo_en_aire_timeout() -> void:
 	#print("Estuvo MUCHO tiempo en el aire, matar personaje")
+	pass
 	#y dsp aca agregamos funcion kill
 
 func consultar_saltar():
