@@ -177,6 +177,7 @@ fmod_parameters/Superficie/id = -5155162075446807488
 fmod_parameters/Superficie = "pasto"
 fmod_parameters/Superficie/labels = PackedStringArray("pasto", "madera", "piedra")
 fmod_parameters/Superficie/variant_type = 4
+unique_name_in_owner = true
 
 [node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Personaje/Movimiento/salto"
