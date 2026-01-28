@@ -179,10 +179,9 @@ func reset_velocidad_normal():
 
 func detectar_caida():
 	if not estaba_en_el_piso and is_on_floor():
-		$FmodEventEmitter2D4.play_one_shot()
 		var tiempo_en_aire_actual = tiempo_maximo_en_aire - timer_tiempo_en_aire.time_left
 		print("tiempo en aire actual vale: ", tiempo_en_aire_actual)
-
+		$FmodEventEmitter2D4.play_one_shot()
 
 
 func _on_timer_tiempo_en_aire_timeout() -> void:
