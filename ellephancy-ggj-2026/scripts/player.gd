@@ -1,6 +1,17 @@
 class_name Player
 extends CharacterBody2D
 
+@onready var idle : StatePlayer= %StateIdle
+@onready var caida : StatePlayer= %StateCaida
+@onready var caminando : StatePlayer= %StateCaminando
+@onready var salto : StatePlayer= %StateSalto
+@onready var agarrando : StatePlayer= %StateAgarrando
+@onready var state_machine_manager: Node = %StateMachineManager
+
+
+
+
+
 var sonido_caja_sonando : bool = false
 var agarrando_caja : bool = false
 @export_range(0,10,0.1) var tiempo_maximo_en_aire : float
@@ -35,6 +46,11 @@ var estaba_en_el_piso : bool = false
 
 
 func _ready() -> void:
+	for estado in state_machine_manager.get_children():
+		if estado is StatePlayer:
+			estado.player = self #referencia al personaje
+			estado.state_machine = state_machine_manager #para que cada estado pueda pedir transiciones entradas salidas etc
+
 	timer_tiempo_en_aire.wait_time = tiempo_maximo_en_aire
 	velocidad_inicial = velocidad
 	velocidad_inicial_salto = velocidad_salto
@@ -181,7 +197,7 @@ func detectar_caida():
 	if not estaba_en_el_piso and is_on_floor():
 		$FmodEventEmitter2D4.play_one_shot()
 		var tiempo_en_aire_actual = tiempo_maximo_en_aire - timer_tiempo_en_aire.time_left
-		print("tiempo en aire actual vale: ", tiempo_en_aire_actual)
+		#print("tiempo en aire actual vale: ", tiempo_en_aire_actual)
 
 
 
