@@ -112,6 +112,7 @@ radius = 41.880783
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_esbpa")
+tiempo_maximo_en_aire = 10.0
 velocidad_al_agarrar = 50.35
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
@@ -184,7 +185,34 @@ event_name = "event:/Personaje/Movimiento/salto"
 event_guid = "{f53bcf20-29b6-434f-bdfb-043bdc67c2fb}"
 unique_name_in_owner = true
 
+[node name="FmodEventEmitter2D3" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Objetos/arrastrar objeto"
+event_guid = "{2166ce82-c481-4140-ac4f-55290734fe8b}"
+fmod_parameters/Peso/id = 8505785322959852152
+fmod_parameters/Peso = 0.5
+fmod_parameters/Peso/variant_type = 3
+fmod_parameters/Material/id = -768118463292944790
+fmod_parameters/Material = "Piedra"
+fmod_parameters/Material/labels = PackedStringArray("Piedra", "Madera")
+fmod_parameters/Material/variant_type = 4
+unique_name_in_owner = true
+
+[node name="FmodEventEmitter2D4" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Personaje/Movimiento/aterrizar"
+event_guid = "{9914084c-c171-4e3c-9582-0e37728b8a1b}"
+fmod_parameters/Superficie/id = -5155162075446807488
+fmod_parameters/Superficie = "pasto"
+fmod_parameters/Superficie/labels = PackedStringArray("pasto", "madera", "piedra")
+fmod_parameters/Superficie/variant_type = 4
+[node name="StateMachine" type="Node" parent="."]
+
+[node name="TimerTiempoEnAire" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 10.0
+one_shot = true
+
 [connection signal="animation_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_animation_changed"]
 [connection signal="frame_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_frame_changed"]
 [connection signal="body_entered" from="AreaTirar" to="." method="_on_area_tirar_body_entered"]
 [connection signal="body_exited" from="AreaTirar" to="." method="_on_area_tirar_body_exited"]
+[connection signal="timeout" from="TimerTiempoEnAire" to="." method="_on_timer_tiempo_en_aire_timeout"]
