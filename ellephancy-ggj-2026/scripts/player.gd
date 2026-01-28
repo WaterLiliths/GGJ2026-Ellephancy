@@ -1,7 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
-
+var agarrando_caja : bool = false
 @export var aceleracion : float = 1800.0
 @export var desaceleracion : float = 2200.0
 @export var velocidad_max : float = 250.0
@@ -111,12 +111,12 @@ func conectar_caja_con_joint():
 	if !%MascaraFuerza.get_estado_activa():
 		print("la mascara esta desactivada, no agarrar")
 		return
-	if direction:
-		pass
-	#	$FmodEventEmitter2D3.play() #TODO FALTA ESTO
-	#else:
-		#$FmodEventEmitter2D3.stop()
+	if agarrando_caja and direction:
+		$FmodEventEmitter2D3.play()
+	else:
+		$FmodEventEmitter2D3.stop()
 	pin_joint_agarrar.node_b = objeto_arrastrado.get_path()
+	agarrando_caja = true
 	disminuir_velocidad_al_agarrar()
 
 
@@ -124,6 +124,7 @@ func desconectar_caja_con_joint():
 	pin_joint_agarrar.node_b = self.get_path()# me vuelvo a conectar a mi mismo que es lo mismo q desconectar
 	objeto_arrastrado = null
 	reset_velocidad_normal()
+	agarrando_caja = false
 	%FmodEventEmitter2D2.stop()
 
 

@@ -40,9 +40,11 @@ event_guid = "{9318ebbc-5ee4-4da9-87ef-a11bf476df3b}"
 attached = false
 autoplay = true
 volume = 0.685
+unique_name_in_owner = true
 
 [node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Musica/Musica"
 event_guid = "{531f5736-0242-456e-96ac-14d316a2be4e}"
 attached = false
 autoplay = true
+unique_name_in_owner = true
