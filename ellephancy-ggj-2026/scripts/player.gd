@@ -1,6 +1,14 @@
 class_name Player
 extends CharacterBody2D
 
+@onready var idle : StatePlayer= %StateIdle
+@onready var caminando : StatePlayer= %StateCaminando
+@onready var salto : StatePlayer= %StateSalto
+@onready var agarrando : StatePlayer= %StateAgarrando
+@onready var state_machine_manager: Node = %StateMachineManager
+
+
+
 var sonido_caja_sonando : bool = false
 var agarrando_caja : bool = false
 @export_range(0,10,0.1) var tiempo_maximo_en_aire : float
@@ -27,7 +35,8 @@ var velocidad_inicial : float
 var direction : float
 var objeto_arrastrado : ObjetoEmpujable = null
 @onready var timer_tiempo_en_aire: Timer = %TimerTiempoEnAire
-
+var timer_pasos = 0
+var timer_pasos_reset = 0.36
 
 @onready var timer_coyote_time : Timer = %TimerCoyoteTime
 var estaba_en_el_piso : bool = false
@@ -36,6 +45,12 @@ var estaba_en_el_piso : bool = false
 
 
 func _ready() -> void:
+	for estado in state_machine_manager.get_children():
+		if estado is StatePlayer:
+			estado.player = self #referencia al personaje
+			estado.state_machine = state_machine_manager #para que cada estado pueda pedir transiciones entradas salidas etc
+	state_machine_manager.cambiar_de_estado(idle)
+	
 	timer_tiempo_en_aire.wait_time = tiempo_maximo_en_aire
 	velocidad_inicial = velocidad
 	velocidad_inicial_salto = velocidad_salto
@@ -43,7 +58,6 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-
 	if Input.is_action_just_pressed("1"): #usar mascara tiempos
 		Global.usar_mascara.emit(1)
 	if Input.is_action_just_pressed("2"): #usar mascara fuerza
@@ -51,49 +65,23 @@ func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("3"): #usar mascara traducciones
 		Global.usar_mascara.emit(3)
 
-	if Input.is_action_just_pressed("tirar") and objeto_arrastrado:
-		conectar_caja_con_joint()
-	if Input.is_action_just_released("tirar") and objeto_arrastrado:
-		desconectar_caja_con_joint()
+	#if Input.is_action_just_pressed("tirar") and objeto_arrastrado:
+		#conectar_caja_con_joint()
+	#if Input.is_action_just_released("tirar") and objeto_arrastrado:
+		#desconectar_caja_con_joint()
 
-var timer_pasos = 0
-var timer_pasos_reset = 0.36
 
 
 func _physics_process(delta: float) -> void:
+	direction = Input.get_axis("a", "d")
 	if velocity.y<0:
 		velocity += get_gravity() * gravedad_subiendo * delta
 	else:
 		velocity += get_gravity() * gravedad_bajando * delta
-	
-	# -------------------- salto + coyote timer  -------------------------------
-	if Input.is_action_just_pressed("w") and (is_on_floor() or puedo_usar_coyote()):
-		velocity.y = velocidad_salto
-		timer_coyote_time.stop()
-		$FmodEventEmitter2D2.play_one_shot()
-		#TODO agregar aca animacion de salto
-	if Input.is_action_just_released("w") and velocity.y < 0:
-		velocity.y *= desaceleración_al_saltar
-	
-	#------------------    movimiento con w a s d ------------------------------
-	direction = Input.get_axis("a", "d")
-	if direction:
-		velocity.x = move_toward(velocity.x , direction * velocidad, aceleracion * delta)
-		animated_sprite_pj.flip_h = direction < 0 #rotar pj segun para donde se mueve
-		animated_sprite_pj.play("caminar")
-
-		if timer_pasos <= 0 && is_on_floor():
-			%FmodEventEmitter2D.play_one_shot()
-			timer_pasos = timer_pasos_reset
-		timer_pasos -= delta
-	else:
-		velocity.x = move_toward(velocity.x, 0, desaceleracion*delta)
-		animated_sprite_pj.play("idle")
-
-
 	move_and_slide()
 	detectar_caida()
 	comprobar_coyote_timer()
+
 	if agarrando_caja and direction:
 		if not sonido_caja_sonando:
 			%FmodEventEmitter2D3.play()
@@ -107,6 +95,22 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		timer_coyote_time.stop()
 	estaba_en_el_piso = is_on_floor()
+	# -------------------- salto + coyote timer  -------------------------------
+	#if Input.is_action_just_pressed("w") and (is_on_floor() or puedo_usar_coyote()):
+		#velocity.y = velocidad_salto
+		#timer_coyote_time.stop()
+		#$FmodEventEmitter2D2.play_one_shot()
+		##TODO agregar aca animacion de salto
+	#if Input.is_action_just_released("w") and velocity.y < 0:
+		#velocity.y *= desaceleración_al_saltar
+	
+	#------------------    movimiento con w a s d ------------------------------
+	#direction = Input.get_axis("a", "d")
+	#if direction:
+		#velocity.x = move_toward(velocity.x , direction * velocidad, aceleracion * delta)
+		#animated_sprite_pj.flip_h = direction < 0 #rotar pj segun para donde se mueve
+		#animated_sprite_pj.play("caminar")
+
 
 
 
@@ -194,4 +198,13 @@ func detectar_caida():
 func _on_timer_tiempo_en_aire_timeout() -> void:
 	#print("Estuvo MUCHO tiempo en el aire, matar personaje")
 	#y dsp aca agregamos funcion kill
-	pass
+
+func consultar_saltar():
+	if Input.is_action_just_pressed("w") and (is_on_floor() or puedo_usar_coyote()):
+		velocity.y = velocidad_salto
+		timer_coyote_time.stop()
+		$FmodEventEmitter2D2.play_one_shot()
+
+
+func emitir_sonido_pasos():
+	%FmodEventEmitter2D.play_one_shot()

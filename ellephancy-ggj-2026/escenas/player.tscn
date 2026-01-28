@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cs3h434myxe4r"]
+[gd_scene load_steps=27 format=3 uid="uid://cs3h434myxe4r"]
 
 [ext_resource type="Script" uid="uid://d1p6o2ixegcp2" path="res://scripts/player.gd" id="1_esbpa"]
 [ext_resource type="Texture2D" uid="uid://b3y87vf4oiey5" path="res://assets/personaje-test/correr.png" id="2_kkt6c"]
@@ -6,6 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://45apkf4ddmvr" path="res://escenas/mascara_tiempos.tscn" id="4_k4kro"]
 [ext_resource type="PackedScene" uid="uid://vtcvameos4xx" path="res://escenas/mascara_fuerza.tscn" id="5_t3yu4"]
 [ext_resource type="PackedScene" uid="uid://x51x8ch6wkl2" path="res://escenas/mascara_traducciones.tscn" id="6_r4hsq"]
+[ext_resource type="Script" uid="uid://dx71682jtxw4f" path="res://escenas/state_machine_player.gd" id="7_r4hsq"]
+[ext_resource type="Script" uid="uid://bn0a76bcmdfkm" path="res://escenas/state_idle.gd" id="8_n2wyw"]
+[ext_resource type="Script" uid="uid://c2q65tm4l0t11" path="res://escenas/state_caminando.gd" id="9_rbrud"]
+[ext_resource type="Script" uid="uid://b0h1kkdxs8sje" path="res://escenas/state_salto.gd" id="10_8b7ct"]
+[ext_resource type="Script" uid="uid://t33dws6rujru" path="res://escenas/state_agarrando.gd" id="12_3w4lm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j7xnp"]
 atlas = ExtResource("2_kkt6c")
@@ -210,7 +215,25 @@ fmod_parameters/Superficie = "pasto"
 fmod_parameters/Superficie/labels = PackedStringArray("pasto", "madera", "piedra")
 fmod_parameters/Superficie/variant_type = 4
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachineManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("7_r4hsq")
+
+[node name="StateIdle" type="Node" parent="StateMachineManager"]
+unique_name_in_owner = true
+script = ExtResource("8_n2wyw")
+
+[node name="StateCaminando" type="Node" parent="StateMachineManager"]
+unique_name_in_owner = true
+script = ExtResource("9_rbrud")
+
+[node name="StateSalto" type="Node" parent="StateMachineManager"]
+unique_name_in_owner = true
+script = ExtResource("10_8b7ct")
+
+[node name="StateAgarrando" type="Node" parent="StateMachineManager"]
+unique_name_in_owner = true
+script = ExtResource("12_3w4lm")
 
 [node name="TimerTiempoEnAire" type="Timer" parent="."]
 unique_name_in_owner = true
