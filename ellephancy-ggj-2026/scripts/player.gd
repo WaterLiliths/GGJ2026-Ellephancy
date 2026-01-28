@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 var sonido_caja_sonando : bool = false
 var agarrando_caja : bool = false
+@export_range(0,10,0.1) var tiempo_maximo_en_aire : float
 @export var aceleracion : float = 1800.0
 @export var desaceleracion : float = 2200.0
 @export var velocidad_max : float = 250.0
@@ -24,6 +25,7 @@ var velocidad_inicial : float
 @onready var pin_joint_agarrar: PinJoint2D = %PinJointAgarrar
 var direction : float
 var objeto_arrastrado : ObjetoEmpujable = null
+@onready var timer_tiempo_en_aire: Timer = %TimerTiempoEnAire
 
 
 @onready var timer_coyote_time : Timer = %TimerCoyoteTime
@@ -33,6 +35,7 @@ var estaba_en_el_piso : bool = false
 
 
 func _ready() -> void:
+	timer_tiempo_en_aire.wait_time = tiempo_maximo_en_aire
 	velocidad_inicial = velocidad
 	velocidad_inicial_salto = velocidad_salto
 	Global.mascara_fuerza_activa.connect(on_signal_mascara_fuerza_activa)
@@ -140,6 +143,8 @@ func desconectar_caja_con_joint():
 func comprobar_coyote_timer():
 	if estaba_en_el_piso and not is_on_floor():#osea que recien salto
 		timer_coyote_time.start()
+		#sumo tambien para saber cuanto tiempo estaba en el aire
+		timer_tiempo_en_aire.start()
 
 
 func puedo_usar_coyote():
@@ -175,3 +180,11 @@ func reset_velocidad_normal():
 func detectar_caida():
 	if not estaba_en_el_piso and is_on_floor():
 		$FmodEventEmitter2D4.play_one_shot()
+		var tiempo_en_aire_actual = tiempo_maximo_en_aire - timer_tiempo_en_aire.time_left
+		print("tiempo en aire actual vale: ", tiempo_en_aire_actual)
+
+
+
+func _on_timer_tiempo_en_aire_timeout() -> void:
+	print("Estuvo MUCHO tiempo en el aire, matar personaje")
+	#y dsp aca agregamos funcion kill
