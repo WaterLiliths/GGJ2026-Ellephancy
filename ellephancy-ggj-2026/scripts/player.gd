@@ -174,5 +174,4 @@ func reset_velocidad_normal():
 
 func detectar_caida():
 	if not estaba_en_el_piso and is_on_floor():
-		#aca disparamos el sonido de caida
-		pass
+		$FmodEventEmitter2D4.play_one_shot()

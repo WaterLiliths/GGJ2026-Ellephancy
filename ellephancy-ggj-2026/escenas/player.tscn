@@ -196,6 +196,14 @@ fmod_parameters/Material/labels = PackedStringArray("Piedra", "Madera")
 fmod_parameters/Material/variant_type = 4
 unique_name_in_owner = true
 
+[node name="FmodEventEmitter2D4" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Personaje/Movimiento/aterrizar"
+event_guid = "{9914084c-c171-4e3c-9582-0e37728b8a1b}"
+fmod_parameters/Superficie/id = -5155162075446807488
+fmod_parameters/Superficie = "pasto"
+fmod_parameters/Superficie/labels = PackedStringArray("pasto", "madera", "piedra")
+fmod_parameters/Superficie/variant_type = 4
+
 [connection signal="animation_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_animation_changed"]
 [connection signal="frame_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_frame_changed"]
 [connection signal="body_entered" from="AreaTirar" to="." method="_on_area_tirar_body_entered"]
