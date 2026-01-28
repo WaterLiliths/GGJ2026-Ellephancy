@@ -2,9 +2,6 @@ class_name StatePlayer
 extends Node
 
 
-enum estados {IDLE, CAIDA, CAMINANDO}
-
-
 @onready var player : Player #se setea en ready de playe
 @onready var state_machine : StateMachineManager
 
