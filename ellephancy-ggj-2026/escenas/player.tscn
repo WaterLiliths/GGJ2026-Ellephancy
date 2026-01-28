@@ -111,6 +111,7 @@ radius = 32.0
 radius = 41.880783
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 7
 script = ExtResource("1_esbpa")
 velocidad_al_agarrar = 50.35
 

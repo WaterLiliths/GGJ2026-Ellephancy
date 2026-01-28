@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3kt101wc8mwl"]
+
+[ext_resource type="Script" uid="uid://cq4ck0hi4tl82" path="res://escenas/world_objects/palanca.gd" id="1_3114u"]
+[ext_resource type="Texture2D" uid="uid://dt8gpftbw4txl" path="res://assets/tile_set/icon.svg" id="1_kk7ru"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3114u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_kk7ru")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dtuov"]
+size = Vector2(130, 126)
+
+[node name="Palanca" type="Area2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_3114u")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3114u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dtuov")

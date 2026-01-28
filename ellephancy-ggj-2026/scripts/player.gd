@@ -22,14 +22,15 @@ var velocidad_inicial : float
 @onready var ray_cast_der: RayCast2D = %RayCastDer
 @onready var pin_joint_agarrar: PinJoint2D = %PinJointAgarrar
 var direction : float
-var objeto_arrastrado : ObjetoEmpujable = null
 
+var objeto_arrastrado : ObjetoEmpujable = null
 
 @onready var timer_coyote_time : Timer = %TimerCoyoteTime
 var estaba_en_el_piso : bool = false
 @onready var mascara_tiempo: Node2D = %MascaraTiempos
 
-
+var objeto_interactivo : Interactivo = null
+var puede_interactuar : bool = false
 
 func _ready() -> void:
 	velocidad_inicial = velocidad
@@ -85,7 +86,10 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, desaceleracion*delta)
 		animated_sprite_pj.play("idle")
-
+	
+	#------------------------INTERACTUAR------------------------
+	if puede_interactuar and objeto_interactivo is Palanca and Input.is_action_just_pressed("interactuar"):
+		objeto_interactivo.activar()
 
 	move_and_slide()
 	comprobar_coyote_timer()
@@ -105,7 +109,6 @@ func _on_area_tirar_body_exited(body: Node2D) -> void:
 		objeto_arrastrado = null
 
 #--------------------  FUNCIONES  ------------------------
-
 
 func conectar_caja_con_joint():
 	if !%MascaraFuerza.get_estado_activa():
@@ -127,12 +130,19 @@ func desconectar_caja_con_joint():
 	%FmodEventEmitter2D2.stop()
 
 
-
-
-
 func comprobar_coyote_timer():
 	if estaba_en_el_piso and not is_on_floor():#osea que recien salto
 		timer_coyote_time.start()
+
+func on_entra_a_interactivo(interactivo_actual : Interactivo):
+	puede_interactuar = true
+	if interactivo_actual is Palanca:
+		objeto_interactivo = interactivo_actual
+
+func on_sale_de_interactivo(interactivo_actual : Interactivo):
+	if interactivo_actual == objeto_interactivo:
+		puede_interactuar = false
+		objeto_interactivo = null
 
 func puedo_usar_coyote():
 	if timer_coyote_time.time_left > 0 and  algun_raycast_colisiona():

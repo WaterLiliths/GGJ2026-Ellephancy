@@ -4,7 +4,8 @@
 [ext_resource type="Script" uid="uid://dlshkk4n3o88o" path="res://scripts/sprite_fondo_test.gd" id="2_f2txr"]
 [ext_resource type="PackedScene" uid="uid://cs3h434myxe4r" path="res://escenas/player.tscn" id="2_g44pp"]
 [ext_resource type="PackedScene" uid="uid://by80hrdi7bflk" path="res://escenas/creador_de_niveles.tscn" id="3_xgvjd"]
-[ext_resource type="PackedScene" uid="uid://t3ox75glka3s" path="res://escenas/ObjetoAEmpujar.tscn" id="4_f2txr"]
+[ext_resource type="PackedScene" uid="uid://t3ox75glka3s" path="res://escenas/world_objects/ObjetoAEmpujar.tscn" id="4_f2txr"]
+
 
 [node name="NivelTest" type="Node2D"]
 
