@@ -10,12 +10,13 @@ var agarrando_caja : bool = false
 @export var gravedad_subiendo : float = 1.0
 @export var gravedad_bajando : float = 1.4
 @export var velocidad : float = 250.0
-@export var velocidad_salto: float = -555
+@export var velocidad_salto: float = -500
+@export var velocidad_salto_con_mascara = -620
 @export var desaceleración_al_saltar : float = 0.5 #arreglar igual 0.5 safa
 @export var desaceleracion_horizontal : float = 0.07 #ajustable a gusto
 var velocidad_inicial_salto : float
 var velocidad_inicial : float 
-@export var velocidad_al_agarrar : float = 25
+@export var velocidad_al_agarrar : float = 250
 @export var velocidad_correr : float = 40
 @export var fuerza_empuje : float = 0
 @export var velocidad_arrastrando : float = 100.0
@@ -96,6 +97,7 @@ func _physics_process(delta: float) -> void:
 	if agarrando_caja and direction:
 		if not sonido_caja_sonando:
 			%FmodEventEmitter2D3.play()
+			%FmodEventEmitter2D3.set_parameter("peso", objeto_arrastrado.mass)
 			sonido_caja_sonando = true
 	else:
 		if sonido_caja_sonando:
@@ -161,16 +163,21 @@ func algun_raycast_colisiona(): #para el coyote timer
 
 
 func on_signal_mascara_fuerza_activa():
+	velocidad_salto = velocidad_salto_con_mascara
 	pass
 
 
 func desactivar_mascara_fuerza():
+	#velocidad_salto = velocidad_inicial_salto
+	print("se desactivo las mascara de fuerza")
 	pass
 
 
 func disminuir_velocidad_al_agarrar():
-	velocidad = velocidad_al_agarrar
-	velocidad_salto = -74
+	velocidad *= (1 / objeto_arrastrado.mass)
+	print((1 / objeto_arrastrado.mass))
+	print("la velocidad de movimiento es: " + str(velocidad))
+	velocidad_salto *= (1 / objeto_arrastrado.mass)
 
 func reset_velocidad_normal():
 	velocidad = velocidad_inicial
@@ -180,10 +187,11 @@ func reset_velocidad_normal():
 func detectar_caida():
 	if not estaba_en_el_piso and is_on_floor():
 		var tiempo_en_aire_actual = tiempo_maximo_en_aire - timer_tiempo_en_aire.time_left
-		print("tiempo en aire actual vale: ", tiempo_en_aire_actual)
+		#print("tiempo en aire actual vale: ", tiempo_en_aire_actual)
 		$FmodEventEmitter2D4.play_one_shot()
 
 
 func _on_timer_tiempo_en_aire_timeout() -> void:
-	print("Estuvo MUCHO tiempo en el aire, matar personaje")
+	#print("Estuvo MUCHO tiempo en el aire, matar personaje")
 	#y dsp aca agregamos funcion kill
+	pass
