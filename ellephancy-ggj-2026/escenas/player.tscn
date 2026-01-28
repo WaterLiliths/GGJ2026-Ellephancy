@@ -184,6 +184,17 @@ event_name = "event:/Personaje/Movimiento/salto"
 event_guid = "{f53bcf20-29b6-434f-bdfb-043bdc67c2fb}"
 unique_name_in_owner = true
 
+[node name="FmodEventEmitter2D3" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Objetos/arrastrar objeto"
+event_guid = "{2166ce82-c481-4140-ac4f-55290734fe8b}"
+fmod_parameters/Peso/id = 8505785322959852152
+fmod_parameters/Peso = 0.5
+fmod_parameters/Peso/variant_type = 3
+fmod_parameters/Material/id = -768118463292944790
+fmod_parameters/Material = "Piedra"
+fmod_parameters/Material/labels = PackedStringArray("Piedra", "Madera")
+fmod_parameters/Material/variant_type = 4
+
 [connection signal="animation_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_animation_changed"]
 [connection signal="frame_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_frame_changed"]
 [connection signal="body_entered" from="AreaTirar" to="." method="_on_area_tirar_body_entered"]

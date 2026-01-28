@@ -76,8 +76,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x , direction * velocidad, aceleracion * delta)
 		animated_sprite_pj.flip_h = direction < 0 #rotar pj segun para donde se mueve
 		animated_sprite_pj.play("caminar")
-		#if animated_sprite_pj.
-			#$FmodEventEmitter2D.play_one_shot()
+
 		if timer_pasos <= 0 && is_on_floor():
 			%FmodEventEmitter2D.play_one_shot()
 			timer_pasos = timer_pasos_reset
@@ -111,9 +110,9 @@ func conectar_caja_con_joint():
 	if !%MascaraFuerza.get_estado_activa():
 		print("la mascara esta desactivada, no agarrar")
 		return
-	if direction:
-		pass
-	#	$FmodEventEmitter2D3.play() #TODO FALTA ESTO
+	#if direction:
+		#pass
+		#$FmodEventEmitter2D3.play() #TODO FALTA ESTO
 	#else:
 		#$FmodEventEmitter2D3.stop()
 	pin_joint_agarrar.node_b = objeto_arrastrado.get_path()
