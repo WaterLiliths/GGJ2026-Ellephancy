@@ -23,6 +23,8 @@ var velocidad_inicial : float
 
 @onready var pin_joint_agarrar: PinJoint2D = %PinJointAgarrar
 
+signal es_arrastrado
+var direction
 
 #probando
 var objeto_arrastrado : ObjetoEmpujable = null
@@ -75,7 +77,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y *= desaceleración_al_saltar
 	
 	#movimiento con w a s d
-	var direction := Input.get_axis("a", "d")
+	direction = Input.get_axis("a", "d")
 	if direction:
 		velocity.x = move_toward(velocity.x , direction * velocidad, aceleracion * delta)
 		animated_sprite_pj.flip_h = direction < 0 #rotar pj segun para donde se mueve
@@ -136,17 +138,24 @@ func conectar_caja_con_joint():
 	if !%MascaraFuerza.get_estado_activa():
 		print("la mascara esta desactivada, no agarrar")
 		return
+	if direction:
+		$FmodEventEmitter2D3.play()
+	#else:
+		#$FmodEventEmitter2D3.stop()
 	pin_joint_agarrar.node_b = objeto_arrastrado.get_path()
 	disminuir_velocidad_al_agarrar()
+
 
 func desconectar_caja_con_joint():
 	pin_joint_agarrar.node_b = self.get_path()# me vuelvo a conectar a mi mismo que es lo mismo q desconectar
 	objeto_arrastrado = null
 	reset_velocidad_normal()
+	$FmodEventEmitter2D3.stop()
 
 func _on_area_tirar_body_exited(body: Node2D) -> void:
 	if body == objeto_arrastrado:
 		objeto_arrastrado = null
+
 
 
 func comprobar_coyote_timer():
