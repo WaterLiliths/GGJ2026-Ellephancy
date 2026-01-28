@@ -112,6 +112,7 @@ radius = 41.880783
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_esbpa")
+tiempo_maximo_en_aire = 10.0
 velocidad_al_agarrar = 50.35
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
@@ -196,7 +197,15 @@ fmod_parameters/Material/labels = PackedStringArray("Piedra", "Madera")
 fmod_parameters/Material/variant_type = 4
 unique_name_in_owner = true
 
+[node name="StateMachine" type="Node" parent="."]
+
+[node name="TimerTiempoEnAire" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 10.0
+one_shot = true
+
 [connection signal="animation_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_animation_changed"]
 [connection signal="frame_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_frame_changed"]
 [connection signal="body_entered" from="AreaTirar" to="." method="_on_area_tirar_body_entered"]
 [connection signal="body_exited" from="AreaTirar" to="." method="_on_area_tirar_body_exited"]
+[connection signal="timeout" from="TimerTiempoEnAire" to="." method="_on_timer_tiempo_en_aire_timeout"]
