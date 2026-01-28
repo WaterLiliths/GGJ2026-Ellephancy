@@ -29,3 +29,12 @@ shape = SubResource("RectangleShape2D_6a1yu")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaInteraccion"]
 shape = SubResource("RectangleShape2D_xh1mv")
 debug_color = Color(0.05449406, 0.65035343, 0, 0.41960785)
+
+[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Objetos/impacto piedra"
+event_guid = "{2c33a6f9-204b-4961-8146-ccced55c7b48}"
+fmod_parameters/Peso/id = 8505785322959852152
+fmod_parameters/Peso = 1.0
+fmod_parameters/Peso/variant_type = 3
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
