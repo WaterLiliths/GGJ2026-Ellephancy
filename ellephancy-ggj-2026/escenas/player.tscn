@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cs3h434myxe4r"]
+[gd_scene load_steps=22 format=3 uid="uid://cs3h434myxe4r"]
 
 [ext_resource type="Script" uid="uid://d1p6o2ixegcp2" path="res://scripts/player.gd" id="1_esbpa"]
 [ext_resource type="Texture2D" uid="uid://b3y87vf4oiey5" path="res://assets/personaje-test/correr.png" id="2_kkt6c"]
@@ -104,6 +104,12 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_kkt6c"]
 radius = 32.0
 
+<<<<<<< Updated upstream
+=======
+[sub_resource type="CircleShape2D" id="CircleShape2D_j7xnp"]
+radius = 41.880783
+
+>>>>>>> Stashed changes
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_esbpa")
 
@@ -117,16 +123,62 @@ scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_w7fad")
 animation = &"caminar"
 
+<<<<<<< Updated upstream
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kkt6c")
 
 [node name="MASCARA" type="Node2D" parent="."]
+=======
+[node name="MarkerTirar" type="Marker2D" parent="AnimatedSpritePJ"]
+position = Vector2(8.799999, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kkt6c")
+
+[node name="AreaTirar" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaTirar"]
+shape = SubResource("CircleShape2D_j7xnp")
+debug_color = Color(1.2513996e-06, 0.6431121, 0.31144592, 0.41960785)
+
+[node name="PinJointAgarrar" type="PinJoint2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(44, 0)
+node_a = NodePath("..")
+node_b = NodePath("..")
+>>>>>>> Stashed changes
 
 [node name="TimerCoyoteTime" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 0.25
 one_shot = true
 
+<<<<<<< Updated upstream
+=======
+[node name="MascaraTiempos" parent="." instance=ExtResource("4_k4kro")]
+unique_name_in_owner = true
+id = 1
+
+[node name="RayCastIzq" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-47, 0)
+target_position = Vector2(0, 55)
+
+[node name="RayCastDer" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(47, 0)
+target_position = Vector2(0, 55)
+
+[node name="MascaraFuerza" parent="." instance=ExtResource("5_t3yu4")]
+unique_name_in_owner = true
+id = 2
+
+[node name="MascaraTraducciones" parent="." node_paths=PackedStringArray("referencia_player") instance=ExtResource("6_r4hsq")]
+unique_name_in_owner = true
+referencia_player = NodePath("..")
+id = 3
+
+>>>>>>> Stashed changes
 [node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Personaje/Movimiento/pasos"
 event_guid = "{60f647bc-9dc2-4ff2-9a28-3e3d5b3fb282}"
@@ -138,3 +190,15 @@ fmod_parameters/Superficie/variant_type = 4
 [node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Personaje/Movimiento/salto"
 event_guid = "{f53bcf20-29b6-434f-bdfb-043bdc67c2fb}"
+
+[node name="FmodEventEmitter2D3" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Objetos/mover_piedra"
+event_guid = "{2166ce82-c481-4140-ac4f-55290734fe8b}"
+fmod_parameters/Peso/id = 8505785322959852152
+fmod_parameters/Peso = 0.5
+fmod_parameters/Peso/variant_type = 3
+
+[connection signal="animation_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_animation_changed"]
+[connection signal="frame_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_frame_changed"]
+[connection signal="body_entered" from="AreaTirar" to="." method="_on_area_tirar_body_entered"]
+[connection signal="body_exited" from="AreaTirar" to="." method="_on_area_tirar_body_exited"]
