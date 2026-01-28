@@ -10,8 +10,6 @@ extends CharacterBody2D
 
 
 
-
-
 var sonido_caja_sonando : bool = false
 var agarrando_caja : bool = false
 @export_range(0,10,0.1) var tiempo_maximo_en_aire : float
@@ -50,7 +48,8 @@ func _ready() -> void:
 		if estado is StatePlayer:
 			estado.player = self #referencia al personaje
 			estado.state_machine = state_machine_manager #para que cada estado pueda pedir transiciones entradas salidas etc
-
+	state_machine_manager.cambiar_de_estado(idle)
+	
 	timer_tiempo_en_aire.wait_time = tiempo_maximo_en_aire
 	velocidad_inicial = velocidad
 	velocidad_inicial_salto = velocidad_salto
@@ -58,7 +57,6 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-
 	if Input.is_action_just_pressed("1"): #usar mascara tiempos
 		Global.usar_mascara.emit(1)
 	if Input.is_action_just_pressed("2"): #usar mascara fuerza
@@ -91,20 +89,20 @@ func _physics_process(delta: float) -> void:
 		velocity.y *= desaceleración_al_saltar
 	
 	#------------------    movimiento con w a s d ------------------------------
-	direction = Input.get_axis("a", "d")
-	if direction:
-		velocity.x = move_toward(velocity.x , direction * velocidad, aceleracion * delta)
-		animated_sprite_pj.flip_h = direction < 0 #rotar pj segun para donde se mueve
-		animated_sprite_pj.play("caminar")
+	#direction = Input.get_axis("a", "d")
+	#if direction:
+		#velocity.x = move_toward(velocity.x , direction * velocidad, aceleracion * delta)
+		#animated_sprite_pj.flip_h = direction < 0 #rotar pj segun para donde se mueve
+		#animated_sprite_pj.play("caminar")
 
 		if timer_pasos <= 0 && is_on_floor():
 			%FmodEventEmitter2D.play_one_shot()
 			timer_pasos = timer_pasos_reset
 		timer_pasos -= delta
 	else:
-		velocity.x = move_toward(velocity.x, 0, desaceleracion*delta)
-		animated_sprite_pj.play("idle")
-
+		#velocity.x = move_toward(velocity.x, 0, desaceleracion*delta)
+		#animated_sprite_pj.play("idle")
+		pass
 
 	move_and_slide()
 	detectar_caida()

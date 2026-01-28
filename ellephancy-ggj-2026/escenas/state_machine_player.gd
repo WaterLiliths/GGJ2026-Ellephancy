@@ -3,8 +3,7 @@ extends Node
 #MANAGER
 var estado_actual : StatePlayer
 var estado_previo : StatePlayer
-@export var estado_inicial : StatePlayer
-
+var estado_inicial : StatePlayer
 
 
 func cambiar_de_estado(estado_nuevo : StatePlayer): #LE PASO EL NODO

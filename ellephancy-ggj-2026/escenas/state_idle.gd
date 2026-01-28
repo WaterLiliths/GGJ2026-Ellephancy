@@ -12,3 +12,10 @@ func transition():
 		state_machine.cambiar_de_estado(player.caminando) #aca necesito el nodo
 	if not player.is_on_floor():
 		state_machine.cambiar_de_estado(player.caida)
+
+
+func _physics_process(delta):
+	player.velocity.x = move_toward(player.velocity.x,
+		0,
+		player.desaceleracion * delta
+	)

@@ -5,7 +5,7 @@ extends Node
 enum estados {IDLE, CAIDA, CAMINANDO}
 
 
-var player : Player #se setea en ready de playe
+@onready var player : Player #se setea en ready de playe
 @onready var state_machine : StateMachineManager
 
 func _ready():
