@@ -88,6 +88,7 @@ func _physics_process(delta: float) -> void:
 
 
 	move_and_slide()
+	detectar_caida()
 	comprobar_coyote_timer()
 	if agarrando_caja and direction:
 		if not sonido_caja_sonando:
@@ -169,3 +170,9 @@ func disminuir_velocidad_al_agarrar():
 func reset_velocidad_normal():
 	velocidad = velocidad_inicial
 	velocidad_salto = velocidad_inicial_salto
+
+
+func detectar_caida():
+	if not estaba_en_el_piso and is_on_floor():
+		#aca disparamos el sonido de caida
+		pass
