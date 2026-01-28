@@ -194,6 +194,7 @@ fmod_parameters/Material/id = -768118463292944790
 fmod_parameters/Material = "Piedra"
 fmod_parameters/Material/labels = PackedStringArray("Piedra", "Madera")
 fmod_parameters/Material/variant_type = 4
+unique_name_in_owner = true
 
 [connection signal="animation_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_animation_changed"]
 [connection signal="frame_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_frame_changed"]
