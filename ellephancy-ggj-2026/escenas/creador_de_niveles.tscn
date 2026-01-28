@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://by80hrdi7bflk"]
+[gd_scene load_steps=4 format=4 uid="uid://by80hrdi7bflk"]
 
 [ext_resource type="Texture2D" uid="uid://da8uq31ni7ey8" path="res://assets/TILES-TEST/Map Tielset.png" id="1_qwx2l"]
 
@@ -232,6 +232,6 @@ texture = ExtResource("1_qwx2l")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_7qul2")
 
-[node name="CreadorDeNiveles" type="TileMapLayer" unique_id=657009517]
+[node name="CreadorDeNiveles" type="TileMapLayer"]
 tile_map_data = PackedByteArray("AAACABMAAAADAAEAAAAJAE4AAAADAAEAAAALAE4AAAADAAEAAAAMAE4AAAADAAEAAAANAE4AAAADAAEAAAAOAE4AAAADAAEAAAAPAE4AAAADAAEAAAAQAE4AAAADAAEAAAARAE4AAAADAAEAAAASAE4AAAADAAEAAAATAE4AAAADAAEAAAAUAE4AAAADAAEAAAAVAE4AAAADAAEAAAAWAE4AAAADAAEAAAAXAE4AAAADAAEAAAAYAE4AAAADAAEAAAAZAE4AAAADAAEAAAAaAE4AAAADAAEAAAAbAE4AAAADAAEAAAAcAE4AAAADAAEAAAAdAE4AAAADAAEAAAAeAE4AAAADAAEAAAAfAE4AAAADAAEAAAAgAE4AAAADAAEAAAAhAE4AAAADAAEAAAA=")
 tile_set = SubResource("TileSet_xy3v2")
