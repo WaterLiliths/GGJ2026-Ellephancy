@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cs3h434myxe4r"]
+[gd_scene load_steps=22 format=3 uid="uid://cs3h434myxe4r"]
 
 [ext_resource type="Script" uid="uid://d1p6o2ixegcp2" path="res://scripts/player.gd" id="1_esbpa"]
 [ext_resource type="Texture2D" uid="uid://b3y87vf4oiey5" path="res://assets/personaje-test/correr.png" id="2_kkt6c"]
@@ -110,67 +110,67 @@ radius = 32.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_j7xnp"]
 radius = 41.880783
 
-[node name="Player" type="CharacterBody2D" unique_id=1426217352]
+[node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_esbpa")
 velocidad_al_agarrar = 50.35
 
-[node name="FmodBankLoader" type="FmodBankLoader" parent="." unique_id=187765067]
+[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/SFX.bank"]
 
-[node name="AnimatedSpritePJ" type="AnimatedSprite2D" parent="." unique_id=649518207]
+[node name="AnimatedSpritePJ" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 texture_filter = 1
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_w7fad")
 animation = &"caminar"
 
-[node name="MarkerTirar" type="Marker2D" parent="AnimatedSpritePJ" unique_id=743198030]
+[node name="MarkerTirar" type="Marker2D" parent="AnimatedSpritePJ"]
 position = Vector2(8.799999, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=85702518]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kkt6c")
 
-[node name="AreaTirar" type="Area2D" parent="." unique_id=676553871]
+[node name="AreaTirar" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaTirar" unique_id=1927286944]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaTirar"]
 shape = SubResource("CircleShape2D_j7xnp")
 debug_color = Color(1.2513996e-06, 0.6431121, 0.31144592, 0.41960785)
 
-[node name="PinJointAgarrar" type="PinJoint2D" parent="." unique_id=1364335893]
+[node name="PinJointAgarrar" type="PinJoint2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(44, 0)
 node_a = NodePath("..")
 node_b = NodePath("..")
 
-[node name="TimerCoyoteTime" type="Timer" parent="." unique_id=475216631]
+[node name="TimerCoyoteTime" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 0.25
 one_shot = true
 
-[node name="MascaraTiempos" parent="." unique_id=944126025 instance=ExtResource("4_k4kro")]
+[node name="MascaraTiempos" parent="." instance=ExtResource("4_k4kro")]
 unique_name_in_owner = true
 id = 1
 
-[node name="RayCastIzq" type="RayCast2D" parent="." unique_id=2069682110]
+[node name="RayCastIzq" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(-47, 0)
 target_position = Vector2(0, 55)
 
-[node name="RayCastDer" type="RayCast2D" parent="." unique_id=1435639551]
+[node name="RayCastDer" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(47, 0)
 target_position = Vector2(0, 55)
 
-[node name="MascaraFuerza" parent="." unique_id=1419347420 instance=ExtResource("5_t3yu4")]
+[node name="MascaraFuerza" parent="." instance=ExtResource("5_t3yu4")]
 unique_name_in_owner = true
 id = 2
 
-[node name="MascaraTraducciones" parent="." unique_id=1590888524 node_paths=PackedStringArray("referencia_player") instance=ExtResource("6_r4hsq")]
+[node name="MascaraTraducciones" parent="." node_paths=PackedStringArray("referencia_player") instance=ExtResource("6_r4hsq")]
 unique_name_in_owner = true
 referencia_player = NodePath("..")
 id = 3
 
-[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="." unique_id=1233232267]
+[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Personaje/Movimiento/pasos"
 event_guid = "{60f647bc-9dc2-4ff2-9a28-3e3d5b3fb282}"
 fmod_parameters/Superficie/id = -5155162075446807488
@@ -178,9 +178,10 @@ fmod_parameters/Superficie = "pasto"
 fmod_parameters/Superficie/labels = PackedStringArray("pasto", "madera", "piedra")
 fmod_parameters/Superficie/variant_type = 4
 
-[node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="." unique_id=961788914]
+[node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Personaje/Movimiento/salto"
 event_guid = "{f53bcf20-29b6-434f-bdfb-043bdc67c2fb}"
+unique_name_in_owner = true
 
 [connection signal="animation_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_animation_changed"]
 [connection signal="frame_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_frame_changed"]

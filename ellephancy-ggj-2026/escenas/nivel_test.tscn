@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://cck5uwpwq01uo"]
+[gd_scene load_steps=0 format=4 uid="uid://cck5uwpwq01uo"]
 
 [ext_resource type="Texture2D" uid="uid://d1fajoe3rvnlw" path="res://assets/TILES-TEST/background_glacial_mountains_lightened.png" id="1_6ef72"]
 [ext_resource type="Script" uid="uid://dlshkk4n3o88o" path="res://scripts/sprite_fondo_test.gd" id="2_f2txr"]

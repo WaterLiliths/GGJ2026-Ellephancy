@@ -150,7 +150,7 @@ func desconectar_caja_con_joint():
 	pin_joint_agarrar.node_b = self.get_path()# me vuelvo a conectar a mi mismo que es lo mismo q desconectar
 	objeto_arrastrado = null
 	reset_velocidad_normal()
-	$FmodEventEmitter2D3.stop()
+	%FmodEventEmitter2D2.stop()
 
 func _on_area_tirar_body_exited(body: Node2D) -> void:
 	if body == objeto_arrastrado:
