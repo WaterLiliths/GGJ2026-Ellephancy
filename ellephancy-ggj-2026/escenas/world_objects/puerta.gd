@@ -4,30 +4,42 @@ extends StaticBody2D
 @export var varias_palancas : bool = false
 @export_range(1,3,1) var cant_palancas : int = 1
 
+@export var empieza_abierta : bool = false
+
 var contador_id : int = 0
 @export var altura_maxima : float = 250.0
 @export var tiempo_de_apertura : float = 1.5
+
+var posicion_original = position.y
 
 var esta_abierta = false
 var fue_abierta = false
 
 func _ready() -> void:
-	esta_abierta = false
+	if empieza_abierta:
+		esta_abierta = true
+		$Sprite2D.position.y = -altura_maxima
+		$CollisionShape2D.position.y = -altura_maxima
+	else:
+		esta_abierta = false
 	Global.activar_palanca.connect(cambiar_estado_puerta_abierta)
 	Global.desactivar_palanca.connect(cambiar_estado_puerta_cerrada)
 	$TimerPuerta.set_wait_time(tiempo_de_apertura)
 	
 #------------------FUNCIONES-----------------------
 func cambiar_estado_puerta_abierta(id_palanca : int):
-	if id_palanca != id_puerta or esta_abierta:
+	if id_palanca == id_puerta and empieza_abierta:
+		cerrar_puerta()
+		return
+	elif id_palanca != id_puerta or esta_abierta:
 		print("no se abre")
 		return
-	if !varias_palancas and !esta_abierta:
+	elif !varias_palancas and !esta_abierta:
 		abrir_puerta()
 		return
 	if varias_palancas:
 		contador_id += 1
-		print(contador_id)
+		#print(contador_id)
 		if contador_id != cant_palancas:
 			return
 		abrir_puerta()
@@ -36,8 +48,11 @@ func cambiar_estado_puerta_cerrada(id_palanca : int):
 	if id_palanca != id_puerta:
 		return
 	contador_id -= 1
-	if id_palanca == id_puerta and esta_abierta:
-		print(contador_id)
+	if id_palanca == id_puerta and not esta_abierta and empieza_abierta:
+		#print(contador_id)
+		abrir_puerta()
+	if id_palanca == id_puerta and esta_abierta and not empieza_abierta:
+		#print(contador_id)
 		cerrar_puerta()
 
 
@@ -49,26 +64,19 @@ func abrir_puerta():
 	esta_abierta = true
 	$TimerPuerta.start()
 	print("la puerta esta abierta")
-	#%AnimationPuerta.play("abir_sprite")
 	$FmodEventEmitter2D.set_parameter("peso", 5.0)
 	$FmodEventEmitter2D.play()
 
 func cerrar_puerta():
 	var tween_sprite = get_tree().create_tween()
 	var tween_colision = get_tree().create_tween()
-	tween_sprite.tween_property($Sprite2D, "position:y" , 0, tiempo_de_apertura)
-	tween_colision.tween_property($CollisionShape2D, "position:y" , 0, tiempo_de_apertura)
+	tween_sprite.tween_property($Sprite2D, "position:y" , posicion_original, tiempo_de_apertura)
+	tween_colision.tween_property($CollisionShape2D, "position:y" , posicion_original, tiempo_de_apertura)
 	$TimerPuerta.start()
 	esta_abierta = false
 	print("la puerta esta cerrada")
-	#%AnimationPuerta.play("cerrar_puerta")
 	$FmodEventEmitter2D.set_parameter("peso", 5.0)
 	$FmodEventEmitter2D.play()
-
-
-#func _on_animation_puerta_animation_finished(_anim_name: StringName) -> void:
-	#$FmodEventEmitter2D2.play()
-	#$FmodEventEmitter2D.stop()
 
 
 func _on_timer_puerta_timeout() -> void:
