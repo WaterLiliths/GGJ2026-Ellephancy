@@ -19,9 +19,10 @@ scroll_offset = Vector2(0, -289)
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank"]
 
 [node name="Player" parent="." instance=ExtResource("3_ya1wh")]
-position = Vector2(658, 98)
+position = Vector2(150, 318)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(1.5, 1.5)
 
 [node name="Control" type="Control" parent="Player/Camera2D"]
 layout_mode = 3
@@ -90,12 +91,16 @@ fmod_parameters/Pantalla/variant_type = 4
 [node name="ObjetoAEmpujar" parent="." instance=ExtResource("6_vygjp")]
 position = Vector2(13, 144)
 
-[node name="PalancaCorrecta" parent="." instance=ExtResource("6_nkl5u")]
-position = Vector2(757, 90)
+[node name="Puerta" parent="." instance=ExtResource("7_co1fy")]
+position = Vector2(1011, 220)
+varias_palancas = true
+cant_palancas = 3
 
 [node name="Palanca" parent="." instance=ExtResource("6_nkl5u")]
-position = Vector2(24, 341)
-id = 1
+position = Vector2(592, 345)
 
-[node name="Puerta" parent="." instance=ExtResource("7_co1fy")]
-position = Vector2(1033, 226)
+[node name="Palanca2" parent="." instance=ExtResource("6_nkl5u")]
+position = Vector2(388, 345)
+
+[node name="Palanca3" parent="." instance=ExtResource("6_nkl5u")]
+position = Vector2(206, 349)
