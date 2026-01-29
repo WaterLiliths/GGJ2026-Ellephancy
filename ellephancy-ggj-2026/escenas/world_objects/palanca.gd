@@ -7,7 +7,6 @@ var palanca_actual : Palanca = self
 var palanca_usada : bool = false
 
 @export var id : int = 0
-@export var tipo_de_palanca : String = "Buen Estado"
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
@@ -17,19 +16,14 @@ func _ready() -> void:
 func activar() -> void:
 	esta_encendida = !esta_encendida
 	
-#	if esta_encendida:
-#		if palanca_usada:
-#			return
-#		print("palanca activada")
-#		Global.usar_palanca.emit(id)
-#		palanca_usada = true
+	if esta_encendida:
+		if palanca_usada:
+			return
+		print("palanca activada")
+		Global.usar_palanca.emit(id)
+		palanca_usada = true
 	else:
 		print("palanca desactivada")
-	Global.usar_palanca.emit(id)
-	print("interactuando con palanca")
-	$FmodEventEmitter2D.set_parameter("TipoDePalanca", tipo_de_palanca)
-	$FmodEventEmitter2D.play()
-
 
 #---------------SEÑALES----------------------
 func _on_body_entered(body: Node2D) -> void:

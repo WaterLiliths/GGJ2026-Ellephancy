@@ -4,9 +4,9 @@
 [ext_resource type="Script" uid="uid://dlshkk4n3o88o" path="res://scripts/sprite_fondo_test.gd" id="2_f2txr"]
 [ext_resource type="PackedScene" uid="uid://cs3h434myxe4r" path="res://escenas/player.tscn" id="2_g44pp"]
 [ext_resource type="PackedScene" uid="uid://by80hrdi7bflk" path="res://escenas/creador_de_niveles.tscn" id="3_xgvjd"]
-[ext_resource type="PackedScene" uid="uid://t3ox75glka3s" path="res://escenas/world_objects/ObjetoAEmpujar.tscn" id="4_f2txr"]
+[ext_resource type="PackedScene" uid="uid://t3ox75glka3s" path="res://escenas/ObjetoAEmpujar.tscn" id="4_f2txr"]
 [ext_resource type="Script" uid="uid://cmqqpgbgf8ayt" path="res://scripts/objeto_a_empujar.gd" id="6_ok3v1"]
-[ext_resource type="Texture2D" uid="uid://dt8gpftbw4txl" path="res://assets/tile_set/icon.svg" id="7_1rt77"]
+[ext_resource type="Texture2D" uid="uid://dt8gpftbw4txl" path="res://assets/icon.svg" id="7_1rt77"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6a1yu"]
 size = Vector2(126, 128)
@@ -104,6 +104,3 @@ position = Vector2(-0.8547363, 0.88061523)
 scale = Vector2(4.9014006, 3.8725326)
 shape = SubResource("RectangleShape2D_xh1mv")
 debug_color = Color(0.05449406, 0.65035343, 0, 0.41960785)
-
-[node name="CreadorDeNiveles2" parent="." instance=ExtResource("3_xgvjd")]
-tile_map_data = PackedByteArray("AAD//woABQACAAUAAAAAAAoABQADAAUAAAABAAoABQAEAAUAAAACAAoABQACAAUAAAADAAoABQADAAUAAAAEAAoABQAEAAUAAAAFAAoABQACAAUAAAAGAAoABQADAAUAAAAHAAoABQAEAAUAAAAIAAoABQACAAUAAAAJAAoABQADAAUAAAAKAAoABQAEAAUAAAALAAoABQACAAUAAAAMAAoABQADAAUAAAANAAoABQAEAAUAAAAOAAoABQACAAUAAAAPAAoABQADAAUAAAAQAAoABQAEAAUAAAARAAoABQACAAUAAAASAAoABQADAAUAAAATAAoABQAEAAUAAAA=")
