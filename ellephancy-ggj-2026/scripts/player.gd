@@ -90,7 +90,7 @@ func _physics_process(delta: float) -> void:
 	if direction:
 		velocity.x = move_toward(velocity.x , direction * velocidad, aceleracion * delta)
 		animated_sprite_pj.flip_h = direction < 0 #rotar pj segun para donde se mueve
-		animated_sprite_pj.play("caminar")
+		animated_sprite_pj.play("caminar_prueba")
 		
 		
 		if timer_pasos <= 0 && is_on_floor():
@@ -99,7 +99,7 @@ func _physics_process(delta: float) -> void:
 		timer_pasos -= delta
 	else:
 		velocity.x = move_toward(velocity.x, 0, desaceleracion*delta)
-		animated_sprite_pj.play("idle")
+		animated_sprite_pj.play("idle_prueba")
 	#MOVIMIENTO HORIZONTAL
 	move_and_slide()
 	detectar_caida()
@@ -122,24 +122,6 @@ func _physics_process(delta: float) -> void:
 		#------------------------INTERACTUAR------------------------
 	if puede_interactuar and objeto_interactivo is Palanca and Input.is_action_just_pressed("interactuar"):
 		objeto_interactivo.activar()
-		
-	# -------------------- salto + coyote timer  -------------------------------
-	#if Input.is_action_just_pressed("w") and (is_on_floor() or puedo_usar_coyote()):
-		#velocity.y = velocidad_salto
-		#timer_coyote_time.stop()
-		#$FmodEventEmitter2D2.play_one_shot()
-		##TODO agregar aca animacion de salto
-	#if Input.is_action_just_released("w") and velocity.y < 0:
-		#velocity.y *= desaceleración_al_saltar
-	
-	#------------------    movimiento con w a s d ------------------------------
-	#direction = Input.get_axis("a", "d")
-	#if direction:
-		#velocity.x = move_toward(velocity.x , direction * velocidad, aceleracion * delta)
-		#animated_sprite_pj.flip_h = direction < 0 #rotar pj segun para donde se mueve
-		#animated_sprite_pj.play("caminar")
-
-
 
 
 #--------------------- SEÑALES  -------------------------
@@ -222,7 +204,7 @@ func reset_velocidad_normal():
 func detectar_caida():
 	if not estaba_en_el_piso and is_on_floor():
 		var tiempo_en_aire_actual = tiempo_maximo_en_aire - timer_tiempo_en_aire.time_left
-		#print("tiempo en aire actual vale: ", tiempo_en_aire_actual)
+		print("tiempo en aire actual vale: ", tiempo_en_aire_actual)
 		$FmodEventEmitter2D4.play_one_shot()
 
 
