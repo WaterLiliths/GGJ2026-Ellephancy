@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var mascara_fuerza: Node2D = %MascaraFuerza
 @onready var mascara_traducciones: Node2D = %MascaraTraducciones
 #-------------------------------
+var sonido_caida_emitiendo : bool = false
 var sonido_caja_sonando : bool = false
 var agarrando_caja : bool = false
 @export_range(0,10,0.1) var tiempo_maximo_en_aire : float
@@ -117,8 +118,10 @@ func _physics_process(delta: float) -> void:
 
 	if is_on_floor():
 		timer_coyote_time.stop()
+	emitir_sonido_caida()
 	estaba_en_el_piso = is_on_floor()
-	
+	if not sonido_caida_emitiendo: 
+		emitir_sonido_caida()
 		#------------------------INTERACTUAR------------------------
 	if puede_interactuar and objeto_interactivo is Palanca and Input.is_action_just_pressed("interactuar"):
 		objeto_interactivo.activar()
@@ -204,8 +207,9 @@ func reset_velocidad_normal():
 func detectar_caida():
 	if not estaba_en_el_piso and is_on_floor():
 		var tiempo_en_aire_actual = tiempo_maximo_en_aire - timer_tiempo_en_aire.time_left
-		print("tiempo en aire actual vale: ", tiempo_en_aire_actual)
+		#print("tiempo en aire actual vale: ", tiempo_en_aire_actual)
 		$FmodEventEmitter2D4.play_one_shot()
+		sonido_caida_emitiendo = false
 
 
 func _on_timer_tiempo_en_aire_timeout() -> void:
@@ -222,3 +226,9 @@ func consultar_saltar():
 
 func emitir_sonido_pasos():
 	%FmodEventEmitter2D.play_one_shot()
+
+
+func emitir_sonido_caida():
+	if estaba_en_el_piso and not is_on_floor():
+		#aca reproducir el sonido EMITTER
+		sonido_caida_emitiendo = true
