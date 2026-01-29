@@ -17,9 +17,10 @@ scroll_offset = Vector2(0, -289)
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank"]
 
 [node name="Player" parent="." instance=ExtResource("3_ya1wh")]
-position = Vector2(658, 98)
+position = Vector2(150, 318)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(1.5, 1.5)
 
 [node name="FmodListener2D" type="FmodListener2D" parent="Player/Camera2D"]
 
@@ -63,11 +64,15 @@ autoplay = true
 position = Vector2(13, 144)
 
 [node name="PalancaCorrecta" parent="." instance=ExtResource("6_nkl5u")]
-position = Vector2(757, 90)
+position = Vector2(616, 344)
 
 [node name="Palanca" parent="." instance=ExtResource("6_nkl5u")]
-position = Vector2(24, 341)
-id = 1
+position = Vector2(457, 341)
+
+[node name="Palanca2" parent="." instance=ExtResource("6_nkl5u")]
+position = Vector2(291, 338)
 
 [node name="Puerta" parent="." instance=ExtResource("7_co1fy")]
 position = Vector2(1033, 226)
+varias_palancas = true
+cant_palancas = 3

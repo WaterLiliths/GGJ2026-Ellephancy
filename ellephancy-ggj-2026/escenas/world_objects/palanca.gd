@@ -4,6 +4,7 @@ extends Interactivo
 
 var esta_encendida : bool = false
 var palanca_actual : Palanca = self
+var palanca_usada : bool = false
 
 @export var id : int = 0
 
@@ -16,10 +17,12 @@ func activar() -> void:
 	esta_encendida = !esta_encendida
 	
 	if esta_encendida:
-		Global.usar_palanca.emit(id)
+		if palanca_usada:
+			return
 		print("palanca activada")
+		Global.usar_palanca.emit(id)
+		palanca_usada = true
 	else:
-		
 		print("palanca desactivada")
 
 #---------------SEÑALES----------------------
