@@ -136,6 +136,22 @@ func _physics_process(delta: float) -> void:
 
 
 
+
+func _physics_process(delta: float) -> void: if velocity.y<0: velocity += get_gravity() * gravedad_subiendo * delta else: velocity += get_gravity() * gravedad_bajando * delta # -------------------- salto + coyote timer ------------------------------- if Input.is_action_just_pressed("w") and (is_on_floor() or puedo_usar_coyote()): velocity.y = velocidad_salto timer_coyote_time.stop() $FmodEventEmitter2D2.play_one_shot() #TODO agregar aca animacion de salto if Input.is_action_just_released("w") and velocity.y < 0: velocity.y *= desaceleración_al_saltar #------------------ movimiento con w a s d ------------------------------ #direction = Input.get_axis("a", "d") #if direction: #velocity.x = move_toward(velocity.x , direction * velocidad, aceleracion * delta) #animated_sprite_pj.flip_h = direction < 0 #rotar pj segun para donde se mueve #animated_sprite_pj.play("caminar") if timer_pasos <= 0 && is_on_floor(): %FmodEventEmitter2D.play_one_shot() timer_pasos = timer_pasos_reset timer_pasos -= delta else: #velocity.x = move_toward(velocity.x, 0, desaceleracion*delta) #animated_sprite_pj.play("idle") pass move_and_slide() detectar_caida() comprobar_coyote_timer() if agarrando_caja and direction: if not sonido_caja_sonando: %FmodEventEmitter2D3.play() sonido_caja_sonando = true else: if sonido_caja_sonando: %FmodEventEmitter2D3.stop() sonido_caja_sonando = false if is_on_floor(): timer_coyote_time.stop() estaba_en_el_piso = is_on_floor()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #--------------------- SEÑALES  -------------------------
 func _on_area_tirar_body_entered(body: Node2D) -> void:
 	if body is ObjetoEmpujable:

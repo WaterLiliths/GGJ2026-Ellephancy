@@ -119,8 +119,20 @@ radius = 41.880783
 collision_mask = 7
 script = ExtResource("1_esbpa")
 tiempo_maximo_en_aire = 10.0
+aceleracion = null
+desaceleracion = null
+velocidad_max = null
+gravedad_subiendo = null
+gravedad_bajando = null
+velocidad = null
+velocidad_salto = null
 velocidad_salto_con_mascara = -800
+"desaceleración_al_saltar" = null
+desaceleracion_horizontal = null
 velocidad_al_agarrar = 50.35
+velocidad_correr = null
+fuerza_empuje = null
+velocidad_arrastrando = null
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/SFX.bank"]
