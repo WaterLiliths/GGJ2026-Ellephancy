@@ -47,7 +47,8 @@ func _ready() -> void:
 	timer_tiempo_en_aire.wait_time = tiempo_maximo_en_aire
 	velocidad_inicial = velocidad
 	velocidad_inicial_salto = velocidad_salto
-	Global.mascara_fuerza_activa.connect(on_signal_mascara_fuerza_activa)
+	Global.mascara_fuerza_activa.connect(activar_mascara_fuerza)
+	Global.mascara_fuerza_desactivar.connect(desactivar_mascara_fuerza)
 
 
 func _input(event: InputEvent) -> void:
@@ -64,19 +65,16 @@ func _input(event: InputEvent) -> void:
 		mascara_fuerza.desactivar()
 		mascara_traducciones.usar()
 
-	if Input.is_action_just_pressed("tirar") and objeto_arrastrado:
+	if Input.is_action_just_pressed("tirar") and objeto_arrastrado and Global.mascara_activa==2:
 		conectar_caja_con_joint()
-	if Input.is_action_just_released("tirar") and objeto_arrastrado:
+	if Input.is_action_just_released("tirar"): # TODO 
 		desconectar_caja_con_joint()
 
 
 
 func _physics_process(delta: float) -> void:
 	direction = Input.get_axis("a", "d")
-	if velocity.y<0:
-		velocity += get_gravity() * gravedad_subiendo * delta
-	else:
-		velocity += get_gravity() * gravedad_bajando * delta
+	aplicar_gravedad(delta)
 	
 	# -------------------- salto + coyote timer  -------------------------------
 	if Input.is_action_just_pressed("w") and (is_on_floor() or puedo_usar_coyote()):
@@ -87,21 +85,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_released("w") and velocity.y < 0:
 		velocity.y *= desaceleración_al_saltar
 	
-	#------------------    movimiento con w a s d ------------------------------
-	if direction:
-		velocity.x = move_toward(velocity.x , direction * velocidad, aceleracion * delta)
-		animated_sprite_pj.flip_h = direction < 0 #rotar pj segun para donde se mueve
-		animated_sprite_pj.play("caminar_prueba")
-		
-		
-		if timer_pasos <= 0 && is_on_floor():
-			%FmodEventEmitter2D.play_one_shot()
-			timer_pasos = timer_pasos_reset
-		timer_pasos -= delta
-	else:
-		velocity.x = move_toward(velocity.x, 0, desaceleracion*delta)
-		animated_sprite_pj.play("idle_prueba")
-	#MOVIMIENTO HORIZONTAL
+	movimiento_wasd(delta)
 	move_and_slide()
 	detectar_caida()
 	comprobar_coyote_timer()
@@ -109,8 +93,9 @@ func _physics_process(delta: float) -> void:
 	if agarrando_caja and direction:
 		if not sonido_caja_sonando:
 			%FmodEventEmitter2D3.play()
-			%FmodEventEmitter2D3.set_parameter("peso", objeto_arrastrado.mass)
-			sonido_caja_sonando = true
+			if objeto_arrastrado:
+				%FmodEventEmitter2D3.set_parameter("peso", objeto_arrastrado.mass) #BUG ACA
+				sonido_caja_sonando = true
 	else:
 		if sonido_caja_sonando:
 			%FmodEventEmitter2D3.stop()
@@ -139,7 +124,8 @@ func _on_area_tirar_body_exited(body: Node2D) -> void:
 #--------------------  FUNCIONES  ------------------------
 
 func conectar_caja_con_joint():
-	#d
+	if agarrando_caja:
+		return
 	agarrando_caja = true
 	pin_joint_agarrar.node_b = objeto_arrastrado.get_path()
 	disminuir_velocidad_al_agarrar()
@@ -182,15 +168,13 @@ func algun_raycast_colisiona(): #para el coyote timer
 		return true
 
 
-func on_signal_mascara_fuerza_activa():
+func activar_mascara_fuerza():
 	velocidad_salto = velocidad_salto_con_mascara
-	pass
 
 
 func desactivar_mascara_fuerza():
-	#velocidad_salto = velocidad_inicial_salto
+	velocidad_salto = velocidad_inicial_salto
 	print("se desactivo las mascara de fuerza")
-	pass
 
 
 func disminuir_velocidad_al_agarrar():
@@ -201,7 +185,10 @@ func disminuir_velocidad_al_agarrar():
 
 func reset_velocidad_normal():
 	velocidad = velocidad_inicial
-	velocidad_salto = velocidad_inicial_salto
+	if Global.mascara_activa==2:
+		velocidad_salto = velocidad_salto_con_mascara
+	else:
+		velocidad_salto = velocidad_inicial_salto
 
 
 func detectar_caida():
@@ -232,3 +219,25 @@ func emitir_sonido_caida():
 	if estaba_en_el_piso and not is_on_floor():
 		#aca reproducir el sonido EMITTER
 		sonido_caida_emitiendo = true
+
+
+func aplicar_gravedad(delta : float):
+	if velocity.y<0:
+		velocity += get_gravity() * gravedad_subiendo * delta
+	else:
+		velocity += get_gravity() * gravedad_bajando * delta
+
+
+func movimiento_wasd(delta : float):
+	if direction:
+		velocity.x = move_toward(velocity.x , direction * velocidad, aceleracion * delta)
+		animated_sprite_pj.flip_h = direction < 0 #rotar pj segun para donde se mueve
+		animated_sprite_pj.play("caminar_prueba")
+		
+		if timer_pasos <= 0 && is_on_floor():
+			%FmodEventEmitter2D.play_one_shot()
+			timer_pasos = timer_pasos_reset
+		timer_pasos -= delta
+	else:
+		velocity.x = move_toward(velocity.x, 0, desaceleracion*delta)
+		animated_sprite_pj.play("idle_prueba")

@@ -23,6 +23,7 @@ func desactivar():
 		return
 	activa = false
 	Global.mascara_fuerza_desactivar.emit()
+	print("se desactivo la mascara de fuerza")
 
 
 
