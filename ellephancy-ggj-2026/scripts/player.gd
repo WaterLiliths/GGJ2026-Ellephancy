@@ -8,6 +8,13 @@ extends CharacterBody2D
 @onready var state_machine_manager: Node = %StateMachineManager
 
 
+#---------- mascaras -----------
+@onready var mascara_tiempos: Node2D = %MascaraTiempos
+@onready var mascara_fuerza: Node2D = %MascaraFuerza
+@onready var mascara_traducciones: Node2D = %MascaraTraducciones
+#-------------------------------
+
+
 
 var sonido_caja_sonando : bool = false
 var agarrando_caja : bool = false
@@ -60,11 +67,17 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("1"): #usar mascara tiempos
-		Global.usar_mascara.emit(1)
+		mascara_tiempo.usar()
+		mascara_fuerza.desactivar()
+		mascara_traducciones.desactivar()
 	if Input.is_action_just_pressed("2"): #usar mascara fuerza
-		Global.usar_mascara.emit(2)
+		mascara_tiempo.desactivar()
+		mascara_fuerza.usar()
+		mascara_traducciones.desactivar()
 	if Input.is_action_just_pressed("3"): #usar mascara traducciones
-		Global.usar_mascara.emit(3)
+		mascara_tiempo.desactivar()
+		mascara_fuerza.desactivar()
+		mascara_traducciones.usar()
 
 	#if Input.is_action_just_pressed("tirar") and objeto_arrastrado:
 		#conectar_caja_con_joint()

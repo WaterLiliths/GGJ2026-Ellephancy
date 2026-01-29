@@ -1,18 +1,25 @@
-extends Mascara #mascara de los tiempos la 1
+extends Node2D #mascara de los tiempos la 1
+
+@export var id : int = 1
+@export var activa : bool = false
+
 
 func _ready() -> void:
-	Global.usar_mascara.connect(on_recibir_signal_usar)
+	pass
 
 func usar():
-	if estaba_activa():
+	if activa:
 		return
+	activa = true
+	Global.mascara_activa = id
 	Global.mascara_tiempo_activa.emit()
-	activar()
 	print("se uso la mascara de tiempos")
 
 
-func on_recibir_signal_usar(id_referencia : int):
-	if id_referencia == id:
-		usar()
-	else:
-		desactivar()
+
+
+func desactivar():
+	if not activa: #si ya estaba desactivada
+		return
+	activa = false
+	Global.mascara_tiempo_desactivar.emit()

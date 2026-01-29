@@ -157,7 +157,6 @@ one_shot = true
 
 [node name="MascaraTiempos" parent="." instance=ExtResource("4_k4kro")]
 unique_name_in_owner = true
-id = 1
 
 [node name="RayCastIzq" type="RayCast2D" parent="."]
 unique_name_in_owner = true
@@ -171,12 +170,9 @@ target_position = Vector2(0, 55)
 
 [node name="MascaraFuerza" parent="." instance=ExtResource("5_t3yu4")]
 unique_name_in_owner = true
-id = 2
 
-[node name="MascaraTraducciones" parent="." node_paths=PackedStringArray("referencia_player") instance=ExtResource("6_r4hsq")]
+[node name="MascaraTraducciones" parent="." instance=ExtResource("6_r4hsq")]
 unique_name_in_owner = true
-referencia_player = NodePath("..")
-id = 3
 
 [node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Personaje/Movimiento/pasos"
