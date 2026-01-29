@@ -98,6 +98,11 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		timer_coyote_time.stop()
 	estaba_en_el_piso = is_on_floor()
+	
+		#------------------------INTERACTUAR------------------------
+	if puede_interactuar and objeto_interactivo is Palanca and Input.is_action_just_pressed("interactuar"):
+		objeto_interactivo.activar()
+		
 	# -------------------- salto + coyote timer  -------------------------------
 	#if Input.is_action_just_pressed("w") and (is_on_floor() or puedo_usar_coyote()):
 		#velocity.y = velocidad_salto
