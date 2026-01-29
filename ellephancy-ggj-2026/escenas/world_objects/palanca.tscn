@@ -27,3 +27,11 @@ sprite_frames = SubResource("SpriteFrames_3114u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_dtuov")
+
+[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Objetos/palanca"
+event_guid = "{01f69508-e7e5-4bd1-836f-1c8a85eac877}"
+fmod_parameters/TipoDePalanca/id = 6086375413492549144
+fmod_parameters/TipoDePalanca = "Buen Estado"
+fmod_parameters/TipoDePalanca/labels = PackedStringArray("Buen Estado", "Oxidada")
+fmod_parameters/TipoDePalanca/variant_type = 4
