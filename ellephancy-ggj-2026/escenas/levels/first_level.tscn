@@ -23,6 +23,28 @@ position = Vector2(658, 98)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
+[node name="Control" type="Control" parent="Player/Camera2D"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -658.0
+offset_top = -98.0
+offset_right = -658.0
+offset_bottom = -98.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Player/Camera2D/Control"]
+z_index = 185
+y_sort_enabled = true
+layout_mode = 0
+offset_left = -516.0
+offset_top = -774.0
+offset_right = 1824.0
+offset_bottom = 814.0
+color = Color(0, 0, 0, 1)
+
 [node name="FmodListener2D" type="FmodListener2D" parent="Player/Camera2D"]
 
 [node name="Mapa" type="Node2D" parent="."]
@@ -59,6 +81,11 @@ volume = 0.685
 event_name = "event:/Musica/Musica"
 event_guid = "{531f5736-0242-456e-96ac-14d316a2be4e}"
 attached = false
+volume = 0.0
+fmod_parameters/Pantalla/id = -2044462831851661827
+fmod_parameters/Pantalla = "Menu"
+fmod_parameters/Pantalla/labels = PackedStringArray("Menu", "Juego")
+fmod_parameters/Pantalla/variant_type = 4
 
 [node name="ObjetoAEmpujar" parent="." instance=ExtResource("6_vygjp")]
 position = Vector2(13, 144)
@@ -72,5 +99,3 @@ id = 1
 
 [node name="Puerta" parent="." instance=ExtResource("7_co1fy")]
 position = Vector2(1033, 226)
-altura_maxima = 400.0
-tiempo_de_apertura = 5.0

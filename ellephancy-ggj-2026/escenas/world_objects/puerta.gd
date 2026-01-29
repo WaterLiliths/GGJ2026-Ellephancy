@@ -9,11 +9,9 @@ var esta_abierta = false
 
 
 func _ready() -> void:
-	
 	esta_abierta = false
 	Global.usar_palanca.connect(cambiar_estado_puerta)
 	$TimerPuerta.set_wait_time(tiempo_de_apertura)
-	%AnimationPuerta.speed_scale = 1 / tiempo_de_apertura
 
 func _process(_delta: float) -> void:
 	pass
@@ -31,6 +29,7 @@ func cambiar_estado_puerta(id_palanca : int):
 func abrir_puerta():
 	var tween = get_tree().create_tween()
 	tween.tween_property($Sprite2D, "position:y" , -altura_maxima, tiempo_de_apertura)
+	tween.tween_property($CollisionShape2D, "position:y" , -altura_maxima, tiempo_de_apertura)
 	esta_abierta = true
 	$TimerPuerta.start()
 	#print("la puerta esta abierta")
@@ -41,6 +40,7 @@ func abrir_puerta():
 func cerrar_puerta():
 	var tween = get_tree().create_tween()
 	tween.tween_property($Sprite2D, "position:y" , 0, tiempo_de_apertura)
+	tween.tween_property($CollisionShape2D, "position:y" , 0, tiempo_de_apertura)
 	$TimerPuerta.start()
 	esta_abierta = false
 	#print("la puerta esta cerrada")
