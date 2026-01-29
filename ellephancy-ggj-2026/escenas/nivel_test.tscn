@@ -35,7 +35,8 @@ zoom = Vector2(0.9, 0.9)
 position = Vector2(122, 60)
 
 [node name="ObjetoAEmpujar" parent="." instance=ExtResource("4_f2txr")]
-position = Vector2(335, 585)
+position = Vector2(358, 508)
+collision_mask = 3
 
 [node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Ambiente/ambiente"
@@ -53,7 +54,9 @@ autoplay = true
 unique_name_in_owner = true
 
 [node name="ObjetoAEmpujar2" type="RigidBody2D" parent="."]
-position = Vector2(996, 485)
+position = Vector2(989, 301)
+collision_layer = 3
+collision_mask = 3
 mass = 20.0
 lock_rotation = true
 linear_damp = 1.0
@@ -78,6 +81,7 @@ debug_color = Color(0.05449406, 0.65035343, 0, 0.41960785)
 
 [node name="ObjetoAEmpujar3" type="RigidBody2D" parent="."]
 position = Vector2(599, 489)
+collision_mask = 3
 mass = 20.0
 lock_rotation = true
 linear_damp = 1.0
