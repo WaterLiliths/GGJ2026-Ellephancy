@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://c3il706qyjae5"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://c3il706qyjae5"]
 
 [ext_resource type="FontFile" uid="uid://ciwhe1apfc5gi" path="res://assets/fonts/Balgruf.otf" id="1_vv2yp"]
+[ext_resource type="FontFile" uid="uid://c8jaldbo0lky" path="res://assets/fonts/Balgruf_Italic.otf" id="2_5o0kr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8cfpu"]
 bg_color = Color(1, 1, 1, 1)
@@ -37,6 +38,14 @@ corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_vv2yp"]
+color = Color(0.41105428, 0.62445974, 0.32513744, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_5o0kr"]
+color = Color(0.18841332, 0.26, 0.1872, 1)
+thickness = 6
+
 [resource]
 Button/colors/font_color = Color(0, 0, 0, 1)
 Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 0)
@@ -48,3 +57,9 @@ Button/styles/hover = SubResource("StyleBoxFlat_w6fns")
 Button/styles/hover_pressed = SubResource("StyleBoxFlat_pkvd8")
 Button/styles/normal = SubResource("StyleBoxFlat_3r3h5")
 Button/styles/pressed = SubResource("StyleBoxFlat_bm2sk")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxLine_vv2yp")
+HSlider/styles/slider = SubResource("StyleBoxLine_5o0kr")
+Label/font_sizes/font_size = 20
+Label/fonts/font = ExtResource("1_vv2yp")
+RichTextLabel/fonts/italics_font = ExtResource("2_5o0kr")
+RichTextLabel/fonts/normal_font = ExtResource("1_vv2yp")

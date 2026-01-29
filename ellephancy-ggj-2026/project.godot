@@ -27,6 +27,7 @@ config/icon="res://assets/tile_set/icon.svg"
 
 Global="*uid://bquwd2lw2fknr"
 FmodManager="*res://addons/fmod/FmodManager.gd"
+PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 
 [display]
 
@@ -34,7 +35,7 @@ window/size/viewport_width=1280
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/fmod/plugin.cfg")
+enabled=PackedStringArray("res://addons/fmod/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
 
 [file_customization]
 
