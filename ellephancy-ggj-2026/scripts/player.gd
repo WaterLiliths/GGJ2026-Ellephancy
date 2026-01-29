@@ -81,7 +81,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = velocidad_salto
 		timer_coyote_time.stop()
 		$FmodEventEmitter2D2.play_one_shot()
-		#TODO agregar aca animacion de salto
+		animated_sprite_pj.play("salto-final")
 	if Input.is_action_just_released("w") and velocity.y < 0:
 		velocity.y *= desaceleración_al_saltar
 	
@@ -217,7 +217,7 @@ func emitir_sonido_pasos():
 
 func emitir_sonido_caida():
 	if estaba_en_el_piso and not is_on_floor():
-		#aca reproducir el sonido EMITTER
+		animated_sprite_pj.play("salto-final")
 		sonido_caida_emitiendo = true
 
 
@@ -232,7 +232,8 @@ func movimiento_wasd(delta : float):
 	if direction:
 		velocity.x = move_toward(velocity.x , direction * velocidad, aceleracion * delta)
 		animated_sprite_pj.flip_h = direction < 0 #rotar pj segun para donde se mueve
-		animated_sprite_pj.play("caminar_prueba")
+		if is_on_floor():
+			animated_sprite_pj.play("caminar_prueba")
 		
 		if timer_pasos <= 0 && is_on_floor():
 			%FmodEventEmitter2D.play_one_shot()

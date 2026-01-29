@@ -16,8 +16,6 @@ func usar():
 	print("se uso la mascara de traducciones")
 
 
-
-
 func desactivar():
 	if not activa: #si ya estaba desactivada
 		return

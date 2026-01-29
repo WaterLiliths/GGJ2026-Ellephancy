@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://bcgp0adhixxuf"]
+[gd_scene load_steps=16 format=4 uid="uid://bcgp0adhixxuf"]
 
 [ext_resource type="PackedScene" uid="uid://cr78gurvqfs1q" path="res://escenas/Parallax/parallax_primer_fondo.tscn" id="1_5mju5"]
 [ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/first_level.gd" id="1_ya1wh"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://biambmyuxxflo" path="res://escenas/world_objects/puerta.tscn" id="7_co1fy"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="10_mo0bq"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="11_gceu3"]
+[ext_resource type="PackedScene" uid="uid://bigbvkph35hhb" path="res://escenas/portal.tscn" id="13_gceu3"]
+[ext_resource type="PackedScene" uid="uid://dws7kn1meimqt" path="res://escenas/nivel_test_2.tscn" id="14_yei3n"]
 
 [sub_resource type="Resource" id="Resource_yei3n"]
 script = ExtResource("11_gceu3")
@@ -149,3 +151,7 @@ follow_damping = true
 follow_damping_value = Vector2(0.5, 0.5)
 draw_limits = true
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
+
+[node name="Portal" parent="." instance=ExtResource("13_gceu3")]
+position = Vector2(-143, 317)
+escena_a_cambiar = ExtResource("14_yei3n")

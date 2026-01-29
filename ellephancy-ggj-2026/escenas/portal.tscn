@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://bigbvkph35hhb"]
+
+[ext_resource type="Script" uid="uid://bldvnh3r1lcrs" path="res://portal.gd" id="1_nt3i0"]
+[ext_resource type="Shader" uid="uid://b3wodcaqa847h" path="res://escenas/portal.gdshader" id="2_ceymq"]
+[ext_resource type="Texture2D" uid="uid://dt8gpftbw4txl" path="res://assets/tile_set/icon.svg" id="3_648pm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nt3i0"]
+size = Vector2(43, 38)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_648pm"]
+shader = ExtResource("2_ceymq")
+shader_parameter/portal_texture = ExtResource("3_648pm")
+shader_parameter/portal_tint = Color(0.3529412, 1, 1, 0.5254902)
+shader_parameter/vortex_effect_radius = 0.499999988824
+shader_parameter/twist_strength = 22.500000335277
+shader_parameter/pulsation_speed = 0.3499999921768
+shader_parameter/breath_magnitude = 0.17499997746187002
+shader_parameter/overall_rotation_speed = 1.28999992646192
+shader_parameter/texture_scroll_speed_x = -0.53000001050544
+shader_parameter/texture_scroll_speed_y = 0.45999996736607995
+shader_parameter/edge_softness = 0.1999999955296
+
+[node name="Portal" type="Node2D"]
+script = ExtResource("1_nt3i0")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_nt3i0")
+
+[node name="SpritePortal" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_648pm")
+texture = ExtResource("3_648pm")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
