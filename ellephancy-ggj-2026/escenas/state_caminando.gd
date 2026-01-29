@@ -5,7 +5,7 @@ var timer_pasos_reset := 0.36
 
 func enter():
 	super.enter()
-	player.animated_sprite_pj.play("caminar")
+	player.animated_sprite_pj.play("caminar_prueba")
 
 func transition():
 	var direction : float = Input.get_axis("a", "d")

@@ -1,7 +1,6 @@
 class_name Palanca
 extends Interactivo
 
-
 var esta_encendida : bool = false
 var palanca_actual : Palanca = self
 
@@ -15,11 +14,14 @@ func _ready() -> void:
 #-------------FUNCIONES------------------
 func activar() -> void:
 	esta_encendida = !esta_encendida
-	Global.usar_palanca.emit(id)
-	print("interactuando con palanca")
+	if esta_encendida:
+		Global.activar_palanca.emit(id)
+		print("palanca activadad")
+	if !esta_encendida:
+		Global.desactivar_palanca.emit(id)
+		print("palanca desactivada")
 	$FmodEventEmitter2D.set_parameter("TipoDePalanca", tipo_de_palanca)
 	$FmodEventEmitter2D.play()
-
 
 #---------------SEÑALES----------------------
 func _on_body_entered(body: Node2D) -> void:

@@ -83,7 +83,6 @@ func _physics_process(delta: float) -> void:
 	detectar_caida()
 	comprobar_coyote_timer()
 
-
 	if agarrando_caja and direction:
 		if not sonido_caja_sonando:
 			%FmodEventEmitter2D3.play()
@@ -117,7 +116,6 @@ func _physics_process(delta: float) -> void:
 		#velocity.x = move_toward(velocity.x , direction * velocidad, aceleracion * delta)
 		#animated_sprite_pj.flip_h = direction < 0 #rotar pj segun para donde se mueve
 		#animated_sprite_pj.play("caminar")
-	
 
 
 

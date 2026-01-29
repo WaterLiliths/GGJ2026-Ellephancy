@@ -4,7 +4,7 @@ func enter():
 	#super me sirve para llamar a la funcion padre desde la hereadada
 	#osea llama a StatePlayer.enter (pq esta q uso se llama igual ah)
 	super.enter()
-	player.animated_sprite_pj.play("idle")
+	player.animated_sprite_pj.play("idle_prueba")
 
 func transition():
 	var direction : float = Input.get_axis("a", "d")
