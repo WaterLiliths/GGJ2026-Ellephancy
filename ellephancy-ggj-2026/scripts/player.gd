@@ -1,14 +1,12 @@
 class_name Player
 extends CharacterBody2D
 
-@onready var idle : StatePlayer= %StateIdle
-@onready var caminando : StatePlayer= %StateCaminando
-@onready var salto : StatePlayer= %StateSalto
-@onready var agarrando : StatePlayer= %StateAgarrando
-@onready var state_machine_manager: Node = %StateMachineManager
-
-
-
+#---------- mascaras -----------
+@onready var mascara_tiempos: Node2D = %MascaraTiempos
+@onready var mascara_fuerza: Node2D = %MascaraFuerza
+@onready var mascara_traducciones: Node2D = %MascaraTraducciones
+#-------------------------------
+var sonido_caida_emitiendo : bool = false
 var sonido_caja_sonando : bool = false
 var agarrando_caja : bool = false
 @export_range(0,10,0.1) var tiempo_maximo_en_aire : float
@@ -46,39 +44,48 @@ var objeto_interactivo : Interactivo = null
 var puede_interactuar : bool = false
 
 func _ready() -> void:
-	for estado in state_machine_manager.get_children():
-		if estado is StatePlayer:
-			estado.player = self #referencia al personaje
-			estado.state_machine = state_machine_manager #para que cada estado pueda pedir transiciones entradas salidas etc
-	state_machine_manager.cambiar_de_estado(idle)
-	
 	timer_tiempo_en_aire.wait_time = tiempo_maximo_en_aire
 	velocidad_inicial = velocidad
 	velocidad_inicial_salto = velocidad_salto
-	Global.mascara_fuerza_activa.connect(on_signal_mascara_fuerza_activa)
+	Global.mascara_fuerza_activa.connect(activar_mascara_fuerza)
+	Global.mascara_fuerza_desactivar.connect(desactivar_mascara_fuerza)
 
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("1"): #usar mascara tiempos
-		Global.usar_mascara.emit(1)
+		mascara_tiempo.usar()
+		mascara_fuerza.desactivar()
+		mascara_traducciones.desactivar()
 	if Input.is_action_just_pressed("2"): #usar mascara fuerza
-		Global.usar_mascara.emit(2)
+		mascara_tiempo.desactivar()
+		mascara_fuerza.usar()
+		mascara_traducciones.desactivar()
 	if Input.is_action_just_pressed("3"): #usar mascara traducciones
-		Global.usar_mascara.emit(3)
+		mascara_tiempo.desactivar()
+		mascara_fuerza.desactivar()
+		mascara_traducciones.usar()
 
-	#if Input.is_action_just_pressed("tirar") and objeto_arrastrado:
-		#conectar_caja_con_joint()
-	#if Input.is_action_just_released("tirar") and objeto_arrastrado:
-		#desconectar_caja_con_joint()
+	if Input.is_action_just_pressed("tirar") and objeto_arrastrado and Global.mascara_activa==2:
+		conectar_caja_con_joint()
+	if Input.is_action_just_released("tirar"): # TODO 
+		desconectar_caja_con_joint()
 
 
 
 func _physics_process(delta: float) -> void:
 	direction = Input.get_axis("a", "d")
-	if velocity.y<0:
-		velocity += get_gravity() * gravedad_subiendo * delta
-	else:
-		velocity += get_gravity() * gravedad_bajando * delta
+	aplicar_gravedad(delta)
+	
+	# -------------------- salto + coyote timer  -------------------------------
+	if Input.is_action_just_pressed("w") and (is_on_floor() or puedo_usar_coyote()):
+		velocity.y = velocidad_salto
+		timer_coyote_time.stop()
+		$FmodEventEmitter2D2.play_one_shot()
+		#TODO agregar aca animacion de salto
+	if Input.is_action_just_released("w") and velocity.y < 0:
+		velocity.y *= desaceleración_al_saltar
+	
+	movimiento_wasd(delta)
 	move_and_slide()
 	detectar_caida()
 	comprobar_coyote_timer()
@@ -86,8 +93,9 @@ func _physics_process(delta: float) -> void:
 	if agarrando_caja and direction:
 		if not sonido_caja_sonando:
 			%FmodEventEmitter2D3.play()
-			%FmodEventEmitter2D3.set_parameter("peso", objeto_arrastrado.mass)
-			sonido_caja_sonando = true
+			if objeto_arrastrado:
+				%FmodEventEmitter2D3.set_parameter("peso", objeto_arrastrado.mass) #BUG ACA
+				sonido_caja_sonando = true
 	else:
 		if sonido_caja_sonando:
 			%FmodEventEmitter2D3.stop()
@@ -95,29 +103,13 @@ func _physics_process(delta: float) -> void:
 
 	if is_on_floor():
 		timer_coyote_time.stop()
+	emitir_sonido_caida()
 	estaba_en_el_piso = is_on_floor()
-	
+	if not sonido_caida_emitiendo: 
+		emitir_sonido_caida()
 		#------------------------INTERACTUAR------------------------
 	if puede_interactuar and objeto_interactivo is Palanca and Input.is_action_just_pressed("interactuar"):
 		objeto_interactivo.activar()
-		
-	# -------------------- salto + coyote timer  -------------------------------
-	#if Input.is_action_just_pressed("w") and (is_on_floor() or puedo_usar_coyote()):
-		#velocity.y = velocidad_salto
-		#timer_coyote_time.stop()
-		#$FmodEventEmitter2D2.play_one_shot()
-		##TODO agregar aca animacion de salto
-	#if Input.is_action_just_released("w") and velocity.y < 0:
-		#velocity.y *= desaceleración_al_saltar
-	
-	#------------------    movimiento con w a s d ------------------------------
-	#direction = Input.get_axis("a", "d")
-	#if direction:
-		#velocity.x = move_toward(velocity.x , direction * velocidad, aceleracion * delta)
-		#animated_sprite_pj.flip_h = direction < 0 #rotar pj segun para donde se mueve
-		#animated_sprite_pj.play("caminar")
-
-
 
 
 #--------------------- SEÑALES  -------------------------
@@ -132,8 +124,7 @@ func _on_area_tirar_body_exited(body: Node2D) -> void:
 #--------------------  FUNCIONES  ------------------------
 
 func conectar_caja_con_joint():
-	if !%MascaraFuerza.get_estado_activa():
-		print("la mascara esta desactivada, no agarrar")
+	if agarrando_caja:
 		return
 	agarrando_caja = true
 	pin_joint_agarrar.node_b = objeto_arrastrado.get_path()
@@ -177,15 +168,13 @@ func algun_raycast_colisiona(): #para el coyote timer
 		return true
 
 
-func on_signal_mascara_fuerza_activa():
+func activar_mascara_fuerza():
 	velocidad_salto = velocidad_salto_con_mascara
-	pass
 
 
 func desactivar_mascara_fuerza():
-	#velocidad_salto = velocidad_inicial_salto
+	velocidad_salto = velocidad_inicial_salto
 	print("se desactivo las mascara de fuerza")
-	pass
 
 
 func disminuir_velocidad_al_agarrar():
@@ -196,7 +185,10 @@ func disminuir_velocidad_al_agarrar():
 
 func reset_velocidad_normal():
 	velocidad = velocidad_inicial
-	velocidad_salto = velocidad_inicial_salto
+	if Global.mascara_activa==2:
+		velocidad_salto = velocidad_salto_con_mascara
+	else:
+		velocidad_salto = velocidad_inicial_salto
 
 
 func detectar_caida():
@@ -204,6 +196,7 @@ func detectar_caida():
 		var tiempo_en_aire_actual = tiempo_maximo_en_aire - timer_tiempo_en_aire.time_left
 		#print("tiempo en aire actual vale: ", tiempo_en_aire_actual)
 		$FmodEventEmitter2D4.play_one_shot()
+		sonido_caida_emitiendo = false
 
 
 func _on_timer_tiempo_en_aire_timeout() -> void:
@@ -220,3 +213,31 @@ func consultar_saltar():
 
 func emitir_sonido_pasos():
 	%FmodEventEmitter2D.play_one_shot()
+
+
+func emitir_sonido_caida():
+	if estaba_en_el_piso and not is_on_floor():
+		#aca reproducir el sonido EMITTER
+		sonido_caida_emitiendo = true
+
+
+func aplicar_gravedad(delta : float):
+	if velocity.y<0:
+		velocity += get_gravity() * gravedad_subiendo * delta
+	else:
+		velocity += get_gravity() * gravedad_bajando * delta
+
+
+func movimiento_wasd(delta : float):
+	if direction:
+		velocity.x = move_toward(velocity.x , direction * velocidad, aceleracion * delta)
+		animated_sprite_pj.flip_h = direction < 0 #rotar pj segun para donde se mueve
+		animated_sprite_pj.play("caminar_prueba")
+		
+		if timer_pasos <= 0 && is_on_floor():
+			%FmodEventEmitter2D.play_one_shot()
+			timer_pasos = timer_pasos_reset
+		timer_pasos -= delta
+	else:
+		velocity.x = move_toward(velocity.x, 0, desaceleracion*delta)
+		animated_sprite_pj.play("idle_prueba")
