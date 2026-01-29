@@ -114,6 +114,7 @@ position = Vector2(13, 144)
 position = Vector2(1003, 218)
 varias_palancas = true
 cant_palancas = 3
+tiempo_de_apertura = 5.0
 
 [node name="Palanca" parent="." instance=ExtResource("6_nkl5u")]
 position = Vector2(592, 345)
