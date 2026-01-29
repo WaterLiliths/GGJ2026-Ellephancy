@@ -42,7 +42,8 @@ var timer_pasos_reset = 0.36
 var estaba_en_el_piso : bool = false
 @onready var mascara_tiempo: Node2D = %MascaraTiempos
 
-
+var objeto_interactivo : Interactivo = null
+var puede_interactuar : bool = false
 
 func _ready() -> void:
 	for estado in state_machine_manager.get_children():
@@ -125,7 +126,6 @@ func _on_area_tirar_body_exited(body: Node2D) -> void:
 
 #--------------------  FUNCIONES  ------------------------
 
-
 func conectar_caja_con_joint():
 	if !%MascaraFuerza.get_estado_activa():
 		print("la mascara esta desactivada, no agarrar")
@@ -143,15 +143,21 @@ func desconectar_caja_con_joint():
 	%FmodEventEmitter2D3.stop()
 
 
-
-
-
 func comprobar_coyote_timer():
 	if estaba_en_el_piso and not is_on_floor():#osea que recien salto
 		timer_coyote_time.start()
 		#sumo tambien para saber cuanto tiempo estaba en el aire
 		timer_tiempo_en_aire.start()
 
+func on_entra_a_interactivo(interactivo_actual : Interactivo):
+	puede_interactuar = true
+	if interactivo_actual is Palanca:
+		objeto_interactivo = interactivo_actual
+
+func on_sale_de_interactivo(interactivo_actual : Interactivo):
+	if interactivo_actual == objeto_interactivo:
+		puede_interactuar = false
+		objeto_interactivo = null
 
 func puedo_usar_coyote():
 	if timer_coyote_time.time_left > 0 and  algun_raycast_colisiona():
