@@ -9,13 +9,15 @@ extends StaticBody2D
 var contador_id : int = 0
 @export var altura_maxima : float = 250.0
 @export var tiempo_de_apertura : float = 1.5
-
+@export var tamaño = Vector2(1, 1)
 var posicion_original = position.y
 
 var esta_abierta = false
 var fue_abierta = false
 
 func _ready() -> void:
+	$Sprite2D.scale = 3 * tamaño
+	$CollisionShape2D.scale = tamaño
 	if empieza_abierta:
 		esta_abierta = true
 		$Sprite2D.position.y = -altura_maxima
