@@ -1,9 +1,10 @@
-[gd_scene load_steps=47 format=3 uid="uid://by80hrdi7bflk"]
+[gd_scene load_steps=11 format=3 uid="uid://by80hrdi7bflk"]
 
 [ext_resource type="Texture2D" uid="uid://da8uq31ni7ey8" path="res://assets/TILES-TEST/Map Tielset.png" id="1_qwx2l"]
 [ext_resource type="Texture2D" uid="uid://cqt2sxqweo75q" path="res://assets/tile_set/Árboles y Piedras.png" id="2_flceq"]
 [ext_resource type="Texture2D" uid="uid://duljulwce33br" path="res://assets/tile_set/Tileset Hierba Definitivo.png" id="2_xy3v2"]
 [ext_resource type="Texture2D" uid="uid://csa2luj144ovp" path="res://assets/tile_set/Árboles Grandes.png" id="3_flceq"]
+[ext_resource type="Script" uid="uid://b3bx7uo5yqmk3" path="res://escenas/creador_de_niveles.gd" id="5_nx2vk"]
 [ext_resource type="Texture2D" uid="uid://dx86bxl10ddeu" path="res://assets/tile_set/[64x64] Dungeon Bricks Shadow.png" id="4_nx2vk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7qul2"]
@@ -836,3 +837,4 @@ sources/3 = SubResource("TileSetAtlasSource_s1gxm")
 
 [node name="CreadorDeNiveles" type="TileMapLayer"]
 tile_set = SubResource("TileSet_xy3v2")
+script = ExtResource("5_nx2vk")
