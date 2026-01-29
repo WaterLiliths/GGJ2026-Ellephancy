@@ -82,8 +82,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	detectar_caida()
 	comprobar_coyote_timer()
-	if puede_interactuar and objeto_interactivo is Palanca and Input.is_action_just_pressed("interactuar"):
-		objeto_interactivo.activar()
+
 
 	if agarrando_caja and direction:
 		if not sonido_caja_sonando:
