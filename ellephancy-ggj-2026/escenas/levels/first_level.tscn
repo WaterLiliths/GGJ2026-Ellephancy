@@ -40,7 +40,7 @@ position = Vector2(150, 318)
 [node name="Camera2D" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(150, 218)
+position = Vector2(150, 318)
 editor_draw_limits = true
 
 [node name="Control" type="Control" parent="Player/Camera2D"]
@@ -116,18 +116,11 @@ position = Vector2(13, 144)
 
 [node name="Puerta" parent="." instance=ExtResource("7_co1fy")]
 position = Vector2(1003, 218)
-varias_palancas = true
-cant_palancas = 3
-tiempo_de_apertura = 5.0
+altura_maxima = 500.0
+tiempo_de_apertura = 6.0
 
 [node name="Palanca" parent="." instance=ExtResource("6_nkl5u")]
-position = Vector2(592, 345)
-
-[node name="Palanca2" parent="." instance=ExtResource("6_nkl5u")]
-position = Vector2(388, 345)
-
-[node name="Palanca3" parent="." instance=ExtResource("6_nkl5u")]
-position = Vector2(206, 349)
+position = Vector2(734, 90)
 
 [node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Musica/Musica"
@@ -139,13 +132,12 @@ fmod_parameters/Pantalla/variant_type = 4
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(150, 218)
+position = Vector2(150, 318)
 script = ExtResource("10_mo0bq")
 follow_mode = 2
 follow_target = NodePath("../Player/Node2D")
 tween_resource = SubResource("Resource_yei3n")
-follow_offset = Vector2(0, -100)
 follow_damping = true
-follow_damping_value = Vector2(0.5, 0.5)
+follow_damping_value = Vector2(0.2, 0)
 draw_limits = true
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"

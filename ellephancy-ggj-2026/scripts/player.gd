@@ -209,6 +209,7 @@ func detectar_caida():
 		var tiempo_en_aire_actual = tiempo_maximo_en_aire - timer_tiempo_en_aire.time_left
 		#print("tiempo en aire actual vale: ", tiempo_en_aire_actual)
 		$FmodEventEmitter2D4.play_one_shot()
+		$FmodEventEmitter2D5.stop()
 		sonido_caida_emitiendo = false
 
 
@@ -230,5 +231,5 @@ func emitir_sonido_pasos():
 
 func emitir_sonido_caida():
 	if estaba_en_el_piso and not is_on_floor():
-		#aca reproducir el sonido EMITTER
+		$FmodEventEmitter2D5.play()
 		sonido_caida_emitiendo = true

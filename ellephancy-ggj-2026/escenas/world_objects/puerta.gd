@@ -42,9 +42,10 @@ func cambiar_estado_puerta_cerrada(id_palanca : int):
 
 
 func abrir_puerta():
-	var tween = get_tree().create_tween()
-	tween.tween_property($Sprite2D, "position:y" , -altura_maxima, tiempo_de_apertura)
-	tween.tween_property($CollisionShape2D, "position:y" , -altura_maxima, tiempo_de_apertura)
+	var tween_sprite = get_tree().create_tween()
+	var tween_colision = get_tree().create_tween()
+	tween_sprite.tween_property($Sprite2D, "position:y" , -altura_maxima, tiempo_de_apertura)
+	tween_colision.tween_property($CollisionShape2D, "position:y" , -altura_maxima, tiempo_de_apertura)
 	esta_abierta = true
 	$TimerPuerta.start()
 	print("la puerta esta abierta")
@@ -53,9 +54,10 @@ func abrir_puerta():
 	$FmodEventEmitter2D.play()
 
 func cerrar_puerta():
-	var tween = get_tree().create_tween()
-	tween.tween_property($Sprite2D, "position:y" , 0, tiempo_de_apertura)
-	tween.tween_property($CollisionShape2D, "position:y" , 0, tiempo_de_apertura)
+	var tween_sprite = get_tree().create_tween()
+	var tween_colision = get_tree().create_tween()
+	tween_sprite.tween_property($Sprite2D, "position:y" , 0, tiempo_de_apertura)
+	tween_colision.tween_property($CollisionShape2D, "position:y" , 0, tiempo_de_apertura)
 	$TimerPuerta.start()
 	esta_abierta = false
 	print("la puerta esta cerrada")

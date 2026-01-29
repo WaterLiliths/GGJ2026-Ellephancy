@@ -242,6 +242,10 @@ unique_name_in_owner = true
 wait_time = 10.0
 one_shot = true
 
+[node name="FmodEventEmitter2D5" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Personaje/Movimiento/caida"
+event_guid = "{fbc63101-c1f0-46e6-ab63-d76fad8983e3}"
+
 [connection signal="animation_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_animation_changed"]
 [connection signal="frame_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_frame_changed"]
 [connection signal="body_entered" from="AreaTirar" to="." method="_on_area_tirar_body_entered"]
