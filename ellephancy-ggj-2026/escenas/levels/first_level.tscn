@@ -78,16 +78,6 @@ attached = false
 autoplay = true
 volume = 0.685
 
-[node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="."]
-event_name = "event:/Musica/Musica"
-event_guid = "{531f5736-0242-456e-96ac-14d316a2be4e}"
-attached = false
-volume = 0.0
-fmod_parameters/Pantalla/id = -2044462831851661827
-fmod_parameters/Pantalla = "Menu"
-fmod_parameters/Pantalla/labels = PackedStringArray("Menu", "Juego")
-fmod_parameters/Pantalla/variant_type = 4
-
 [node name="ObjetoAEmpujar" parent="." instance=ExtResource("6_vygjp")]
 position = Vector2(13, 144)
 
@@ -104,3 +94,11 @@ position = Vector2(388, 345)
 
 [node name="Palanca3" parent="." instance=ExtResource("6_nkl5u")]
 position = Vector2(206, 349)
+
+[node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Musica/Musica"
+event_guid = "{531f5736-0242-456e-96ac-14d316a2be4e}"
+fmod_parameters/Pantalla/id = -2044462831851661827
+fmod_parameters/Pantalla = "Juego"
+fmod_parameters/Pantalla/labels = PackedStringArray("Menu", "Juego")
+fmod_parameters/Pantalla/variant_type = 4

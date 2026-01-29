@@ -112,12 +112,14 @@ texture = ExtResource("1_nl42e")
 shape = SubResource("RectangleShape2D_555dy")
 
 [node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Objetos/puerta moviendo"
 event_guid = "{90f3a533-e150-435d-bc70-f426f47244f3}"
 fmod_parameters/Peso/id = 8505785322959852152
 fmod_parameters/Peso = 1.0
 fmod_parameters/Peso/variant_type = 3
 
 [node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Objetos/puerta impacto"
 event_guid = "{8e09a333-65e9-4f68-87ba-6df0a185aedb}"
 
 [node name="TimerPuerta" type="Timer" parent="."]
