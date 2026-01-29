@@ -1,6 +1,57 @@
-[gd_scene load_steps=0 format=3 uid="uid://45apkf4ddmvr"]
+[gd_scene load_steps=7 format=3 uid="uid://45apkf4ddmvr"]
 
 [ext_resource type="Script" uid="uid://c828ri1fboaoq" path="res://scripts/mascara_tiempos.gd" id="1_v8jvp"]
+[ext_resource type="Shader" uid="uid://dgqbbu2xdih1l" path="res://escenas/mascara_tiempos2.gdshader" id="2_dot3c"]
+[ext_resource type="Texture2D" uid="uid://355qtqujqaxb" path="res://assets/2d para shader/blanco-shader.jpg" id="3_d7wvt"]
 
-[node name="MascaraTiempos" type="Node2D" unique_id=944126025]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d7wvt"]
+shader = ExtResource("2_dot3c")
+shader_parameter/waterDistortionNoise = ExtResource("3_d7wvt")
+shader_parameter/waterColor = Color(1, 1, 1, 0.003921569)
+shader_parameter/colorCorection = 0.8999999798832
+shader_parameter/distortionForce = 0.01
+shader_parameter/WDBrightness = 1.5000000223518
+shader_parameter/WDFreq = 0.6
+shader_parameter/WDSize = 0.9
+shader_parameter/WDSpeed = 4.0
+shader_parameter/tiling = Vector2(1, 1)
+shader_parameter/offSetSpeed = Vector2(0.1, 0.1)
+shader_parameter/backGroundDirX = 0.01
+shader_parameter/backGroundDirY = 0.01
+
+[sub_resource type="Animation" id="Animation_d7wvt"]
+resource_name = "mascara_activa"
+length = 0.2
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6l7y4"]
+_data = {
+&"mascara_activa": SubResource("Animation_d7wvt")
+}
+
+[node name="MascaraTiempos" type="Node2D"]
 script = ExtResource("1_v8jvp")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRectShader" type="ColorRect" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_d7wvt")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6l7y4")
+}
