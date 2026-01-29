@@ -836,3 +836,4 @@ sources/3 = SubResource("TileSetAtlasSource_s1gxm")
 
 [node name="CreadorDeNiveles" type="TileMapLayer"]
 tile_set = SubResource("TileSet_xy3v2")
+script = ExtResource("5_nx2vk")

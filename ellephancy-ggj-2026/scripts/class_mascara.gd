@@ -1,8 +1,4 @@
-class_name Mascara
 extends Node
-
-@export var id : int
-@export var activa : bool = false
 
 
 func activar():
