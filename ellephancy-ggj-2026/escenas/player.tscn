@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cs3h434myxe4r"]
+[gd_scene load_steps=30 format=3 uid="uid://cs3h434myxe4r"]
 
 [ext_resource type="Script" uid="uid://d1p6o2ixegcp2" path="res://scripts/player.gd" id="1_esbpa"]
 [ext_resource type="Texture2D" uid="uid://b3y87vf4oiey5" path="res://assets/personaje-test/correr.png" id="2_kkt6c"]
@@ -10,6 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://vtcvameos4xx" path="res://escenas/mascara_fuerza.tscn" id="5_t3yu4"]
 [ext_resource type="PackedScene" uid="uid://x51x8ch6wkl2" path="res://escenas/mascara_traducciones.tscn" id="6_r4hsq"]
 [ext_resource type="Texture2D" uid="uid://qhlhqqumb47i" path="res://assets/player/Derecha4.png" id="6_t5tro"]
+[ext_resource type="Texture2D" uid="uid://ceudskdh04qvf" path="res://assets/player/salto1.png" id="8_8b7ct"]
+[ext_resource type="Texture2D" uid="uid://cu8qi314lngy1" path="res://assets/player/salto2.png" id="9_63xfq"]
+[ext_resource type="Texture2D" uid="uid://c554n5cuecdjw" path="res://assets/player/salto3.png" id="10_3w4lm"]
+[ext_resource type="Texture2D" uid="uid://737qi3otllmh" path="res://assets/player/salto4.png" id="11_8mtn0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j7xnp"]
 atlas = ExtResource("2_kkt6c")
@@ -131,6 +135,23 @@ animations = [{
 "loop": true,
 "name": &"idle_prueba",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_8b7ct")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_63xfq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_3w4lm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_8mtn0")
+}],
+"loop": false,
+"name": &"salto-final",
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kkt6c"]
@@ -154,7 +175,7 @@ unique_name_in_owner = true
 texture_filter = 1
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_w7fad")
-animation = &"caminar_prueba"
+animation = &"salto-final"
 
 [node name="MarkerTirar" type="Marker2D" parent="AnimatedSpritePJ"]
 position = Vector2(8.799999, 0)
