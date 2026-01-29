@@ -1,35 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://biambmyuxxflo"]
+[gd_scene load_steps=8 format=3 uid="uid://biambmyuxxflo"]
 
 [ext_resource type="Script" uid="uid://btdfa4vx5ods1" path="res://escenas/world_objects/puerta.gd" id="1_555dy"]
 [ext_resource type="Texture2D" uid="uid://dt8gpftbw4txl" path="res://assets/tile_set/icon.svg" id="1_nl42e"]
-
-[sub_resource type="Animation" id="Animation_555dy"]
-resource_name = "abir_sprite"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, -250.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CollisionShape2D:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, -250.0]
-}
 
 [sub_resource type="Animation" id="Animation_xu3fv"]
 length = 0.001
@@ -58,10 +30,65 @@ tracks/1/keys = {
 "values": [0.0]
 }
 
+[sub_resource type="Animation" id="Animation_555dy"]
+resource_name = "abir_sprite"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -250.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -250.0]
+}
+
+[sub_resource type="Animation" id="Animation_au0lx"]
+resource_name = "cerrar_puerta"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-250.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-250.0, 0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xu3fv"]
 _data = {
 &"RESET": SubResource("Animation_xu3fv"),
-&"abir_sprite": SubResource("Animation_555dy")
+&"abir_sprite": SubResource("Animation_555dy"),
+&"cerrar_puerta": SubResource("Animation_au0lx")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_555dy"]
@@ -83,3 +110,20 @@ texture = ExtResource("1_nl42e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_555dy")
+
+[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Objetos/puerta moviendo"
+event_guid = "{90f3a533-e150-435d-bc70-f426f47244f3}"
+fmod_parameters/Peso/id = 8505785322959852152
+fmod_parameters/Peso = 1.0
+fmod_parameters/Peso/variant_type = 3
+
+[node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Objetos/puerta impacto"
+event_guid = "{8e09a333-65e9-4f68-87ba-6df0a185aedb}"
+
+[node name="TimerPuerta" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="animation_finished" from="AnimationPuerta" to="." method="_on_animation_puerta_animation_finished"]
+[connection signal="timeout" from="TimerPuerta" to="." method="_on_timer_puerta_timeout"]

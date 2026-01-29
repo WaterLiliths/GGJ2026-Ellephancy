@@ -7,8 +7,13 @@ signal mascara_traducciones_desactivar
 signal mascara_tiempo_desactivar
 signal mascara_fuerza_desactivar
 
-signal usar_palanca(id_palanca : int)
+
 var mascara_activa : int = 0
+#----------------PALANCA Y PUERTA------------------
+signal activar_palanca(id_palanca : int)
+signal desactivar_palanca(id_palanca : int)
+
+
 
 func _ready() -> void:
 	pass # Replace with function body.

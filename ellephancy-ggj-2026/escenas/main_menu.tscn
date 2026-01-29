@@ -1,0 +1,107 @@
+[gd_scene load_steps=4 format=3 uid="uid://drx8e4npnl3il"]
+
+[ext_resource type="Script" uid="uid://cjruy0e7k5n74" path="res://escenas/main_menu.gd" id="1_2cr0s"]
+[ext_resource type="FontFile" uid="uid://ciwhe1apfc5gi" path="res://assets/fonts/Balgruf.otf" id="1_ter2f"]
+[ext_resource type="PackedScene" uid="uid://d2xlg26hl7ug6" path="res://escenas/boton_custom.tscn" id="2_8cfpu"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2cr0s")
+
+[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
+bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/UI.bank"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.30866978, 0.47597528, 0.3740433, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 85.0
+offset_top = -277.0
+offset_right = 333.75
+offset_bottom = -78.0
+grow_vertical = 0
+theme_override_constants/separation = 14
+
+[node name="BotonCustomComenzar" parent="VBoxContainer" instance=ExtResource("2_8cfpu")]
+layout_mode = 2
+text = "Jugar"
+
+[node name="BotonCustomOpciones" parent="VBoxContainer" instance=ExtResource("2_8cfpu")]
+layout_mode = 2
+text = "Opciones"
+
+[node name="BotonCustomCreditos" parent="VBoxContainer" instance=ExtResource("2_8cfpu")]
+layout_mode = 2
+text = "Créditos"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 82.0
+offset_top = -132.0
+offset_right = 644.0
+offset_bottom = -38.0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_ter2f")
+theme_override_font_sizes/font_size = 66
+text = "[Nombre Del Juego]"
+
+[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Musica/Musica"
+event_guid = "{531f5736-0242-456e-96ac-14d316a2be4e}"
+attached = false
+autoplay = true
+allow_fadeout = false
+volume = 0.79
+fmod_parameters/Pantalla/id = -2044462831851661827
+fmod_parameters/Pantalla = "Menu"
+fmod_parameters/Pantalla/labels = PackedStringArray("Menu", "Juego")
+fmod_parameters/Pantalla/variant_type = 4
+
+[node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/UI/presionar boton"
+event_guid = "{624dbeb8-fca7-4437-9334-f8d63096ddf0}"
+volume = 0.6
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -523.0
+offset_top = -275.0
+offset_right = -65.0
+offset_bottom = 275.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[connection signal="pressed" from="VBoxContainer/BotonCustomComenzar" to="." method="_on_boton_custom_comenzar_pressed"]

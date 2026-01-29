@@ -1,11 +1,20 @@
-[gd_scene load_steps=22 format=3 uid="uid://cs3h434myxe4r"]
+[gd_scene load_steps=31 format=3 uid="uid://cs3h434myxe4r"]
 
 [ext_resource type="Script" uid="uid://d1p6o2ixegcp2" path="res://scripts/player.gd" id="1_esbpa"]
 [ext_resource type="Texture2D" uid="uid://b3y87vf4oiey5" path="res://assets/personaje-test/correr.png" id="2_kkt6c"]
+[ext_resource type="Texture2D" uid="uid://6paf5jvl6rfi" path="res://assets/player/Derecha1.png" id="3_63xfq"]
 [ext_resource type="Texture2D" uid="uid://cm0c47duyxhoi" path="res://assets/personaje-test/idle.png" id="3_j7xnp"]
+[ext_resource type="Texture2D" uid="uid://bvd4ssh4cigjl" path="res://assets/player/Derecha2.png" id="4_3w4lm"]
 [ext_resource type="PackedScene" uid="uid://45apkf4ddmvr" path="res://escenas/mascara_tiempos.tscn" id="4_k4kro"]
+[ext_resource type="Texture2D" uid="uid://cglf1a8ayye6o" path="res://assets/player/Derecha3.png" id="5_8mtn0"]
 [ext_resource type="PackedScene" uid="uid://vtcvameos4xx" path="res://escenas/mascara_fuerza.tscn" id="5_t3yu4"]
 [ext_resource type="PackedScene" uid="uid://x51x8ch6wkl2" path="res://escenas/mascara_traducciones.tscn" id="6_r4hsq"]
+[ext_resource type="Texture2D" uid="uid://qhlhqqumb47i" path="res://assets/player/Derecha4.png" id="6_t5tro"]
+[ext_resource type="Script" uid="uid://dx71682jtxw4f" path="res://escenas/state_machine_player.gd" id="7_r4hsq"]
+[ext_resource type="Script" uid="uid://bn0a76bcmdfkm" path="res://escenas/state_idle.gd" id="8_n2wyw"]
+[ext_resource type="Script" uid="uid://c2q65tm4l0t11" path="res://escenas/state_caminando.gd" id="9_rbrud"]
+[ext_resource type="Script" uid="uid://b0h1kkdxs8sje" path="res://escenas/state_salto.gd" id="10_8b7ct"]
+[ext_resource type="Script" uid="uid://t33dws6rujru" path="res://escenas/state_agarrando.gd" id="12_3w4lm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j7xnp"]
 atlas = ExtResource("2_kkt6c")
@@ -88,6 +97,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("3_63xfq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3w4lm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_8mtn0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_t5tro")
+}],
+"loop": true,
+"name": &"caminar_prueba",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_w7fad")
 }, {
 "duration": 1.0,
@@ -102,6 +128,14 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_63xfq")
+}],
+"loop": true,
+"name": &"idle_prueba",
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kkt6c"]
@@ -123,14 +157,15 @@ bank_paths = ["res://assets/audio/FmodBanks/Desktop/SFX.bank"]
 [node name="AnimatedSpritePJ" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 texture_filter = 1
-scale = Vector2(5, 5)
+scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_w7fad")
-animation = &"caminar"
+animation = &"caminar_prueba"
 
 [node name="MarkerTirar" type="Marker2D" parent="AnimatedSpritePJ"]
 position = Vector2(8.799999, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 27)
 shape = SubResource("CircleShape2D_kkt6c")
 
 [node name="AreaTirar" type="Area2D" parent="."]

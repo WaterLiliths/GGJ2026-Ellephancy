@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2xlg26hl7ug6"]
+
+[ext_resource type="Script" uid="uid://dgc25sona8dok" path="res://escenas/boton_custom.gd" id="1_53qyf"]
+[ext_resource type="Theme" uid="uid://c3il706qyjae5" path="res://escenas/themes/main_menu_boton.tres" id="1_fb66u"]
+
+[node name="BotonCustom" type="Button"]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_fb66u")
+script = ExtResource("1_53qyf")
+
+[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/UI/hover boton"
+event_guid = "{be8bbce9-c51d-4932-af0c-ee49270bb794}"
+volume = 0.5
+
+[node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/UI/presionar boton"
+event_guid = "{624dbeb8-fca7-4437-9334-f8d63096ddf0}"
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

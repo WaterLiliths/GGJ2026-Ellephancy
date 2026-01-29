@@ -104,8 +104,6 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	detectar_caida()
 	comprobar_coyote_timer()
-	if puede_interactuar and objeto_interactivo is Palanca and Input.is_action_just_pressed("interactuar"):
-		objeto_interactivo.activar()
 
 	if agarrando_caja and direction:
 		if not sonido_caja_sonando:
@@ -121,6 +119,28 @@ func _physics_process(delta: float) -> void:
 		timer_coyote_time.stop()
 	estaba_en_el_piso = is_on_floor()
 	
+		#------------------------INTERACTUAR------------------------
+	if puede_interactuar and objeto_interactivo is Palanca and Input.is_action_just_pressed("interactuar"):
+		objeto_interactivo.activar()
+		
+	# -------------------- salto + coyote timer  -------------------------------
+	#if Input.is_action_just_pressed("w") and (is_on_floor() or puedo_usar_coyote()):
+		#velocity.y = velocidad_salto
+		#timer_coyote_time.stop()
+		#$FmodEventEmitter2D2.play_one_shot()
+		##TODO agregar aca animacion de salto
+	#if Input.is_action_just_released("w") and velocity.y < 0:
+		#velocity.y *= desaceleración_al_saltar
+	
+	#------------------    movimiento con w a s d ------------------------------
+	#direction = Input.get_axis("a", "d")
+	#if direction:
+		#velocity.x = move_toward(velocity.x , direction * velocidad, aceleracion * delta)
+		#animated_sprite_pj.flip_h = direction < 0 #rotar pj segun para donde se mueve
+		#animated_sprite_pj.play("caminar")
+
+
+
 
 #--------------------- SEÑALES  -------------------------
 func _on_area_tirar_body_entered(body: Node2D) -> void:
