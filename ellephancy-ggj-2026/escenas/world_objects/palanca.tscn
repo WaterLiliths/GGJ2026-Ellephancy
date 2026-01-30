@@ -1,31 +1,85 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3kt101wc8mwl"]
+[gd_scene load_steps=11 format=3 uid="uid://b3kt101wc8mwl"]
 
 [ext_resource type="Script" uid="uid://cq4ck0hi4tl82" path="res://escenas/world_objects/palanca.gd" id="1_3114u"]
-[ext_resource type="Texture2D" uid="uid://dt8gpftbw4txl" path="res://assets/tile_set/icon.svg" id="1_kk7ru"]
+[ext_resource type="Texture2D" uid="uid://dibfv1arx47hn" path="res://assets/sprites/palanca_centro.PNG" id="3_onv6i"]
+[ext_resource type="Texture2D" uid="uid://yf1ovbt7adcn" path="res://assets/sprites/base_palanca.PNG" id="4_j5e1s"]
+[ext_resource type="Texture2D" uid="uid://cfqv1dilqxxfc" path="res://assets/sprites/palanca_adorno.PNG" id="4_kfmqc"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_3114u"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_kk7ru")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[sub_resource type="Animation" id="Animation_vs360"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PalancaCentro:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-2.3561945]
+}
+
+[sub_resource type="Animation" id="Animation_neg3w"]
+resource_name = "activar"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PalancaCentro:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(5.0982437, 0.09807344),
+"update": 0,
+"values": [-2.3561945, -3.9269907]
+}
+
+[sub_resource type="Animation" id="Animation_kfmqc"]
+resource_name = "desactivada"
+
+[sub_resource type="Animation" id="Animation_2mypw"]
+resource_name = "desactivar"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PalancaCentro:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(5.09, 0.098),
+"update": 0,
+"values": [-3.9269907, -2.3561945]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2mypw"]
+_data = {
+&"RESET": SubResource("Animation_vs360"),
+&"activar": SubResource("Animation_neg3w"),
+&"desactivada": SubResource("Animation_kfmqc"),
+&"desactivar": SubResource("Animation_2mypw")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dtuov"]
-size = Vector2(130, 126)
+size = Vector2(544.4444, 299.11108)
 
 [node name="Palanca" type="Area2D"]
+scale = Vector2(0.52, 0.52)
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_3114u")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_3114u")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_2mypw")
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -86.55558)
+scale = Vector2(1.0000001, 1.0000001)
 shape = SubResource("RectangleShape2D_dtuov")
 
 [node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
@@ -35,3 +89,23 @@ fmod_parameters/TipoDePalanca/id = 6086375413492549144
 fmod_parameters/TipoDePalanca = "Buen Estado"
 fmod_parameters/TipoDePalanca/labels = PackedStringArray("Buen Estado", "Oxidada")
 fmod_parameters/TipoDePalanca/variant_type = 4
+
+[node name="PalancaCentro" type="Sprite2D" parent="."]
+position = Vector2(0, -25)
+rotation = -2.3561945
+texture = ExtResource("3_onv6i")
+offset = Vector2(1.9, 63.215)
+
+[node name="PalancaAdorno" type="Sprite2D" parent="PalancaCentro"]
+position = Vector2(4.9497633, 146.37112)
+rotation = -2.3561945
+scale = Vector2(0.70114905, 0.70114905)
+texture = ExtResource("4_kfmqc")
+
+[node name="BasePalanca" type="Sprite2D" parent="."]
+position = Vector2(1, 2)
+texture = ExtResource("4_j5e1s")
+
+[node name="TimerPalanca" type="Timer" parent="."]
+
+[connection signal="timeout" from="TimerPalanca" to="." method="_on_timer_palanca_timeout"]
