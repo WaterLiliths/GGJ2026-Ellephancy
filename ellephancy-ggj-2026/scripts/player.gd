@@ -81,7 +81,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = velocidad_salto
 		timer_coyote_time.stop()
 		$FmodEventEmitter2D2.play_one_shot()
-		animated_sprite_pj.play("salto-final")
+		ejecutar_animacion_saltar()
 	if Input.is_action_just_released("w") and velocity.y < 0:
 		velocity.y *= desaceleración_al_saltar
 	
@@ -102,7 +102,7 @@ func _physics_process(delta: float) -> void:
 			sonido_caja_sonando = false
 
 	if velocity.y > 0:
-		%AnimatedSpritePJ.play("caida")
+		%AnimatedSpritePJ.play("caida_normal")
 
 	if is_on_floor():
 		timer_coyote_time.stop()
@@ -113,6 +113,7 @@ func _physics_process(delta: float) -> void:
 		#------------------------INTERACTUAR------------------------
 	if puede_interactuar and objeto_interactivo is Palanca and Input.is_action_just_pressed("interactuar"):
 		objeto_interactivo.activar()
+		ejecutar_animacion_palanca()
 
 
 #--------------------- SEÑALES  -------------------------
@@ -236,9 +237,9 @@ func movimiento_wasd(delta : float):
 		velocity.x = move_toward(velocity.x , direction * velocidad, aceleracion * delta)
 		animated_sprite_pj.flip_h = direction < 0 #rotar pj segun para donde se mueve
 		if is_on_floor():
-			animated_sprite_pj.play("caminar_prueba")
+			ejecutar_animacion_caminar()
 		else:
-			%AnimatedSpritePJ.play("salto-final")
+			ejecutar_animacion_saltar()
 		
 		if timer_pasos <= 0 && is_on_floor():
 			%FmodEventEmitter2D.play_one_shot()
@@ -247,6 +248,51 @@ func movimiento_wasd(delta : float):
 	else:
 		velocity.x = move_toward(velocity.x, 0, desaceleracion*delta)
 		if is_on_floor():
-			animated_sprite_pj.play("idle_prueba")
+			animated_sprite_pj.play("idle_normal")
 		else:
-			%AnimatedSpritePJ.play("salto-final")
+			ejecutar_animacion_saltar()
+
+
+
+func ejecutar_animacion_caminar(forzar_id : int = 0): #por si queremos forzar una especifica
+	match Global.mascara_activa:
+		0:
+			animated_sprite_pj.play("caminar_normal")
+		1:
+			animated_sprite_pj.play("caminar_ciervo")
+		2:
+			animated_sprite_pj.play("caminar_oso")
+		3:
+			animated_sprite_pj.play("caminar_salmon")
+
+
+func ejecutar_animacion_saltar(forzar_id : int = 0): #por si queremos forzar una especifica
+	match Global.mascara_activa:
+		0:
+			animated_sprite_pj.play("salto-normal")
+		1:
+			animated_sprite_pj.play("salto_ciervo")
+		2:
+			animated_sprite_pj.play("salto_oso")
+		3:
+			animated_sprite_pj.play("salto_salmon")
+
+
+func ejecutar_animacion_arrastrar(): #solo puede el oso
+	animated_sprite_pj.play("agarrar_oso")
+
+
+func ejecutar_animacion_palanca(forzar_id : int = 0): #por si queremos forzar una especifica
+	match Global.mascara_activa:
+		0:
+			animated_sprite_pj.play("palanca-normal")
+		1:
+			animated_sprite_pj.play("palanca_ciervo")
+		2:
+			animated_sprite_pj.play("palanca_oso")
+		3:
+			animated_sprite_pj.play("palanca_salmon")
+
+
+#TODO ARREGLAR ANIMACIONES
+#TODO IDLE SE EJECUTA CUANDO NO CORRESPONDE
