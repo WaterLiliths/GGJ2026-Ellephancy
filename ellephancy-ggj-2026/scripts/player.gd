@@ -1,6 +1,6 @@
 class_name Player
 extends CharacterBody2D
-
+#comentario para forzar github
 #---------- mascaras -----------
 @onready var mascara_tiempos: Node2D = %MascaraTiempos
 @onready var mascara_fuerza: Node2D = %MascaraFuerza
