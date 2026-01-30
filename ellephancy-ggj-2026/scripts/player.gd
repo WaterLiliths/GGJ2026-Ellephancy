@@ -431,5 +431,7 @@ func _on_animated_sprite_pj_animation_finished() -> void:
 	var animacion = animated_sprite_pj.get_animation()
 	if animacion.begins_with("palanca"):
 		cambiar_de_estado(ESTADOS.IDLE)
+	if animacion.begins_with("salto"):
+		ejecutar_animacion_caida()
 	if animacion == "agarrar_oso" and estado_actual == ESTADOS.AGARRAR:
 		animated_sprite_pj.play("seguir_agarrando") #TODO TESTEAR
