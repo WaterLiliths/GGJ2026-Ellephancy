@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://cs3h434myxe4r"]
+[gd_scene load_steps=55 format=3 uid="uid://cs3h434myxe4r"]
 
 [ext_resource type="Script" uid="uid://d1p6o2ixegcp2" path="res://scripts/player.gd" id="1_esbpa"]
 [ext_resource type="Texture2D" uid="uid://csvm86vnc0cmo" path="res://assets/player/mascaras/Agarre oso destra 1.png" id="2_v66k4"]
@@ -18,13 +18,11 @@
 [ext_resource type="Texture2D" uid="uid://bbglqpt0re5am" path="res://assets/player/mascaras/Agarre oso destra 5.png" id="6_tn1j7"]
 [ext_resource type="Texture2D" uid="uid://bbytiaukpxksb" path="res://assets/player/mascaras/Ciervo andar 4.png" id="7_eolwv"]
 [ext_resource type="Texture2D" uid="uid://bu1qlfp6ymhdv" path="res://assets/player/mascaras/Agarre oso destra 6.png" id="7_hopxw"]
-[ext_resource type="Texture2D" uid="uid://ceudskdh04qvf" path="res://assets/player/salto1.png" id="8_8b7ct"]
 [ext_resource type="Texture2D" uid="uid://bopqenj5t1lq5" path="res://assets/player/mascaras/Agarre oso destra 7.png" id="8_lrq8u"]
 [ext_resource type="Texture2D" uid="uid://cu8qi314lngy1" path="res://assets/player/salto2.png" id="9_63xfq"]
 [ext_resource type="Texture2D" uid="uid://clnpid6gioy3k" path="res://assets/player/mascaras/Agarre oso destra 8.png" id="9_h7o46"]
 [ext_resource type="Texture2D" uid="uid://dvenunjydyjkx" path="res://assets/player/mascaras/Agarre oso destra 9.png" id="10_0bojb"]
 [ext_resource type="Texture2D" uid="uid://c554n5cuecdjw" path="res://assets/player/salto3.png" id="10_3w4lm"]
-[ext_resource type="Texture2D" uid="uid://737qi3otllmh" path="res://assets/player/salto4.png" id="11_8mtn0"]
 [ext_resource type="Texture2D" uid="uid://bg5i3ntkwdav5" path="res://assets/player/mascaras/Andar oso destra 1.png" id="11_ay70r"]
 [ext_resource type="Texture2D" uid="uid://bxycstgkd61ol" path="res://assets/player/mascaras/Agarre oso destra 10.png" id="11_q2x7o"]
 [ext_resource type="Texture2D" uid="uid://71i1tix7ypnj" path="res://assets/player/mascaras/Andar oso destra 2.png" id="12_eolwv"]
@@ -35,22 +33,16 @@
 [ext_resource type="Texture2D" uid="uid://ceyo20lc3lqey" path="res://assets/player/mascaras/Salmón andar 2.png" id="16_jt2sh"]
 [ext_resource type="Texture2D" uid="uid://cpduuopuq1e32" path="res://assets/player/mascaras/Salmón andar 3.png" id="17_sdwtm"]
 [ext_resource type="Texture2D" uid="uid://cm8gytihaee2y" path="res://assets/player/mascaras/Salmón andar 4.png" id="18_abcdt"]
-[ext_resource type="Texture2D" uid="uid://dtvdit37i8if4" path="res://assets/player/mascaras/Salto ciervo 1.png" id="22_jr8nv"]
 [ext_resource type="Texture2D" uid="uid://bh08vgrrp6bh5" path="res://assets/player/mascaras/Salto Ciervo 2.png" id="23_4csdi"]
 [ext_resource type="Texture2D" uid="uid://c7k4h75uvb62m" path="res://assets/player/mascaras/Salto Ciervo 3.png" id="24_nrm58"]
-[ext_resource type="Texture2D" uid="uid://b7p0jr82w1tkx" path="res://assets/player/mascaras/Salto ciervo 4.png" id="25_hydpe"]
-[ext_resource type="Texture2D" uid="uid://cwr4hm20jlx3u" path="res://assets/player/mascaras/salto oso 1.png" id="26_hbygi"]
 [ext_resource type="Texture2D" uid="uid://b1mpifchu6ccb" path="res://assets/player/mascaras/salto oso 2.png" id="27_kc3iu"]
 [ext_resource type="Texture2D" uid="uid://b04odj523vlgf" path="res://assets/player/mascaras/salto oso 3.png" id="28_idkqs"]
-[ext_resource type="Texture2D" uid="uid://c2hafnp4c2spq" path="res://assets/player/mascaras/salto oso 4.png" id="29_lircq"]
 [ext_resource type="Texture2D" uid="uid://b4b1q25lssm7q" path="res://assets/player/mascaras/Ciervo palanca 1.png" id="30_0wi6y"]
-[ext_resource type="Texture2D" uid="uid://dnk0it1j4srwg" path="res://assets/player/mascaras/Salto salmón 1.png" id="30_rvju6"]
 [ext_resource type="Texture2D" uid="uid://bhohihb8b72j7" path="res://assets/player/mascaras/Salto Salmón 2.png" id="31_ewafl"]
 [ext_resource type="Texture2D" uid="uid://bror7tai0gkgv" path="res://assets/player/mascaras/Ciervo palanca 2.png" id="31_tn1j7"]
 [ext_resource type="Texture2D" uid="uid://cc13yhboq3p2m" path="res://assets/player/mascaras/Salto Salmón 3.png" id="32_ahx5a"]
 [ext_resource type="Texture2D" uid="uid://bups0huvmlyut" path="res://assets/player/mascaras/Ciervo palanca 3.png" id="32_hopxw"]
 [ext_resource type="Texture2D" uid="uid://bjay11vvnbqqs" path="res://assets/player/mascaras/MC Palanca 1.png" id="33_lrq8u"]
-[ext_resource type="Texture2D" uid="uid://bokddhyykt4ds" path="res://assets/player/mascaras/Salto salmón 4.png" id="33_pn22k"]
 [ext_resource type="Texture2D" uid="uid://vlc28u0qsowb" path="res://assets/player/mascaras/MC Palanca 2.png" id="34_h7o46"]
 [ext_resource type="Texture2D" uid="uid://cknxsgf0ibeje" path="res://assets/player/mascaras/MC Palanca 3.png" id="35_0bojb"]
 [ext_resource type="Texture2D" uid="uid://cuyg5mrq6ij88" path="res://assets/player/mascaras/Oso palanca 1.png" id="36_5uuta"]
@@ -290,16 +282,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_8b7ct")
-}, {
-"duration": 1.0,
 "texture": ExtResource("9_63xfq")
 }, {
 "duration": 1.0,
 "texture": ExtResource("10_3w4lm")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_8mtn0")
 }],
 "loop": false,
 "name": &"salto-normal",
@@ -307,16 +293,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("22_jr8nv")
-}, {
-"duration": 1.0,
 "texture": ExtResource("23_4csdi")
 }, {
 "duration": 1.0,
 "texture": ExtResource("24_nrm58")
-}, {
-"duration": 1.0,
-"texture": ExtResource("25_hydpe")
 }],
 "loop": false,
 "name": &"salto_ciervo",
@@ -324,16 +304,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("26_hbygi")
-}, {
-"duration": 1.0,
 "texture": ExtResource("27_kc3iu")
 }, {
 "duration": 1.0,
 "texture": ExtResource("28_idkqs")
-}, {
-"duration": 1.0,
-"texture": ExtResource("29_lircq")
 }],
 "loop": false,
 "name": &"salto_oso",
@@ -341,16 +315,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("30_rvju6")
-}, {
-"duration": 1.0,
 "texture": ExtResource("31_ewafl")
 }, {
 "duration": 1.0,
 "texture": ExtResource("32_ahx5a")
-}, {
-"duration": 1.0,
-"texture": ExtResource("33_pn22k")
 }],
 "loop": false,
 "name": &"salto_salmon",
@@ -398,8 +366,7 @@ unique_name_in_owner = true
 texture_filter = 1
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_w7fad")
-animation = &"seguir_agarrando"
-frame_progress = 0.033400528
+animation = &"salto_salmon"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 27)
