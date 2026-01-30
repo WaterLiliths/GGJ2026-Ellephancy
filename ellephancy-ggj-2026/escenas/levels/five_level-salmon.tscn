@@ -1,16 +1,10 @@
-[gd_scene load_steps=12 format=4 uid="uid://ce6ds73vdk4s0"]
+[gd_scene load_steps=6 format=4 uid="uid://ce6ds73vdk4s0"]
 
 [ext_resource type="PackedScene" uid="uid://b3kt101wc8mwl" path="res://escenas/world_objects/palanca.tscn" id="1_kid8t"]
 [ext_resource type="PackedScene" uid="uid://biambmyuxxflo" path="res://escenas/world_objects/puerta.tscn" id="2_t7q8u"]
 [ext_resource type="PackedScene" uid="uid://by80hrdi7bflk" path="res://escenas/creador_de_niveles.tscn" id="3_xlhsu"]
 [ext_resource type="PackedScene" uid="uid://cs3h434myxe4r" path="res://escenas/player.tscn" id="4_t7q8u"]
 [ext_resource type="PackedScene" uid="uid://b6egkrxvfwusp" path="res://escenas/puzzle_salmon_1.tscn" id="5_xlhsu"]
-[ext_resource type="Texture2D" uid="uid://dt8gpftbw4txl" path="res://assets/tile_set/icon.svg" id="6_1x1an"]
-[ext_resource type="Texture2D" uid="uid://355qtqujqaxb" path="res://assets/2d para shader/blanco-shader.jpg" id="7_l62w8"]
-[ext_resource type="Texture2D" uid="uid://bjudw1ckt6cac" path="res://assets/TILES-TEST/runas-test/runa-test-4.png" id="8_xtt70"]
-[ext_resource type="Texture2D" uid="uid://djh1ycbtamrk" path="res://assets/TILES-TEST/runas-test/runa-test-3.png" id="9_tp0i4"]
-[ext_resource type="Texture2D" uid="uid://ctfsfjhqfytxw" path="res://assets/TILES-TEST/runas-test/runa-test2.png" id="10_7ypop"]
-[ext_resource type="Texture2D" uid="uid://1ko7mcr6doos" path="res://assets/TILES-TEST/runas-test/runa-test1.png" id="11_mc2w7"]
 
 [node name="LevelSalmon5" type="Node2D"]
 
@@ -93,14 +87,9 @@ position = Vector2(2231, -413)
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
 [node name="PuzzleHolder" parent="." instance=ExtResource("5_xlhsu")]
-position = Vector2(3189, -173)
+position = Vector2(3483, -176)
 
-[node name="PuzzleSalmon1" parent="PuzzleHolder" index="0"]
-runa_1 = ExtResource("6_1x1an")
-runa_2 = ExtResource("7_l62w8")
-runa_3 = ExtResource("8_xtt70")
-runa_4 = ExtResource("9_tp0i4")
-runa_5 = ExtResource("11_mc2w7")
-runa_6 = ExtResource("10_7ypop")
+[node name="PalancaSalmon3" parent="PuzzleHolder/PuzzleSalmon1" index="3"]
+position = Vector2(-324, 176)
 
 [editable path="PuzzleHolder"]
