@@ -310,7 +310,7 @@ func ejecutar_animacion_saltar(forzar_id : int = 0): #por si queremos forzar una
 
 
 func ejecutar_animacion_arrastrar(): #solo puede el oso
-	animated_sprite_pj.play("agarrar_oso")
+	animated_sprite_pj.play("seguir_agarrando")
 
 
 func ejecutar_animacion_palanca(forzar_id : int = 0): #por si queremos forzar una especifica
@@ -374,6 +374,7 @@ func cambiar_de_estado(estado_nuevo : ESTADOS):
 
 func procesar_idle(delta):
 	velocity.x = move_toward(velocity.x, 0, desaceleracion * delta)
+	animated_sprite_pj.flip_h = ultima_direccion_mirar <0
 	if not is_on_floor():
 		cambiar_de_estado(ESTADOS.CAER) #o pasar a salto? TODO TESTEAR
 		return
@@ -424,3 +425,11 @@ func procesar_agarrar(delta):
 	velocity.x = move_toward(velocity.x,direction * velocidad, aceleracion * delta)
 	if not agarrando_caja:
 		cambiar_de_estado(ESTADOS.IDLE)
+
+
+func _on_animated_sprite_pj_animation_finished() -> void:
+	var animacion = animated_sprite_pj.get_animation()
+	if animacion.begins_with("palanca"):
+		cambiar_de_estado(ESTADOS.IDLE)
+	if animacion == "agarrar_oso" and estado_actual == ESTADOS.AGARRAR:
+		animated_sprite_pj.play("seguir_agarrando") #TODO TESTEAR
