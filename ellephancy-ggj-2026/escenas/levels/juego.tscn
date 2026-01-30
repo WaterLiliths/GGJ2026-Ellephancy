@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dkudwre2b373"]
+[gd_scene load_steps=18 format=3 uid="uid://dkudwre2b373"]
 
 [ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/Juego.gd" id="1_2y4ua"]
 [ext_resource type="Texture2D" uid="uid://datv7pocxxolq" path="res://assets/parallax/Parallaxbosque1.png" id="2_ms3um"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://dxat8cn5c3yh5" path="res://escenas/levels/node_2d.gd" id="10_e4rmv"]
 [ext_resource type="PackedScene" uid="uid://bcgp0adhixxuf" path="res://escenas/levels/first_level.tscn" id="11_yqcop"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="12_g2cn0"]
+[ext_resource type="PackedScene" uid="uid://ctgi3ppkimt2c" path="res://escenas/levels/fourth_level.tscn" id="12_yqcop"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="13_8mohb"]
 
 [sub_resource type="Gradient" id="Gradient_gceu3"]
@@ -95,14 +96,14 @@ texture = ExtResource("5_ffuyt")
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank"]
 
 [node name="Player" parent="." instance=ExtResource("8_m34qx")]
-position = Vector2(85, 677)
+position = Vector2(7580, 1031)
 scale = Vector2(0.64, 0.64)
 velocidad_salto = -600.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(85, 677)
+position = Vector2(7580, 1031)
 zoom = Vector2(1.6, 1.6)
 editor_draw_limits = true
 
@@ -180,7 +181,7 @@ position = Vector2(-97, 588)
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(85, 677)
+position = Vector2(7580, 1031)
 script = ExtResource("12_g2cn0")
 follow_mode = 2
 follow_target = NodePath("../Player/Node2D")
@@ -193,3 +194,6 @@ metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
 [node name="FirstLevel" parent="." instance=ExtResource("11_yqcop")]
 position = Vector2(-89, 567)
+
+[node name="FourthLevel" parent="." instance=ExtResource("12_yqcop")]
+position = Vector2(7486, 524)
