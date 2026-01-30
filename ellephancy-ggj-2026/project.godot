@@ -51,6 +51,8 @@ folder_colors={
 [global_group]
 
 empujable=""
+palancas=""
+controlador_runas=""
 
 [input]
 
