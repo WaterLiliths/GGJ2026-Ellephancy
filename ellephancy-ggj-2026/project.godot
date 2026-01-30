@@ -21,7 +21,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="Ellephancy_GGJ2026"
 run/main_scene="uid://dkudwre2b373"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="res://assets/tile_set/icon.svg"
+config/icon="uid://116jh6ney8f0"
 
 [autoload]
 

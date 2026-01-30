@@ -10,6 +10,8 @@ extends Node2D
 @onready var runa_cambiante_1: Sprite2D = %RunaCambiante1 #refe a los nodos
 @onready var runa_cambiante_2: Sprite2D = %RunaCambiante2
 @onready var runa_cambiante_3: Sprite2D = %RunaCambiante3
+@onready var puerta_salmon: StaticBody2D = %PuertaSalmon
+
 
 var contador_palanca_1_usada : int = 1#cada palanca cambia solamente a su runa (palanca 1 runa_cambiante 1)
 var contador_palanca_2_usada : int = 1
@@ -45,28 +47,35 @@ func cambiar_runa(palanca_id : int):
 			if contador_palanca_1_usada>6:
 				contador_palanca_1_usada = 1 #reseteo
 			runa_cambiante_1.texture = diccionario_runas[contador_palanca_1_usada]
+			verificar_contrasena()
 		2:
 			contador_palanca_2_usada = contador_palanca_2_usada + 1
 			if contador_palanca_2_usada>6:
 				contador_palanca_2_usada = 1 #reseteo
 			runa_cambiante_2.texture = diccionario_runas[contador_palanca_2_usada]
+			verificar_contrasena()
 		3:
 			contador_palanca_3_usada = contador_palanca_3_usada + 1
 			if contador_palanca_3_usada>6:
 				contador_palanca_3_usada = 1 #reseteo
 			runa_cambiante_3.texture = diccionario_runas[contador_palanca_3_usada]
+			verificar_contrasena()
 
 
 func _on_palanca_salmon_1_activar_cambiar_runa(id_palanca_int: int) -> void:
-	print("PALANCA USADA - se cambiara de runa")
+	#print("PALANCA USADA - se cambiara de runa")
 	cambiar_runa(id_palanca_int)
 
 
 func _on_palanca_salmon_2_activar_cambiar_runa(id_palanca_int: int) -> void:
-	print("PALANCA 2 USADA - se cambiara de runa")
+	#print("PALANCA 2 USADA - se cambiara de runa")
 	cambiar_runa(id_palanca_int)
 
 
 func _on_palanca_salmon_3_activar_cambiar_runa(id_palanca_int: int) -> void:
-	print("PALANCA 3 USADAA  - se cambiara de runa")
+	#print("PALANCA 3 USADAA  - se cambiara de runa")
 	cambiar_runa(id_palanca_int)
+
+
+func verificar_contrasena():
+	puerta_salmon.verificar_contrasena(contador_palanca_1_usada, contador_palanca_2_usada, contador_palanca_3_usada)
