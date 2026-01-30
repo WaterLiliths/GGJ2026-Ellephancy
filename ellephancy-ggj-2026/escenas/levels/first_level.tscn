@@ -73,13 +73,13 @@ id = 3
 [node name="Puzzle3" type="Node2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("3_ya1wh")]
-position = Vector2(29994, 2263)
+position = Vector2(16806, 1551)
 velocidad_salto = -600.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(29994, 2263)
+position = Vector2(16806, 1551)
 zoom = Vector2(0.7, 0.7)
 editor_draw_limits = true
 
@@ -171,7 +171,7 @@ fmod_parameters/Pantalla/variant_type = 4
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(29994, 2263)
+position = Vector2(16806, 1551)
 script = ExtResource("10_mo0bq")
 follow_mode = 2
 follow_target = NodePath("../Player/Node2D")
