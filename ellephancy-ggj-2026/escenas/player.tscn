@@ -185,9 +185,6 @@ scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_w7fad")
 animation = &"caida"
 
-[node name="MarkerTirar" type="Marker2D" parent="AnimatedSpritePJ"]
-position = Vector2(8.799999, 0)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 27)
 shape = SubResource("CircleShape2D_kkt6c")
