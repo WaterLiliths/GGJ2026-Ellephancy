@@ -1,6 +1,7 @@
 extends StaticBody2D
 
 @export var id_puerta : int = 0
+@export var horizontal : bool = false
 @export var varias_palancas : bool = false
 @export_range(1,3,1) var cant_palancas : int = 1
 
@@ -13,8 +14,6 @@ var contador_id : int = 0
 @export var tiempo_de_apertura : float = 1.5
 @export var tamano = Vector2(1, 1)
 @onready var sprite_2d: Sprite2D = %Sprite2D
-
-
 
 var posicion_original = position.y
 var esta_abierta = false
@@ -68,8 +67,12 @@ func cambiar_estado_puerta_cerrada(id_palanca : int):
 func abrir_puerta():
 	var tween_sprite = get_tree().create_tween()
 	var tween_colision = get_tree().create_tween()
-	tween_sprite.tween_property($Sprite2D, "position:y" , -altura_maxima, tiempo_de_apertura)
-	tween_colision.tween_property($CollisionShape2D, "position:y" , -altura_maxima, tiempo_de_apertura)
+	if horizontal:
+		tween_sprite.tween_property($Sprite2D, "position:x" , -altura_maxima, tiempo_de_apertura)
+		tween_colision.tween_property($CollisionShape2D, "position:x" , -altura_maxima, tiempo_de_apertura)
+	else:
+		tween_sprite.tween_property($Sprite2D, "position:y" , -altura_maxima, tiempo_de_apertura)
+		tween_colision.tween_property($CollisionShape2D, "position:y" , -altura_maxima, tiempo_de_apertura)
 	esta_abierta = true
 	$TimerTiempoDeApertura.start()
 	#print("la puerta esta abierta")
@@ -79,8 +82,12 @@ func abrir_puerta():
 func cerrar_puerta():
 	var tween_sprite = get_tree().create_tween()
 	var tween_colision = get_tree().create_tween()
-	tween_sprite.tween_property($Sprite2D, "position:y" , posicion_original, tiempo_de_apertura)
-	tween_colision.tween_property($CollisionShape2D, "position:y" , posicion_original, tiempo_de_apertura)
+	if horizontal:
+		tween_sprite.tween_property($Sprite2D, "position:x" , posicion_original, tiempo_de_apertura)
+		tween_colision.tween_property($CollisionShape2D, "position:x" , posicion_original, tiempo_de_apertura)
+	else:
+		tween_sprite.tween_property($Sprite2D, "position:y" , posicion_original, tiempo_de_apertura)
+		tween_colision.tween_property($CollisionShape2D, "position:y" , posicion_original, tiempo_de_apertura)
 	$TimerTiempoDeApertura.start()
 	esta_abierta = false
 	$FmodEventEmitter2D.set_parameter("peso", 5.0)
