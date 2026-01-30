@@ -16,9 +16,6 @@ var shader_backGroundDirY_final = 0.75
 func _ready() -> void:
 	material_shader = color_rect_shader.material.duplicate() #primero lo duplico
 	color_rect_shader.material = material_shader #le asigno el duplicado
-	shader_color_core_inicial = material_shader.get_shader_parameter("colorCorection")
-	shader_water_color_inicial = material_shader.get_shader_parameter("waterColor")
-	print("el valor del shader es ", shader_water_color_inicial)
 
 func usar():
 	if activa:
@@ -28,6 +25,7 @@ func usar():
 	animacion_shader()
 	await get_tree().create_timer(0.2).timeout
 	Global.mascara_tiempo_activa.emit()
+	#efecto_estoy_en_el_pasado(0.2)
 	print("se uso la mascara de tiempos")
 
 
@@ -67,3 +65,15 @@ func shader_efecto_inicial(duracion):
 	tween.tween_property(material_shader,"shader_parameter/colorCorection",shader_color_core_inicial,duracion)
 	tween.tween_property(material_shader,"shader_parameter/backGroundDirX",shader_backGroundDirX_inicial,duracion)
 	tween.tween_property(material_shader,"shader_parameter/backGroundDirY",shader_backGroundDirY_inicial,duracion)
+
+
+func efecto_estoy_en_el_pasado(duracion):
+	var tween := create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(material_shader,"shader_parameter/backGroundDirX",shader_backGroundDirX_inicial + 0.01,duracion)
+	tween.tween_property(material_shader,"shader_parameter/backGroundDirY",shader_backGroundDirY_inicial + 0.01,duracion)
+	tween.tween_property(material_shader,"shader_parameter/waterColor",shader_water_color_final,duracion)
+	tween.tween_property(material_shader,"shader_parameter/colorCorection",shader_color_core_final,duracion)
+
+	

@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var volumen_maximo : float = 0.0
+@export var volumen_maximo : float = 0.1
 
 func _ready() -> void:
 	$FmodEventEmitter2D2.play()
