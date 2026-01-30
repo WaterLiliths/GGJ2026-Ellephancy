@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://biambmyuxxflo"]
+[gd_scene load_steps=5 format=3 uid="uid://biambmyuxxflo"]
 
 [ext_resource type="Script" uid="uid://btdfa4vx5ods1" path="res://escenas/world_objects/puerta.gd" id="1_555dy"]
 [ext_resource type="Texture2D" uid="uid://dt8gpftbw4txl" path="res://assets/tile_set/icon.svg" id="1_nl42e"]
@@ -6,16 +6,24 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_555dy"]
 size = Vector2(390, 390)
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_555dy"]
+polygon = PackedVector2Array(79.834854, -108.66209, 79.02844, 107.558914, -79.43165, 107.558914, -79.43165, -109.21367)
+
 [node name="Puerta" type="StaticBody2D"]
 script = ExtResource("1_555dy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 modulate = Color(0.63550407, 0.42504865, 0.63550407, 1)
 scale = Vector2(3, 3)
 texture = ExtResource("1_nl42e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_555dy")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="CollisionShape2D"]
+scale = Vector2(2.4801197, 1.8129599)
+occluder = SubResource("OccluderPolygon2D_555dy")
 
 [node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Objetos/puerta moviendo"
@@ -28,7 +36,11 @@ fmod_parameters/Peso/variant_type = 3
 event_name = "event:/Objetos/puerta impacto"
 event_guid = "{8e09a333-65e9-4f68-87ba-6df0a185aedb}"
 
+[node name="TimerTiempoDeApertura" type="Timer" parent="."]
+one_shot = true
+
 [node name="TimerPuerta" type="Timer" parent="."]
 one_shot = true
 
+[connection signal="timeout" from="TimerTiempoDeApertura" to="." method="_on_timer_tiempo_de_apertura_timeout"]
 [connection signal="timeout" from="TimerPuerta" to="." method="_on_timer_puerta_timeout"]

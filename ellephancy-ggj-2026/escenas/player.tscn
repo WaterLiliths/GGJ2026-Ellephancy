@@ -67,6 +67,14 @@ region = Rect2(240, 0, 80, 80)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("10_3w4lm")
+}],
+"loop": true,
+"name": &"caida",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_j7xnp")
 }, {
 "duration": 1.0,
@@ -175,7 +183,7 @@ unique_name_in_owner = true
 texture_filter = 1
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_w7fad")
-animation = &"salto-final"
+animation = &"caida"
 
 [node name="MarkerTirar" type="Marker2D" parent="AnimatedSpritePJ"]
 position = Vector2(8.799999, 0)
@@ -266,6 +274,7 @@ one_shot = true
 [node name="FmodEventEmitter2D5" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Personaje/Movimiento/caida"
 event_guid = "{fbc63101-c1f0-46e6-ab63-d76fad8983e3}"
+volume = 0.5
 
 [connection signal="animation_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_animation_changed"]
 [connection signal="frame_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_frame_changed"]

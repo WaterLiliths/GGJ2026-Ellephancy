@@ -101,6 +101,9 @@ func _physics_process(delta: float) -> void:
 			%FmodEventEmitter2D3.stop()
 			sonido_caja_sonando = false
 
+	if velocity.y > 0:
+		%AnimatedSpritePJ.play("caida")
+
 	if is_on_floor():
 		timer_coyote_time.stop()
 	emitir_sonido_caida()
@@ -136,7 +139,6 @@ func desconectar_caja_con_joint():
 	objeto_arrastrado = null
 	reset_velocidad_normal()
 	agarrando_caja = false
-	%FmodEventEmitter2D3.stop()
 
 
 func comprobar_coyote_timer():
@@ -179,8 +181,8 @@ func desactivar_mascara_fuerza():
 
 func disminuir_velocidad_al_agarrar():
 	velocidad *= (1 / objeto_arrastrado.mass)
-	print((1 / objeto_arrastrado.mass))
-	print("la velocidad de movimiento es: " + str(velocidad))
+	#print((1 / objeto_arrastrado.mass))
+	#print("la velocidad de movimiento es: " + str(velocidad))
 	velocidad_salto *= (1 / objeto_arrastrado.mass)
 
 func reset_velocidad_normal():
@@ -218,7 +220,6 @@ func emitir_sonido_pasos():
 
 func emitir_sonido_caida():
 	if estaba_en_el_piso and not is_on_floor():
-		animated_sprite_pj.play("salto-final")
 		$FmodEventEmitter2D5.play()
 		sonido_caida_emitiendo = true
 
@@ -236,11 +237,16 @@ func movimiento_wasd(delta : float):
 		animated_sprite_pj.flip_h = direction < 0 #rotar pj segun para donde se mueve
 		if is_on_floor():
 			animated_sprite_pj.play("caminar_prueba")
+		else:
+			%AnimatedSpritePJ.play("salto-final")
 		
 		if timer_pasos <= 0 && is_on_floor():
 			%FmodEventEmitter2D.play_one_shot()
 			timer_pasos = timer_pasos_reset
-		timer_pasos -= delta
+		timer_pasos -= delta 
 	else:
 		velocity.x = move_toward(velocity.x, 0, desaceleracion*delta)
-		animated_sprite_pj.play("idle_prueba")
+		if is_on_floor():
+			animated_sprite_pj.play("idle_prueba")
+		else:
+			%AnimatedSpritePJ.play("salto-final")
