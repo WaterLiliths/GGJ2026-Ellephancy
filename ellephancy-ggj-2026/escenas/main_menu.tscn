@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://drx8e4npnl3il"]
+[gd_scene load_steps=24 format=3 uid="uid://drx8e4npnl3il"]
 
 [ext_resource type="Script" uid="uid://cjruy0e7k5n74" path="res://escenas/main_menu.gd" id="1_2cr0s"]
 [ext_resource type="FontFile" uid="uid://ciwhe1apfc5gi" path="res://assets/fonts/Balgruf.otf" id="1_ter2f"]
@@ -9,6 +9,211 @@
 [ext_resource type="Texture2D" uid="uid://wt6gflni6xxd" path="res://assets/parallax/Parallaxbosque2.png" id="4_tnv86"]
 [ext_resource type="Texture2D" uid="uid://cjwyiaveg6mxo" path="res://assets/parallax/Parallaxbosque3.png" id="5_2vsao"]
 [ext_resource type="Texture2D" uid="uid://b8j7oryi85t2p" path="res://assets/parallax/Parallaxbosque4.png" id="6_nxvcq"]
+
+[sub_resource type="Animation" id="Animation_tnv86"]
+resource_name = "titulo"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.4666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.2333333, 5),
+"transitions": PackedFloat32Array(0.14865123, 0.05076592),
+"update": 0,
+"values": [Vector2(318, 183), Vector2(139.34, 194.595)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.2333333, 5),
+"transitions": PackedFloat32Array(0.06037107, 0.01794839),
+"update": 0,
+"values": [Vector2(1.125, 1.125), Vector2(0.64, 0.64)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VBoxContainer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(-0.10000001, 3.8, 5.266667),
+"transitions": PackedFloat32Array(1, 1, 0.074325606),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ColorRect2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 4.3333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ColorRect2:z_index")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 4.4333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 8]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ColorRect2:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1.5333333, 4.3333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Polygon2D/CPUParticles2D:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2vsao"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(318, 183)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VBoxContainer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ColorRect2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ColorRect2:z_index")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ColorRect2:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Polygon2D/CPUParticles2D:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nxvcq"]
+_data = {
+&"RESET": SubResource("Animation_2vsao"),
+&"titulo": SubResource("Animation_tnv86")
+}
 
 [sub_resource type="Gradient" id="Gradient_tnv86"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -28,11 +233,14 @@ light_mode = 1
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2vsao"]
 light_mode = 2
 
-[sub_resource type="Gradient" id="Gradient_1aeis"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cg856"]
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_2vsao"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_bm2sk"]
-gradient = SubResource("Gradient_1aeis")
+gradient = SubResource("Gradient_2vsao")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5854701, 0.41025642)
@@ -60,6 +268,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2cr0s")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_nxvcq")
+}
+
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 position = Vector2(2049, -798.00006)
 rotation = 0.7033677
@@ -70,10 +283,11 @@ shadow_filter_smooth = 3.2
 shadow_item_cull_mask = 7
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(1056, -873)
+position = Vector2(1318, -1024)
 scale = Vector2(1.594144, 1.5941437)
 color = Color(1, 0.7019608, 0.30980393, 1)
 energy = 15.81
+shadow_enabled = true
 texture = SubResource("GradientTexture2D_2vsao")
 texture_scale = 44.44
 
@@ -115,18 +329,17 @@ texture = ExtResource("5_2vsao")
 texture = ExtResource("6_nxvcq")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Polygon2D"]
-light_mask = 0
+modulate = Color(1, 1, 1, 0)
 z_index = 3
 y_sort_enabled = true
+material = SubResource("CanvasItemMaterial_cg856")
 position = Vector2(695, 329)
 amount = 100
 texture = SubResource("GradientTexture2D_bm2sk")
 lifetime = 11.68
 preprocess = 10.0
-randomness = 0.54
 use_fixed_seed = true
 seed = 1392953648
-lifetime_randomness = 0.51
 emission_shape = 3
 emission_rect_extents = Vector2(1000, 500)
 direction = Vector2(-1, 0)
@@ -180,19 +393,25 @@ layout_mode = 2
 text = "Créditos"
 
 [node name="Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
 z_index = 5
 layout_mode = 1
-anchors_preset = 4
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 82.0
-offset_top = -132.0
-offset_right = 644.0
-offset_bottom = -38.0
+offset_left = -322.0
+offset_top = -177.0
+offset_right = 322.0
+offset_bottom = 177.00061
+grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_ter2f")
-theme_override_font_sizes/font_size = 61
-text = "Eún. Apellido, Macaco ?"
+theme_override_font_sizes/font_size = 250
+text = "Título"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Musica/Musica"
@@ -238,6 +457,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0)
+color = Color(0, 0, 0, 1)
 
 [connection signal="pressed" from="VBoxContainer/BotonCustomComenzar" to="." method="_on_boton_custom_comenzar_pressed"]
+[connection signal="pressed" from="VBoxContainer/BotonCustomCreditos" to="." method="_on_boton_custom_creditos_pressed"]
