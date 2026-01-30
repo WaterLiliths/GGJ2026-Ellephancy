@@ -1,22 +1,23 @@
-extends Mascara 
+extends Node2D #mascara de las traducciones es 3
 
-@export var referencia_player : Player
-#aguanten los wachiturros (?
+@export var id : int = 3
+@export var activa : bool = false
+
+
 func _ready() -> void:
-	Global.usar_mascara.connect(on_recibir_signal_usar)
+	pass
 
 func usar():
-	if estaba_activa():
+	if activa:
 		return
+	activa = true
+	Global.mascara_activa = id
 	Global.mascara_traducciones_activa.emit()
-	activar()
 	print("se uso la mascara de traducciones")
 
 
-func on_recibir_signal_usar(id_referencia : int):
-	if id_referencia == id:
-		usar()
-	else:
-		desactivar()
-		referencia_player.desactivar_mascara_fuerza() #solo esta tiene llamada directa a player
-		#el resto si tiene full señales
+func desactivar():
+	if not activa: #si ya estaba desactivada
+		return
+	activa = false
+	Global.mascara_traducciones_desactivar.emit()

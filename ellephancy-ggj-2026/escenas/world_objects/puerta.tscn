@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://biambmyuxxflo"]
+
+[ext_resource type="Script" uid="uid://btdfa4vx5ods1" path="res://escenas/world_objects/puerta.gd" id="1_555dy"]
+[ext_resource type="Texture2D" uid="uid://dt5piqibgkgel" path="res://assets/sprites/rocasucialado.png" id="2_555dy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_555dy"]
+size = Vector2(90, 424)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_555dy"]
+polygon = PackedVector2Array(15.321841, -111.97159, 19.353905, -107.558914, 19.75711, -84.94396, 20.563524, -65.08694, 17.337873, -51.848915, 17.74108, -34.19822, 20.563524, -14.341188, 20.563524, 82.18604, 20.160316, 104.24941, 22.17635, 110.31683, 12.902603, 116.38426, -15.725048, 116.38426, -18.950699, 108.1105, -17.337873, 77.22179, -16.53146, 67.84486, -13.305809, 60.122677, -18.144285, 52.400497, -18.144285, -45.229904, -12.902603, -92.666145, -16.128254, -107.558914, -9.2737465, -116.38426, 10.080158, -115.83268)
+
+[node name="Puerta" type="StaticBody2D"]
+script = ExtResource("1_555dy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(0.63550407, 0.42504865, 0.63550407, 1)
+scale = Vector2(3, 3)
+texture = ExtResource("2_555dy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_555dy")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="CollisionShape2D"]
+scale = Vector2(2.4801197, 1.8129599)
+occluder = SubResource("OccluderPolygon2D_555dy")
+
+[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Objetos/puerta moviendo"
+event_guid = "{90f3a533-e150-435d-bc70-f426f47244f3}"
+fmod_parameters/Peso/id = 8505785322959852152
+fmod_parameters/Peso = 1.0
+fmod_parameters/Peso/variant_type = 3
+
+[node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Objetos/puerta impacto"
+event_guid = "{8e09a333-65e9-4f68-87ba-6df0a185aedb}"
+
+[node name="TimerTiempoDeApertura" type="Timer" parent="."]
+one_shot = true
+
+[node name="TimerPuerta" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="TimerTiempoDeApertura" to="." method="_on_timer_tiempo_de_apertura_timeout"]
+[connection signal="timeout" from="TimerPuerta" to="." method="_on_timer_puerta_timeout"]

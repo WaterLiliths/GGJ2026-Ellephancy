@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cr78gurvqfs1q"]
+
+[ext_resource type="Texture2D" uid="uid://cw6hhjn2tk6xp" path="res://assets/tile_set/Fondo.png" id="1_5hv13"]
+
+[node name="ParallaxPrimerFondo" type="Parallax2D"]
+z_index = -10
+scroll_scale = Vector2(0.3, 0.3)
+repeat_size = Vector2(2100, 0)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5hv13")
+centered = false

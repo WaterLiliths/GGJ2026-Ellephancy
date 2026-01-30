@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://8i1jxj5a5w1e"]
+
+[ext_resource type="Texture2D" uid="uid://c0letordwqfnu" path="res://assets/sprites/ambient/Árbol caído.png" id="1_4fkpn"]
+
+[node name="TroncoColisionable" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4fkpn")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-19, -8, 142, -7, 254, 1, 255, 54, -231, 55, -252, 48, -280, -16, -269, -49, -281, -83, -204, -26, -135, -9)
