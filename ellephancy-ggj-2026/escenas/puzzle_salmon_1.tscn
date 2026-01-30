@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b6egkrxvfwusp"]
+[gd_scene load_steps=23 format=3 uid="uid://b6egkrxvfwusp"]
 
 [ext_resource type="Script" uid="uid://ghj06urprt1g" path="res://escenas/puzzle_salmon_1.gd" id="1_6r7eb"]
 [ext_resource type="Texture2D" uid="uid://dibfv1arx47hn" path="res://assets/sprites/palanca_centro.PNG" id="1_o8y83"]
@@ -7,7 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://yf1ovbt7adcn" path="res://assets/sprites/base_palanca.PNG" id="3_gegfy"]
 [ext_resource type="Texture2D" uid="uid://dt5piqibgkgel" path="res://assets/sprites/rocasucialado.png" id="5_6r7eb"]
 [ext_resource type="Texture2D" uid="uid://1ko7mcr6doos" path="res://assets/TILES-TEST/runas-test/runa-test1.png" id="5_gegfy"]
+[ext_resource type="Texture2D" uid="uid://355qtqujqaxb" path="res://assets/2d para shader/blanco-shader.jpg" id="6_mkrhh"]
 [ext_resource type="Texture2D" uid="uid://ctfsfjhqfytxw" path="res://assets/TILES-TEST/runas-test/runa-test2.png" id="6_t1q3l"]
+[ext_resource type="Texture2D" uid="uid://dt8gpftbw4txl" path="res://assets/tile_set/icon.svg" id="7_f0ung"]
 [ext_resource type="Texture2D" uid="uid://bjudw1ckt6cac" path="res://assets/TILES-TEST/runas-test/runa-test-4.png" id="7_s1ify"]
 [ext_resource type="Texture2D" uid="uid://djh1ycbtamrk" path="res://assets/TILES-TEST/runas-test/runa-test-3.png" id="8_5j0a8"]
 [ext_resource type="Script" uid="uid://bfkwa4s1okq2q" path="res://escenas/palanca_salmon_2.gd" id="11_47k4l"]
@@ -85,6 +87,12 @@ polygon = PackedVector2Array(15.321841, -111.97159, 19.353905, -107.558914, 19.7
 [node name="PuzzleSalmon1" type="Node2D" parent="." groups=["controlador_runas"]]
 unique_name_in_owner = true
 script = ExtResource("1_6r7eb")
+runa_1 = ExtResource("6_t1q3l")
+runa_2 = ExtResource("5_gegfy")
+runa_3 = ExtResource("8_5j0a8")
+runa_4 = ExtResource("7_s1ify")
+runa_5 = ExtResource("6_mkrhh")
+runa_6 = ExtResource("7_f0ung")
 
 [node name="PalancaSalmon1" type="Area2D" parent="PuzzleSalmon1" node_paths=PackedStringArray("sprite_asociado") groups=["palancas"]]
 unique_name_in_owner = true
