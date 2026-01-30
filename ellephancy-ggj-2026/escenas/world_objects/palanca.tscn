@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b3kt101wc8mwl"]
+[gd_scene load_steps=12 format=3 uid="uid://b3kt101wc8mwl"]
 
 [ext_resource type="Script" uid="uid://cq4ck0hi4tl82" path="res://escenas/world_objects/palanca.gd" id="1_3114u"]
 [ext_resource type="Texture2D" uid="uid://dibfv1arx47hn" path="res://assets/sprites/palanca_centro.PNG" id="3_onv6i"]
@@ -55,12 +55,29 @@ tracks/0/keys = {
 "values": [-3.9269907, -2.3561945]
 }
 
+[sub_resource type="Animation" id="Animation_onv6i"]
+resource_name = "fallada"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PalancaCentro:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.93333334, 2),
+"transitions": PackedFloat32Array(5.0982437, 0.09807344, 0.09807344, 5.0982437),
+"update": 0,
+"values": [-2.3561945, -2.988003679414292, -2.988003679414292, -2.3561945]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2mypw"]
 _data = {
 &"RESET": SubResource("Animation_vs360"),
 &"activar": SubResource("Animation_neg3w"),
 &"desactivada": SubResource("Animation_kfmqc"),
-&"desactivar": SubResource("Animation_2mypw")
+&"desactivar": SubResource("Animation_2mypw"),
+&"fallada": SubResource("Animation_onv6i")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dtuov"]
@@ -71,6 +88,7 @@ scale = Vector2(0.19999999, 0.19999999)
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_3114u")
+tipo_de_palanca = "Fallada"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
