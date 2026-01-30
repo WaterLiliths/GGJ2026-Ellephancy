@@ -11,3 +11,5 @@ func _ready() -> void:
 	var tween_audio = create_tween()
 	tween_audio.tween_property($FmodEventEmitter2D2, "volume", volumen_maximo, 5).set_trans(Tween.TRANS_SINE)
 	tween.tween_property($Player/Camera2D/Control/ColorRect, "color", Color(0,0,0,0), 5)
+
+#Rezá Malena rezá
