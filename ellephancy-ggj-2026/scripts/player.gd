@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var mascara_fuerza: Node2D = %MascaraFuerza
 @onready var mascara_traducciones: Node2D = %MascaraTraducciones
 #-------------------------------
+var ultima_direccion_mirar : int = 1 #para derecha e izquierda solo 1 -1
 var sonido_caida_emitiendo : bool = false
 var sonido_caja_sonando : bool = false
 var agarrando_caja : bool = false
@@ -39,9 +40,12 @@ var timer_pasos_reset = 0.36
 @onready var timer_coyote_time : Timer = %TimerCoyoteTime
 var estaba_en_el_piso : bool = false
 @onready var mascara_tiempo: Node2D = %MascaraTiempos
-
 var objeto_interactivo : Interactivo = null
 var puede_interactuar : bool = false
+
+
+enum ESTADOS {IDLE, CAMINAR, SALTAR, CAER, INTERACTUAR, AGARRAR}
+var estado_actual : ESTADOS = ESTADOS.IDLE
 
 func _ready() -> void:
 	timer_tiempo_en_aire.wait_time = tiempo_maximo_en_aire
@@ -74,18 +78,41 @@ func _input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	direction = Input.get_axis("a", "d")
+	if direction:
+		ultima_direccion_mirar = sign(direction)
 	aplicar_gravedad(delta)
 	
-	# -------------------- salto + coyote timer  -------------------------------
-	if Input.is_action_just_pressed("w") and (is_on_floor() or puedo_usar_coyote()):
-		velocity.y = velocidad_salto
-		timer_coyote_time.stop()
-		$FmodEventEmitter2D2.play_one_shot()
-		animated_sprite_pj.play("salto-final")
-	if Input.is_action_just_released("w") and velocity.y < 0:
-		velocity.y *= desaceleración_al_saltar
+	match estado_actual:
+		ESTADOS.IDLE:
+			procesar_idle(delta)
+		ESTADOS.CAMINAR:
+			procesar_caminar(delta)
+		ESTADOS.SALTAR:
+			procesar_saltar(delta)
+		ESTADOS.CAER:
+			procesar_caer(delta)
+		ESTADOS.INTERACTUAR:
+			pass #por si necesitan logica en process la ponemos aca
+		ESTADOS.AGARRAR:
+			procesar_agarrar(delta)
 	
-	movimiento_wasd(delta)
+	
+	
+	
+	
+	
+	
+	
+	# -------------------- salto + coyote timer  -------------------------------
+	#if Input.is_action_just_pressed("w") and (is_on_floor() or puedo_usar_coyote()):
+		#velocity.y = velocidad_salto
+		#timer_coyote_time.stop()
+		#$FmodEventEmitter2D2.play_one_shot()
+		#ejecutar_animacion_saltar()
+	#if Input.is_action_just_released("w") and velocity.y < 0:
+		#velocity.y *= desaceleración_al_saltar
+	
+	#movimiento_wasd(delta)
 	move_and_slide()
 	detectar_caida()
 	comprobar_coyote_timer()
@@ -101,8 +128,8 @@ func _physics_process(delta: float) -> void:
 			%FmodEventEmitter2D3.stop()
 			sonido_caja_sonando = false
 
-	if velocity.y > 0:
-		%AnimatedSpritePJ.play("caida")
+	#if velocity.y > 0:
+		#ejecutar_animacion_caida()
 
 	if is_on_floor():
 		timer_coyote_time.stop()
@@ -113,6 +140,7 @@ func _physics_process(delta: float) -> void:
 		#------------------------INTERACTUAR------------------------
 	if puede_interactuar and objeto_interactivo is Palanca and Input.is_action_just_pressed("interactuar"):
 		objeto_interactivo.activar()
+		ejecutar_animacion_palanca()
 
 
 #--------------------- SEÑALES  -------------------------
@@ -132,6 +160,8 @@ func conectar_caja_con_joint():
 	agarrando_caja = true
 	pin_joint_agarrar.node_b = objeto_arrastrado.get_path()
 	disminuir_velocidad_al_agarrar()
+	cambiar_de_estado(ESTADOS.AGARRAR)
+	
 
 
 func desconectar_caja_con_joint():
@@ -139,6 +169,7 @@ func desconectar_caja_con_joint():
 	objeto_arrastrado = null
 	reset_velocidad_normal()
 	agarrando_caja = false
+	cambiar_de_estado(ESTADOS.IDLE)
 
 
 func comprobar_coyote_timer():
@@ -231,14 +262,14 @@ func aplicar_gravedad(delta : float):
 		velocity += get_gravity() * gravedad_bajando * delta
 
 
-func movimiento_wasd(delta : float):
+func movimiento_wasd(delta : float): #ya no se usa
 	if direction:
 		velocity.x = move_toward(velocity.x , direction * velocidad, aceleracion * delta)
-		animated_sprite_pj.flip_h = direction < 0 #rotar pj segun para donde se mueve
+		animated_sprite_pj.flip_h = ultima_direccion_mirar < 0 #rotar pj segun para donde se mueve
 		if is_on_floor():
-			animated_sprite_pj.play("caminar_prueba")
+			ejecutar_animacion_caminar()
 		else:
-			%AnimatedSpritePJ.play("salto-final")
+			ejecutar_animacion_saltar()
 		
 		if timer_pasos <= 0 && is_on_floor():
 			%FmodEventEmitter2D.play_one_shot()
@@ -247,6 +278,160 @@ func movimiento_wasd(delta : float):
 	else:
 		velocity.x = move_toward(velocity.x, 0, desaceleracion*delta)
 		if is_on_floor():
-			animated_sprite_pj.play("idle_prueba")
+			if abs(velocity.y) <1:
+				animated_sprite_pj.play("idle_normal")
 		else:
-			%AnimatedSpritePJ.play("salto-final")
+			ejecutar_animacion_saltar()
+
+
+
+func ejecutar_animacion_caminar(forzar_id : int = 0): #por si queremos forzar una especifica
+	match Global.mascara_activa:
+		0:
+			animated_sprite_pj.play("caminar_normal")
+		1:
+			animated_sprite_pj.play("caminar_ciervo")
+		2:
+			animated_sprite_pj.play("caminar_oso")
+		3:
+			animated_sprite_pj.play("caminar_salmon")
+
+
+func ejecutar_animacion_saltar(forzar_id : int = 0): #por si queremos forzar una especifica
+	match Global.mascara_activa:
+		0:
+			animated_sprite_pj.play("salto-normal")
+		1:
+			animated_sprite_pj.play("salto_ciervo")
+		2:
+			animated_sprite_pj.play("salto_oso")
+		3:
+			animated_sprite_pj.play("salto_salmon")
+
+
+func ejecutar_animacion_arrastrar(): #solo puede el oso
+	animated_sprite_pj.play("seguir_agarrando")
+
+
+func ejecutar_animacion_palanca(forzar_id : int = 0): #por si queremos forzar una especifica
+	match Global.mascara_activa:
+		0:
+			animated_sprite_pj.play("palanca_normal")
+		1:
+			animated_sprite_pj.play("palanca_ciervo")
+		2:
+			animated_sprite_pj.play("palanca_oso")
+		3:
+			animated_sprite_pj.play("palanca_salmon")
+
+
+func ejecutar_animacion_idle(forzar_id : int = 0): #por si queremos forzar una especifica
+	match Global.mascara_activa:
+		0:
+			animated_sprite_pj.play("idle_normal")
+		1:
+			animated_sprite_pj.play("idle_ciervo")
+		2:
+			animated_sprite_pj.play("idle_oso")
+		3:
+			animated_sprite_pj.play("idle_salmon")
+
+
+
+func ejecutar_animacion_caida(forzar_id : int = 0): #por si queremos forzar una especifica
+	match Global.mascara_activa:
+		0:
+			animated_sprite_pj.play("caida_normal")
+		1:
+			animated_sprite_pj.play("caida_ciervo")
+		2:
+			animated_sprite_pj.play("caida_oso")
+		3:
+			animated_sprite_pj.play("caida_salmon")
+
+#TODO ARREGLAR ANIMACIONES
+#TODO IDLE SE EJECUTA CUANDO NO CORRESPONDE
+
+func cambiar_de_estado(estado_nuevo : ESTADOS):
+	if estado_actual == estado_nuevo:
+		return
+	estado_actual = estado_nuevo
+	match estado_actual:
+		ESTADOS.IDLE:
+			ejecutar_animacion_idle()
+		ESTADOS.CAMINAR:
+			ejecutar_animacion_caminar()
+		ESTADOS.SALTAR:
+			ejecutar_animacion_saltar()
+			$FmodEventEmitter2D2.play_one_shot()
+		ESTADOS.CAER:
+			ejecutar_animacion_caida()
+		ESTADOS.INTERACTUAR:
+			ejecutar_animacion_palanca()
+		ESTADOS.AGARRAR:
+			ejecutar_animacion_arrastrar()
+
+
+func procesar_idle(delta):
+	velocity.x = move_toward(velocity.x, 0, desaceleracion * delta)
+	animated_sprite_pj.flip_h = ultima_direccion_mirar <0
+	if not is_on_floor():
+		cambiar_de_estado(ESTADOS.CAER) #o pasar a salto? TODO TESTEAR
+		return
+	if direction != 0: #moviendome
+		cambiar_de_estado(ESTADOS.CAMINAR)
+		return
+	if Input.is_action_just_pressed("w") and (is_on_floor() or puedo_usar_coyote()): #cambiar a una sola funcion q me devuelva true
+		velocity.y = velocidad_salto
+		cambiar_de_estado(ESTADOS.SALTAR)
+
+func procesar_caminar(delta):
+	velocity.x = move_toward(velocity.x, direction * velocidad, aceleracion * delta)
+	animated_sprite_pj.flip_h = ultima_direccion_mirar < 0
+	if direction == 0:
+		cambiar_de_estado(ESTADOS.IDLE)
+		return
+	if not is_on_floor():
+		cambiar_de_estado(ESTADOS.CAER)
+		return
+	if Input.is_action_just_pressed("w") and (is_on_floor() or puedo_usar_coyote()):
+		velocity.y = velocidad_salto
+		cambiar_de_estado(ESTADOS.SALTAR)
+
+func procesar_saltar(delta):
+	if direction:
+		velocity.x = move_toward(velocity.x , direction * velocidad, aceleracion * delta)
+		animated_sprite_pj.flip_h = ultima_direccion_mirar < 0 #rotar pj segun para donde se mueve
+	
+	if Input.is_action_just_released("w") and velocity.y < 0: #probar
+		velocity.y *= desaceleración_al_saltar
+	
+	if velocity.y >0: #TODO TESTEAR 
+		cambiar_de_estado(ESTADOS.CAER)
+
+func procesar_caer(delta):
+	if direction:
+		velocity.x = move_toward(velocity.x , direction * velocidad, aceleracion * delta)
+		animated_sprite_pj.flip_h = ultima_direccion_mirar < 0 #rotar pj segun para donde se mueve
+	
+	if is_on_floor():
+		if direction != 0: #moviendome
+			cambiar_de_estado(ESTADOS.CAMINAR)
+		else:
+			cambiar_de_estado(ESTADOS.IDLE)
+
+
+func procesar_agarrar(delta):
+	velocity.x = move_toward(velocity.x,direction * velocidad, aceleracion * delta)
+	if not agarrando_caja:
+		cambiar_de_estado(ESTADOS.IDLE)
+
+
+func _on_animated_sprite_pj_animation_finished() -> void:
+	var animacion = animated_sprite_pj.get_animation()
+	if animacion.begins_with("palanca"):
+		cambiar_de_estado(ESTADOS.IDLE)
+	if animacion.begins_with("salto"):
+		ejecutar_animacion_caida()
+	if animacion == "agarrar_oso" and estado_actual == ESTADOS.AGARRAR:
+		animated_sprite_pj.play("seguir_agarrando") #TODO TESTEAR
