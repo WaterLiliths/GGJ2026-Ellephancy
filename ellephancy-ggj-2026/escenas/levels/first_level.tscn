@@ -279,3 +279,6 @@ position = Vector2(1815, 222)
 [node name="Portal" parent="." instance=ExtResource("13_gceu3")]
 position = Vector2(-143, 317)
 escena_a_cambiar = ExtResource("14_yei3n")
+
+[node name="Palanca2" parent="." instance=ExtResource("6_nkl5u")]
+position = Vector2(24523, 1514)
