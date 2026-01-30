@@ -101,7 +101,7 @@ func _physics_process(delta: float) -> void:
 			%FmodEventEmitter2D3.stop()
 			sonido_caja_sonando = false
 
-	if velocity.y > 0:
+	if velocity.y > 0 and estaba_en_el_piso:
 		%AnimatedSpritePJ.play("caida")
 
 	if is_on_floor():

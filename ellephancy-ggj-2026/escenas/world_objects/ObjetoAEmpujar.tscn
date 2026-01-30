@@ -1,15 +1,16 @@
 [gd_scene load_steps=5 format=3 uid="uid://t3ox75glka3s"]
 
 [ext_resource type="Script" uid="uid://cmqqpgbgf8ayt" path="res://scripts/objeto_a_empujar.gd" id="1_xh1mv"]
-[ext_resource type="Texture2D" uid="uid://dt8gpftbw4txl" path="res://assets/tile_set/icon.svg" id="2_8dhx0"]
+[ext_resource type="Texture2D" uid="uid://r8op15cyle2b" path="res://assets/sprites/rocasuciaplanta.png" id="2_ettqs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6a1yu"]
-size = Vector2(126, 128)
+size = Vector2(60, 134)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xh1mv"]
-size = Vector2(46, 38)
+size = Vector2(32, 38)
 
 [node name="ObjetoAEmpujar" type="RigidBody2D"]
+collision_mask = 3
 mass = 20.0
 lock_rotation = true
 linear_damp = 1.0
@@ -17,10 +18,12 @@ angular_damp = 1.0
 script = ExtResource("1_xh1mv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
 scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_8dhx0")
+texture = ExtResource("2_ettqs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.90000004)
 scale = Vector2(0.3, 0.3)
 shape = SubResource("RectangleShape2D_6a1yu")
 
@@ -38,3 +41,10 @@ fmod_parameters/Peso = 1.0
 fmod_parameters/Peso/variant_type = 3
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+
+[node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Objetos/impacto piedra"
+event_guid = "{2c33a6f9-204b-4961-8146-ccced55c7b48}"
+fmod_parameters/Peso/id = 8505785322959852152
+fmod_parameters/Peso = 1.0
+fmod_parameters/Peso/variant_type = 3
