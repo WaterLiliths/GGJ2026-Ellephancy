@@ -11,7 +11,7 @@ extends StaticBody2D
 var contador_id : int = 0
 @export var altura_maxima : float = 250.0
 @export var tiempo_de_apertura : float = 1.5
-@export var tamano = Vector2(0.1, 1)
+@export var tamano = Vector2(1, 1)
 @onready var sprite_2d: Sprite2D = %Sprite2D
 
 

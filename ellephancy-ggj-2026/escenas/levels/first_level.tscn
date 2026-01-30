@@ -43,16 +43,15 @@ z_index = -4
 y_sort_enabled = true
 position = Vector2(17461, 1650)
 id = 1
-timeada = true
 timer = 2.0
 
 [node name="PuertaPuzzle1" parent="Puzzle1" instance=ExtResource("7_co1fy")]
-position = Vector2(18332, 1498)
+position = Vector2(18332, 1470)
 id_puerta = 1
-timeada = true
 timer = 2.0
 altura_maxima = 300.0
 tiempo_de_apertura = 3.0
+tamano = Vector2(0.5, 1)
 
 [node name="Puzzle2" type="Node2D" parent="."]
 
@@ -61,13 +60,13 @@ position = Vector2(25790, 225)
 id = 3
 
 [node name="Player" parent="." instance=ExtResource("3_ya1wh")]
-position = Vector2(17215, 1586)
+position = Vector2(24917, 1438)
 velocidad_salto = -600.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(17215, 1586)
+position = Vector2(24917, 1438)
 zoom = Vector2(0.7, 0.7)
 editor_draw_limits = true
 
@@ -163,7 +162,7 @@ fmod_parameters/Pantalla/variant_type = 4
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(17215, 1586)
+position = Vector2(24917, 1438)
 script = ExtResource("10_mo0bq")
 follow_mode = 2
 follow_target = NodePath("../Player/Node2D")
