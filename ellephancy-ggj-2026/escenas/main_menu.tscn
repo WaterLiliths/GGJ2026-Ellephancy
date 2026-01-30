@@ -3,12 +3,12 @@
 [ext_resource type="Script" uid="uid://cjruy0e7k5n74" path="res://escenas/main_menu.gd" id="1_2cr0s"]
 [ext_resource type="FontFile" uid="uid://ciwhe1apfc5gi" path="res://assets/fonts/Balgruf.otf" id="1_ter2f"]
 [ext_resource type="PackedScene" uid="uid://d2xlg26hl7ug6" path="res://escenas/boton_custom.tscn" id="2_8cfpu"]
+[ext_resource type="Texture2D" uid="uid://bpnxtva0c8d5o" path="res://assets/sprites/bosquepocho 2.png" id="2_tnv86"]
 [ext_resource type="Texture2D" uid="uid://b7p0jr82w1tkx" path="res://assets/player/mascaras/Salto ciervo 4.png" id="2_w6fns"]
 [ext_resource type="Texture2D" uid="uid://datv7pocxxolq" path="res://assets/parallax/Parallaxbosque1.png" id="3_bm2sk"]
 [ext_resource type="Texture2D" uid="uid://wt6gflni6xxd" path="res://assets/parallax/Parallaxbosque2.png" id="4_tnv86"]
 [ext_resource type="Texture2D" uid="uid://cjwyiaveg6mxo" path="res://assets/parallax/Parallaxbosque3.png" id="5_2vsao"]
 [ext_resource type="Texture2D" uid="uid://b8j7oryi85t2p" path="res://assets/parallax/Parallaxbosque4.png" id="6_nxvcq"]
-[ext_resource type="Texture2D" uid="uid://2cchi4lyv8ag" path="res://assets/sprites/bosquepocho.png" id="9_tnv86"]
 
 [sub_resource type="Gradient" id="Gradient_tnv86"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -90,10 +90,11 @@ occluder_light_mask = 3
 material = SubResource("CanvasItemMaterial_tnv86")
 position = Vector2(623.00006, 358)
 scale = Vector2(1.0414063, 1.0414063)
-texture = ExtResource("9_tnv86")
+texture = ExtResource("2_tnv86")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 clip_children = 1
+z_index = 3
 polygon = PackedVector2Array(579, -271, -350, 820, 234, 816, 1206, -333)
 
 [node name="Node2D" type="Node2D" parent="Polygon2D"]
@@ -113,9 +114,9 @@ texture = ExtResource("5_2vsao")
 [node name="Parallaxbosque4" type="Sprite2D" parent="Polygon2D/Node2D"]
 texture = ExtResource("6_nxvcq")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Polygon2D"]
 light_mask = 0
-z_index = 2
+z_index = 3
 y_sort_enabled = true
 position = Vector2(695, 329)
 amount = 100
@@ -123,6 +124,8 @@ texture = SubResource("GradientTexture2D_bm2sk")
 lifetime = 11.68
 preprocess = 10.0
 randomness = 0.54
+use_fixed_seed = true
+seed = 1392953648
 lifetime_randomness = 0.51
 emission_shape = 3
 emission_rect_extents = Vector2(1000, 500)
@@ -146,7 +149,7 @@ bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res:/
 
 [node name="SaltoCiervo4" type="Sprite2D" parent="."]
 modulate = Color(0.32915837, 0.3291584, 0.3291584, 1)
-z_index = 1
+z_index = 3
 y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_nxvcq")
 position = Vector2(978, 534)
@@ -154,6 +157,7 @@ texture = ExtResource("2_w6fns")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 light_mask = 0
+z_index = 3
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -176,6 +180,7 @@ layout_mode = 2
 text = "Créditos"
 
 [node name="Label" type="Label" parent="."]
+z_index = 5
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
