@@ -1,12 +1,15 @@
-[gd_scene load_steps=18 format=4 uid="uid://bcgp0adhixxuf"]
+[gd_scene load_steps=21 format=4 uid="uid://bcgp0adhixxuf"]
 
-[ext_resource type="PackedScene" uid="uid://cr78gurvqfs1q" path="res://escenas/Parallax/parallax_primer_fondo.tscn" id="1_5mju5"]
 [ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/first_level.gd" id="1_ya1wh"]
+[ext_resource type="Texture2D" uid="uid://datv7pocxxolq" path="res://assets/parallax/Parallaxbosque1.png" id="2_yei3n"]
+[ext_resource type="Texture2D" uid="uid://wt6gflni6xxd" path="res://assets/parallax/Parallaxbosque2.png" id="3_4xl6p"]
 [ext_resource type="PackedScene" uid="uid://cs3h434myxe4r" path="res://escenas/player.tscn" id="3_ya1wh"]
+[ext_resource type="Texture2D" uid="uid://cjwyiaveg6mxo" path="res://assets/parallax/Parallaxbosque3.png" id="4_oipvp"]
 [ext_resource type="PackedScene" uid="uid://by80hrdi7bflk" path="res://escenas/creador_de_niveles.tscn" id="4_q4e20"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_vygjp"]
 [ext_resource type="Script" uid="uid://dxat8cn5c3yh5" path="res://escenas/levels/node_2d.gd" id="5_mo0bq"]
 [ext_resource type="PackedScene" uid="uid://8i1jxj5a5w1e" path="res://escenas/world_objects/tronco_colisionable.tscn" id="5_qgcq7"]
+[ext_resource type="Texture2D" uid="uid://b8j7oryi85t2p" path="res://assets/parallax/Parallaxbosque4.png" id="5_tld28"]
 [ext_resource type="PackedScene" uid="uid://b3kt101wc8mwl" path="res://escenas/world_objects/palanca.tscn" id="6_nkl5u"]
 [ext_resource type="PackedScene" uid="uid://biambmyuxxflo" path="res://escenas/world_objects/puerta.tscn" id="7_co1fy"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="10_mo0bq"]
@@ -43,8 +46,52 @@ shadow_enabled = true
 shadow_filter_smooth = 6.7
 shadow_item_cull_mask = 7
 
-[node name="ParallaxPrimerFondo" parent="." instance=ExtResource("1_5mju5")]
-scroll_offset = Vector2(-275, -316)
+[node name="ParallaxPasado" type="Node2D" parent="."]
+position = Vector2(1954, 325)
+
+[node name="ParalaxFondoPasado" type="Parallax2D" parent="ParallaxPasado"]
+z_index = -10
+scroll_scale = Vector2(0.2, 0)
+scroll_offset = Vector2(0, 228)
+repeat_size = Vector2(1350, 0)
+repeat_times = 3
+
+[node name="FondoPasadoImagen" type="Sprite2D" parent="ParallaxPasado/ParalaxFondoPasado"]
+z_index = -10
+texture = ExtResource("2_yei3n")
+
+[node name="ParallaxBosqueFondoPasado" type="Parallax2D" parent="ParallaxPasado"]
+z_index = -10
+scroll_scale = Vector2(0.3, 0)
+scroll_offset = Vector2(0, 228)
+repeat_size = Vector2(1350, 0)
+repeat_times = 3
+
+[node name="BosquePasadoFondoImagen" type="Sprite2D" parent="ParallaxPasado/ParallaxBosqueFondoPasado"]
+z_index = -10
+texture = ExtResource("3_4xl6p")
+
+[node name="ParallaxBosquePasado" type="Parallax2D" parent="ParallaxPasado"]
+z_index = -10
+scroll_scale = Vector2(0.4, 0)
+scroll_offset = Vector2(0, 228)
+repeat_size = Vector2(1350, 0)
+repeat_times = 3
+
+[node name="BosquePasdoImagen" type="Sprite2D" parent="ParallaxPasado/ParallaxBosquePasado"]
+z_index = -10
+texture = ExtResource("4_oipvp")
+
+[node name="ParallaxArbolesPasado" type="Parallax2D" parent="ParallaxPasado"]
+z_index = -10
+scroll_scale = Vector2(0.5, 0)
+scroll_offset = Vector2(0, 228)
+repeat_size = Vector2(1350, 0)
+repeat_times = 3
+
+[node name="ArbolesPasadoImagen" type="Sprite2D" parent="ParallaxPasado/ParallaxArbolesPasado"]
+z_index = -10
+texture = ExtResource("5_tld28")
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank"]
