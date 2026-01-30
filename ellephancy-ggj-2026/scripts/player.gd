@@ -57,6 +57,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("1"): #usar mascara tiempos
+		#if mascara tiempos no fue agarrada return
 		mascara_tiempo.usar()
 		mascara_fuerza.desactivar()
 		mascara_traducciones.desactivar()

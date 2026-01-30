@@ -1,6 +1,6 @@
 extends Node2D
 
-
+#TODO INCORPORACION CON MASCARA DE SALMON (ESCONDER Y MOSTRAR RUNAS)
 @export var runa_1 : Texture#todas las runas se las paso por editor
 @export var runa_2 : Texture
 @export var runa_3 : Texture

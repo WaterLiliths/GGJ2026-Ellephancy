@@ -6,7 +6,7 @@ signal mascara_fuerza_activa
 signal mascara_traducciones_desactivar
 signal mascara_tiempo_desactivar
 signal mascara_fuerza_desactivar
-
+#booleano por mascara
 
 var mascara_activa : int = 0
 #----------------PALANCA Y PUERTA------------------
