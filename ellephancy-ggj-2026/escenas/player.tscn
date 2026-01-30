@@ -102,10 +102,34 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("24_nrm58")
+}],
+"loop": true,
+"name": &"caida_ciervo",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("10_3w4lm")
 }],
 "loop": true,
 "name": &"caida_normal",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("28_idkqs")
+}],
+"loop": false,
+"name": &"caida_oso",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("32_ahx5a")
+}],
+"loop": false,
+"name": &"caida_salmon",
 "speed": 8.0
 }, {
 "frames": [{
@@ -178,10 +202,34 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("4_t5tro")
+}],
+"loop": false,
+"name": &"idle_ciervo",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("3_63xfq")
 }],
-"loop": true,
+"loop": false,
 "name": &"idle_normal",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_ay70r")
+}],
+"loop": false,
+"name": &"idle_oso",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_mn7w3")
+}],
+"loop": false,
+"name": &"idle_salmon",
 "speed": 8.0
 }, {
 "frames": [{
@@ -330,7 +378,7 @@ unique_name_in_owner = true
 texture_filter = 1
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_w7fad")
-animation = &"salto-normal"
+animation = &"caminar_salmon"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 27)
