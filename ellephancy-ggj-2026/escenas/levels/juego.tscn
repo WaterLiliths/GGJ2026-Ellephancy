@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dkudwre2b373"]
+[gd_scene load_steps=31 format=3 uid="uid://dkudwre2b373"]
 
 [ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/Juego.gd" id="1_2y4ua"]
 [ext_resource type="Texture2D" uid="uid://dvh87k52osuo2" path="res://assets/parallax/bosquepocho1.png" id="2_ffuyt"]
@@ -37,6 +37,23 @@ point_count = 2
 [sub_resource type="Gradient" id="Gradient_ffuyt"]
 offsets = PackedFloat32Array(0.0025641026, 0.071794875, 0.21794872, 0.33846155, 0.53333336, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0.96, 0.78928, 0.028799972, 1, 1, 0.4465, 0.19, 1, 0.61, 0, 0.030500118, 1, 0.25, 0.25, 0.25, 1, 0, 0, 0, 0)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kypqj"]
+blend_mode = 1
+light_mode = 2
+
+[sub_resource type="Gradient" id="Gradient_yv8to"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yv8to"]
+gradient = SubResource("Gradient_yv8to")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.7094017, 0.35042736)
+
+[sub_resource type="Curve" id="Curve_m34qx"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.16062176, 0.68539333), 0.0, 0.0, 0, 0, Vector2(0.34715027, 0.26966298), 0.0, 0.0, 0, 0, Vector2(0.6839379, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
 
 [sub_resource type="Resource" id="Resource_yei3n"]
 script = ExtResource("13_8mohb")
@@ -304,6 +321,26 @@ scale_amount_curve = SubResource("Curve_lg721")
 color_ramp = SubResource("Gradient_ffuyt")
 hue_variation_min = -0.11
 hue_variation_max = 0.11
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="Player/Camera2D"]
+modulate = Color(1, 1, 1, 0.30980393)
+material = SubResource("CanvasItemMaterial_kypqj")
+amount = 500
+texture = SubResource("GradientTexture2D_yv8to")
+lifetime = 14.49
+preprocess = 10.0
+emission_shape = 3
+emission_rect_extents = Vector2(1500, 1000)
+direction = Vector2(-1, 0)
+spread = 41.3
+gravity = Vector2(0, 2)
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+tangential_accel_min = 1.0
+tangential_accel_max = 1.0
+scale_amount_min = 0.0
+scale_amount_max = 0.3
+scale_amount_curve = SubResource("Curve_m34qx")
 
 [node name="Node2D" type="Node2D" parent="Player"]
 script = ExtResource("10_e4rmv")
