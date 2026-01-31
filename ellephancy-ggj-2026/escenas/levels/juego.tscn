@@ -16,9 +16,9 @@
 [ext_resource type="Script" uid="uid://dxat8cn5c3yh5" path="res://escenas/levels/node_2d.gd" id="10_e4rmv"]
 [ext_resource type="PackedScene" uid="uid://dkaf2gav3cro1" path="res://escenas/levels/first_level_works.tscn" id="12_7dwkk"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="12_g2cn0"]
-[ext_resource type="PackedScene" uid="uid://ctgi3ppkimt2c" path="res://escenas/levels/fourth_level.tscn" id="12_yqcop"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="13_8mohb"]
 [ext_resource type="PackedScene" uid="uid://ww1sbsindpl7" path="res://escenas/opciones.tscn" id="19_yv8to"]
+[ext_resource type="PackedScene" uid="uid://d3kk7nu2wr28k" path="res://escenas/levels/second_level.tscn" id="18_kypqj"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ms3um"]
 blend_mode = 1
@@ -213,14 +213,14 @@ texture = ExtResource("5_ffuyt")
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank", "res://assets/audio/FmodBanks/Desktop/UI.bank"]
 
 [node name="Player" parent="." instance=ExtResource("8_m34qx")]
-position = Vector2(1251, 190)
+position = Vector2(7282, -156)
 scale = Vector2(0.64, 0.64)
 velocidad_salto = -600.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(1251, 190)
+position = Vector2(7282, -156)
 zoom = Vector2(1.6, 1.6)
 limit_enabled = false
 editor_draw_limits = true
@@ -295,7 +295,7 @@ position = Vector2(-97, 588)
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(1251, 190)
+position = Vector2(7282, -156)
 script = ExtResource("12_g2cn0")
 follow_mode = 2
 follow_target = NodePath("../Player/Node2D")
@@ -307,6 +307,7 @@ draw_limits = true
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
 [node name="FirstLevelWorks" parent="." instance=ExtResource("12_7dwkk")]
+
 
 [node name="FourthLevel" parent="." instance=ExtResource("12_yqcop")]
 position = Vector2(8388, -614)
@@ -320,3 +321,5 @@ libraries = {
 
 [node name="Opciones" parent="." instance=ExtResource("19_yv8to")]
 z_index = 115
+[node name="SecondLevel" parent="." instance=ExtResource("18_kypqj")]
+position = Vector2(6241, -652)

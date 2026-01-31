@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://gsyv06ys145u"]
+
+[ext_resource type="Script" uid="uid://c0l4pquiwwpu5" path="res://escenas/masks/area_mascara_salmon.gd" id="1_qc2wq"]
+[ext_resource type="Texture2D" uid="uid://bbra5fmwd6qin" path="res://assets/sprites/masks/mascara_salmon.PNG" id="2_8x4ql"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vv721"]
+size = Vector2(330, 368)
+
+[node name="AreaMascaraSalmon" type="Area2D"]
+scale = Vector2(0.2, 0.2)
+script = ExtResource("1_qc2wq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_8x4ql")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vv721")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
