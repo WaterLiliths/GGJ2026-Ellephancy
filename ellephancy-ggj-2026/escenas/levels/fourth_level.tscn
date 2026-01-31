@@ -243,11 +243,13 @@ fmod_parameters/Peso/variant_type = 3
 z_index = -3
 position = Vector2(2433, 244.00002)
 id = 6
+tipo_de_palanca = "Buena"
 
 [node name="PalancaA2" parent="PuzzlePasado" instance=ExtResource("4_4cpau")]
 z_index = -3
 position = Vector2(1599.0001, 628)
 id = 6
+tipo_de_palanca = "Buena"
 
 [node name="PuertaA" parent="PuzzlePasado" instance=ExtResource("5_xl0ng")]
 z_index = -5
