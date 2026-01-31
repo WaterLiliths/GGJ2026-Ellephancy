@@ -39,9 +39,9 @@ func desactivar():
 	if not activa: #si ya estaba desactivada
 		return
 	activa = false
-	%ColorRectShader.visible = false
 	animacion_shader()
 	await get_tree().create_timer(0.2).timeout
+	%ColorRectShader.visible = false
 	Global.mascara_tiempo_desactivar.emit()
 
 

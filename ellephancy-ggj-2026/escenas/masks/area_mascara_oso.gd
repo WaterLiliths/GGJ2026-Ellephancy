@@ -1,6 +1,6 @@
 extends Area2D
 
-var player_cerca : bool = true
+var player_cerca : bool = false
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("interactuar") and player_cerca:
@@ -16,4 +16,10 @@ func _on_body_entered(body: Node2D) -> void:
 #-------------FUNCIONES--------------
 func tomar_mascara():
 	Global.tiene_mascara_fuerza = true
+	Global.agarre_mascara.emit("oso")
 	queue_free()
+
+
+func _on_body_exited(body: Node2D) -> void:
+	if body is Player:
+		player_cerca = false

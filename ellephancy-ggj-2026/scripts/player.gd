@@ -30,9 +30,9 @@ var velocidad_inicial : float
 @export var fuerza_empuje : float = 0
 @export var velocidad_arrastrando : float = 100.0
 
-@export var tiene_mascara_fuerza = Global.tiene_mascara_fuerza
-@export var tiene_mascara_tiempo = Global.tiene_mascara_tiempo
-@export var tiene_mascara_traducciones = Global.tiene_mascara_traducciones
+#@export var tiene_mascara_fuerza = Global.tiene_mascara_fuerza
+#@export var tiene_mascara_tiempo = Global.tiene_mascara_tiempo
+#@export var tiene_mascara_traducciones = Global.tiene_mascara_traducciones
 
 @onready var animated_sprite_pj: AnimatedSprite2D = %AnimatedSpritePJ
 @onready var ray_cast_izq: RayCast2D = %RayCastIzq
@@ -55,14 +55,15 @@ enum ESTADOS {IDLE, CAMINAR, SALTAR, CAER, INTERACTUAR, AGARRAR}
 var estado_actual : ESTADOS = ESTADOS.IDLE
 
 func _ready() -> void:
+	Global.agarre_mascara.connect(on_agarre_mascara)
 	timer_tiempo_en_aire.wait_time = tiempo_maximo_en_aire
 	velocidad_inicial = velocidad
 	velocidad_inicial_salto = velocidad_salto
 	Global.mascara_fuerza_activa.connect(activar_mascara_fuerza)
 	Global.mascara_fuerza_desactivar.connect(desactivar_mascara_fuerza)
-	Global.tiene_mascara_fuerza = tiene_mascara_fuerza
-	Global.tiene_mascara_tiempo = tiene_mascara_tiempo
-	Global.tiene_mascara_traducciones = tiene_mascara_traducciones
+	#Global.tiene_mascara_fuerza = tiene_mascara_fuerza
+	#Global.tiene_mascara_tiempo = tiene_mascara_tiempo
+	#Global.tiene_mascara_traducciones = tiene_mascara_traducciones
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("1"): #usar mascara fuerza
@@ -500,5 +501,35 @@ func verificar_animacion_con_mascara():
 	if animacion_actual.begins_with("seguir"):
 		ejecutar_animacion_arrastrar()
 
+
+func tiene_mascara_fuerza():
+	mascara_tiempo.desactivar()
+	mascara_fuerza.usar()
+	mascara_traducciones.desactivar()
+	verificar_animacion_con_mascara()
+
+
+func tiene_mascara_tiempo():
+	mascara_tiempo.usar()
+	mascara_fuerza.desactivar()
+	mascara_traducciones.desactivar()
+	verificar_animacion_con_mascara()
+
+
+func tiene_mascara_traducciones():
+	mascara_tiempo.desactivar()
+	mascara_fuerza.desactivar()
+	mascara_traducciones.usar()
+	verificar_animacion_con_mascara()
+
+
+func on_agarre_mascara(nombre_mascara : String):
+	match nombre_mascara:
+		"ciervo":
+			tiene_mascara_tiempo()
+		"oso":
+			tiene_mascara_fuerza()
+		"salmon":
+			tiene_mascara_traducciones()
 func tirarse_de_plataforma():
 	position.y += 1

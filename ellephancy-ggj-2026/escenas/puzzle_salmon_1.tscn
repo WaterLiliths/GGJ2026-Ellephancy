@@ -1,35 +1,25 @@
-[gd_scene load_steps=26 format=3 uid="uid://b6egkrxvfwusp"]
+[gd_scene load_steps=36 format=3 uid="uid://b6egkrxvfwusp"]
 
 [ext_resource type="Script" uid="uid://ghj06urprt1g" path="res://escenas/puzzle_salmon_1.gd" id="1_6r7eb"]
 [ext_resource type="Texture2D" uid="uid://dibfv1arx47hn" path="res://assets/sprites/palanca_centro.PNG" id="1_o8y83"]
 [ext_resource type="Texture2D" uid="uid://cfqv1dilqxxfc" path="res://assets/sprites/palanca_adorno.PNG" id="2_2xlmw"]
+[ext_resource type="Texture2D" uid="uid://dj0cwp6nyr2s7" path="res://assets/runas-finales/Runa1.png" id="2_gbj5t"]
 [ext_resource type="Script" uid="uid://dmxojvlt54bha" path="res://escenas/palanca_salmon_1.gd" id="2_k8i5l"]
+[ext_resource type="Texture2D" uid="uid://u5u8j2cvuqko" path="res://assets/runas-finales/Runa2.png" id="3_42s24"]
 [ext_resource type="Texture2D" uid="uid://yf1ovbt7adcn" path="res://assets/sprites/base_palanca.PNG" id="3_gegfy"]
+[ext_resource type="Texture2D" uid="uid://qyras1off6n" path="res://assets/runas-finales/Runa3.png" id="4_borjd"]
 [ext_resource type="Texture2D" uid="uid://dt5piqibgkgel" path="res://assets/sprites/rocasucialado.png" id="5_6r7eb"]
 [ext_resource type="Texture2D" uid="uid://1ko7mcr6doos" path="res://assets/TILES-TEST/runas-test/runa-test1.png" id="5_gegfy"]
-[ext_resource type="Texture2D" uid="uid://355qtqujqaxb" path="res://assets/2d para shader/blanco-shader.jpg" id="6_mkrhh"]
+[ext_resource type="Texture2D" uid="uid://ddtjp3rjdd7ak" path="res://assets/runas-finales/Runa4.png" id="5_omxlu"]
+[ext_resource type="Texture2D" uid="uid://b6m0pxae5ovhg" path="res://assets/runas-finales/Runa5 (1).png" id="6_42s24"]
 [ext_resource type="Texture2D" uid="uid://ctfsfjhqfytxw" path="res://assets/TILES-TEST/runas-test/runa-test2.png" id="6_t1q3l"]
-[ext_resource type="Texture2D" uid="uid://dt8gpftbw4txl" path="res://assets/tile_set/icon.svg" id="7_f0ung"]
+[ext_resource type="Texture2D" uid="uid://dgqgmrbbmqe87" path="res://assets/runas-finales/Runa6.png" id="7_kk613"]
 [ext_resource type="Texture2D" uid="uid://bjudw1ckt6cac" path="res://assets/TILES-TEST/runas-test/runa-test-4.png" id="7_s1ify"]
 [ext_resource type="Texture2D" uid="uid://djh1ycbtamrk" path="res://assets/TILES-TEST/runas-test/runa-test-3.png" id="8_5j0a8"]
 [ext_resource type="Script" uid="uid://bfkwa4s1okq2q" path="res://escenas/palanca_salmon_2.gd" id="11_47k4l"]
 [ext_resource type="Script" uid="uid://c2uduf8ch2qat" path="res://escenas/palanca_salmon_3.gd" id="12_4e2h8"]
 [ext_resource type="Script" uid="uid://blvlclwppw6tu" path="res://escenas/puerta_salmon.gd" id="12_f0ung"]
-
-[sub_resource type="Animation" id="Animation_vs360"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PalancaCentro:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-2.3561945]
-}
+[ext_resource type="AnimationLibrary" uid="uid://8fnfbqiuq3br" path="res://escenas/animaciones/animaciones_palancas_salmon.res" id="16_42s24"]
 
 [sub_resource type="Animation" id="Animation_neg3w"]
 resource_name = "activar"
@@ -66,9 +56,8 @@ tracks/0/keys = {
 "values": [-3.9269907, -2.3561945]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_2mypw"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_borjd"]
 _data = {
-&"RESET": SubResource("Animation_vs360"),
 &"activar": SubResource("Animation_neg3w"),
 &"desactivada": SubResource("Animation_kfmqc"),
 &"desactivar": SubResource("Animation_2mypw")
@@ -77,15 +66,159 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dtuov"]
 size = Vector2(544.4444, 299.11108)
 
+[sub_resource type="Animation" id="Animation_omxlu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%CONTENEDORRUNASPUERTA:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%CONTENEDORRUNASPUERTA:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_borjd"]
+resource_name = "esconderr_runas_sueltas"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.04075222, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.76666665),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%CONTENEDORRUNASPUERTA:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%CONTENEDORRUNASPUERTA:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.76666665),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tfrp0"]
+resource_name = "mostrarr_runas_sueltas"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.04075222, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%CONTENEDORRUNASPUERTA:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.026835999, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%CONTENEDORRUNASPUERTA:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_omxlu"]
+_data = {
+&"RESET": SubResource("Animation_omxlu"),
+&"esconderr_runas_sueltas": SubResource("Animation_borjd"),
+&"mostrarr_runas_sueltas": SubResource("Animation_tfrp0")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_42s24"]
+_data = {
+&"activar": SubResource("Animation_neg3w"),
+&"desactivada": SubResource("Animation_kfmqc"),
+&"desactivar": SubResource("Animation_2mypw")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_555dy"]
 size = Vector2(90, 424)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_555dy"]
 polygon = PackedVector2Array(15.321841, -111.97159, 19.353905, -107.558914, 19.75711, -84.94396, 20.563524, -65.08694, 17.337873, -51.848915, 17.74108, -34.19822, 20.563524, -14.341188, 20.563524, 82.18604, 20.160316, 104.24941, 22.17635, 110.31683, 12.902603, 116.38426, -15.725048, 116.38426, -18.950699, 108.1105, -17.337873, 77.22179, -16.53146, 67.84486, -13.305809, 60.122677, -18.144285, 52.400497, -18.144285, -45.229904, -12.902603, -92.666145, -16.128254, -107.558914, -9.2737465, -116.38426, 10.080158, -115.83268)
 
-[sub_resource type="Animation" id="Animation_f0ung"]
-resource_name = "abrir_puerta"
-length = 0.7
+[sub_resource type="Animation" id="Animation_42s24"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -93,14 +226,31 @@ tracks/0/path = NodePath("ContenedorPuerta:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.7),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, -315.83)]
+"values": [Vector2(0, -18.814854)]
+}
+
+[sub_resource type="Animation" id="Animation_f0ung"]
+resource_name = "abrir_puerta"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ContenedorPuerta:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.46666667, 1.3),
+"transitions": PackedFloat32Array(1, 0.3077863, 0.21763788),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -18.814854), Vector2(0, -198.07393)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yi0su"]
 _data = {
+&"RESET": SubResource("Animation_42s24"),
 &"abrir_puerta": SubResource("Animation_f0ung")
 }
 
@@ -109,12 +259,12 @@ _data = {
 [node name="PuzzleSalmon1" type="Node2D" parent="." groups=["controlador_runas"]]
 unique_name_in_owner = true
 script = ExtResource("1_6r7eb")
-runa_1 = ExtResource("6_t1q3l")
-runa_2 = ExtResource("5_gegfy")
-runa_3 = ExtResource("8_5j0a8")
-runa_4 = ExtResource("7_s1ify")
-runa_5 = ExtResource("6_mkrhh")
-runa_6 = ExtResource("7_f0ung")
+runa_1 = ExtResource("2_gbj5t")
+runa_2 = ExtResource("3_42s24")
+runa_3 = ExtResource("4_borjd")
+runa_4 = ExtResource("5_omxlu")
+runa_5 = ExtResource("6_42s24")
+runa_6 = ExtResource("7_kk613")
 
 [node name="PalancaSalmon1" type="Area2D" parent="PuzzleSalmon1" node_paths=PackedStringArray("sprite_asociado") groups=["palancas"]]
 unique_name_in_owner = true
@@ -123,12 +273,14 @@ scale = Vector2(0.19999999, 0.19999999)
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("2_k8i5l")
-sprite_asociado = NodePath("../ContenedorRunas/RunaCambiante1")
 id_palanca = 1
+sprite_asociado = NodePath("../ContenedorRunas/RunaCambiante1")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PuzzleSalmon1/PalancaSalmon1"]
+[node name="AnimationPlayer1" type="AnimationPlayer" parent="PuzzleSalmon1/PalancaSalmon1"]
+unique_name_in_owner = true
 libraries = {
-&"": SubResource("AnimationLibrary_2mypw")
+&"": SubResource("AnimationLibrary_borjd"),
+&"animaciones_palancas_salmon": ExtResource("16_42s24")
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PuzzleSalmon1/PalancaSalmon1"]
@@ -146,7 +298,7 @@ fmod_parameters/TipoDePalanca/variant_type = 4
 
 [node name="PalancaCentro" type="Sprite2D" parent="PuzzleSalmon1/PalancaSalmon1"]
 position = Vector2(0, -25)
-rotation = -2.3561945
+rotation = -3.9269907
 texture = ExtResource("1_o8y83")
 offset = Vector2(1.9, 63.215)
 
@@ -167,7 +319,7 @@ unique_name_in_owner = true
 
 [node name="RunaCambiante1" type="Sprite2D" parent="PuzzleSalmon1/ContenedorRunas"]
 unique_name_in_owner = true
-position = Vector2(-578.0001, -63)
+position = Vector2(-578, -55)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("8_5j0a8")
 
@@ -179,9 +331,15 @@ texture = ExtResource("7_s1ify")
 
 [node name="RunaCambiante3" type="Sprite2D" parent="PuzzleSalmon1/ContenedorRunas"]
 unique_name_in_owner = true
-position = Vector2(-335, -56)
+position = Vector2(-335, -55)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("5_gegfy")
+
+[node name="AnimationPlayerRunas" type="AnimationPlayer" parent="PuzzleSalmon1/ContenedorRunas"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_omxlu")
+}
 
 [node name="PalancaSalmon2" type="Area2D" parent="PuzzleSalmon1" node_paths=PackedStringArray("sprite_asociado") groups=["palancas"]]
 unique_name_in_owner = true
@@ -192,9 +350,10 @@ collision_mask = 3
 script = ExtResource("11_47k4l")
 sprite_asociado = NodePath("../ContenedorRunas/RunaCambiante2")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PuzzleSalmon1/PalancaSalmon2"]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="PuzzleSalmon1/PalancaSalmon2"]
+unique_name_in_owner = true
 libraries = {
-&"": SubResource("AnimationLibrary_2mypw")
+&"": ExtResource("16_42s24")
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PuzzleSalmon1/PalancaSalmon2"]
@@ -237,9 +396,11 @@ collision_mask = 3
 script = ExtResource("12_4e2h8")
 sprite_asociado = NodePath("../ContenedorRunas/RunaCambiante3")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PuzzleSalmon1/PalancaSalmon3"]
+[node name="AnimationPlayer3" type="AnimationPlayer" parent="PuzzleSalmon1/PalancaSalmon3"]
+unique_name_in_owner = true
 libraries = {
-&"": SubResource("AnimationLibrary_2mypw")
+&"": SubResource("AnimationLibrary_42s24"),
+&"animaciones_palancas_salmon": ExtResource("16_42s24")
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PuzzleSalmon1/PalancaSalmon3"]
@@ -274,6 +435,7 @@ texture = ExtResource("3_gegfy")
 [node name="TimerPalanca" type="Timer" parent="PuzzleSalmon1/PalancaSalmon3"]
 
 [node name="ContenedorPuerta" type="Node2D" parent="."]
+position = Vector2(0, -18.814854)
 
 [node name="PuertaSalmon" type="StaticBody2D" parent="ContenedorPuerta"]
 unique_name_in_owner = true
@@ -312,21 +474,24 @@ one_shot = true
 [node name="TimerPuerta" type="Timer" parent="ContenedorPuerta/PuertaSalmon"]
 one_shot = true
 
-[node name="RunaPuerta1" type="Sprite2D" parent="ContenedorPuerta/PuertaSalmon"]
+[node name="CONTENEDORRUNASPUERTA" type="Node2D" parent="ContenedorPuerta/PuertaSalmon"]
+unique_name_in_owner = true
+
+[node name="RunaPuerta1" type="Sprite2D" parent="ContenedorPuerta/PuertaSalmon/CONTENEDORRUNASPUERTA"]
 unique_name_in_owner = true
 position = Vector2(1.0000005, -142)
 scale = Vector2(0.16601563, 0.16601563)
 texture = ExtResource("5_gegfy")
 
-[node name="RunaPuerta2" type="Sprite2D" parent="ContenedorPuerta/PuertaSalmon"]
+[node name="RunaPuerta2" type="Sprite2D" parent="ContenedorPuerta/PuertaSalmon/CONTENEDORRUNASPUERTA"]
 unique_name_in_owner = true
 position = Vector2(0, -18)
 scale = Vector2(0.1640625, 0.1640625)
 texture = ExtResource("6_t1q3l")
 
-[node name="RunaPuerta3" type="Sprite2D" parent="ContenedorPuerta/PuertaSalmon"]
+[node name="RunaPuerta3" type="Sprite2D" parent="ContenedorPuerta/PuertaSalmon/CONTENEDORRUNASPUERTA"]
 unique_name_in_owner = true
-position = Vector2(2.9999943, 136)
+position = Vector2(0, 116.999985)
 scale = Vector2(0.19428572, 0.19428572)
 texture = ExtResource("7_s1ify")
 
@@ -336,15 +501,12 @@ libraries = {
 &"": SubResource("AnimationLibrary_yi0su")
 }
 
-[connection signal="activar_cambiar_runa" from="PuzzleSalmon1/PalancaSalmon1" to="PuzzleSalmon1" method="_on_palanca_salmon_1_activar_cambiar_runa"]
 [connection signal="body_entered" from="PuzzleSalmon1/PalancaSalmon1" to="PuzzleSalmon1/PalancaSalmon1" method="_on_body_entered"]
 [connection signal="body_exited" from="PuzzleSalmon1/PalancaSalmon1" to="PuzzleSalmon1/PalancaSalmon1" method="_on_body_exited"]
 [connection signal="timeout" from="PuzzleSalmon1/PalancaSalmon1/TimerPalanca" to="PuzzleSalmon1/PalancaSalmon1" method="_on_timer_palanca_timeout"]
-[connection signal="activar_cambiar_runa" from="PuzzleSalmon1/PalancaSalmon2" to="PuzzleSalmon1" method="_on_palanca_salmon_2_activar_cambiar_runa"]
 [connection signal="body_entered" from="PuzzleSalmon1/PalancaSalmon2" to="PuzzleSalmon1/PalancaSalmon2" method="_on_body_entered"]
 [connection signal="body_exited" from="PuzzleSalmon1/PalancaSalmon2" to="PuzzleSalmon1/PalancaSalmon2" method="_on_body_exited"]
 [connection signal="timeout" from="PuzzleSalmon1/PalancaSalmon2/TimerPalanca" to="PuzzleSalmon1/PalancaSalmon2" method="_on_timer_palanca_timeout"]
-[connection signal="activar_cambiar_runa" from="PuzzleSalmon1/PalancaSalmon3" to="PuzzleSalmon1" method="_on_palanca_salmon_3_activar_cambiar_runa"]
 [connection signal="body_entered" from="PuzzleSalmon1/PalancaSalmon3" to="PuzzleSalmon1/PalancaSalmon3" method="_on_body_entered"]
 [connection signal="body_exited" from="PuzzleSalmon1/PalancaSalmon3" to="PuzzleSalmon1/PalancaSalmon3" method="_on_body_exited"]
 [connection signal="timeout" from="PuzzleSalmon1/PalancaSalmon3/TimerPalanca" to="PuzzleSalmon1/PalancaSalmon3" method="_on_timer_palanca_timeout"]
