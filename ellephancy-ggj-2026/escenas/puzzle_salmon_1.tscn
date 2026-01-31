@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://b6egkrxvfwusp"]
+[gd_scene load_steps=27 format=3 uid="uid://b6egkrxvfwusp"]
 
 [ext_resource type="Script" uid="uid://ghj06urprt1g" path="res://escenas/puzzle_salmon_1.gd" id="1_6r7eb"]
 [ext_resource type="Texture2D" uid="uid://dibfv1arx47hn" path="res://assets/sprites/palanca_centro.PNG" id="1_o8y83"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://bfkwa4s1okq2q" path="res://escenas/palanca_salmon_2.gd" id="11_47k4l"]
 [ext_resource type="Script" uid="uid://c2uduf8ch2qat" path="res://escenas/palanca_salmon_3.gd" id="12_4e2h8"]
 [ext_resource type="Script" uid="uid://blvlclwppw6tu" path="res://escenas/puerta_salmon.gd" id="12_f0ung"]
+[ext_resource type="PackedScene" uid="uid://bigbvkph35hhb" path="res://escenas/portal.tscn" id="16_yi0su"]
 
 [sub_resource type="Animation" id="Animation_vs360"]
 length = 0.001
@@ -317,6 +318,9 @@ unique_name_in_owner = true
 position = Vector2(1.0000005, -142)
 scale = Vector2(0.16601563, 0.16601563)
 texture = ExtResource("5_gegfy")
+
+[node name="Portal" parent="ContenedorPuerta/PuertaSalmon/RunaPuerta1" instance=ExtResource("16_yi0su")]
+scale = Vector2(4, 4)
 
 [node name="RunaPuerta2" type="Sprite2D" parent="ContenedorPuerta/PuertaSalmon"]
 unique_name_in_owner = true

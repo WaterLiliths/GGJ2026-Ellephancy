@@ -102,7 +102,6 @@ func _input(event: InputEvent) -> void:
 		desconectar_caja_con_joint()
 
 
-
 func _physics_process(delta: float) -> void:
 	direction = Input.get_axis("a", "d")
 	if direction:
