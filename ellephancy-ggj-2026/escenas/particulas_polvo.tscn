@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://crnrxy3w0hm63"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kbx41"]
+blend_mode = 1
+light_mode = 2
+
+[sub_resource type="Gradient" id="Gradient_m34qx"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ix6tn"]
+gradient = SubResource("Gradient_m34qx")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.7094017, 0.35042736)
+
+[sub_resource type="Curve" id="Curve_qxc6j"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.16062176, 0.68539333), 0.0, 0.0, 0, 0, Vector2(0.34715027, 0.26966298), 0.0, 0.0, 0, 0, Vector2(0.6839379, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[node name="ParticulasPolvo" type="Node2D"]
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.30980393)
+material = SubResource("CanvasItemMaterial_kbx41")
+position = Vector2(3747, -501)
+amount = 300
+texture = SubResource("GradientTexture2D_ix6tn")
+lifetime = 14.49
+emission_shape = 3
+emission_rect_extents = Vector2(602.555, 500)
+direction = Vector2(-1, 0)
+spread = 41.3
+gravity = Vector2(0, 2)
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+tangential_accel_min = 1.0
+tangential_accel_max = 1.0
+scale_amount_min = 0.0
+scale_amount_max = 0.3
+scale_amount_curve = SubResource("Curve_qxc6j")
