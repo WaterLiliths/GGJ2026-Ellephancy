@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://drx8e4npnl3il"]
+[gd_scene load_steps=30 format=3 uid="uid://drx8e4npnl3il"]
 
 [ext_resource type="Script" uid="uid://cjruy0e7k5n74" path="res://escenas/main_menu.gd" id="1_2cr0s"]
 [ext_resource type="FontFile" uid="uid://ciwhe1apfc5gi" path="res://assets/fonts/Balgruf.otf" id="1_ter2f"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cjwyiaveg6mxo" path="res://assets/parallax/Parallaxbosque3.png" id="5_2vsao"]
 [ext_resource type="Texture2D" uid="uid://b8j7oryi85t2p" path="res://assets/parallax/Parallaxbosque4.png" id="6_nxvcq"]
 [ext_resource type="Gradient" uid="uid://b4xgyyw4wdl42" path="res://escenas/polen.tres" id="7_2vsao"]
+[ext_resource type="PackedScene" uid="uid://ww1sbsindpl7" path="res://escenas/opciones.tscn" id="11_nxvcq"]
 
 [sub_resource type="Animation" id="Animation_2vsao"]
 length = 0.001
@@ -160,7 +161,7 @@ tracks/0/path = NodePath("Label:modulate:a")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.4666667),
+"times": PackedFloat32Array(0.26666668, 1.4333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 1.0]
@@ -173,9 +174,9 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(2.2333333, 5),
-"transitions": PackedFloat32Array(0.14865123, 0.05076592),
+"transitions": PackedFloat32Array(0.0796601, 0.05076592),
 "update": 0,
-"values": [Vector2(318, 183), Vector2(139.34, 194.595)]
+"values": [Vector2(318, 183), Vector2(46.875, 139.57)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -187,7 +188,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(2.2333333, 5),
 "transitions": PackedFloat32Array(0.06037107, 0.01794839),
 "update": 0,
-"values": [Vector2(1.125, 1.125), Vector2(0.64, 0.64)]
+"values": [Vector2(1.305, 1.305), Vector2(0.64, 0.64)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -196,7 +197,7 @@ tracks/3/path = NodePath("VBoxContainer:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(-0.10000001, 1.1999998, 2.6666667),
+"times": PackedFloat32Array(-0.10000001, 2.7666667, 4.233333),
 "transitions": PackedFloat32Array(1, 1, 0.074325606),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -304,7 +305,19 @@ tracks/12/path = NodePath("VBoxContainer/BotonCustomCreditos:modulate")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(4.0333333, 4.866667),
+"times": PackedFloat32Array(4.6, 5.4333334),
+"transitions": PackedFloat32Array(1, 0.074325606),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("VBoxContainer/BotonCustomOpciones:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(4.033333, 4.866667),
 "transitions": PackedFloat32Array(1, 0.074325606),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -335,9 +348,7 @@ light_mode = 1
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2vsao"]
 light_mode = 2
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cg856"]
-blend_mode = 1
-light_mode = 1
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_i3g25"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_bm2sk"]
 gradient = ExtResource("7_2vsao")
@@ -348,6 +359,9 @@ fill_to = Vector2(0.5854701, 0.41025642)
 [sub_resource type="Curve" id="Curve_2vsao"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.50240386, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cg856"]
+light_mode = 1
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_tnv86"]
 gradient = ExtResource("7_2vsao")
@@ -398,19 +412,21 @@ shadow_filter_smooth = 3.2
 shadow_item_cull_mask = 7
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(1030, -791)
+position = Vector2(1185, -687.00006)
 scale = Vector2(1.594144, 1.5941437)
 color = Color(1, 0.7019608, 0.30980393, 1)
-energy = 15.81
+energy = 16.0
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_2vsao")
-texture_scale = 44.44
+texture_scale = 36.16
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+visible = false
 position = Vector2(522, 77)
 occluder = SubResource("OccluderPolygon2D_bm2sk")
 
 [node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
+visible = false
 position = Vector2(-675, -389)
 occluder = SubResource("OccluderPolygon2D_bm2sk")
 occluder_light_mask = 3
@@ -446,18 +462,19 @@ texture = ExtResource("6_nxvcq")
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Polygon2D"]
 modulate = Color(1, 1, 1, 0)
 y_sort_enabled = true
-material = SubResource("CanvasItemMaterial_cg856")
-position = Vector2(695, 329)
-amount = 100
+material = SubResource("CanvasItemMaterial_i3g25")
+position = Vector2(650, 358)
+scale = Vector2(0.79999995, 0.79999995)
+amount = 60
 texture = SubResource("GradientTexture2D_bm2sk")
-lifetime = 11.0
+lifetime = 8.0
 preprocess = 10.0
 use_fixed_seed = true
 seed = 1392953648
 emission_shape = 3
 emission_rect_extents = Vector2(1000, 500)
 particle_flag_align_y = true
-direction = Vector2(-1, 0)
+direction = Vector2(1, -1)
 gravity = Vector2(0, -41.5)
 initial_velocity_min = 5.0
 initial_velocity_max = 25.0
@@ -476,17 +493,18 @@ hue_variation_max = 0.11
 z_index = -1
 y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_cg856")
-position = Vector2(695, 329)
-amount = 100
+position = Vector2(650, 358)
+scale = Vector2(0.79999995, 0.79999995)
+amount = 60
 texture = SubResource("GradientTexture2D_tnv86")
-lifetime = 11.0
+lifetime = 8.0
 preprocess = 10.0
 use_fixed_seed = true
 seed = 1392953648
 emission_shape = 3
 emission_rect_extents = Vector2(1000, 500)
 particle_flag_align_y = true
-direction = Vector2(-1, 0)
+direction = Vector2(1, -1)
 gravity = Vector2(10, -10)
 initial_velocity_min = 5.0
 initial_velocity_max = 25.0
@@ -505,8 +523,8 @@ hue_variation_max = 0.11
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/UI.bank"]
 
 [node name="SaltoCiervo4" type="Sprite2D" parent="."]
-modulate = Color(0.32915837, 0.3291584, 0.3291584, 1)
-z_index = 3
+modulate = Color(0.28754017, 0.28754017, 0.28754017, 1)
+z_index = 1
 y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_nxvcq")
 position = Vector2(978, 534)
@@ -520,9 +538,9 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 85.0
-offset_top = -298.0
+offset_top = -274.0
 offset_right = 333.75
-offset_bottom = -163.0
+offset_bottom = -117.0
 grow_vertical = 0
 theme_override_constants/separation = 14
 
@@ -531,7 +549,13 @@ light_mask = 0
 layout_mode = 2
 text = "Jugar"
 
+[node name="BotonCustomOpciones" parent="VBoxContainer" instance=ExtResource("2_8cfpu")]
+light_mask = 0
+layout_mode = 2
+text = "Opciones"
+
 [node name="BotonCustomCreditos" parent="VBoxContainer" instance=ExtResource("2_8cfpu")]
+modulate = Color(1, 1, 1, 0.8400002)
 light_mask = 0
 layout_mode = 2
 text = "Créditos"
@@ -548,9 +572,10 @@ anchor_bottom = 0.5
 offset_left = -322.0
 offset_top = -177.0
 offset_right = 322.0
-offset_bottom = 177.00012
+offset_bottom = 177.00122
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(322, 177)
 theme_override_fonts/font = ExtResource("1_ter2f")
 theme_override_font_sizes/font_size = 250
 text = "Título"
@@ -603,5 +628,11 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
+[node name="Opciones" parent="." instance=ExtResource("11_nxvcq")]
+light_mask = 0
+z_index = 50
+layout_mode = 1
+
 [connection signal="pressed" from="VBoxContainer/BotonCustomComenzar" to="." method="_on_boton_custom_comenzar_pressed"]
+[connection signal="pressed" from="VBoxContainer/BotonCustomOpciones" to="." method="_on_boton_custom_opciones_pressed"]
 [connection signal="pressed" from="VBoxContainer/BotonCustomCreditos" to="." method="_on_boton_custom_creditos_pressed"]

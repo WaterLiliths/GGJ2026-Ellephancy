@@ -5,7 +5,7 @@ var esta_encendida : bool = false
 var palanca_actual : Palanca = self
 
 @export var id : int = 0
-@export_enum("Buen Estado", "Oxidada", "Fallada") var tipo_de_palanca : String = "Buen Estado"
+@export_enum("Buena", "Oxidada", "Fallada") var tipo_de_palanca : String = "Buena"
 @export var timeada : bool = false
 @export var timer : float = 1.0
 
@@ -13,6 +13,8 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 	$TimerPalanca.set_wait_time(timer*2.8)
+	if tipo_de_palanca == "Oxidada":
+		modulate = Color(0.51, 0.291, 0.291, 1.0)
 
 #-------------FUNCIONES------------------
 func activar() -> void:
@@ -22,10 +24,16 @@ func activar() -> void:
 		if timeada:
 			$TimerPalanca.start()
 		Global.activar_palanca.emit(id)
-		$AnimationPlayer.play("activar")
+		if tipo_de_palanca == "Buena":
+			$AnimationPlayer.play("activar")
+		else:
+			$AnimationPlayer.play("activar_oxidada")
 	if !esta_encendida and not tipo_de_palanca == "Fallada":
 		Global.desactivar_palanca.emit(id)
-		$AnimationPlayer.play("desactivar")
+		if tipo_de_palanca == "Buena":
+			$AnimationPlayer.play("desactivar")
+		else:
+			$AnimationPlayer.play("desactivar_oxidada")
 	if tipo_de_palanca == "Fallada":
 		$AnimationPlayer.play("fallada")
 		
