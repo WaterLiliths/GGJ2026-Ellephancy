@@ -74,36 +74,30 @@ position = Vector2(5378, 180)
 [node name="PuzzleSalmon1" parent="PuzzleHolder" index="0"]
 runa_1_comienza_con = 3
 runa_2_comienza_con = 1
-runa_3_comienza_con = 1
+runa_3_comienza_con = 2
 
 [node name="PalancaSalmon1" parent="PuzzleHolder/PuzzleSalmon1" index="0"]
-position = Vector2(-300, 189)
+position = Vector2(-567, 191)
 
 [node name="RunaCambiante1" parent="PuzzleHolder/PuzzleSalmon1/ContenedorRunas" index="0"]
-position = Vector2(-300.00003, -59)
+position = Vector2(-128.00005, -158)
 
 [node name="RunaCambiante2" parent="PuzzleHolder/PuzzleSalmon1/ContenedorRunas" index="1"]
-position = Vector2(-571, 1365)
+position = Vector2(-128, -42)
 
 [node name="RunaCambiante3" parent="PuzzleHolder/PuzzleSalmon1/ContenedorRunas" index="2"]
-position = Vector2(-678, 1376)
+position = Vector2(-128, 50)
 
 [node name="PalancaSalmon2" parent="PuzzleHolder/PuzzleSalmon1" index="2"]
-position = Vector2(-438, 1389)
+position = Vector2(-379, 191)
 
 [node name="PalancaSalmon3" parent="PuzzleHolder/PuzzleSalmon1" index="3"]
-position = Vector2(-255, 1389)
+position = Vector2(-194, 190)
 
 [node name="PuertaSalmon" parent="PuzzleHolder/ContenedorPuerta" index="0"]
 contrasena_1 = 1
 contrasena_2 = 1
 contrasena_3 = 1
-
-[node name="RunaPuerta2" parent="PuzzleHolder/ContenedorPuerta/PuertaSalmon/CONTENEDORRUNASPUERTA" index="1"]
-position = Vector2(-76, 1333.8148)
-
-[node name="RunaPuerta3" parent="PuzzleHolder/ContenedorPuerta/PuertaSalmon/CONTENEDORRUNASPUERTA" index="2"]
-position = Vector2(-78.00006, 1440.8148)
 
 [node name="CheckpointArea" parent="." instance=ExtResource("6_0b7we")]
 position = Vector2(2402, -258)
