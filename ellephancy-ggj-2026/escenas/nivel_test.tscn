@@ -51,7 +51,6 @@ position = Vector2(122, 60)
 
 [node name="ObjetoAEmpujar" parent="." instance=ExtResource("4_f2txr")]
 position = Vector2(358, 508)
-collision_mask = 3
 
 [node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Ambiente/ambiente"
