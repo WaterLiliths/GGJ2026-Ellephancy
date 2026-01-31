@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dkudwre2b373"]
+[gd_scene load_steps=27 format=3 uid="uid://dkudwre2b373"]
 
 [ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/Juego.gd" id="1_2y4ua"]
 [ext_resource type="Texture2D" uid="uid://dvh87k52osuo2" path="res://assets/parallax/bosquepocho1.png" id="2_ffuyt"]
@@ -40,23 +40,6 @@ colors = PackedColorArray(1, 1, 1, 1, 0.96, 0.78928, 0.028799972, 1, 1, 0.4465, 
 
 [sub_resource type="Resource" id="Resource_yei3n"]
 script = ExtResource("13_8mohb")
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yv8to"]
-blend_mode = 1
-light_mode = 2
-
-[sub_resource type="Gradient" id="Gradient_m34qx"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_gdb2x"]
-gradient = SubResource("Gradient_m34qx")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.7094017, 0.35042736)
-
-[sub_resource type="Curve" id="Curve_m34qx"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.16062176, 0.68539333), 0.0, 0.0, 0, 0, Vector2(0.34715027, 0.26966298), 0.0, 0.0, 0, 0, Vector2(0.6839379, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 5
 
 [sub_resource type="Animation" id="Animation_7dwkk"]
 length = 0.001
@@ -160,17 +143,13 @@ script = ExtResource("1_2y4ua")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 position = Vector2(1230, -222)
-rotation = 0.72431165
-color = Color(0.76, 0.32021332, 0.2888, 1)
-energy = 1.51
+rotation = 0.7033677
+color = Color(0.76, 0.43016, 0.2888, 1)
 shadow_enabled = true
-shadow_color = Color(0.03, 0, 0.00049999234, 0)
-shadow_filter = 1
-shadow_filter_smooth = 3.7
+shadow_filter_smooth = 6.7
 shadow_item_cull_mask = 7
 
 [node name="ParallaxPresente" type="Node2D" parent="."]
-modulate = Color(0.46618086, 0.4661808, 0.4661808, 1)
 z_index = -10
 position = Vector2(0, 367)
 
@@ -295,7 +274,7 @@ offset_bottom = 1114.0
 color = Color(0, 0, 0, 1)
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="Player/Camera2D"]
-z_index = -6
+z_index = -1
 y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_ms3um")
 position = Vector2(695, 329)
@@ -357,31 +336,6 @@ draw_limits = true
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
 [node name="FirstLevelWorks" parent="." instance=ExtResource("12_7dwkk")]
-
-[node name="CPUParticles2D2" type="CPUParticles2D" parent="FirstLevelWorks"]
-modulate = Color(1, 1, 1, 0.30980393)
-material = SubResource("CanvasItemMaterial_yv8to")
-position = Vector2(3747, -501)
-amount = 300
-texture = SubResource("GradientTexture2D_gdb2x")
-lifetime = 14.49
-emission_shape = 3
-emission_rect_extents = Vector2(602.555, 500)
-direction = Vector2(-1, 0)
-spread = 41.3
-gravity = Vector2(0, 2)
-initial_velocity_min = 5.0
-initial_velocity_max = 10.0
-tangential_accel_min = 1.0
-tangential_accel_max = 1.0
-scale_amount_min = 0.0
-scale_amount_max = 0.3
-scale_amount_curve = SubResource("Curve_m34qx")
-
-[node name="FourthLevel" parent="." instance=ExtResource("12_yqcop")]
-position = Vector2(8388, -614)
-
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
