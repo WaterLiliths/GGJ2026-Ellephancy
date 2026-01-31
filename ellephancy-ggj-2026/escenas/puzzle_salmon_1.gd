@@ -1,7 +1,6 @@
 extends Node2D
 
 
-#TODO INCORPORACION CON MASCARA DE SALMON (ESCONDER Y MOSTRAR RUNAS)
 @export var runa_1 : Texture#todas las runas se las paso por editor
 @export var runa_2 : Texture
 @export var runa_3 : Texture
@@ -14,9 +13,12 @@ extends Node2D
 @onready var puerta_salmon: StaticBody2D = %PuertaSalmon
 @onready var contenedor_runas: Node2D = %ContenedorRunas
 @onready var animation_player_runas: AnimationPlayer = %AnimationPlayerRunas
+@onready var palanca_salmon_1: Area2D = %PalancaSalmon1
+@onready var palanca_salmon_2: Area2D = %PalancaSalmon2
+@onready var palanca_salmon_3: Area2D = %PalancaSalmon3
 
 
-
+#si estas leyendo esto es porque el nene NO está bien
 
 var contador_palanca_1_usada : int = 1#cada palanca cambia solamente a su runa (palanca 1 runa_cambiante 1)
 var contador_palanca_2_usada : int = 1
@@ -28,8 +30,12 @@ var diccionario_runas : Dictionary = {}
 
 
 func _ready() -> void:
-	Global.mascara_tiempo_activa.connect(mostrar_runas)
-	Global.mascara_tiempo_desactivar.connect(esconder_runas)
+	palanca_salmon_1.activar_cambiar_runa.connect(cambiar_runa)
+	palanca_salmon_2.activar_cambiar_runa.connect(cambiar_runa)
+	palanca_salmon_3.activar_cambiar_runa.connect(cambiar_runa)
+	animation_player_runas.play("esconderr_runas_sueltas")
+	Global.mascara_traducciones_activa.connect(mostrar_runas)
+	Global.mascara_traducciones_desactivar.connect(esconder_runas)
 	#seteo el diccionario
 	diccionario_runas[1] = runa_1 #otro codigo unga unga pero bueno funca
 	diccionario_runas[2] = runa_2
@@ -48,8 +54,10 @@ func _ready() -> void:
 
 
 func cambiar_runa(palanca_id : int):
+	print("inicio de funcion, no el match, entra aca al menos????????????")
 	match palanca_id:
 		1:
+			print("ENTRA ACA???????????")
 			contador_palanca_1_usada = contador_palanca_1_usada + 1
 			if contador_palanca_1_usada>6:
 				contador_palanca_1_usada = 1 #reseteo
