@@ -1,0 +1,109 @@
+[gd_scene load_steps=5 format=3 uid="uid://djqldl5uq6oy4"]
+
+[ext_resource type="Script" uid="uid://skafeqjf1vw" path="res://escenas/hud.gd" id="1_m5lxu"]
+[ext_resource type="Theme" uid="uid://cj0o3c28vicve" path="res://escenas/themes/tema_pausa_menu.tres" id="2_5u87e"]
+[ext_resource type="PackedScene" uid="uid://d2xlg26hl7ug6" path="res://escenas/boton_custom.tscn" id="3_0sskl"]
+[ext_resource type="PackedScene" uid="uid://ww1sbsindpl7" path="res://escenas/opciones.tscn" id="4_hrvm2"]
+
+[node name="HUD" type="Control"]
+process_mode = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m5lxu")
+
+[node name="CanvasLayerMain" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayerMain"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -306.75
+offset_top = -187.25
+offset_right = 306.75
+offset_bottom = 187.25
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_5u87e")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayerMain/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_5u87e")
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="BTNReanudar" parent="CanvasLayerMain/PanelContainer/VBoxContainer" instance=ExtResource("3_0sskl")]
+layout_mode = 2
+text = "REANUDAR"
+
+[node name="BTNOpciones" parent="CanvasLayerMain/PanelContainer/VBoxContainer" instance=ExtResource("3_0sskl")]
+layout_mode = 2
+text = "OPCIONES"
+
+[node name="BTNSalir" parent="CanvasLayerMain/PanelContainer/VBoxContainer" instance=ExtResource("3_0sskl")]
+layout_mode = 2
+text = "SALIR"
+
+[node name="Opciones" parent="CanvasLayerMain" instance=ExtResource("4_hrvm2")]
+unique_name_in_owner = true
+visible = false
+
+[node name="CanvasLayerSalir" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+layer = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayerSalir"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -306.75
+offset_top = -187.25
+offset_right = 306.75
+offset_bottom = 187.25
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_5u87e")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayerSalir/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_5u87e")
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="LabelSeguro" type="Label" parent="CanvasLayerSalir/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "¿Estas seguro que deseas salir?"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayerSalir/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BTNSi" parent="CanvasLayerSalir/PanelContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_0sskl")]
+layout_mode = 2
+text = "SI"
+
+[node name="BTNSi2" parent="CanvasLayerSalir/PanelContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_0sskl")]
+layout_mode = 2
+text = "NO"
+
+[connection signal="pressed" from="CanvasLayerMain/PanelContainer/VBoxContainer/BTNReanudar" to="." method="_on_btn_reanudar_pressed"]
+[connection signal="pressed" from="CanvasLayerMain/PanelContainer/VBoxContainer/BTNOpciones" to="." method="_on_btn_opciones_pressed"]
+[connection signal="pressed" from="CanvasLayerMain/PanelContainer/VBoxContainer/BTNSalir" to="." method="_on_btn_salir_pressed"]
+[connection signal="pressed" from="CanvasLayerSalir/PanelContainer/VBoxContainer/HBoxContainer/BTNSi" to="." method="_on_btn_si_pressed"]
+[connection signal="pressed" from="CanvasLayerSalir/PanelContainer/VBoxContainer/HBoxContainer/BTNSi2" to="." method="_on_btn_si_2_pressed"]

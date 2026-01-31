@@ -1,0 +1,79 @@
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://cj0o3c28vicve"]
+
+[ext_resource type="FontFile" uid="uid://ciwhe1apfc5gi" path="res://assets/fonts/Balgruf.otf" id="1_it2tw"]
+[ext_resource type="FontFile" uid="uid://c8jaldbo0lky" path="res://assets/fonts/Balgruf_Italic.otf" id="2_ikxgt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8cfpu"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5o0kr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w6fns"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pkvd8"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3r3h5"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bm2sk"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_vv2yp"]
+color = Color(0.41105428, 0.62445974, 0.32513744, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_5o0kr"]
+color = Color(0.18841332, 0.26, 0.1872, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_it2tw"]
+bg_color = Color(9.62615e-08, 0.95124644, 0.6815654, 0.23529412)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[resource]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 0)
+Button/colors/font_hover_color = Color(0.23879333, 0.43, 0.23219998, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(0.23921569, 0.43137255, 0.23137255, 1)
+Button/colors/icon_focus_color = Color(1, 1, 1, 0)
+Button/font_sizes/font_size = 30
+Button/fonts/font = ExtResource("1_it2tw")
+Button/styles/disabled = SubResource("StyleBoxFlat_8cfpu")
+Button/styles/focus = SubResource("StyleBoxEmpty_5o0kr")
+Button/styles/hover = SubResource("StyleBoxFlat_w6fns")
+Button/styles/hover_pressed = SubResource("StyleBoxFlat_pkvd8")
+Button/styles/normal = SubResource("StyleBoxFlat_3r3h5")
+Button/styles/pressed = SubResource("StyleBoxFlat_bm2sk")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxLine_vv2yp")
+HSlider/styles/slider = SubResource("StyleBoxLine_5o0kr")
+Label/font_sizes/font_size = 20
+Label/fonts/font = ExtResource("1_it2tw")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_it2tw")
+RichTextLabel/fonts/italics_font = ExtResource("2_ikxgt")
+RichTextLabel/fonts/normal_font = ExtResource("1_it2tw")
