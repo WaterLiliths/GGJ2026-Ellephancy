@@ -4,7 +4,6 @@ extends TileMapLayer
 @export var presente : bool
 
 
-
 func _ready() -> void:
 	Global.mascara_tiempo_activa.connect(on_mascara_tiempo_activa)
 	Global.mascara_tiempo_desactivar.connect(on_mascara_tiempo_desactivada)

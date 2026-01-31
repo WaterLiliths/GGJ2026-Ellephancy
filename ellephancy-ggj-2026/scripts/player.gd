@@ -5,6 +5,8 @@ extends CharacterBody2D
 @onready var mascara_tiempos: Node2D = %MascaraTiempos
 @onready var mascara_fuerza: Node2D = %MascaraFuerza
 @onready var mascara_traducciones: Node2D = %MascaraTraducciones
+@onready var ray_cast_2d_suelo: RayCast2D = $RayCast2DSuelo
+
 #-------------------------------
 @export var limite_altura_morir : float = 3000
 var reviviendo_player : bool = false
@@ -29,6 +31,11 @@ var velocidad_inicial : float
 @export var velocidad_correr : float = 40
 @export var fuerza_empuje : float = 0
 @export var velocidad_arrastrando : float = 100.0
+
+#@export var tiene_mascara_fuerza = Global.tiene_mascara_fuerza
+#@export var tiene_mascara_tiempo = Global.tiene_mascara_tiempo
+#@export var tiene_mascara_traducciones = Global.tiene_mascara_traducciones
+
 @onready var animated_sprite_pj: AnimatedSprite2D = %AnimatedSpritePJ
 @onready var ray_cast_izq: RayCast2D = %RayCastIzq
 @onready var ray_cast_der: RayCast2D = %RayCastDer
@@ -45,17 +52,27 @@ var estaba_en_el_piso : bool = false
 var objeto_interactivo : Interactivo = null
 var puede_interactuar : bool = false
 
+@export var ground_layer: TileMapLayer
+var posicion_pies = global_position + Vector2(0, 16)
+
+var last_material := ""
+
 
 enum ESTADOS {IDLE, CAMINAR, SALTAR, CAER, INTERACTUAR, AGARRAR}
 var estado_actual : ESTADOS = ESTADOS.IDLE
+var superficie = {}
+
 
 func _ready() -> void:
+	Global.agarre_mascara.connect(on_agarre_mascara)
 	timer_tiempo_en_aire.wait_time = tiempo_maximo_en_aire
 	velocidad_inicial = velocidad
 	velocidad_inicial_salto = velocidad_salto
 	Global.mascara_fuerza_activa.connect(activar_mascara_fuerza)
 	Global.mascara_fuerza_desactivar.connect(desactivar_mascara_fuerza)
-
+	#Global.tiene_mascara_fuerza = tiene_mascara_fuerza
+	#Global.tiene_mascara_tiempo = tiene_mascara_tiempo
+	#Global.tiene_mascara_traducciones = tiene_mascara_traducciones
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("1"): #usar mascara fuerza
@@ -64,6 +81,8 @@ func _input(event: InputEvent) -> void:
 			return
 		mascara_tiempo.desactivar()
 		mascara_fuerza.usar()
+		$FmodEventEmitter2D6.set_parameter("Mascara", 0)
+		$FmodEventEmitter2D6.play()
 		mascara_traducciones.desactivar()
 	verificar_animacion_con_mascara()
 	if Input.is_action_just_pressed("2"): #usar mascara tiempos
@@ -71,6 +90,8 @@ func _input(event: InputEvent) -> void:
 			print("no tengo la mascara del tiempo")
 			return
 		mascara_tiempo.usar()
+		$FmodEventEmitter2D6.set_parameter("Mascara", 2)
+		$FmodEventEmitter2D6.play()
 		mascara_fuerza.desactivar()
 		mascara_traducciones.desactivar()
 	verificar_animacion_con_mascara()
@@ -81,6 +102,8 @@ func _input(event: InputEvent) -> void:
 		mascara_tiempo.desactivar()
 		mascara_fuerza.desactivar()
 		mascara_traducciones.usar()
+		$FmodEventEmitter2D6.set_parameter("Mascara", 1)
+		$FmodEventEmitter2D6.play()
 	verificar_animacion_con_mascara()
 
 	if Input.is_action_just_pressed("tirar") and objeto_arrastrado and Global.mascara_activa==2:
@@ -91,6 +114,11 @@ func _input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	
+	#
+	#ray_cast_suelo()
+	#print(ray_cast_suelo())
+	
 	direction = Input.get_axis("a", "d")
 	if direction:
 		ultima_direccion_mirar = sign(direction)
@@ -131,7 +159,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	detectar_caida()
 	comprobar_coyote_timer()
-
+	
+	
+	
 	if agarrando_caja and direction:
 		if not sonido_caja_sonando:
 			%FmodEventEmitter2D3.play()
@@ -396,16 +426,18 @@ func procesar_idle(delta):
 	if direction != 0: #moviendome
 		cambiar_de_estado(ESTADOS.CAMINAR)
 		return
-	if Input.is_action_just_pressed("w") and (is_on_floor() or puedo_usar_coyote()): #cambiar a una sola funcion q me devuelva true
+	if Input.is_action_just_pressed("w") and (is_on_floor() or puedo_usar_coyote()) and not Input.is_action_pressed("s"): #cambiar a una sola funcion q me devuelva true
 		velocity.y = velocidad_salto
 		cambiar_de_estado(ESTADOS.SALTAR)
+	if Input.is_action_pressed("s") and Input.is_action_just_pressed("w") and is_on_floor():
+		tirarse_de_plataforma()
 
 func procesar_caminar(delta):
 	velocity.x = move_toward(velocity.x, direction * velocidad, aceleracion * delta)
 	animated_sprite_pj.flip_h = ultima_direccion_mirar < 0
 	if direction:
 		if timer_pasos <= 0 && is_on_floor():
-			%FmodEventEmitter2D.play_one_shot()
+			handle_footsteps()
 			timer_pasos = timer_pasos_reset
 		timer_pasos -= delta 
 	if direction == 0:
@@ -463,6 +495,7 @@ func matar_player():
 		return
 	reviviendo_player = true
 	global_position = Global.get_checkpoint_position()
+	$FmodEventEmitter2D7.play()
 	reviviendo_player = false
 
 
@@ -481,3 +514,77 @@ func verificar_animacion_con_mascara():
 		ejecutar_animacion_caida()
 	if animacion_actual.begins_with("seguir"):
 		ejecutar_animacion_arrastrar()
+
+
+func tiene_mascara_fuerza():
+	mascara_tiempo.desactivar()
+	mascara_fuerza.usar()
+	mascara_traducciones.desactivar()
+	verificar_animacion_con_mascara()
+
+
+func tiene_mascara_tiempo():
+	mascara_tiempo.usar()
+	mascara_fuerza.desactivar()
+	mascara_traducciones.desactivar()
+	verificar_animacion_con_mascara()
+
+
+func tiene_mascara_traducciones():
+	mascara_tiempo.desactivar()
+	mascara_fuerza.desactivar()
+	mascara_traducciones.usar()
+	verificar_animacion_con_mascara()
+
+
+func on_agarre_mascara(nombre_mascara : String):
+	match nombre_mascara:
+		"ciervo":
+			tiene_mascara_tiempo()
+		"oso":
+			tiene_mascara_fuerza()
+		"salmon":
+			tiene_mascara_traducciones()
+func tirarse_de_plataforma():
+	position.y += 1
+
+
+#func detectar_material_suelo(tilemap: TileMapLayer) -> String:
+	#var cell = tilemap.local_to_map(global_position)
+	#var tile_data = tilemap.get_cell_tile_data(cell)
+#
+	#if tile_data:
+		#print(material)
+		#return tile_data.get_custom_data("material")
+	#return "unknown"
+#
+func ray_cast_suelo():
+	if ray_cast_2d_suelo.is_colliding():
+		var colision = ray_cast_2d_suelo.get_collider()
+		if colision is TileMapLayer:
+			return true
+			
+
+func get_current_material() -> String:
+	if ray_cast_suelo():
+		var cell = ground_layer.local_to_map(posicion_pies)
+		var tile_data = ground_layer.get_cell_tile_data(cell)
+
+		if tile_data:
+			return tile_data.get_custom_data("material")
+		return ""
+	else:
+		return ""
+
+func handle_footsteps():
+	var material_suelo = get_current_material()
+	
+	if material_suelo == "madera":
+		%FmodEventEmitter2D.set_parameter("Superficie", 1)
+	elif material_suelo == "pasto":
+		%FmodEventEmitter2D.set_parameter("Superficie", 0)
+	elif material_suelo == "piedra":
+		%FmodEventEmitter2D.set_parameter("Superficie", 2)
+
+	%FmodEventEmitter2D.play()
+	print(material_suelo)

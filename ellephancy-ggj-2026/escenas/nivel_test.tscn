@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://cck5uwpwq01uo"]
+[gd_scene load_steps=17 format=4 uid="uid://cck5uwpwq01uo"]
 
 [ext_resource type="Texture2D" uid="uid://d1fajoe3rvnlw" path="res://assets/TILES-TEST/background_glacial_mountains_lightened.png" id="1_6ef72"]
 [ext_resource type="PackedScene" uid="uid://cs3h434myxe4r" path="res://escenas/player.tscn" id="2_g44pp"]
@@ -10,6 +10,9 @@
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="9_3mf4q"]
 [ext_resource type="PackedScene" uid="uid://dj4jyhd1bexi6" path="res://escenas/checkpoint_area.tscn" id="10_qtnvv"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="10_xr0w3"]
+[ext_resource type="PackedScene" uid="uid://deup0i7mgu0xc" path="res://escenas/masks/area_mascara_oso.tscn" id="11_3mf4q"]
+[ext_resource type="PackedScene" uid="uid://ig75pg3uo5m" path="res://escenas/masks/area_mascara_ciervo.tscn" id="12_xr0w3"]
+[ext_resource type="PackedScene" uid="uid://gsyv06ys145u" path="res://escenas/masks/area_mascara_salmon.tscn" id="13_mqba5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6a1yu"]
 size = Vector2(126, 128)
@@ -51,7 +54,7 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 position = Vector2(122, 60)
 
 [node name="ObjetoAEmpujar" parent="." instance=ExtResource("4_f2txr")]
-position = Vector2(358, 508)
+position = Vector2(1256, 506)
 
 [node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Ambiente/ambiente"
@@ -95,7 +98,7 @@ shape = SubResource("RectangleShape2D_xh1mv")
 debug_color = Color(0.05449406, 0.65035343, 0, 0.41960785)
 
 [node name="ObjetoAEmpujar3" type="RigidBody2D" parent="."]
-position = Vector2(599, 489)
+position = Vector2(989, 57)
 collision_mask = 3
 mass = 20.0
 lock_rotation = true
@@ -139,3 +142,12 @@ presente = true
 
 [node name="CheckpointArea" parent="." instance=ExtResource("10_qtnvv")]
 position = Vector2(-8, 549)
+
+[node name="AreaMascaraOso" parent="." instance=ExtResource("11_3mf4q")]
+position = Vector2(278.99997, 535.99994)
+
+[node name="AreaMascaraCiervo" parent="." instance=ExtResource("12_xr0w3")]
+position = Vector2(732, 537.00006)
+
+[node name="AreaMascaraSalmon" parent="." instance=ExtResource("13_mqba5")]
+position = Vector2(548.99994, 536.00006)

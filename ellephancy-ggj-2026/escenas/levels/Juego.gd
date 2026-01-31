@@ -11,9 +11,6 @@ func _ready() -> void:
 	tween.tween_property($FmodEventEmitter2D2, "volume", Global.volumen_musica, 4)
 #Rezá Malena rezá
 
-#func _process(_delta: float) -> void:
-	#if Input.is_action_just_pressed("pausa"):
-		#if $Opciones.visible:
-			#$Opciones.visible = false
-		#else:
-			#$Opciones.visible = true
+func _process(_delta: float) -> void:
+	$FmodEventEmitter2D.volume = Global.volumen_musica
+	$FmodEventEmitter2D2.volume = Global.volumen_ambiente

@@ -12,8 +12,10 @@ script = ExtResource("1_fi8fk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_1cuo6")
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_fi8fk")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

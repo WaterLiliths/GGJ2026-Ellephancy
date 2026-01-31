@@ -346,8 +346,9 @@ animations = [{
 "speed": 11.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_kkt6c"]
-radius = 32.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hopxw"]
+radius = 37.0
+height = 164.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j7xnp"]
 radius = 41.880783
@@ -367,11 +368,11 @@ unique_name_in_owner = true
 texture_filter = 1
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_w7fad")
-animation = &"salto_salmon"
+animation = &"idle_normal"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 27)
-shape = SubResource("CircleShape2D_kkt6c")
+position = Vector2(1, -27)
+shape = SubResource("CapsuleShape2D_hopxw")
 
 [node name="AreaTirar" type="Area2D" parent="."]
 
@@ -458,6 +459,17 @@ event_guid = "{fbc63101-c1f0-46e6-ab63-d76fad8983e3}"
 volume = 0.5
 
 [node name="HUD" parent="." instance=ExtResource("52_hopxw")]
+
+[node name="FmodEventEmitter2D6" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Mascaras/equipar"
+event_guid = "{16488a59-bdd1-4164-9f3c-6f66071df1d8}"
+
+[node name="FmodEventEmitter2D7" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Personaje/Morir"
+event_guid = "{ea3f93cf-6587-4284-a571-252290d8e701}"
+
+[node name="RayCast2DSuelo" type="RayCast2D" parent="."]
+target_position = Vector2(0, 134)
 
 [connection signal="animation_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_animation_changed"]
 [connection signal="animation_finished" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_animation_finished"]

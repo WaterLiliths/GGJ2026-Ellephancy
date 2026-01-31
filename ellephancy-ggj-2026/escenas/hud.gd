@@ -3,11 +3,13 @@ extends Control
 #el nodo que se llama opciones lo podemos sacar
 var pausa_activa : bool = false
 @onready var canvas_layer_main: CanvasLayer = %CanvasLayerMain
+@onready var canvas_layer_main_2: CanvasLayer = %CanvasLayerMain2
 @onready var canvas_layer_salir: CanvasLayer = %CanvasLayerSalir
 var escena_menu_inicio : PackedScene = preload("res://escenas/main_menu.tscn")
 
 func _ready() -> void:
 	canvas_layer_main.hide()
+	canvas_layer_main_2.hide()
 	canvas_layer_salir.hide()
 	process_mode = Node.PROCESS_MODE_ALWAYS #para q podamos acceder al hud aunque este en pausa
 
@@ -23,6 +25,7 @@ func pausar():
 		get_tree().paused = true
 	else:
 		canvas_layer_main.hide()
+		canvas_layer_main_2.hide()
 		canvas_layer_salir.hide()
 		pausa_activa = false
 		get_tree().paused = false
@@ -34,9 +37,8 @@ func _on_btn_reanudar_pressed() -> void:
 
 
 func _on_btn_opciones_pressed() -> void:
-	#aca lo vemos mañana si quieren
-	#pq si el volumen es modular lo podemos pegar aca sin problema
-	pass # Replace with function body.
+	canvas_layer_main.hide()
+	canvas_layer_main_2.show()
 
 
 func _on_btn_salir_pressed() -> void:
@@ -52,3 +54,12 @@ func _on_btn_si_pressed() -> void:
 func _on_btn_si_2_pressed() -> void:
 	canvas_layer_main.show()
 	canvas_layer_salir.hide()
+
+
+func _on_boton_custom_pressed() -> void:
+	canvas_layer_main_2.hide()
+	canvas_layer_main.show()
+
+
+func _on_h_slider_musica_drag_ended(value_changed: bool) -> void:
+	pass # Replace with function body.
