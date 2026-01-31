@@ -89,6 +89,7 @@ alignment = 1
 [node name="LabelSeguro" type="Label" parent="CanvasLayerSalir/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_constants/outline_size = 3
 text = "¿Estas seguro que deseas salir?"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayerSalir/PanelContainer/VBoxContainer"]

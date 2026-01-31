@@ -49,7 +49,7 @@ color = Color(0.18841332, 0.26, 0.1872, 1)
 thickness = 6
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_it2tw"]
-bg_color = Color(9.62615e-08, 0.95124644, 0.6815654, 0.23529412)
+bg_color = Color(8.904189e-07, 0.49798602, 0.3497821, 0.46666667)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12

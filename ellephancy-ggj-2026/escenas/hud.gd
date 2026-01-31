@@ -24,6 +24,7 @@ func pausar():
 		get_tree().paused = true
 	else:
 		canvas_layer_main.hide()
+		canvas_layer_salir.hide()
 		pausa_activa = false
 		get_tree().paused = false
 
