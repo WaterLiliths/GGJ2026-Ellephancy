@@ -1,10 +1,15 @@
-[gd_scene load_steps=22 format=3 uid="uid://dkudwre2b373"]
+[gd_scene load_steps=27 format=3 uid="uid://dkudwre2b373"]
 
-[ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/second_level.gd" id="1_2y4ua"]
+[ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/juego.gd" id="1_2y4ua"]
+[ext_resource type="Texture2D" uid="uid://dvh87k52osuo2" path="res://assets/parallax/bosquepocho1.png" id="2_ffuyt"]
 [ext_resource type="Texture2D" uid="uid://datv7pocxxolq" path="res://assets/parallax/Parallaxbosque1.png" id="2_ms3um"]
+[ext_resource type="Texture2D" uid="uid://bpl65vrr7kb85" path="res://assets/parallax/bosquepocho2.png" id="3_kypqj"]
 [ext_resource type="Texture2D" uid="uid://wt6gflni6xxd" path="res://assets/parallax/Parallaxbosque2.png" id="3_u84wv"]
 [ext_resource type="Texture2D" uid="uid://cjwyiaveg6mxo" path="res://assets/parallax/Parallaxbosque3.png" id="4_lg721"]
+[ext_resource type="Texture2D" uid="uid://3nw72fsdndrh" path="res://assets/parallax/bosquepocho3.png" id="4_yv8to"]
 [ext_resource type="Texture2D" uid="uid://b8j7oryi85t2p" path="res://assets/parallax/Parallaxbosque4.png" id="5_ffuyt"]
+[ext_resource type="Texture2D" uid="uid://7ygv4lw6hg7s" path="res://assets/parallax/bosquepocho4.png" id="5_m34qx"]
+[ext_resource type="Texture2D" uid="uid://bun5p05g1y6p6" path="res://assets/parallax/bosquepocho5.png" id="6_gdb2x"]
 [ext_resource type="Gradient" uid="uid://b4xgyyw4wdl42" path="res://escenas/polen.tres" id="8_7dwkk"]
 [ext_resource type="PackedScene" uid="uid://cs3h434myxe4r" path="res://escenas/player.tscn" id="8_m34qx"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="9_gdb2x"]
@@ -139,13 +144,57 @@ script = ExtResource("1_2y4ua")
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 position = Vector2(1230, -222)
 rotation = 0.7033677
-color = Color(1, 0.701, 0.31, 1)
-energy = 1.4
+color = Color(0.76, 0.43016, 0.2888, 1)
 shadow_enabled = true
 shadow_filter_smooth = 6.7
 shadow_item_cull_mask = 7
 
+[node name="ParallaxPresente" type="Node2D" parent="."]
+z_index = -10
+position = Vector2(0, 367)
+
+[node name="ParallaxFondoPresente" type="Parallax2D" parent="ParallaxPresente"]
+scroll_scale = Vector2(0.2, 0)
+repeat_size = Vector2(1400, 0)
+repeat_times = 3
+
+[node name="SpriteFondoPresente" type="Sprite2D" parent="ParallaxPresente/ParallaxFondoPresente"]
+texture = ExtResource("2_ffuyt")
+
+[node name="ParallaxBosqueAtrasPresente" type="Parallax2D" parent="ParallaxPresente"]
+scroll_scale = Vector2(0.3, 0)
+repeat_size = Vector2(1400, 0)
+repeat_times = 3
+
+[node name="SpriteBosqueAtrasPresente" type="Sprite2D" parent="ParallaxPresente/ParallaxBosqueAtrasPresente"]
+texture = ExtResource("3_kypqj")
+
+[node name="ParallaxBosqueMedioPresente" type="Parallax2D" parent="ParallaxPresente"]
+scroll_scale = Vector2(0.4, 0)
+repeat_size = Vector2(1400, 0)
+repeat_times = 3
+
+[node name="SpriteBosqueMedioPresente" type="Sprite2D" parent="ParallaxPresente/ParallaxBosqueMedioPresente"]
+texture = ExtResource("4_yv8to")
+
+[node name="ParallaxBosqueCercaPresente" type="Parallax2D" parent="ParallaxPresente"]
+scroll_scale = Vector2(0.5, 0)
+repeat_size = Vector2(1400, 0)
+repeat_times = 3
+
+[node name="SpriteBosqueCercaPresente" type="Sprite2D" parent="ParallaxPresente/ParallaxBosqueCercaPresente"]
+texture = ExtResource("5_m34qx")
+
+[node name="ParallaxEspinasPresente" type="Parallax2D" parent="ParallaxPresente"]
+scroll_scale = Vector2(0.6, 0)
+repeat_size = Vector2(1400, 0)
+repeat_times = 3
+
+[node name="SpriteEspinasPresente" type="Sprite2D" parent="ParallaxPresente/ParallaxEspinasPresente"]
+texture = ExtResource("6_gdb2x")
+
 [node name="ParallaxPasado" type="Node2D" parent="."]
+visible = false
 position = Vector2(0, 125)
 
 [node name="ParalaxFondoPasado" type="Parallax2D" parent="ParallaxPasado"]
@@ -287,10 +336,10 @@ follow_damping_value = Vector2(0.2, 0.2)
 draw_limits = true
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
-[node name="FourthLevel" parent="." instance=ExtResource("12_yqcop")]
-position = Vector2(7486, 524)
-
 [node name="FirstLevelWorks" parent="." instance=ExtResource("12_7dwkk")]
+
+[node name="FourthLevel" parent="." instance=ExtResource("12_yqcop")]
+position = Vector2(8388, -614)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

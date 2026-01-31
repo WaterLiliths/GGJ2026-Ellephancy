@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clrdoa72edxyk"
-path="res://.godot/imported/IDEIDEIDEIDE.png-c82f0aa59c9aba77241ea99f89b8bbbf.ctex"
+uid="uid://dvh87k52osuo2"
+path="res://.godot/imported/bosquepocho1.png-168576e9f2545f85d3cf8e5ee2174061.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tile_set/IDEIDEIDEIDE.png"
-dest_files=["res://.godot/imported/IDEIDEIDEIDE.png-c82f0aa59c9aba77241ea99f89b8bbbf.ctex"]
+source_file="res://assets/parallax/bosquepocho1.png"
+dest_files=["res://.godot/imported/bosquepocho1.png-168576e9f2545f85d3cf8e5ee2174061.ctex"]
 
 [params]
 

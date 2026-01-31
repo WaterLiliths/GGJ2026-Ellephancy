@@ -56,16 +56,24 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("1"): #usar mascara tiempos
-		#if mascara tiempos no fue agarrada return
-		mascara_tiempo.usar()
-		mascara_fuerza.desactivar()
-		mascara_traducciones.desactivar()
-	if Input.is_action_just_pressed("2"): #usar mascara fuerza
+	if Input.is_action_just_pressed("1"): #usar mascara fuerza
+		if not Global.tiene_mascara_fuerza:
+			print("no tengo la mascara de la fuerza")
+			return
 		mascara_tiempo.desactivar()
 		mascara_fuerza.usar()
 		mascara_traducciones.desactivar()
+	if Input.is_action_just_pressed("2"): #usar mascara tiempos
+		if not Global.tiene_mascara_tiempo:
+			print("no tengo la mascara del tiempo")
+			return
+		mascara_tiempo.usar()
+		mascara_fuerza.desactivar()
+		mascara_traducciones.desactivar()
 	if Input.is_action_just_pressed("3"): #usar mascara traducciones
+		if not Global.tiene_mascara_traducciones:
+			print("no tengo la mascara de las traducciones")
+			return
 		mascara_tiempo.desactivar()
 		mascara_fuerza.desactivar()
 		mascara_traducciones.usar()
