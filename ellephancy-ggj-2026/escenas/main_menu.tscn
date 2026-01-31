@@ -4,12 +4,12 @@
 [ext_resource type="FontFile" uid="uid://ciwhe1apfc5gi" path="res://assets/fonts/Balgruf.otf" id="1_ter2f"]
 [ext_resource type="Texture2D" uid="uid://bi5n023nx1e1n" path="res://assets/sprites/bosquepocho3.png" id="2_2vsao"]
 [ext_resource type="PackedScene" uid="uid://d2xlg26hl7ug6" path="res://escenas/boton_custom.tscn" id="2_8cfpu"]
-[ext_resource type="Texture2D" uid="uid://b7p0jr82w1tkx" path="res://assets/player/mascaras/Salto ciervo 4.png" id="2_w6fns"]
 [ext_resource type="Texture2D" uid="uid://datv7pocxxolq" path="res://assets/parallax/Parallaxbosque1.png" id="3_bm2sk"]
 [ext_resource type="Texture2D" uid="uid://wt6gflni6xxd" path="res://assets/parallax/Parallaxbosque2.png" id="4_tnv86"]
 [ext_resource type="Texture2D" uid="uid://cjwyiaveg6mxo" path="res://assets/parallax/Parallaxbosque3.png" id="5_2vsao"]
 [ext_resource type="Texture2D" uid="uid://b8j7oryi85t2p" path="res://assets/parallax/Parallaxbosque4.png" id="6_nxvcq"]
 [ext_resource type="Gradient" uid="uid://b4xgyyw4wdl42" path="res://escenas/polen.tres" id="7_2vsao"]
+[ext_resource type="Texture2D" uid="uid://cbsx3brshwoh4" path="res://assets/sprites/Pantalla menú.png" id="8_nxvcq"]
 [ext_resource type="PackedScene" uid="uid://ww1sbsindpl7" path="res://escenas/opciones.tscn" id="11_nxvcq"]
 
 [sub_resource type="Animation" id="Animation_2vsao"]
@@ -490,7 +490,6 @@ hue_variation_min = -0.11
 hue_variation_max = 0.11
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="Polygon2D"]
-modulate = Color(1, 1, 1, 0)
 z_index = -1
 y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_cg856")
@@ -506,7 +505,7 @@ emission_shape = 3
 emission_rect_extents = Vector2(1000, 500)
 particle_flag_align_y = true
 direction = Vector2(1, -1)
-gravity = Vector2(50, -50)
+gravity = Vector2(10, -10)
 initial_velocity_min = 5.0
 initial_velocity_max = 25.0
 radial_accel_min = -3.0
@@ -525,11 +524,12 @@ bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res:/
 
 [node name="SaltoCiervo4" type="Sprite2D" parent="."]
 modulate = Color(0.28754017, 0.28754017, 0.28754017, 1)
-z_index = 1
+z_index = 2
 y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_nxvcq")
-position = Vector2(978, 534)
-texture = ExtResource("2_w6fns")
+position = Vector2(713, 419)
+scale = Vector2(0.7715736, 0.7715736)
+texture = ExtResource("8_nxvcq")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 light_mask = 0
@@ -546,7 +546,6 @@ grow_vertical = 0
 theme_override_constants/separation = 14
 
 [node name="BotonCustomComenzar" parent="VBoxContainer" instance=ExtResource("2_8cfpu")]
-modulate = Color(1, 1, 1, 0)
 light_mask = 0
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.11372549, 0.2627451, 0.08235294, 1)
@@ -554,7 +553,6 @@ theme_override_colors/font_hover_pressed_color = Color(0.11372549, 0.2627451, 0.
 text = "Jugar"
 
 [node name="BotonCustomOpciones" parent="VBoxContainer" instance=ExtResource("2_8cfpu")]
-modulate = Color(1, 1, 1, 0)
 light_mask = 0
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.11372549, 0.2627451, 0.08235294, 1)
@@ -562,7 +560,7 @@ theme_override_colors/font_hover_pressed_color = Color(0.11372549, 0.2627451, 0.
 text = "Opciones"
 
 [node name="BotonCustomCreditos" parent="VBoxContainer" instance=ExtResource("2_8cfpu")]
-modulate = Color(1, 1, 1, 0)
+modulate = Color(1, 1, 1, 0.80399996)
 light_mask = 0
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.11372549, 0.2627451, 0.08235294, 1)
