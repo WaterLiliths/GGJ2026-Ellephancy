@@ -5,6 +5,8 @@ extends CharacterBody2D
 @onready var mascara_tiempos: Node2D = %MascaraTiempos
 @onready var mascara_fuerza: Node2D = %MascaraFuerza
 @onready var mascara_traducciones: Node2D = %MascaraTraducciones
+@onready var ray_cast_2d_suelo: RayCast2D = $RayCast2DSuelo
+
 #-------------------------------
 @export var limite_altura_morir : float = 3000
 var reviviendo_player : bool = false
@@ -50,9 +52,16 @@ var estaba_en_el_piso : bool = false
 var objeto_interactivo : Interactivo = null
 var puede_interactuar : bool = false
 
+@export var ground_layer: TileMapLayer
+var posicion_pies = global_position + Vector2(0, 16)
+
+var last_material := ""
+
 
 enum ESTADOS {IDLE, CAMINAR, SALTAR, CAER, INTERACTUAR, AGARRAR}
 var estado_actual : ESTADOS = ESTADOS.IDLE
+var superficie = {}
+
 
 func _ready() -> void:
 	Global.agarre_mascara.connect(on_agarre_mascara)
@@ -105,6 +114,11 @@ func _input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	
+	#
+	#ray_cast_suelo()
+	#print(ray_cast_suelo())
+	
 	direction = Input.get_axis("a", "d")
 	if direction:
 		ultima_direccion_mirar = sign(direction)
@@ -423,7 +437,7 @@ func procesar_caminar(delta):
 	animated_sprite_pj.flip_h = ultima_direccion_mirar < 0
 	if direction:
 		if timer_pasos <= 0 && is_on_floor():
-			%FmodEventEmitter2D.play_one_shot()
+			handle_footsteps()
 			timer_pasos = timer_pasos_reset
 		timer_pasos -= delta 
 	if direction == 0:
@@ -533,3 +547,44 @@ func on_agarre_mascara(nombre_mascara : String):
 			tiene_mascara_traducciones()
 func tirarse_de_plataforma():
 	position.y += 1
+
+
+#func detectar_material_suelo(tilemap: TileMapLayer) -> String:
+	#var cell = tilemap.local_to_map(global_position)
+	#var tile_data = tilemap.get_cell_tile_data(cell)
+#
+	#if tile_data:
+		#print(material)
+		#return tile_data.get_custom_data("material")
+	#return "unknown"
+#
+func ray_cast_suelo():
+	if ray_cast_2d_suelo.is_colliding():
+		var colision = ray_cast_2d_suelo.get_collider()
+		if colision is TileMapLayer:
+			return true
+			
+
+func get_current_material() -> String:
+	if ray_cast_suelo():
+		var cell = ground_layer.local_to_map(posicion_pies)
+		var tile_data = ground_layer.get_cell_tile_data(cell)
+
+		if tile_data:
+			return tile_data.get_custom_data("material")
+		return ""
+	else:
+		return ""
+
+func handle_footsteps():
+	var material_suelo = get_current_material()
+	
+	if material_suelo == "madera":
+		%FmodEventEmitter2D.set_parameter("Superficie", 1)
+	elif material_suelo == "pasto":
+		%FmodEventEmitter2D.set_parameter("Superficie", 0)
+	elif material_suelo == "piedra":
+		%FmodEventEmitter2D.set_parameter("Superficie", 2)
+
+	%FmodEventEmitter2D.play()
+	print(material_suelo)

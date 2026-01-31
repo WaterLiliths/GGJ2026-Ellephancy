@@ -36,6 +36,22 @@ tracks/0/keys = {
 "values": [-2.3561945, -3.9269907]
 }
 
+[sub_resource type="Animation" id="Animation_j5e1s"]
+resource_name = "activar_oxidada"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PalancaCentro:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(5.8563194, 0.15389432),
+"update": 0,
+"values": [-2.3561945, -3.9269907]
+}
+
 [sub_resource type="Animation" id="Animation_kfmqc"]
 resource_name = "desactivada"
 
@@ -51,6 +67,22 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(5.09, 0.098),
+"update": 0,
+"values": [-3.9269907, -2.3561945]
+}
+
+[sub_resource type="Animation" id="Animation_wht2g"]
+resource_name = "desactivar_oxidada"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PalancaCentro:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(5.85, 0.153),
 "update": 0,
 "values": [-3.9269907, -2.3561945]
 }
@@ -71,38 +103,6 @@ tracks/0/keys = {
 "values": [-2.3561945, -2.988003679414292, -2.988003679414292, -2.3561945]
 }
 
-[sub_resource type="Animation" id="Animation_j5e1s"]
-resource_name = "activar_oxidada"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PalancaCentro:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(5.8563194, 0.15389432),
-"update": 0,
-"values": [-2.3561945, -3.9269907]
-}
-
-[sub_resource type="Animation" id="Animation_wht2g"]
-resource_name = "desactivar_oxidada"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PalancaCentro:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(5.85, 0.153),
-"update": 0,
-"values": [-3.9269907, -2.3561945]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2mypw"]
 _data = {
 &"RESET": SubResource("Animation_vs360"),
@@ -118,7 +118,7 @@ _data = {
 size = Vector2(544.4444, 299.11108)
 
 [node name="Palanca" type="Area2D"]
-scale = Vector2(0.19999999, 0.19999999)
+scale = Vector2(0.27999893, 0.2827474)
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_3114u")
