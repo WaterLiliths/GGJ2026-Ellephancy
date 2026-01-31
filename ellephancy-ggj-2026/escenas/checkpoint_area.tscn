@@ -18,4 +18,8 @@ shape = SubResource("RectangleShape2D_b2oqy")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_3q8mo")
 
+[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Personaje/checkpoint"
+event_guid = "{399e2e36-6a6e-4367-b755-05673b6caf87}"
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

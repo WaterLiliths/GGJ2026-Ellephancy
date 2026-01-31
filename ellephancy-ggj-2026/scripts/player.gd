@@ -19,7 +19,7 @@ var agarrando_caja : bool = false
 @export var gravedad_subiendo : float = 1.0
 @export var gravedad_bajando : float = 1.4
 @export var velocidad : float = 250.0
-@export var velocidad_salto: float = -500
+@export var velocidad_salto: float = -620
 @export var velocidad_salto_con_mascara = -620
 @export var desaceleración_al_saltar : float = 0.5 #arreglar igual 0.5 safa
 @export var desaceleracion_horizontal : float = 0.07 #ajustable a gusto
@@ -29,6 +29,11 @@ var velocidad_inicial : float
 @export var velocidad_correr : float = 40
 @export var fuerza_empuje : float = 0
 @export var velocidad_arrastrando : float = 100.0
+
+@export var tiene_mascara_fuerza = Global.tiene_mascara_fuerza
+@export var tiene_mascara_tiempo = Global.tiene_mascara_tiempo
+@export var tiene_mascara_traducciones = Global.tiene_mascara_traducciones
+
 @onready var animated_sprite_pj: AnimatedSprite2D = %AnimatedSpritePJ
 @onready var ray_cast_izq: RayCast2D = %RayCastIzq
 @onready var ray_cast_der: RayCast2D = %RayCastDer
@@ -56,7 +61,9 @@ func _ready() -> void:
 	velocidad_inicial_salto = velocidad_salto
 	Global.mascara_fuerza_activa.connect(activar_mascara_fuerza)
 	Global.mascara_fuerza_desactivar.connect(desactivar_mascara_fuerza)
-
+	Global.tiene_mascara_fuerza = tiene_mascara_fuerza
+	Global.tiene_mascara_tiempo = tiene_mascara_tiempo
+	Global.tiene_mascara_traducciones = tiene_mascara_traducciones
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("1"): #usar mascara fuerza
@@ -65,6 +72,8 @@ func _input(event: InputEvent) -> void:
 			return
 		mascara_tiempo.desactivar()
 		mascara_fuerza.usar()
+		$FmodEventEmitter2D6.set_parameter("Mascara", 0)
+		$FmodEventEmitter2D6.play()
 		mascara_traducciones.desactivar()
 	verificar_animacion_con_mascara()
 	if Input.is_action_just_pressed("2"): #usar mascara tiempos
@@ -72,6 +81,8 @@ func _input(event: InputEvent) -> void:
 			print("no tengo la mascara del tiempo")
 			return
 		mascara_tiempo.usar()
+		$FmodEventEmitter2D6.set_parameter("Mascara", 2)
+		$FmodEventEmitter2D6.play()
 		mascara_fuerza.desactivar()
 		mascara_traducciones.desactivar()
 	verificar_animacion_con_mascara()
@@ -82,6 +93,8 @@ func _input(event: InputEvent) -> void:
 		mascara_tiempo.desactivar()
 		mascara_fuerza.desactivar()
 		mascara_traducciones.usar()
+		$FmodEventEmitter2D6.set_parameter("Mascara", 1)
+		$FmodEventEmitter2D6.play()
 	verificar_animacion_con_mascara()
 
 	if Input.is_action_just_pressed("tirar") and objeto_arrastrado and Global.mascara_activa==2:
@@ -132,7 +145,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	detectar_caida()
 	comprobar_coyote_timer()
-
+	
+	
+	
 	if agarrando_caja and direction:
 		if not sonido_caja_sonando:
 			%FmodEventEmitter2D3.play()
@@ -397,9 +412,11 @@ func procesar_idle(delta):
 	if direction != 0: #moviendome
 		cambiar_de_estado(ESTADOS.CAMINAR)
 		return
-	if Input.is_action_just_pressed("w") and (is_on_floor() or puedo_usar_coyote()): #cambiar a una sola funcion q me devuelva true
+	if Input.is_action_just_pressed("w") and (is_on_floor() or puedo_usar_coyote()) and not Input.is_action_pressed("s"): #cambiar a una sola funcion q me devuelva true
 		velocity.y = velocidad_salto
 		cambiar_de_estado(ESTADOS.SALTAR)
+	if Input.is_action_pressed("s") and Input.is_action_just_pressed("w") and is_on_floor():
+		tirarse_de_plataforma()
 
 func procesar_caminar(delta):
 	velocity.x = move_toward(velocity.x, direction * velocidad, aceleracion * delta)
@@ -464,6 +481,7 @@ func matar_player():
 		return
 	reviviendo_player = true
 	global_position = Global.get_checkpoint_position()
+	$FmodEventEmitter2D7.play()
 	reviviendo_player = false
 
 
@@ -513,3 +531,5 @@ func on_agarre_mascara(nombre_mascara : String):
 			tiene_mascara_fuerza()
 		"salmon":
 			tiene_mascara_traducciones()
+func tirarse_de_plataforma():
+	position.y += 1

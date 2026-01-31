@@ -1,30 +1,31 @@
-[gd_scene load_steps=31 format=3 uid="uid://dkudwre2b373"]
+[gd_scene load_steps=32 format=3 uid="uid://catunwdmustac"]
 
-[ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/Juego.gd" id="1_2y4ua"]
-[ext_resource type="Texture2D" uid="uid://dvh87k52osuo2" path="res://assets/parallax/bosquepocho1.png" id="2_ffuyt"]
-[ext_resource type="Texture2D" uid="uid://datv7pocxxolq" path="res://assets/parallax/Parallaxbosque1.png" id="2_ms3um"]
-[ext_resource type="Texture2D" uid="uid://bpl65vrr7kb85" path="res://assets/parallax/bosquepocho2.png" id="3_kypqj"]
-[ext_resource type="Texture2D" uid="uid://wt6gflni6xxd" path="res://assets/parallax/Parallaxbosque2.png" id="3_u84wv"]
-[ext_resource type="Texture2D" uid="uid://cjwyiaveg6mxo" path="res://assets/parallax/Parallaxbosque3.png" id="4_lg721"]
-[ext_resource type="Texture2D" uid="uid://3nw72fsdndrh" path="res://assets/parallax/bosquepocho3.png" id="4_yv8to"]
-[ext_resource type="Texture2D" uid="uid://b8j7oryi85t2p" path="res://assets/parallax/Parallaxbosque4.png" id="5_ffuyt"]
-[ext_resource type="Texture2D" uid="uid://7ygv4lw6hg7s" path="res://assets/parallax/bosquepocho4.png" id="5_m34qx"]
-[ext_resource type="Texture2D" uid="uid://bun5p05g1y6p6" path="res://assets/parallax/bosquepocho5.png" id="6_gdb2x"]
-[ext_resource type="Gradient" uid="uid://b4xgyyw4wdl42" path="res://escenas/polen.tres" id="8_7dwkk"]
-[ext_resource type="PackedScene" uid="uid://cs3h434myxe4r" path="res://escenas/player.tscn" id="8_m34qx"]
-[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="9_gdb2x"]
-[ext_resource type="Script" uid="uid://dxat8cn5c3yh5" path="res://escenas/levels/node_2d.gd" id="10_e4rmv"]
-[ext_resource type="PackedScene" uid="uid://dkaf2gav3cro1" path="res://escenas/levels/first_level_works.tscn" id="12_7dwkk"]
-[ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="12_g2cn0"]
-[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="13_8mohb"]
-[ext_resource type="PackedScene" uid="uid://d3kk7nu2wr28k" path="res://escenas/levels/second_level.tscn" id="18_kypqj"]
+[ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/Juego.gd" id="1_yiroc"]
+[ext_resource type="Texture2D" uid="uid://dvh87k52osuo2" path="res://assets/parallax/bosquepocho1.png" id="2_j0wj1"]
+[ext_resource type="Texture2D" uid="uid://bpl65vrr7kb85" path="res://assets/parallax/bosquepocho2.png" id="3_tkghg"]
+[ext_resource type="Texture2D" uid="uid://3nw72fsdndrh" path="res://assets/parallax/bosquepocho3.png" id="4_snbam"]
+[ext_resource type="Texture2D" uid="uid://7ygv4lw6hg7s" path="res://assets/parallax/bosquepocho4.png" id="5_lm67e"]
+[ext_resource type="Texture2D" uid="uid://bun5p05g1y6p6" path="res://assets/parallax/bosquepocho5.png" id="6_h61l0"]
+[ext_resource type="Texture2D" uid="uid://datv7pocxxolq" path="res://assets/parallax/Parallaxbosque1.png" id="7_7n73x"]
+[ext_resource type="Texture2D" uid="uid://wt6gflni6xxd" path="res://assets/parallax/Parallaxbosque2.png" id="8_5arct"]
+[ext_resource type="Texture2D" uid="uid://cjwyiaveg6mxo" path="res://assets/parallax/Parallaxbosque3.png" id="9_1ibyl"]
+[ext_resource type="Texture2D" uid="uid://b8j7oryi85t2p" path="res://assets/parallax/Parallaxbosque4.png" id="10_1l7vq"]
+[ext_resource type="PackedScene" uid="uid://cs3h434myxe4r" path="res://escenas/player.tscn" id="11_4j0pi"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="12_5vxow"]
+[ext_resource type="Gradient" uid="uid://b4xgyyw4wdl42" path="res://escenas/polen.tres" id="13_iad8j"]
+[ext_resource type="Script" uid="uid://dxat8cn5c3yh5" path="res://escenas/levels/node_2d.gd" id="14_8gppo"]
+[ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="15_4st7h"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="16_1lsqy"]
+[ext_resource type="PackedScene" uid="uid://dkaf2gav3cro1" path="res://escenas/levels/first_level_works.tscn" id="17_ejdqr"]
+[ext_resource type="PackedScene" uid="uid://ctgi3ppkimt2c" path="res://escenas/levels/fourth_level.tscn" id="18_14ipy"]
+[ext_resource type="PackedScene" uid="uid://ww1sbsindpl7" path="res://escenas/opciones.tscn" id="19_mccry"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ms3um"]
 blend_mode = 1
 light_mode = 1
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_u84wv"]
-gradient = ExtResource("8_7dwkk")
+gradient = ExtResource("13_iad8j")
 width = 14
 fill = 1
 fill_from = Vector2(0.5, 0.5)
@@ -38,14 +39,14 @@ point_count = 2
 offsets = PackedFloat32Array(0.0025641026, 0.071794875, 0.21794872, 0.33846155, 0.53333336, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0.96, 0.78928, 0.028799972, 1, 1, 0.4465, 0.19, 1, 0.61, 0, 0.030500118, 1, 0.25, 0.25, 0.25, 1, 0, 0, 0, 0)
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kypqj"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yv8to"]
 blend_mode = 1
 light_mode = 2
 
 [sub_resource type="Gradient" id="Gradient_yv8to"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_yv8to"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gdb2x"]
 gradient = SubResource("Gradient_yv8to")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
@@ -56,7 +57,7 @@ _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.16062176, 0.68539333), 0.0, 0.
 point_count = 5
 
 [sub_resource type="Resource" id="Resource_yei3n"]
-script = ExtResource("13_8mohb")
+script = ExtResource("16_1lsqy")
 
 [sub_resource type="Animation" id="Animation_7dwkk"]
 length = 0.001
@@ -83,18 +84,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("FmodEventEmitter2D:volume")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.685]
 }
 
 [sub_resource type="Animation" id="Animation_yqcop"]
@@ -124,30 +113,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [true, false]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("FmodEventEmitter2D:volume")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 3.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 0.685]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("FmodEventEmitter2D2:volume")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 3.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 0.685]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ms3um"]
 _data = {
@@ -156,17 +121,21 @@ _data = {
 }
 
 [node name="Juego" type="Node2D"]
-script = ExtResource("1_2y4ua")
+script = ExtResource("1_yiroc")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 position = Vector2(1230, -222)
-rotation = 0.7033677
-color = Color(0.76, 0.43016, 0.2888, 1)
+rotation = 0.72431165
+color = Color(0.76, 0.32021332, 0.2888, 1)
+energy = 1.51
 shadow_enabled = true
-shadow_filter_smooth = 6.7
+shadow_color = Color(0.03, 0, 0.00049999234, 0)
+shadow_filter = 1
+shadow_filter_smooth = 3.7
 shadow_item_cull_mask = 7
 
 [node name="ParallaxPresente" type="Node2D" parent="."]
+modulate = Color(0.46618086, 0.4661808, 0.4661808, 1)
 z_index = -10
 position = Vector2(0, 367)
 
@@ -176,7 +145,7 @@ repeat_size = Vector2(1400, 0)
 repeat_times = 3
 
 [node name="SpriteFondoPresente" type="Sprite2D" parent="ParallaxPresente/ParallaxFondoPresente"]
-texture = ExtResource("2_ffuyt")
+texture = ExtResource("2_j0wj1")
 
 [node name="ParallaxBosqueAtrasPresente" type="Parallax2D" parent="ParallaxPresente"]
 scroll_scale = Vector2(0.3, 0)
@@ -184,7 +153,7 @@ repeat_size = Vector2(1400, 0)
 repeat_times = 3
 
 [node name="SpriteBosqueAtrasPresente" type="Sprite2D" parent="ParallaxPresente/ParallaxBosqueAtrasPresente"]
-texture = ExtResource("3_kypqj")
+texture = ExtResource("3_tkghg")
 
 [node name="ParallaxBosqueMedioPresente" type="Parallax2D" parent="ParallaxPresente"]
 scroll_scale = Vector2(0.4, 0)
@@ -192,7 +161,7 @@ repeat_size = Vector2(1400, 0)
 repeat_times = 3
 
 [node name="SpriteBosqueMedioPresente" type="Sprite2D" parent="ParallaxPresente/ParallaxBosqueMedioPresente"]
-texture = ExtResource("4_yv8to")
+texture = ExtResource("4_snbam")
 
 [node name="ParallaxBosqueCercaPresente" type="Parallax2D" parent="ParallaxPresente"]
 scroll_scale = Vector2(0.5, 0)
@@ -200,7 +169,7 @@ repeat_size = Vector2(1400, 0)
 repeat_times = 3
 
 [node name="SpriteBosqueCercaPresente" type="Sprite2D" parent="ParallaxPresente/ParallaxBosqueCercaPresente"]
-texture = ExtResource("5_m34qx")
+texture = ExtResource("5_lm67e")
 
 [node name="ParallaxEspinasPresente" type="Parallax2D" parent="ParallaxPresente"]
 scroll_scale = Vector2(0.6, 0)
@@ -208,7 +177,7 @@ repeat_size = Vector2(1400, 0)
 repeat_times = 3
 
 [node name="SpriteEspinasPresente" type="Sprite2D" parent="ParallaxPresente/ParallaxEspinasPresente"]
-texture = ExtResource("6_gdb2x")
+texture = ExtResource("6_h61l0")
 
 [node name="ParallaxPasado" type="Node2D" parent="."]
 visible = false
@@ -223,7 +192,7 @@ repeat_times = 3
 
 [node name="FondoPasadoImagen" type="Sprite2D" parent="ParallaxPasado/ParalaxFondoPasado"]
 z_index = -10
-texture = ExtResource("2_ms3um")
+texture = ExtResource("7_7n73x")
 
 [node name="ParallaxBosqueFondoPasado" type="Parallax2D" parent="ParallaxPasado"]
 z_index = -10
@@ -234,7 +203,7 @@ repeat_times = 3
 
 [node name="BosquePasadoFondoImagen" type="Sprite2D" parent="ParallaxPasado/ParallaxBosqueFondoPasado"]
 z_index = -10
-texture = ExtResource("3_u84wv")
+texture = ExtResource("8_5arct")
 
 [node name="ParallaxBosquePasado" type="Parallax2D" parent="ParallaxPasado"]
 z_index = -10
@@ -245,7 +214,7 @@ repeat_times = 3
 
 [node name="BosquePasdoImagen" type="Sprite2D" parent="ParallaxPasado/ParallaxBosquePasado"]
 z_index = -10
-texture = ExtResource("4_lg721")
+texture = ExtResource("9_1ibyl")
 
 [node name="ParallaxArbolesPasado" type="Parallax2D" parent="ParallaxPasado"]
 z_index = -10
@@ -256,20 +225,22 @@ repeat_times = 3
 
 [node name="ArbolesPasadoImagen" type="Sprite2D" parent="ParallaxPasado/ParallaxArbolesPasado"]
 z_index = -10
-texture = ExtResource("5_ffuyt")
+texture = ExtResource("10_1l7vq")
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank", "res://assets/audio/FmodBanks/Desktop/UI.bank"]
 
-[node name="Player" parent="." instance=ExtResource("8_m34qx")]
-position = Vector2(7923, -778)
+[node name="Player" parent="." instance=ExtResource("11_4j0pi")]
+position = Vector2(1251, 190)
 scale = Vector2(0.64, 0.64)
+velocidad_salto = -600.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(7923, -778)
+position = Vector2(1251, 190)
 zoom = Vector2(1.6, 1.6)
+limit_enabled = false
 editor_draw_limits = true
 
 [node name="FmodListener2D" type="FmodListener2D" parent="Player/Camera2D"]
@@ -277,20 +248,21 @@ editor_draw_limits = true
 [node name="PhantomCameraHost" type="Node" parent="Player/Camera2D"]
 process_priority = 300
 process_physics_priority = 300
-script = ExtResource("9_gdb2x")
+script = ExtResource("12_5vxow")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="ColorRect" type="ColorRect" parent="Player/Camera2D"]
+light_mask = 0
 z_index = 185
 y_sort_enabled = true
-offset_left = -582.0
+offset_left = -1161.0
 offset_top = -872.0
 offset_right = 1429.0
 offset_bottom = 1114.0
 color = Color(0, 0, 0, 1)
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="Player/Camera2D"]
-z_index = -1
+z_index = -6
 y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_ms3um")
 position = Vector2(695, 329)
@@ -320,9 +292,9 @@ hue_variation_max = 0.11
 
 [node name="CPUParticles2D3" type="CPUParticles2D" parent="Player/Camera2D"]
 modulate = Color(1, 1, 1, 0.30980393)
-material = SubResource("CanvasItemMaterial_kypqj")
+material = SubResource("CanvasItemMaterial_yv8to")
 amount = 500
-texture = SubResource("GradientTexture2D_yv8to")
+texture = SubResource("GradientTexture2D_gdb2x")
 lifetime = 14.49
 preprocess = 10.0
 emission_shape = 3
@@ -339,19 +311,20 @@ scale_amount_max = 0.3
 scale_amount_curve = SubResource("Curve_m34qx")
 
 [node name="Node2D" type="Node2D" parent="Player"]
-script = ExtResource("10_e4rmv")
+script = ExtResource("14_8gppo")
 
 [node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Ambiente/ambiente"
 event_guid = "{9318ebbc-5ee4-4da9-87ef-a11bf476df3b}"
 attached = false
 autoplay = true
-volume = 0.685
+volume = 0.0
 position = Vector2(-97, 588)
 
 [node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Musica/Musica"
 event_guid = "{531f5736-0242-456e-96ac-14d316a2be4e}"
+volume = 0.0
 fmod_parameters/Pantalla/id = -2044462831851661827
 fmod_parameters/Pantalla = "Juego"
 fmod_parameters/Pantalla/labels = PackedStringArray("Menu", "Juego")
@@ -360,8 +333,8 @@ position = Vector2(-97, 588)
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(7923, -778)
-script = ExtResource("12_g2cn0")
+position = Vector2(1251, 190)
+script = ExtResource("15_4st7h")
 follow_mode = 2
 follow_target = NodePath("../Player/Node2D")
 zoom = Vector2(1.6, 1.6)
@@ -371,12 +344,17 @@ follow_damping_value = Vector2(0.2, 0.2)
 draw_limits = true
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
-[node name="FirstLevelWorks" parent="." instance=ExtResource("12_7dwkk")]
+[node name="FirstLevelWorks" parent="." instance=ExtResource("17_ejdqr")]
+
+[node name="FourthLevel" parent="." instance=ExtResource("18_14ipy")]
+position = Vector2(8388, -614)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_ms3um")
 }
 
-[node name="SecondLevel" parent="." instance=ExtResource("18_kypqj")]
-position = Vector2(6241, -652)
+[node name="Opciones" parent="." instance=ExtResource("19_mccry")]
+z_index = 115
