@@ -6,6 +6,8 @@ extends CharacterBody2D
 @onready var mascara_fuerza: Node2D = %MascaraFuerza
 @onready var mascara_traducciones: Node2D = %MascaraTraducciones
 #-------------------------------
+@export var limite_altura_morir : float = 3000
+var reviviendo_player : bool = false
 var ultima_direccion_mirar : int = 1 #para derecha e izquierda solo 1 -1
 var sonido_caida_emitiendo : bool = false
 var sonido_caja_sonando : bool = false
@@ -104,7 +106,8 @@ func _physics_process(delta: float) -> void:
 			pass #por si necesitan logica en process la ponemos aca
 		ESTADOS.AGARRAR:
 			procesar_agarrar(delta)
-	
+	if global_position.y > limite_altura_morir:
+		matar_player()
 	
 	
 	
@@ -450,3 +453,11 @@ func _on_animated_sprite_pj_animation_finished() -> void:
 		ejecutar_animacion_caida()
 	if animacion == "agarrar_oso" and estado_actual == ESTADOS.AGARRAR:
 		animated_sprite_pj.play("seguir_agarrando") #TODO TESTEAR
+
+
+func matar_player():
+	if reviviendo_player:
+		return
+	reviviendo_player = true
+	global_position = Global.get_checkpoint_position()
+	reviviendo_player = false
