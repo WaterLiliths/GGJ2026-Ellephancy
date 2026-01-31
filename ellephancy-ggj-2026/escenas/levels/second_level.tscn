@@ -1,6 +1,5 @@
-[gd_scene load_steps=19 format=4 uid="uid://bcgp0adhixxuf"]
+[gd_scene load_steps=18 format=4 uid="uid://bcgp0adhixxuf"]
 
-[ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/second_level.gd" id="1_1aeis"]
 [ext_resource type="Texture2D" uid="uid://datv7pocxxolq" path="res://assets/parallax/Parallaxbosque1.png" id="2_pujkq"]
 [ext_resource type="Texture2D" uid="uid://wt6gflni6xxd" path="res://assets/parallax/Parallaxbosque2.png" id="3_3va4y"]
 [ext_resource type="Texture2D" uid="uid://cjwyiaveg6mxo" path="res://assets/parallax/Parallaxbosque3.png" id="4_tffja"]
@@ -36,7 +35,6 @@ script = ExtResource("13_wqjij")
 
 [node name="FirstLevel" type="Node2D"]
 position = Vector2(-1943, -188)
-script = ExtResource("1_1aeis")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 position = Vector2(1230, -222)
