@@ -273,8 +273,8 @@ scale = Vector2(0.19999999, 0.19999999)
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("2_k8i5l")
-sprite_asociado = NodePath("../ContenedorRunas/RunaCambiante1")
 id_palanca = 1
+sprite_asociado = NodePath("../ContenedorRunas/RunaCambiante1")
 
 [node name="AnimationPlayer1" type="AnimationPlayer" parent="PuzzleSalmon1/PalancaSalmon1"]
 unique_name_in_owner = true
@@ -501,15 +501,12 @@ libraries = {
 &"": SubResource("AnimationLibrary_yi0su")
 }
 
-[connection signal="activar_cambiar_runa" from="PuzzleSalmon1/PalancaSalmon1" to="PuzzleSalmon1" method="_on_palanca_salmon_1_activar_cambiar_runa"]
 [connection signal="body_entered" from="PuzzleSalmon1/PalancaSalmon1" to="PuzzleSalmon1/PalancaSalmon1" method="_on_body_entered"]
 [connection signal="body_exited" from="PuzzleSalmon1/PalancaSalmon1" to="PuzzleSalmon1/PalancaSalmon1" method="_on_body_exited"]
 [connection signal="timeout" from="PuzzleSalmon1/PalancaSalmon1/TimerPalanca" to="PuzzleSalmon1/PalancaSalmon1" method="_on_timer_palanca_timeout"]
-[connection signal="activar_cambiar_runa" from="PuzzleSalmon1/PalancaSalmon2" to="PuzzleSalmon1" method="_on_palanca_salmon_2_activar_cambiar_runa"]
 [connection signal="body_entered" from="PuzzleSalmon1/PalancaSalmon2" to="PuzzleSalmon1/PalancaSalmon2" method="_on_body_entered"]
 [connection signal="body_exited" from="PuzzleSalmon1/PalancaSalmon2" to="PuzzleSalmon1/PalancaSalmon2" method="_on_body_exited"]
 [connection signal="timeout" from="PuzzleSalmon1/PalancaSalmon2/TimerPalanca" to="PuzzleSalmon1/PalancaSalmon2" method="_on_timer_palanca_timeout"]
-[connection signal="activar_cambiar_runa" from="PuzzleSalmon1/PalancaSalmon3" to="PuzzleSalmon1" method="_on_palanca_salmon_3_activar_cambiar_runa"]
 [connection signal="body_entered" from="PuzzleSalmon1/PalancaSalmon3" to="PuzzleSalmon1/PalancaSalmon3" method="_on_body_entered"]
 [connection signal="body_exited" from="PuzzleSalmon1/PalancaSalmon3" to="PuzzleSalmon1/PalancaSalmon3" method="_on_body_exited"]
 [connection signal="timeout" from="PuzzleSalmon1/PalancaSalmon3/TimerPalanca" to="PuzzleSalmon1/PalancaSalmon3" method="_on_timer_palanca_timeout"]

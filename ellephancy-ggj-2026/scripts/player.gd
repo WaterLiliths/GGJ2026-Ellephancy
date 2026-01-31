@@ -30,9 +30,9 @@ var velocidad_inicial : float
 @export var fuerza_empuje : float = 0
 @export var velocidad_arrastrando : float = 100.0
 
-@export var tiene_mascara_fuerza = Global.tiene_mascara_fuerza
-@export var tiene_mascara_tiempo = Global.tiene_mascara_tiempo
-@export var tiene_mascara_traducciones = Global.tiene_mascara_traducciones
+#@export var tiene_mascara_fuerza = Global.tiene_mascara_fuerza
+#@export var tiene_mascara_tiempo = Global.tiene_mascara_tiempo
+#@export var tiene_mascara_traducciones = Global.tiene_mascara_traducciones
 
 @onready var animated_sprite_pj: AnimatedSprite2D = %AnimatedSpritePJ
 @onready var ray_cast_izq: RayCast2D = %RayCastIzq
@@ -61,9 +61,9 @@ func _ready() -> void:
 	velocidad_inicial_salto = velocidad_salto
 	Global.mascara_fuerza_activa.connect(activar_mascara_fuerza)
 	Global.mascara_fuerza_desactivar.connect(desactivar_mascara_fuerza)
-	Global.tiene_mascara_fuerza = tiene_mascara_fuerza
-	Global.tiene_mascara_tiempo = tiene_mascara_tiempo
-	Global.tiene_mascara_traducciones = tiene_mascara_traducciones
+	#Global.tiene_mascara_fuerza = tiene_mascara_fuerza
+	#Global.tiene_mascara_tiempo = tiene_mascara_tiempo
+	#Global.tiene_mascara_traducciones = tiene_mascara_traducciones
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("1"): #usar mascara fuerza
