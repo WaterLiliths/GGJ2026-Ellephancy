@@ -1,6 +1,6 @@
-[gd_scene load_steps=28 format=3 uid="uid://dkudwre2b373"]
+[gd_scene load_steps=27 format=3 uid="uid://dkudwre2b373"]
 
-[ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/Juego.gd" id="1_2y4ua"]
+[ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/juego.gd" id="1_2y4ua"]
 [ext_resource type="Texture2D" uid="uid://dvh87k52osuo2" path="res://assets/parallax/bosquepocho1.png" id="2_ffuyt"]
 [ext_resource type="Texture2D" uid="uid://datv7pocxxolq" path="res://assets/parallax/Parallaxbosque1.png" id="2_ms3um"]
 [ext_resource type="Texture2D" uid="uid://bpl65vrr7kb85" path="res://assets/parallax/bosquepocho2.png" id="3_kypqj"]
@@ -17,7 +17,6 @@
 [ext_resource type="PackedScene" uid="uid://dkaf2gav3cro1" path="res://escenas/levels/first_level_works.tscn" id="12_7dwkk"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="12_g2cn0"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="13_8mohb"]
-[ext_resource type="PackedScene" uid="uid://ww1sbsindpl7" path="res://escenas/opciones.tscn" id="19_yv8to"]
 [ext_resource type="PackedScene" uid="uid://d3kk7nu2wr28k" path="res://escenas/levels/second_level.tscn" id="18_kypqj"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ms3um"]
@@ -68,6 +67,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FmodEventEmitter2D:volume")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.685]
+}
 
 [sub_resource type="Animation" id="Animation_yqcop"]
 resource_name = "fade_in"
@@ -96,6 +107,30 @@ tracks/1/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FmodEventEmitter2D:volume")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.685]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FmodEventEmitter2D2:volume")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.685]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ms3um"]
 _data = {
@@ -108,13 +143,10 @@ script = ExtResource("1_2y4ua")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 position = Vector2(1230, -222)
-rotation = 0.72431165
+rotation = 0.7033677
 color = Color(0.76, 0.43016, 0.2888, 1)
-energy = 1.51
 shadow_enabled = true
-shadow_color = Color(0.03, 0, 0.00049999234, 1)
-shadow_filter = 1
-shadow_filter_smooth = 3.7
+shadow_filter_smooth = 6.7
 shadow_item_cull_mask = 7
 
 [node name="ParallaxPresente" type="Node2D" parent="."]
@@ -210,7 +242,7 @@ z_index = -10
 texture = ExtResource("5_ffuyt")
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
-bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank", "res://assets/audio/FmodBanks/Desktop/UI.bank"]
+bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank"]
 
 [node name="Player" parent="." instance=ExtResource("8_m34qx")]
 position = Vector2(7282, -156)
@@ -222,7 +254,6 @@ physics_interpolation_mode = 1
 top_level = true
 position = Vector2(7282, -156)
 zoom = Vector2(1.6, 1.6)
-limit_enabled = false
 editor_draw_limits = true
 
 [node name="FmodListener2D" type="FmodListener2D" parent="Player/Camera2D"]
@@ -234,10 +265,9 @@ script = ExtResource("9_gdb2x")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="ColorRect" type="ColorRect" parent="Player/Camera2D"]
-light_mask = 0
 z_index = 185
 y_sort_enabled = true
-offset_left = -1161.0
+offset_left = -582.0
 offset_top = -872.0
 offset_right = 1429.0
 offset_bottom = 1114.0
@@ -280,13 +310,12 @@ event_name = "event:/Ambiente/ambiente"
 event_guid = "{9318ebbc-5ee4-4da9-87ef-a11bf476df3b}"
 attached = false
 autoplay = true
-volume = 0.0
+volume = 0.685
 position = Vector2(-97, 588)
 
 [node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Musica/Musica"
 event_guid = "{531f5736-0242-456e-96ac-14d316a2be4e}"
-volume = 0.0
 fmod_parameters/Pantalla/id = -2044462831851661827
 fmod_parameters/Pantalla = "Juego"
 fmod_parameters/Pantalla/labels = PackedStringArray("Menu", "Juego")
@@ -308,18 +337,10 @@ metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
 [node name="FirstLevelWorks" parent="." instance=ExtResource("12_7dwkk")]
 
-
-[node name="FourthLevel" parent="." instance=ExtResource("12_yqcop")]
-position = Vector2(8388, -614)
-
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_ms3um")
 }
 
-[node name="Opciones" parent="." instance=ExtResource("19_yv8to")]
-z_index = 115
 [node name="SecondLevel" parent="." instance=ExtResource("18_kypqj")]
 position = Vector2(6241, -652)
