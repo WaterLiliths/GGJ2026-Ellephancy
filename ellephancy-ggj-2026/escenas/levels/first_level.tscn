@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=4 uid="uid://bcgp0adhixxuf"]
 
-[ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/first_level.gd" id="1_ya1wh"]
+[ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/second_level.gd" id="1_ya1wh"]
 [ext_resource type="Texture2D" uid="uid://datv7pocxxolq" path="res://assets/parallax/Parallaxbosque1.png" id="2_yei3n"]
 [ext_resource type="Texture2D" uid="uid://wt6gflni6xxd" path="res://assets/parallax/Parallaxbosque2.png" id="3_4xl6p"]
 [ext_resource type="PackedScene" uid="uid://cs3h434myxe4r" path="res://escenas/player.tscn" id="3_ya1wh"]

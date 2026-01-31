@@ -14,6 +14,7 @@ z_index = -4
 y_sort_enabled = true
 position = Vector2(17366, 2190)
 id = 1
+tipo_de_palanca = "Oxidada"
 timer = 2.0
 
 [node name="PuertaPuzzle1" parent="Puzzle1" instance=ExtResource("2_vcr2c")]
