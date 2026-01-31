@@ -13,15 +13,19 @@ var shader_backGroundDirX_inicial = 0.01
 var shader_backGroundDirY_inicial = 0.01
 var shader_backGroundDirY_final = 0.75
 
+
 func _ready() -> void:
+	%ColorRectShader.visible = false
 	material_shader = color_rect_shader.material.duplicate() #primero lo duplico
 	color_rect_shader.material = material_shader #le asigno el duplicado
 
 func usar():
+	
 	if activa:
 		return
 	activa = true
 	Global.mascara_activa = id
+	%ColorRectShader.visible = true
 	animacion_shader()
 	await get_tree().create_timer(0.2).timeout
 	Global.mascara_tiempo_activa.emit()
@@ -35,6 +39,7 @@ func desactivar():
 	if not activa: #si ya estaba desactivada
 		return
 	activa = false
+	%ColorRectShader.visible = false
 	animacion_shader()
 	await get_tree().create_timer(0.2).timeout
 	Global.mascara_tiempo_desactivar.emit()
