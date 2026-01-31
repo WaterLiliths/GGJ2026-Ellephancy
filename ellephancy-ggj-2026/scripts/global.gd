@@ -21,6 +21,17 @@ var volumen_musica : float = 1.0
 var volumen_efectos : float = 1.0
 var volumen_ambiente : float = 1.0
 
+var checkpoint_position : Vector2
 func _ready() -> void:
 	pass # Replace with function body.
 	
+
+
+func set_checkpoint_position(nueva_pos : Vector2): #la llamo en escena checkpoint
+	#if nueva_pos == checkpoint_position: #si son iguales, no la guardo, ya estuve en este checkpoint
+	#	return
+	checkpoint_position = nueva_pos
+	print("La nueva posicion del checkpoint es : ", checkpoint_position)
+
+func get_checkpoint_position(): #seguro la llame desde player
+	return checkpoint_position
