@@ -31,7 +31,7 @@ func usar():
 	Global.mascara_tiempo_activa.emit()
 	#efecto_estoy_en_el_pasado(0.2)
 	print("se uso la mascara de tiempos")
-
+#forzar github
 
 
 
