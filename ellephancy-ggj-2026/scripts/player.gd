@@ -1,11 +1,13 @@
 class_name Player
 extends CharacterBody2D
-#comentario para forzar github
+#comentario para forzar github CON CHECKPOINT
 #---------- mascaras -----------
 @onready var mascara_tiempos: Node2D = %MascaraTiempos
 @onready var mascara_fuerza: Node2D = %MascaraFuerza
 @onready var mascara_traducciones: Node2D = %MascaraTraducciones
 #-------------------------------
+@export var limite_altura_morir : float = 3000
+var reviviendo_player : bool = false
 var ultima_direccion_mirar : int = 1 #para derecha e izquierda solo 1 -1
 var sonido_caida_emitiendo : bool = false
 var sonido_caja_sonando : bool = false
@@ -63,6 +65,7 @@ func _input(event: InputEvent) -> void:
 		mascara_tiempo.desactivar()
 		mascara_fuerza.usar()
 		mascara_traducciones.desactivar()
+	verificar_animacion_con_mascara()
 	if Input.is_action_just_pressed("2"): #usar mascara tiempos
 		if not Global.tiene_mascara_tiempo:
 			print("no tengo la mascara del tiempo")
@@ -70,6 +73,7 @@ func _input(event: InputEvent) -> void:
 		mascara_tiempo.usar()
 		mascara_fuerza.desactivar()
 		mascara_traducciones.desactivar()
+	verificar_animacion_con_mascara()
 	if Input.is_action_just_pressed("3"): #usar mascara traducciones
 		if not Global.tiene_mascara_traducciones:
 			print("no tengo la mascara de las traducciones")
@@ -77,6 +81,7 @@ func _input(event: InputEvent) -> void:
 		mascara_tiempo.desactivar()
 		mascara_fuerza.desactivar()
 		mascara_traducciones.usar()
+	verificar_animacion_con_mascara()
 
 	if Input.is_action_just_pressed("tirar") and objeto_arrastrado and Global.mascara_activa==2:
 		conectar_caja_con_joint()
@@ -104,7 +109,8 @@ func _physics_process(delta: float) -> void:
 			pass #por si necesitan logica en process la ponemos aca
 		ESTADOS.AGARRAR:
 			procesar_agarrar(delta)
-	
+	if global_position.y > limite_altura_morir:
+		matar_player()
 	
 	
 	
@@ -450,3 +456,28 @@ func _on_animated_sprite_pj_animation_finished() -> void:
 		ejecutar_animacion_caida()
 	if animacion == "agarrar_oso" and estado_actual == ESTADOS.AGARRAR:
 		animated_sprite_pj.play("seguir_agarrando") #TODO TESTEAR
+
+
+func matar_player():
+	if reviviendo_player:
+		return
+	reviviendo_player = true
+	global_position = Global.get_checkpoint_position()
+	reviviendo_player = false
+
+
+func verificar_animacion_con_mascara():
+	var animacion_actual = animated_sprite_pj.get_animation()
+	#agarro la misma animacion q se estaba ejecutando pero como ahora cambio de mascara la mando a ejecutar de nuevo
+	if animacion_actual.begins_with("idle"):
+		ejecutar_animacion_idle()
+	if animacion_actual.begins_with("palanca"):
+		ejecutar_animacion_palanca()
+	if animacion_actual.begins_with("caminar"):
+		ejecutar_animacion_caminar()
+	if animacion_actual.begins_with("salto"):
+		ejecutar_animacion_saltar()
+	if animacion_actual.begins_with("caida"):
+		ejecutar_animacion_caida()
+	if animacion_actual.begins_with("seguir"):
+		ejecutar_animacion_arrastrar()
