@@ -578,14 +578,14 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -322.0
 offset_top = -177.0
-offset_right = 322.0
+offset_right = 762.0
 offset_bottom = 177.00128
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(322, 177)
 theme_override_fonts/font = ExtResource("1_ter2f")
 theme_override_font_sizes/font_size = 250
-text = "Título"
+text = "Ningú"
 horizontal_alignment = 1
 vertical_alignment = 1
 
