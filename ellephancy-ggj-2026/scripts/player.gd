@@ -56,18 +56,28 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("1"): #usar mascara tiempos
-		#if mascara tiempos no fue agarrada return
-		mascara_tiempo.usar()
-		mascara_fuerza.desactivar()
-		mascara_traducciones.desactivar()
-		verificar_animacion_con_mascara()
-	if Input.is_action_just_pressed("2"): #usar mascara fuerza
+
+	if Input.is_action_just_pressed("1"): #usar mascara fuerza
+		if not Global.tiene_mascara_fuerza:
+			print("no tengo la mascara de la fuerza")
+			return
 		mascara_tiempo.desactivar()
 		mascara_fuerza.usar()
 		mascara_traducciones.desactivar()
-		verificar_animacion_con_mascara()
+    verificar_animacion_con_mascara()
+	if Input.is_action_just_pressed("2"): #usar mascara tiempos
+		if not Global.tiene_mascara_tiempo:
+			print("no tengo la mascara del tiempo")
+			return
+		mascara_tiempo.usar()
+		mascara_fuerza.desactivar()
+		mascara_traducciones.desactivar()
+    verificar_animacion_con_mascara()
+
 	if Input.is_action_just_pressed("3"): #usar mascara traducciones
+		if not Global.tiene_mascara_traducciones:
+			print("no tengo la mascara de las traducciones")
+			return
 		mascara_tiempo.desactivar()
 		mascara_fuerza.desactivar()
 		mascara_traducciones.usar()
@@ -268,24 +278,24 @@ func aplicar_gravedad(delta : float):
 
 func movimiento_wasd(delta : float): #ya no se usa
 	if direction:
-		velocity.x = move_toward(velocity.x , direction * velocidad, aceleracion * delta)
-		animated_sprite_pj.flip_h = ultima_direccion_mirar < 0 #rotar pj segun para donde se mueve
-		if is_on_floor():
-			ejecutar_animacion_caminar()
-		else:
-			ejecutar_animacion_saltar()
-		
+		#velocity.x = move_toward(velocity.x , direction * velocidad, aceleracion * delta)
+		#animated_sprite_pj.flip_h = ultima_direccion_mirar < 0 #rotar pj segun para donde se mueve
+		#if is_on_floor():
+			#ejecutar_animacion_caminar()
+		#else:
+			#ejecutar_animacion_saltar()
+		#
 		if timer_pasos <= 0 && is_on_floor():
 			%FmodEventEmitter2D.play_one_shot()
 			timer_pasos = timer_pasos_reset
 		timer_pasos -= delta 
-	else:
-		velocity.x = move_toward(velocity.x, 0, desaceleracion*delta)
-		if is_on_floor():
-			if abs(velocity.y) <1:
-				animated_sprite_pj.play("idle_normal")
-		else:
-			ejecutar_animacion_saltar()
+	#else:
+		#velocity.x = move_toward(velocity.x, 0, desaceleracion*delta)
+		#if is_on_floor():
+			#if abs(velocity.y) <1:
+				#animated_sprite_pj.play("idle_normal")
+		#else:
+			#ejecutar_animacion_saltar()
 
 
 
@@ -392,6 +402,11 @@ func procesar_idle(delta):
 func procesar_caminar(delta):
 	velocity.x = move_toward(velocity.x, direction * velocidad, aceleracion * delta)
 	animated_sprite_pj.flip_h = ultima_direccion_mirar < 0
+	if direction:
+		if timer_pasos <= 0 && is_on_floor():
+			%FmodEventEmitter2D.play_one_shot()
+			timer_pasos = timer_pasos_reset
+		timer_pasos -= delta 
 	if direction == 0:
 		cambiar_de_estado(ESTADOS.IDLE)
 		return
@@ -401,6 +416,7 @@ func procesar_caminar(delta):
 	if Input.is_action_just_pressed("w") and (is_on_floor() or puedo_usar_coyote()):
 		velocity.y = velocidad_salto
 		cambiar_de_estado(ESTADOS.SALTAR)
+	
 
 func procesar_saltar(delta):
 	if direction:
