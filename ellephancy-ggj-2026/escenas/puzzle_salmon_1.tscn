@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://b6egkrxvfwusp"]
+[gd_scene load_steps=36 format=3 uid="uid://b6egkrxvfwusp"]
 
 [ext_resource type="Script" uid="uid://ghj06urprt1g" path="res://escenas/puzzle_salmon_1.gd" id="1_6r7eb"]
 [ext_resource type="Texture2D" uid="uid://dibfv1arx47hn" path="res://assets/sprites/palanca_centro.PNG" id="1_o8y83"]
@@ -93,6 +93,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%CONTENEDORRUNASPUERTA:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%CONTENEDORRUNASPUERTA:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.76666665),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_tfrp0"]
 resource_name = "mostrarr_runas_sueltas"
@@ -121,9 +145,61 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%CONTENEDORRUNASPUERTA:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.026835999, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%CONTENEDORRUNASPUERTA:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_omxlu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%CONTENEDORRUNASPUERTA:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%CONTENEDORRUNASPUERTA:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_omxlu"]
 _data = {
+&"RESET": SubResource("Animation_omxlu"),
 &"esconderr_runas_sueltas": SubResource("Animation_borjd"),
 &"mostrarr_runas_sueltas": SubResource("Animation_tfrp0")
 }
@@ -240,7 +316,6 @@ texture = ExtResource("3_gegfy")
 
 [node name="ContenedorRunas" type="Node2D" parent="PuzzleSalmon1"]
 unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0.8632246)
 
 [node name="RunaCambiante1" type="Sprite2D" parent="PuzzleSalmon1/ContenedorRunas"]
 unique_name_in_owner = true
