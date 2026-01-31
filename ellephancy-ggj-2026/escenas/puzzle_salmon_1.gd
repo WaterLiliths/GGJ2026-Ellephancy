@@ -1,5 +1,6 @@
 extends Node2D
 
+
 #TODO INCORPORACION CON MASCARA DE SALMON (ESCONDER Y MOSTRAR RUNAS)
 @export var runa_1 : Texture#todas las runas se las paso por editor
 @export var runa_2 : Texture
@@ -11,6 +12,10 @@ extends Node2D
 @onready var runa_cambiante_2: Sprite2D = %RunaCambiante2
 @onready var runa_cambiante_3: Sprite2D = %RunaCambiante3
 @onready var puerta_salmon: StaticBody2D = %PuertaSalmon
+@onready var contenedor_runas: Node2D = %ContenedorRunas
+@onready var animation_player_runas: AnimationPlayer = %AnimationPlayerRunas
+
+
 
 
 var contador_palanca_1_usada : int = 1#cada palanca cambia solamente a su runa (palanca 1 runa_cambiante 1)
@@ -23,6 +28,8 @@ var diccionario_runas : Dictionary = {}
 
 
 func _ready() -> void:
+	Global.mascara_tiempo_activa.connect(mostrar_runas)
+	Global.mascara_tiempo_desactivar.connect(esconder_runas)
 	#seteo el diccionario
 	diccionario_runas[1] = runa_1 #otro codigo unga unga pero bueno funca
 	diccionario_runas[2] = runa_2
@@ -79,3 +86,13 @@ func _on_palanca_salmon_3_activar_cambiar_runa(id_palanca_int: int) -> void:
 
 func verificar_contrasena():
 	puerta_salmon.verificar_contrasena(contador_palanca_1_usada, contador_palanca_2_usada, contador_palanca_3_usada)
+
+
+func esconder_runas():
+	contenedor_runas.hide()
+	animation_player_runas.play("esconderr_runas_sueltas")
+
+
+func mostrar_runas():
+	contenedor_runas.show()
+	animation_player_runas.play("mostrarr_runas_sueltas")

@@ -26,6 +26,7 @@ func activar() -> void:
 		Global.activar_palanca.emit(id)
 		if tipo_de_palanca == "Buena":
 			$AnimationPlayer.play("activar")
+			print(tipo_de_palanca)
 		else:
 			$AnimationPlayer.play("activar_oxidada")
 	if !esta_encendida and not tipo_de_palanca == "Fallada":

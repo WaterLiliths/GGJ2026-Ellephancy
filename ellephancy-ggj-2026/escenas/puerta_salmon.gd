@@ -1,6 +1,18 @@
 extends StaticBody2D
 
 
+#-------------
+@export var horizontal : bool = false
+@export var timeada : bool = false
+@export var timer : float = 1.0
+
+var contador_id : int = 0
+@export var altura_maxima : float = 250.0
+@export var tiempo_de_apertura : float = 1.5
+@export var tamano = Vector2(1, 1)
+@onready var sprite_2d: Sprite2D = %Sprite2D
+#-----------
+
 @export_range(1,6) var contrasena_1 : int = 1
 @export_range(1,6) var contrasena_2 : int = 1
 @export_range(1,6) var contrasena_3 : int = 1
@@ -25,7 +37,24 @@ func verificar_contrasena(contra1 : int, contra2 : int, contra3 : int):
 	else:
 		print("se recibio la funcion, todavia la contraseña no coincide")
 
+#
+#func abrir_puerta():
+	#print("ABRIR PUERTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+	#%AnimationPlayerSalmon.play("abrir_puerta")
+
+
+
 
 func abrir_puerta():
-	print("ABRIR PUERTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-	%AnimationPlayerSalmon.play("abrir_puerta")
+	var tween_sprite = get_tree().create_tween()
+	var tween_colision = get_tree().create_tween()
+	if horizontal:
+		tween_sprite.tween_property($Sprite2D, "position:x" , -altura_maxima, tiempo_de_apertura)
+		tween_colision.tween_property($CollisionShape2D, "position:x" , -altura_maxima, tiempo_de_apertura)
+	else:
+		tween_sprite.tween_property($Sprite2D, "position:y" , -altura_maxima, tiempo_de_apertura)
+		tween_colision.tween_property($CollisionShape2D, "position:y" , -altura_maxima, tiempo_de_apertura)
+	$TimerTiempoDeApertura.start()
+	#print("la puerta esta abierta")
+	$FmodEventEmitter2D.set_parameter("peso", 5.0)
+	$FmodEventEmitter2D.play()
