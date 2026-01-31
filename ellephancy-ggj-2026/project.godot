@@ -19,7 +19,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Ellephancy_GGJ2026"
-run/main_scene="uid://dkudwre2b373"
+run/main_scene="uid://drx8e4npnl3il"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="uid://116jh6ney8f0"
 
