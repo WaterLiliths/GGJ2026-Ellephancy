@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://by80hrdi7bflk"]
+[gd_scene load_steps=97 format=3 uid="uid://by80hrdi7bflk"]
 
 [ext_resource type="Texture2D" uid="uid://duljulwce33br" path="res://assets/tile_set/Tileset_detalles_inferiores.png" id="1_xm56w"]
 [ext_resource type="Texture2D" uid="uid://cqt2sxqweo75q" path="res://assets/tile_set/Árboles y Piedras.png" id="2_flceq"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cdiyf1rhsemkm" path="res://assets/tile_set/Tileset Hierba Definitivo 2.png" id="5_nvdvt"]
 [ext_resource type="Script" uid="uid://b3bx7uo5yqmk3" path="res://escenas/creador_de_niveles.gd" id="5_nx2vk"]
 [ext_resource type="Texture2D" uid="uid://d2nbkfqavfqrf" path="res://assets/tile_set/Tileset _para_sombrear.png" id="6_s1gxm"]
+[ext_resource type="Texture2D" uid="uid://f4onoalobwwh" path="res://assets/tile_set/plataforma_madera_pared.png" id="9_dfdpj"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_18las"]
 polygon = PackedVector2Array(8, -24, 8, -32, -32, -32, -32, -24)
@@ -1055,6 +1056,38 @@ texture_region_size = Vector2i(64, 64)
 12:11/0 = 0
 13:11/0 = 0
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_swlod"]
+polygon = PackedVector2Array(-32, -24, 32, -24, 32, -16, -16, -16, -16, 32, -32, 32)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_q6obm"]
+polygon = PackedVector2Array(32, -24, -32, -24, -32, -16, 32, -16)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_latpf"]
+polygon = PackedVector2Array(32, -24, -32, -24, -32, -16, 32, -16)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7ppdf"]
+polygon = PackedVector2Array(32, -24, -32, -24, -32, -16, 16, -16, 16, 32, 32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wmt41"]
+texture = ExtResource("9_dfdpj")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_swlod")
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(32, -32, -32, -32, -32, -16, 32, -16)
+0:0/0/physics_layer_0/polygon_0/one_way = true
+1:0/0 = 0
+1:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_q6obm")
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(32, -32, -32, -32, -32, -16, 32, -16)
+1:0/0/physics_layer_0/polygon_0/one_way = true
+2:0/0 = 0
+2:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_latpf")
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(32, -32, -32, -32, -32, -16, 32, -16)
+2:0/0/physics_layer_0/polygon_0/one_way = true
+3:0/0 = 0
+3:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_7ppdf")
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(32, -32, -32, -32, -32, -16, 32, -16)
+3:0/0/physics_layer_0/polygon_0/one_way = true
+
 [sub_resource type="TileSet" id="TileSet_xy3v2"]
 tile_size = Vector2i(64, 64)
 occlusion_layer_0/light_mask = 2
@@ -1075,6 +1108,7 @@ sources/5 = SubResource("TileSetAtlasSource_xy3v2")
 sources/11 = SubResource("TileSetAtlasSource_xm56w")
 sources/4 = SubResource("TileSetAtlasSource_dfdpj")
 sources/0 = SubResource("TileSetAtlasSource_swlod")
+sources/7 = SubResource("TileSetAtlasSource_wmt41")
 tile_proxies/coords_level = [[9, Vector2i(0, 0)], [11, Vector2i(0, 0)], [9, Vector2i(1, 0)], [11, Vector2i(1, 0)], [9, Vector2i(2, 0)], [11, Vector2i(2, 0)], [9, Vector2i(3, 0)], [11, Vector2i(3, 0)], [10, Vector2i(0, 0)], [11, Vector2i(4, 0)], [10, Vector2i(0, 1)], [11, Vector2i(4, 1)], [10, Vector2i(1, 0)], [11, Vector2i(5, 0)], [10, Vector2i(1, 1)], [11, Vector2i(5, 1)], [10, Vector2i(2, 1)], [11, Vector2i(6, 1)], [10, Vector2i(3, 0)], [11, Vector2i(7, 0)], [10, Vector2i(3, 1)], [11, Vector2i(7, 1)]]
 
 [node name="CreadorDeNiveles" type="TileMapLayer"]
