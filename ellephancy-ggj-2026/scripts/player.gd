@@ -1,11 +1,13 @@
 class_name Player
 extends CharacterBody2D
-
+#comentario para forzar github CON CHECKPOINT
 #---------- mascaras -----------
 @onready var mascara_tiempos: Node2D = %MascaraTiempos
 @onready var mascara_fuerza: Node2D = %MascaraFuerza
 @onready var mascara_traducciones: Node2D = %MascaraTraducciones
 #-------------------------------
+@export var limite_altura_morir : float = 3000
+var reviviendo_player : bool = false
 var ultima_direccion_mirar : int = 1 #para derecha e izquierda solo 1 -1
 var sonido_caida_emitiendo : bool = false
 var sonido_caja_sonando : bool = false
@@ -17,7 +19,7 @@ var agarrando_caja : bool = false
 @export var gravedad_subiendo : float = 1.0
 @export var gravedad_bajando : float = 1.4
 @export var velocidad : float = 250.0
-@export var velocidad_salto: float = -500
+@export var velocidad_salto: float = -620
 @export var velocidad_salto_con_mascara = -620
 @export var desaceleración_al_saltar : float = 0.5 #arreglar igual 0.5 safa
 @export var desaceleracion_horizontal : float = 0.07 #ajustable a gusto
@@ -56,18 +58,30 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("1"): #usar mascara tiempos
-		mascara_tiempo.usar()
-		mascara_fuerza.desactivar()
-		mascara_traducciones.desactivar()
-	if Input.is_action_just_pressed("2"): #usar mascara fuerza
+	if Input.is_action_just_pressed("1"): #usar mascara fuerza
+		if not Global.tiene_mascara_fuerza:
+			print("no tengo la mascara de la fuerza")
+			return
 		mascara_tiempo.desactivar()
 		mascara_fuerza.usar()
 		mascara_traducciones.desactivar()
+	verificar_animacion_con_mascara()
+	if Input.is_action_just_pressed("2"): #usar mascara tiempos
+		if not Global.tiene_mascara_tiempo:
+			print("no tengo la mascara del tiempo")
+			return
+		mascara_tiempo.usar()
+		mascara_fuerza.desactivar()
+		mascara_traducciones.desactivar()
+	verificar_animacion_con_mascara()
 	if Input.is_action_just_pressed("3"): #usar mascara traducciones
+		if not Global.tiene_mascara_traducciones:
+			print("no tengo la mascara de las traducciones")
+			return
 		mascara_tiempo.desactivar()
 		mascara_fuerza.desactivar()
 		mascara_traducciones.usar()
+	verificar_animacion_con_mascara()
 
 	if Input.is_action_just_pressed("tirar") and objeto_arrastrado and Global.mascara_activa==2:
 		conectar_caja_con_joint()
@@ -95,7 +109,8 @@ func _physics_process(delta: float) -> void:
 			pass #por si necesitan logica en process la ponemos aca
 		ESTADOS.AGARRAR:
 			procesar_agarrar(delta)
-	
+	if global_position.y > limite_altura_morir:
+		matar_player()
 	
 	
 	
@@ -264,24 +279,24 @@ func aplicar_gravedad(delta : float):
 
 func movimiento_wasd(delta : float): #ya no se usa
 	if direction:
-		velocity.x = move_toward(velocity.x , direction * velocidad, aceleracion * delta)
-		animated_sprite_pj.flip_h = ultima_direccion_mirar < 0 #rotar pj segun para donde se mueve
-		if is_on_floor():
-			ejecutar_animacion_caminar()
-		else:
-			ejecutar_animacion_saltar()
-		
+		#velocity.x = move_toward(velocity.x , direction * velocidad, aceleracion * delta)
+		#animated_sprite_pj.flip_h = ultima_direccion_mirar < 0 #rotar pj segun para donde se mueve
+		#if is_on_floor():
+			#ejecutar_animacion_caminar()
+		#else:
+			#ejecutar_animacion_saltar()
+		#
 		if timer_pasos <= 0 && is_on_floor():
 			%FmodEventEmitter2D.play_one_shot()
 			timer_pasos = timer_pasos_reset
 		timer_pasos -= delta 
-	else:
-		velocity.x = move_toward(velocity.x, 0, desaceleracion*delta)
-		if is_on_floor():
-			if abs(velocity.y) <1:
-				animated_sprite_pj.play("idle_normal")
-		else:
-			ejecutar_animacion_saltar()
+	#else:
+		#velocity.x = move_toward(velocity.x, 0, desaceleracion*delta)
+		#if is_on_floor():
+			#if abs(velocity.y) <1:
+				#animated_sprite_pj.play("idle_normal")
+		#else:
+			#ejecutar_animacion_saltar()
 
 
 
@@ -388,6 +403,11 @@ func procesar_idle(delta):
 func procesar_caminar(delta):
 	velocity.x = move_toward(velocity.x, direction * velocidad, aceleracion * delta)
 	animated_sprite_pj.flip_h = ultima_direccion_mirar < 0
+	if direction:
+		if timer_pasos <= 0 && is_on_floor():
+			%FmodEventEmitter2D.play_one_shot()
+			timer_pasos = timer_pasos_reset
+		timer_pasos -= delta 
 	if direction == 0:
 		cambiar_de_estado(ESTADOS.IDLE)
 		return
@@ -397,6 +417,7 @@ func procesar_caminar(delta):
 	if Input.is_action_just_pressed("w") and (is_on_floor() or puedo_usar_coyote()):
 		velocity.y = velocidad_salto
 		cambiar_de_estado(ESTADOS.SALTAR)
+	
 
 func procesar_saltar(delta):
 	if direction:
@@ -435,3 +456,28 @@ func _on_animated_sprite_pj_animation_finished() -> void:
 		ejecutar_animacion_caida()
 	if animacion == "agarrar_oso" and estado_actual == ESTADOS.AGARRAR:
 		animated_sprite_pj.play("seguir_agarrando") #TODO TESTEAR
+
+
+func matar_player():
+	if reviviendo_player:
+		return
+	reviviendo_player = true
+	global_position = Global.get_checkpoint_position()
+	reviviendo_player = false
+
+
+func verificar_animacion_con_mascara():
+	var animacion_actual = animated_sprite_pj.get_animation()
+	#agarro la misma animacion q se estaba ejecutando pero como ahora cambio de mascara la mando a ejecutar de nuevo
+	if animacion_actual.begins_with("idle"):
+		ejecutar_animacion_idle()
+	if animacion_actual.begins_with("palanca"):
+		ejecutar_animacion_palanca()
+	if animacion_actual.begins_with("caminar"):
+		ejecutar_animacion_caminar()
+	if animacion_actual.begins_with("salto"):
+		ejecutar_animacion_saltar()
+	if animacion_actual.begins_with("caida"):
+		ejecutar_animacion_caida()
+	if animacion_actual.begins_with("seguir"):
+		ejecutar_animacion_arrastrar()

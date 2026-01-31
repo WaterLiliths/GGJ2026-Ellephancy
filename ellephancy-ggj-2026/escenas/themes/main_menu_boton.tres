@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://c3il706qyjae5"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://c3il706qyjae5"]
 
 [ext_resource type="FontFile" uid="uid://ciwhe1apfc5gi" path="res://assets/fonts/Balgruf.otf" id="1_vv2yp"]
 [ext_resource type="FontFile" uid="uid://c8jaldbo0lky" path="res://assets/fonts/Balgruf_Italic.otf" id="2_5o0kr"]
@@ -9,6 +9,8 @@ corner_radius_top_left = 15
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5o0kr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w6fns"]
 bg_color = Color(1, 1, 1, 1)
@@ -48,11 +50,16 @@ thickness = 6
 
 [resource]
 Button/colors/font_color = Color(0, 0, 0, 1)
-Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 0)
-Button/colors/font_hover_color = Color(0.39691716, 0.7186225, 0.38844407, 1)
+Button/colors/font_disabled_color = Color(0.11372549, 0.2627451, 0.08235294, 1)
+Button/colors/font_focus_color = Color(0.11372549, 0.2627451, 0.08235294, 1)
+Button/colors/font_hover_color = Color(0.11372549, 0.2627451, 0.08235294, 1)
+Button/colors/font_hover_pressed_color = Color(0.11372549, 0.2627451, 0.08235294, 1)
+Button/colors/font_pressed_color = Color(0.11372549, 0.2627451, 0.08235294, 1)
+Button/colors/icon_focus_color = Color(1, 1, 1, 0)
 Button/font_sizes/font_size = 30
 Button/fonts/font = ExtResource("1_vv2yp")
 Button/styles/disabled = SubResource("StyleBoxFlat_8cfpu")
+Button/styles/focus = SubResource("StyleBoxEmpty_5o0kr")
 Button/styles/hover = SubResource("StyleBoxFlat_w6fns")
 Button/styles/hover_pressed = SubResource("StyleBoxFlat_pkvd8")
 Button/styles/normal = SubResource("StyleBoxFlat_3r3h5")
