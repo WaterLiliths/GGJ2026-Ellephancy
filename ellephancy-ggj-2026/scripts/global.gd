@@ -8,9 +8,9 @@ signal mascara_tiempo_desactivar
 signal mascara_fuerza_desactivar
 
 #Booleano por mascara
-var tiene_mascara_fuerza : bool = false
+var tiene_mascara_fuerza : bool = true
 var tiene_mascara_tiempo : bool = false
-var tiene_mascara_traducciones : bool = false
+var tiene_mascara_traducciones : bool = true
 
 var mascara_activa : int = 0
 #----------------PALANCA Y PUERTA------------------

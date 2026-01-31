@@ -1,4 +1,4 @@
-extends TileMapLayer
+extends Node2D
 
 
 @export var presente : bool
@@ -27,10 +27,8 @@ func on_mascara_tiempo_desactivada():
 		esconder_mundo()
 
 func esconder_mundo():
-	collision_enabled = false
 	hide()
 
 
 func mostrar_mundo():
-	collision_enabled = true
 	show()
