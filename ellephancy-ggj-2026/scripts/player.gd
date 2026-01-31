@@ -50,6 +50,7 @@ enum ESTADOS {IDLE, CAMINAR, SALTAR, CAER, INTERACTUAR, AGARRAR}
 var estado_actual : ESTADOS = ESTADOS.IDLE
 
 func _ready() -> void:
+	Global.agarre_mascara.connect(on_agarre_mascara)
 	timer_tiempo_en_aire.wait_time = tiempo_maximo_en_aire
 	velocidad_inicial = velocidad
 	velocidad_inicial_salto = velocidad_salto
@@ -481,3 +482,34 @@ func verificar_animacion_con_mascara():
 		ejecutar_animacion_caida()
 	if animacion_actual.begins_with("seguir"):
 		ejecutar_animacion_arrastrar()
+
+
+func tiene_mascara_fuerza():
+	mascara_tiempo.desactivar()
+	mascara_fuerza.usar()
+	mascara_traducciones.desactivar()
+	verificar_animacion_con_mascara()
+
+
+func tiene_mascara_tiempo():
+	mascara_tiempo.usar()
+	mascara_fuerza.desactivar()
+	mascara_traducciones.desactivar()
+	verificar_animacion_con_mascara()
+
+
+func tiene_mascara_traducciones():
+	mascara_tiempo.desactivar()
+	mascara_fuerza.desactivar()
+	mascara_traducciones.usar()
+	verificar_animacion_con_mascara()
+
+
+func on_agarre_mascara(nombre_mascara : String):
+	match nombre_mascara:
+		"ciervo":
+			tiene_mascara_tiempo()
+		"oso":
+			tiene_mascara_fuerza()
+		"salmon":
+			tiene_mascara_traducciones()

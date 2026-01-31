@@ -66,6 +66,33 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dtuov"]
 size = Vector2(544.4444, 299.11108)
 
+[sub_resource type="Animation" id="Animation_omxlu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%CONTENEDORRUNASPUERTA:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%CONTENEDORRUNASPUERTA:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="Animation" id="Animation_borjd"]
 resource_name = "esconderr_runas_sueltas"
 length = 0.8
@@ -170,33 +197,6 @@ tracks/3/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_omxlu"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%CONTENEDORRUNASPUERTA:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("%CONTENEDORRUNASPUERTA:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_omxlu"]
 _data = {
 &"RESET": SubResource("Animation_omxlu"),
@@ -217,6 +217,21 @@ size = Vector2(90, 424)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_555dy"]
 polygon = PackedVector2Array(15.321841, -111.97159, 19.353905, -107.558914, 19.75711, -84.94396, 20.563524, -65.08694, 17.337873, -51.848915, 17.74108, -34.19822, 20.563524, -14.341188, 20.563524, 82.18604, 20.160316, 104.24941, 22.17635, 110.31683, 12.902603, 116.38426, -15.725048, 116.38426, -18.950699, 108.1105, -17.337873, 77.22179, -16.53146, 67.84486, -13.305809, 60.122677, -18.144285, 52.400497, -18.144285, -45.229904, -12.902603, -92.666145, -16.128254, -107.558914, -9.2737465, -116.38426, 10.080158, -115.83268)
 
+[sub_resource type="Animation" id="Animation_42s24"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ContenedorPuerta:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -18.814854)]
+}
+
 [sub_resource type="Animation" id="Animation_f0ung"]
 resource_name = "abrir_puerta"
 length = 1.3
@@ -231,21 +246,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 0.3077863, 0.21763788),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, -18.814854), Vector2(0, -198.07393)]
-}
-
-[sub_resource type="Animation" id="Animation_42s24"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ContenedorPuerta:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -18.814854)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yi0su"]
