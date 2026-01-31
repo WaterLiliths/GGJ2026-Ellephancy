@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://drx8e4npnl3il"]
+[gd_scene load_steps=30 format=3 uid="uid://drx8e4npnl3il"]
 
 [ext_resource type="Script" uid="uid://cjruy0e7k5n74" path="res://escenas/main_menu.gd" id="1_2cr0s"]
 [ext_resource type="FontFile" uid="uid://ciwhe1apfc5gi" path="res://assets/fonts/Balgruf.otf" id="1_ter2f"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cjwyiaveg6mxo" path="res://assets/parallax/Parallaxbosque3.png" id="5_2vsao"]
 [ext_resource type="Texture2D" uid="uid://b8j7oryi85t2p" path="res://assets/parallax/Parallaxbosque4.png" id="6_nxvcq"]
 [ext_resource type="Gradient" uid="uid://b4xgyyw4wdl42" path="res://escenas/polen.tres" id="7_2vsao"]
+[ext_resource type="PackedScene" uid="uid://ww1sbsindpl7" path="res://escenas/opciones.tscn" id="11_nxvcq"]
 
 [sub_resource type="Animation" id="Animation_2vsao"]
 length = 0.001
@@ -304,7 +305,19 @@ tracks/12/path = NodePath("VBoxContainer/BotonCustomCreditos:modulate")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(4.0333333, 4.866667),
+"times": PackedFloat32Array(4.6, 5.4333334),
+"transitions": PackedFloat32Array(1, 0.074325606),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("VBoxContainer/BotonCustomOpciones:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(4.033333, 4.866667),
 "transitions": PackedFloat32Array(1, 0.074325606),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -510,7 +523,7 @@ hue_variation_max = 0.11
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/UI.bank"]
 
 [node name="SaltoCiervo4" type="Sprite2D" parent="."]
-modulate = Color(0.20871013, 0.20871016, 0.20871007, 1)
+modulate = Color(0.28754017, 0.28754017, 0.28754017, 1)
 z_index = 1
 y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_nxvcq")
@@ -525,9 +538,9 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 85.0
-offset_top = -298.0
+offset_top = -274.0
 offset_right = 333.75
-offset_bottom = -163.0
+offset_bottom = -117.0
 grow_vertical = 0
 theme_override_constants/separation = 14
 
@@ -536,8 +549,13 @@ light_mask = 0
 layout_mode = 2
 text = "Jugar"
 
+[node name="BotonCustomOpciones" parent="VBoxContainer" instance=ExtResource("2_8cfpu")]
+light_mask = 0
+layout_mode = 2
+text = "Opciones"
+
 [node name="BotonCustomCreditos" parent="VBoxContainer" instance=ExtResource("2_8cfpu")]
-modulate = Color(1, 1, 1, 0.4759997)
+modulate = Color(1, 1, 1, 0.8400002)
 light_mask = 0
 layout_mode = 2
 text = "Créditos"
@@ -554,7 +572,7 @@ anchor_bottom = 0.5
 offset_left = -322.0
 offset_top = -177.0
 offset_right = 322.0
-offset_bottom = 177.00128
+offset_bottom = 177.00122
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(322, 177)
@@ -610,5 +628,11 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
+[node name="Opciones" parent="." instance=ExtResource("11_nxvcq")]
+light_mask = 0
+z_index = 50
+layout_mode = 1
+
 [connection signal="pressed" from="VBoxContainer/BotonCustomComenzar" to="." method="_on_boton_custom_comenzar_pressed"]
+[connection signal="pressed" from="VBoxContainer/BotonCustomOpciones" to="." method="_on_boton_custom_opciones_pressed"]
 [connection signal="pressed" from="VBoxContainer/BotonCustomCreditos" to="." method="_on_boton_custom_creditos_pressed"]

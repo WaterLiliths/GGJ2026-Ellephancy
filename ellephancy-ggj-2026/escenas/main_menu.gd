@@ -1,7 +1,10 @@
 extends Control
 
-
 func _ready() -> void:
+	$Opciones.visible = false
+	$FmodEventEmitter2D.volume = Global.volumen_musica
+	$FmodEventEmitter2D2.volume = Global.volumen_efectos
+	
 	$FmodEventEmitter2D.set_parameter("Pantalla", "Menu")
 	$ColorRect2.visible = true
 	$ColorRect2.z_index = 3
@@ -12,6 +15,9 @@ func _ready() -> void:
 	$ColorRect2.visible = false
 	$ColorRect2.z_index = 8
 
+func _process(delta: float) -> void:
+	$FmodEventEmitter2D.volume = Global.volumen_musica
+	$FmodEventEmitter2D2.volume = Global.volumen_efectos
 
 func _on_boton_custom_comenzar_pressed() -> void:
 	$AnimationPlayer.play("fade_out")
@@ -24,3 +30,11 @@ func _on_boton_custom_creditos_pressed() -> void:
 	$AnimationPlayer.play("fade_out")
 	await get_tree().create_timer(3).timeout
 	get_tree().change_scene_to_file("res://escenas/creditos.tscn")
+	
+
+
+func _on_boton_custom_opciones_pressed() -> void:
+	if $Opciones.visible:
+		$Opciones.visible = false
+	else:
+		$Opciones.visible = true
