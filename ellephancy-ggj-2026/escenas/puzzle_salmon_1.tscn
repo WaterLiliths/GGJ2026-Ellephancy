@@ -11,8 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://dt5piqibgkgel" path="res://assets/sprites/rocasucialado.png" id="5_6r7eb"]
 [ext_resource type="Texture2D" uid="uid://1ko7mcr6doos" path="res://assets/TILES-TEST/runas-test/runa-test1.png" id="5_gegfy"]
 [ext_resource type="Texture2D" uid="uid://ddtjp3rjdd7ak" path="res://assets/runas-finales/Runa4.png" id="5_omxlu"]
+[ext_resource type="Texture2D" uid="uid://b6m0pxae5ovhg" path="res://assets/runas-finales/Runa5 (1).png" id="6_42s24"]
 [ext_resource type="Texture2D" uid="uid://ctfsfjhqfytxw" path="res://assets/TILES-TEST/runas-test/runa-test2.png" id="6_t1q3l"]
-[ext_resource type="Texture2D" uid="uid://ddaddo2la6kvx" path="res://assets/runas-finales/Runa5.png" id="6_tfrp0"]
 [ext_resource type="Texture2D" uid="uid://dgqgmrbbmqe87" path="res://assets/runas-finales/Runa6.png" id="7_kk613"]
 [ext_resource type="Texture2D" uid="uid://bjudw1ckt6cac" path="res://assets/TILES-TEST/runas-test/runa-test-4.png" id="7_s1ify"]
 [ext_resource type="Texture2D" uid="uid://djh1ycbtamrk" path="res://assets/TILES-TEST/runas-test/runa-test-3.png" id="8_5j0a8"]
@@ -263,7 +263,7 @@ runa_1 = ExtResource("2_gbj5t")
 runa_2 = ExtResource("3_42s24")
 runa_3 = ExtResource("4_borjd")
 runa_4 = ExtResource("5_omxlu")
-runa_5 = ExtResource("6_tfrp0")
+runa_5 = ExtResource("6_42s24")
 runa_6 = ExtResource("7_kk613")
 
 [node name="PalancaSalmon1" type="Area2D" parent="PuzzleSalmon1" node_paths=PackedStringArray("sprite_asociado") groups=["palancas"]]
