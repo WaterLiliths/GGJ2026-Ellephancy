@@ -265,6 +265,8 @@ runa_3 = ExtResource("4_borjd")
 runa_4 = ExtResource("5_omxlu")
 runa_5 = ExtResource("6_42s24")
 runa_6 = ExtResource("7_kk613")
+runa_2_comienza_con = 2
+runa_3_comienza_con = 3
 
 [node name="PalancaSalmon1" type="Area2D" parent="PuzzleSalmon1" node_paths=PackedStringArray("sprite_asociado") groups=["palancas"]]
 unique_name_in_owner = true
@@ -273,8 +275,8 @@ scale = Vector2(0.19999999, 0.19999999)
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("2_k8i5l")
-id_palanca = 1
 sprite_asociado = NodePath("../ContenedorRunas/RunaCambiante1")
+id_palanca = 1
 
 [node name="AnimationPlayer1" type="AnimationPlayer" parent="PuzzleSalmon1/PalancaSalmon1"]
 unique_name_in_owner = true
