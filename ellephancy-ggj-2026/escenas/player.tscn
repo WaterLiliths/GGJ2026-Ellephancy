@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://cs3h434myxe4r"]
+[gd_scene load_steps=56 format=3 uid="uid://cs3h434myxe4r"]
 
 [ext_resource type="Script" uid="uid://d1p6o2ixegcp2" path="res://scripts/player.gd" id="1_esbpa"]
 [ext_resource type="Texture2D" uid="uid://csvm86vnc0cmo" path="res://assets/player/mascaras/Agarre oso destra 1.png" id="2_v66k4"]
@@ -51,6 +51,7 @@
 [ext_resource type="Texture2D" uid="uid://r28acdyaq1tl" path="res://assets/player/mascaras/Salmón palanca 2.png" id="37_y4t0h"]
 [ext_resource type="Texture2D" uid="uid://c0fbkr3kyb8ik" path="res://assets/player/mascaras/Oso palanca 3.png" id="38_3jn0c"]
 [ext_resource type="Texture2D" uid="uid://bnm5gllpptse4" path="res://assets/player/mascaras/Salmón palanca 3.png" id="38_vchxa"]
+[ext_resource type="PackedScene" uid="uid://djqldl5uq6oy4" path="res://escenas/hud.tscn" id="52_hopxw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_w7fad"]
 animations = [{
@@ -357,6 +358,7 @@ script = ExtResource("1_esbpa")
 tiempo_maximo_en_aire = 10.0
 velocidad_salto_con_mascara = -800
 velocidad_al_agarrar = 50.35
+tiene_mascara_fuerza = false
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/SFX.bank"]
@@ -455,6 +457,16 @@ one_shot = true
 event_name = "event:/Personaje/Movimiento/caida"
 event_guid = "{fbc63101-c1f0-46e6-ab63-d76fad8983e3}"
 volume = 0.5
+
+[node name="HUD" parent="." instance=ExtResource("52_hopxw")]
+
+[node name="FmodEventEmitter2D6" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Mascaras/equipar"
+event_guid = "{16488a59-bdd1-4164-9f3c-6f66071df1d8}"
+
+[node name="FmodEventEmitter2D7" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Personaje/Morir"
+event_guid = "{ea3f93cf-6587-4284-a571-252290d8e701}"
 
 [connection signal="animation_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_animation_changed"]
 [connection signal="animation_finished" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_animation_finished"]

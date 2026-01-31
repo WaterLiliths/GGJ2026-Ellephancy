@@ -1,0 +1,382 @@
+[gd_scene load_steps=31 format=3 uid="uid://dkudwre2b373"]
+
+[ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/Juego.gd" id="1_2y4ua"]
+[ext_resource type="Texture2D" uid="uid://dvh87k52osuo2" path="res://assets/parallax/bosquepocho1.png" id="2_ffuyt"]
+[ext_resource type="Texture2D" uid="uid://datv7pocxxolq" path="res://assets/parallax/Parallaxbosque1.png" id="2_ms3um"]
+[ext_resource type="Texture2D" uid="uid://bpl65vrr7kb85" path="res://assets/parallax/bosquepocho2.png" id="3_kypqj"]
+[ext_resource type="Texture2D" uid="uid://wt6gflni6xxd" path="res://assets/parallax/Parallaxbosque2.png" id="3_u84wv"]
+[ext_resource type="Texture2D" uid="uid://cjwyiaveg6mxo" path="res://assets/parallax/Parallaxbosque3.png" id="4_lg721"]
+[ext_resource type="Texture2D" uid="uid://3nw72fsdndrh" path="res://assets/parallax/bosquepocho3.png" id="4_yv8to"]
+[ext_resource type="Texture2D" uid="uid://b8j7oryi85t2p" path="res://assets/parallax/Parallaxbosque4.png" id="5_ffuyt"]
+[ext_resource type="Texture2D" uid="uid://7ygv4lw6hg7s" path="res://assets/parallax/bosquepocho4.png" id="5_m34qx"]
+[ext_resource type="Texture2D" uid="uid://bun5p05g1y6p6" path="res://assets/parallax/bosquepocho5.png" id="6_gdb2x"]
+[ext_resource type="Gradient" uid="uid://b4xgyyw4wdl42" path="res://escenas/polen.tres" id="8_7dwkk"]
+[ext_resource type="PackedScene" uid="uid://cs3h434myxe4r" path="res://escenas/player.tscn" id="8_m34qx"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="9_gdb2x"]
+[ext_resource type="Script" uid="uid://dxat8cn5c3yh5" path="res://escenas/levels/node_2d.gd" id="10_e4rmv"]
+[ext_resource type="PackedScene" uid="uid://dkaf2gav3cro1" path="res://escenas/levels/first_level_works.tscn" id="12_7dwkk"]
+[ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="12_g2cn0"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="13_8mohb"]
+[ext_resource type="PackedScene" uid="uid://d3kk7nu2wr28k" path="res://escenas/levels/second_level.tscn" id="18_kypqj"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ms3um"]
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u84wv"]
+gradient = ExtResource("8_7dwkk")
+width = 14
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5854701, 0.41025642)
+
+[sub_resource type="Curve" id="Curve_lg721"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ffuyt"]
+offsets = PackedFloat32Array(0.0025641026, 0.071794875, 0.21794872, 0.33846155, 0.53333336, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.96, 0.78928, 0.028799972, 1, 1, 0.4465, 0.19, 1, 0.61, 0, 0.030500118, 1, 0.25, 0.25, 0.25, 1, 0, 0, 0, 0)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kypqj"]
+blend_mode = 1
+light_mode = 2
+
+[sub_resource type="Gradient" id="Gradient_yv8to"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yv8to"]
+gradient = SubResource("Gradient_yv8to")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.7094017, 0.35042736)
+
+[sub_resource type="Curve" id="Curve_m34qx"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.16062176, 0.68539333), 0.0, 0.0, 0, 0, Vector2(0.34715027, 0.26966298), 0.0, 0.0, 0, 0, Vector2(0.6839379, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Resource" id="Resource_yei3n"]
+script = ExtResource("13_8mohb")
+
+[sub_resource type="Animation" id="Animation_7dwkk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Camera2D/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player/Camera2D/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FmodEventEmitter2D:volume")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.685]
+}
+
+[sub_resource type="Animation" id="Animation_yqcop"]
+resource_name = "fade_in"
+length = 3.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Camera2D/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 3.5),
+"transitions": PackedFloat32Array(1, 0.06934825),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player/Camera2D/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.033333335, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FmodEventEmitter2D:volume")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.685]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FmodEventEmitter2D2:volume")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.685]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ms3um"]
+_data = {
+&"RESET": SubResource("Animation_7dwkk"),
+&"fade_in": SubResource("Animation_yqcop")
+}
+
+[node name="Juego" type="Node2D"]
+script = ExtResource("1_2y4ua")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+position = Vector2(1230, -222)
+rotation = 0.7033677
+color = Color(0.76, 0.43016, 0.2888, 1)
+shadow_enabled = true
+shadow_filter_smooth = 6.7
+shadow_item_cull_mask = 7
+
+[node name="ParallaxPresente" type="Node2D" parent="."]
+z_index = -10
+position = Vector2(0, 367)
+
+[node name="ParallaxFondoPresente" type="Parallax2D" parent="ParallaxPresente"]
+scroll_scale = Vector2(0.2, 0)
+repeat_size = Vector2(1400, 0)
+repeat_times = 3
+
+[node name="SpriteFondoPresente" type="Sprite2D" parent="ParallaxPresente/ParallaxFondoPresente"]
+texture = ExtResource("2_ffuyt")
+
+[node name="ParallaxBosqueAtrasPresente" type="Parallax2D" parent="ParallaxPresente"]
+scroll_scale = Vector2(0.3, 0)
+repeat_size = Vector2(1400, 0)
+repeat_times = 3
+
+[node name="SpriteBosqueAtrasPresente" type="Sprite2D" parent="ParallaxPresente/ParallaxBosqueAtrasPresente"]
+texture = ExtResource("3_kypqj")
+
+[node name="ParallaxBosqueMedioPresente" type="Parallax2D" parent="ParallaxPresente"]
+scroll_scale = Vector2(0.4, 0)
+repeat_size = Vector2(1400, 0)
+repeat_times = 3
+
+[node name="SpriteBosqueMedioPresente" type="Sprite2D" parent="ParallaxPresente/ParallaxBosqueMedioPresente"]
+texture = ExtResource("4_yv8to")
+
+[node name="ParallaxBosqueCercaPresente" type="Parallax2D" parent="ParallaxPresente"]
+scroll_scale = Vector2(0.5, 0)
+repeat_size = Vector2(1400, 0)
+repeat_times = 3
+
+[node name="SpriteBosqueCercaPresente" type="Sprite2D" parent="ParallaxPresente/ParallaxBosqueCercaPresente"]
+texture = ExtResource("5_m34qx")
+
+[node name="ParallaxEspinasPresente" type="Parallax2D" parent="ParallaxPresente"]
+scroll_scale = Vector2(0.6, 0)
+repeat_size = Vector2(1400, 0)
+repeat_times = 3
+
+[node name="SpriteEspinasPresente" type="Sprite2D" parent="ParallaxPresente/ParallaxEspinasPresente"]
+texture = ExtResource("6_gdb2x")
+
+[node name="ParallaxPasado" type="Node2D" parent="."]
+visible = false
+position = Vector2(0, 125)
+
+[node name="ParalaxFondoPasado" type="Parallax2D" parent="ParallaxPasado"]
+z_index = -10
+scroll_scale = Vector2(0.2, 0)
+scroll_offset = Vector2(0, 228)
+repeat_size = Vector2(1350, 0)
+repeat_times = 3
+
+[node name="FondoPasadoImagen" type="Sprite2D" parent="ParallaxPasado/ParalaxFondoPasado"]
+z_index = -10
+texture = ExtResource("2_ms3um")
+
+[node name="ParallaxBosqueFondoPasado" type="Parallax2D" parent="ParallaxPasado"]
+z_index = -10
+scroll_scale = Vector2(0.3, 0)
+scroll_offset = Vector2(0, 228)
+repeat_size = Vector2(1350, 0)
+repeat_times = 3
+
+[node name="BosquePasadoFondoImagen" type="Sprite2D" parent="ParallaxPasado/ParallaxBosqueFondoPasado"]
+z_index = -10
+texture = ExtResource("3_u84wv")
+
+[node name="ParallaxBosquePasado" type="Parallax2D" parent="ParallaxPasado"]
+z_index = -10
+scroll_scale = Vector2(0.4, 0)
+scroll_offset = Vector2(0, 228)
+repeat_size = Vector2(1350, 0)
+repeat_times = 3
+
+[node name="BosquePasdoImagen" type="Sprite2D" parent="ParallaxPasado/ParallaxBosquePasado"]
+z_index = -10
+texture = ExtResource("4_lg721")
+
+[node name="ParallaxArbolesPasado" type="Parallax2D" parent="ParallaxPasado"]
+z_index = -10
+scroll_scale = Vector2(0.5, 0)
+scroll_offset = Vector2(0, 228)
+repeat_size = Vector2(1350, 0)
+repeat_times = 3
+
+[node name="ArbolesPasadoImagen" type="Sprite2D" parent="ParallaxPasado/ParallaxArbolesPasado"]
+z_index = -10
+texture = ExtResource("5_ffuyt")
+
+[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
+bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank", "res://assets/audio/FmodBanks/Desktop/UI.bank"]
+
+[node name="Player" parent="." instance=ExtResource("8_m34qx")]
+position = Vector2(7923, -778)
+scale = Vector2(0.64, 0.64)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+physics_interpolation_mode = 1
+top_level = true
+position = Vector2(7923, -778)
+zoom = Vector2(1.6, 1.6)
+editor_draw_limits = true
+
+[node name="FmodListener2D" type="FmodListener2D" parent="Player/Camera2D"]
+
+[node name="PhantomCameraHost" type="Node" parent="Player/Camera2D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("9_gdb2x")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="ColorRect" type="ColorRect" parent="Player/Camera2D"]
+z_index = 185
+y_sort_enabled = true
+offset_left = -582.0
+offset_top = -872.0
+offset_right = 1429.0
+offset_bottom = 1114.0
+color = Color(0, 0, 0, 1)
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="Player/Camera2D"]
+z_index = -1
+y_sort_enabled = true
+material = SubResource("CanvasItemMaterial_ms3um")
+position = Vector2(695, 329)
+amount = 100
+texture = SubResource("GradientTexture2D_u84wv")
+lifetime = 11.0
+preprocess = 10.0
+use_fixed_seed = true
+seed = 1392953648
+emission_shape = 3
+emission_rect_extents = Vector2(1000, 500)
+particle_flag_align_y = true
+direction = Vector2(-1, 0)
+gravity = Vector2(10, -10)
+initial_velocity_min = 5.0
+initial_velocity_max = 25.0
+radial_accel_min = -3.0
+radial_accel_max = 3.0
+angle_min = 129.5
+angle_max = 150.0
+scale_amount_min = 0.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_lg721")
+color_ramp = SubResource("Gradient_ffuyt")
+hue_variation_min = -0.11
+hue_variation_max = 0.11
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="Player/Camera2D"]
+modulate = Color(1, 1, 1, 0.30980393)
+material = SubResource("CanvasItemMaterial_kypqj")
+amount = 500
+texture = SubResource("GradientTexture2D_yv8to")
+lifetime = 14.49
+preprocess = 10.0
+emission_shape = 3
+emission_rect_extents = Vector2(1500, 1000)
+direction = Vector2(-1, 0)
+spread = 41.3
+gravity = Vector2(0, 2)
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+tangential_accel_min = 1.0
+tangential_accel_max = 1.0
+scale_amount_min = 0.0
+scale_amount_max = 0.3
+scale_amount_curve = SubResource("Curve_m34qx")
+
+[node name="Node2D" type="Node2D" parent="Player"]
+script = ExtResource("10_e4rmv")
+
+[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Ambiente/ambiente"
+event_guid = "{9318ebbc-5ee4-4da9-87ef-a11bf476df3b}"
+attached = false
+autoplay = true
+volume = 0.685
+position = Vector2(-97, 588)
+
+[node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Musica/Musica"
+event_guid = "{531f5736-0242-456e-96ac-14d316a2be4e}"
+fmod_parameters/Pantalla/id = -2044462831851661827
+fmod_parameters/Pantalla = "Juego"
+fmod_parameters/Pantalla/labels = PackedStringArray("Menu", "Juego")
+fmod_parameters/Pantalla/variant_type = 4
+position = Vector2(-97, 588)
+
+[node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
+top_level = true
+position = Vector2(7923, -778)
+script = ExtResource("12_g2cn0")
+follow_mode = 2
+follow_target = NodePath("../Player/Node2D")
+zoom = Vector2(1.6, 1.6)
+tween_resource = SubResource("Resource_yei3n")
+follow_damping = true
+follow_damping_value = Vector2(0.2, 0.2)
+draw_limits = true
+metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
+
+[node name="FirstLevelWorks" parent="." instance=ExtResource("12_7dwkk")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ms3um")
+}
+
+[node name="SecondLevel" parent="." instance=ExtResource("18_kypqj")]
+position = Vector2(6241, -652)

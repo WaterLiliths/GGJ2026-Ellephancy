@@ -1,4 +1,8 @@
-[gd_scene format=3 uid="uid://ww1sbsindpl7"]
+[gd_scene load_steps=4 format=3 uid="uid://ww1sbsindpl7"]
+
+[ext_resource type="Theme" uid="uid://c3il706qyjae5" path="res://escenas/themes/main_menu_boton.tres" id="1_3mnve"]
+[ext_resource type="Script" uid="uid://chafdite0h41s" path="res://escenas/opciones.gd" id="2_4n5yr"]
+[ext_resource type="PackedScene" uid="uid://d2xlg26hl7ug6" path="res://escenas/boton_custom.tscn" id="2_s8bbw"]
 
 [node name="Opciones" type="Control"]
 layout_mode = 3
@@ -7,70 +11,67 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_3mnve")
+script = ExtResource("2_4n5yr")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 500.0
-offset_top = 100.0
-offset_right = -500.0
-offset_bottom = -100.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.1782813, 0.38705996, 0.26168782, 1)
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="ColorRect"]
+[node name="PanelContainer" type="AspectRatioContainer" parent="."]
+modulate = Color(0.44, 0.1408, 0.1408, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+ratio = 0.4118
 
-[node name="Label" type="Label" parent="ColorRect/VBoxContainer2"]
+[node name="ColorRect" type="ColorRect" parent="PanelContainer"]
+light_mask = 0
 layout_mode = 2
-text = "Volúmen"
+color = Color(0.48570347, 0.48570353, 0.48570347, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/VBoxContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
+theme_override_constants/separation = 49
 
-[node name="Container" type="VBoxContainer" parent="ColorRect/VBoxContainer2/VBoxContainer"]
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("1_3mnve")
+theme_override_font_sizes/font_size = 50
+text = "Volumen"
+horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/VBoxContainer2/VBoxContainer/Container"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="ColorRect/VBoxContainer2/VBoxContainer/Container"]
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Música"
 
-[node name="HSlider" type="HSlider" parent="ColorRect/VBoxContainer2/VBoxContainer/Container"]
+[node name="HSliderMusica" type="HSlider" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
+max_value = 1.0
+step = 0.01
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="ColorRect/VBoxContainer2"]
+[node name="Label3" type="Label" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
+text = "Efectos"
 
-[node name="Container" type="VBoxContainer" parent="ColorRect/VBoxContainer2/VBoxContainer2"]
+[node name="HSlider2Efectos" type="HSlider" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
+max_value = 1.0
+step = 0.01
 
-[node name="Label" type="Label" parent="ColorRect/VBoxContainer2/VBoxContainer2/Container"]
-layout_mode = 2
-text = "SFX"
-
-[node name="HSlider" type="HSlider" parent="ColorRect/VBoxContainer2/VBoxContainer2/Container"]
-layout_mode = 2
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="ColorRect/VBoxContainer2"]
-layout_mode = 2
-
-[node name="Container" type="VBoxContainer" parent="ColorRect/VBoxContainer2/VBoxContainer3"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="ColorRect/VBoxContainer2/VBoxContainer3/Container"]
+[node name="Label4" type="Label" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Ambiente"
 
-[node name="HSlider" type="HSlider" parent="ColorRect/VBoxContainer2/VBoxContainer3/Container"]
+[node name="HSlider3Ambiente" type="HSlider" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="BotonCustom" parent="PanelContainer/VBoxContainer" instance=ExtResource("2_s8bbw")]
+layout_mode = 2
+text = "Cerrar"
+
+[connection signal="drag_ended" from="PanelContainer/VBoxContainer/HSliderMusica" to="." method="_on_h_slider_musica_drag_ended"]
+[connection signal="drag_ended" from="PanelContainer/VBoxContainer/HSlider2Efectos" to="." method="_on_h_slider_2_efectos_drag_ended"]
+[connection signal="drag_ended" from="PanelContainer/VBoxContainer/HSlider3Ambiente" to="." method="_on_h_slider_3_volumen_drag_ended"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/BotonCustom" to="." method="_on_boton_custom_pressed"]

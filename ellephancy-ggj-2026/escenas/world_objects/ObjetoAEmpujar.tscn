@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://r8op15cyle2b" path="res://assets/sprites/rocasuciaplanta.png" id="2_ettqs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6a1yu"]
-size = Vector2(60, 134)
+size = Vector2(77, 132)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xh1mv"]
-size = Vector2(32, 38)
+size = Vector2(106, 138)
 
 [node name="ObjetoAEmpujar" type="RigidBody2D"]
 collision_mask = 3
@@ -19,12 +19,10 @@ script = ExtResource("1_xh1mv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -2)
-scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_ettqs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -0.90000004)
-scale = Vector2(0.3, 0.3)
+position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_6a1yu")
 
 [node name="AreaInteraccion" type="Area2D" parent="."]
