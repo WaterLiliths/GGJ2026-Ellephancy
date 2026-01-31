@@ -11,11 +11,13 @@ func _ready() -> void:
 	
 	$ColorRect2.color = Color(0,0,0,1)
 	$AnimationPlayer.play("titulo")
-	await get_tree().create_timer(5).timeout
-	$ColorRect2.visible = false
-	$ColorRect2.z_index = 8
-
-func _process(delta: float) -> void:
+	$FmodEventEmitter2D4.play()
+	await get_tree().create_timer(2.2).timeout
+	$FmodEventEmitter2D3.play()
+	await get_tree().create_timer(0.5).timeout
+	$FmodEventEmitter2D.play()
+	
+func _process(_delta: float) -> void:
 	$FmodEventEmitter2D.volume = Global.volumen_musica
 	$FmodEventEmitter2D2.volume = Global.volumen_efectos
 

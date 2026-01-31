@@ -17,9 +17,9 @@ var mascara_activa : int = 0
 signal activar_palanca(id_palanca : int)
 signal desactivar_palanca(id_palanca : int)
 
-var volumen_musica : float = 1.0
-var volumen_efectos : float = 1.0
-var volumen_ambiente : float = 1.0
+var volumen_musica : float = 0.8
+var volumen_efectos : float = 0.8
+var volumen_ambiente : float = 0.8
 
 func _ready() -> void:
 	pass # Replace with function body.

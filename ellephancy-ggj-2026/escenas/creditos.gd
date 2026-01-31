@@ -2,6 +2,7 @@ extends Control
 
 @export var volumen_maximo : float = 1
 
+
 func _ready() -> void:
 	$FmodEventEmitter2D.play()
 	$FmodEventEmitter2D.volume = 0.0
