@@ -45,12 +45,12 @@ presente = true
 [node name="PalancaPuzzle2" parent="Puzzle2" instance=ExtResource("6_qqybc")]
 position = Vector2(1801.002, -1155)
 id = 2
-tipo_de_palanca = "Buen Estado"
+tipo_de_palanca = "Buena"
 
 [node name="PalancaPuzzle2a" parent="Puzzle2" instance=ExtResource("6_qqybc")]
 position = Vector2(2636, -1540)
 id = 2
-tipo_de_palanca = "Buen Estado"
+tipo_de_palanca = "Buena"
 
 [node name="PuertaPuzzle2" parent="Puzzle2" instance=ExtResource("7_smkhk")]
 position = Vector2(1376, 393)
