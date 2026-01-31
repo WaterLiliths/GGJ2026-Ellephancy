@@ -1,10 +1,15 @@
-[gd_scene load_steps=18 format=3 uid="uid://dkudwre2b373"]
+[gd_scene load_steps=23 format=3 uid="uid://dkudwre2b373"]
 
 [ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/second_level.gd" id="1_2y4ua"]
+[ext_resource type="Texture2D" uid="uid://dvh87k52osuo2" path="res://assets/parallax/bosquepocho1.png" id="2_ffuyt"]
 [ext_resource type="Texture2D" uid="uid://datv7pocxxolq" path="res://assets/parallax/Parallaxbosque1.png" id="2_ms3um"]
+[ext_resource type="Texture2D" uid="uid://bpl65vrr7kb85" path="res://assets/parallax/bosquepocho2.png" id="3_kypqj"]
 [ext_resource type="Texture2D" uid="uid://wt6gflni6xxd" path="res://assets/parallax/Parallaxbosque2.png" id="3_u84wv"]
 [ext_resource type="Texture2D" uid="uid://cjwyiaveg6mxo" path="res://assets/parallax/Parallaxbosque3.png" id="4_lg721"]
+[ext_resource type="Texture2D" uid="uid://3nw72fsdndrh" path="res://assets/parallax/bosquepocho3.png" id="4_yv8to"]
 [ext_resource type="Texture2D" uid="uid://b8j7oryi85t2p" path="res://assets/parallax/Parallaxbosque4.png" id="5_ffuyt"]
+[ext_resource type="Texture2D" uid="uid://7ygv4lw6hg7s" path="res://assets/parallax/bosquepocho4.png" id="5_m34qx"]
+[ext_resource type="Texture2D" uid="uid://bun5p05g1y6p6" path="res://assets/parallax/bosquepocho5.png" id="6_gdb2x"]
 [ext_resource type="PackedScene" uid="uid://cs3h434myxe4r" path="res://escenas/player.tscn" id="8_m34qx"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="9_gdb2x"]
 [ext_resource type="Script" uid="uid://dxat8cn5c3yh5" path="res://escenas/levels/node_2d.gd" id="10_e4rmv"]
@@ -39,13 +44,58 @@ script = ExtResource("1_2y4ua")
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 position = Vector2(1230, -222)
 rotation = 0.7033677
-color = Color(1, 0.701, 0.31, 1)
+color = Color(0.99999946, 0.39233047, 0.27780035, 1)
 energy = 1.4
 shadow_enabled = true
 shadow_filter_smooth = 6.7
 shadow_item_cull_mask = 7
 
+[node name="ParallaxPresente" type="Node2D" parent="."]
+z_index = -10
+position = Vector2(0, 367)
+
+[node name="ParallaxFondoPresente" type="Parallax2D" parent="ParallaxPresente"]
+scroll_scale = Vector2(0.2, 0)
+repeat_size = Vector2(1400, 0)
+repeat_times = 3
+
+[node name="SpriteFondoPresente" type="Sprite2D" parent="ParallaxPresente/ParallaxFondoPresente"]
+texture = ExtResource("2_ffuyt")
+
+[node name="ParallaxBosqueAtrasPresente" type="Parallax2D" parent="ParallaxPresente"]
+scroll_scale = Vector2(0.3, 0)
+repeat_size = Vector2(1400, 0)
+repeat_times = 3
+
+[node name="SpriteBosqueAtrasPresente" type="Sprite2D" parent="ParallaxPresente/ParallaxBosqueAtrasPresente"]
+texture = ExtResource("3_kypqj")
+
+[node name="ParallaxBosqueMedioPresente" type="Parallax2D" parent="ParallaxPresente"]
+scroll_scale = Vector2(0.4, 0)
+repeat_size = Vector2(1400, 0)
+repeat_times = 3
+
+[node name="SpriteBosqueMedioPresente" type="Sprite2D" parent="ParallaxPresente/ParallaxBosqueMedioPresente"]
+texture = ExtResource("4_yv8to")
+
+[node name="ParallaxBosqueCercaPresente" type="Parallax2D" parent="ParallaxPresente"]
+scroll_scale = Vector2(0.5, 0)
+repeat_size = Vector2(1400, 0)
+repeat_times = 3
+
+[node name="SpriteBosqueCercaPresente" type="Sprite2D" parent="ParallaxPresente/ParallaxBosqueCercaPresente"]
+texture = ExtResource("5_m34qx")
+
+[node name="ParallaxEspinasPresente" type="Parallax2D" parent="ParallaxPresente"]
+scroll_scale = Vector2(0.6, 0)
+repeat_size = Vector2(1400, 0)
+repeat_times = 3
+
+[node name="SpriteEspinasPresente" type="Sprite2D" parent="ParallaxPresente/ParallaxEspinasPresente"]
+texture = ExtResource("6_gdb2x")
+
 [node name="ParallaxPasado" type="Node2D" parent="."]
+visible = false
 position = Vector2(0, 125)
 
 [node name="ParalaxFondoPasado" type="Parallax2D" parent="ParallaxPasado"]
@@ -96,14 +146,14 @@ texture = ExtResource("5_ffuyt")
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank"]
 
 [node name="Player" parent="." instance=ExtResource("8_m34qx")]
-position = Vector2(216, 69)
+position = Vector2(2771, -101)
 scale = Vector2(0.64, 0.64)
 velocidad_salto = -600.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(216, 69)
+position = Vector2(2771, -101)
 zoom = Vector2(1.6, 1.6)
 editor_draw_limits = true
 
@@ -181,7 +231,7 @@ position = Vector2(-97, 588)
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(216, 69)
+position = Vector2(2771, -101)
 script = ExtResource("12_g2cn0")
 follow_mode = 2
 follow_target = NodePath("../Player/Node2D")
