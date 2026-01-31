@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://djqldl5uq6oy4"]
+[gd_scene load_steps=4 format=3 uid="uid://djqldl5uq6oy4"]
 
 [ext_resource type="Script" uid="uid://skafeqjf1vw" path="res://escenas/hud.gd" id="1_m5lxu"]
 [ext_resource type="Theme" uid="uid://cj0o3c28vicve" path="res://escenas/themes/tema_pausa_menu.tres" id="2_5u87e"]
 [ext_resource type="PackedScene" uid="uid://d2xlg26hl7ug6" path="res://escenas/boton_custom.tscn" id="3_0sskl"]
-[ext_resource type="PackedScene" uid="uid://ww1sbsindpl7" path="res://escenas/opciones.tscn" id="4_hrvm2"]
 
 [node name="HUD" type="Control"]
 process_mode = 1
@@ -53,10 +52,6 @@ text = "OPCIONES"
 [node name="BTNSalir" parent="CanvasLayerMain/PanelContainer/VBoxContainer" instance=ExtResource("3_0sskl")]
 layout_mode = 2
 text = "SALIR"
-
-[node name="Opciones" parent="CanvasLayerMain" instance=ExtResource("4_hrvm2")]
-unique_name_in_owner = true
-visible = false
 
 [node name="CanvasLayerSalir" type="CanvasLayer" parent="."]
 unique_name_in_owner = true

@@ -7,7 +7,6 @@ var pausa_activa : bool = false
 var escena_menu_inicio : PackedScene = preload("res://escenas/main_menu.tscn")
 
 func _ready() -> void:
-	%Opciones.hide() #PROBANDO, no se si este es final
 	canvas_layer_main.hide()
 	canvas_layer_salir.hide()
 	process_mode = Node.PROCESS_MODE_ALWAYS #para q podamos acceder al hud aunque este en pausa
@@ -37,7 +36,6 @@ func _on_btn_reanudar_pressed() -> void:
 func _on_btn_opciones_pressed() -> void:
 	#aca lo vemos mañana si quieren
 	#pq si el volumen es modular lo podemos pegar aca sin problema
-#	%Opciones.show()
 	pass # Replace with function body.
 
 
