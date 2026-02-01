@@ -66,9 +66,9 @@ tile_map_data = PackedByteArray("AAAeAAIAAQAOAAIAAAAkAP//AQABAAsAAAAkAAAAAQABAAw
 position = Vector2(5378, 180)
 
 [node name="PuzzleSalmon1" parent="PuzzleHolder" index="0"]
-runa_1_comienza_con = 3
+runa_1_comienza_con = 5
 runa_2_comienza_con = 1
-runa_3_comienza_con = 2
+runa_3_comienza_con = 1
 
 [node name="PalancaSalmon1" parent="PuzzleHolder/PuzzleSalmon1" index="0"]
 position = Vector2(-567, 191)
