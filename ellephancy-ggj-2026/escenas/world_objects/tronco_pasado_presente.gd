@@ -1,5 +1,5 @@
 class_name ObjetoEmpujable 
-extends RigidBody2D
+extends StaticBody2D
 
 @export var presente : bool
 @onready var colision: CollisionPolygon2D = %Colision

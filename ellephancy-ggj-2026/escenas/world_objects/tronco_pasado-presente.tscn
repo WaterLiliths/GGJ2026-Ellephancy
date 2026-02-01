@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://c0letordwqfnu" path="res://assets/sprites/ambient/Árbol caído.png" id="1_cmc4t"]
 [ext_resource type="Script" uid="uid://v7cptcrrdcdb" path="res://escenas/world_objects/tronco_pasado_presente.gd" id="1_fycgy"]
 
-[node name="TroncoColisionable" type="RigidBody2D"]
+[node name="TroncoColisionable" type="StaticBody2D"]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_fycgy")
