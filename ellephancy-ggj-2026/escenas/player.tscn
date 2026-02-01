@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://cs3h434myxe4r"]
+[gd_scene load_steps=65 format=3 uid="uid://cs3h434myxe4r"]
 
 [ext_resource type="Script" uid="uid://d1p6o2ixegcp2" path="res://scripts/player.gd" id="1_esbpa"]
 [ext_resource type="Texture2D" uid="uid://csvm86vnc0cmo" path="res://assets/player/mascaras/Agarre oso destra 1.png" id="2_v66k4"]
@@ -42,15 +42,23 @@
 [ext_resource type="Texture2D" uid="uid://bror7tai0gkgv" path="res://assets/player/mascaras/Ciervo palanca 2.png" id="31_tn1j7"]
 [ext_resource type="Texture2D" uid="uid://cc13yhboq3p2m" path="res://assets/player/mascaras/Salto Salmón 3.png" id="32_ahx5a"]
 [ext_resource type="Texture2D" uid="uid://bups0huvmlyut" path="res://assets/player/mascaras/Ciervo palanca 3.png" id="32_hopxw"]
+[ext_resource type="Texture2D" uid="uid://bmh2a0h5s4fkn" path="res://assets/player/mascaras/Idle 1.png" id="33_h7o46"]
 [ext_resource type="Texture2D" uid="uid://bjay11vvnbqqs" path="res://assets/player/mascaras/MC Palanca 1.png" id="33_lrq8u"]
+[ext_resource type="Texture2D" uid="uid://duhe0wwiy55qh" path="res://assets/player/mascaras/Idle1 Ciervo.png" id="33_q2x7o"]
+[ext_resource type="Texture2D" uid="uid://bcto1e0nfspyf" path="res://assets/player/mascaras/Idle 2.png" id="34_0bojb"]
 [ext_resource type="Texture2D" uid="uid://vlc28u0qsowb" path="res://assets/player/mascaras/MC Palanca 2.png" id="34_h7o46"]
+[ext_resource type="Texture2D" uid="uid://c0iqtbhgqu8jl" path="res://assets/player/mascaras/Idle 2 Ciervo.png" id="34_y4t0h"]
 [ext_resource type="Texture2D" uid="uid://cknxsgf0ibeje" path="res://assets/player/mascaras/MC Palanca 3.png" id="35_0bojb"]
 [ext_resource type="Texture2D" uid="uid://cuyg5mrq6ij88" path="res://assets/player/mascaras/Oso palanca 1.png" id="36_5uuta"]
 [ext_resource type="Texture2D" uid="uid://dbgdtomb6o5et" path="res://assets/player/mascaras/Salmón palanca 1.png" id="36_q2x7o"]
 [ext_resource type="Texture2D" uid="uid://go16j31pcc03" path="res://assets/player/mascaras/Oso palanca 2.png" id="37_b787q"]
+[ext_resource type="Texture2D" uid="uid://b4j61tt1jirne" path="res://assets/player/mascaras/Idle1 Oso.png" id="37_vchxa"]
 [ext_resource type="Texture2D" uid="uid://r28acdyaq1tl" path="res://assets/player/mascaras/Salmón palanca 2.png" id="37_y4t0h"]
 [ext_resource type="Texture2D" uid="uid://c0fbkr3kyb8ik" path="res://assets/player/mascaras/Oso palanca 3.png" id="38_3jn0c"]
+[ext_resource type="Texture2D" uid="uid://dgou2hspjb5cw" path="res://assets/player/mascaras/Idle 2 Oso.png" id="38_5uuta"]
 [ext_resource type="Texture2D" uid="uid://bnm5gllpptse4" path="res://assets/player/mascaras/Salmón palanca 3.png" id="38_vchxa"]
+[ext_resource type="Texture2D" uid="uid://c6eq8oqqs1sgr" path="res://assets/player/mascaras/Idle1 Salmón.png" id="39_b787q"]
+[ext_resource type="Texture2D" uid="uid://rxbr0pokkudp" path="res://assets/player/mascaras/Idle 2 Salmón.png" id="40_3jn0c"]
 [ext_resource type="PackedScene" uid="uid://djqldl5uq6oy4" path="res://escenas/hud.tscn" id="52_hopxw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_w7fad"]
@@ -195,35 +203,47 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_t5tro")
+"texture": ExtResource("33_q2x7o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_y4t0h")
 }],
-"loop": false,
+"loop": true,
 "name": &"idle_ciervo",
-"speed": 8.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_63xfq")
+"texture": ExtResource("33_h7o46")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_0bojb")
 }],
-"loop": false,
+"loop": true,
 "name": &"idle_normal",
-"speed": 8.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("11_ay70r")
+"texture": ExtResource("37_vchxa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_5uuta")
 }],
-"loop": false,
+"loop": true,
 "name": &"idle_oso",
-"speed": 8.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("15_mn7w3")
+"texture": ExtResource("39_b787q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_3jn0c")
 }],
-"loop": false,
+"loop": true,
 "name": &"idle_salmon",
-"speed": 8.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -346,11 +366,14 @@ animations = [{
 "speed": 11.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_kkt6c"]
-radius = 32.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b787q"]
+size = Vector2(48, 139)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j7xnp"]
 radius = 41.880783
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3jn0c"]
+size = Vector2(2, 20)
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 7
@@ -368,11 +391,12 @@ unique_name_in_owner = true
 texture_filter = 1
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_w7fad")
-animation = &"salto_salmon"
+animation = &"idle_normal"
+frame_progress = 0.8192885
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 27)
-shape = SubResource("CircleShape2D_kkt6c")
+position = Vector2(15, -13.5)
+shape = SubResource("RectangleShape2D_b787q")
 
 [node name="AreaTirar" type="Area2D" parent="."]
 
@@ -382,9 +406,10 @@ debug_color = Color(1.2513996e-06, 0.6431121, 0.31144592, 0.41960785)
 
 [node name="PinJointAgarrar" type="PinJoint2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(44, 0)
+position = Vector2(58, -8)
 node_a = NodePath("..")
-node_b = NodePath("..")
+node_b = NodePath("../MANO-TEST-IZQ")
+disable_collision = false
 
 [node name="TimerCoyoteTime" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -470,6 +495,28 @@ event_guid = "{ea3f93cf-6587-4284-a571-252290d8e701}"
 
 [node name="RayCast2DSuelo" type="RayCast2D" parent="."]
 target_position = Vector2(0, 134)
+
+[node name="MANO-TEST-IZQ" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(53, -7)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionManoIzq" type="CollisionShape2D" parent="MANO-TEST-IZQ"]
+unique_name_in_owner = true
+position = Vector2(-12, 0)
+shape = SubResource("RectangleShape2D_3jn0c")
+
+[node name="MANO-TEST-Der" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1, -7)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionManoDer" type="CollisionShape2D" parent="MANO-TEST-Der"]
+unique_name_in_owner = true
+position = Vector2(-12, 0)
+shape = SubResource("RectangleShape2D_3jn0c")
 
 [connection signal="animation_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_animation_changed"]
 [connection signal="animation_finished" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_animation_finished"]
