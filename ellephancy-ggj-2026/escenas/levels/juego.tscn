@@ -1,7 +1,8 @@
-[gd_scene load_steps=32 format=3 uid="uid://dkudwre2b373"]
+[gd_scene load_steps=34 format=3 uid="uid://dkudwre2b373"]
 
 [ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/Juego.gd" id="1_2y4ua"]
 [ext_resource type="Texture2D" uid="uid://dvh87k52osuo2" path="res://assets/parallax/bosquepocho1.png" id="2_ffuyt"]
+[ext_resource type="Script" uid="uid://db6qtsh8s7xx4" path="res://escenas/levels/parallax_presente.gd" id="2_m34qx"]
 [ext_resource type="Texture2D" uid="uid://datv7pocxxolq" path="res://assets/parallax/Parallaxbosque1.png" id="2_ms3um"]
 [ext_resource type="Texture2D" uid="uid://bpl65vrr7kb85" path="res://assets/parallax/bosquepocho2.png" id="3_kypqj"]
 [ext_resource type="Texture2D" uid="uid://wt6gflni6xxd" path="res://assets/parallax/Parallaxbosque2.png" id="3_u84wv"]
@@ -19,6 +20,7 @@
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="13_8mohb"]
 [ext_resource type="PackedScene" uid="uid://d3kk7nu2wr28k" path="res://escenas/levels/second_level.tscn" id="18_kypqj"]
 [ext_resource type="PackedScene" uid="uid://t3ox75glka3s" path="res://escenas/world_objects/ObjetoAEmpujar.tscn" id="19_yv8to"]
+[ext_resource type="PackedScene" uid="uid://ctgi3ppkimt2c" path="res://escenas/levels/third_level.tscn" id="20_m34qx"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ms3um"]
 blend_mode = 1
@@ -166,6 +168,8 @@ color = Color(0.3403393, 0.34033933, 0.3403393, 1)
 light_mask = 8
 z_index = -10
 position = Vector2(0, 367)
+script = ExtResource("2_m34qx")
+presente = true
 
 [node name="ParallaxFondoPresente" type="Parallax2D" parent="ParallaxPresente"]
 scroll_scale = Vector2(0.2, 0)
@@ -208,8 +212,8 @@ repeat_times = 3
 texture = ExtResource("6_gdb2x")
 
 [node name="ParallaxPasado" type="Node2D" parent="."]
-visible = false
 position = Vector2(0, 125)
+script = ExtResource("2_m34qx")
 
 [node name="ParalaxFondoPasado" type="Parallax2D" parent="ParallaxPasado"]
 z_index = -10
@@ -259,13 +263,13 @@ texture = ExtResource("5_ffuyt")
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank", "res://assets/audio/FmodBanks/Desktop/UI.bank"]
 
 [node name="Player" parent="." instance=ExtResource("8_m34qx")]
-position = Vector2(3062, -62)
+position = Vector2(4996, -239)
 scale = Vector2(0.64, 0.64)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(3062, -62)
+position = Vector2(4996, -239)
 zoom = Vector2(1.6, 1.6)
 editor_draw_limits = true
 
@@ -366,7 +370,7 @@ position = Vector2(-97, 588)
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(3062, -62)
+position = Vector2(4996, -239)
 script = ExtResource("12_g2cn0")
 follow_mode = 2
 follow_target = NodePath("../Player/Node2D")
@@ -385,7 +389,11 @@ libraries = {
 }
 
 [node name="SecondLevel" parent="." instance=ExtResource("18_kypqj")]
-position = Vector2(6241, -652)
+position = Vector2(4919, -649)
+
+[node name="ThirdLevel" parent="." instance=ExtResource("20_m34qx")]
+position = Vector2(8231, -1125)
+scale = Vector2(0.64, 0.64)
 
 [node name="ObjetoAEmpujar" parent="." instance=ExtResource("19_yv8to")]
 position = Vector2(4747, -74)
