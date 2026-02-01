@@ -23,6 +23,9 @@
 [ext_resource type="PackedScene" uid="uid://ctgi3ppkimt2c" path="res://escenas/levels/third_level.tscn" id="19_yv8to"]
 [ext_resource type="PackedScene" uid="uid://cqfbi3mqn04vl" path="res://escenas/levels/fourth_level_working.tscn" id="21_gdb2x"]
 [ext_resource type="PackedScene" uid="uid://cv0p4aotoyxyx" path="res://escenas/levels/five_level-garabato.tscn" id="22_e4rmv"]
+[ext_resource type="PackedScene" uid="uid://ccia0snrxhd0y" path="res://escenas/area_dialogo_prueba.tscn" id="23_g2cn0"]
+[ext_resource type="Resource" uid="uid://dt6qgqxfsmk4d" path="res://dialogue/primer_dialogo_salmon.dialogue" id="24_g2cn0"]
+[ext_resource type="Resource" uid="uid://lflkk6jkehov" path="res://dialogue/dialogo_salmon_primer_uso_poder.dialogue" id="25_8mohb"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ms3um"]
 blend_mode = 1
@@ -427,3 +430,20 @@ position = Vector2(12375, 38)
 
 [node name="LevelSalmon5" parent="Niveles" instance=ExtResource("22_e4rmv")]
 position = Vector2(24066, -1814)
+
+[node name="AreaDialogoPrueba" parent="." instance=ExtResource("23_g2cn0")]
+position = Vector2(17901, -1987)
+dialogo = ExtResource("24_g2cn0")
+id_a_destruir = 4
+id_dialogo = 4
+
+[node name="AreaDialogoPrueba2" parent="." instance=ExtResource("23_g2cn0")]
+position = Vector2(18852, -1997)
+dialogo = ExtResource("25_8mohb")
+id_a_destruir = 5
+id_dialogo = 5
+
+[node name="AreaDialogoPrueba3" parent="." instance=ExtResource("23_g2cn0")]
+position = Vector2(22825, -1998)
+id_a_destruir = 6
+id_dialogo = 6

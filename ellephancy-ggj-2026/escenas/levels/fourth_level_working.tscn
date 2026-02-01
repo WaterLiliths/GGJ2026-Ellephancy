@@ -1,11 +1,15 @@
-[gd_scene load_steps=7 format=4 uid="uid://cqfbi3mqn04vl"]
+[gd_scene load_steps=9 format=4 uid="uid://cqfbi3mqn04vl"]
 
 [ext_resource type="PackedScene" uid="uid://t3ox75glka3s" path="res://escenas/world_objects/ObjetoAEmpujar.tscn" id="1_n0umg"]
 [ext_resource type="PackedScene" uid="uid://by80hrdi7bflk" path="res://escenas/creador_de_niveles.tscn" id="2_1sjo1"]
 [ext_resource type="PackedScene" uid="uid://cc8lgh4bhiut8" path="res://escenas/world_objects/tronco_pasado-presente.tscn" id="2_6imxl"]
 [ext_resource type="PackedScene" uid="uid://bnjwrlnb5pxji" path="res://escenas/world_objects/arbol.tscn" id="2_oi7hv"]
 [ext_resource type="PackedScene" uid="uid://dnsoasghkyy4y" path="res://piedra_pasado.tscn" id="4_6imxl"]
-[ext_resource type="PackedScene" uid="uid://gsyv06ys145u" path="res://escenas/masks/area_mascara_salmon.tscn" id="7_t8c8x"]
+[ext_resource type="Script" uid="uid://c0l4pquiwwpu5" path="res://escenas/masks/area_mascara_salmon.gd" id="6_sya8o"]
+[ext_resource type="Texture2D" uid="uid://bbra5fmwd6qin" path="res://assets/sprites/masks/mascara_salmon.PNG" id="7_g7mpo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vv721"]
+size = Vector2(330, 368)
 
 [node name="FourthLevelWorking" type="Node2D"]
 
@@ -111,5 +115,16 @@ z_index = 2
 z_index = -3
 tile_map_data = PackedByteArray("AAAXAAkABQAFAAkAAAAdAAYABQAEAAMAAAAeAAYABQAFAAMAAAA2AO//BQACAAMAAAA3AO//BQADAAMAAAA4AO//BQAEAAMAAAA5AO//BQAFAAMAAAAyAO//BQABAAMAAAAyAPD/BQABAAkAAAAzAO//BQAEAAMAAAA0AO//BQADAAMAAAA1AO//BQACAAMAAAA4AO3/BQABAAMAAAA5AO3/BQADAAMAAAA5APD/BQADAAkAAAA6AO3/BQAFAAMAAAApAPn/BQAFAAMAAAAnAPX/BQABAAMAAAArAPH/BQABAAMAAAArAPX/BQADAAMAAABYAOf/BQAFAAMAAABYAOP/BQAFAAMAAAA=")
 
-[node name="AreaMascaraSalmon" parent="." instance=ExtResource("7_t8c8x")]
+[node name="AreaMascaraSalmon" type="Area2D" parent="."]
 position = Vector2(5387, -1863.9999)
+scale = Vector2(0.2, 0.2)
+script = ExtResource("6_sya8o")
+
+[node name="Sprite2D" type="Sprite2D" parent="AreaMascaraSalmon"]
+texture = ExtResource("7_g7mpo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaMascaraSalmon"]
+shape = SubResource("RectangleShape2D_vv721")
+
+[connection signal="body_entered" from="AreaMascaraSalmon" to="AreaMascaraSalmon" method="_on_body_entered"]
+[connection signal="body_exited" from="AreaMascaraSalmon" to="AreaMascaraSalmon" method="_on_body_exited"]
