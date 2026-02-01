@@ -8,7 +8,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_648pm"]
 shader = ExtResource("2_ceymq")
 shader_parameter/portal_texture = ExtResource("4_7pndu")
-shader_parameter/portal_tint = Color(0.3529412, 1, 1, 0.0627451)
+shader_parameter/portal_tint = Color(0.3529412, 1, 0.1764706, 0.44313726)
 shader_parameter/vortex_effect_radius = 0.499999988824
 shader_parameter/twist_strength = 22.500000335277
 shader_parameter/pulsation_speed = 0.3499999921768
