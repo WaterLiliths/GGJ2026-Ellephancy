@@ -1,9 +1,16 @@
 extends Area2D
 
 
-# Called when the node enters the scene tree for the first time.
+@onready var canvas_layer: CanvasLayer = %CanvasLayer
+var creditos : PackedScene = preload("res://escenas/creditos.tscn")
+var mostrar_creditos : bool = false
+
 func _ready() -> void:
-	%FmodEventEmitter2D.play()
+	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+
+func _physics_process(delta: float) -> void:
+	if mostrar_creditos:
+		%RichTextLabel.position.y -= 40 * delta
 
 
 
@@ -16,3 +23,10 @@ func _on_body_entered(body: Node2D) -> void:
 func terminar_juego_omg_voy_a_llorar():
 	%Camera2D.make_current()
 	print("omg")
+
+
+func _on_animation_player_final_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "finjuego":
+		#var instancia = creditos.instantiate()
+		#canvas_layer.add_child(instancia)
+		mostrar_creditos = true
