@@ -134,7 +134,7 @@ texture = ExtResource("2_n4lja")
 [node name="CampanitaAnimada" parent="." instance=ExtResource("3_gdenh")]
 z_index = 50
 position = Vector2(967, 521)
-frame_progress = 0.35981444
+frame_progress = 0.4116271
 
 [node name="LabelTextArboleda" type="Label" parent="CampanitaAnimada"]
 offset_left = -494.0
@@ -194,5 +194,16 @@ offset_top = -872.0
 offset_right = 1429.0
 offset_bottom = 1114.0
 color = Color(0, 0, 0, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+
+[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
+bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank"]
+
+[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Musica/creditos"
+event_guid = "{1a8311a4-5b98-442f-8c43-d78bd4344097}"
+unique_name_in_owner = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -201,13 +201,13 @@ texture = ExtResource("5_ffuyt")
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank", "res://assets/audio/FmodBanks/Desktop/UI.bank"]
 
 [node name="Player" parent="." instance=ExtResource("8_m34qx")]
-position = Vector2(23180, -2060)
+position = Vector2(215, -46)
 scale = Vector2(0.64, 0.64)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(23180, -2060)
+position = Vector2(215, -46)
 zoom = Vector2(1.6, 1.6)
 editor_draw_limits = true
 
@@ -220,14 +220,13 @@ script = ExtResource("9_gdb2x")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="ColorRect" type="ColorRect" parent="Player/Camera2D"]
-visible = false
 modulate = Color(1, 1, 1, 0)
 z_index = 185
 y_sort_enabled = true
-offset_left = -582.0
-offset_top = -872.0
-offset_right = 1429.0
-offset_bottom = 1114.0
+offset_left = -716.0
+offset_top = -864.0
+offset_right = 1295.0
+offset_bottom = 1122.0
 color = Color(0, 0, 0, 1)
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="Player/Camera2D"]
@@ -302,7 +301,7 @@ position = Vector2(-97, 588)
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(23180, -2060)
+position = Vector2(215, -46)
 script = ExtResource("12_g2cn0")
 follow_mode = 2
 follow_target = NodePath("../Player/Node2D")
