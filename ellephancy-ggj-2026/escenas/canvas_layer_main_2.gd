@@ -64,8 +64,6 @@ func _on_ambiente_changed(value: float) -> void:
 func _on_boton_custom_pressed() -> void:
 	hide()
 
-func _process(delta: float) -> void:
-	print(Global.volumen_musica)
 #extends CanvasLayer
 #
 #var musica
