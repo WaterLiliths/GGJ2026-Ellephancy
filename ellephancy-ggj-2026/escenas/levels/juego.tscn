@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dkudwre2b373"]
+[gd_scene load_steps=39 format=3 uid="uid://dkudwre2b373"]
 
 [ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/Juego.gd" id="1_2y4ua"]
 [ext_resource type="Texture2D" uid="uid://dvh87k52osuo2" path="res://assets/parallax/bosquepocho1.png" id="2_ffuyt"]

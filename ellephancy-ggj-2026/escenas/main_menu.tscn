@@ -547,6 +547,7 @@ hue_variation_min = -0.11
 hue_variation_max = 0.11
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="Polygon2D"]
+modulate = Color(1, 1, 1, 0)
 z_index = -1
 y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_cg856")
@@ -562,7 +563,7 @@ emission_shape = 3
 emission_rect_extents = Vector2(1000, 500)
 particle_flag_align_y = true
 direction = Vector2(1, -1)
-gravity = Vector2(10, -10)
+gravity = Vector2(50, -50)
 initial_velocity_min = 5.0
 initial_velocity_max = 25.0
 radial_accel_min = -3.0
@@ -611,6 +612,7 @@ grow_vertical = 0
 theme_override_constants/separation = 14
 
 [node name="BotonCustomComenzar" parent="VBoxContainer" instance=ExtResource("2_8cfpu")]
+modulate = Color(1, 1, 1, 0)
 light_mask = 0
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.11372549, 0.2627451, 0.08235294, 1)
@@ -618,6 +620,7 @@ theme_override_colors/font_hover_pressed_color = Color(0.11372549, 0.2627451, 0.
 text = "Jugar"
 
 [node name="BotonCustomOpciones" parent="VBoxContainer" instance=ExtResource("2_8cfpu")]
+modulate = Color(1, 1, 1, 0)
 light_mask = 0
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.11372549, 0.2627451, 0.08235294, 1)
@@ -625,6 +628,7 @@ theme_override_colors/font_hover_pressed_color = Color(0.11372549, 0.2627451, 0.
 text = "Opciones"
 
 [node name="BotonCustomCreditos" parent="VBoxContainer" instance=ExtResource("2_8cfpu")]
+modulate = Color(1, 1, 1, 0)
 light_mask = 0
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.11372549, 0.2627451, 0.08235294, 1)
@@ -632,6 +636,7 @@ theme_override_colors/font_hover_pressed_color = Color(0.11372549, 0.2627451, 0.
 text = "Créditos"
 
 [node name="BotonCustomSalir" parent="VBoxContainer" instance=ExtResource("2_8cfpu")]
+modulate = Color(1, 1, 1, 0)
 light_mask = 0
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.11372549, 0.2627451, 0.08235294, 1)
