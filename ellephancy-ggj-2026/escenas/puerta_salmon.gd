@@ -41,6 +41,7 @@ func _ready() -> void:
 func verificar_contrasena(contra1 : int, contra2 : int, contra3 : int):
 	if contra1 == contrasena_1:
 		portal_1.show()
+		#sonido
 	else:
 		portal_1.hide()
 	if contra2 == contrasena_2:
@@ -52,6 +53,8 @@ func verificar_contrasena(contra1 : int, contra2 : int, contra3 : int):
 	else:
 		portal_3.hide()
 	if contra1 == contrasena_1 and contra2 == contrasena_2 and contra3 == contrasena_3: #que feo codigo perdon jdasja
+		#sonido
+		#await
 		abrir_puerta()
 	else:
 		print("se recibio la funcion, todavia la contraseña no coincide")
