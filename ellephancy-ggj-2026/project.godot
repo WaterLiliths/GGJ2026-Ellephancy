@@ -19,7 +19,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Ellephancy_GGJ2026"
-run/main_scene="uid://dkudwre2b373"
+run/main_scene="uid://drx8e4npnl3il"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="uid://116jh6ney8f0"
 
@@ -32,8 +32,9 @@ DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
 window/defaults/default_clear_color=Color(0.3, 0.3, 0.3, 1)
 
 [editor_plugins]

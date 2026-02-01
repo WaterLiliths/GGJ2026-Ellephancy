@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dkudwre2b373"]
+[gd_scene load_steps=32 format=3 uid="uid://dkudwre2b373"]
 
 [ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/Juego.gd" id="1_2y4ua"]
 [ext_resource type="Texture2D" uid="uid://dvh87k52osuo2" path="res://assets/parallax/bosquepocho1.png" id="2_ffuyt"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="12_g2cn0"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="13_8mohb"]
 [ext_resource type="PackedScene" uid="uid://d3kk7nu2wr28k" path="res://escenas/levels/second_level.tscn" id="18_kypqj"]
+[ext_resource type="PackedScene" uid="uid://t3ox75glka3s" path="res://escenas/world_objects/ObjetoAEmpujar.tscn" id="19_yv8to"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ms3um"]
 blend_mode = 1
@@ -262,13 +263,13 @@ texture = ExtResource("5_ffuyt")
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank", "res://assets/audio/FmodBanks/Desktop/UI.bank"]
 
 [node name="Player" parent="." instance=ExtResource("8_m34qx")]
-position = Vector2(7923, -778)
+position = Vector2(4541, -66)
 scale = Vector2(0.64, 0.64)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(7923, -778)
+position = Vector2(4541, -66)
 zoom = Vector2(1.6, 1.6)
 editor_draw_limits = true
 
@@ -283,10 +284,17 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 [node name="ColorRect" type="ColorRect" parent="Player/Camera2D"]
 z_index = 185
 y_sort_enabled = true
-offset_left = -582.0
-offset_top = -872.0
-offset_right = 1429.0
-offset_bottom = 1114.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1357.0
+offset_top = -993.0
+offset_right = 1357.0
+offset_bottom = 993.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="Player/Camera2D"]
@@ -360,7 +368,7 @@ position = Vector2(-97, 588)
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(7923, -778)
+position = Vector2(4541, -66)
 script = ExtResource("12_g2cn0")
 follow_mode = 2
 follow_target = NodePath("../Player/Node2D")
@@ -380,3 +388,6 @@ libraries = {
 
 [node name="SecondLevel" parent="." instance=ExtResource("18_kypqj")]
 position = Vector2(6241, -652)
+
+[node name="ObjetoAEmpujar" parent="." instance=ExtResource("19_yv8to")]
+position = Vector2(4747, -74)

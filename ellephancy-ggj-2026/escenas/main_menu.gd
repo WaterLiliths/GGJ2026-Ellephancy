@@ -1,6 +1,7 @@
 extends Control
 
 func _ready() -> void:
+	#Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 	$Opciones.visible = false
 	$FmodEventEmitter2D.volume = Global.volumen_musica
 	$FmodEventEmitter2D2.volume = Global.volumen_efectos
@@ -24,6 +25,7 @@ func _process(_delta: float) -> void:
 func _on_boton_custom_comenzar_pressed() -> void:
 	$AnimationPlayer.play("fade_out")
 	await get_tree().create_timer(3).timeout
+	await get_tree().process_frame
 	get_tree().change_scene_to_file("res://escenas/levels/juego.tscn")
 
 #
@@ -31,6 +33,7 @@ func _on_boton_custom_creditos_pressed() -> void:
 	$FmodEventEmitter2D2.play()
 	$AnimationPlayer.play("fade_out")
 	await get_tree().create_timer(3).timeout
+	await get_tree().process_frame
 	get_tree().change_scene_to_file("res://escenas/creditos.tscn")
 	
 
@@ -40,3 +43,9 @@ func _on_boton_custom_opciones_pressed() -> void:
 		$Opciones.visible = false
 	else:
 		$Opciones.visible = true
+
+
+func _on_boton_custom_salir_pressed() -> void:
+	$AnimationPlayer.play("fade_out")
+	await get_tree().create_timer(3).timeout
+	get_tree().quit()

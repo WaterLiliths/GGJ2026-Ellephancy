@@ -1,10 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://dshdknxnu3qdd"]
+[gd_scene load_steps=15 format=3 uid="uid://dshdknxnu3qdd"]
 
-[ext_resource type="Texture2D" uid="uid://datv7pocxxolq" path="res://assets/parallax/Parallaxbosque1.png" id="1_5v1o1"]
 [ext_resource type="Script" uid="uid://djrwxuhi6lkyu" path="res://escenas/creditos.gd" id="1_pyrin"]
-[ext_resource type="Texture2D" uid="uid://wt6gflni6xxd" path="res://assets/parallax/Parallaxbosque2.png" id="2_pyrin"]
-[ext_resource type="Texture2D" uid="uid://cjwyiaveg6mxo" path="res://assets/parallax/Parallaxbosque3.png" id="3_re66e"]
-[ext_resource type="Texture2D" uid="uid://b8j7oryi85t2p" path="res://assets/parallax/Parallaxbosque4.png" id="4_tdcx2"]
+[ext_resource type="Texture2D" uid="uid://t7pvqbwf3crw" path="res://assets/sprites/Parallaxprueba.png" id="2_5v1o1"]
 [ext_resource type="Theme" uid="uid://c3il706qyjae5" path="res://escenas/themes/main_menu_boton.tres" id="6_re66e"]
 [ext_resource type="PackedScene" uid="uid://d2xlg26hl7ug6" path="res://escenas/boton_custom.tscn" id="7_tdcx2"]
 
@@ -197,32 +194,23 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Parallaxbosque1" type="Sprite2D" parent="."]
-modulate = Color(0.65012825, 0.6501283, 0.65012825, 1)
-position = Vector2(624, 360)
-texture = ExtResource("1_5v1o1")
-
-[node name="Parallaxbosque2" type="Sprite2D" parent="."]
-modulate = Color(0.65012825, 0.6501283, 0.65012825, 1)
-position = Vector2(624, 360)
-texture = ExtResource("2_pyrin")
-
-[node name="Parallaxbosque3" type="Sprite2D" parent="."]
-modulate = Color(0.65012825, 0.6501283, 0.65012825, 1)
-position = Vector2(624, 360)
-texture = ExtResource("3_re66e")
-
-[node name="Parallaxbosque4" type="Sprite2D" parent="."]
-modulate = Color(0.65012825, 0.6501283, 0.65012825, 1)
-position = Vector2(624, 360)
-texture = ExtResource("4_tdcx2")
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.47007585, 0.47007585, 0.47007585, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_5v1o1")
+expand_mode = 3
 
 [node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Musica/creditos"
 event_guid = "{1a8311a4-5b98-442f-8c43-d78bd4344097}"
 
 [node name="ColorRect2" type="ColorRect" parent="."]
-z_index = 3
+z_index = 4
 y_sort_enabled = true
 layout_mode = 1
 anchors_preset = 15
@@ -240,9 +228,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -404.0
-offset_top = 376.0
+offset_top = 577.0
 offset_right = 404.0
-offset_bottom = 2442.0
+offset_bottom = 2643.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("6_re66e")
@@ -278,7 +266,8 @@ horizontal_alignment = 1
 z_index = 2
 y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_re66e")
-position = Vector2(695, 329)
+position = Vector2(989, 561)
+scale = Vector2(1.12, 1.4800006)
 amount = 100
 texture = SubResource("GradientTexture2D_re66e")
 lifetime = 11.68
@@ -303,7 +292,7 @@ hue_variation_min = -0.11
 hue_variation_max = 0.11
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(1054.5001, -740.5001)
+position = Vector2(958, -635)
 scale = Vector2(0.96161973, 1.0896013)
 color = Color(1, 0.7019608, 0.30980393, 1)
 energy = 7.05
@@ -311,12 +300,11 @@ texture = SubResource("GradientTexture2D_tdcx2")
 texture_scale = 49.5
 
 [node name="BotonCustom" parent="." instance=ExtResource("7_tdcx2")]
+z_index = 3
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
 offset_left = -144.0
 offset_top = -84.0
 offset_right = -36.0
