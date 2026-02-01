@@ -301,7 +301,7 @@ fmod_parameters/TipoDePalanca/variant_type = 4
 
 [node name="PalancaCentro" type="Sprite2D" parent="PuzzleSalmon1/PalancaSalmon1"]
 position = Vector2(0, -25)
-rotation = -3.9269907
+rotation = -2.3561945
 texture = ExtResource("1_o8y83")
 offset = Vector2(1.9, 63.215)
 
@@ -517,6 +517,22 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_yi0su")
 }
+
+[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Objetos/campanas puzzle"
+event_guid = "{362a03fb-fd64-4034-8f82-45ed9719b566}"
+
+[node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Objetos/revelar palabra"
+event_guid = "{bbc29be1-3174-4355-921b-261e3f1121e0}"
+
+[node name="FmodEventEmitter2D3" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Objetos/palanca"
+event_guid = "{01f69508-e7e5-4bd1-836f-1c8a85eac877}"
+fmod_parameters/TipoDePalanca/id = 6086375413492549144
+fmod_parameters/TipoDePalanca = "Buen Estado"
+fmod_parameters/TipoDePalanca/labels = PackedStringArray("Buen Estado", "Oxidada", "Fallada")
+fmod_parameters/TipoDePalanca/variant_type = 4
 
 [connection signal="body_entered" from="PuzzleSalmon1/PalancaSalmon1" to="PuzzleSalmon1/PalancaSalmon1" method="_on_body_entered"]
 [connection signal="body_exited" from="PuzzleSalmon1/PalancaSalmon1" to="PuzzleSalmon1/PalancaSalmon1" method="_on_body_exited"]

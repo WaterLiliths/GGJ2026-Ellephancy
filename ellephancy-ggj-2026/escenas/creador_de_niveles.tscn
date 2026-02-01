@@ -752,10 +752,10 @@ polygon = PackedVector2Array(-8, -32, 32, -32, 32, 32, -8, 32)
 polygon = PackedVector2Array(-32, -32, 8, -32, 8, 32, -32, 32)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_o6pqe"]
-polygon = PackedVector2Array(-32, -32, 8, -32, 8, 32, 32, 32, -32, 32)
+polygon = PackedVector2Array(-32, -32, 8, -32, 8, 32, -32, 32)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hjx5i"]
-polygon = PackedVector2Array(-32, -32, 8, -32, 8, 32, 32, 32, -32, 32)
+polygon = PackedVector2Array(-32, -32, 8, -32, 8, 32, -32, 32)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_lijnb"]
 polygon = PackedVector2Array(-32, -32, 32, -32, 32, -24, -32, -24)

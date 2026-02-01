@@ -1,0 +1,209 @@
+[gd_scene load_steps=9 format=3 uid="uid://d1yknlplxru4e"]
+
+[ext_resource type="Script" uid="uid://ckr83s3hrcrry" path="res://escenas/finjuegoaaaaqueemocion.gd" id="1_18134"]
+[ext_resource type="Texture2D" uid="uid://4htaju3cnnsh" path="res://assets/campanita/fondo.png" id="2_n4lja"]
+[ext_resource type="PackedScene" uid="uid://c4jhotlqvvvr" path="res://escenas/campanita_animada.tscn" id="3_gdenh"]
+[ext_resource type="Theme" uid="uid://cj0o3c28vicve" path="res://escenas/themes/tema_pausa_menu.tres" id="4_6ejio"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8mxss"]
+size = Vector2(221, 155)
+
+[sub_resource type="Animation" id="Animation_6ejio"]
+resource_name = "finjuego"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CampanitaAnimada/LabelTextArboleda:theme_override_colors/font_color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(4.833334, 9.716667, 11.166668, 18.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CampanitaAnimada/LabelContinuara:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(4.833334, 12.666668, 13.700001, 16, 18.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CampanitaAnimada/LabelPuntos:modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6663351, 2.0333333, 3.5, 4.4333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0ok5r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CampanitaAnimada/LabelTextArboleda:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CampanitaAnimada/LabelContinuara:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CampanitaAnimada/LabelPuntos:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0ok5r"]
+_data = {
+&"RESET": SubResource("Animation_0ok5r"),
+&"finjuego": SubResource("Animation_6ejio")
+}
+
+[node name="FINJUEGOAAAAQUEEMOCION" type="Area2D"]
+script = ExtResource("1_18134")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_n4lja")
+
+[node name="CampanitaAnimada" parent="." instance=ExtResource("3_gdenh")]
+z_index = 50
+position = Vector2(967, 521)
+frame_progress = 0.4116271
+
+[node name="LabelTextArboleda" type="Label" parent="CampanitaAnimada"]
+offset_left = -494.0
+offset_top = 143.0
+offset_right = 415.0
+offset_bottom = 210.0
+theme = ExtResource("4_6ejio")
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_font_sizes/font_size = 47
+text = "Pero los silencios son breves en la arboleda."
+horizontal_alignment = 1
+
+[node name="LabelContinuara" type="Label" parent="CampanitaAnimada"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -494.0
+offset_top = 143.0
+offset_right = 415.0
+offset_bottom = 210.0
+theme = ExtResource("4_6ejio")
+theme_override_font_sizes/font_size = 47
+text = "Continuará."
+horizontal_alignment = 1
+
+[node name="LabelPuntos" type="Label" parent="CampanitaAnimada"]
+offset_left = -494.0
+offset_top = 143.0
+offset_right = 415.0
+offset_bottom = 210.0
+theme = ExtResource("4_6ejio")
+theme_override_font_sizes/font_size = 47
+text = ". . ."
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8mxss")
+debug_color = Color(1, 0, 0.26666668, 0.41960785)
+
+[node name="AnimationPlayerFINAL" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_0ok5r")
+}
+autoplay = "finjuego"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(965, 546)
+zoom = Vector2(1.2, 1.2)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+z_index = 222
+y_sort_enabled = true
+offset_left = -582.0
+offset_top = -872.0
+offset_right = 1429.0
+offset_bottom = 1114.0
+color = Color(0, 0, 0, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+
+[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
+bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank"]
+
+[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Musica/creditos"
+event_guid = "{1a8311a4-5b98-442f-8c43-d78bd4344097}"
+unique_name_in_owner = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

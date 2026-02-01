@@ -1,11 +1,11 @@
 extends Area2D
 
 @export var dialogo = preload("res://dialogue/dialogo_prueba.dialogue")
-@export_range(1,10) var id_a_destruir : int
+@export_range(1,20) var id_a_destruir : int
 var player_cerca : bool = false
 var dialogo_activo : bool = false
 var dialogo_leido : bool = false
-@export_range(1,10) var id_dialogo : int = 0
+@export_range(1,20) var id_dialogo : int = 0
 
 func _ready() -> void:
 	DialogueManager.dialogue_started.connect(on_dialogue_started)

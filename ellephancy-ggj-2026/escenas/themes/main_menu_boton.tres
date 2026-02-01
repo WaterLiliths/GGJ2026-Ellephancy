@@ -41,12 +41,12 @@ corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_vv2yp"]
-color = Color(0.41105428, 0.62445974, 0.32513744, 1)
+color = Color(0.74138474, 0.7413847, 0.74138457, 1)
 thickness = 6
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_5o0kr"]
-color = Color(0.18841332, 0.26, 0.1872, 1)
-thickness = 6
+color = Color(0.14, 0.14, 0.14, 1)
+thickness = 4
 
 [resource]
 Button/colors/font_color = Color(0.46, 0.46, 0.46, 1)

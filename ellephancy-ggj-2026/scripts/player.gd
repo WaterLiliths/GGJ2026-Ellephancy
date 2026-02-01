@@ -13,7 +13,7 @@ extends CharacterBody2D
 
 #-------------------------------
 var ultimo_estado : ESTADOS
-@export var limite_altura_morir : float = 3000
+@export var limite_altura_morir : float = 4000
 var reviviendo_player : bool = false
 var ultima_direccion_mirar : int = 1 #para derecha e izquierda solo 1 -1
 var sonido_caida_emitiendo : bool = false
@@ -89,7 +89,7 @@ func _input(event: InputEvent) -> void:
 			return
 		mascara_tiempo.desactivar()
 		mascara_fuerza.usar()
-		$FmodEventEmitter2D6.set_parameter("Mascara", 0)
+		$FmodEventEmitter2D6.set_parameter("Mascara", "Oso")
 		$FmodEventEmitter2D6.play()
 		mascara_traducciones.desactivar()
 	verificar_animacion_con_mascara()
@@ -98,7 +98,7 @@ func _input(event: InputEvent) -> void:
 			print("no tengo la mascara del tiempo")
 			return
 		mascara_tiempo.usar()
-		$FmodEventEmitter2D6.set_parameter("Mascara", 2)
+		$FmodEventEmitter2D6.set_parameter("Mascara", "Ciervo")
 		$FmodEventEmitter2D6.play()
 		mascara_fuerza.desactivar()
 		mascara_traducciones.desactivar()
@@ -110,7 +110,7 @@ func _input(event: InputEvent) -> void:
 		mascara_tiempo.desactivar()
 		mascara_fuerza.desactivar()
 		mascara_traducciones.usar()
-		$FmodEventEmitter2D6.set_parameter("Mascara", 1)
+		$FmodEventEmitter2D6.set_parameter("Mascara", "Salmon")
 		$FmodEventEmitter2D6.play()
 	verificar_animacion_con_mascara()
 
@@ -174,9 +174,10 @@ func _physics_process(delta: float) -> void:
 	
 	if agarrando_caja and direction:
 		if not sonido_caja_sonando:
+			%FmodEventEmitter2D3.set_parameter("peso", 5.0)
 			%FmodEventEmitter2D3.play()
 			if objeto_arrastrado:
-				%FmodEventEmitter2D3.set_parameter("peso", 20) #BUG ACA
+				%FmodEventEmitter2D3.set_parameter("peso", 5.0)
 				sonido_caja_sonando = true
 	else:
 		if sonido_caja_sonando:
