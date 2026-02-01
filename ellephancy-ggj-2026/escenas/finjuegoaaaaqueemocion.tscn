@@ -1,3 +1,15 @@
-[gd_scene format=3 uid="uid://d1yknlplxru4e"]
+[gd_scene load_steps=3 format=3 uid="uid://d1yknlplxru4e"]
 
-[node name="FINJUEGOAAAAQUEEMOCION" type="Node2D"]
+[ext_resource type="Script" uid="uid://ckr83s3hrcrry" path="res://escenas/finjuegoaaaaqueemocion.gd" id="1_18134"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8mxss"]
+size = Vector2(221, 155)
+
+[node name="FINJUEGOAAAAQUEEMOCION" type="Area2D"]
+script = ExtResource("1_18134")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8mxss")
+debug_color = Color(1, 0, 0.26666668, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
