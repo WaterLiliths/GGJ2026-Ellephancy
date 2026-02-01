@@ -68,7 +68,7 @@ enum ESTADOS {IDLE, CAMINAR, SALTAR, CAER, INTERACTUAR, AGARRAR}
 var estado_actual : ESTADOS = ESTADOS.IDLE
 var superficie = {}
 
-
+#ayuda
 func _ready() -> void:
 	mano_test_izq.set_deferred("disabled", true) #DESACTIVO FISICAS DE LA MANO
 	mano_test_der.set_deferred("disabled", true)
