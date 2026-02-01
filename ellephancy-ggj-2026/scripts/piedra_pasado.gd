@@ -1,4 +1,3 @@
-#class_name ObjetoEmpujable 
 extends StaticBody2D
 
 @export var presente : bool
@@ -19,7 +18,7 @@ func on_mascara_tiempo_activa():
 	if presente:
 		esconder_mundo()
 	else:
-			mostrar_mundo()
+		mostrar_mundo()
 
 
 func on_mascara_tiempo_desactivada():

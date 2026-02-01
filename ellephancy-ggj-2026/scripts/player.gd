@@ -47,7 +47,7 @@ var velocidad_inicial : float
 @onready var ray_cast_der: RayCast2D = %RayCastDer
 @onready var pin_joint_agarrar: PinJoint2D = %PinJointAgarrar
 var direction : float
-var objeto_arrastrado : ObjetoEmpujable = null
+var objeto_arrastrado = null
 @onready var timer_tiempo_en_aire: Timer = %TimerTiempoEnAire
 var timer_pasos = 0
 var timer_pasos_reset = 0.36
@@ -200,7 +200,8 @@ func _physics_process(delta: float) -> void:
 
 #--------------------- SEÑALES  -------------------------
 func _on_area_tirar_body_entered(body: Node2D) -> void:
-	if body is ObjetoEmpujable:
+#	if body is ObjetoEmpujable or body.is_in_group("cajas"):
+	if body.is_in_group("cajas"):
 		objeto_arrastrado = body
 
 func _on_area_tirar_body_exited(body: Node2D) -> void:
@@ -267,10 +268,11 @@ func desactivar_mascara_fuerza():
 
 
 func disminuir_velocidad_al_agarrar():
-	velocidad *= (1 / objeto_arrastrado.mass)
+	#velocidad *= (1 / objeto_arrastrado.mass)
 	#print((1 / objeto_arrastrado.mass))
 	#print("la velocidad de movimiento es: " + str(velocidad))
-	velocidad_salto *= (1 / objeto_arrastrado.mass)
+	#velocidad_salto *= (1 / objeto_arrastrado.mass)
+	velocidad = velocidad_arrastrando
 
 func reset_velocidad_normal():
 	velocidad = velocidad_inicial
