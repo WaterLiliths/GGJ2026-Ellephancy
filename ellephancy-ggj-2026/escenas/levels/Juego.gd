@@ -1,7 +1,7 @@
 extends Node2D
 
 var tween = create_tween()
-
+#
 func _ready() -> void:
 	$Player/Camera2D/Control/IconoMascaraOso.hide()
 	$Player/Camera2D/Control/IconoMascaraSalmon.hide()
