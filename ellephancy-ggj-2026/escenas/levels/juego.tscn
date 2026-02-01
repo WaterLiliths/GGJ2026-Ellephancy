@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dkudwre2b373"]
+[gd_scene load_steps=35 format=3 uid="uid://dkudwre2b373"]
 
 [ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/Juego.gd" id="1_2y4ua"]
 [ext_resource type="Texture2D" uid="uid://dvh87k52osuo2" path="res://assets/parallax/bosquepocho1.png" id="2_ffuyt"]
@@ -20,6 +20,8 @@
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="13_8mohb"]
 [ext_resource type="PackedScene" uid="uid://d3kk7nu2wr28k" path="res://escenas/levels/second_level.tscn" id="18_kypqj"]
 [ext_resource type="PackedScene" uid="uid://ctgi3ppkimt2c" path="res://escenas/levels/third_level.tscn" id="19_yv8to"]
+[ext_resource type="PackedScene" uid="uid://cqfbi3mqn04vl" path="res://escenas/levels/fourth_level_working.tscn" id="21_gdb2x"]
+[ext_resource type="PackedScene" uid="uid://cv0p4aotoyxyx" path="res://escenas/levels/five_level-garabato.tscn" id="22_e4rmv"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ms3um"]
 blend_mode = 1
@@ -387,3 +389,9 @@ position = Vector2(4919, -649)
 
 [node name="FourthLevel" parent="." instance=ExtResource("19_yv8to")]
 position = Vector2(8246, -1367)
+
+[node name="FourthLevelWorking" parent="." instance=ExtResource("21_gdb2x")]
+position = Vector2(12375, 38)
+
+[node name="LevelSalmon5" parent="." instance=ExtResource("22_e4rmv")]
+position = Vector2(24066, -1814)
