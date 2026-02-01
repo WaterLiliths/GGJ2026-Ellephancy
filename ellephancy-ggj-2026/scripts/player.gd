@@ -70,6 +70,7 @@ var superficie = {}
 
 #ayuda
 func _ready() -> void:
+	resetear_mascaras_a_cero()
 	mano_test_izq.set_deferred("disabled", true) #DESACTIVO FISICAS DE LA MANO
 	mano_test_der.set_deferred("disabled", true)
 	Global.agarre_mascara.connect(on_agarre_mascara)
@@ -638,3 +639,10 @@ func activar_mano():
 	await get_tree().create_timer(0.1).timeout
 	mano_test_izq.set_deferred("disabled", true)
 	mano_test_der.set_deferred("disabled", true)
+
+
+
+func resetear_mascaras_a_cero():
+	Global.tiene_mascara_fuerza = false
+	Global.tiene_mascara_tiempo = false
+	Global.tiene_mascara_traducciones = false
