@@ -1,12 +1,26 @@
-[gd_scene load_steps=7 format=3 uid="uid://djqldl5uq6oy4"]
+[gd_scene load_steps=8 format=3 uid="uid://djqldl5uq6oy4"]
 
 [ext_resource type="Script" uid="uid://skafeqjf1vw" path="res://escenas/hud.gd" id="1_m5lxu"]
 [ext_resource type="Theme" uid="uid://cj0o3c28vicve" path="res://escenas/themes/tema_pausa_menu.tres" id="2_5u87e"]
 [ext_resource type="PackedScene" uid="uid://d2xlg26hl7ug6" path="res://escenas/boton_custom.tscn" id="3_0sskl"]
 [ext_resource type="Script" uid="uid://c5gucwp3rnkxt" path="res://escenas/canvas_layer_main_2.gd" id="4_8qmdo"]
-[ext_resource type="Theme" uid="uid://c3il706qyjae5" path="res://escenas/themes/main_menu_boton.tres" id="4_hrvm2"]
+[ext_resource type="Theme" uid="uid://c3il706qyjae5" path="res://escenas/themes/main_menu_boton.tres" id="5_dda1n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0sskl"]
+bg_color = Color(0.5, 0.5, 0.5, 0.69411767)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
+shadow_color = Color(0, 0, 0, 0.16862746)
+shadow_size = 15
+shadow_offset = Vector2(11.205, 13.34)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xuv2i"]
 bg_color = Color(0.5, 0.5, 0.5, 0.69411767)
 border_width_left = 2
 border_width_top = 2
@@ -186,18 +200,18 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("2_5u87e")
-theme_override_styles/panel = SubResource("StyleBoxFlat_0sskl")
+theme_override_styles/panel = SubResource("StyleBoxFlat_xuv2i")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayerMain2/PanelContainer"]
 layout_mode = 2
 
 [node name="Control" type="Control" parent="CanvasLayerMain2/PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 8.64)
+custom_minimum_size = Vector2(0, 22.565)
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="CanvasLayerMain2/PanelContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("4_hrvm2")
+theme = ExtResource("5_dda1n")
 theme_override_font_sizes/font_size = 50
 text = "Volumen"
 horizontal_alignment = 1
@@ -226,7 +240,9 @@ layout_mode = 2
 text = "Música"
 
 [node name="HSliderMusica" type="HSlider" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+process_mode = 3
 layout_mode = 2
+theme = ExtResource("5_dda1n")
 max_value = 1.0
 step = 0.01
 
@@ -236,6 +252,7 @@ text = "Efectos"
 
 [node name="HSlider2Efectos" type="HSlider" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("5_dda1n")
 max_value = 1.0
 step = 0.01
 
@@ -245,11 +262,12 @@ text = "Ambiente"
 
 [node name="HSlider3Ambiente" type="HSlider" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("5_dda1n")
 max_value = 1.0
 step = 0.01
 
 [node name="Control2" type="Control" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 59.095)
+custom_minimum_size = Vector2(0, 38.16)
 layout_mode = 2
 
 [node name="BotonCustom" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("3_0sskl")]

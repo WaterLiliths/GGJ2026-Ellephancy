@@ -16,6 +16,9 @@ func _ready() -> void:
 	if tipo_de_palanca == "Oxidada":
 		modulate = Color(0.51, 0.291, 0.291, 1.0)
 
+func _process(_delta: float) -> void:
+	$FmodEventEmitter2D.volume = Global.volumen_efectos
+
 #-------------FUNCIONES------------------
 func activar() -> void:
 	
