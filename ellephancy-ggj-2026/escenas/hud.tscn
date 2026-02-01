@@ -1,11 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://djqldl5uq6oy4"]
+[gd_scene load_steps=8 format=3 uid="uid://djqldl5uq6oy4"]
 
 [ext_resource type="Script" uid="uid://skafeqjf1vw" path="res://escenas/hud.gd" id="1_m5lxu"]
 [ext_resource type="Theme" uid="uid://cj0o3c28vicve" path="res://escenas/themes/tema_pausa_menu.tres" id="2_5u87e"]
 [ext_resource type="PackedScene" uid="uid://d2xlg26hl7ug6" path="res://escenas/boton_custom.tscn" id="3_0sskl"]
-[ext_resource type="PackedScene" uid="uid://dylv1dc0i2wyh" path="res://escenas/volumen.tscn" id="4_hrvm2"]
+[ext_resource type="Script" uid="uid://c5gucwp3rnkxt" path="res://escenas/canvas_layer_main_2.gd" id="4_8qmdo"]
+[ext_resource type="Theme" uid="uid://c3il706qyjae5" path="res://escenas/themes/main_menu_boton.tres" id="5_dda1n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0sskl"]
+bg_color = Color(0.5, 0.5, 0.5, 0.69411767)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
+shadow_color = Color(0, 0, 0, 0.16862746)
+shadow_size = 15
+shadow_offset = Vector2(11.205, 13.34)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xuv2i"]
 bg_color = Color(0.5, 0.5, 0.5, 0.69411767)
 border_width_left = 2
 border_width_top = 2
@@ -165,11 +180,110 @@ text = "NO"
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 
-[node name="CanvasLayerMain2" parent="." instance=ExtResource("4_hrvm2")]
+[node name="CanvasLayerMain2" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
+process_mode = 3
+script = ExtResource("4_8qmdo")
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayerMain2"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -205.0
+offset_right = 130.0
+offset_bottom = 205.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_5u87e")
+theme_override_styles/panel = SubResource("StyleBoxFlat_xuv2i")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayerMain2/PanelContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="CanvasLayerMain2/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 22.565)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CanvasLayerMain2/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_dda1n")
+theme_override_font_sizes/font_size = 50
+text = "Volumen"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayerMain2/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("2_5u87e")
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="Control" type="Control" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 9.47)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Música"
+
+[node name="HSliderMusica" type="HSlider" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+theme = ExtResource("5_dda1n")
+max_value = 1.0
+step = 0.01
+
+[node name="Label3" type="Label" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Efectos"
+
+[node name="HSlider2Efectos" type="HSlider" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_dda1n")
+max_value = 1.0
+step = 0.01
+
+[node name="Label4" type="Label" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Ambiente"
+
+[node name="HSlider3Ambiente" type="HSlider" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_dda1n")
+max_value = 1.0
+step = 0.01
+
+[node name="Control2" type="Control" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 38.16)
+layout_mode = 2
+
+[node name="BotonCustom" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("3_0sskl")]
+layout_mode = 2
+text = "Cerrar"
+
+[node name="Control2" type="Control" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
 
 [connection signal="pressed" from="CanvasLayerMain/PanelContainer/HBoxContainer/VBoxContainer/BTNReanudar" to="." method="_on_btn_reanudar_pressed"]
 [connection signal="pressed" from="CanvasLayerMain/PanelContainer/HBoxContainer/VBoxContainer/BTNOpciones" to="." method="_on_btn_opciones_pressed"]
 [connection signal="pressed" from="CanvasLayerMain/PanelContainer/HBoxContainer/VBoxContainer/BTNSalir" to="." method="_on_btn_salir_pressed"]
 [connection signal="pressed" from="CanvasLayerSalir/PanelContainer2/HBoxContainer/VBoxContainer/HBoxContainer/BTNSi" to="." method="_on_btn_si_pressed"]
 [connection signal="pressed" from="CanvasLayerSalir/PanelContainer2/HBoxContainer/VBoxContainer/HBoxContainer/BTNSi2" to="." method="_on_btn_si_2_pressed"]
+[connection signal="drag_ended" from="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HSliderMusica" to="CanvasLayerMain2" method="_on_h_slider_musica_drag_ended"]
+[connection signal="drag_ended" from="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HSlider2Efectos" to="CanvasLayerMain2" method="_on_h_slider_2_efectos_drag_ended"]
+[connection signal="drag_ended" from="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HSlider3Ambiente" to="CanvasLayerMain2" method="_on_h_slider_3_ambiente_drag_ended"]
+[connection signal="pressed" from="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/BotonCustom" to="." method="_on_boton_custom_pressed"]

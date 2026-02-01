@@ -386,10 +386,10 @@ tracks/16/path = NodePath("PointLight2D:texture_scale")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
-"times": PackedFloat32Array(2.8, 11.966666),
-"transitions": PackedFloat32Array(0.108819105, 0.12940784),
+"times": PackedFloat32Array(2.0333333, 10.5),
+"transitions": PackedFloat32Array(0.044194277, 0.12940784),
 "update": 0,
-"values": [9.57, 29.73]
+"values": [2.3099999999999996, 29.73]
 }
 tracks/17/type = "value"
 tracks/17/imported = false
@@ -398,10 +398,10 @@ tracks/17/path = NodePath("PointLight2D:energy")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
-"times": PackedFloat32Array(2.3, 11.933333),
+"times": PackedFloat32Array(1.5333331, 10.466667),
 "transitions": PackedFloat32Array(0.098073356, 0.16493858),
 "update": 0,
-"values": [0.0, 8.49]
+"values": [0.0, 15.84]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nxvcq"]
@@ -461,7 +461,7 @@ light_mode = 1
 [sub_resource type="LabelSettings" id="LabelSettings_bm2sk"]
 font_size = 150
 shadow_size = 0
-shadow_offset = Vector2(12.62, 1)
+shadow_color = Color(0, 0, 0, 0.14901961)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -478,7 +478,7 @@ libraries = {
 }
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(1185, -687.00006)
+position = Vector2(1235, -234.00006)
 scale = Vector2(1.1252074, 1.1252073)
 color = Color(1, 0.7019608, 0.30980393, 1)
 energy = 0.0
@@ -487,7 +487,7 @@ texture = SubResource("GradientTexture2D_2vsao")
 texture_scale = 9.57
 
 [node name="Bosquepocho" type="TextureRect" parent="."]
-modulate = Color(0.86036915, 0.8603692, 0.8603692, 1)
+modulate = Color(0.6830768, 0.6830776, 0.68307686, 1)
 material = SubResource("CanvasItemMaterial_tnv86")
 layout_mode = 1
 anchors_preset = -1
@@ -507,7 +507,7 @@ texture_scale = Vector2(0.455, 0.455)
 polygon = PackedVector2Array(1295, -1109, -1499, 2176, -911, 2176, 1865, -1109)
 
 [node name="TextureRect" type="TextureRect" parent="Polygon2D"]
-modulate = Color(0.65, 0.65, 0.65, 1)
+modulate = Color(0.3106173, 0.31061706, 0.310617, 1)
 offset_right = 1920.0
 offset_bottom = 1080.0
 grow_horizontal = 2

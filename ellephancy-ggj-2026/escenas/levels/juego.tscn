@@ -287,10 +287,10 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 [node name="ColorRect" type="ColorRect" parent="Player/Camera2D"]
 z_index = 185
 y_sort_enabled = true
-offset_left = -582.0
-offset_top = -872.0
-offset_right = 1429.0
-offset_bottom = 1114.0
+offset_left = -1033.0
+offset_top = -1102.0
+offset_right = 978.0
+offset_bottom = 884.0
 color = Color(0, 0, 0, 1)
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="Player/Camera2D"]

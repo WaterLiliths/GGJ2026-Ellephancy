@@ -1,9 +1,7 @@
-[gd_scene load_steps=7 format=4 uid="uid://d3kk7nu2wr28k"]
+[gd_scene load_steps=5 format=4 uid="uid://d3kk7nu2wr28k"]
 
 [ext_resource type="PackedScene" uid="uid://deup0i7mgu0xc" path="res://escenas/masks/area_mascara_oso.tscn" id="4_qlwoe"]
-[ext_resource type="PackedScene" uid="uid://ig75pg3uo5m" path="res://escenas/masks/area_mascara_ciervo.tscn" id="5_xuxq0"]
 [ext_resource type="PackedScene" uid="uid://b3kt101wc8mwl" path="res://escenas/world_objects/palanca.tscn" id="6_qqybc"]
-[ext_resource type="PackedScene" uid="uid://gsyv06ys145u" path="res://escenas/masks/area_mascara_salmon.tscn" id="6_yf5cx"]
 [ext_resource type="PackedScene" uid="uid://biambmyuxxflo" path="res://escenas/world_objects/puerta.tscn" id="7_smkhk"]
 [ext_resource type="PackedScene" uid="uid://by80hrdi7bflk" path="res://escenas/creador_de_niveles.tscn" id="11_5tmwr"]
 
@@ -77,11 +75,3 @@ id_puerta = 3
 z_index = -1
 position = Vector2(2906.0002, -205.99997)
 rotation = -0.2617994
-
-[node name="AreaMascaraCiervo" parent="." instance=ExtResource("5_xuxq0")]
-position = Vector2(3069.0002, -71.000046)
-rotation = -0.2617994
-scale = Vector2(0.155, 0.155)
-
-[node name="AreaMascaraSalmon" parent="." instance=ExtResource("6_yf5cx")]
-position = Vector2(3244, -76)
