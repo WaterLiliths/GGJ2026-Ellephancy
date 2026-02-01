@@ -1,4 +1,3 @@
-class_name ObjetoEmpujable 
 extends RigidBody2D
 
 @export var presente : bool
@@ -47,16 +46,3 @@ func mostrar_mundo():
 	global_position = ultima_posicion
 	colision.set_deferred("disabled", false)
 	show()
-
-
-
-#func _physics_process(_delta: float) -> void:
-	#if velocity.y == 0
-		#$FmodEventEmitter2D2.play_one_shot()
-	##var esta_en_el_piso = %RayCastAbajo.is_colliding()
-	##detectar_caida()
-	
-
-#func detectar_caida():
-	#if esta_en_el_aire and $RayCast2D.is_colliding():
-		#$FmodEventEmitter2D.play_one_shot()

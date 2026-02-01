@@ -17,8 +17,9 @@
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="15_4st7h"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="16_1lsqy"]
 [ext_resource type="PackedScene" uid="uid://dkaf2gav3cro1" path="res://escenas/levels/first_level_works.tscn" id="17_ejdqr"]
-[ext_resource type="PackedScene" uid="uid://ctgi3ppkimt2c" path="res://escenas/levels/fourth_level.tscn" id="18_14ipy"]
+[ext_resource type="PackedScene" uid="uid://ctgi3ppkimt2c" path="res://escenas/levels/third_level.tscn" id="18_14ipy"]
 [ext_resource type="PackedScene" uid="uid://ww1sbsindpl7" path="res://escenas/opciones.tscn" id="19_mccry"]
+
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ms3um"]
 blend_mode = 1

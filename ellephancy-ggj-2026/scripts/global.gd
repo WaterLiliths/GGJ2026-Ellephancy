@@ -8,7 +8,7 @@ signal mascara_tiempo_desactivar
 signal mascara_fuerza_desactivar
 signal agarre_mascara(nombre : String)
 #Booleano por mascara
-var tiene_mascara_fuerza : bool = false
+var tiene_mascara_fuerza : bool = true
 var tiene_mascara_tiempo : bool = false
 var tiene_mascara_traducciones : bool = false
 
