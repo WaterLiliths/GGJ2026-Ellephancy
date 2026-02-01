@@ -19,4 +19,5 @@ func _physics_process(delta: float) -> void:
 func _on_boton_custom_pressed() -> void:
 	$AnimationPlayer.play("fade_out")
 	await get_tree().create_timer(3.5).timeout
+	await get_tree().process_frame
 	get_tree().change_scene_to_file("res://escenas/main_menu.tscn")

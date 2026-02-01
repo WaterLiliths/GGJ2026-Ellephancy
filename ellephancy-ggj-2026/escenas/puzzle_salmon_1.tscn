@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://b6egkrxvfwusp"]
+[gd_scene load_steps=37 format=3 uid="uid://b6egkrxvfwusp"]
 
 [ext_resource type="Script" uid="uid://ghj06urprt1g" path="res://escenas/puzzle_salmon_1.gd" id="1_6r7eb"]
 [ext_resource type="Texture2D" uid="uid://dibfv1arx47hn" path="res://assets/sprites/palanca_centro.PNG" id="1_o8y83"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://c2uduf8ch2qat" path="res://escenas/palanca_salmon_3.gd" id="12_4e2h8"]
 [ext_resource type="Script" uid="uid://blvlclwppw6tu" path="res://escenas/puerta_salmon.gd" id="12_f0ung"]
 [ext_resource type="AnimationLibrary" uid="uid://8fnfbqiuq3br" path="res://escenas/animaciones/animaciones_palancas_salmon.res" id="16_42s24"]
+[ext_resource type="PackedScene" uid="uid://bigbvkph35hhb" path="res://escenas/portal.tscn" id="20_borjd"]
 
 [sub_resource type="Animation" id="Animation_neg3w"]
 resource_name = "activar"
@@ -64,14 +65,14 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dtuov"]
-size = Vector2(544.4444, 299.11108)
+size = Vector2(325, 299.11108)
 
 [sub_resource type="Animation" id="Animation_omxlu"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("%CONTENEDORRUNASPUERTA:modulate")
+tracks/0/path = NodePath("../../ContenedorPuerta/PuertaSalmon/Sprite2D/CONTENEDORRUNASPUERTA:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -83,7 +84,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("%CONTENEDORRUNASPUERTA:visible")
+tracks/1/path = NodePath("../../ContenedorPuerta/PuertaSalmon/Sprite2D/CONTENEDORRUNASPUERTA:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -123,7 +124,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("%CONTENEDORRUNASPUERTA:visible")
+tracks/2/path = NodePath("../../ContenedorPuerta/PuertaSalmon/Sprite2D/CONTENEDORRUNASPUERTA:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -135,7 +136,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("%CONTENEDORRUNASPUERTA:modulate")
+tracks/3/path = NodePath("../../ContenedorPuerta/PuertaSalmon/Sprite2D/CONTENEDORRUNASPUERTA:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -175,7 +176,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("%CONTENEDORRUNASPUERTA:visible")
+tracks/2/path = NodePath("../../ContenedorPuerta/PuertaSalmon/Sprite2D/CONTENEDORRUNASPUERTA:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -187,7 +188,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("%CONTENEDORRUNASPUERTA:modulate")
+tracks/3/path = NodePath("../../ContenedorPuerta/PuertaSalmon/Sprite2D/CONTENEDORRUNASPUERTA:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -265,6 +266,8 @@ runa_3 = ExtResource("4_borjd")
 runa_4 = ExtResource("5_omxlu")
 runa_5 = ExtResource("6_42s24")
 runa_6 = ExtResource("7_kk613")
+runa_2_comienza_con = 2
+runa_3_comienza_con = 3
 
 [node name="PalancaSalmon1" type="Area2D" parent="PuzzleSalmon1" node_paths=PackedStringArray("sprite_asociado") groups=["palancas"]]
 unique_name_in_owner = true
@@ -273,8 +276,8 @@ scale = Vector2(0.19999999, 0.19999999)
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("2_k8i5l")
-id_palanca = 1
 sprite_asociado = NodePath("../ContenedorRunas/RunaCambiante1")
+id_palanca = 1
 
 [node name="AnimationPlayer1" type="AnimationPlayer" parent="PuzzleSalmon1/PalancaSalmon1"]
 unique_name_in_owner = true
@@ -284,8 +287,8 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PuzzleSalmon1/PalancaSalmon1"]
-position = Vector2(0, -86.55558)
-scale = Vector2(1.0000001, 1.0000001)
+position = Vector2(2.5, -86.55554)
+scale = Vector2(1.0000002, 1.0000002)
 shape = SubResource("RectangleShape2D_dtuov")
 
 [node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="PuzzleSalmon1/PalancaSalmon1"]
@@ -450,6 +453,41 @@ modulate = Color(0.63550407, 0.42504865, 0.63550407, 1)
 scale = Vector2(3, 3)
 texture = ExtResource("5_6r7eb")
 
+[node name="CONTENEDORRUNASPUERTA" type="Node2D" parent="ContenedorPuerta/PuertaSalmon/Sprite2D"]
+unique_name_in_owner = true
+z_index = 10
+scale = Vector2(0.33333334, 0.33333334)
+
+[node name="RunaPuerta1" type="Sprite2D" parent="ContenedorPuerta/PuertaSalmon/Sprite2D/CONTENEDORRUNASPUERTA"]
+unique_name_in_owner = true
+position = Vector2(1.0000005, -142)
+scale = Vector2(0.16601563, 0.16601563)
+texture = ExtResource("5_gegfy")
+
+[node name="Portal1" parent="ContenedorPuerta/PuertaSalmon/Sprite2D/CONTENEDORRUNASPUERTA/RunaPuerta1" instance=ExtResource("20_borjd")]
+unique_name_in_owner = true
+scale = Vector2(4, 4)
+
+[node name="RunaPuerta2" type="Sprite2D" parent="ContenedorPuerta/PuertaSalmon/Sprite2D/CONTENEDORRUNASPUERTA"]
+unique_name_in_owner = true
+position = Vector2(0, -18)
+scale = Vector2(0.1640625, 0.1640625)
+texture = ExtResource("6_t1q3l")
+
+[node name="Portal2" parent="ContenedorPuerta/PuertaSalmon/Sprite2D/CONTENEDORRUNASPUERTA/RunaPuerta2" instance=ExtResource("20_borjd")]
+unique_name_in_owner = true
+scale = Vector2(4, 4)
+
+[node name="RunaPuerta3" type="Sprite2D" parent="ContenedorPuerta/PuertaSalmon/Sprite2D/CONTENEDORRUNASPUERTA"]
+unique_name_in_owner = true
+position = Vector2(0, 116.999985)
+scale = Vector2(0.19428572, 0.19428572)
+texture = ExtResource("7_s1ify")
+
+[node name="Portal_3" parent="ContenedorPuerta/PuertaSalmon/Sprite2D/CONTENEDORRUNASPUERTA/RunaPuerta3" instance=ExtResource("20_borjd")]
+unique_name_in_owner = true
+scale = Vector2(4, 4)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ContenedorPuerta/PuertaSalmon"]
 shape = SubResource("RectangleShape2D_555dy")
 
@@ -473,27 +511,6 @@ one_shot = true
 
 [node name="TimerPuerta" type="Timer" parent="ContenedorPuerta/PuertaSalmon"]
 one_shot = true
-
-[node name="CONTENEDORRUNASPUERTA" type="Node2D" parent="ContenedorPuerta/PuertaSalmon"]
-unique_name_in_owner = true
-
-[node name="RunaPuerta1" type="Sprite2D" parent="ContenedorPuerta/PuertaSalmon/CONTENEDORRUNASPUERTA"]
-unique_name_in_owner = true
-position = Vector2(1.0000005, -142)
-scale = Vector2(0.16601563, 0.16601563)
-texture = ExtResource("5_gegfy")
-
-[node name="RunaPuerta2" type="Sprite2D" parent="ContenedorPuerta/PuertaSalmon/CONTENEDORRUNASPUERTA"]
-unique_name_in_owner = true
-position = Vector2(0, -18)
-scale = Vector2(0.1640625, 0.1640625)
-texture = ExtResource("6_t1q3l")
-
-[node name="RunaPuerta3" type="Sprite2D" parent="ContenedorPuerta/PuertaSalmon/CONTENEDORRUNASPUERTA"]
-unique_name_in_owner = true
-position = Vector2(0, 116.999985)
-scale = Vector2(0.19428572, 0.19428572)
-texture = ExtResource("7_s1ify")
 
 [node name="AnimationPlayerSalmon" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

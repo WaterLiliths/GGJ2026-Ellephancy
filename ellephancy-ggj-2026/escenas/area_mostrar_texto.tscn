@@ -1,0 +1,95 @@
+[gd_scene load_steps=6 format=3 uid="uid://cs6hrjrtl5v7x"]
+
+[ext_resource type="Script" uid="uid://ds60ehkkb6yr" path="res://escenas/area_mostrar_texto.gd" id="1_ppkhw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6l3tb"]
+size = Vector2(91, 78)
+
+[sub_resource type="Animation" id="Animation_ppkhw"]
+resource_name = "mostrar"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LabelTexto:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.7666669, 2.8666666, 4.9333334),
+"transitions": PackedFloat32Array(0.6155721, 0.45062527, 1.8660663, 3.363585),
+"update": 0,
+"values": [Vector2(-68, -100), Vector2(-68, -106.18), Vector2(-68, -100.715), Vector2(-68, -100)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LabelTexto:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8666667, 3.78),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hxs3j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LabelTexto:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-68, -100)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LabelTexto:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gocct"]
+_data = {
+&"RESET": SubResource("Animation_hxs3j"),
+&"mostrar": SubResource("Animation_ppkhw")
+}
+
+[node name="AreaMostrarTexto" type="Area2D"]
+script = ExtResource("1_ppkhw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6l3tb")
+debug_color = Color(0.76484627, 0.17087922, 0.99999994, 0.41960785)
+
+[node name="AnimationPlayerTexto" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_gocct")
+}
+
+[node name="LabelTexto" type="Label" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+offset_left = -68.0
+offset_top = -100.0
+offset_right = 82.0
+offset_bottom = 53.0
+text = "ENSEÑAR TECLAS aaaa aaaa aaaaaa aaa aaaaaa aaaa aaaaa aaaa aaa"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

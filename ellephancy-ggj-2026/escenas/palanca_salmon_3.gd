@@ -25,4 +25,4 @@ func _physics_process(delta: float) -> void:
 			animation_player_3.play("activar")
 		else:
 			animation_player_3.play("desactivar")
-		usada != usada
+		usada = not usada

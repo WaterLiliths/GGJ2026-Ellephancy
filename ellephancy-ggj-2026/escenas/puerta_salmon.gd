@@ -5,6 +5,10 @@ extends StaticBody2D
 @export var horizontal : bool = false
 @export var timeada : bool = false
 @export var timer : float = 1.0
+@onready var portal_1: Node2D = %Portal1
+@onready var portal_2: Node2D = %Portal2
+@onready var portal_3: Node2D = %Portal_3
+
 
 var contador_id : int = 0
 @export var altura_maxima : float = 250.0
@@ -29,9 +33,24 @@ func _ready() -> void:
 	runa_puerta_1.texture = controlador_runas.diccionario_runas[contrasena_1]
 	runa_puerta_2.texture = controlador_runas.diccionario_runas[contrasena_2]
 	runa_puerta_3.texture = controlador_runas.diccionario_runas[contrasena_3]
+	portal_1.hide()
+	portal_2.hide()
+	portal_3.hide()
 
 
 func verificar_contrasena(contra1 : int, contra2 : int, contra3 : int):
+	if contra1 == contrasena_1:
+		portal_1.show()
+	else:
+		portal_1.hide()
+	if contra2 == contrasena_2:
+		portal_2.show()
+	else:
+		portal_2.hide()
+	if contra3 == contrasena_3:
+		portal_3.show()
+	else:
+		portal_3.hide()
 	if contra1 == contrasena_1 and contra2 == contrasena_2 and contra3 == contrasena_3: #que feo codigo perdon jdasja
 		abrir_puerta()
 	else:

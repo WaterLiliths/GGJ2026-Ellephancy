@@ -5,7 +5,7 @@ var esta_encendida : bool = false
 var palanca_actual : Palanca = self
 
 @export var id : int = 0
-@export_enum("Buena", "Oxidada", "Fallada") var tipo_de_palanca : String = "Buena"
+@export_enum("buena", "oxidada", "fallada") var tipo_de_palanca : String = "buena"
 @export var timeada : bool = false
 @export var timer : float = 1.0
 
