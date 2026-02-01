@@ -166,7 +166,7 @@ color = Color(0.69965345, 0.69965345, 0.69965345, 1)
 [node name="ParallaxPresente" type="Node2D" parent="."]
 light_mask = 8
 z_index = -10
-position = Vector2(0, 367)
+position = Vector2(780, 356)
 script = ExtResource("2_m34qx")
 presente = true
 
@@ -221,6 +221,7 @@ repeat_times = 3
 texture = ExtResource("6_gdb2x")
 
 [node name="ParallaxPasado" type="Node2D" parent="."]
+visible = false
 z_index = -10
 script = ExtResource("2_m34qx")
 
