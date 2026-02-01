@@ -2,7 +2,7 @@ extends Control
 
 func _ready() -> void:
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
-	$Opciones.visible = false
+	$CanvasLayerVolumen.hide()
 	$FmodEventEmitter2D.volume = Global.volumen_musica
 	$FmodEventEmitter2D2.volume = Global.volumen_efectos
 	
@@ -39,10 +39,10 @@ func _on_boton_custom_creditos_pressed() -> void:
 
 
 func _on_boton_custom_opciones_pressed() -> void:
-	if $Opciones.visible:
-		$Opciones.visible = false
+	if $CanvasLayerVolumen.visible:
+		$CanvasLayerVolumen.hide()
 	else:
-		$Opciones.visible = true
+		$CanvasLayerVolumen.show()
 
 
 func _on_boton_custom_salir_pressed() -> void:

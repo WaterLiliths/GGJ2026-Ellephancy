@@ -23,6 +23,8 @@ func _physics_process(delta: float) -> void:
 		activar_cambiar_runa.emit(id_palanca)
 		if usada:
 			animation_player_3.play("activar")
+			$"../../FmodEventEmitter2D3".play()
 		else:
 			animation_player_3.play("desactivar")
+			$"../../FmodEventEmitter2D3".play()
 		usada = not usada

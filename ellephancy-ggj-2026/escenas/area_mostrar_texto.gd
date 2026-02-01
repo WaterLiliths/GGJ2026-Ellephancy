@@ -1,11 +1,13 @@
 extends Area2D
 
 @onready var label_texto: Label = %LabelTexto
-@export var texto_encima : String
+@export var texto_encima : String = ""
 @onready var animation_player_texto: AnimationPlayer = %AnimationPlayerTexto
-
+@onready var runa_teclas: Sprite2D = %RunaTeclas
+@export var textura_runa_tecla : Texture
 
 func _ready() -> void:
+	runa_teclas.texture = textura_runa_tecla
 	label_texto.hide()
 	label_texto.text = texto_encima
 
