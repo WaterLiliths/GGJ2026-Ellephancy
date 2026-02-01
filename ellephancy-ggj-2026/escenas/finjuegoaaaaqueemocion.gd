@@ -5,6 +5,8 @@ extends Area2D
 var creditos : PackedScene = preload("res://escenas/creditos.tscn")
 var mostrar_creditos : bool = false
 
+func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 
 func _physics_process(delta: float) -> void:
 	if mostrar_creditos:
