@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://c041xrho60tga"
+path="res://.godot/imported/dialogo_oso_2.dialogue-ff2c86b87c8e5b0ddcb76bec950198e4.tres"
+
+[deps]
+
+source_file="res://dialogue/dialogo_oso_2.dialogue"
+dest_files=["res://.godot/imported/dialogo_oso_2.dialogue-ff2c86b87c8e5b0ddcb76bec950198e4.tres"]
+
+[params]
+
+defaults=true
