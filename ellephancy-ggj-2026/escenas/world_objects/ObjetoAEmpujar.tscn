@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://t3ox75glka3s"]
 
 [ext_resource type="Script" uid="uid://cmqqpgbgf8ayt" path="res://scripts/objeto_a_empujar.gd" id="1_xh1mv"]
-[ext_resource type="Texture2D" uid="uid://r8op15cyle2b" path="res://assets/sprites/rocasuciaplanta.png" id="2_ettqs"]
+[ext_resource type="Texture2D" uid="uid://bb0dx0tt7b3f1" path="res://assets/sprites/ambient/rocatocha2.png" id="2_ettqs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6a1yu"]
-size = Vector2(77, 132)
+size = Vector2(191, 292.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xh1mv"]
-size = Vector2(106, 138)
+size = Vector2(245, 318)
 
 [node name="ObjetoAEmpujar" type="RigidBody2D"]
 collision_mask = 3
@@ -18,16 +18,18 @@ angular_damp = 1.0
 script = ExtResource("1_xh1mv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -2)
+scale = Vector2(0.57, 0.57)
 texture = ExtResource("2_ettqs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 0)
+unique_name_in_owner = true
+position = Vector2(-18.5, 6.25)
 shape = SubResource("RectangleShape2D_6a1yu")
 
 [node name="AreaInteraccion" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaInteraccion"]
+position = Vector2(-18.5, 0)
 shape = SubResource("RectangleShape2D_xh1mv")
 debug_color = Color(0.05449406, 0.65035343, 0, 0.41960785)
 

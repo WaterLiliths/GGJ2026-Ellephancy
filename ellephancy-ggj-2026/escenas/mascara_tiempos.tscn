@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c828ri1fboaoq" path="res://scripts/mascara_tiempos.gd" id="1_v8jvp"]
 [ext_resource type="Shader" uid="uid://dgqbbu2xdih1l" path="res://escenas/mascara_tiempos2.gdshader" id="2_dot3c"]
-[ext_resource type="Texture2D" uid="uid://355qtqujqaxb" path="res://assets/2d para shader/blanco-shader.jpg" id="3_d7wvt"]
+[ext_resource type="Texture2D" uid="uid://bvg3w01gx6tqm" path="res://assets/2d para shader/textura.png" id="3_d7wvt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d7wvt"]
 shader = ExtResource("2_dot3c")
