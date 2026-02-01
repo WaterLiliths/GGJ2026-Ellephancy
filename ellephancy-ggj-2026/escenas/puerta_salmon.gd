@@ -29,6 +29,7 @@ var puerta_abierta : bool =false
 
 
 func _ready() -> void:
+	$TimerTiempoDeApertura.set_wait_time(tiempo_de_apertura)
 	await get_tree().create_timer(1).timeout
 	runa_puerta_1.texture = controlador_runas.diccionario_runas[contrasena_1]
 	runa_puerta_2.texture = controlador_runas.diccionario_runas[contrasena_2]
@@ -41,7 +42,6 @@ func _ready() -> void:
 func verificar_contrasena(contra1 : int, contra2 : int, contra3 : int):
 	if contra1 == contrasena_1:
 		portal_1.show()
-		#sonido
 	else:
 		portal_1.hide()
 	if contra2 == contrasena_2:
@@ -53,12 +53,14 @@ func verificar_contrasena(contra1 : int, contra2 : int, contra3 : int):
 	else:
 		portal_3.hide()
 	if contra1 == contrasena_1 and contra2 == contrasena_2 and contra3 == contrasena_3: #que feo codigo perdon jdasja
-		#sonido
-		#await
+		$"../../FmodEventEmitter2D2".play()
+		await get_tree().create_timer(0.5).timeout
 		abrir_puerta()
 	else:
 		print("se recibio la funcion, todavia la contraseña no coincide")
 
+func sonido_runa_correcta():
+	$"../../FmodEventEmitter2D".play()
 #
 #func abrir_puerta():
 	#print("ABRIR PUERTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
@@ -80,3 +82,8 @@ func abrir_puerta():
 	#print("la puerta esta abierta")
 	$FmodEventEmitter2D.set_parameter("peso", 5.0)
 	$FmodEventEmitter2D.play()
+
+
+func _on_timer_tiempo_de_apertura_timeout() -> void:
+	$FmodEventEmitter2D.stop()
+	$FmodEventEmitter2D2.play()
