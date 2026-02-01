@@ -21,4 +21,5 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _on_body_exited(body: Node2D) -> void:
 	if body is Player:
-		label_texto.hide()
+		#label_texto.hide()
+		animation_player_texto.play("esconder_runass")
