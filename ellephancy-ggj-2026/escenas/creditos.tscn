@@ -258,8 +258,11 @@ Narrativa, Edición de Sprites
 Attie Testa
 Música, SFX, Programación, UX/UI
 
+Gracias al equipo de BAGD
 
-Gracias por jugar!"
+
+Gracias por jugar!
+"
 horizontal_alignment = 1
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]

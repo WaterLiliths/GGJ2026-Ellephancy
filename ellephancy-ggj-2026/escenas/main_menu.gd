@@ -1,7 +1,7 @@
 extends Control
 
 func _ready() -> void:
-	#Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 	$CanvasLayerVolumen.hide()
 	$FmodEventEmitter2D.volume = Global.volumen_musica
 	$FmodEventEmitter2D2.volume = Global.volumen_efectos
