@@ -10,7 +10,8 @@ size = Vector2(129, 205)
 size = Vector2(165, 223)
 
 [node name="PiedraChica" type="RigidBody2D" groups=["cajas"]]
-collision_mask = 3
+collision_layer = 129
+collision_mask = 131
 mass = 20.0
 lock_rotation = true
 linear_damp = 1.0

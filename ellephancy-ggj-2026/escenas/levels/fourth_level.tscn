@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://ctgi3ppkimt2c"]
+[gd_scene load_steps=13 format=4 uid="uid://ctgi3ppkimt2c"]
 
 [ext_resource type="PackedScene" uid="uid://by80hrdi7bflk" path="res://escenas/creador_de_niveles.tscn" id="1_deql2"]
 [ext_resource type="Script" uid="uid://cmqqpgbgf8ayt" path="res://scripts/objeto_a_empujar.gd" id="2_lpctw"]
@@ -6,6 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://b3kt101wc8mwl" path="res://escenas/world_objects/palanca.tscn" id="4_4cpau"]
 [ext_resource type="PackedScene" uid="uid://biambmyuxxflo" path="res://escenas/world_objects/puerta.tscn" id="5_xl0ng"]
 [ext_resource type="PackedScene" uid="uid://ig75pg3uo5m" path="res://escenas/masks/area_mascara_ciervo.tscn" id="6_clw5t"]
+[ext_resource type="PackedScene" uid="uid://ccia0snrxhd0y" path="res://escenas/area_dialogo_prueba.tscn" id="7_gopn5"]
+[ext_resource type="Resource" uid="uid://dcphcicwvfa2p" path="res://dialogue/dialogo_oso_primer_uso_poder.dialogue" id="8_681wa"]
+[ext_resource type="Resource" uid="uid://cqoj5gba0lm51" path="res://dialogue/dialogo_ciervo_primer_uso_poder.dialogue" id="9_w8i4n"]
+[ext_resource type="Resource" uid="uid://wyq2j7l8xrfy" path="res://dialogue/primer_dialogo_ciervo.dialogue" id="10_l6l7d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6a1yu"]
 size = Vector2(86.5, 133)
@@ -46,19 +50,21 @@ presente = true
 
 [node name="Piedra 1" type="RigidBody2D" parent="." groups=["cajas"]]
 position = Vector2(742, 571)
-collision_mask = 3
+collision_layer = 129
+collision_mask = 131
 mass = 20.0
 lock_rotation = true
 linear_damp = 1.0
 angular_damp = 1.0
 script = ExtResource("2_lpctw")
+presente = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Piedra 1"]
 position = Vector2(0, -2)
 scale = Vector2(2, 2)
 texture = ExtResource("3_4cpau")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Piedra 1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Piedra 1" groups=["colision_cajas"]]
 position = Vector2(0.5, 3)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_6a1yu")
@@ -88,19 +94,21 @@ fmod_parameters/Peso/variant_type = 3
 
 [node name="Piedra 2" type="RigidBody2D" parent="." groups=["cajas"]]
 position = Vector2(2168, 185)
+collision_layer = 129
 collision_mask = 131
 mass = 20.0
 lock_rotation = true
 linear_damp = 1.0
 angular_damp = 1.0
 script = ExtResource("2_lpctw")
+presente = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Piedra 2"]
 position = Vector2(0, -2)
 scale = Vector2(2, 2)
 texture = ExtResource("3_4cpau")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Piedra 2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Piedra 2" groups=["colision_cajas"]]
 position = Vector2(0.5, 3)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_6a1yu")
@@ -137,13 +145,14 @@ lock_rotation = true
 linear_damp = 1.0
 angular_damp = 1.0
 script = ExtResource("2_lpctw")
+presente = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Piedra 3"]
 position = Vector2(0, -2)
 scale = Vector2(2, 2)
 texture = ExtResource("3_4cpau")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Piedra 3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Piedra 3" groups=["colision_cajas"]]
 position = Vector2(0.5, 3)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_6a1yu")
@@ -180,13 +189,14 @@ lock_rotation = true
 linear_damp = 1.0
 angular_damp = 1.0
 script = ExtResource("2_lpctw")
+presente = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Piedra 4"]
 position = Vector2(0, -2)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("3_4cpau")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Piedra 4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Piedra 4" groups=["colision_cajas"]]
 position = Vector2(0.5, 3)
 scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_6a1yu")
@@ -236,3 +246,15 @@ cant_palancas = 2
 [node name="AreaMascaraCiervo" parent="." instance=ExtResource("6_clw5t")]
 position = Vector2(3599, 2028)
 rotation = 0.24260077
+
+[node name="AreaDialogoPrueba" parent="." instance=ExtResource("7_gopn5")]
+position = Vector2(804, 516)
+dialogo = ExtResource("8_681wa")
+
+[node name="AreaDialogoPrueba2" parent="." instance=ExtResource("7_gopn5")]
+position = Vector2(4314, 1874)
+dialogo = ExtResource("9_w8i4n")
+
+[node name="AreaDialogoPrueba3" parent="." instance=ExtResource("7_gopn5")]
+position = Vector2(3734, 2173)
+dialogo = ExtResource("10_l6l7d")
