@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://cs3h434myxe4r"]
+[gd_scene load_steps=58 format=3 uid="uid://cs3h434myxe4r"]
 
 [ext_resource type="Script" uid="uid://d1p6o2ixegcp2" path="res://scripts/player.gd" id="1_esbpa"]
 [ext_resource type="Texture2D" uid="uid://csvm86vnc0cmo" path="res://assets/player/mascaras/Agarre oso destra 1.png" id="2_v66k4"]
@@ -60,6 +60,15 @@
 [ext_resource type="Texture2D" uid="uid://c6eq8oqqs1sgr" path="res://assets/player/mascaras/Idle1 Salmón.png" id="39_b787q"]
 [ext_resource type="Texture2D" uid="uid://rxbr0pokkudp" path="res://assets/player/mascaras/Idle 2 Salmón.png" id="40_3jn0c"]
 [ext_resource type="PackedScene" uid="uid://djqldl5uq6oy4" path="res://escenas/hud.tscn" id="52_hopxw"]
+
+[sub_resource type="Gradient" id="Gradient_hopxw"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lrq8u"]
+gradient = SubResource("Gradient_hopxw")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8717949, 0.15811966)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_w7fad"]
 animations = [{
@@ -382,6 +391,16 @@ tiempo_maximo_en_aire = 10.0
 velocidad_salto_con_mascara = -800
 velocidad_al_agarrar = 50.35
 aceleracion_al_agarrar = 0.8
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.7607843, 0.43137255, 0.2901961, 1)
+energy = 0.45
+range_item_cull_mask = 6
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 2.6
+texture = SubResource("GradientTexture2D_lrq8u")
+texture_scale = 12.27
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/SFX.bank"]

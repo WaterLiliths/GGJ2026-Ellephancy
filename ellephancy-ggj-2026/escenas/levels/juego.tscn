@@ -159,15 +159,11 @@ _data = {
 [node name="Juego" type="Node2D"]
 script = ExtResource("1_2y4ua")
 
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-position = Vector2(1230, -222)
-rotation = 0.7033677
-color = Color(0.76, 0.43016, 0.2888, 1)
-shadow_enabled = true
-shadow_filter_smooth = 6.7
-shadow_item_cull_mask = 7
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.3403393, 0.34033933, 0.3403393, 1)
 
 [node name="ParallaxPresente" type="Node2D" parent="."]
+light_mask = 8
 z_index = -10
 position = Vector2(0, 367)
 
@@ -263,13 +259,13 @@ texture = ExtResource("5_ffuyt")
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank", "res://assets/audio/FmodBanks/Desktop/UI.bank"]
 
 [node name="Player" parent="." instance=ExtResource("8_m34qx")]
-position = Vector2(4541, -66)
+position = Vector2(3062, -62)
 scale = Vector2(0.64, 0.64)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(4541, -66)
+position = Vector2(3062, -62)
 zoom = Vector2(1.6, 1.6)
 editor_draw_limits = true
 
@@ -298,10 +294,11 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="Player/Camera2D"]
-z_index = -1
+z_index = -6
 y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_ms3um")
-position = Vector2(695, 329)
+position = Vector2(-7, -5)
+scale = Vector2(1.6541839, 1.970058)
 amount = 100
 texture = SubResource("GradientTexture2D_u84wv")
 lifetime = 11.0
@@ -329,7 +326,8 @@ hue_variation_max = 0.11
 [node name="CPUParticles2D3" type="CPUParticles2D" parent="Player/Camera2D"]
 modulate = Color(1, 1, 1, 0.30980393)
 material = SubResource("CanvasItemMaterial_kypqj")
-amount = 500
+scale = Vector2(1, 1.0045904)
+amount = 800
 texture = SubResource("GradientTexture2D_yv8to")
 lifetime = 14.49
 preprocess = 10.0
@@ -337,7 +335,7 @@ emission_shape = 3
 emission_rect_extents = Vector2(1500, 1000)
 direction = Vector2(-1, 0)
 spread = 41.3
-gravity = Vector2(0, 2)
+gravity = Vector2(0, 0.5)
 initial_velocity_min = 5.0
 initial_velocity_max = 10.0
 tangential_accel_min = 1.0
@@ -368,7 +366,7 @@ position = Vector2(-97, 588)
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(4541, -66)
+position = Vector2(3062, -62)
 script = ExtResource("12_g2cn0")
 follow_mode = 2
 follow_target = NodePath("../Player/Node2D")
@@ -391,3 +389,13 @@ position = Vector2(6241, -652)
 
 [node name="ObjetoAEmpujar" parent="." instance=ExtResource("19_yv8to")]
 position = Vector2(4747, -74)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+position = Vector2(1230, -222)
+rotation = 0.6894051
+color = Color(0.76, 0.43016, 0.2888, 1)
+energy = 1.86
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 2.6
+shadow_item_cull_mask = 7
