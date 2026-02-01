@@ -1,4 +1,4 @@
-class_name ObjetoEmpujable 
+#class_name ObjetoEmpujable 
 extends StaticBody2D
 
 @export var presente : bool
