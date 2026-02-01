@@ -28,6 +28,7 @@ var agarrando_caja : bool = false
 var velocidad_inicial_salto : float
 var velocidad_inicial : float 
 @export var velocidad_al_agarrar : float = 250
+@export var aceleracion_al_agarrar : float = 0.2
 @export var velocidad_correr : float = 40
 @export var fuerza_empuje : float = 0
 @export var velocidad_arrastrando : float = 100.0

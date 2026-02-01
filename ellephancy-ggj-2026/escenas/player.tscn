@@ -358,6 +358,7 @@ script = ExtResource("1_esbpa")
 tiempo_maximo_en_aire = 10.0
 velocidad_salto_con_mascara = -800
 velocidad_al_agarrar = 50.35
+aceleracion_al_agarrar = 0.8
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/SFX.bank"]

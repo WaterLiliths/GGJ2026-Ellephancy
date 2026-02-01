@@ -15,6 +15,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("pausa"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 		pausar()
 
 
@@ -24,6 +25,7 @@ func pausar():
 		pausa_activa = true
 		get_tree().paused = true
 	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
 		canvas_layer_main.hide()
 		canvas_layer_main_2.hide()
 		canvas_layer_salir.hide()
@@ -48,6 +50,9 @@ func _on_btn_salir_pressed() -> void:
 
 func _on_btn_si_pressed() -> void:
 	await get_tree().create_timer(0.5).timeout
+	await get_tree().process_frame
+	pausa_activa = false
+	get_tree().paused = false
 	get_tree().change_scene_to_packed(escena_menu_inicio)
 
 
