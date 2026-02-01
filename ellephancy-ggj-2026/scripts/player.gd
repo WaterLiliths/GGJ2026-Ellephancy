@@ -176,7 +176,7 @@ func _physics_process(delta: float) -> void:
 		if not sonido_caja_sonando:
 			%FmodEventEmitter2D3.play()
 			if objeto_arrastrado:
-				%FmodEventEmitter2D3.set_parameter("peso", objeto_arrastrado.mass) #BUG ACA
+				%FmodEventEmitter2D3.set_parameter("peso", 20) #BUG ACA
 				sonido_caja_sonando = true
 	else:
 		if sonido_caja_sonando:
