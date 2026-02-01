@@ -394,13 +394,13 @@ aceleracion_al_agarrar = 0.8
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(0.7607843, 0.43137255, 0.2901961, 1)
-energy = 0.45
 range_item_cull_mask = 6
 shadow_enabled = true
 shadow_filter = 1
 shadow_filter_smooth = 2.6
+shadow_item_cull_mask = 7
 texture = SubResource("GradientTexture2D_lrq8u")
-texture_scale = 12.27
+texture_scale = 28.55
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/SFX.bank"]

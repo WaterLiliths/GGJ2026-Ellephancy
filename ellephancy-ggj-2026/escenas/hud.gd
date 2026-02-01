@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("pausa"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		pausar()
 
 
