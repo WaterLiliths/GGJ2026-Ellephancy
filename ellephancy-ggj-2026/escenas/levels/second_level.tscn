@@ -12,7 +12,7 @@ position = Vector2(9, 9)
 
 [node name="Background" parent="MapaPresente" instance=ExtResource("11_5tmwr")]
 z_index = -6
-tile_map_data = PackedByteArray("AAAoAOf/BAADAAAAAAApAOf/BAADAAAAAAA=")
+tile_map_data = PackedByteArray("AAAoAOf/BAADAAAAAAApAOf/BAADAAAAAAArAP//BAADAAAAAAArAP7/BAADAAAAAAAsAP7/BAADAAAAAAAtAP7/BAADAAAAAAAuAP7/BAADAAAAAAAuAP//BAADAAAAAAAtAP//BAADAAAAAAAsAP//BAADAAAAAAAsAP3/BAADAAAAAAAtAP3/BAADAAAAAAA=")
 occlusion_enabled = false
 collision_enabled = false
 presente = true

@@ -64,7 +64,11 @@ MarginContainer/constants/margin_top = 15
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_qkmqt")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nlsx6"]
-bg_color = Color(0.6, 0.6, 0.6, 0.7176471)
+bg_color = Color(0.97, 0.97, 0.97, 0.9098039)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
 
 [sub_resource type="Animation" id="Animation_nlsx6"]
 length = 0.001
@@ -170,6 +174,7 @@ size_flags_vertical = 8
 
 [node name="Progress" type="Polygon2D" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/Control"]
 unique_name_in_owner = true
+color = Color(0.26, 0.26, 0.26, 1)
 polygon = PackedVector2Array(0, 0, 10, 10, 20, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/Control"]

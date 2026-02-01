@@ -64,7 +64,3 @@ func _on_btn_si_2_pressed() -> void:
 func _on_boton_custom_pressed() -> void:
 	canvas_layer_main_2.hide()
 	canvas_layer_main.show()
-
-
-func _on_h_slider_musica_drag_ended(value_changed: bool) -> void:
-	pass # Replace with function body.

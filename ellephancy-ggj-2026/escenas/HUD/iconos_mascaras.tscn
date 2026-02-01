@@ -1,0 +1,97 @@
+[gd_scene load_steps=8 format=3 uid="uid://gd2764xqmmje"]
+
+[ext_resource type="Texture2D" uid="uid://ck18sxufit36k" path="res://assets/sprites/masks/mascara_oso.PNG" id="1_7xv3b"]
+[ext_resource type="Script" uid="uid://dq3f30hx2ix0g" path="res://escenas/HUD/iconos_mascaras.gd" id="1_cwatr"]
+
+[sub_resource type="Animation" id="Animation_cwatr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_e31w4"]
+resource_name = "fade_in"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(0.19614643, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_suono"]
+resource_name = "desactivar"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(0.074325725, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.6, 0.6, 0.6, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_i2pbp"]
+resource_name = "activar"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(0.074325725, 1),
+"update": 0,
+"values": [Color(0.6, 0.6, 0.6, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bovk1"]
+_data = {
+&"RESET": SubResource("Animation_cwatr"),
+&"activar": SubResource("Animation_i2pbp"),
+&"desactivar": SubResource("Animation_suono"),
+&"fade_in": SubResource("Animation_e31w4")
+}
+
+[node name="IconoMascara" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_cwatr")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+light_mask = 0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_7xv3b")
+stretch_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_bovk1")
+}

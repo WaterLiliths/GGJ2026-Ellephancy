@@ -33,6 +33,10 @@ func _ready() -> void:
 	$TimerTiempoDeApertura.set_wait_time(tiempo_de_apertura)
 	$TimerPuerta.set_wait_time(timer)
 	
+
+func _process(_delta: float) -> void:
+	$FmodEventEmitter2D.volume = Global.volumen_efectos
+	$FmodEventEmitter2D2.volume = Global.volumen_efectos
 	
 #------------------FUNCIONES-----------------------
 func cambiar_estado_puerta_abierta(id_palanca : int):
