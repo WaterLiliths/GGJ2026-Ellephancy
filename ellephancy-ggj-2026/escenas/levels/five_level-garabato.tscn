@@ -76,6 +76,9 @@ position = Vector2(-4254, -848)
 [node name="PalancaSalmon2" parent="PuzzleHolder3/PuzzleSalmon1" index="2"]
 position = Vector2(-4254, -656)
 
+[node name="PuertaSalmon" parent="PuzzleHolder3/ContenedorPuerta" index="0"]
+contrasena_2 = 5
+
 [node name="PiedraChica" parent="." instance=ExtResource("6_e0r3a")]
 position = Vector2(-3923, -122)
 presente = true
