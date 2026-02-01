@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://b6egkrxvfwusp"]
+[gd_scene load_steps=37 format=3 uid="uid://b6egkrxvfwusp"]
 
 [ext_resource type="Script" uid="uid://ghj06urprt1g" path="res://escenas/puzzle_salmon_1.gd" id="1_6r7eb"]
 [ext_resource type="Texture2D" uid="uid://dibfv1arx47hn" path="res://assets/sprites/palanca_centro.PNG" id="1_o8y83"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://c2uduf8ch2qat" path="res://escenas/palanca_salmon_3.gd" id="12_4e2h8"]
 [ext_resource type="Script" uid="uid://blvlclwppw6tu" path="res://escenas/puerta_salmon.gd" id="12_f0ung"]
 [ext_resource type="AnimationLibrary" uid="uid://8fnfbqiuq3br" path="res://escenas/animaciones/animaciones_palancas_salmon.res" id="16_42s24"]
+[ext_resource type="PackedScene" uid="uid://bigbvkph35hhb" path="res://escenas/portal.tscn" id="20_borjd"]
 
 [sub_resource type="Animation" id="Animation_neg3w"]
 resource_name = "activar"
@@ -463,17 +464,29 @@ position = Vector2(1.0000005, -142)
 scale = Vector2(0.16601563, 0.16601563)
 texture = ExtResource("5_gegfy")
 
+[node name="Portal1" parent="ContenedorPuerta/PuertaSalmon/Sprite2D/CONTENEDORRUNASPUERTA/RunaPuerta1" instance=ExtResource("20_borjd")]
+unique_name_in_owner = true
+scale = Vector2(4, 4)
+
 [node name="RunaPuerta2" type="Sprite2D" parent="ContenedorPuerta/PuertaSalmon/Sprite2D/CONTENEDORRUNASPUERTA"]
 unique_name_in_owner = true
 position = Vector2(0, -18)
 scale = Vector2(0.1640625, 0.1640625)
 texture = ExtResource("6_t1q3l")
 
+[node name="Portal2" parent="ContenedorPuerta/PuertaSalmon/Sprite2D/CONTENEDORRUNASPUERTA/RunaPuerta2" instance=ExtResource("20_borjd")]
+unique_name_in_owner = true
+scale = Vector2(4, 4)
+
 [node name="RunaPuerta3" type="Sprite2D" parent="ContenedorPuerta/PuertaSalmon/Sprite2D/CONTENEDORRUNASPUERTA"]
 unique_name_in_owner = true
 position = Vector2(0, 116.999985)
 scale = Vector2(0.19428572, 0.19428572)
 texture = ExtResource("7_s1ify")
+
+[node name="Portal_3" parent="ContenedorPuerta/PuertaSalmon/Sprite2D/CONTENEDORRUNASPUERTA/RunaPuerta3" instance=ExtResource("20_borjd")]
+unique_name_in_owner = true
+scale = Vector2(4, 4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ContenedorPuerta/PuertaSalmon"]
 shape = SubResource("RectangleShape2D_555dy")
