@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dkudwre2b373"]
+[gd_scene load_steps=37 format=3 uid="uid://dkudwre2b373"]
 
 [ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/Juego.gd" id="1_2y4ua"]
 [ext_resource type="Texture2D" uid="uid://dvh87k52osuo2" path="res://assets/parallax/bosquepocho1.png" id="2_ffuyt"]
@@ -18,24 +18,12 @@
 [ext_resource type="PackedScene" uid="uid://dkaf2gav3cro1" path="res://escenas/levels/first_level_works.tscn" id="12_7dwkk"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="12_g2cn0"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="13_8mohb"]
-[ext_resource type="PackedScene" uid="uid://dj4jyhd1bexi6" path="res://escenas/checkpoint_area.tscn" id="18_j68ff"]
+[ext_resource type="PackedScene" uid="uid://gd2764xqmmje" path="res://escenas/HUD/iconos_mascaras.tscn" id="15_g2cn0"]
+[ext_resource type="Texture2D" uid="uid://ck18sxufit36k" path="res://assets/sprites/masks/mascara_oso.PNG" id="16_8mohb"]
+[ext_resource type="Texture2D" uid="uid://bbra5fmwd6qin" path="res://assets/sprites/masks/mascara_salmon.PNG" id="17_82r4j"]
 [ext_resource type="PackedScene" uid="uid://d3kk7nu2wr28k" path="res://escenas/levels/second_level.tscn" id="18_kypqj"]
-[ext_resource type="PackedScene" uid="uid://ctgi3ppkimt2c" path="res://escenas/levels/third_level.tscn" id="19_yv8to"]
-[ext_resource type="PackedScene" uid="uid://cqfbi3mqn04vl" path="res://escenas/levels/fourth_level_working.tscn" id="21_gdb2x"]
-[ext_resource type="PackedScene" uid="uid://cv0p4aotoyxyx" path="res://escenas/levels/five_level-garabato.tscn" id="22_e4rmv"]
-[ext_resource type="PackedScene" uid="uid://ccia0snrxhd0y" path="res://escenas/area_dialogo_prueba.tscn" id="23_g2cn0"]
-[ext_resource type="Resource" uid="uid://dt6qgqxfsmk4d" path="res://dialogue/primer_dialogo_salmon.dialogue" id="24_g2cn0"]
-[ext_resource type="Resource" uid="uid://lflkk6jkehov" path="res://dialogue/dialogo_salmon_primer_uso_poder.dialogue" id="25_8mohb"]
-[ext_resource type="Resource" uid="uid://dlhqrfa73p3wr" path="res://dialogue/primer_dialogo_oso.dialogue" id="27_7iu0s"]
-[ext_resource type="Resource" uid="uid://cv2l8oipisadl" path="res://dialogue/dialogo_salmon_2.dialogue" id="27_u0ym6"]
-[ext_resource type="Resource" uid="uid://dfl2154dp73yy" path="res://dialogue/dialogo_oso_1.dialogue" id="27_uwevx"]
-[ext_resource type="Resource" uid="uid://dcphcicwvfa2p" path="res://dialogue/dialogo_oso_primer_uso_poder.dialogue" id="28_m1sj6"]
-[ext_resource type="Resource" uid="uid://dccy0tht6505s" path="res://dialogue/dialogo_oso_3.dialogue" id="28_xkwlr"]
-[ext_resource type="Resource" uid="uid://dcguqmqeh147x" path="res://dialogue/dialogo_salmon_1.dialogue" id="30_fe420"]
-[ext_resource type="Resource" uid="uid://wyq2j7l8xrfy" path="res://dialogue/primer_dialogo_ciervo.dialogue" id="30_ncnhw"]
-[ext_resource type="Resource" uid="uid://cqoj5gba0lm51" path="res://dialogue/dialogo_ciervo_primer_uso_poder.dialogue" id="31_55ffo"]
-[ext_resource type="Resource" uid="uid://bw4r8lwidlcpn" path="res://dialogue/dialogo_ciervo_2.dialogue" id="32_73x7c"]
-[ext_resource type="Resource" uid="uid://d1fqiv2tb5bnh" path="res://dialogue/dialogo_cievo_3.dialogue" id="33_bmdx7"]
+[ext_resource type="Texture2D" uid="uid://kffyo1y08tqr" path="res://assets/sprites/masks/mascara_ciervo.PNG" id="18_uwevx"]
+[ext_resource type="PackedScene" uid="uid://ctgi3ppkimt2c" path="res://escenas/levels/third_level.tscn" id="20_m34qx"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ms3um"]
 blend_mode = 1
@@ -176,23 +164,20 @@ _data = {
 [node name="Juego" type="Node2D"]
 script = ExtResource("1_2y4ua")
 
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-position = Vector2(1230, -222)
-rotation = 0.7033677
-color = Color(0.76, 0.43016, 0.2888, 1)
-shadow_enabled = true
-shadow_filter_smooth = 6.7
-shadow_item_cull_mask = 7
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.69965345, 0.69965345, 0.69965345, 1)
 
 [node name="ParallaxPresente" type="Node2D" parent="."]
+light_mask = 8
 z_index = -10
-position = Vector2(-10, 564)
+position = Vector2(780, 356)
 script = ExtResource("2_m34qx")
 presente = true
 
 [node name="ParallaxFondoPresente" type="Parallax2D" parent="ParallaxPresente"]
 scale = Vector2(1.5, 1.5)
 scroll_scale = Vector2(0.2, 0)
+scroll_offset = Vector2(24, 190)
 repeat_size = Vector2(1400, 0)
 repeat_times = 3
 
@@ -202,6 +187,7 @@ texture = ExtResource("2_ffuyt")
 [node name="ParallaxBosqueAtrasPresente" type="Parallax2D" parent="ParallaxPresente"]
 scale = Vector2(1.5, 1.5)
 scroll_scale = Vector2(0.3, 0)
+scroll_offset = Vector2(24, 190)
 repeat_size = Vector2(1400, 0)
 repeat_times = 3
 
@@ -211,6 +197,7 @@ texture = ExtResource("3_kypqj")
 [node name="ParallaxBosqueMedioPresente" type="Parallax2D" parent="ParallaxPresente"]
 scale = Vector2(1.5, 1.5)
 scroll_scale = Vector2(0.4, 0)
+scroll_offset = Vector2(24, 190)
 repeat_size = Vector2(1400, 0)
 repeat_times = 3
 
@@ -220,6 +207,7 @@ texture = ExtResource("4_yv8to")
 [node name="ParallaxBosqueCercaPresente" type="Parallax2D" parent="ParallaxPresente"]
 scale = Vector2(1.5, 1.5)
 scroll_scale = Vector2(0.5, 0)
+scroll_offset = Vector2(24, 190)
 repeat_size = Vector2(1400, 0)
 repeat_times = 3
 
@@ -229,6 +217,7 @@ texture = ExtResource("5_m34qx")
 [node name="ParallaxEspinasPresente" type="Parallax2D" parent="ParallaxPresente"]
 scale = Vector2(1.5, 1.5)
 scroll_scale = Vector2(0.6, 0)
+scroll_offset = Vector2(24, 190)
 repeat_size = Vector2(1400, 0)
 repeat_times = 3
 
@@ -236,68 +225,61 @@ repeat_times = 3
 texture = ExtResource("6_gdb2x")
 
 [node name="ParallaxPasado" type="Node2D" parent="."]
-position = Vector2(-10, 322)
+visible = false
+z_index = -10
 script = ExtResource("2_m34qx")
 
-[node name="ParalaxFondoPasado" type="Parallax2D" parent="ParallaxPasado"]
-z_index = -10
+[node name="ParallaxFondoPasado" type="Parallax2D" parent="ParallaxPasado"]
 scale = Vector2(1.5, 1.5)
-scroll_scale = Vector2(0.2, 0)
-scroll_offset = Vector2(0, 228)
+scroll_scale = Vector2(0, 0)
+scroll_offset = Vector2(-16, 545)
 repeat_size = Vector2(1350, 0)
 repeat_times = 3
 
-[node name="FondoPasadoImagen" type="Sprite2D" parent="ParallaxPasado/ParalaxFondoPasado"]
-z_index = -10
+[node name="SpriteFondoPasado" type="Sprite2D" parent="ParallaxPasado/ParallaxFondoPasado"]
 texture = ExtResource("2_ms3um")
 
-[node name="ParallaxBosqueFondoPasado" type="Parallax2D" parent="ParallaxPasado"]
-z_index = -10
+[node name="ParallaxBosqueAtras" type="Parallax2D" parent="ParallaxPasado"]
 scale = Vector2(1.5, 1.5)
-scroll_scale = Vector2(0.3, 0)
-scroll_offset = Vector2(0, 228)
+scroll_scale = Vector2(0, 0)
+scroll_offset = Vector2(-16, 545)
 repeat_size = Vector2(1350, 0)
 repeat_times = 3
 
-[node name="BosquePasadoFondoImagen" type="Sprite2D" parent="ParallaxPasado/ParallaxBosqueFondoPasado"]
-z_index = -10
+[node name="SpriteBosqueAtras" type="Sprite2D" parent="ParallaxPasado/ParallaxBosqueAtras"]
 texture = ExtResource("3_u84wv")
 
-[node name="ParallaxBosquePasado" type="Parallax2D" parent="ParallaxPasado"]
-z_index = -10
+[node name="ParallaxBosqueDelante" type="Parallax2D" parent="ParallaxPasado"]
 scale = Vector2(1.5, 1.5)
-scroll_scale = Vector2(0.4, 0)
-scroll_offset = Vector2(0, 228)
+scroll_scale = Vector2(0, 0)
+scroll_offset = Vector2(-16, 545)
 repeat_size = Vector2(1350, 0)
 repeat_times = 3
 
-[node name="BosquePasdoImagen" type="Sprite2D" parent="ParallaxPasado/ParallaxBosquePasado"]
-z_index = -10
+[node name="SpriteBosqueDelante" type="Sprite2D" parent="ParallaxPasado/ParallaxBosqueDelante"]
 texture = ExtResource("4_lg721")
 
-[node name="ParallaxArbolesPasado" type="Parallax2D" parent="ParallaxPasado"]
-z_index = -10
+[node name="ParallaxArboles" type="Parallax2D" parent="ParallaxPasado"]
 scale = Vector2(1.5, 1.5)
-scroll_scale = Vector2(0.5, 0)
-scroll_offset = Vector2(0, 228)
+scroll_scale = Vector2(0, 0)
+scroll_offset = Vector2(-16, 545)
 repeat_size = Vector2(1350, 0)
 repeat_times = 3
 
-[node name="ArbolesPasadoImagen" type="Sprite2D" parent="ParallaxPasado/ParallaxArbolesPasado"]
-z_index = -10
+[node name="SpriteArboles" type="Sprite2D" parent="ParallaxPasado/ParallaxArboles"]
 texture = ExtResource("5_ffuyt")
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank", "res://assets/audio/FmodBanks/Desktop/UI.bank"]
 
 [node name="Player" parent="." instance=ExtResource("8_m34qx")]
-position = Vector2(8340, -1528)
+position = Vector2(8084, -874)
 scale = Vector2(0.64, 0.64)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(8340, -1528)
+position = Vector2(8084, -874)
 zoom = Vector2(1.6, 1.6)
 editor_draw_limits = true
 
@@ -312,17 +294,25 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 [node name="ColorRect" type="ColorRect" parent="Player/Camera2D"]
 z_index = 185
 y_sort_enabled = true
-offset_left = -1033.0
-offset_top = -1102.0
-offset_right = 978.0
-offset_bottom = 884.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1357.0
+offset_top = -993.0
+offset_right = 1357.0
+offset_bottom = 993.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="Player/Camera2D"]
-z_index = -1
+z_index = -6
 y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_ms3um")
-position = Vector2(695, 329)
+position = Vector2(-7, -5)
+scale = Vector2(1.6541839, 1.970058)
 amount = 100
 texture = SubResource("GradientTexture2D_u84wv")
 lifetime = 11.0
@@ -350,7 +340,8 @@ hue_variation_max = 0.11
 [node name="CPUParticles2D3" type="CPUParticles2D" parent="Player/Camera2D"]
 modulate = Color(1, 1, 1, 0.30980393)
 material = SubResource("CanvasItemMaterial_kypqj")
-amount = 500
+scale = Vector2(1, 1.0045904)
+amount = 800
 texture = SubResource("GradientTexture2D_yv8to")
 lifetime = 14.49
 preprocess = 10.0
@@ -358,7 +349,7 @@ emission_shape = 3
 emission_rect_extents = Vector2(1500, 1000)
 direction = Vector2(-1, 0)
 spread = 41.3
-gravity = Vector2(0, 2)
+gravity = Vector2(0, 0.5)
 initial_velocity_min = 5.0
 initial_velocity_max = 10.0
 tangential_accel_min = 1.0
@@ -366,6 +357,34 @@ tangential_accel_max = 1.0
 scale_amount_min = 0.0
 scale_amount_max = 0.3
 scale_amount_curve = SubResource("Curve_m34qx")
+
+[node name="Control" type="Control" parent="Player/Camera2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -478.0
+offset_top = -209.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="IconoMascaraOso" parent="Player/Camera2D/Control" instance=ExtResource("15_g2cn0")]
+layout_mode = 1
+anchors_preset = -1
+scale = Vector2(0.535, 0.535)
+mascara = ExtResource("16_8mohb")
+
+[node name="IconoMascaraSalmon" parent="Player/Camera2D/Control" instance=ExtResource("15_g2cn0")]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 81.0
+scale = Vector2(0.535, 0.535)
+mascara = ExtResource("17_82r4j")
+
+[node name="IconoMascaraCiervo" parent="Player/Camera2D/Control" instance=ExtResource("15_g2cn0")]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 162.0
+scale = Vector2(0.535, 0.535)
+mascara = ExtResource("18_uwevx")
 
 [node name="Node2D" type="Node2D" parent="Player"]
 script = ExtResource("10_e4rmv")
@@ -389,7 +408,7 @@ position = Vector2(-97, 588)
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(8340, -1528)
+position = Vector2(8084, -874)
 script = ExtResource("12_g2cn0")
 follow_mode = 2
 follow_target = NodePath("../Player/Node2D")
@@ -400,119 +419,26 @@ follow_damping_value = Vector2(0.2, 0.2)
 draw_limits = true
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
+[node name="FirstLevelWorks" parent="." instance=ExtResource("12_7dwkk")]
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_ms3um")
 }
 
-[node name="Checkpoints" type="Node2D" parent="."]
-
-[node name="CheckpointArea1" parent="Checkpoints" instance=ExtResource("18_j68ff")]
-position = Vector2(223, 123)
-
-[node name="CheckpointArea2" parent="Checkpoints" instance=ExtResource("18_j68ff")]
-position = Vector2(5042, -133)
-
-[node name="CheckpointArea3" parent="Checkpoints" instance=ExtResource("18_j68ff")]
-position = Vector2(7817, -867)
-
-[node name="CheckpointArea4" parent="Checkpoints" instance=ExtResource("18_j68ff")]
-position = Vector2(11838, 665)
-
-[node name="CheckpointArea5" parent="Checkpoints" instance=ExtResource("18_j68ff")]
-position = Vector2(16971, -732)
-
-[node name="CheckpointArea6" parent="Checkpoints" instance=ExtResource("18_j68ff")]
-position = Vector2(17765, -1825)
-
-[node name="Niveles" type="Node2D" parent="."]
-
-[node name="FirstLevelWorks" parent="Niveles" instance=ExtResource("12_7dwkk")]
-
-[node name="SecondLevel" parent="Niveles" instance=ExtResource("18_kypqj")]
+[node name="SecondLevel" parent="." instance=ExtResource("18_kypqj")]
 position = Vector2(4919, -649)
 
-[node name="FourthLevel" parent="Niveles" instance=ExtResource("19_yv8to")]
-position = Vector2(8246, -1367)
+[node name="ThirdLevel" parent="." instance=ExtResource("20_m34qx")]
+position = Vector2(8232, -1124)
+scale = Vector2(0.64, 0.64)
 
-[node name="FourthLevelWorking" parent="Niveles" instance=ExtResource("21_gdb2x")]
-position = Vector2(12375, 38)
-
-[node name="LevelSalmon5" parent="Niveles" instance=ExtResource("22_e4rmv")]
-position = Vector2(24066, -1814)
-
-[node name="AreaDialogoPrueba" parent="." instance=ExtResource("23_g2cn0")]
-position = Vector2(17901, -1987)
-dialogo = ExtResource("24_g2cn0")
-id_a_destruir = 8
-id_dialogo = 8
-
-[node name="AreaDialogoPrueba2" parent="." instance=ExtResource("23_g2cn0")]
-position = Vector2(18852, -1997)
-dialogo = ExtResource("25_8mohb")
-id_a_destruir = 9
-id_dialogo = 9
-
-[node name="AreaDialogoPrueba3" parent="." instance=ExtResource("23_g2cn0")]
-position = Vector2(21694, -1987)
-dialogo = ExtResource("27_u0ym6")
-id_a_destruir = 10
-id_dialogo = 10
-
-[node name="AreaDialogoOsoNormal" parent="." instance=ExtResource("23_g2cn0")]
-position = Vector2(11197, -1438)
-dialogo = ExtResource("28_xkwlr")
-id_a_destruir = 11
-id_dialogo = 11
-
-[node name="AreaDialogoCiervoNormalitoo" parent="." instance=ExtResource("23_g2cn0")]
-position = Vector2(15528, -1939)
-dialogo = ExtResource("32_73x7c")
-id_a_destruir = 12
-id_dialogo = 12
-
-[node name="AreaDialogoSalmonArribaa" parent="." instance=ExtResource("23_g2cn0")]
-position = Vector2(22680, -3404)
-dialogo = ExtResource("30_fe420")
-id_a_destruir = 13
-id_dialogo = 13
-
-[node name="AreaDialogoOSOMASCARA" parent="." instance=ExtResource("23_g2cn0")]
-position = Vector2(7942, -1002)
-dialogo = ExtResource("27_7iu0s")
-
-[node name="AreaDialogoOSOUSO" parent="." instance=ExtResource("23_g2cn0")]
-position = Vector2(9035, -858)
-dialogo = ExtResource("28_m1sj6")
-id_a_destruir = 2
-id_dialogo = 2
-
-[node name="AreaDialogoOSOUSO2" parent="." instance=ExtResource("23_g2cn0")]
-position = Vector2(10108, -277)
-dialogo = ExtResource("27_uwevx")
-id_a_destruir = 3
-id_dialogo = 3
-
-[node name="AreaDialogoCiervoEncuentro" parent="." instance=ExtResource("23_g2cn0")]
-position = Vector2(11969, 510)
-dialogo = ExtResource("30_ncnhw")
-id_a_destruir = 4
-id_dialogo = 4
-
-[node name="AreaDialogoCiervoPrimUso" parent="." instance=ExtResource("23_g2cn0")]
-position = Vector2(13188, 516)
-dialogo = ExtResource("31_55ffo")
-id_a_destruir = 5
-id_dialogo = 5
-
-[node name="AreaDialogoCiervoNormal" parent="." instance=ExtResource("23_g2cn0")]
-position = Vector2(16974, -906)
-dialogo = ExtResource("32_73x7c")
-id_a_destruir = 6
-id_dialogo = 6
-
-[node name="AreaDialogoCiervoNormal2" parent="." instance=ExtResource("23_g2cn0")]
-position = Vector2(14419, 111)
-dialogo = ExtResource("33_bmdx7")
-id_a_destruir = 7
-id_dialogo = 7
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+position = Vector2(1230, -222)
+rotation = 0.6894051
+color = Color(0.76, 0.43016, 0.2888, 1)
+energy = 1.86
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 2.6
+shadow_item_cull_mask = 7

@@ -518,6 +518,14 @@ libraries = {
 &"": SubResource("AnimationLibrary_yi0su")
 }
 
+[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Objetos/revelar palabra"
+event_guid = "{bbc29be1-3174-4355-921b-261e3f1121e0}"
+
+[node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Objetos/campanas puzzle"
+event_guid = "{362a03fb-fd64-4034-8f82-45ed9719b566}"
+
 [connection signal="body_entered" from="PuzzleSalmon1/PalancaSalmon1" to="PuzzleSalmon1/PalancaSalmon1" method="_on_body_entered"]
 [connection signal="body_exited" from="PuzzleSalmon1/PalancaSalmon1" to="PuzzleSalmon1/PalancaSalmon1" method="_on_body_exited"]
 [connection signal="timeout" from="PuzzleSalmon1/PalancaSalmon1/TimerPalanca" to="PuzzleSalmon1/PalancaSalmon1" method="_on_timer_palanca_timeout"]
