@@ -68,6 +68,11 @@ enum ESTADOS {IDLE, CAMINAR, SALTAR, CAER, INTERACTUAR, AGARRAR}
 var estado_actual : ESTADOS = ESTADOS.IDLE
 var superficie = {}
 
+var obtuvo_mascara_ciervo : bool = false
+var obtuvo_mascara_oso : bool = false
+var obtuvo_mascara_salmon : bool = false
+
+signal mascara(nombre_mascara)
 
 func _ready() -> void:
 	mano_test_izq.set_deferred("disabled", true) #DESACTIVO FISICAS DE LA MANO
@@ -548,6 +553,7 @@ func tiene_mascara_fuerza():
 	mascara_fuerza.usar()
 	mascara_traducciones.desactivar()
 	verificar_animacion_con_mascara()
+	mascara.emit("oso")
 
 
 func tiene_mascara_tiempo():
@@ -570,14 +576,19 @@ func on_agarre_mascara(nombre_mascara : String):
 			$FmodEventEmitter2D6.set_parameter("mascara", "ciervo")
 			$FmodEventEmitter2D6.play()
 			tiene_mascara_tiempo()
+			obtuvo_mascara_ciervo = true
 		"oso":
 			$FmodEventEmitter2D6.set_parameter("mascara", "oso")
 			$FmodEventEmitter2D6.play()
 			tiene_mascara_fuerza()
+			obtuvo_mascara_oso = true
 		"salmon":
 			$FmodEventEmitter2D6.set_parameter("mascara", "salmon")
 			$FmodEventEmitter2D6.play()
 			tiene_mascara_traducciones()
+			obtuvo_mascara_salmon = true
+			
+			
 func tirarse_de_plataforma():
 	position.y += 1
 
