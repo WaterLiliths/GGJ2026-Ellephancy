@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://c4jhotlqvvvr"]
+
+[ext_resource type="Texture2D" uid="uid://perodomjgqi0" path="res://assets/campanita/1.png" id="1_roe3j"]
+[ext_resource type="Texture2D" uid="uid://bajo8bo6jmo8u" path="res://assets/campanita/2.png" id="2_lu8k8"]
+[ext_resource type="Texture2D" uid="uid://ccvg7227xul0p" path="res://assets/campanita/3.png" id="3_uddhw"]
+[ext_resource type="Texture2D" uid="uid://bo0eh6w5dkmnd" path="res://assets/campanita/4.png" id="4_y33w2"]
+[ext_resource type="Texture2D" uid="uid://cw4u8jfj272p" path="res://assets/campanita/5.png" id="5_fherj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6giv3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_roe3j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_lu8k8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_uddhw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_y33w2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_fherj")
+}],
+"loop": true,
+"name": &"terminadooo",
+"speed": 5.0
+}]
+
+[node name="CampanitaAnimada" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_6giv3")
+animation = &"terminadooo"
+autoplay = "terminadooo"
+frame_progress = 0.78374004
