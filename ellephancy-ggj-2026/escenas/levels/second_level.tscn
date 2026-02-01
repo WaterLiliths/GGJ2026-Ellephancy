@@ -72,6 +72,6 @@ position = Vector2(2500, -190)
 id_puerta = 3
 
 [node name="AreaMascaraOso" parent="." instance=ExtResource("4_qlwoe")]
-z_index = -1
+z_index = 2
 position = Vector2(2906.0002, -205.99997)
 rotation = -0.2617994

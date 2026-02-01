@@ -91,7 +91,8 @@ position = Vector2(1230, -222)
 rotation = 0.7033677
 color = Color(0.76, 0.43016, 0.2888, 1)
 shadow_enabled = true
-shadow_filter_smooth = 6.7
+shadow_filter = 1
+shadow_filter_smooth = 2.3
 shadow_item_cull_mask = 7
 
 [node name="ParallaxPresente" type="Node2D" parent="."]
