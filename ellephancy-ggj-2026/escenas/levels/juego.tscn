@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dkudwre2b373"]
+[gd_scene load_steps=33 format=3 uid="uid://dkudwre2b373"]
 
 [ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/Juego.gd" id="1_2y4ua"]
 [ext_resource type="Texture2D" uid="uid://dvh87k52osuo2" path="res://assets/parallax/bosquepocho1.png" id="2_ffuyt"]
@@ -19,7 +19,6 @@
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="12_g2cn0"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="13_8mohb"]
 [ext_resource type="PackedScene" uid="uid://d3kk7nu2wr28k" path="res://escenas/levels/second_level.tscn" id="18_kypqj"]
-[ext_resource type="PackedScene" uid="uid://t3ox75glka3s" path="res://escenas/world_objects/ObjetoAEmpujar.tscn" id="19_yv8to"]
 [ext_resource type="PackedScene" uid="uid://ctgi3ppkimt2c" path="res://escenas/levels/third_level.tscn" id="20_m34qx"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ms3um"]
@@ -162,17 +161,19 @@ _data = {
 script = ExtResource("1_2y4ua")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.40832946, 0.40832946, 0.40832946, 1)
+color = Color(0.69965345, 0.69965345, 0.69965345, 1)
 
 [node name="ParallaxPresente" type="Node2D" parent="."]
 light_mask = 8
 z_index = -10
-position = Vector2(0, 367)
+position = Vector2(780, 356)
 script = ExtResource("2_m34qx")
 presente = true
 
 [node name="ParallaxFondoPresente" type="Parallax2D" parent="ParallaxPresente"]
+scale = Vector2(1.5, 1.5)
 scroll_scale = Vector2(0.2, 0)
+scroll_offset = Vector2(24, 190)
 repeat_size = Vector2(1400, 0)
 repeat_times = 3
 
@@ -180,7 +181,9 @@ repeat_times = 3
 texture = ExtResource("2_ffuyt")
 
 [node name="ParallaxBosqueAtrasPresente" type="Parallax2D" parent="ParallaxPresente"]
+scale = Vector2(1.5, 1.5)
 scroll_scale = Vector2(0.3, 0)
+scroll_offset = Vector2(24, 190)
 repeat_size = Vector2(1400, 0)
 repeat_times = 3
 
@@ -188,7 +191,9 @@ repeat_times = 3
 texture = ExtResource("3_kypqj")
 
 [node name="ParallaxBosqueMedioPresente" type="Parallax2D" parent="ParallaxPresente"]
+scale = Vector2(1.5, 1.5)
 scroll_scale = Vector2(0.4, 0)
+scroll_offset = Vector2(24, 190)
 repeat_size = Vector2(1400, 0)
 repeat_times = 3
 
@@ -196,7 +201,9 @@ repeat_times = 3
 texture = ExtResource("4_yv8to")
 
 [node name="ParallaxBosqueCercaPresente" type="Parallax2D" parent="ParallaxPresente"]
+scale = Vector2(1.5, 1.5)
 scroll_scale = Vector2(0.5, 0)
+scroll_offset = Vector2(24, 190)
 repeat_size = Vector2(1400, 0)
 repeat_times = 3
 
@@ -204,7 +211,9 @@ repeat_times = 3
 texture = ExtResource("5_m34qx")
 
 [node name="ParallaxEspinasPresente" type="Parallax2D" parent="ParallaxPresente"]
+scale = Vector2(1.5, 1.5)
 scroll_scale = Vector2(0.6, 0)
+scroll_offset = Vector2(24, 190)
 repeat_size = Vector2(1400, 0)
 repeat_times = 3
 
@@ -212,51 +221,48 @@ repeat_times = 3
 texture = ExtResource("6_gdb2x")
 
 [node name="ParallaxPasado" type="Node2D" parent="."]
-position = Vector2(0, 125)
+visible = false
+z_index = -10
 script = ExtResource("2_m34qx")
 
-[node name="ParalaxFondoPasado" type="Parallax2D" parent="ParallaxPasado"]
-z_index = -10
-scroll_scale = Vector2(0.2, 0)
-scroll_offset = Vector2(0, 228)
+[node name="ParallaxFondoPasado" type="Parallax2D" parent="ParallaxPasado"]
+scale = Vector2(1.5, 1.5)
+scroll_scale = Vector2(0, 0)
+scroll_offset = Vector2(-16, 545)
 repeat_size = Vector2(1350, 0)
 repeat_times = 3
 
-[node name="FondoPasadoImagen" type="Sprite2D" parent="ParallaxPasado/ParalaxFondoPasado"]
-z_index = -10
+[node name="SpriteFondoPasado" type="Sprite2D" parent="ParallaxPasado/ParallaxFondoPasado"]
 texture = ExtResource("2_ms3um")
 
-[node name="ParallaxBosqueFondoPasado" type="Parallax2D" parent="ParallaxPasado"]
-z_index = -10
-scroll_scale = Vector2(0.3, 0)
-scroll_offset = Vector2(0, 228)
+[node name="ParallaxBosqueAtras" type="Parallax2D" parent="ParallaxPasado"]
+scale = Vector2(1.5, 1.5)
+scroll_scale = Vector2(0, 0)
+scroll_offset = Vector2(-16, 545)
 repeat_size = Vector2(1350, 0)
 repeat_times = 3
 
-[node name="BosquePasadoFondoImagen" type="Sprite2D" parent="ParallaxPasado/ParallaxBosqueFondoPasado"]
-z_index = -10
+[node name="SpriteBosqueAtras" type="Sprite2D" parent="ParallaxPasado/ParallaxBosqueAtras"]
 texture = ExtResource("3_u84wv")
 
-[node name="ParallaxBosquePasado" type="Parallax2D" parent="ParallaxPasado"]
-z_index = -10
-scroll_scale = Vector2(0.4, 0)
-scroll_offset = Vector2(0, 228)
+[node name="ParallaxBosqueDelante" type="Parallax2D" parent="ParallaxPasado"]
+scale = Vector2(1.5, 1.5)
+scroll_scale = Vector2(0, 0)
+scroll_offset = Vector2(-16, 545)
 repeat_size = Vector2(1350, 0)
 repeat_times = 3
 
-[node name="BosquePasdoImagen" type="Sprite2D" parent="ParallaxPasado/ParallaxBosquePasado"]
-z_index = -10
+[node name="SpriteBosqueDelante" type="Sprite2D" parent="ParallaxPasado/ParallaxBosqueDelante"]
 texture = ExtResource("4_lg721")
 
-[node name="ParallaxArbolesPasado" type="Parallax2D" parent="ParallaxPasado"]
-z_index = -10
-scroll_scale = Vector2(0.5, 0)
-scroll_offset = Vector2(0, 228)
+[node name="ParallaxArboles" type="Parallax2D" parent="ParallaxPasado"]
+scale = Vector2(1.5, 1.5)
+scroll_scale = Vector2(0, 0)
+scroll_offset = Vector2(-16, 545)
 repeat_size = Vector2(1350, 0)
 repeat_times = 3
 
-[node name="ArbolesPasadoImagen" type="Sprite2D" parent="ParallaxPasado/ParallaxArbolesPasado"]
-z_index = -10
+[node name="SpriteArboles" type="Sprite2D" parent="ParallaxPasado/ParallaxArboles"]
 texture = ExtResource("5_ffuyt")
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
@@ -392,11 +398,8 @@ libraries = {
 position = Vector2(4919, -649)
 
 [node name="ThirdLevel" parent="." instance=ExtResource("20_m34qx")]
-position = Vector2(8231, -1125)
+position = Vector2(8232, -1124)
 scale = Vector2(0.64, 0.64)
-
-[node name="ObjetoAEmpujar" parent="." instance=ExtResource("19_yv8to")]
-position = Vector2(4747, -74)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 position = Vector2(1230, -222)
