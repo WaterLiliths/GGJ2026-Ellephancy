@@ -221,6 +221,7 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="ColorRect" type="ColorRect" parent="Player/Camera2D"]
 visible = false
+modulate = Color(1, 1, 1, 0)
 z_index = 185
 y_sort_enabled = true
 offset_left = -582.0
@@ -286,13 +287,13 @@ event_name = "event:/Ambiente/ambiente"
 event_guid = "{9318ebbc-5ee4-4da9-87ef-a11bf476df3b}"
 attached = false
 autoplay = true
-volume = 0.0
+volume = 0.685
 position = Vector2(-97, 588)
 
 [node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Musica/Musica"
 event_guid = "{531f5736-0242-456e-96ac-14d316a2be4e}"
-volume = 0.0
+volume = 0.685
 fmod_parameters/Pantalla/id = -2044462831851661827
 fmod_parameters/Pantalla = "Juego"
 fmod_parameters/Pantalla/labels = PackedStringArray("Menu", "Juego")
