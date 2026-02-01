@@ -1,13 +1,14 @@
-[gd_scene load_steps=23 format=3 uid="uid://d1yknlplxru4e"]
+[gd_scene load_steps=28 format=3 uid="uid://d1yknlplxru4e"]
 
 [ext_resource type="Script" uid="uid://ckr83s3hrcrry" path="res://escenas/finjuegoaaaaqueemocion.gd" id="1_18134"]
 [ext_resource type="Texture2D" uid="uid://4htaju3cnnsh" path="res://assets/campanita/fondo.png" id="2_n4lja"]
 [ext_resource type="PackedScene" uid="uid://d2xlg26hl7ug6" path="res://escenas/boton_custom.tscn" id="3_0ok5r"]
 [ext_resource type="Script" uid="uid://boi3u1cbs72fy" path="res://escenas/creditos_finjuego.gd" id="3_4e3kq"]
 [ext_resource type="PackedScene" uid="uid://c4jhotlqvvvr" path="res://escenas/campanita_animada.tscn" id="3_gdenh"]
+[ext_resource type="Texture2D" uid="uid://coqj3wykfva8c" path="res://assets/ruinaspresente.png" id="4_4e3kq"]
 [ext_resource type="Theme" uid="uid://cj0o3c28vicve" path="res://escenas/themes/tema_pausa_menu.tres" id="4_6ejio"]
-[ext_resource type="Texture2D" uid="uid://t7pvqbwf3crw" path="res://assets/sprites/Parallaxprueba.png" id="4_cs6f5"]
 [ext_resource type="Theme" uid="uid://c3il706qyjae5" path="res://escenas/themes/main_menu_boton.tres" id="5_60nwy"]
+[ext_resource type="Gradient" uid="uid://b4xgyyw4wdl42" path="res://escenas/polen.tres" id="9_cs6f5"]
 
 [sub_resource type="Animation" id="Animation_pom6y"]
 length = 0.001
@@ -62,7 +63,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_5u507"]
 resource_name = "fade_in"
-length = 8.0
+length = 30.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -94,7 +95,7 @@ tracks/2/path = NodePath("BotonCustom:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(3.5, 5.0666666, 5.866667),
+"times": PackedFloat32Array(27.43333, 28.999998, 29.8),
 "transitions": PackedFloat32Array(1, 0.49999976, 0.13869667),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -146,22 +147,6 @@ _data = {
 &"fade_in": SubResource("Animation_5u507"),
 &"fade_out": SubResource("Animation_tdcx2")
 }
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_re66e"]
-light_mode = 2
-
-[sub_resource type="Gradient" id="Gradient_1aeis"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_re66e"]
-gradient = SubResource("Gradient_1aeis")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5854701, 0.41025642)
-
-[sub_resource type="Curve" id="Curve_tdcx2"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
 
 [sub_resource type="Gradient" id="Gradient_tnv86"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -237,6 +222,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CPUParticles2D2:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_6ejio"]
 resource_name = "finjuego"
@@ -301,12 +298,60 @@ tracks/4/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CPUParticles2D2:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2.0666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0ok5r"]
 _data = {
 &"RESET": SubResource("Animation_0ok5r"),
 &"finjuego": SubResource("Animation_6ejio")
 }
+
+[sub_resource type="Gradient" id="Gradient_4e3kq"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cs6f5"]
+gradient = SubResource("Gradient_4e3kq")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8162393, 0.23931624)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_60nwy"]
+light_mode = 1
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_taq80"]
+gradient = ExtResource("9_cs6f5")
+width = 14
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5854701, 0.41025642)
+
+[sub_resource type="Curve" id="Curve_iaep5"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_lcscu"]
+offsets = PackedFloat32Array(0.0025641026, 0.071794875, 0.21794872, 0.33846155, 0.53333336, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.96, 0.78928, 0.028799972, 1, 1, 0.4465, 0.19, 1, 0.61, 0, 0.030500118, 1, 0.25, 0.25, 0.25, 1, 0, 0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_cs6f5"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_60nwy"]
+gradient = SubResource("Gradient_cs6f5")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8162393, 0.23931624)
 
 [node name="FINJUEGOAAAAQUEEMOCION" type="Area2D"]
 script = ExtResource("1_18134")
@@ -351,13 +396,14 @@ color = Color(0, 0, 0, 1)
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Creditos"]
 modulate = Color(0.47007585, 0.47007585, 0.47007585, 1)
+light_mask = 15
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_cs6f5")
+texture = ExtResource("4_4e3kq")
 expand_mode = 3
 
 [node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="CanvasLayer/Creditos"]
@@ -420,36 +466,8 @@ Gracias al equipo de BAGD
 Gracias por jugar!"
 horizontal_alignment = 1
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="CanvasLayer/Creditos"]
-z_index = 2
-y_sort_enabled = true
-material = SubResource("CanvasItemMaterial_re66e")
-position = Vector2(989, 561)
-scale = Vector2(1.12, 1.4800006)
-amount = 100
-texture = SubResource("GradientTexture2D_re66e")
-lifetime = 11.68
-preprocess = 10.0
-use_fixed_seed = true
-seed = 1392953648
-emission_shape = 3
-emission_rect_extents = Vector2(1000, 500)
-direction = Vector2(-1, 0)
-gravity = Vector2(0, 0)
-initial_velocity_min = 5.0
-initial_velocity_max = 25.0
-angular_velocity_min = -466.8
-angular_velocity_max = 462.22
-radial_accel_min = -3.0
-radial_accel_max = 3.0
-scale_amount_min = 0.1
-scale_amount_max = 3.0
-scale_amount_curve = SubResource("Curve_tdcx2")
-color = Color(0.68991, 0.78, 0.2886, 1)
-hue_variation_min = -0.11
-hue_variation_max = 0.11
-
 [node name="PointLight2D" type="PointLight2D" parent="CanvasLayer/Creditos"]
+visible = false
 position = Vector2(958, -635)
 scale = Vector2(0.96161973, 1.0896013)
 color = Color(1, 0.7019608, 0.30980393, 1)
@@ -473,14 +491,15 @@ text = "Volver"
 
 [node name="CampanitaAnimada" parent="." instance=ExtResource("3_gdenh")]
 modulate = Color(1, 1, 1, 0)
+light_mask = 0
 z_index = 50
 position = Vector2(967, 521)
 frame_progress = 0.4116271
 
 [node name="LabelTextArboleda" type="Label" parent="CampanitaAnimada"]
-offset_left = -494.0
+offset_left = -437.96
 offset_top = 143.0
-offset_right = 415.0
+offset_right = 471.04
 offset_bottom = 210.0
 theme = ExtResource("4_6ejio")
 theme_override_colors/font_color = Color(1, 1, 1, 0)
@@ -490,9 +509,9 @@ horizontal_alignment = 1
 
 [node name="LabelContinuara" type="Label" parent="CampanitaAnimada"]
 modulate = Color(1, 1, 1, 0)
-offset_left = -494.0
+offset_left = -475.315
 offset_top = 143.0
-offset_right = 415.0
+offset_right = 433.685
 offset_bottom = 210.0
 theme = ExtResource("4_6ejio")
 theme_override_font_sizes/font_size = 47
@@ -500,9 +519,9 @@ text = "Continuará."
 horizontal_alignment = 1
 
 [node name="LabelPuntos" type="Label" parent="CampanitaAnimada"]
-offset_left = -494.0
+offset_left = -498.00003
 offset_top = 143.0
-offset_right = 415.0
+offset_right = 410.99997
 offset_bottom = 210.0
 theme = ExtResource("4_6ejio")
 theme_override_font_sizes/font_size = 47
@@ -546,6 +565,53 @@ bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res:/
 event_name = "event:/Musica/creditos"
 event_guid = "{1a8311a4-5b98-442f-8c43-d78bd4344097}"
 unique_name_in_owner = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(944, -92)
+scale = Vector2(0.62499994, 0.3522501)
+color = Color(1, 0.7019608, 0.30980393, 1)
+energy = 7.05
+range_item_cull_mask = 0
+texture = SubResource("GradientTexture2D_cs6f5")
+texture_scale = 49.5
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+z_index = -1
+y_sort_enabled = true
+material = SubResource("CanvasItemMaterial_60nwy")
+position = Vector2(941, 478)
+scale = Vector2(1.3600006, 1.6000004)
+amount = 60
+texture = SubResource("GradientTexture2D_taq80")
+lifetime = 8.0
+preprocess = 10.0
+use_fixed_seed = true
+seed = 1392953648
+emission_shape = 3
+emission_rect_extents = Vector2(1000, 500)
+particle_flag_align_y = true
+direction = Vector2(1, -1)
+gravity = Vector2(50, -50)
+initial_velocity_min = 5.0
+initial_velocity_max = 25.0
+radial_accel_min = -3.0
+radial_accel_max = 3.0
+angle_min = 129.5
+angle_max = 150.0
+scale_amount_min = 0.0
+scale_amount_max = 10.0
+scale_amount_curve = SubResource("Curve_iaep5")
+color_ramp = SubResource("Gradient_lcscu")
+hue_variation_min = -0.11
+hue_variation_max = 0.11
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(942, -142)
+scale = Vector2(21.234375, 21.234375)
+energy = 3.72
+range_item_cull_mask = 31
+texture = SubResource("GradientTexture2D_60nwy")
+texture_scale = 1.55
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="CanvasLayer/Creditos/AnimationPlayer" to="CanvasLayer/Creditos" method="_on_animation_player_animation_finished"]
