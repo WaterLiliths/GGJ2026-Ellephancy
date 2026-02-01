@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dcphcicwvfa2p"
+path="res://.godot/imported/dialogo_oso_primer_uso_poder.dialogue-14dd286a87478c1f391d21cc048a16f7.tres"
+
+[deps]
+
+source_file="res://dialogue/dialogo_oso_primer_uso_poder.dialogue"
+dest_files=["res://.godot/imported/dialogo_oso_primer_uso_poder.dialogue-14dd286a87478c1f391d21cc048a16f7.tres"]
+
+[params]
+
+defaults=true

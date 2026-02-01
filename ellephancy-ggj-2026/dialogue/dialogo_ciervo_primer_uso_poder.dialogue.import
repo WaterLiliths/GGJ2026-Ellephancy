@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cqoj5gba0lm51"
+path="res://.godot/imported/dialogo_ciervo_primer_uso_poder.dialogue-d30b9f6d173d2a8f24a433cf2f9fc041.tres"
+
+[deps]
+
+source_file="res://dialogue/dialogo_ciervo_primer_uso_poder.dialogue"
+dest_files=["res://.godot/imported/dialogo_ciervo_primer_uso_poder.dialogue-d30b9f6d173d2a8f24a433cf2f9fc041.tres"]
+
+[params]
+
+defaults=true
