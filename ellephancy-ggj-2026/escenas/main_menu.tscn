@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://drx8e4npnl3il"]
+[gd_scene load_steps=25 format=3 uid="uid://drx8e4npnl3il"]
 
 [ext_resource type="Script" uid="uid://cjruy0e7k5n74" path="res://escenas/main_menu.gd" id="1_2cr0s"]
 [ext_resource type="FontFile" uid="uid://ciwhe1apfc5gi" path="res://assets/fonts/Balgruf.otf" id="1_ter2f"]
@@ -98,26 +98,26 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Label:theme_override_font_sizes/font_size")
+tracks/7/path = NodePath("Label:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [250]
+"update": 0,
+"values": [Vector2(340.50018, 196)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Label:position")
+tracks/8/path = NodePath("Label:label_settings:font_size")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(340.50018, 196)]
+"update": 1,
+"values": [150]
 }
 
 [sub_resource type="Animation" id="Animation_nxvcq"]
@@ -310,38 +310,50 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Label:theme_override_font_sizes/font_size")
+tracks/12/path = NodePath("Label:position")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(0, 2.1999998, 3.3666666),
-"transitions": PackedFloat32Array(1, 0.08246948, 0.062500454),
-"update": 0,
-"values": [500, 500, 150]
-}
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("Label:position")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
 "times": PackedFloat32Array(2.1999998, 3.3666666),
 "transitions": PackedFloat32Array(0.17075527, 0.112656415),
 "update": 0,
 "values": [Vector2(340.50018, 196), Vector2(-23.995, 100)]
 }
-tracks/14/type = "value"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath("VBoxContainer/BotonCustomSalir:modulate")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("VBoxContainer/BotonCustomSalir:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
 "times": PackedFloat32Array(3.3250003, 3.891667),
 "transitions": PackedFloat32Array(1, 0.074325606),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Label:label_settings")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Label:label_settings:font_size")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0, 2.1999998, 3.3666666),
+"transitions": PackedFloat32Array(1, 0.08246948, 0.062500454),
+"update": 0,
+"values": [500, 500, 150]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nxvcq"]
@@ -397,6 +409,11 @@ colors = PackedColorArray(1, 1, 1, 1, 0.96, 0.78928, 0.028799972, 1, 1, 0.4465, 
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nxvcq"]
 light_mode = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_bm2sk"]
+font_size = 150
+shadow_size = 0
+shadow_offset = Vector2(12.62, 1)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -482,6 +499,7 @@ hue_variation_min = -0.11
 hue_variation_max = 0.11
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="Polygon2D"]
+modulate = Color(1, 1, 1, 0.997347)
 z_index = -1
 y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_cg856")
@@ -546,6 +564,7 @@ grow_vertical = 0
 theme_override_constants/separation = 14
 
 [node name="BotonCustomComenzar" parent="VBoxContainer" instance=ExtResource("2_8cfpu")]
+modulate = Color(1, 1, 1, 0.87826055)
 light_mask = 0
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.11372549, 0.2627451, 0.08235294, 1)
@@ -553,6 +572,7 @@ theme_override_colors/font_hover_pressed_color = Color(0.11372549, 0.2627451, 0.
 text = "Jugar"
 
 [node name="BotonCustomOpciones" parent="VBoxContainer" instance=ExtResource("2_8cfpu")]
+modulate = Color(1, 1, 1, 0.530434)
 light_mask = 0
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.11372549, 0.2627451, 0.08235294, 1)
@@ -560,6 +580,7 @@ theme_override_colors/font_hover_pressed_color = Color(0.11372549, 0.2627451, 0.
 text = "Opciones"
 
 [node name="BotonCustomCreditos" parent="VBoxContainer" instance=ExtResource("2_8cfpu")]
+modulate = Color(1, 1, 1, 0.18260801)
 light_mask = 0
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.11372549, 0.2627451, 0.08235294, 1)
@@ -567,6 +588,7 @@ theme_override_colors/font_hover_pressed_color = Color(0.11372549, 0.2627451, 0.
 text = "Créditos"
 
 [node name="BotonCustomSalir" parent="VBoxContainer" instance=ExtResource("2_8cfpu")]
+modulate = Color(1, 1, 1, 0)
 light_mask = 0
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.11372549, 0.2627451, 0.08235294, 1)
@@ -588,10 +610,10 @@ offset_right = 652.50024
 offset_bottom = 362.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
 theme_override_fonts/font = ExtResource("1_ter2f")
-theme_override_font_sizes/font_size = 250
+theme_override_font_sizes/font_size = 500
 text = "Ningú"
+label_settings = SubResource("LabelSettings_bm2sk")
 horizontal_alignment = 1
 vertical_alignment = 1
 
