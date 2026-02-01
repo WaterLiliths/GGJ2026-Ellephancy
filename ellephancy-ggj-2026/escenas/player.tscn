@@ -507,6 +507,10 @@ volume = 0.5
 [node name="FmodEventEmitter2D6" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Mascaras/equipar"
 event_guid = "{16488a59-bdd1-4164-9f3c-6f66071df1d8}"
+fmod_parameters/Mascara/id = 2121631517194898223
+fmod_parameters/Mascara = "Oso"
+fmod_parameters/Mascara/labels = PackedStringArray("Oso", "Salmon", "Ciervo")
+fmod_parameters/Mascara/variant_type = 4
 
 [node name="FmodEventEmitter2D7" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Personaje/Morir"

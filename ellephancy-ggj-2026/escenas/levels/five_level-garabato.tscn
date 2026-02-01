@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=4 uid="uid://cv0p4aotoyxyx"]
+[gd_scene load_steps=7 format=4 uid="uid://cv0p4aotoyxyx"]
 
 [ext_resource type="PackedScene" uid="uid://by80hrdi7bflk" path="res://escenas/creador_de_niveles.tscn" id="1_micag"]
 [ext_resource type="PackedScene" uid="uid://cs3h434myxe4r" path="res://escenas/player.tscn" id="2_e0r3a"]
 [ext_resource type="PackedScene" uid="uid://b6egkrxvfwusp" path="res://escenas/puzzle_salmon_1.tscn" id="3_clvo4"]
 [ext_resource type="PackedScene" uid="uid://dj4jyhd1bexi6" path="res://escenas/checkpoint_area.tscn" id="4_lg8r4"]
 [ext_resource type="PackedScene" uid="uid://t3ox75glka3s" path="res://escenas/world_objects/ObjetoAEmpujar.tscn" id="5_trb5s"]
+[ext_resource type="PackedScene" uid="uid://x51x8ch6wkl2" path="res://escenas/mascara_traducciones.tscn" id="6_e0r3a"]
 
 [node name="LevelSalmon5" type="Node2D"]
 
@@ -64,7 +65,7 @@ z_index = -3
 tile_map_data = PackedByteArray("AAAeAAIAAQAOAAIAAAAkAP//AQABAAsAAAAkAAAAAQABAAwAAAAlAP//AQACAAsAAAAlAAAAAQACAAwAAAApAP7/AQAMAAcAAAApAP//AQAMAAgAAAApAAAAAQAMAAkAAAAqAP7/AQANAAcAAAAqAP//AQANAAgAAAAqAAAAAQANAAkAAAArAP7/AQAOAAcAAAArAP//AQAOAAgAAAArAAAAAQAOAAkAAAAyAP//AQABAAsAAAAyAAAAAQABAAwAAAAzAP//AQACAAsAAAAzAAAAAQACAAwAAAA4AP//AQADAAsAAAA4AAAAAQADAAwAAAA5AP//AQAEAAsAAAA5AAAAAQAEAAwAAAA=")
 
 [node name="Player" parent="." instance=ExtResource("2_e0r3a")]
-position = Vector2(3201, -177)
+position = Vector2(4695, 305)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
@@ -120,6 +121,8 @@ position = Vector2(-2214, -523.99994)
 
 [node name="PalancaSalmon2" parent="PuzzleHolder2/PuzzleSalmon1" index="2"]
 position = Vector2(-2218, -335)
+
+[node name="MascaraTraducciones" parent="." instance=ExtResource("6_e0r3a")]
 
 [editable path="PuzzleHolder"]
 [editable path="PuzzleHolder2"]

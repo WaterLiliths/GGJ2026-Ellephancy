@@ -2,7 +2,7 @@ class_name ObjetoEmpujable
 extends RigidBody2D
 
 @export var presente : bool
-var densidad = 1
+var densidad = 3
 @onready var area
 @onready var colision = %CollisionShape2D
 @onready var ultima_posicion : Vector2
@@ -51,10 +51,10 @@ func mostrar_mundo():
 
 
 #func _physics_process(_delta: float) -> void:
-	#if velocity.y == 0
+	#if linear_velocity.y == 0:
 		#$FmodEventEmitter2D2.play_one_shot()
-	##var esta_en_el_piso = %RayCastAbajo.is_colliding()
-	##detectar_caida()
+	#var esta_en_el_piso = %RayCastAbajo.is_colliding()
+	#detectar_caida()
 	
 
 #func detectar_caida():

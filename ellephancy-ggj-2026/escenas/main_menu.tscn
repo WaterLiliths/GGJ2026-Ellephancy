@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://t7pvqbwf3crw" path="res://assets/sprites/Parallaxprueba.png" id="3_bm2sk"]
 [ext_resource type="Gradient" uid="uid://b4xgyyw4wdl42" path="res://escenas/polen.tres" id="7_2vsao"]
 [ext_resource type="Texture2D" uid="uid://cbsx3brshwoh4" path="res://assets/sprites/Pantalla menú.png" id="8_nxvcq"]
-[ext_resource type="PackedScene" uid="uid://ww1sbsindpl7" path="res://escenas/opciones.tscn" id="11_nxvcq"]
+[ext_resource type="PackedScene" uid="uid://dylv1dc0i2wyh" path="res://escenas/volumen.tscn" id="9_tnv86"]
 
 [sub_resource type="Animation" id="Animation_2vsao"]
 length = 0.001
@@ -119,6 +119,30 @@ tracks/8/keys = {
 "update": 1,
 "values": [150]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("PointLight2D:texture_scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [9.57]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("PointLight2D:energy")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_nxvcq"]
 resource_name = "fade_out"
@@ -162,7 +186,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_tnv86"]
 resource_name = "titulo"
-length = 7.0
+length = 12.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -355,6 +379,30 @@ tracks/15/keys = {
 "update": 0,
 "values": [500, 500, 150]
 }
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("PointLight2D:texture_scale")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(2.8, 11.966666),
+"transitions": PackedFloat32Array(0.108819105, 0.12940784),
+"update": 0,
+"values": [9.57, 29.73]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("PointLight2D:energy")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(2.3, 11.933333),
+"transitions": PackedFloat32Array(0.098073356, 0.16493858),
+"update": 0,
+"values": [0.0, 8.49]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nxvcq"]
 _data = {
@@ -433,10 +481,10 @@ libraries = {
 position = Vector2(1185, -687.00006)
 scale = Vector2(1.1252074, 1.1252073)
 color = Color(1, 0.7019608, 0.30980393, 1)
-energy = 9.11
+energy = 0.0
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_2vsao")
-texture_scale = 29.63
+texture_scale = 9.57
 
 [node name="Bosquepocho" type="TextureRect" parent="."]
 modulate = Color(0.86036915, 0.8603692, 0.8603692, 1)
@@ -638,12 +686,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Opciones" parent="." instance=ExtResource("11_nxvcq")]
-visible = false
-light_mask = 0
-z_index = 50
-layout_mode = 1
-
 [node name="FmodEventEmitter2D3" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/UI/whoosh"
 event_guid = "{c9fc4032-721c-4e9f-af71-c0a1af4a6164}"
@@ -652,7 +694,8 @@ event_guid = "{c9fc4032-721c-4e9f-af71-c0a1af4a6164}"
 event_name = "event:/UI/campana"
 event_guid = "{04b46346-59b4-4781-8053-6a8807fc42a4}"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayerVolumen" parent="." instance=ExtResource("9_tnv86")]
+visible = false
 
 [connection signal="pressed" from="VBoxContainer/BotonCustomComenzar" to="." method="_on_boton_custom_comenzar_pressed"]
 [connection signal="pressed" from="VBoxContainer/BotonCustomOpciones" to="." method="_on_boton_custom_opciones_pressed"]

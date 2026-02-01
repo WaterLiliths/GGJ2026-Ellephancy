@@ -12,5 +12,5 @@ func _ready() -> void:
 #Rezá Malena rezá
 
 func _process(_delta: float) -> void:
-	$FmodEventEmitter2D.volume = Global.volumen_musica
-	$FmodEventEmitter2D2.volume = Global.volumen_ambiente
+	$FmodEventEmitter2D2.volume = Global.volumen_musica
+	$FmodEventEmitter2D.volume = Global.volumen_ambiente

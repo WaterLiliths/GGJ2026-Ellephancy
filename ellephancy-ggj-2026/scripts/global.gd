@@ -23,9 +23,7 @@ var volumen_ambiente : float = 0.8
 
 var checkpoint_position : Vector2
 func _ready() -> void:
-	pass # Replace with function body.
-	
-
+	pass
 
 func set_checkpoint_position(nueva_pos : Vector2): #la llamo en escena checkpoint
 	#if nueva_pos == checkpoint_position: #si son iguales, no la guardo, ya estuve en este checkpoint

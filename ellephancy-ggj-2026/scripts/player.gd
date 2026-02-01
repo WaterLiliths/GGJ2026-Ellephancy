@@ -127,6 +127,16 @@ func _physics_process(delta: float) -> void:
 	#ray_cast_suelo()
 	#print(ray_cast_suelo())
 	
+	%FmodEventEmitter2D.volume = Global.volumen_efectos
+	%FmodEventEmitter2D2.volume = Global.volumen_efectos
+	%FmodEventEmitter2D3.volume = Global.volumen_efectos
+	$FmodEventEmitter2D4.volume = Global.volumen_efectos
+	$FmodEventEmitter2D5.volume = Global.volumen_efectos
+	$FmodEventEmitter2D6.volume = Global.volumen_efectos
+	$FmodEventEmitter2D7.volume = Global.volumen_efectos
+	
+	
+	
 	direction = Input.get_axis("a", "d")
 	if direction:
 		ultima_direccion_mirar = sign(direction)
@@ -557,10 +567,16 @@ func tiene_mascara_traducciones():
 func on_agarre_mascara(nombre_mascara : String):
 	match nombre_mascara:
 		"ciervo":
+			$FmodEventEmitter2D6.set_parameter("mascara", "ciervo")
+			$FmodEventEmitter2D6.play()
 			tiene_mascara_tiempo()
 		"oso":
+			$FmodEventEmitter2D6.set_parameter("mascara", "oso")
+			$FmodEventEmitter2D6.play()
 			tiene_mascara_fuerza()
 		"salmon":
+			$FmodEventEmitter2D6.set_parameter("mascara", "salmon")
+			$FmodEventEmitter2D6.play()
 			tiene_mascara_traducciones()
 func tirarse_de_plataforma():
 	position.y += 1
