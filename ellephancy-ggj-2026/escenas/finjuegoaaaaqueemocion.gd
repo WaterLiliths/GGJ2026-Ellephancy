@@ -14,4 +14,5 @@ func _on_body_entered(body: Node2D) -> void:
 
 
 func terminar_juego_omg_voy_a_llorar():
+	%Camera2D.make_current()
 	print("omg")
