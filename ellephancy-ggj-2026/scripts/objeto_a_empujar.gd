@@ -1,4 +1,3 @@
-
 extends RigidBody2D
 
 @export var presente : bool
