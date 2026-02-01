@@ -41,7 +41,6 @@ position = Vector2(5211, -1637)
 presente = true
 
 [node name="Pasado" type="Node2D" parent="."]
-visible = false
 
 [node name="arbol" parent="Pasado" instance=ExtResource("2_oi7hv")]
 position = Vector2(2294, -5)
@@ -92,7 +91,6 @@ tile_map_data = PackedByteArray("AAAnAPn/BQADAAUAAABHAPf/BQAMAAsAAGA3AOj/BQANAAs
 presente = true
 
 [node name="MapaPasado" type="Node2D" parent="."]
-visible = false
 
 [node name="Background" parent="MapaPasado" instance=ExtResource("2_1sjo1")]
 z_index = -6
