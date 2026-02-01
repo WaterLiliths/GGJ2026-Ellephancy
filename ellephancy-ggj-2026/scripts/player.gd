@@ -268,10 +268,10 @@ func desactivar_mascara_fuerza():
 
 
 func disminuir_velocidad_al_agarrar():
-#	velocidad *= (1 / objeto_arrastrado.mass)
+	#velocidad *= (1 / objeto_arrastrado.mass)
 	#print((1 / objeto_arrastrado.mass))
 	#print("la velocidad de movimiento es: " + str(velocidad))
-#	velocidad_salto *= (1 / objeto_arrastrado.mass)
+	#velocidad_salto *= (1 / objeto_arrastrado.mass)
 	velocidad = velocidad_arrastrando
 
 func reset_velocidad_normal():
