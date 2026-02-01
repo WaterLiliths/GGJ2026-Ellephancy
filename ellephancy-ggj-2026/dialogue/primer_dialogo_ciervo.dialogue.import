@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://wyq2j7l8xrfy"
+path="res://.godot/imported/primer_dialogo_ciervo.dialogue-5cab825a6c03065ffb8394c678ee6256.tres"
+
+[deps]
+
+source_file="res://dialogue/primer_dialogo_ciervo.dialogue"
+dest_files=["res://.godot/imported/primer_dialogo_ciervo.dialogue-5cab825a6c03065ffb8394c678ee6256.tres"]
+
+[params]
+
+defaults=true

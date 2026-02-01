@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://lflkk6jkehov"
+path="res://.godot/imported/dialogo_salmon_primer_uso_poder.dialogue-f9ad79fd38c657280111d59ccd445f2b.tres"
+
+[deps]
+
+source_file="res://dialogue/dialogo_salmon_primer_uso_poder.dialogue"
+dest_files=["res://.godot/imported/dialogo_salmon_primer_uso_poder.dialogue-f9ad79fd38c657280111d59ccd445f2b.tres"]
+
+[params]
+
+defaults=true

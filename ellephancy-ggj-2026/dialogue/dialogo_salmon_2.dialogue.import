@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cv2l8oipisadl"
+path="res://.godot/imported/dialogo_salmon_2.dialogue-573843d2916c58c9dc73b30ebc0ea657.tres"
+
+[deps]
+
+source_file="res://dialogue/dialogo_salmon_2.dialogue"
+dest_files=["res://.godot/imported/dialogo_salmon_2.dialogue-573843d2916c58c9dc73b30ebc0ea657.tres"]
+
+[params]
+
+defaults=true
