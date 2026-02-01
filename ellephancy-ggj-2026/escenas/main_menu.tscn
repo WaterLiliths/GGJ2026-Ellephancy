@@ -499,7 +499,6 @@ hue_variation_min = -0.11
 hue_variation_max = 0.11
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="Polygon2D"]
-modulate = Color(1, 1, 1, 0.997347)
 z_index = -1
 y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_cg856")
@@ -538,13 +537,13 @@ z_index = 2
 y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_nxvcq")
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
+anchors_preset = -1
+anchor_left = 0.27100003
+anchor_top = 0.27
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1400.0
-offset_top = -788.0
+offset_left = -0.32006836
+offset_top = 0.3999939
 grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("8_nxvcq")
@@ -564,7 +563,6 @@ grow_vertical = 0
 theme_override_constants/separation = 14
 
 [node name="BotonCustomComenzar" parent="VBoxContainer" instance=ExtResource("2_8cfpu")]
-modulate = Color(1, 1, 1, 0.87826055)
 light_mask = 0
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.11372549, 0.2627451, 0.08235294, 1)
@@ -572,7 +570,6 @@ theme_override_colors/font_hover_pressed_color = Color(0.11372549, 0.2627451, 0.
 text = "Jugar"
 
 [node name="BotonCustomOpciones" parent="VBoxContainer" instance=ExtResource("2_8cfpu")]
-modulate = Color(1, 1, 1, 0.530434)
 light_mask = 0
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.11372549, 0.2627451, 0.08235294, 1)
@@ -580,7 +577,6 @@ theme_override_colors/font_hover_pressed_color = Color(0.11372549, 0.2627451, 0.
 text = "Opciones"
 
 [node name="BotonCustomCreditos" parent="VBoxContainer" instance=ExtResource("2_8cfpu")]
-modulate = Color(1, 1, 1, 0.18260801)
 light_mask = 0
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.11372549, 0.2627451, 0.08235294, 1)
@@ -588,7 +584,6 @@ theme_override_colors/font_hover_pressed_color = Color(0.11372549, 0.2627451, 0.
 text = "Créditos"
 
 [node name="BotonCustomSalir" parent="VBoxContainer" instance=ExtResource("2_8cfpu")]
-modulate = Color(1, 1, 1, 0)
 light_mask = 0
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.11372549, 0.2627451, 0.08235294, 1)
