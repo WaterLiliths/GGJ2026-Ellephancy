@@ -134,7 +134,7 @@ texture = ExtResource("2_n4lja")
 [node name="CampanitaAnimada" parent="." instance=ExtResource("3_gdenh")]
 z_index = 50
 position = Vector2(967, 521)
-frame_progress = 0.29177478
+frame_progress = 0.35981444
 
 [node name="LabelTextArboleda" type="Label" parent="CampanitaAnimada"]
 offset_left = -494.0
