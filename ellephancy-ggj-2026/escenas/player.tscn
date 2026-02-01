@@ -503,6 +503,7 @@ event_guid = "{fbc63101-c1f0-46e6-ab63-d76fad8983e3}"
 volume = 0.5
 
 [node name="HUD" parent="." instance=ExtResource("52_hopxw")]
+z_index = 105
 
 [node name="FmodEventEmitter2D6" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Mascaras/equipar"
