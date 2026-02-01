@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc8lgh4bhiut8"]
+
+[ext_resource type="Texture2D" uid="uid://c0letordwqfnu" path="res://assets/sprites/ambient/Árbol caído.png" id="1_cmc4t"]
+[ext_resource type="Script" uid="uid://v7cptcrrdcdb" path="res://escenas/world_objects/tronco_pasado_presente.gd" id="1_fycgy"]
+
+[node name="TroncoColisionable" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_fycgy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_cmc4t")
+
+[node name="Colision" type="CollisionPolygon2D" parent="."]
+unique_name_in_owner = true
+polygon = PackedVector2Array(-19, -8, 142, -7, 254, 1, 255, 54, -231, 55, -252, 48, -280, -16, -269, -49, -281, -83, -204, -26, -135, -9)
