@@ -54,7 +54,7 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 position = Vector2(122, 60)
 
 [node name="ObjetoAEmpujar" parent="." instance=ExtResource("4_f2txr")]
-position = Vector2(1256, 506)
+position = Vector2(667, 511)
 
 [node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Ambiente/ambiente"

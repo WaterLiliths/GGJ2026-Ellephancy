@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://cs3h434myxe4r"]
+[gd_scene load_steps=65 format=3 uid="uid://cs3h434myxe4r"]
 
 [ext_resource type="Script" uid="uid://d1p6o2ixegcp2" path="res://scripts/player.gd" id="1_esbpa"]
 [ext_resource type="Texture2D" uid="uid://csvm86vnc0cmo" path="res://assets/player/mascaras/Agarre oso destra 1.png" id="2_v66k4"]
@@ -366,11 +366,14 @@ animations = [{
 "speed": 11.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_kkt6c"]
-radius = 32.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b787q"]
+size = Vector2(48, 139)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j7xnp"]
 radius = 41.880783
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3jn0c"]
+size = Vector2(2, 20)
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 7
@@ -388,11 +391,11 @@ texture_filter = 1
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_w7fad")
 animation = &"idle_normal"
-frame_progress = 0.004578395
+frame_progress = 0.8192885
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 27)
-shape = SubResource("CircleShape2D_kkt6c")
+position = Vector2(15, -13.5)
+shape = SubResource("RectangleShape2D_b787q")
 
 [node name="AreaTirar" type="Area2D" parent="."]
 
@@ -402,9 +405,10 @@ debug_color = Color(1.2513996e-06, 0.6431121, 0.31144592, 0.41960785)
 
 [node name="PinJointAgarrar" type="PinJoint2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(44, 0)
+position = Vector2(58, -8)
 node_a = NodePath("..")
-node_b = NodePath("..")
+node_b = NodePath("../MANO-TEST-IZQ")
+disable_collision = false
 
 [node name="TimerCoyoteTime" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -490,6 +494,28 @@ event_guid = "{ea3f93cf-6587-4284-a571-252290d8e701}"
 
 [node name="RayCast2DSuelo" type="RayCast2D" parent="."]
 target_position = Vector2(0, 134)
+
+[node name="MANO-TEST-IZQ" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(53, -7)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionManoIzq" type="CollisionShape2D" parent="MANO-TEST-IZQ"]
+unique_name_in_owner = true
+position = Vector2(-12, 0)
+shape = SubResource("RectangleShape2D_3jn0c")
+
+[node name="MANO-TEST-Der" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1, -7)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionManoDer" type="CollisionShape2D" parent="MANO-TEST-Der"]
+unique_name_in_owner = true
+position = Vector2(-12, 0)
+shape = SubResource("RectangleShape2D_3jn0c")
 
 [connection signal="animation_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_animation_changed"]
 [connection signal="animation_finished" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_animation_finished"]

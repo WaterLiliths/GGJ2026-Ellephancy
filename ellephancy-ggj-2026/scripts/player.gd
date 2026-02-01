@@ -7,7 +7,12 @@ extends CharacterBody2D
 @onready var mascara_traducciones: Node2D = %MascaraTraducciones
 @onready var ray_cast_2d_suelo: RayCast2D = $RayCast2DSuelo
 
+#-----------------------------
+@onready var mano_test_izq: CollisionShape2D = %CollisionManoIzq
+@onready var mano_test_der: CollisionShape2D = %CollisionManoDer
+
 #-------------------------------
+var ultimo_estado : ESTADOS
 @export var limite_altura_morir : float = 3000
 var reviviendo_player : bool = false
 var ultima_direccion_mirar : int = 1 #para derecha e izquierda solo 1 -1
@@ -31,7 +36,7 @@ var velocidad_inicial : float
 @export var velocidad_correr : float = 40
 @export var fuerza_empuje : float = 0
 @export var velocidad_arrastrando : float = 100.0
-
+#@export var angulo_max_subida : float= 45.0 #es en grados
 #@export var tiene_mascara_fuerza = Global.tiene_mascara_fuerza
 #@export var tiene_mascara_tiempo = Global.tiene_mascara_tiempo
 #@export var tiene_mascara_traducciones = Global.tiene_mascara_traducciones
@@ -64,6 +69,8 @@ var superficie = {}
 
 
 func _ready() -> void:
+	mano_test_izq.set_deferred("disabled", true) #DESACTIVO FISICAS DE LA MANO
+	mano_test_der.set_deferred("disabled", true)
 	Global.agarre_mascara.connect(on_agarre_mascara)
 	timer_tiempo_en_aire.wait_time = tiempo_maximo_en_aire
 	velocidad_inicial = velocidad
@@ -114,7 +121,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	
+	#print("ESTADO ACTUAL ES ", estado_actual)
 	#
 	#ray_cast_suelo()
 	#print(ray_cast_suelo())
@@ -157,6 +164,8 @@ func _physics_process(delta: float) -> void:
 	
 	#movimiento_wasd(delta)
 	move_and_slide()
+	#var normal_del_piso = get_floor_normal()
+	#print("LA NORMAL DEL PISO VALEEEE" , normal_del_piso)
 	detectar_caida()
 	comprobar_coyote_timer()
 	
@@ -215,6 +224,7 @@ func desconectar_caja_con_joint():
 	reset_velocidad_normal()
 	agarrando_caja = false
 	cambiar_de_estado(ESTADOS.IDLE)
+	activar_mano()
 
 
 func comprobar_coyote_timer():
@@ -400,6 +410,7 @@ func ejecutar_animacion_caida(forzar_id : int = 0): #por si queremos forzar una 
 func cambiar_de_estado(estado_nuevo : ESTADOS):
 	if estado_actual == estado_nuevo:
 		return
+	ultimo_estado == estado_actual
 	estado_actual = estado_nuevo
 	match estado_actual:
 		ESTADOS.IDLE:
@@ -433,6 +444,11 @@ func procesar_idle(delta):
 		tirarse_de_plataforma()
 
 func procesar_caminar(delta):
+	#if direction != 0 and intentando_subir_pendiente():
+		#velocity.x = 0
+		#cambiar_de_estado(ESTADOS.IDLE)
+		#return
+	
 	velocity.x = move_toward(velocity.x, direction * velocidad, aceleracion * delta)
 	animated_sprite_pj.flip_h = ultima_direccion_mirar < 0
 	if direction:
@@ -588,3 +604,33 @@ func handle_footsteps():
 
 	%FmodEventEmitter2D.play()
 	print(material_suelo)
+
+
+#func piso_demasiado_inclinado(): #lo saco pq rompe mas de lo q arregla
+	#if not is_on_floor():
+		#return
+	#var normal_del_piso = get_floor_normal()
+	#if normal_del_piso == Vector2.ZERO:
+		#return
+	#var angulo := rad_to_deg(acos(normal_del_piso.dot(Vector2.UP)))
+	#return angulo > angulo_max_subida
+#
+#
+#func intentando_subir_pendiente() -> bool:
+	#if not piso_demasiado_inclinado():
+		#return false
+#
+	#var normal := get_floor_normal()
+	## si el input va contra la inclinación
+	#return sign(direction) == sign(normal.x)
+
+
+func acaba_de_aterrizar() -> bool:
+	return is_on_floor() and velocity.y >= 0
+
+func activar_mano():
+	mano_test_izq.set_deferred("disabled", false) #DESACTIVO FISICAS DE LA MANO
+	mano_test_der.set_deferred("disabled", false) #DESACTIVO FISICAS DE LA MANO
+	await get_tree().create_timer(0.1).timeout
+	mano_test_izq.set_deferred("disabled", true)
+	mano_test_der.set_deferred("disabled", true)
