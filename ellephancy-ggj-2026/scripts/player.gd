@@ -85,6 +85,8 @@ func _ready() -> void:
 	#Global.tiene_mascara_fuerza = tiene_mascara_fuerza
 	#Global.tiene_mascara_tiempo = tiene_mascara_tiempo
 	#Global.tiene_mascara_traducciones = tiene_mascara_traducciones
+	await get_tree().create_timer(0.5).timeout #el timer QUIZAS no es necesario, pero puede evitar algun q otro bug
+	Global.set_checkpoint_position(global_position)
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("1"): #usar mascara fuerza
@@ -219,6 +221,8 @@ func _on_area_tirar_body_exited(body: Node2D) -> void:
 #--------------------  FUNCIONES  ------------------------
 
 func conectar_caja_con_joint():
+	#if not objeto_arrastrado:
+		#return
 	if agarrando_caja:
 		return
 	agarrando_caja = true
@@ -229,11 +233,18 @@ func conectar_caja_con_joint():
 
 
 func desconectar_caja_con_joint():
+	if not objeto_arrastrado:
+		return
 	pin_joint_agarrar.node_b = self.get_path()# me vuelvo a conectar a mi mismo que es lo mismo q desconectar
 	objeto_arrastrado = null
 	reset_velocidad_normal()
 	agarrando_caja = false
 	cambiar_de_estado(ESTADOS.IDLE)
+	#print("direction vale            --- ", direction) #terminar esto - marcos
+	#print("normal pared en x vale            --- ", get_wall_normal().x)
+	#if direction != get_wall_normal().x:
+		#print("NO EMPUJAR")
+		#return
 	activar_mano()
 
 
@@ -649,7 +660,6 @@ func activar_mano():
 	await get_tree().create_timer(0.1).timeout
 	mano_test_izq.set_deferred("disabled", true)
 	mano_test_der.set_deferred("disabled", true)
-
 
 
 func resetear_mascaras_a_cero():
