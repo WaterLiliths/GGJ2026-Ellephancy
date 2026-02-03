@@ -76,7 +76,7 @@ tipo_de_palanca = "Oxidada"
 
 [node name="Puerta" parent="Puzzle3" instance=ExtResource("7_smkhk")]
 z_index = -1
-position = Vector2(1800, 13)
+position = Vector2(1799, 39)
 id_puerta = 3
 
 [node name="AreaMascaraOso" parent="." instance=ExtResource("4_qlwoe")]
