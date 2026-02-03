@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://joyfogknf8o3"]
+
+[ext_resource type="Gradient" uid="uid://b4xgyyw4wdl42" path="res://escenas/polen.tres" id="1_dwjnv"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0iuul"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n70mk"]
+gradient = ExtResource("1_dwjnv")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5854701, 0.41025642)
+
+[sub_resource type="Curve" id="Curve_i7i3e"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.50240386, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1927.0
+offset_bottom = 1096.0
+color = Color(0, 0, 0, 1)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+y_sort_enabled = true
+material = SubResource("CanvasItemMaterial_0iuul")
+position = Vector2(941, 478)
+scale = Vector2(1.3600006, 1.6000004)
+amount = 60
+texture = SubResource("GradientTexture2D_n70mk")
+lifetime = 8.0
+preprocess = 10.0
+use_fixed_seed = true
+seed = 1392953648
+emission_shape = 3
+emission_rect_extents = Vector2(1000, 500)
+particle_flag_align_y = true
+direction = Vector2(1, -1)
+gravity = Vector2(10, -10)
+initial_velocity_min = 5.0
+initial_velocity_max = 25.0
+angular_velocity_min = -466.8
+angular_velocity_max = 462.22
+radial_accel_min = -3.0
+radial_accel_max = 3.0
+scale_amount_min = 0.1
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_i7i3e")
+color = Color(0.68991, 0.78, 0.2886, 1)
+hue_variation_min = -0.11
+hue_variation_max = 0.11
