@@ -12,6 +12,7 @@ extends CharacterBody2D
 @onready var mano_test_der: CollisionShape2D = %CollisionManoDer
 
 #-------------------------------
+var dialogos_activos : bool = false
 var ultimo_estado : ESTADOS
 @export var limite_altura_morir : float = 4000
 var reviviendo_player : bool = false
@@ -64,12 +65,14 @@ var posicion_pies = global_position + Vector2(0, 16)
 var last_material := ""
 
 
-enum ESTADOS {IDLE, CAMINAR, SALTAR, CAER, INTERACTUAR, AGARRAR}
+enum ESTADOS {IDLE, CAMINAR, SALTAR, CAER, INTERACTUAR, AGARRAR, DIALOGO_ACTIVO}
 var estado_actual : ESTADOS = ESTADOS.IDLE
 var superficie = {}
 
 #ayuda
 func _ready() -> void:
+	Global.dialogo_activo_to_player.connect(on_dialogo_activo)
+	Global.dialogo_desactivado_to_player.connect(on_dialogo_desactivado)
 	resetear_mascaras_a_cero()
 	mano_test_izq.set_deferred("disabled", true) #DESACTIVO FISICAS DE LA MANO
 	mano_test_der.set_deferred("disabled", true)
@@ -82,6 +85,8 @@ func _ready() -> void:
 	#Global.tiene_mascara_fuerza = tiene_mascara_fuerza
 	#Global.tiene_mascara_tiempo = tiene_mascara_tiempo
 	#Global.tiene_mascara_traducciones = tiene_mascara_traducciones
+	await get_tree().create_timer(0.5).timeout #el timer QUIZAS no es necesario, pero puede evitar algun q otro bug
+	Global.set_checkpoint_position(global_position)
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("1"): #usar mascara fuerza
@@ -119,16 +124,16 @@ func _input(event: InputEvent) -> void:
 		conectar_caja_con_joint()
 	if Input.is_action_just_released("tirar"): # TODO 
 		desconectar_caja_con_joint()
+	if Input.is_action_just_pressed("r"):
+		restart() #en restart llamo a matar jugador, te lleva al checkpoint
 
 
 
 func _physics_process(delta: float) -> void:
-	#print("ESTADO ACTUAL ES ", estado_actual)
-	#
-	#ray_cast_suelo()
-	#print(ray_cast_suelo())
-	
-	direction = Input.get_axis("a", "d")
+	if not dialogos_activos: #TEST A VER SI NOS GUSTA
+		direction = Input.get_axis("a", "d")
+	else:
+		direction = 0
 	if direction:
 		ultima_direccion_mirar = sign(direction)
 	aplicar_gravedad(delta)
@@ -146,6 +151,8 @@ func _physics_process(delta: float) -> void:
 			pass #por si necesitan logica en process la ponemos aca
 		ESTADOS.AGARRAR:
 			procesar_agarrar(delta)
+		ESTADOS.DIALOGO_ACTIVO:
+			procesar_dialogo_activo(delta)
 	if global_position.y > limite_altura_morir:
 		matar_player()
 	
@@ -166,6 +173,7 @@ func _physics_process(delta: float) -> void:
 	
 	#movimiento_wasd(delta)
 	move_and_slide()
+	#print("ANGULO VALE ", get_floor_angle())
 	#var normal_del_piso = get_floor_normal()
 	#print("LA NORMAL DEL PISO VALEEEE" , normal_del_piso)
 	detectar_caida()
@@ -213,6 +221,8 @@ func _on_area_tirar_body_exited(body: Node2D) -> void:
 #--------------------  FUNCIONES  ------------------------
 
 func conectar_caja_con_joint():
+	#if not objeto_arrastrado:
+		#return
 	if agarrando_caja:
 		return
 	agarrando_caja = true
@@ -223,11 +233,18 @@ func conectar_caja_con_joint():
 
 
 func desconectar_caja_con_joint():
+	if not objeto_arrastrado:
+		return
 	pin_joint_agarrar.node_b = self.get_path()# me vuelvo a conectar a mi mismo que es lo mismo q desconectar
 	objeto_arrastrado = null
 	reset_velocidad_normal()
 	agarrando_caja = false
 	cambiar_de_estado(ESTADOS.IDLE)
+	#print("direction vale            --- ", direction) #terminar esto - marcos
+	#print("normal pared en x vale            --- ", get_wall_normal().x)
+	#if direction != get_wall_normal().x:
+		#print("NO EMPUJAR")
+		#return
 	activar_mano()
 
 
@@ -431,6 +448,9 @@ func cambiar_de_estado(estado_nuevo : ESTADOS):
 			ejecutar_animacion_palanca()
 		ESTADOS.AGARRAR:
 			ejecutar_animacion_arrastrar()
+		ESTADOS.DIALOGO_ACTIVO:
+			ejecutar_animacion_idle()
+
 
 
 func procesar_idle(delta):
@@ -449,10 +469,6 @@ func procesar_idle(delta):
 		tirarse_de_plataforma()
 
 func procesar_caminar(delta):
-	#if direction != 0 and intentando_subir_pendiente():
-		#velocity.x = 0
-		#cambiar_de_estado(ESTADOS.IDLE)
-		#return
 	
 	velocity.x = move_toward(velocity.x, direction * velocidad, aceleracion * delta)
 	animated_sprite_pj.flip_h = ultima_direccion_mirar < 0
@@ -499,6 +515,11 @@ func procesar_agarrar(delta):
 	velocity.x = move_toward(velocity.x,direction * velocidad, aceleracion * delta)
 	if not agarrando_caja:
 		cambiar_de_estado(ESTADOS.IDLE)
+
+func procesar_dialogo_activo(delta):
+	#print("esta aca en procesar dialogoooooooooooooooooooo")
+	direction = 0
+	velocity.x = 0
 
 
 func _on_animated_sprite_pj_animation_finished() -> void:
@@ -641,8 +662,16 @@ func activar_mano():
 	mano_test_der.set_deferred("disabled", true)
 
 
-
 func resetear_mascaras_a_cero():
 	Global.tiene_mascara_fuerza = false
 	Global.tiene_mascara_tiempo = false
 	Global.tiene_mascara_traducciones = false
+
+func on_dialogo_activo():
+	cambiar_de_estado(ESTADOS.DIALOGO_ACTIVO)
+
+func on_dialogo_desactivado():
+	cambiar_de_estado(ESTADOS.IDLE)
+
+func restart():
+	matar_player()
