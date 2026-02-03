@@ -12,8 +12,8 @@ var tiene_mascara_fuerza : bool = false
 var tiene_mascara_tiempo : bool = false
 var tiene_mascara_traducciones : bool = false
 
-signal dialogo_activo_to_player
-signal dialogo_desactivado_to_player
+signal dialogo_activo_to_player #se emite en area dialogo
+signal dialogo_desactivado_to_player #se escucha player
 
 var mascara_activa : int = 0
 #----------------PALANCA Y PUERTA------------------

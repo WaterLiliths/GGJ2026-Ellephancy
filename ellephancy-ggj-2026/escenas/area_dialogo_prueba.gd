@@ -30,4 +30,4 @@ func _on_body_entered(body: Node2D) -> void:
 		print("EJECUTAR DIALOGOOOOOOOOOO")
 		DialogueManager.show_dialogue_balloon(dialogo, "start")
 		dialogo_leido = true
-		Global.dialogo_activo_to_player.emit()
+		Global.dialogo_activo_to_player.emit() #LO ESCUCHA PLAYER
