@@ -12,6 +12,7 @@ func _ready() -> void:
 	$FmodEventEmitter2D2.play()
 	$AnimationPlayer.play("fade_in")
 	tween.tween_property($FmodEventEmitter2D2, "volume", Global.volumen_musica, 4)
+	
 #Rezá Malena rezá
 
 func _process(_delta: float) -> void:
