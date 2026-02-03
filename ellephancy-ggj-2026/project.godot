@@ -38,6 +38,10 @@ window/size/mode=3
 window/stretch/mode="canvas_items"
 window/defaults/default_clear_color=Color(0.3, 0.3, 0.3, 1)
 
+[editor]
+
+movie_writer/movie_file="D:/ggj2026/GGJ2026-Ellephancy/ellephancy-ggj-2026/videos/particulas.avi"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/fmod/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")

@@ -20,6 +20,8 @@ var mascara_activa : int = 0
 signal activar_palanca(id_palanca : int)
 signal desactivar_palanca(id_palanca : int)
 
+signal puerta_abierta(position)
+
 var volumen_general : float = 0.8
 var volumen_musica : float = 1.0 * volumen_general
 var volumen_efectos : float = 1.0 * volumen_general
