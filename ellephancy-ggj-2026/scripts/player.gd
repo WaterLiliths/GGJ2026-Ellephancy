@@ -65,7 +65,7 @@ var posicion_pies = global_position + Vector2(0, 16)
 var last_material := ""
 
 
-enum ESTADOS {IDLE, CAMINAR, SALTAR, CAER, INTERACTUAR, AGARRAR}
+enum ESTADOS {IDLE, CAMINAR, SALTAR, CAER, INTERACTUAR, AGARRAR, DIALOGO_ACTIVO}
 var estado_actual : ESTADOS = ESTADOS.IDLE
 var superficie = {}
 
@@ -149,6 +149,8 @@ func _physics_process(delta: float) -> void:
 			pass #por si necesitan logica en process la ponemos aca
 		ESTADOS.AGARRAR:
 			procesar_agarrar(delta)
+		ESTADOS.DIALOGO_ACTIVO:
+			procesar_dialogo_activo(delta)
 	if global_position.y > limite_altura_morir:
 		matar_player()
 	
@@ -435,6 +437,8 @@ func cambiar_de_estado(estado_nuevo : ESTADOS):
 			ejecutar_animacion_palanca()
 		ESTADOS.AGARRAR:
 			ejecutar_animacion_arrastrar()
+		ESTADOS.DIALOGO_ACTIVO:
+			ejecutar_animacion_idle()
 
 
 
@@ -500,6 +504,11 @@ func procesar_agarrar(delta):
 	velocity.x = move_toward(velocity.x,direction * velocidad, aceleracion * delta)
 	if not agarrando_caja:
 		cambiar_de_estado(ESTADOS.IDLE)
+
+func procesar_dialogo_activo(delta):
+	#print("esta aca en procesar dialogoooooooooooooooooooo")
+	direction = 0
+	velocity.x = 0
 
 
 func _on_animated_sprite_pj_animation_finished() -> void:
@@ -649,10 +658,10 @@ func resetear_mascaras_a_cero():
 	Global.tiene_mascara_traducciones = false
 
 func on_dialogo_activo():
-	dialogos_activos = true
+	cambiar_de_estado(ESTADOS.DIALOGO_ACTIVO)
 
 func on_dialogo_desactivado():
-	dialogos_activos = false
+	cambiar_de_estado(ESTADOS.IDLE)
 
 func restart():
 	matar_player()
