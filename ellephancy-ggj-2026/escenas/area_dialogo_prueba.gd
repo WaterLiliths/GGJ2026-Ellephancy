@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var dialogo = preload("res://dialogue/dialogo_final.dialogue")
+@export var dialogo = preload("res://dialogue/primer_dialogo_oso.dialogue")
 @export_range(1,20) var id_a_destruir : int
 var player_cerca : bool = false
 var dialogo_activo : bool = false
@@ -19,6 +19,7 @@ func on_dialogue_ended(dialogue):
 	#dialogo_leido = true
 #	queue_free()
 	if dialogo_leido and id_dialogo == id_a_destruir:
+		Global.dialogo_desactivado_to_player.emit()
 		queue_free()
 
 func _on_body_entered(body: Node2D) -> void:
@@ -28,3 +29,4 @@ func _on_body_entered(body: Node2D) -> void:
 		print("EJECUTAR DIALOGOOOOOOOOOO")
 		DialogueManager.show_dialogue_balloon(dialogo, "start")
 		dialogo_leido = true
+		Global.dialogo_activo_to_player.emit() #LO ESCUCHA PLAYER

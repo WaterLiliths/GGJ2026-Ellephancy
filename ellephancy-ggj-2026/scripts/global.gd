@@ -8,9 +8,12 @@ signal mascara_tiempo_desactivar
 signal mascara_fuerza_desactivar
 signal agarre_mascara(nombre : String)
 #Booleano por mascara
-var tiene_mascara_fuerza : bool = false
-var tiene_mascara_tiempo : bool = false
-var tiene_mascara_traducciones : bool = false
+var tiene_mascara_fuerza : bool = true
+var tiene_mascara_tiempo : bool = true
+var tiene_mascara_traducciones : bool = true
+
+signal dialogo_activo_to_player #se emite en area dialogo
+signal dialogo_desactivado_to_player #se escucha player
 
 var mascara_activa : int = 0
 #----------------PALANCA Y PUERTA------------------

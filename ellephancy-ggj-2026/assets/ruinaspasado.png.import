@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3y87vf4oiey5"
-path="res://.godot/imported/correr.png-fd9a10972e7a30116af8a0360564138b.ctex"
+uid="uid://b1tuyoddj8ogl"
+path="res://.godot/imported/ruinaspasado.png-38e212ce0562cffb1d140bbacf295257.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/personaje-test/correr.png"
-dest_files=["res://.godot/imported/correr.png-fd9a10972e7a30116af8a0360564138b.ctex"]
+source_file="res://assets/ruinaspasado.png"
+dest_files=["res://.godot/imported/ruinaspasado.png-38e212ce0562cffb1d140bbacf295257.ctex"]
 
 [params]
 

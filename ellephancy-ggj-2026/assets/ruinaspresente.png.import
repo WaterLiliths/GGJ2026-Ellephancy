@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cm0c47duyxhoi"
-path="res://.godot/imported/idle.png-7bec79871b99fcb6f61a90b0c282cb3c.ctex"
+uid="uid://coqj3wykfva8c"
+path="res://.godot/imported/ruinaspresente.png-a11220d384c8e9bdce7c337809573e71.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/personaje-test/idle.png"
-dest_files=["res://.godot/imported/idle.png-7bec79871b99fcb6f61a90b0c282cb3c.ctex"]
+source_file="res://assets/ruinaspresente.png"
+dest_files=["res://.godot/imported/ruinaspresente.png-a11220d384c8e9bdce7c337809573e71.ctex"]
 
 [params]
 
