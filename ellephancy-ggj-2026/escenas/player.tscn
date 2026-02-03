@@ -376,7 +376,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b787q"]
-size = Vector2(48, 139)
+size = Vector2(48, 158)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j7xnp"]
 radius = 41.880783
@@ -414,7 +414,7 @@ animation = &"idle_normal"
 frame_progress = 0.8192885
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(15, -13.5)
+position = Vector2(15, -23)
 shape = SubResource("RectangleShape2D_b787q")
 
 [node name="AreaTirar" type="Area2D" parent="."]

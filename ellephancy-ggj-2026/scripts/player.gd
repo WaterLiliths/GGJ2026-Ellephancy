@@ -119,6 +119,8 @@ func _input(event: InputEvent) -> void:
 		conectar_caja_con_joint()
 	if Input.is_action_just_released("tirar"): # TODO 
 		desconectar_caja_con_joint()
+	if Input.is_action_just_pressed("r"):
+		restart() #en restart llamo a matar jugador, te lleva al checkpoint
 
 
 
@@ -646,3 +648,7 @@ func resetear_mascaras_a_cero():
 	Global.tiene_mascara_fuerza = false
 	Global.tiene_mascara_tiempo = false
 	Global.tiene_mascara_traducciones = false
+
+
+func restart():
+	matar_player()
