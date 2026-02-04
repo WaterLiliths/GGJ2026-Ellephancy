@@ -101,7 +101,7 @@ event_name = "snapshot:/Reverb On"
 event_guid = "{1b2c7e19-03d1-4ba1-9319-b269bc8c0201}"
 unique_name_in_owner = true
 
-[node name="AreaDialogo" parent="." instance=ExtResource("6_xuxq0")]
+[node name="DialogoOsoAparece" parent="." instance=ExtResource("6_xuxq0")]
 position = Vector2(2555, 62)
 
 [connection signal="body_entered" from="ReverbArea" to="ReverbArea" method="_on_body_entered"]
