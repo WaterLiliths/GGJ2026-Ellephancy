@@ -28,7 +28,7 @@ var agarrando_caja : bool = false
 @export var gravedad_bajando : float = 1.4
 @export var velocidad : float = 250.0
 @export var velocidad_salto: float = -620
-@export var velocidad_salto_con_mascara = -620
+@export var velocidad_salto_con_mascara = -800
 @export var desaceleración_al_saltar : float = 0.5 #arreglar igual 0.5 safa
 @export var desaceleracion_horizontal : float = 0.07 #ajustable a gusto
 var velocidad_inicial_salto : float
