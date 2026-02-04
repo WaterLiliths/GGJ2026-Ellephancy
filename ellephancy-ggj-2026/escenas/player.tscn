@@ -382,15 +382,11 @@ size = Vector2(48, 158)
 radius = 41.880783
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3jn0c"]
-size = Vector2(2, 20)
+size = Vector2(1, 20)
 
 [node name="Player" type="CharacterBody2D" groups=["cajas"]]
 collision_mask = 7
 script = ExtResource("1_esbpa")
-tiempo_maximo_en_aire = 10.0
-velocidad_salto_con_mascara = -800
-velocidad_al_agarrar = 50.35
-aceleracion_al_agarrar = 0.8
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(0.7607843, 0.43137255, 0.2901961, 1)
@@ -421,6 +417,7 @@ shape = SubResource("RectangleShape2D_b787q")
 [node name="AreaTirar" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaTirar"]
+position = Vector2(11, 0)
 shape = SubResource("CircleShape2D_j7xnp")
 debug_color = Color(1.2513996e-06, 0.6431121, 0.31144592, 0.41960785)
 
@@ -443,11 +440,15 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 position = Vector2(-47, 0)
 target_position = Vector2(0, 55)
+collision_mask = 130
+hit_from_inside = true
 
 [node name="RayCastDer" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(47, 0)
 target_position = Vector2(0, 55)
+collision_mask = 130
+hit_from_inside = true
 
 [node name="MascaraFuerza" parent="." instance=ExtResource("5_t3yu4")]
 unique_name_in_owner = true
@@ -529,7 +530,7 @@ collision_mask = 128
 
 [node name="CollisionManoIzq" type="CollisionShape2D" parent="MANO-TEST-IZQ"]
 unique_name_in_owner = true
-position = Vector2(-12, 0)
+position = Vector2(-12.5, 0)
 shape = SubResource("RectangleShape2D_3jn0c")
 
 [node name="MANO-TEST-Der" type="StaticBody2D" parent="."]
