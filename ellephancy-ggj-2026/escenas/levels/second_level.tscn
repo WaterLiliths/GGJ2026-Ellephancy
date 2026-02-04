@@ -86,6 +86,7 @@ position = Vector2(2437.0002, 166.00005)
 rotation = -0.2617994
 
 [node name="ReverbArea" type="Area2D" parent="."]
+visible = false
 position = Vector2(-2225, 45)
 script = ExtResource("5_xqqxq")
 
