@@ -230,10 +230,11 @@ func conectar_caja_con_joint():
 		return
 	if agarrando_caja:
 		return
-	#if ray_cast_der.get_collider().is_in_group("cajas"):
-		#print("LA CAJA ESTA A TU DERECHA")
-	#if ray_cast_izq.get_collider().is_in_group("cajas"):
-		#print("LA CAJA ESTA A TU IZQUIERDAA")
+	var direccion_con_caja = sign(global_position.x- objeto_arrastrado.global_position.x)
+	#direccion -1 es esta a tu derecha, 1 es que esta a tu izquierda
+	if ultima_direccion_mirar == direccion_con_caja:
+		print("NO AGARRAR MIRANDO OPUESTO A LA CAJA")
+		return
 	pin_joint_agarrar.node_b = objeto_arrastrado.get_path()
 	agarrando_caja = true
 	disminuir_velocidad_al_agarrar()
