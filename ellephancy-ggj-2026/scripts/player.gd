@@ -39,10 +39,6 @@ var velocidad_inicial : float
 @export var velocidad_correr : float = 40
 @export var fuerza_empuje : float = 0
 @export var velocidad_arrastrando : float = 100.0
-#@export var angulo_max_subida : float= 45.0 #es en grados
-#@export var tiene_mascara_fuerza = Global.tiene_mascara_fuerza
-#@export var tiene_mascara_tiempo = Global.tiene_mascara_tiempo
-#@export var tiene_mascara_traducciones = Global.tiene_mascara_traducciones
 
 @onready var animated_sprite_pj: AnimatedSprite2D = %AnimatedSpritePJ
 @onready var ray_cast_izq: RayCast2D = %RayCastIzq
@@ -163,26 +159,7 @@ func _physics_process(delta: float) -> void:
 	if global_position.y > limite_altura_morir:
 		matar_player()
 	
-	
-	
-	
-	
-	
-	
-	# -------------------- salto + coyote timer  -------------------------------
-	#if Input.is_action_just_pressed("w") and (is_on_floor() or puedo_usar_coyote()):
-		#velocity.y = velocidad_salto
-		#timer_coyote_time.stop()
-		#$FmodEventEmitter2D2.play_one_shot()
-		#ejecutar_animacion_saltar()
-	#if Input.is_action_just_released("w") and velocity.y < 0:
-		#velocity.y *= desaceleración_al_saltar
-	
-	#movimiento_wasd(delta)
 	move_and_slide()
-	#print("ANGULO VALE ", get_floor_angle())
-	#var normal_del_piso = get_floor_normal()
-	#print("LA NORMAL DEL PISO VALEEEE" , normal_del_piso)
 	detectar_caida()
 	comprobar_coyote_timer()
 	
@@ -336,29 +313,6 @@ func aplicar_gravedad(delta : float):
 		velocity += get_gravity() * gravedad_subiendo * delta
 	else:
 		velocity += get_gravity() * gravedad_bajando * delta
-
-
-func movimiento_wasd(delta : float): #ya no se usa
-	if direction:
-		#velocity.x = move_toward(velocity.x , direction * velocidad, aceleracion * delta)
-		#animated_sprite_pj.flip_h = ultima_direccion_mirar < 0 #rotar pj segun para donde se mueve
-		#if is_on_floor():
-			#ejecutar_animacion_caminar()
-		#else:
-			#ejecutar_animacion_saltar()
-		#
-		if timer_pasos <= 0 && is_on_floor():
-			%FmodEventEmitter2D.play_one_shot()
-			timer_pasos = timer_pasos_reset
-		timer_pasos -= delta 
-	#else:
-		#velocity.x = move_toward(velocity.x, 0, desaceleracion*delta)
-		#if is_on_floor():
-			#if abs(velocity.y) <1:
-				#animated_sprite_pj.play("idle_normal")
-		#else:
-			#ejecutar_animacion_saltar()
-
 
 
 func ejecutar_animacion_caminar(forzar_id : int = 0): #por si queremos forzar una especifica
@@ -595,15 +549,6 @@ func tirarse_de_plataforma():
 	position.y += 1
 
 
-#func detectar_material_suelo(tilemap: TileMapLayer) -> String:
-	#var cell = tilemap.local_to_map(global_position + Vector2.DOWN)
-	#var tile_data = tilemap.get_cell_tile_data(cell)
-	#print(tilemap.get_cell_tile_data(cell))
-	#if tile_data:
-		#print(material)
-		#return tile_data.get_custom_data("material")
-	#return "unknown"
-#
 
 func obtener_tile_map():
 	var tilemap : TileMapLayer
@@ -633,23 +578,6 @@ func detectar_tipo_de_suelo():
 			#print("tipo de suelo es: " , tipo_de_suelo)
 		#tilemap = null
 
-#func piso_demasiado_inclinado(): #lo saco pq rompe mas de lo q arregla
-	#if not is_on_floor():
-		#return
-	#var normal_del_piso = get_floor_normal()
-	#if normal_del_piso == Vector2.ZERO:
-		#return
-	#var angulo := rad_to_deg(acos(normal_del_piso.dot(Vector2.UP)))
-	#return angulo > angulo_max_subida
-#
-#
-#func intentando_subir_pendiente() -> bool:
-	#if not piso_demasiado_inclinado():
-		#return false
-#
-	#var normal := get_floor_normal()
-	## si el input va contra la inclinación
-	#return sign(direction) == sign(normal.x)
 
 
 func acaba_de_aterrizar() -> bool:
@@ -681,4 +609,4 @@ func on_dialogo_desactivado():
 
 func restart():
 	matar_player()
-	
+#TODO MARCOS BORRA COSAS XFA
