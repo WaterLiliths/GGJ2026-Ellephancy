@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ig75pg3uo5m" path="res://escenas/masks/area_mascara_ciervo.tscn" id="4_k6c24"]
 [ext_resource type="PackedScene" uid="uid://t3ox75glka3s" path="res://escenas/world_objects/ObjetoAEmpujar.tscn" id="5_p2jn5"]
 [ext_resource type="PackedScene" uid="uid://dj4jyhd1bexi6" path="res://escenas/checkpoint_area.tscn" id="7_gv6jt"]
+[ext_resource type="Script" uid="uid://o1jlskbd2keg" path="res://escenas/levels/reverb_area.gd" id="7_gv6jt"]
 
 [node name="ThirdLevel" type="Node2D"]
 
@@ -109,3 +110,17 @@ presente = true
 
 [node name="CheckpointArea" parent="." instance=ExtResource("7_gv6jt")]
 position = Vector2(3717, 2037)
+[node name="ReverbArea" type="Area2D" parent="."]
+visible = false
+script = ExtResource("7_gv6jt")
+
+[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="ReverbArea"]
+event_name = "snapshot:/Reverb On"
+event_guid = "{1b2c7e19-03d1-4ba1-9319-b269bc8c0201}"
+unique_name_in_owner = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ReverbArea"]
+polygon = PackedVector2Array(1384, 374, 2290, 358, 2611, 351, 2650, 7, 3301, 15, 3293, 809, 3189, 989, 3255, 1208, 3203, 1413, 2514, 1501, 1137, 1442)
+
+[connection signal="body_entered" from="ReverbArea" to="ReverbArea" method="_on_body_entered"]
+[connection signal="body_exited" from="ReverbArea" to="ReverbArea" method="_on_body_exited"]

@@ -72,7 +72,7 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 gradient = SubResource("Gradient_yv8to")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.7094017, 0.35042736)
+fill_to = Vector2(0.6111111, 0.34188035)
 
 [sub_resource type="Curve" id="Curve_m34qx"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.16062176, 0.68539333), 0.0, 0.0, 0, 0, Vector2(0.34715027, 0.26966298), 0.0, 0.0, 0, 0, Vector2(0.6839379, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -88,6 +88,7 @@ script = ExtResource("1_2y4ua")
 position = Vector2(1230, -222)
 rotation = 0.7033677
 color = Color(0.76, 0.43016, 0.2888, 1)
+energy = 1.5
 shadow_enabled = true
 shadow_filter = 1
 shadow_filter_smooth = 2.3
@@ -231,7 +232,7 @@ offset_bottom = 1122.0
 color = Color(0, 0, 0, 1)
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="Player/Camera2D"]
-z_index = -1
+z_index = -6
 y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_ms3um")
 position = Vector2(695, 329)
@@ -262,7 +263,7 @@ hue_variation_max = 0.11
 [node name="CPUParticles2D3" type="CPUParticles2D" parent="Player/Camera2D"]
 modulate = Color(1, 1, 1, 0.30980393)
 material = SubResource("CanvasItemMaterial_kypqj")
-amount = 500
+amount = 1000
 texture = SubResource("GradientTexture2D_yv8to")
 lifetime = 14.49
 preprocess = 10.0
@@ -270,7 +271,7 @@ emission_shape = 3
 emission_rect_extents = Vector2(1500, 1000)
 direction = Vector2(-1, 0)
 spread = 41.3
-gravity = Vector2(0, 2)
+gravity = Vector2(-1, 0.1)
 initial_velocity_min = 5.0
 initial_velocity_max = 10.0
 tangential_accel_min = 1.0
@@ -288,6 +289,11 @@ event_guid = "{9318ebbc-5ee4-4da9-87ef-a11bf476df3b}"
 attached = false
 autoplay = true
 volume = 0.685
+fmod_parameters/Tiempo/id = 4399314668521438136
+fmod_parameters/Tiempo = "presente"
+fmod_parameters/Tiempo/labels = PackedStringArray("presente", "pasado")
+fmod_parameters/Tiempo/variant_type = 4
+process_mode = 3
 position = Vector2(-97, 588)
 
 [node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="."]
@@ -298,6 +304,7 @@ fmod_parameters/Pantalla/id = -2044462831851661827
 fmod_parameters/Pantalla = "Juego"
 fmod_parameters/Pantalla/labels = PackedStringArray("Menu", "Juego")
 fmod_parameters/Pantalla/variant_type = 4
+process_mode = 3
 position = Vector2(-97, 588)
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
@@ -336,101 +343,106 @@ position = Vector2(11775, 193)
 [node name="LevelSalmon5" parent="Niveles" instance=ExtResource("22_e4rmv")]
 position = Vector2(23466, -1659)
 
-[node name="AreaDialogoPrueba" parent="." instance=ExtResource("23_g2cn0")]
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="AreaDialogoPrueba" parent="Node2D" instance=ExtResource("23_g2cn0")]
 position = Vector2(17901, -1987)
 dialogo = ExtResource("24_g2cn0")
 id_a_destruir = 8
 id_dialogo = 8
 
-[node name="AreaDialogoPrueba2" parent="." instance=ExtResource("23_g2cn0")]
+[node name="AreaDialogoPrueba2" parent="Node2D" instance=ExtResource("23_g2cn0")]
 position = Vector2(18852, -1997)
 dialogo = ExtResource("25_8mohb")
 id_a_destruir = 9
 id_dialogo = 9
 
-[node name="AreaDialogoPrueba3" parent="." instance=ExtResource("23_g2cn0")]
+[node name="AreaDialogoPrueba3" parent="Node2D" instance=ExtResource("23_g2cn0")]
 position = Vector2(21694, -1987)
 dialogo = ExtResource("27_u0ym6")
 id_a_destruir = 10
 id_dialogo = 10
 
-[node name="AreaDialogoOsoNormal" parent="." instance=ExtResource("23_g2cn0")]
+[node name="AreaDialogoOsoNormal" parent="Node2D" instance=ExtResource("23_g2cn0")]
 position = Vector2(11197, -1438)
 dialogo = ExtResource("28_xkwlr")
 id_a_destruir = 11
 id_dialogo = 11
 
-[node name="AreaDialogoCiervoNormalitoo" parent="." instance=ExtResource("23_g2cn0")]
+[node name="AreaDialogoCiervoNormalitoo" parent="Node2D" instance=ExtResource("23_g2cn0")]
 position = Vector2(15528, -1939)
 dialogo = ExtResource("32_73x7c")
 id_a_destruir = 12
 id_dialogo = 12
 
-[node name="AreaDialogoSalmonArribaa" parent="." instance=ExtResource("23_g2cn0")]
+[node name="AreaDialogoSalmonArribaa" parent="Node2D" instance=ExtResource("23_g2cn0")]
 position = Vector2(22680, -3404)
 dialogo = ExtResource("30_fe420")
 id_a_destruir = 13
 id_dialogo = 13
 
-[node name="AreaDialogoOSOMASCARA" parent="." instance=ExtResource("23_g2cn0")]
+[node name="AreaDialogoOSOMASCARA" parent="Node2D" instance=ExtResource("23_g2cn0")]
 position = Vector2(7961, -1002)
 
-[node name="AreaDialogoOSOUSO" parent="." instance=ExtResource("23_g2cn0")]
+[node name="AreaDialogoOSOUSO" parent="Node2D" instance=ExtResource("23_g2cn0")]
 position = Vector2(9035, -858)
 dialogo = ExtResource("28_m1sj6")
 id_a_destruir = 2
 id_dialogo = 2
 
-[node name="AreaDialogoOSOUSO2" parent="." instance=ExtResource("23_g2cn0")]
+[node name="AreaDialogoOSOUSO2" parent="Node2D" instance=ExtResource("23_g2cn0")]
 position = Vector2(10108, -277)
 dialogo = ExtResource("27_uwevx")
 id_a_destruir = 3
 id_dialogo = 3
 
-[node name="AreaDialogoCiervoEncuentro" parent="." instance=ExtResource("23_g2cn0")]
+[node name="AreaDialogoCiervoEncuentro" parent="Node2D" instance=ExtResource("23_g2cn0")]
 position = Vector2(11969, 510)
 dialogo = ExtResource("30_ncnhw")
 id_a_destruir = 4
 id_dialogo = 4
 
-[node name="AreaDialogoCiervoPrimUso" parent="." instance=ExtResource("23_g2cn0")]
+[node name="AreaDialogoCiervoPrimUso" parent="Node2D" instance=ExtResource("23_g2cn0")]
 position = Vector2(13188, 516)
 dialogo = ExtResource("31_55ffo")
 id_a_destruir = 5
 id_dialogo = 5
 
-[node name="AreaDialogoCiervoNormal" parent="." instance=ExtResource("23_g2cn0")]
+[node name="AreaDialogoCiervoNormal" parent="Node2D" instance=ExtResource("23_g2cn0")]
 position = Vector2(16505, -888)
 dialogo = ExtResource("32_73x7c")
 id_a_destruir = 6
 id_dialogo = 6
 
-[node name="AreaDialogoCiervoNormal2" parent="." instance=ExtResource("23_g2cn0")]
+[node name="AreaDialogoCiervoNormal2" parent="Node2D" instance=ExtResource("23_g2cn0")]
 position = Vector2(14419, 111)
 dialogo = ExtResource("33_bmdx7")
 id_a_destruir = 7
 id_dialogo = 7
 
-[node name="AreaUltimoDialogo" parent="." instance=ExtResource("23_g2cn0")]
+[node name="AreaUltimoDialogo" parent="Node2D" instance=ExtResource("23_g2cn0")]
 position = Vector2(23554, -1991)
 id_a_destruir = 14
 id_dialogo = 14
 
-[node name="AreaMostrarTexto" parent="." instance=ExtResource("37_3nqa5")]
+[node name="AreaMostrarTexto" parent="Node2D" instance=ExtResource("37_3nqa5")]
 position = Vector2(3453, -78)
 textura_runa_tecla = ExtResource("38_g0try")
 
-[node name="AreaMostrarTexto2" parent="." instance=ExtResource("37_3nqa5")]
+[node name="AreaMostrarTexto2" parent="Node2D" instance=ExtResource("37_3nqa5")]
 position = Vector2(8811, -766)
 textura_runa_tecla = ExtResource("39_oltff")
 
-[node name="AreaMostrarTexto3" parent="." instance=ExtResource("37_3nqa5")]
+[node name="AreaMostrarTexto3" parent="Node2D" instance=ExtResource("37_3nqa5")]
 position = Vector2(12187, 664)
 textura_runa_tecla = ExtResource("40_g2u6j")
 
-[node name="AreaMostrarTexto4" parent="." instance=ExtResource("37_3nqa5")]
+[node name="AreaMostrarTexto4" parent="Node2D" instance=ExtResource("37_3nqa5")]
 position = Vector2(22510, -1849)
 textura_runa_tecla = ExtResource("41_4dne2")
 
-[node name="AREAFINJUEGO" parent="." instance=ExtResource("42_nqex6")]
+[node name="AREAFINJUEGO" parent="Node2D" instance=ExtResource("42_nqex6")]
 position = Vector2(23938, -1031)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.6706895, 0.6706895, 0.6706895, 1)

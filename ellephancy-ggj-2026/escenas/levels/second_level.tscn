@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=4 uid="uid://d3kk7nu2wr28k"]
+[gd_scene load_steps=8 format=4 uid="uid://d3kk7nu2wr28k"]
 
 [ext_resource type="PackedScene" uid="uid://dj4jyhd1bexi6" path="res://escenas/checkpoint_area.tscn" id="1_xqqxq"]
 [ext_resource type="PackedScene" uid="uid://deup0i7mgu0xc" path="res://escenas/masks/area_mascara_oso.tscn" id="4_qlwoe"]
+[ext_resource type="Script" uid="uid://o1jlskbd2keg" path="res://escenas/levels/reverb_area.gd" id="5_xqqxq"]
 [ext_resource type="PackedScene" uid="uid://b3kt101wc8mwl" path="res://escenas/world_objects/palanca.tscn" id="6_qqybc"]
 [ext_resource type="PackedScene" uid="uid://ccia0snrxhd0y" path="res://escenas/area_dialogo_prueba.tscn" id="6_xuxq0"]
 [ext_resource type="PackedScene" uid="uid://biambmyuxxflo" path="res://escenas/world_objects/puerta.tscn" id="7_smkhk"]
@@ -51,12 +52,12 @@ presente = true
 [node name="PalancaPuzzle2" parent="Puzzle2" instance=ExtResource("6_qqybc")]
 position = Vector2(1118, -905)
 id = 2
-tipo_de_palanca = "Buena"
+tipo_de_palanca = "buena"
 
 [node name="PalancaPuzzle2a" parent="Puzzle2" instance=ExtResource("6_qqybc")]
 position = Vector2(1924, -1290)
 id = 2
-tipo_de_palanca = "Buena"
+tipo_de_palanca = "buena"
 
 [node name="PuertaPuzzle2" parent="Puzzle2" instance=ExtResource("7_smkhk")]
 z_index = -5
@@ -64,15 +65,15 @@ position = Vector2(695, 654)
 id_puerta = 2
 varias_palancas = true
 cant_palancas = 2
-altura_maxima = 300.0
-tiempo_de_apertura = 5.0
+altura_maxima = 350.0
+tiempo_de_apertura = 2.5
 
 [node name="Puzzle3" type="Node2D" parent="."]
 
 [node name="PalancaPuzzle3" parent="Puzzle3" instance=ExtResource("6_qqybc")]
 position = Vector2(1797, 522)
 id = 3
-tipo_de_palanca = "Oxidada"
+tipo_de_palanca = "oxidada"
 
 [node name="Puerta" parent="Puzzle3" instance=ExtResource("7_smkhk")]
 z_index = -1
@@ -84,5 +85,24 @@ z_index = 2
 position = Vector2(2436, 146)
 rotation = -0.2617994
 
+[node name="ReverbArea" type="Area2D" parent="."]
+visible = false
+position = Vector2(-2225, 45)
+script = ExtResource("5_xqqxq")
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="ReverbArea"]
+polygon = PackedVector2Array(2915, 888, 2943, 392, 3353, 268, 3936, 274, 4395, 305, 3850, 1195)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ReverbArea"]
+polygon = PackedVector2Array(3208, -1066, 3205, -1225, 4135, -1227, 4136, -1035, 4181, -938, 4133, -769, 4021, -633, 4000, 261, 3131, 271, 3133, -606, 3014, -703, 2963, -983, 3056, -1059)
+
+[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="ReverbArea"]
+event_name = "snapshot:/Reverb On"
+event_guid = "{1b2c7e19-03d1-4ba1-9319-b269bc8c0201}"
+unique_name_in_owner = true
+
 [node name="AreaDialogo" parent="." instance=ExtResource("6_xuxq0")]
 position = Vector2(2555, 62)
+
+[connection signal="body_entered" from="ReverbArea" to="ReverbArea" method="_on_body_entered"]
+[connection signal="body_exited" from="ReverbArea" to="ReverbArea" method="_on_body_exited"]

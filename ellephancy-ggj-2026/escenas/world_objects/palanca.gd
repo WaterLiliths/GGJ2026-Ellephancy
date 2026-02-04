@@ -13,7 +13,7 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 	$TimerPalanca.set_wait_time(timer*2.8)
-	if tipo_de_palanca == "Oxidada":
+	if tipo_de_palanca == "oxidada":
 		modulate = Color(0.51, 0.291, 0.291, 1.0)
 
 func _process(_delta: float) -> void:
@@ -23,22 +23,30 @@ func _process(_delta: float) -> void:
 func activar() -> void:
 	
 	esta_encendida = !esta_encendida
-	if esta_encendida and not tipo_de_palanca == "Fallada":
+	if esta_encendida and not tipo_de_palanca == "fallada":
 		if timeada:
 			$TimerPalanca.start()
-		Global.activar_palanca.emit(id)
-		if tipo_de_palanca == "Buena":
+		if tipo_de_palanca == "buena":
 			$AnimationPlayer.play("activar")
-			print(tipo_de_palanca)
+			#print(tipo_de_palanca)
 		else:
 			$AnimationPlayer.play("activar_oxidada")
-	if !esta_encendida and not tipo_de_palanca == "Fallada":
-		Global.desactivar_palanca.emit(id)
-		if tipo_de_palanca == "Buena":
+		$FmodEventEmitter2D.set_parameter("TipoDePalanca", tipo_de_palanca)
+		$FmodEventEmitter2D.play()
+		await $AnimationPlayer.animation_finished
+		Global.activar_palanca.emit(id)
+		return
+	if !esta_encendida and not tipo_de_palanca == "fallada":
+		if tipo_de_palanca == "buena":
 			$AnimationPlayer.play("desactivar")
 		else:
 			$AnimationPlayer.play("desactivar_oxidada")
-	if tipo_de_palanca == "Fallada":
+		$FmodEventEmitter2D.set_parameter("TipoDePalanca", tipo_de_palanca)
+		$FmodEventEmitter2D.play()
+		await $AnimationPlayer.animation_finished
+		Global.desactivar_palanca.emit(id)
+		return
+	if tipo_de_palanca == "fallada":
 		$AnimationPlayer.play("fallada")
 		
 	$FmodEventEmitter2D.set_parameter("TipoDePalanca", tipo_de_palanca)

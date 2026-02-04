@@ -56,7 +56,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("LabelTexto:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -86,15 +86,16 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_gocct")
 }
+autoplay = "mostrar"
 
 [node name="LabelTexto" type="Label" parent="."]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(150, 0)
 offset_left = -68.0
-offset_top = -99.788666
+offset_top = -100.09293
 offset_right = 82.0
-offset_bottom = 53.211334
+offset_bottom = 52.907066
 horizontal_alignment = 1
 autowrap_mode = 3
 
