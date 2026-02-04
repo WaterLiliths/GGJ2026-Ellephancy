@@ -116,7 +116,7 @@ func _input(event: InputEvent) -> void:
 		$FmodEventEmitter2D6.play()
 	verificar_animacion_con_mascara()
 
-	if Input.is_action_just_pressed("tirar") and objeto_arrastrado and Global.mascara_activa==2:
+	if Input.is_action_just_pressed("tirar") and Global.mascara_activa==2 and objeto_arrastrado:
 		conectar_caja_con_joint()
 	if Input.is_action_just_released("tirar"): # TODO 
 		desconectar_caja_con_joint()
@@ -216,40 +216,39 @@ func _physics_process(delta: float) -> void:
 #--------------------- SEÑALES  -------------------------
 func _on_area_tirar_body_entered(body: Node2D) -> void:
 #	if body is ObjetoEmpujable or body.is_in_group("cajas"):
-	if body.is_in_group("cajas"):
+	if body.is_in_group("cajas") and body != Player:
 		objeto_arrastrado = body
 
 func _on_area_tirar_body_exited(body: Node2D) -> void:
-	if body == objeto_arrastrado:
+	if body.is_in_group("cajas") and body != Player:
 		objeto_arrastrado = null
 
 #--------------------  FUNCIONES  ------------------------
 
 func conectar_caja_con_joint():
-	#if not objeto_arrastrado:
-		#return
+	if not objeto_arrastrado or objeto_arrastrado is Player: #habia un bug por eso le mande que no se detecque a si mismo
+		return
 	if agarrando_caja:
 		return
-	agarrando_caja = true
+	#if ray_cast_der.get_collider().is_in_group("cajas"):
+		#print("LA CAJA ESTA A TU DERECHA")
+	#if ray_cast_izq.get_collider().is_in_group("cajas"):
+		#print("LA CAJA ESTA A TU IZQUIERDAA")
 	pin_joint_agarrar.node_b = objeto_arrastrado.get_path()
+	agarrando_caja = true
 	disminuir_velocidad_al_agarrar()
 	cambiar_de_estado(ESTADOS.AGARRAR)
-	
+	print("EL OBJETO ARRASTRADO VALE : ", objeto_arrastrado)
 
 
 func desconectar_caja_con_joint():
-	if not objeto_arrastrado:
+	if not agarrando_caja:
 		return
 	pin_joint_agarrar.node_b = self.get_path()# me vuelvo a conectar a mi mismo que es lo mismo q desconectar
-	objeto_arrastrado = null
-	reset_velocidad_normal()
+	#objeto_arrastrado = null #que solo el area maneje esto con body exited
 	agarrando_caja = false
+	reset_velocidad_normal()
 	cambiar_de_estado(ESTADOS.IDLE)
-	#print("direction vale            --- ", direction) #terminar esto - marcos
-	#print("normal pared en x vale            --- ", get_wall_normal().x)
-	#if direction != get_wall_normal().x:
-		#print("NO EMPUJAR")
-		#return
 	activar_mano()
 
 
@@ -518,6 +517,9 @@ func procesar_agarrar(delta):
 	velocity.x = move_toward(velocity.x,direction * velocidad, aceleracion * delta)
 	if not agarrando_caja:
 		cambiar_de_estado(ESTADOS.IDLE)
+	if objeto_arrastrado:
+		var distancia = objeto_arrastrado.global_position.x - global_position.x
+		objeto_arrastrado.global_position.x = global_position.x+distancia
 
 func procesar_dialogo_activo(delta):
 	#print("esta aca en procesar dialogoooooooooooooooooooo")
@@ -655,11 +657,20 @@ func acaba_de_aterrizar() -> bool:
 	return is_on_floor() and velocity.y >= 0
 
 func activar_mano():
-	mano_test_izq.set_deferred("disabled", false) #DESACTIVO FISICAS DE LA MANO
-	mano_test_der.set_deferred("disabled", false) #DESACTIVO FISICAS DE LA MANO
-	await get_tree().create_timer(0.1).timeout
-	mano_test_izq.set_deferred("disabled", true)
-	mano_test_der.set_deferred("disabled", true)
+	if agarrando_caja:
+		return
+	ray_cast_izq.force_raycast_update()
+	ray_cast_der.force_raycast_update()
+	if ray_cast_izq.is_colliding():
+		print("mira, soltaste la caja y el raycast izquierdo esta colisionando")
+	if ray_cast_der.is_colliding():
+		print("mira, soltaste la caja y el raycast DERECHO esta colisionando")
+	if ray_cast_izq.is_colliding() and ray_cast_der.is_colliding(): #ahi me aseguro que esta "encerrado" y solo en ese caso q active la mano
+		mano_test_izq.set_deferred("disabled", false) #ACTIVO FISICAS DE LA MANO
+		mano_test_der.set_deferred("disabled", false) #ACTIVO FISICAS DE LA MANO
+		await get_tree().create_timer(0.1).timeout
+		mano_test_izq.set_deferred("disabled", true) #y aca las vuelvo a desactivar
+		mano_test_der.set_deferred("disabled", true)
 
 
 func resetear_mascaras_a_cero():
