@@ -1,6 +1,7 @@
 class_name Player
 extends CharacterBody2D
-#comentario para forzar github CON CHECKPOINT
+
+
 #---------- mascaras -----------
 @onready var mascara_tiempos: Node2D = %MascaraTiempos
 @onready var mascara_fuerza: Node2D = %MascaraFuerza
@@ -20,7 +21,7 @@ var ultima_direccion_mirar : int = 1 #para derecha e izquierda solo 1 -1
 var sonido_caida_emitiendo : bool = false
 var sonido_caja_sonando : bool = false
 var agarrando_caja : bool = false
-@export_range(0,10,0.1) var tiempo_maximo_en_aire : float
+@export_range(0,10,0.1) var tiempo_maximo_en_aire : float = 10
 @export var aceleracion : float = 1800.0
 @export var desaceleracion : float = 2200.0
 @export var velocidad_max : float = 250.0
@@ -234,13 +235,13 @@ func conectar_caja_con_joint():
 	var direccion_con_caja = sign(global_position.x- objeto_arrastrado.global_position.x)
 	#direccion -1 es esta a tu derecha, 1 es que esta a tu izquierda
 	if ultima_direccion_mirar == direccion_con_caja:
-		print("NO AGARRAR MIRANDO OPUESTO A LA CAJA")
+		#print("NO AGARRAR MIRANDO OPUESTO A LA CAJA")
 		return
 	pin_joint_agarrar.node_b = objeto_arrastrado.get_path()
 	agarrando_caja = true
 	disminuir_velocidad_al_agarrar()
 	cambiar_de_estado(ESTADOS.AGARRAR)
-	print("EL OBJETO ARRASTRADO VALE : ", objeto_arrastrado)
+#	print("EL OBJETO ARRASTRADO VALE : ", objeto_arrastrado)
 
 
 func desconectar_caja_con_joint():
@@ -316,10 +317,6 @@ func detectar_caida():
 		sonido_caida_emitiendo = false
 
 
-func _on_timer_tiempo_en_aire_timeout() -> void:
-	#print("Estuvo MUCHO tiempo en el aire, matar personaje")
-	pass
-	#y dsp aca agregamos funcion kill
 
 func consultar_saltar():
 	if Input.is_action_just_pressed("w") and (is_on_floor() or puedo_usar_coyote()):
@@ -663,10 +660,6 @@ func activar_mano():
 		return
 	ray_cast_izq.force_raycast_update()
 	ray_cast_der.force_raycast_update()
-	if ray_cast_izq.is_colliding():
-		print("mira, soltaste la caja y el raycast izquierdo esta colisionando")
-	if ray_cast_der.is_colliding():
-		print("mira, soltaste la caja y el raycast DERECHO esta colisionando")
 	if ray_cast_izq.is_colliding() and ray_cast_der.is_colliding(): #ahi me aseguro que esta "encerrado" y solo en ese caso q active la mano
 		mano_test_izq.set_deferred("disabled", false) #ACTIVO FISICAS DE LA MANO
 		mano_test_der.set_deferred("disabled", false) #ACTIVO FISICAS DE LA MANO
