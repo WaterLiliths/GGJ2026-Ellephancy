@@ -160,24 +160,28 @@ textura_runa_tecla = ExtResource("11_ubqd8")
 
 [node name="DialogoCiervoPoder" parent="Dialogos" instance=ExtResource("12_g2qor")]
 position = Vector2(3054, 90)
+mascara_necesaria_para_ver = 1
 dialogo = ExtResource("13_x3go5")
 id_a_destruir = 5
 id_dialogo = 5
 
 [node name="DialogoCiervo1" parent="Dialogos" instance=ExtResource("12_g2qor")]
 position = Vector2(5964, -433)
+mascara_necesaria_para_ver = 1
 dialogo = ExtResource("14_ku3a7")
 id_a_destruir = 6
 id_dialogo = 6
 
 [node name="DialogoCiervo2" parent="Dialogos" instance=ExtResource("12_g2qor")]
 position = Vector2(4036, -995)
+mascara_necesaria_para_ver = 1
 dialogo = ExtResource("15_iqxlf")
 id_a_destruir = 7
 id_dialogo = 7
 
 [node name="DialogoCiervo3" parent="Dialogos" instance=ExtResource("12_g2qor")]
 position = Vector2(4502, -1647)
+mascara_necesaria_para_ver = 1
 dialogo = ExtResource("14_ku3a7")
 id_a_destruir = 12
 id_dialogo = 12

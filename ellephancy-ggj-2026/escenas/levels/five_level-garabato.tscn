@@ -181,18 +181,21 @@ textura_runa_tecla = ExtResource("9_s632i")
 
 [node name="DialogoSalmonPoder" parent="Dialogos" instance=ExtResource("10_nnkfi")]
 position = Vector2(-5285, -165)
+mascara_necesaria_para_ver = 3
 dialogo = ExtResource("11_uh11b")
 id_a_destruir = 9
 id_dialogo = 9
 
 [node name="AreaDialogoSalmonArriba" parent="Dialogos" instance=ExtResource("10_nnkfi")]
 position = Vector2(-3974, -2149)
+mascara_necesaria_para_ver = 3
 dialogo = ExtResource("12_8wk72")
 id_a_destruir = 13
 id_dialogo = 13
 
 [node name="DialogoSalmonAbajo" parent="Dialogos" instance=ExtResource("10_nnkfi")]
 position = Vector2(-3093, -166)
+mascara_necesaria_para_ver = 3
 dialogo = ExtResource("13_4nkdi")
 id_a_destruir = 10
 id_dialogo = 10
