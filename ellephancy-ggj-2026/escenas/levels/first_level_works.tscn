@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=4 uid="uid://dkaf2gav3cro1"]
+[gd_scene load_steps=5 format=4 uid="uid://dkaf2gav3cro1"]
 
 [ext_resource type="PackedScene" uid="uid://b3kt101wc8mwl" path="res://escenas/world_objects/palanca.tscn" id="1_yu7m0"]
 [ext_resource type="PackedScene" uid="uid://biambmyuxxflo" path="res://escenas/world_objects/puerta.tscn" id="2_vcr2c"]
 [ext_resource type="PackedScene" uid="uid://by80hrdi7bflk" path="res://escenas/creador_de_niveles.tscn" id="3_dnghr"]
+[ext_resource type="Script" uid="uid://o1jlskbd2keg" path="res://escenas/levels/reverb_area.gd" id="4_q20aj"]
 
 [node name="FirstLevelWorks" type="Node2D"]
 
@@ -55,3 +56,17 @@ presente = true
 z_index = -3
 tile_map_data = PackedByteArray("AAAJAAcABQAJAAsAACAQAAcABQAFAAUAAAAeAAIAAQAOAAIAAAAkAP//AQABAAsAAAAkAAAAAQABAAwAAAAlAP//AQACAAsAAAAlAAAAAQACAAwAAAApAP7/AQAMAAcAAAApAP//AQAMAAgAAAApAAAAAQAMAAkAAAAqAP7/AQANAAcAAAAqAP//AQANAAgAAAAqAAAAAQANAAkAAAArAP7/AQAOAAcAAAArAP//AQAOAAgAAAArAAAAAQAOAAkAAAAyAP//AQABAAsAAAAyAAAAAQABAAwAAAAzAP//AQACAAsAAAAzAAAAAQACAAwAAAA4AP//AQADAAsAAAA4AAAAAQADAAwAAAA5AP//AQAEAAsAAAA5AAAAAQAEAAwAAABHAAAABQAFAAsAAABSAP//BQABAAUAAABLAP//BQAFAAUAAAA0AAAABQAFAAsAAAA3AAAABQAGAAsAAAA1AAAABQACAAsAAAA2AAAABQACAAsAAAD///n/AQAMAAcAAAD///r/AQAMAAgAAAD///v/AAABAAUAAAAAAPn/AQANAAcAAAAAAPr/AQANAAgAAAAAAPv/AQANAAkAAAABAPn/AQAOAAcAAAABAPr/AQAOAAgAAAABAPv/AQAOAAkAAAD9//X/AQANAAIAAAD2/+//AQAAAAEAAAD2//D/AQAAAAIAAAD2//H/AQAAAAMAAAD3/+7/AQABAAAAAAD3/+//AQABAAEAAAD3//D/AQABAAIAAAD3//H/AQABAAMAAAD3//P/AQABAAUAAAD4/+7/AQACAAAAAAD4/+//AQACAAEAAAD4//D/AQACAAIAAAD4//H/AQACAAMAAAD4//L/AQACAAQAAAD4//P/AQACAAUAAAD5/+7/AQADAAAAAAD5/+//AQADAAEAAAD5//D/AQADAAIAAAD5//H/AQADAAMAAAD5//L/AQADAAQAAAD5//P/AQADAAUAAAD6/+7/AQAEAAAAAAD6/+//AQAEAAEAAAD6//D/AQAEAAIAAAD6//H/AQAEAAMAAAD6//P/AQAEAAUAAAD7//D/AQAFAAIAAAD7//H/AQAFAAMAAAD7//T/AAABAAUAAAD8//X/AAABAAUAAAD+//f/AAABAAUAAAABAAIAAAABAAUAAAA=")
 presente = true
+
+[node name="ReverbArea" type="Area2D" parent="."]
+script = ExtResource("4_q20aj")
+
+[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="ReverbArea"]
+event_name = "snapshot:/Reverb On"
+event_guid = "{1b2c7e19-03d1-4ba1-9319-b269bc8c0201}"
+unique_name_in_owner = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ReverbArea"]
+polygon = PackedVector2Array(3058, 52, 3072, -648, 4312, -1094, 4294, 204, 3062, 173)
+
+[connection signal="body_entered" from="ReverbArea" to="ReverbArea" method="_on_body_entered"]
+[connection signal="body_exited" from="ReverbArea" to="ReverbArea" method="_on_body_exited"]
