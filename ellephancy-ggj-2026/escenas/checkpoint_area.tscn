@@ -1,16 +1,54 @@
-[gd_scene load_steps=7 format=3 uid="uid://dj4jyhd1bexi6"]
+[gd_scene load_steps=10 format=3 uid="uid://dj4jyhd1bexi6"]
 
 [ext_resource type="Script" uid="uid://dtxtcten3qngd" path="res://escenas/checkpoint_area.gd" id="1_l6r58"]
 [ext_resource type="Texture2D" uid="uid://bksx86yei4our" path="res://assets/sprites/ambient/altar_corrupto.png" id="2_3q8mo"]
+[ext_resource type="Texture2D" uid="uid://csdeyuc1gerbf" path="res://escenas/animaciones/gradiente-particulas.tres" id="2_rb8k0"]
 [ext_resource type="Script" uid="uid://bus8ao8r3n0ip" path="res://escenas/altar_presente.gd" id="3_1hjhc"]
 [ext_resource type="Texture2D" uid="uid://3e05pyg4yvh8" path="res://assets/sprites/ambient/altar_pasado.png" id="3_w45kr"]
 [ext_resource type="Script" uid="uid://bgw1t1dndytee" path="res://escenas/altar_pasado.gd" id="5_rb8k0"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_806o0"]
+
+[sub_resource type="Curve" id="Curve_oe72q"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.50240386, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b2oqy"]
 size = Vector2(112, 539)
 
 [node name="CheckpointArea" type="Node2D"]
 script = ExtResource("1_l6r58")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
+y_sort_enabled = true
+material = SubResource("CanvasItemMaterial_806o0")
+position = Vector2(-18, 53)
+scale = Vector2(1.3600006, 1.6000004)
+amount = 60
+texture = ExtResource("2_rb8k0")
+lifetime = 5.0
+speed_scale = 0.5
+explosiveness = 0.1
+randomness = 0.45
+use_fixed_seed = true
+seed = 1392953648
+particle_flag_align_y = true
+direction = Vector2(1, -30.81)
+spread = 17.0
+gravity = Vector2(12, -25.675)
+initial_velocity_min = 22.0
+initial_velocity_max = 41.05
+angular_velocity_min = -160.05
+angular_velocity_max = 462.22
+radial_accel_min = -3.0
+radial_accel_max = 3.0
+scale_amount_min = 0.1
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_oe72q")
+color = Color(0.8690729, 0.9490158, 0.604725, 1)
+hue_variation_min = -0.11
+hue_variation_max = 0.11
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -27,11 +65,19 @@ script = ExtResource("5_rb8k0")
 presente = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 position = Vector2(-5, -138.5)
 shape = SubResource("RectangleShape2D_b2oqy")
 
 [node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Personaje/checkpoint"
 event_guid = "{399e2e36-6a6e-4367-b755-05673b6caf87}"
+
+[node name="TexturaLuz" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-7, -53)
+scale = Vector2(8, 8)
+texture = ExtResource("2_rb8k0")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

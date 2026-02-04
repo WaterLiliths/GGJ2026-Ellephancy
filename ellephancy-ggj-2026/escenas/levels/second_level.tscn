@@ -85,6 +85,11 @@ z_index = 2
 position = Vector2(2436, 146)
 rotation = -0.2617994
 
+[node name="AreaDialogoPrueba" parent="AreaMascaraOso" instance=ExtResource("6_xuxq0")]
+unique_name_in_owner = true
+id_a_destruir = 20
+id_dialogo = 20
+
 [node name="ReverbArea" type="Area2D" parent="."]
 visible = false
 position = Vector2(-2225, 45)
@@ -101,8 +106,9 @@ event_name = "snapshot:/Reverb On"
 event_guid = "{1b2c7e19-03d1-4ba1-9319-b269bc8c0201}"
 unique_name_in_owner = true
 
-[node name="AreaDialogo" parent="." instance=ExtResource("6_xuxq0")]
-position = Vector2(2555, 62)
+[node name="DialogoOsoAparece" parent="." instance=ExtResource("6_xuxq0")]
+position = Vector2(2439, 955)
 
+[connection signal="termino_lectura_forzada" from="AreaMascaraOso/AreaDialogoPrueba" to="AreaMascaraOso" method="_on_area_dialogo_prueba_termino_lectura_forzada"]
 [connection signal="body_entered" from="ReverbArea" to="ReverbArea" method="_on_body_entered"]
 [connection signal="body_exited" from="ReverbArea" to="ReverbArea" method="_on_body_exited"]
