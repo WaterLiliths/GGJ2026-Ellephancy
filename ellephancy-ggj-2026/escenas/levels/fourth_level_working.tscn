@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://cqfbi3mqn04vl"]
+[gd_scene load_steps=17 format=4 uid="uid://cqfbi3mqn04vl"]
 
 [ext_resource type="PackedScene" uid="uid://t3ox75glka3s" path="res://escenas/world_objects/ObjetoAEmpujar.tscn" id="1_n0umg"]
 [ext_resource type="PackedScene" uid="uid://by80hrdi7bflk" path="res://escenas/creador_de_niveles.tscn" id="2_1sjo1"]
@@ -15,7 +15,6 @@
 [ext_resource type="Resource" uid="uid://cqoj5gba0lm51" path="res://dialogue/dialogo_ciervo_primer_uso_poder.dialogue" id="13_x3go5"]
 [ext_resource type="Resource" uid="uid://bw4r8lwidlcpn" path="res://dialogue/dialogo_ciervo_2.dialogue" id="14_ku3a7"]
 [ext_resource type="Resource" uid="uid://d1fqiv2tb5bnh" path="res://dialogue/dialogo_cievo_3.dialogue" id="15_iqxlf"]
-[ext_resource type="PackedScene" uid="uid://cs3h434myxe4r" path="res://escenas/player.tscn" id="17_ku3a7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vv721"]
 size = Vector2(330, 368)
@@ -182,11 +181,6 @@ position = Vector2(4502, -1647)
 dialogo = ExtResource("14_ku3a7")
 id_a_destruir = 12
 id_dialogo = 12
-
-[node name="Player" parent="." instance=ExtResource("17_ku3a7")]
-position = Vector2(5268, -1899)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
 
 [connection signal="body_entered" from="AreaMascaraSalmon" to="AreaMascaraSalmon" method="_on_body_entered"]
 [connection signal="body_exited" from="AreaMascaraSalmon" to="AreaMascaraSalmon" method="_on_body_exited"]
