@@ -140,6 +140,9 @@ texture = ExtResource("7_g7mpo")
 z_index = 1
 shape = SubResource("RectangleShape2D_vv721")
 
+[node name="AreaDialogoPrueba" parent="AreaMascaraSalmon" instance=ExtResource("12_g2qor")]
+unique_name_in_owner = true
+
 [node name="CheckpointArea" parent="." instance=ExtResource("8_ruoui")]
 position = Vector2(4609, -781)
 

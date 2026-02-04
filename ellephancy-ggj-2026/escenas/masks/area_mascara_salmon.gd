@@ -1,7 +1,7 @@
 extends Area2D
 
 @export var dialogo = preload("res://dialogue/primer_dialogo_salmon.dialogue")
-
+@onready var area_dialogo_prueba: Area2D = %AreaDialogoPrueba
 var player_cerca : bool = false
 
 func _ready() -> void:
