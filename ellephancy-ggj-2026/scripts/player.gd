@@ -59,15 +59,11 @@ var estaba_en_el_piso : bool = false
 var objeto_interactivo : Interactivo = null
 var puede_interactuar : bool = false
 
-@export var ground_layer: TileMapLayer
-var posicion_pies = global_position + Vector2(0, 16)
-
-var last_material := ""
-
+var posicion_pies = global_position + Vector2(0, 1)
 
 enum ESTADOS {IDLE, CAMINAR, SALTAR, CAER, INTERACTUAR, AGARRAR, DIALOGO_ACTIVO}
 var estado_actual : ESTADOS = ESTADOS.IDLE
-var superficie = {}
+var tipo_de_suelo
 
 #ayuda
 func _ready() -> void:
@@ -131,6 +127,14 @@ func _input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	detectar_tipo_de_suelo()
+	%FmodEventEmitter2D.volume = Global.volumen_efectos
+	$FmodEventEmitter2D4.volume = Global.volumen_efectos
+	%FmodEventEmitter2D2.volume = Global.volumen_efectos
+	if tipo_de_suelo:
+		%FmodEventEmitter2D.set_parameter("Superficie", tipo_de_suelo)
+		$FmodEventEmitter2D4.set_parameter("Superficie", tipo_de_suelo)
+		%FmodEventEmitter2D2.set_parameter("Superficie", tipo_de_suelo)
 	if not dialogos_activos: #TEST A VER SI NOS GUSTA
 		direction = Input.get_axis("a", "d")
 	else:
@@ -306,7 +310,7 @@ func detectar_caida():
 	if not estaba_en_el_piso and is_on_floor():
 		var tiempo_en_aire_actual = tiempo_maximo_en_aire - timer_tiempo_en_aire.time_left
 		#print("tiempo en aire actual vale: ", tiempo_en_aire_actual)
-		$FmodEventEmitter2D4.play_one_shot()
+		$FmodEventEmitter2D4.play()
 		$FmodEventEmitter2D5.stop()
 		sonido_caida_emitiendo = false
 
@@ -320,11 +324,7 @@ func consultar_saltar():
 	if Input.is_action_just_pressed("w") and (is_on_floor() or puedo_usar_coyote()):
 		velocity.y = velocidad_salto
 		timer_coyote_time.stop()
-		$FmodEventEmitter2D2.play_one_shot()
-
-
-func emitir_sonido_pasos():
-	%FmodEventEmitter2D.play_one_shot()
+		$FmodEventEmitter2D2.play()
 
 
 func emitir_sonido_caida():
@@ -442,7 +442,7 @@ func cambiar_de_estado(estado_nuevo : ESTADOS):
 			ejecutar_animacion_caminar()
 		ESTADOS.SALTAR:
 			ejecutar_animacion_saltar()
-			$FmodEventEmitter2D2.play_one_shot()
+			$FmodEventEmitter2D2.play()
 		ESTADOS.CAER:
 			ejecutar_animacion_caida()
 		ESTADOS.INTERACTUAR:
@@ -475,7 +475,9 @@ func procesar_caminar(delta):
 	animated_sprite_pj.flip_h = ultima_direccion_mirar < 0
 	if direction:
 		if timer_pasos <= 0 && is_on_floor():
-			handle_footsteps()
+			
+			%FmodEventEmitter2D.play()
+			#pasos()
 			timer_pasos = timer_pasos_reset
 		timer_pasos -= delta 
 	if direction == 0:
@@ -593,45 +595,42 @@ func tirarse_de_plataforma():
 
 
 #func detectar_material_suelo(tilemap: TileMapLayer) -> String:
-	#var cell = tilemap.local_to_map(global_position)
+	#var cell = tilemap.local_to_map(global_position + Vector2.DOWN)
 	#var tile_data = tilemap.get_cell_tile_data(cell)
-#
+	#print(tilemap.get_cell_tile_data(cell))
 	#if tile_data:
 		#print(material)
 		#return tile_data.get_custom_data("material")
 	#return "unknown"
 #
-func ray_cast_suelo():
-	if ray_cast_2d_suelo.is_colliding():
-		var colision = ray_cast_2d_suelo.get_collider()
-		if colision is TileMapLayer:
-			return true
-			
 
-func get_current_material() -> String:
-	if ray_cast_suelo():
-		var cell = ground_layer.local_to_map(posicion_pies)
-		var tile_data = ground_layer.get_cell_tile_data(cell)
+func obtener_tile_map():
+	var tilemap : TileMapLayer
+	if $RayCast2DSuelo.is_colliding():
+		tilemap = $RayCast2DSuelo.get_collider()
+		return tilemap
+		
 
+
+func detectar_tipo_de_suelo():
+	posicion_pies = $RayCast2DSuelo.global_position
+	if $RayCast2DSuelo.is_colliding():
+		var tilemap = obtener_tile_map()
+		var coords: Vector2i = tilemap.local_to_map(tilemap.to_local(posicion_pies))
+		var tile_data : TileData = tilemap.get_cell_tile_data(coords)
+		
+		if tilemap == null:
+			return
+		#print("tile data es: " , tile_data)
+		#print("tilemap es: " , tilemap)
+		#if tilemap.get_cell_source_id(coords) == -1:
+			#print("Cell is empty")
+		
 		if tile_data:
-			return tile_data.get_custom_data("material")
-		return ""
-	else:
-		return ""
-
-func handle_footsteps():
-	var material_suelo = get_current_material()
-	
-	if material_suelo == "madera":
-		%FmodEventEmitter2D.set_parameter("Superficie", 1)
-	elif material_suelo == "pasto":
-		%FmodEventEmitter2D.set_parameter("Superficie", 0)
-	elif material_suelo == "piedra":
-		%FmodEventEmitter2D.set_parameter("Superficie", 2)
-
-	%FmodEventEmitter2D.play()
-	print(material_suelo)
-
+			tipo_de_suelo = tile_data.get_custom_data("suelo")
+		
+			#print("tipo de suelo es: " , tipo_de_suelo)
+		#tilemap = null
 
 #func piso_demasiado_inclinado(): #lo saco pq rompe mas de lo q arregla
 	#if not is_on_floor():
@@ -676,3 +675,4 @@ func on_dialogo_desactivado():
 
 func restart():
 	matar_player()
+	

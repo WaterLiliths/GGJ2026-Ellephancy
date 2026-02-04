@@ -72,7 +72,7 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 gradient = SubResource("Gradient_yv8to")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.7094017, 0.35042736)
+fill_to = Vector2(0.6111111, 0.34188035)
 
 [sub_resource type="Curve" id="Curve_m34qx"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.16062176, 0.68539333), 0.0, 0.0, 0, 0, Vector2(0.34715027, 0.26966298), 0.0, 0.0, 0, 0, Vector2(0.6839379, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -88,6 +88,7 @@ script = ExtResource("1_2y4ua")
 position = Vector2(1230, -222)
 rotation = 0.7033677
 color = Color(0.76, 0.43016, 0.2888, 1)
+energy = 1.5
 shadow_enabled = true
 shadow_filter = 1
 shadow_filter_smooth = 2.3
@@ -208,6 +209,8 @@ physics_interpolation_mode = 1
 top_level = true
 position = Vector2(281, 110)
 zoom = Vector2(1.6, 1.6)
+limit_left = 0
+limit_bottom = 1200
 editor_draw_limits = true
 
 [node name="FmodListener2D" type="FmodListener2D" parent="Player/Camera2D"]
@@ -229,7 +232,7 @@ offset_bottom = 1122.0
 color = Color(0, 0, 0, 1)
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="Player/Camera2D"]
-z_index = -1
+z_index = -6
 y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_ms3um")
 position = Vector2(695, 329)
@@ -260,7 +263,7 @@ hue_variation_max = 0.11
 [node name="CPUParticles2D3" type="CPUParticles2D" parent="Player/Camera2D"]
 modulate = Color(1, 1, 1, 0.30980393)
 material = SubResource("CanvasItemMaterial_kypqj")
-amount = 500
+amount = 1000
 texture = SubResource("GradientTexture2D_yv8to")
 lifetime = 14.49
 preprocess = 10.0
@@ -268,7 +271,7 @@ emission_shape = 3
 emission_rect_extents = Vector2(1500, 1000)
 direction = Vector2(-1, 0)
 spread = 41.3
-gravity = Vector2(0, 2)
+gravity = Vector2(-1, 0.1)
 initial_velocity_min = 5.0
 initial_velocity_max = 10.0
 tangential_accel_min = 1.0
@@ -286,6 +289,7 @@ event_guid = "{9318ebbc-5ee4-4da9-87ef-a11bf476df3b}"
 attached = false
 autoplay = true
 volume = 0.685
+process_mode = 3
 position = Vector2(-97, 588)
 
 [node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="."]
@@ -296,6 +300,7 @@ fmod_parameters/Pantalla/id = -2044462831851661827
 fmod_parameters/Pantalla = "Juego"
 fmod_parameters/Pantalla/labels = PackedStringArray("Menu", "Juego")
 fmod_parameters/Pantalla/variant_type = 4
+process_mode = 3
 position = Vector2(-97, 588)
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
@@ -309,6 +314,8 @@ tween_resource = SubResource("Resource_yei3n")
 follow_damping = true
 follow_damping_value = Vector2(0.2, 0.2)
 draw_limits = true
+limit_left = 0
+limit_bottom = 1200
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -430,3 +437,6 @@ textura_runa_tecla = ExtResource("41_4dne2")
 
 [node name="AREAFINJUEGO" parent="." instance=ExtResource("42_nqex6")]
 position = Vector2(23938, -1031)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.6706895, 0.6706895, 0.6706895, 1)

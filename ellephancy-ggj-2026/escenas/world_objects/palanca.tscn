@@ -118,6 +118,7 @@ _data = {
 size = Vector2(544.4444, 299.11108)
 
 [node name="Palanca" type="Area2D"]
+z_index = 2
 scale = Vector2(0.27999893, 0.2827474)
 collision_layer = 4
 collision_mask = 3
@@ -139,7 +140,7 @@ event_name = "event:/Objetos/palanca"
 event_guid = "{01f69508-e7e5-4bd1-836f-1c8a85eac877}"
 fmod_parameters/TipoDePalanca/id = 6086375413492549144
 fmod_parameters/TipoDePalanca = "Buen Estado"
-fmod_parameters/TipoDePalanca/labels = PackedStringArray("Buen Estado", "Oxidada")
+fmod_parameters/TipoDePalanca/labels = PackedStringArray("Buen Estado", "Oxidada", "Fallada")
 fmod_parameters/TipoDePalanca/variant_type = 4
 
 [node name="PalancaCentro" type="Sprite2D" parent="."]
