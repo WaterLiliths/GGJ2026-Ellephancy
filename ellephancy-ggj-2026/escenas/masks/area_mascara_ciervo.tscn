@@ -7,7 +7,7 @@
 size = Vector2(582, 640)
 
 [node name="AreaMascaraCiervo" type="Area2D"]
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.12, 0.12)
 script = ExtResource("1_8jluf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

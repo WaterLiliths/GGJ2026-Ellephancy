@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://dkudwre2b373"]
+[gd_scene load_steps=53 format=3 uid="uid://dkudwre2b373"]
 
 [ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/Juego.gd" id="1_2y4ua"]
 [ext_resource type="Texture2D" uid="uid://dvh87k52osuo2" path="res://assets/parallax/bosquepocho1.png" id="2_ffuyt"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://dkaf2gav3cro1" path="res://escenas/levels/first_level_works.tscn" id="12_7dwkk"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="12_g2cn0"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="13_8mohb"]
+[ext_resource type="PackedScene" uid="uid://dj4jyhd1bexi6" path="res://escenas/checkpoint_area.tscn" id="18_j68ff"]
 [ext_resource type="PackedScene" uid="uid://d3kk7nu2wr28k" path="res://escenas/levels/second_level.tscn" id="18_kypqj"]
 [ext_resource type="AnimationLibrary" uid="uid://cwsqlyju58u5m" path="res://assets/animaciones-fade.res" id="18_vy46r"]
 [ext_resource type="PackedScene" uid="uid://ctgi3ppkimt2c" path="res://escenas/levels/third_level.tscn" id="19_yv8to"]
@@ -26,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://ccia0snrxhd0y" path="res://escenas/area_dialogo_prueba.tscn" id="23_g2cn0"]
 [ext_resource type="Resource" uid="uid://dt6qgqxfsmk4d" path="res://dialogue/primer_dialogo_salmon.dialogue" id="24_g2cn0"]
 [ext_resource type="Resource" uid="uid://lflkk6jkehov" path="res://dialogue/dialogo_salmon_primer_uso_poder.dialogue" id="25_8mohb"]
+[ext_resource type="Resource" uid="uid://dlhqrfa73p3wr" path="res://dialogue/primer_dialogo_oso.dialogue" id="27_7iu0s"]
 [ext_resource type="Resource" uid="uid://cv2l8oipisadl" path="res://dialogue/dialogo_salmon_2.dialogue" id="27_u0ym6"]
 [ext_resource type="Resource" uid="uid://dfl2154dp73yy" path="res://dialogue/dialogo_oso_1.dialogue" id="27_uwevx"]
 [ext_resource type="Resource" uid="uid://dcphcicwvfa2p" path="res://dialogue/dialogo_oso_primer_uso_poder.dialogue" id="28_m1sj6"]
@@ -200,16 +202,14 @@ texture = ExtResource("5_ffuyt")
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank", "res://assets/audio/FmodBanks/Desktop/UI.bank"]
 
 [node name="Player" parent="." instance=ExtResource("8_m34qx")]
-position = Vector2(11571, 812)
+position = Vector2(3236, -191)
 scale = Vector2(0.64, 0.64)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(11571, 812)
+position = Vector2(3236, -191)
 zoom = Vector2(1.6, 1.6)
-limit_left = 0
-limit_bottom = 1200
 editor_draw_limits = true
 
 [node name="FmodListener2D" type="FmodListener2D" parent="Player/Camera2D"]
@@ -302,7 +302,7 @@ position = Vector2(-97, 588)
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(11571, 812)
+position = Vector2(3236, -191)
 script = ExtResource("12_g2cn0")
 follow_mode = 2
 follow_target = NodePath("../Player/Node2D")
@@ -311,8 +311,6 @@ tween_resource = SubResource("Resource_yei3n")
 follow_damping = true
 follow_damping_value = Vector2(0.2, 0.2)
 draw_limits = true
-limit_left = 0
-limit_bottom = 1200
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -320,21 +318,41 @@ libraries = {
 &"": ExtResource("18_vy46r")
 }
 
+[node name="Checkpoints" type="Node2D" parent="."]
+
+[node name="CheckpointArea1" parent="Checkpoints" instance=ExtResource("18_j68ff")]
+position = Vector2(223, 123)
+
+[node name="CheckpointArea2" parent="Checkpoints" instance=ExtResource("18_j68ff")]
+position = Vector2(5042, -133)
+
+[node name="CheckpointArea3" parent="Checkpoints" instance=ExtResource("18_j68ff")]
+position = Vector2(7825, -859)
+
+[node name="CheckpointArea4" parent="Checkpoints" instance=ExtResource("18_j68ff")]
+position = Vector2(11838, 665)
+
+[node name="CheckpointArea5" parent="Checkpoints" instance=ExtResource("18_j68ff")]
+position = Vector2(16971, -732)
+
+[node name="CheckpointArea6" parent="Checkpoints" instance=ExtResource("18_j68ff")]
+position = Vector2(17765, -1825)
+
 [node name="Niveles" type="Node2D" parent="."]
 
 [node name="FirstLevelWorks" parent="Niveles" instance=ExtResource("12_7dwkk")]
 
 [node name="SecondLevel" parent="Niveles" instance=ExtResource("18_kypqj")]
-position = Vector2(5429, -776)
+position = Vector2(4919, -649)
 
-[node name="ThirdLevel" parent="Niveles" instance=ExtResource("19_yv8to")]
-position = Vector2(8220, -1212)
+[node name="FourthLevel" parent="Niveles" instance=ExtResource("19_yv8to")]
+position = Vector2(8246, -1367)
 
 [node name="FourthLevelWorking" parent="Niveles" instance=ExtResource("21_gdb2x")]
-position = Vector2(11775, 193)
+position = Vector2(12375, 38)
 
 [node name="LevelSalmon5" parent="Niveles" instance=ExtResource("22_e4rmv")]
-position = Vector2(23466, -1659)
+position = Vector2(24066, -1814)
 
 [node name="AreaDialogoPrueba" parent="." instance=ExtResource("23_g2cn0")]
 position = Vector2(17901, -1987)
@@ -374,6 +392,7 @@ id_dialogo = 13
 
 [node name="AreaDialogoOSOMASCARA" parent="." instance=ExtResource("23_g2cn0")]
 position = Vector2(7961, -1002)
+dialogo = ExtResource("27_7iu0s")
 
 [node name="AreaDialogoOSOUSO" parent="." instance=ExtResource("23_g2cn0")]
 position = Vector2(9035, -858)

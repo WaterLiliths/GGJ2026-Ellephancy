@@ -519,7 +519,11 @@ event_name = "event:/Personaje/Morir"
 event_guid = "{ea3f93cf-6587-4284-a571-252290d8e701}"
 
 [node name="RayCast2DSuelo" type="RayCast2D" parent="."]
-target_position = Vector2(0, 134)
+position = Vector2(0, 57.555)
+target_position = Vector2(0, 13.585)
+collision_mask = 2
+hit_from_inside = true
+collide_with_areas = true
 
 [node name="MANO-TEST-IZQ" type="StaticBody2D" parent="."]
 unique_name_in_owner = true

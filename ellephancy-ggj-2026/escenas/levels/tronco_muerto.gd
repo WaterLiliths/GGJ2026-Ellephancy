@@ -1,8 +1,6 @@
-extends TileMapLayer
-
+extends Sprite2D
 
 @export var presente : bool
-
 
 func _ready() -> void:
 	Global.mascara_tiempo_activa.connect(on_mascara_tiempo_activa)
@@ -11,8 +9,8 @@ func _ready() -> void:
 		esconder_mundo()
 
 
+#-------------FUNCIONES-------------
 func on_mascara_tiempo_activa():
-	#print("SE USO MASCARAAAAAAAAAAAAAAAAA")
 	if presente:
 		esconder_mundo()
 	else:
@@ -27,10 +25,8 @@ func on_mascara_tiempo_desactivada():
 		esconder_mundo()
 
 func esconder_mundo():
-	collision_enabled = false
 	hide()
 
 
 func mostrar_mundo():
-	collision_enabled = true
 	show()
