@@ -14,7 +14,7 @@ extends CharacterBody2D
 #-------------------------------
 var dialogos_activos : bool = false
 var ultimo_estado : ESTADOS
-@export var limite_altura_morir : float = 4000
+@export var limite_altura_morir : float = 2000
 var reviviendo_player : bool = false
 var ultima_direccion_mirar : int = 1 #para derecha e izquierda solo 1 -1
 var sonido_caida_emitiendo : bool = false
