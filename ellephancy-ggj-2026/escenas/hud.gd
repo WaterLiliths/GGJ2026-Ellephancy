@@ -22,6 +22,7 @@ func _input(event: InputEvent) -> void:
 func pausar():
 	if not pausa_activa:
 		canvas_layer_main.show()
+		$FmodEventEmitter2D.play()
 		pausa_activa = true
 		get_tree().paused = true
 	else:
@@ -30,12 +31,16 @@ func pausar():
 		canvas_layer_main_2.hide()
 		canvas_layer_salir.hide()
 		pausa_activa = false
+
+		$FmodEventEmitter2D2.play()
+		$FmodEventEmitter2D.stop()
+		
 		get_tree().paused = false
 
 
 func _on_btn_reanudar_pressed() -> void:
 	pausar()
-	print("reanudar juegoooooooo")
+	#print("reanudar juegoooooooo")
 
 
 func _on_btn_opciones_pressed() -> void:

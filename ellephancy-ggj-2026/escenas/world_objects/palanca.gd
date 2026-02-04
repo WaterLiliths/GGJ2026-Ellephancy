@@ -37,11 +37,15 @@ func activar() -> void:
 		Global.activar_palanca.emit(id)
 		return
 	if !esta_encendida and not tipo_de_palanca == "fallada":
-		Global.desactivar_palanca.emit(id)
 		if tipo_de_palanca == "buena":
 			$AnimationPlayer.play("desactivar")
 		else:
 			$AnimationPlayer.play("desactivar_oxidada")
+		$FmodEventEmitter2D.set_parameter("TipoDePalanca", tipo_de_palanca)
+		$FmodEventEmitter2D.play()
+		await $AnimationPlayer.animation_finished
+		Global.desactivar_palanca.emit(id)
+		return
 	if tipo_de_palanca == "fallada":
 		$AnimationPlayer.play("fallada")
 		
