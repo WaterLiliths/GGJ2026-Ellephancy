@@ -100,6 +100,7 @@ func _input(event: InputEvent) -> void:
 			print("no tengo la mascara del tiempo")
 			return
 		mascara_tiempo.usar()
+		Global.mascara_tiempo_activa.emit()
 		$FmodEventEmitter2D6.set_parameter("Mascara", "Ciervo")
 		$FmodEventEmitter2D6.play()
 		mascara_fuerza.desactivar()
