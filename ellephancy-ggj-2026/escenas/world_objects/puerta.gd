@@ -20,8 +20,8 @@ var esta_abierta = false
 var fue_abierta = false
 
 func _ready() -> void:
-	%Sprite2D.scale = 3 * tamano
-	$CollisionShape2D.scale = tamano
+#	%Sprite2D.scale = 3 * tamano
+#	$CollisionShape2D.scale = tamano
 	if empieza_abierta:
 		esta_abierta = true
 		$Sprite2D.position.y = -altura_maxima
