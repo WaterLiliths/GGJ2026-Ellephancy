@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://ctgi3ppkimt2c"]
+[gd_scene load_steps=14 format=4 uid="uid://ctgi3ppkimt2c"]
 
 [ext_resource type="PackedScene" uid="uid://by80hrdi7bflk" path="res://escenas/creador_de_niveles.tscn" id="1_owniu"]
 [ext_resource type="PackedScene" uid="uid://b3kt101wc8mwl" path="res://escenas/world_objects/palanca.tscn" id="2_gv6jt"]
@@ -13,7 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://bf6w0xuwfhbvx" path="res://assets/runas-finales/Runas interfazckickye.png" id="9_p2jn5"]
 [ext_resource type="Resource" uid="uid://dccy0tht6505s" path="res://dialogue/dialogo_oso_3.dialogue" id="10_qsl62"]
 [ext_resource type="Resource" uid="uid://dfl2154dp73yy" path="res://dialogue/dialogo_oso_1.dialogue" id="11_ul2cq"]
-[ext_resource type="Resource" uid="uid://wyq2j7l8xrfy" path="res://dialogue/primer_dialogo_ciervo.dialogue" id="12_j3jvu"]
 
 [node name="ThirdLevel" type="Node2D"]
 
@@ -150,12 +149,6 @@ position = Vector2(1671, 1095)
 dialogo = ExtResource("11_ul2cq")
 id_a_destruir = 3
 id_dialogo = 3
-
-[node name="DialogoCiervoAparece" parent="Dialogos" instance=ExtResource("8_mbgde")]
-position = Vector2(3830, 1874)
-dialogo = ExtResource("12_j3jvu")
-id_a_destruir = 4
-id_dialogo = 4
 
 [node name="TutoriaQ" parent="." instance=ExtResource("8_k6c24")]
 position = Vector2(592, 666)
