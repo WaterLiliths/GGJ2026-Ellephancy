@@ -63,7 +63,7 @@ var posicion_pies = global_position + Vector2(0, 1)
 
 enum ESTADOS {IDLE, CAMINAR, SALTAR, CAER, INTERACTUAR, AGARRAR, DIALOGO_ACTIVO}
 var estado_actual : ESTADOS = ESTADOS.IDLE
-var tipo_de_superficie
+var tipo_de_suelo
 
 #ayuda
 func _ready() -> void:
@@ -126,7 +126,14 @@ func _input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	tipo_de_superficie = tipo_de_superficie
+	detectar_tipo_de_suelo()
+	%FmodEventEmitter2D.volume = Global.volumen_efectos
+	$FmodEventEmitter2D4.volume = Global.volumen_efectos
+	%FmodEventEmitter2D2.volume = Global.volumen_efectos
+	if tipo_de_suelo:
+		%FmodEventEmitter2D.set_parameter("Superficie", tipo_de_suelo)
+		$FmodEventEmitter2D4.set_parameter("Superficie", tipo_de_suelo)
+		%FmodEventEmitter2D2.set_parameter("Superficie", tipo_de_suelo)
 	if not dialogos_activos: #TEST A VER SI NOS GUSTA
 		direction = Input.get_axis("a", "d")
 	else:
@@ -302,7 +309,6 @@ func detectar_caida():
 	if not estaba_en_el_piso and is_on_floor():
 		var tiempo_en_aire_actual = tiempo_maximo_en_aire - timer_tiempo_en_aire.time_left
 		#print("tiempo en aire actual vale: ", tiempo_en_aire_actual)
-		$FmodEventEmitter2D4.set_parameter("Superficie", tipo_de_superficie)
 		$FmodEventEmitter2D4.play()
 		$FmodEventEmitter2D5.stop()
 		sonido_caida_emitiendo = false
@@ -435,7 +441,6 @@ func cambiar_de_estado(estado_nuevo : ESTADOS):
 			ejecutar_animacion_caminar()
 		ESTADOS.SALTAR:
 			ejecutar_animacion_saltar()
-			%FmodEventEmitter2D2.set_parameter("Superficie", tipo_de_superficie)
 			$FmodEventEmitter2D2.play()
 		ESTADOS.CAER:
 			ejecutar_animacion_caida()
@@ -469,7 +474,9 @@ func procesar_caminar(delta):
 	animated_sprite_pj.flip_h = ultima_direccion_mirar < 0
 	if direction:
 		if timer_pasos <= 0 && is_on_floor():
-			pasos()
+			
+			%FmodEventEmitter2D.play()
+			#pasos()
 			timer_pasos = timer_pasos_reset
 		timer_pasos -= delta 
 	if direction == 0:
@@ -604,7 +611,7 @@ func obtener_tile_map():
 		
 
 
-func pasos():
+func detectar_tipo_de_suelo():
 	posicion_pies = $RayCast2DSuelo.global_position
 	if $RayCast2DSuelo.is_colliding():
 		var tilemap = obtener_tile_map()
@@ -613,21 +620,16 @@ func pasos():
 		
 		if tilemap == null:
 			return
-		print("tile data es: " , tile_data)
-		print("tilemap es: " , tilemap)
-		if tilemap.get_cell_source_id(coords) == -1:
-			print("Cell is empty")
+		#print("tile data es: " , tile_data)
+		#print("tilemap es: " , tilemap)
+		#if tilemap.get_cell_source_id(coords) == -1:
+			#print("Cell is empty")
 		
 		if tile_data:
-			var tipo_de_suelo = tile_data.get_custom_data("suelo")
+			tipo_de_suelo = tile_data.get_custom_data("suelo")
 		
-			print("tipo de suelo es: " , tipo_de_suelo)
-
-			%FmodEventEmitter2D.set_parameter("Superficie", tipo_de_suelo)
-			tipo_de_superficie = tipo_de_suelo
-		%FmodEventEmitter2D.play()
-		
-		tilemap = null
+			#print("tipo de suelo es: " , tipo_de_suelo)
+		#tilemap = null
 
 #func piso_demasiado_inclinado(): #lo saco pq rompe mas de lo q arregla
 	#if not is_on_floor():
