@@ -1,7 +1,6 @@
 extends Area2D
 
-
-@export var dialogo = preload("res://dialogue/dialogo_final.dialogue")
+@export var dialogo = preload("res://dialogue/primer_dialogo_oso.dialogue")
 @export_range(1,20) var id_a_destruir : int
 var player_cerca : bool = false
 var dialogo_activo : bool = false

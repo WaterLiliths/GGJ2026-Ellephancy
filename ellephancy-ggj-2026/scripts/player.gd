@@ -14,7 +14,7 @@ extends CharacterBody2D
 #-------------------------------
 var dialogos_activos : bool = false
 var ultimo_estado : ESTADOS
-@export var limite_altura_morir : float = 4000
+@export var limite_altura_morir : float = 2000
 var reviviendo_player : bool = false
 var ultima_direccion_mirar : int = 1 #para derecha e izquierda solo 1 -1
 var sonido_caida_emitiendo : bool = false
@@ -69,7 +69,7 @@ var tipo_de_suelo
 func _ready() -> void:
 	Global.dialogo_activo_to_player.connect(on_dialogo_activo)
 	Global.dialogo_desactivado_to_player.connect(on_dialogo_desactivado)
-	resetear_mascaras_a_cero()
+	#resetear_mascaras_a_cero()
 	mano_test_izq.set_deferred("disabled", true) #DESACTIVO FISICAS DE LA MANO
 	mano_test_der.set_deferred("disabled", true)
 	Global.agarre_mascara.connect(on_agarre_mascara)
@@ -121,6 +121,7 @@ func _input(event: InputEvent) -> void:
 	if Input.is_action_just_released("tirar"): # TODO 
 		desconectar_caja_con_joint()
 	if Input.is_action_just_pressed("r"):
+		print("Se apreto la R")
 		restart() #en restart llamo a matar jugador, te lleva al checkpoint
 
 
