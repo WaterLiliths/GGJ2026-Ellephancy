@@ -325,10 +325,10 @@ libraries = {
 [node name="FirstLevelWorks" parent="Niveles" instance=ExtResource("12_7dwkk")]
 
 [node name="SecondLevel" parent="Niveles" instance=ExtResource("18_kypqj")]
-position = Vector2(5429, -776)
+position = Vector2(4855, -776)
 
-[node name="ThirdLevel" parent="Niveles" instance=ExtResource("19_yv8to")]
-position = Vector2(8220, -1212)
+[node name="FourthLevel" parent="Niveles" instance=ExtResource("19_yv8to")]
+position = Vector2(7646, -1212)
 
 [node name="FourthLevelWorking" parent="Niveles" instance=ExtResource("21_gdb2x")]
 position = Vector2(11775, 193)
