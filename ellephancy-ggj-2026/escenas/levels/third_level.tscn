@@ -134,18 +134,21 @@ position = Vector2(3715, 2029)
 
 [node name="DialogoOsoPoder" parent="Dialogos" instance=ExtResource("8_mbgde")]
 position = Vector2(554, 439)
+mascara_necesaria_para_ver = 2
 dialogo = ExtResource("9_j3jvu")
 id_a_destruir = 2
 id_dialogo = 2
 
 [node name="DialogoOsoArriba" parent="Dialogos" instance=ExtResource("8_mbgde")]
 position = Vector2(2055, 142)
+mascara_necesaria_para_ver = 2
 dialogo = ExtResource("10_qsl62")
 id_a_destruir = 11
 id_dialogo = 11
 
 [node name="DialogoOsoAbajo" parent="Dialogos" instance=ExtResource("8_mbgde")]
 position = Vector2(1671, 1095)
+mascara_necesaria_para_ver = 2
 dialogo = ExtResource("11_ul2cq")
 id_a_destruir = 3
 id_dialogo = 3
