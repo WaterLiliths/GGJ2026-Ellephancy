@@ -467,6 +467,7 @@ texture = ExtResource("5_gegfy")
 [node name="Portal1" parent="ContenedorPuerta/PuertaSalmon/Sprite2D/CONTENEDORRUNASPUERTA/RunaPuerta1" instance=ExtResource("20_borjd")]
 unique_name_in_owner = true
 scale = Vector2(4, 4)
+script = null
 
 [node name="RunaPuerta2" type="Sprite2D" parent="ContenedorPuerta/PuertaSalmon/Sprite2D/CONTENEDORRUNASPUERTA"]
 unique_name_in_owner = true
@@ -477,6 +478,7 @@ texture = ExtResource("6_t1q3l")
 [node name="Portal2" parent="ContenedorPuerta/PuertaSalmon/Sprite2D/CONTENEDORRUNASPUERTA/RunaPuerta2" instance=ExtResource("20_borjd")]
 unique_name_in_owner = true
 scale = Vector2(4, 4)
+script = null
 
 [node name="RunaPuerta3" type="Sprite2D" parent="ContenedorPuerta/PuertaSalmon/Sprite2D/CONTENEDORRUNASPUERTA"]
 unique_name_in_owner = true
@@ -487,6 +489,7 @@ texture = ExtResource("7_s1ify")
 [node name="Portal_3" parent="ContenedorPuerta/PuertaSalmon/Sprite2D/CONTENEDORRUNASPUERTA/RunaPuerta3" instance=ExtResource("20_borjd")]
 unique_name_in_owner = true
 scale = Vector2(4, 4)
+script = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ContenedorPuerta/PuertaSalmon"]
 shape = SubResource("RectangleShape2D_555dy")
@@ -537,6 +540,7 @@ fmod_parameters/TipoDePalanca/variant_type = 4
 [connection signal="body_entered" from="PuzzleSalmon1/PalancaSalmon1" to="PuzzleSalmon1/PalancaSalmon1" method="_on_body_entered"]
 [connection signal="body_exited" from="PuzzleSalmon1/PalancaSalmon1" to="PuzzleSalmon1/PalancaSalmon1" method="_on_body_exited"]
 [connection signal="timeout" from="PuzzleSalmon1/PalancaSalmon1/TimerPalanca" to="PuzzleSalmon1/PalancaSalmon1" method="_on_timer_palanca_timeout"]
+[connection signal="animation_finished" from="PuzzleSalmon1/ContenedorRunas/AnimationPlayerRunas" to="PuzzleSalmon1" method="_on_animation_player_runas_animation_finished"]
 [connection signal="body_entered" from="PuzzleSalmon1/PalancaSalmon2" to="PuzzleSalmon1/PalancaSalmon2" method="_on_body_entered"]
 [connection signal="body_exited" from="PuzzleSalmon1/PalancaSalmon2" to="PuzzleSalmon1/PalancaSalmon2" method="_on_body_exited"]
 [connection signal="timeout" from="PuzzleSalmon1/PalancaSalmon2/TimerPalanca" to="PuzzleSalmon1/PalancaSalmon2" method="_on_timer_palanca_timeout"]

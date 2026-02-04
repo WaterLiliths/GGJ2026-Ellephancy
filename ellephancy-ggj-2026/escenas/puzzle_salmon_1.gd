@@ -104,3 +104,24 @@ func esconder_runas():
 func mostrar_runas():
 	contenedor_runas.show()
 	animation_player_runas.play("mostrarr_runas_sueltas")
+
+
+func _on_animation_player_runas_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "mostrarr_runas_sueltas":
+		tween_brillar(contenedor_runas)
+
+
+func tween_brillar(nodo_runa):
+	var tween := create_tween()
+	#tween.kill()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_loops() #tween infinito
+	tween.tween_property(nodo_runa,"modulate:a", 0.6, 1)
+	tween.tween_property(nodo_runa,"modulate:a", 1.0, 0.5)
+
+#func tween_salida():
+	#var tween := create_tween()
+	#tween.set_trans(Tween.TRANS_SINE)
+	#tween.set_ease(Tween.EASE_OUT)
+	#tween.tween_property(label_texto,"modulate:a", 0.0 , 0.7)
