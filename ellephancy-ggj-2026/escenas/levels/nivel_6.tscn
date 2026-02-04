@@ -48,7 +48,7 @@ presente = true
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="Palanca" parent="Node2D" instance=ExtResource("3_xrhlt")]
-position = Vector2(342, 92)
+position = Vector2(353.00003, 121)
 id = 10
 tipo_de_palanca = "buena"
 

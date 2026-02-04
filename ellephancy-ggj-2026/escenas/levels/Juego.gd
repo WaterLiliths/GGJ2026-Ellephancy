@@ -12,6 +12,8 @@ func _ready() -> void:
 	$FmodEventEmitter2D2.play()
 	$AnimationPlayer.play("fade_in")
 	tween.tween_property($FmodEventEmitter2D2, "volume", Global.volumen_musica, 4)
+	Global.mascara_tiempo_activa.connect(cambiar_ambiente_pasado)
+	Global.mascara_tiempo_desactivar.connect(cambiar_sonido_presente)
 	
 #Rezá Malena rezá
 
@@ -35,3 +37,9 @@ func _process(_delta: float) -> void:
 	#if Global.mascara_activa == 0:
 		#$Player/Camera2D/Control/IconoMascaraSalmon/AnimationPlayer.play("desactivar")
 		#$Player/Camera2D/Control/IconoMascaraCiervo/AnimationPlayer.play("desactivar")
+
+func cambiar_ambiente_pasado():
+	$FmodEventEmitter2D.set_parameter("Tiempo", "pasado")
+	
+func cambiar_sonido_presente():
+	$FmodEventEmitter2D.set_parameter("Tiempo", "presente")
