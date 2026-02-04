@@ -12,7 +12,7 @@ func _ready() -> void:
 
 
 func on_mascara_tiempo_activa():
-	print("SE USO MASCARAAAAAAAAAAAAAAAAA")
+	#print("SE USO MASCARAAAAAAAAAAAAAAAAA")
 	if presente:
 		esconder_mundo()
 	else:
