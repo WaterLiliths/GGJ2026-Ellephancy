@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://cv0p4aotoyxyx"]
+[gd_scene load_steps=8 format=4 uid="uid://cv0p4aotoyxyx"]
 
 [ext_resource type="PackedScene" uid="uid://bnjwrlnb5pxji" path="res://escenas/world_objects/arbol.tscn" id="1_e0r3a"]
 [ext_resource type="PackedScene" uid="uid://by80hrdi7bflk" path="res://escenas/creador_de_niveles.tscn" id="1_micag"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://61v3afknfgh6" path="res://escenas/levels/tronco_muerto.gd" id="2_lg8r4"]
 [ext_resource type="PackedScene" uid="uid://b6egkrxvfwusp" path="res://escenas/puzzle_salmon_1.tscn" id="3_clvo4"]
 [ext_resource type="PackedScene" uid="uid://ds1qkhtnwbcox" path="res://escenas/world_objects/piedra_chica.tscn" id="6_e0r3a"]
-[ext_resource type="PackedScene" uid="uid://cs3h434myxe4r" path="res://escenas/player.tscn" id="7_clvo4"]
 [ext_resource type="PackedScene" uid="uid://cc8lgh4bhiut8" path="res://escenas/world_objects/tronco_pasado-presente.tscn" id="8_lg8r4"]
 
 [node name="LevelSalmon5" type="Node2D"]
@@ -162,11 +161,6 @@ position = Vector2(-277, 146)
 [node name="PuertaSalmon" parent="PuzzleFinal/ContenedorPuerta" index="0"]
 contrasena_2 = 5
 contrasena_3 = 1
-
-[node name="Player" parent="." instance=ExtResource("7_clvo4")]
-position = Vector2(-5578, -107)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
 
 [editable path="PuzzleInicio"]
 [editable path="PuzzleFinal"]
