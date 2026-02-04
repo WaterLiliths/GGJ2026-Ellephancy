@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://ctgi3ppkimt2c"]
+[gd_scene load_steps=8 format=4 uid="uid://ctgi3ppkimt2c"]
 
 [ext_resource type="PackedScene" uid="uid://by80hrdi7bflk" path="res://escenas/creador_de_niveles.tscn" id="1_owniu"]
 [ext_resource type="PackedScene" uid="uid://b3kt101wc8mwl" path="res://escenas/world_objects/palanca.tscn" id="2_gv6jt"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ig75pg3uo5m" path="res://escenas/masks/area_mascara_ciervo.tscn" id="4_k6c24"]
 [ext_resource type="PackedScene" uid="uid://t3ox75glka3s" path="res://escenas/world_objects/ObjetoAEmpujar.tscn" id="5_p2jn5"]
 [ext_resource type="PackedScene" uid="uid://ds1qkhtnwbcox" path="res://escenas/world_objects/piedra_chica.tscn" id="6_hoc0a"]
+[ext_resource type="Script" uid="uid://o1jlskbd2keg" path="res://escenas/levels/reverb_area.gd" id="7_gv6jt"]
 
 [node name="ThirdLevel" type="Node2D"]
 
@@ -111,3 +112,17 @@ presente = true
 z_index = -2
 position = Vector2(2440, 1172)
 presente = true
+
+[node name="ReverbArea" type="Area2D" parent="."]
+script = ExtResource("7_gv6jt")
+
+[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="ReverbArea"]
+event_name = "snapshot:/Reverb On"
+event_guid = "{1b2c7e19-03d1-4ba1-9319-b269bc8c0201}"
+unique_name_in_owner = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ReverbArea"]
+polygon = PackedVector2Array(1384, 374, 2290, 358, 2282, 3, 3301, 15, 3293, 809, 3189, 989, 3255, 1208, 3203, 1413, 2514, 1501, 1137, 1442)
+
+[connection signal="body_entered" from="ReverbArea" to="ReverbArea" method="_on_body_entered"]
+[connection signal="body_exited" from="ReverbArea" to="ReverbArea" method="_on_body_exited"]

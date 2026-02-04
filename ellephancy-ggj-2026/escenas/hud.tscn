@@ -278,6 +278,14 @@ text = "Cerrar"
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
+[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
+event_name = "snapshot:/Low Pass On"
+event_guid = "{7c86cc1e-9766-43d6-ac6c-b14d0f3230aa}"
+
+[node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="."]
+event_name = "snapshot:/Low Pass Off"
+event_guid = "{d33d5b57-a86b-4a4e-801d-720f36f1258d}"
+
 [connection signal="pressed" from="CanvasLayerMain/PanelContainer/HBoxContainer/VBoxContainer/BTNReanudar" to="." method="_on_btn_reanudar_pressed"]
 [connection signal="pressed" from="CanvasLayerMain/PanelContainer/HBoxContainer/VBoxContainer/BTNOpciones" to="." method="_on_btn_opciones_pressed"]
 [connection signal="pressed" from="CanvasLayerMain/PanelContainer/HBoxContainer/VBoxContainer/BTNSalir" to="." method="_on_btn_salir_pressed"]
