@@ -100,6 +100,12 @@ z_index = 1
 position = Vector2(3721.9998, 1987)
 rotation = 0.24260077
 
+[node name="AreaDialogoPrueba" parent="AreaMascaraCiervo" instance=ExtResource("8_mbgde")]
+unique_name_in_owner = true
+dialogo = ExtResource("12_j3jvu")
+id_a_destruir = 19
+id_dialogo = 19
+
 [node name="Piedra1" parent="." instance=ExtResource("5_p2jn5")]
 z_index = -1
 position = Vector2(2177, 173)
@@ -153,9 +159,16 @@ dialogo = ExtResource("11_ul2cq")
 id_a_destruir = 3
 id_dialogo = 3
 
+[node name="DialogoCiervoAparece" parent="Dialogos" instance=ExtResource("8_mbgde")]
+position = Vector2(3818, 2796)
+dialogo = ExtResource("12_j3jvu")
+id_a_destruir = 4
+id_dialogo = 4
+
 [node name="TutoriaQ" parent="." instance=ExtResource("8_k6c24")]
 position = Vector2(592, 666)
 textura_runa_tecla = ExtResource("9_p2jn5")
 
+[connection signal="termino_lectura_forzada" from="AreaMascaraCiervo/AreaDialogoPrueba" to="AreaMascaraCiervo" method="_on_area_dialogo_prueba_termino_lectura_forzada"]
 [connection signal="body_entered" from="ReverbArea" to="ReverbArea" method="_on_body_entered"]
 [connection signal="body_exited" from="ReverbArea" to="ReverbArea" method="_on_body_exited"]
