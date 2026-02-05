@@ -428,7 +428,6 @@ node_a = NodePath("..")
 node_b = NodePath("../MANO-TEST-IZQ")
 bias = 0.47
 disable_collision = false
-softness = 0.5
 
 [node name="TimerCoyoteTime" type="Timer" parent="."]
 unique_name_in_owner = true

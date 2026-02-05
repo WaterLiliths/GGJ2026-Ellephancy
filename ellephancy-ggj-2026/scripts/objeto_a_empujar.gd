@@ -30,6 +30,7 @@ func _ready() -> void:
 #-------------FUNCIONES-------------
 func on_mascara_tiempo_activa():
 	if presente:
+		ultima_posicion = global_position
 		esconder_mundo()
 	else:
 		mostrar_mundo()
