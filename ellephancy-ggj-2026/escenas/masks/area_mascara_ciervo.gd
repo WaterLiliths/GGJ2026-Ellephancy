@@ -1,5 +1,5 @@
 extends Area2D
-#ciervo
+#ciervo - forzar github
 var player_cerca : bool = false
 @export var area_dialogo_prueba: Area2D
 
