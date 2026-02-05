@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bbra5fmwd6qin" path="res://assets/sprites/masks/mascara_salmon.PNG" id="7_g7mpo"]
 [ext_resource type="PackedScene" uid="uid://dj4jyhd1bexi6" path="res://escenas/checkpoint_area.tscn" id="8_ruoui"]
 [ext_resource type="PackedScene" uid="uid://cs6hrjrtl5v7x" path="res://escenas/area_mostrar_texto.tscn" id="9_g7mpo"]
+[ext_resource type="Resource" uid="uid://dt6qgqxfsmk4d" path="res://dialogue/primer_dialogo_salmon.dialogue" id="9_x3go5"]
 [ext_resource type="Texture2D" uid="uid://c2uxrmq8rai84" path="res://assets/runas-finales/Runas interfaznum2.png" id="10_ubqd8"]
 [ext_resource type="Texture2D" uid="uid://cbny52wuwpbjr" path="res://assets/runas-finales/Runas interfaznum1.png" id="11_ubqd8"]
 [ext_resource type="PackedScene" uid="uid://ccia0snrxhd0y" path="res://escenas/area_dialogo_prueba.tscn" id="12_g2qor"]
@@ -152,6 +153,7 @@ shape = SubResource("RectangleShape2D_vv721")
 
 [node name="AreaDialogoPrueba" parent="AreaMascaraSalmon" instance=ExtResource("12_g2qor")]
 unique_name_in_owner = true
+dialogo = ExtResource("9_x3go5")
 
 [node name="CheckpointArea" parent="." instance=ExtResource("8_ruoui")]
 z_index = -1
@@ -205,3 +207,4 @@ id_dialogo = 12
 
 [connection signal="body_entered" from="AreaMascaraSalmon" to="AreaMascaraSalmon" method="_on_body_entered"]
 [connection signal="body_exited" from="AreaMascaraSalmon" to="AreaMascaraSalmon" method="_on_body_exited"]
+[connection signal="termino_lectura_forzada" from="AreaMascaraSalmon/AreaDialogoPrueba" to="AreaMascaraSalmon" method="_on_area_dialogo_prueba_termino_lectura_forzada"]
