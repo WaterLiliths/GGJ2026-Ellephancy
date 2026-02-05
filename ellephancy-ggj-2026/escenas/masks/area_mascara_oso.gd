@@ -1,7 +1,7 @@
 extends Area2D
-
+#oso
 var player_cerca : bool = false
-@onready var area_dialogo_prueba: Area2D = %AreaDialogoPrueba
+@export var area_dialogo_prueba: Area2D
 
 func _ready() -> void:
 	area_dialogo_prueba.monitoring = false

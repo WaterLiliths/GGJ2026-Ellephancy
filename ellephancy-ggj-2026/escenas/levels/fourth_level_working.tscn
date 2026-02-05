@@ -14,6 +14,7 @@
 [ext_resource type="Resource" uid="uid://bw4r8lwidlcpn" path="res://dialogue/dialogo_ciervo_2.dialogue" id="14_ku3a7"]
 [ext_resource type="Resource" uid="uid://cstoapib3neo4" path="res://dialogue/dialogo_ciervo_1.dialogue" id="14_x3go5"]
 [ext_resource type="Resource" uid="uid://d1fqiv2tb5bnh" path="res://dialogue/dialogo_cievo_3.dialogue" id="15_iqxlf"]
+[ext_resource type="PackedScene" uid="uid://gsyv06ys145u" path="res://escenas/masks/area_mascara_salmon.tscn" id="16_x3go5"]
 
 [node name="FourthLevelWorking" type="Node2D"]
 
@@ -180,3 +181,7 @@ mascara_necesaria_para_ver = 1
 dialogo = ExtResource("14_ku3a7")
 id_a_destruir = 12
 id_dialogo = 12
+
+[node name="AreaMascaraSalmon2" parent="." instance=ExtResource("16_x3go5")]
+position = Vector2(5472, -1918.0002)
+rotation = 0.6434247

@@ -22,14 +22,15 @@ func _ready() -> void:
 	
 	area = colision.global_scale.x * colision.global_scale.y
 	mass = 1 + (densidad * area)
-	print(area)
-	print("la masa de esta piedra es " + str(mass))
+	#print(area)
+	#print("la masa de esta piedra es " + str(mass))
 	#esta_en_el_aire = $RayCast2D.is_colliding()
 
 
 #-------------FUNCIONES-------------
 func on_mascara_tiempo_activa():
 	if presente:
+		ultima_posicion = global_position
 		esconder_mundo()
 	else:
 		mostrar_mundo()

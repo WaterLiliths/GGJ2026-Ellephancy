@@ -385,7 +385,7 @@ radius = 41.880783
 size = Vector2(1, 20)
 
 [node name="Player" type="CharacterBody2D" groups=["cajas"]]
-collision_mask = 7
+collision_mask = 135
 script = ExtResource("1_esbpa")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
@@ -426,6 +426,7 @@ unique_name_in_owner = true
 position = Vector2(58, -8)
 node_a = NodePath("..")
 node_b = NodePath("../MANO-TEST-IZQ")
+bias = 0.47
 disable_collision = false
 
 [node name="TimerCoyoteTime" type="Timer" parent="."]

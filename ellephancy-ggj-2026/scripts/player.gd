@@ -158,7 +158,7 @@ func _physics_process(delta: float) -> void:
 			procesar_dialogo_activo(delta)
 	if global_position.y > limite_altura_morir:
 		matar_player()
-	
+	#forzar git
 	move_and_slide()
 	detectar_caida()
 	comprobar_coyote_timer()
@@ -217,6 +217,9 @@ func conectar_caja_con_joint():
 	pin_joint_agarrar.node_b = objeto_arrastrado.get_path()
 	agarrando_caja = true
 	disminuir_velocidad_al_agarrar()
+	#if objeto_arrastrado.has_method("caja_agarrando"):
+		#print("si tiene esa funcion ---------------------------------")
+		#objeto_arrastrado.caja_agarrando(true)
 	cambiar_de_estado(ESTADOS.AGARRAR)
 #	print("EL OBJETO ARRASTRADO VALE : ", objeto_arrastrado)
 
@@ -227,6 +230,9 @@ func desconectar_caja_con_joint():
 	pin_joint_agarrar.node_b = self.get_path()# me vuelvo a conectar a mi mismo que es lo mismo q desconectar
 	#objeto_arrastrado = null #que solo el area maneje esto con body exited
 	agarrando_caja = false
+	#if objeto_arrastrado.has_method("caja_agarrando"):
+		#print("si tiene esa funcion ---------------------------------")
+		#objeto_arrastrado.caja_agarrando(false)
 	reset_velocidad_normal()
 	cambiar_de_estado(ESTADOS.IDLE)
 	activar_mano()
@@ -609,4 +615,3 @@ func on_dialogo_desactivado():
 
 func restart():
 	matar_player()
-#TODO MARCOS BORRA COSAS XFA

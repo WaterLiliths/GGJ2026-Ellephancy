@@ -104,6 +104,10 @@ id_puerta = 6
 varias_palancas = true
 cant_palancas = 2
 
+[node name="AreaMascaraCiervo" parent="." instance=ExtResource("4_k6c24")]
+z_index = 1
+position = Vector2(3721.9998, 1987)
+rotation = 0.24260077
 [node name="CheckpointArea" parent="." instance=ExtResource("7_nds88")]
 z_index = -2
 position = Vector2(3887, 1958)
