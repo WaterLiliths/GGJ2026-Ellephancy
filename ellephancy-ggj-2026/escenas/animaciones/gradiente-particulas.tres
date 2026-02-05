@@ -4,8 +4,6 @@
 
 [resource]
 gradient = ExtResource("1_f07u1")
-width = 7
-height = 7
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(-0.05, 0.41)
+fill_to = Vector2(0.35470086, 0.47435898)
