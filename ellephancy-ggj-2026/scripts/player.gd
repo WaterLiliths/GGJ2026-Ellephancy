@@ -158,7 +158,7 @@ func _physics_process(delta: float) -> void:
 			procesar_dialogo_activo(delta)
 	if global_position.y > limite_altura_morir:
 		matar_player()
-	
+	#forzar git
 	move_and_slide()
 	detectar_caida()
 	comprobar_coyote_timer()
