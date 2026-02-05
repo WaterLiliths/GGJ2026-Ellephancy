@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=4 uid="uid://ctgi3ppkimt2c"]
+[gd_scene load_steps=15 format=4 uid="uid://ctgi3ppkimt2c"]
 
 [ext_resource type="PackedScene" uid="uid://by80hrdi7bflk" path="res://escenas/creador_de_niveles.tscn" id="1_owniu"]
 [ext_resource type="PackedScene" uid="uid://b3kt101wc8mwl" path="res://escenas/world_objects/palanca.tscn" id="2_gv6jt"]
 [ext_resource type="PackedScene" uid="uid://biambmyuxxflo" path="res://escenas/world_objects/puerta.tscn" id="3_nds88"]
+[ext_resource type="PackedScene" uid="uid://ig75pg3uo5m" path="res://escenas/masks/area_mascara_ciervo.tscn" id="4_k6c24"]
 [ext_resource type="PackedScene" uid="uid://t3ox75glka3s" path="res://escenas/world_objects/ObjetoAEmpujar.tscn" id="5_p2jn5"]
 [ext_resource type="Script" uid="uid://o1jlskbd2keg" path="res://escenas/levels/reverb_area.gd" id="7_gv6jt"]
 [ext_resource type="PackedScene" uid="uid://dj4jyhd1bexi6" path="res://escenas/checkpoint_area.tscn" id="7_nds88"]
@@ -105,9 +106,10 @@ varias_palancas = true
 cant_palancas = 2
 
 [node name="AreaMascaraCiervo" parent="." instance=ExtResource("4_k6c24")]
-z_index = 1
-position = Vector2(3721.9998, 1987)
+z_index = -1
+position = Vector2(3891, 1913)
 rotation = 0.24260077
+
 [node name="CheckpointArea" parent="." instance=ExtResource("7_nds88")]
 z_index = -2
 position = Vector2(3887, 1958)

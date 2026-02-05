@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://cqfbi3mqn04vl"]
+[gd_scene load_steps=16 format=4 uid="uid://cqfbi3mqn04vl"]
 
 [ext_resource type="PackedScene" uid="uid://t3ox75glka3s" path="res://escenas/world_objects/ObjetoAEmpujar.tscn" id="1_n0umg"]
 [ext_resource type="PackedScene" uid="uid://by80hrdi7bflk" path="res://escenas/creador_de_niveles.tscn" id="2_1sjo1"]
@@ -13,8 +13,8 @@
 [ext_resource type="Resource" uid="uid://cqoj5gba0lm51" path="res://dialogue/dialogo_ciervo_primer_uso_poder.dialogue" id="13_x3go5"]
 [ext_resource type="Resource" uid="uid://bw4r8lwidlcpn" path="res://dialogue/dialogo_ciervo_2.dialogue" id="14_ku3a7"]
 [ext_resource type="Resource" uid="uid://cstoapib3neo4" path="res://dialogue/dialogo_ciervo_1.dialogue" id="14_x3go5"]
+[ext_resource type="PackedScene" uid="uid://gsyv06ys145u" path="res://escenas/masks/area_mascara_salmon.tscn" id="15_g2qor"]
 [ext_resource type="Resource" uid="uid://d1fqiv2tb5bnh" path="res://dialogue/dialogo_cievo_3.dialogue" id="15_iqxlf"]
-[ext_resource type="PackedScene" uid="uid://gsyv06ys145u" path="res://escenas/masks/area_mascara_salmon.tscn" id="16_x3go5"]
 
 [node name="FourthLevelWorking" type="Node2D"]
 
@@ -182,6 +182,6 @@ dialogo = ExtResource("14_ku3a7")
 id_a_destruir = 12
 id_dialogo = 12
 
-[node name="AreaMascaraSalmon2" parent="." instance=ExtResource("16_x3go5")]
-position = Vector2(5472, -1918.0002)
-rotation = 0.6434247
+[node name="AreaMascaraSalmon2" parent="." instance=ExtResource("15_g2qor")]
+position = Vector2(5482, -1982.9999)
+rotation = 0.79202884
