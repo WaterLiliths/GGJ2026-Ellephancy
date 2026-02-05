@@ -295,8 +295,8 @@ shape = SubResource("RectangleShape2D_dtuov")
 event_name = "event:/Objetos/palanca"
 event_guid = "{01f69508-e7e5-4bd1-836f-1c8a85eac877}"
 fmod_parameters/TipoDePalanca/id = 6086375413492549144
-fmod_parameters/TipoDePalanca = "Buen Estado"
-fmod_parameters/TipoDePalanca/labels = PackedStringArray("Buen Estado", "Oxidada")
+fmod_parameters/TipoDePalanca = "buena"
+fmod_parameters/TipoDePalanca/labels = PackedStringArray("buena", "oxidada", "fallada")
 fmod_parameters/TipoDePalanca/variant_type = 4
 
 [node name="PalancaCentro" type="Sprite2D" parent="PuzzleSalmon1/PalancaSalmon1"]
@@ -368,8 +368,8 @@ shape = SubResource("RectangleShape2D_dtuov")
 event_name = "event:/Objetos/palanca"
 event_guid = "{01f69508-e7e5-4bd1-836f-1c8a85eac877}"
 fmod_parameters/TipoDePalanca/id = 6086375413492549144
-fmod_parameters/TipoDePalanca = "Buen Estado"
-fmod_parameters/TipoDePalanca/labels = PackedStringArray("Buen Estado", "Oxidada")
+fmod_parameters/TipoDePalanca = "buena"
+fmod_parameters/TipoDePalanca/labels = PackedStringArray("buena", "oxidada", "fallada")
 fmod_parameters/TipoDePalanca/variant_type = 4
 
 [node name="PalancaCentro" type="Sprite2D" parent="PuzzleSalmon1/PalancaSalmon2"]
@@ -415,8 +415,8 @@ shape = SubResource("RectangleShape2D_dtuov")
 event_name = "event:/Objetos/palanca"
 event_guid = "{01f69508-e7e5-4bd1-836f-1c8a85eac877}"
 fmod_parameters/TipoDePalanca/id = 6086375413492549144
-fmod_parameters/TipoDePalanca = "Buen Estado"
-fmod_parameters/TipoDePalanca/labels = PackedStringArray("Buen Estado", "Oxidada")
+fmod_parameters/TipoDePalanca = "buena"
+fmod_parameters/TipoDePalanca/labels = PackedStringArray("buena", "oxidada", "fallada")
 fmod_parameters/TipoDePalanca/variant_type = 4
 
 [node name="PalancaCentro" type="Sprite2D" parent="PuzzleSalmon1/PalancaSalmon3"]
