@@ -1,14 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://deup0i7mgu0xc"]
+[gd_scene load_steps=5 format=3 uid="uid://deup0i7mgu0xc"]
 
 [ext_resource type="Texture2D" uid="uid://ck18sxufit36k" path="res://assets/sprites/masks/mascara_oso.PNG" id="1_1cuo6"]
 [ext_resource type="Script" uid="uid://4nalxhy2scst" path="res://escenas/masks/area_mascara_oso.gd" id="1_fi8fk"]
+[ext_resource type="PackedScene" uid="uid://ccia0snrxhd0y" path="res://escenas/area_dialogo_prueba.tscn" id="3_qm68e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fi8fk"]
 size = Vector2(338, 318)
 
-[node name="AreaMascaraOso" type="Area2D"]
+[node name="AreaMascaraOso" type="Area2D" node_paths=PackedStringArray("area_dialogo_prueba")]
 scale = Vector2(0.2, 0.2)
 script = ExtResource("1_fi8fk")
+area_dialogo_prueba = NodePath("AreaDialogoPruebaOso")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_1cuo6")
@@ -16,6 +18,10 @@ flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_fi8fk")
+
+[node name="AreaDialogoPruebaOso" parent="." node_paths=PackedStringArray("nodo_padre_agarrar_mascara") instance=ExtResource("3_qm68e")]
+unique_name_in_owner = true
+nodo_padre_agarrar_mascara = NodePath("..")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

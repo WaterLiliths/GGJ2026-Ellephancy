@@ -1,7 +1,7 @@
 extends Area2D
-
+#ciervo
 var player_cerca : bool = false
-@onready var area_dialogo_prueba: Area2D = %AreaDialogoPrueba
+@export var area_dialogo_prueba: Area2D
 
 func _ready() -> void:
 	#area_dialogo_prueba.dialogue_ended.connect(termino_dialogo)
@@ -22,8 +22,6 @@ func tomar_mascara():
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		player_cerca = true
-
-
 
 
 func _on_body_exited(body: Node2D) -> void:

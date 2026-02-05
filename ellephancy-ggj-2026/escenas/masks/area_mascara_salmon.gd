@@ -1,11 +1,13 @@
 extends Area2D
-
+#salmon, me re confundia sino
 var player_cerca : bool = false
-@onready var area_dialogo_prueba: Area2D = %AreaDialogoPrueba
+@export var area_dialogo_prueba: Area2D
 
 func _ready() -> void:
 	#area_dialogo_prueba.dialogue_ended.connect(termino_dialogo)
-	area_dialogo_prueba.monitoring = false
+	#await get_tree().create_timer(1).timeout
+	#area_dialogo_prueba.monitoring = false
+	pass
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("interactuar") and player_cerca:

@@ -12,7 +12,8 @@ var dialogo_leido : bool = false
 @export_range(1,20) var id_dialogo : int = 0
 signal termino_lectura_forzada
 @onready var campanita_animada: AnimatedSprite2D = %CampanitaAnimada
-
+##solo lo usamos si este dialogo va a ser usado cuando agarremos una mascara, ahi cargamos el AreaMascaraCiervo por ejemplo como padre
+@export var nodo_padre_agarrar_mascara : Area2D
 
 
 
@@ -20,6 +21,8 @@ func _ready() -> void:
 	tween_salida()
 	DialogueManager.dialogue_started.connect(on_dialogue_started)
 	DialogueManager.dialogue_ended.connect(on_dialogue_ended)
+	if nodo_padre_agarrar_mascara != null:
+		monitoring = false
 
 func on_dialogue_started(dialogue):
 	#dialogo_activo = true
@@ -30,6 +33,8 @@ func on_dialogue_ended(dialogue):
 #	queue_free()
 	if dialogo_leido and id_dialogo == id_a_destruir:
 		Global.dialogo_desactivado_to_player.emit()
+		if nodo_padre_agarrar_mascara: #si hay nodo padre, elimino ese para eliminar todo
+			nodo_padre_agarrar_mascara.queue_free()
 		queue_free()
 
 func _on_body_entered(body: Node2D) -> void:
@@ -50,12 +55,22 @@ func forzar_lectura():
 	mascara_necesaria_para_ver= 0
 	id_dialogo = 100
 	id_a_destruir = 100
+	leer_dialogo_agarre_mascara()
+	#print("EJECUTAR DIALOGOOOOOOOOOO")
+	#DialogueManager.show_dialogue_balloon(dialogo, "start")
+	#dialogo_leido = true
+	#Global.dialogo_activo_to_player.emit() #LO ESCUCHA PLAYER
+	#on_dialogue_ended(dialogo)
+	#termino_lectura_forzada.emit()
 
-	print("EJECUTAR DIALOGOOOOOOOOOO")
+
+
+func leer_dialogo_agarre_mascara() -> void:
+	#print("EJECUTAR DIALOGOOOOOOOOOO")
 	DialogueManager.show_dialogue_balloon(dialogo, "start")
 	dialogo_leido = true
 	Global.dialogo_activo_to_player.emit() #LO ESCUCHA PLAYER
-	termino_lectura_forzada.emit()
+
 
 
 func tween_entrada():
