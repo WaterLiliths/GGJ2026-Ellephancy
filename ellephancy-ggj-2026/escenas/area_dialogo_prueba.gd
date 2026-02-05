@@ -11,8 +11,13 @@ var dialogo_activo : bool = false
 var dialogo_leido : bool = false
 @export_range(1,20) var id_dialogo : int = 0
 signal termino_lectura_forzada
+@onready var campanita_animada: AnimatedSprite2D = %CampanitaAnimada
+
+
+
 
 func _ready() -> void:
+	tween_salida()
 	DialogueManager.dialogue_started.connect(on_dialogue_started)
 	DialogueManager.dialogue_ended.connect(on_dialogue_ended)
 
@@ -32,6 +37,7 @@ func _on_body_entered(body: Node2D) -> void:
 		#return
 	if mascara_necesaria_para_ver!=0 and Global.mascara_activa != mascara_necesaria_para_ver:
 		print("pasaste por un dialogo, pero para verlo necesitas la mascara : ", mascara_necesaria_para_ver)
+		tween_entrada()
 		return
 	if body is Player and not dialogo_leido:
 		print("EJECUTAR DIALOGOOOOOOOOOO")
@@ -50,3 +56,20 @@ func forzar_lectura():
 	dialogo_leido = true
 	Global.dialogo_activo_to_player.emit() #LO ESCUCHA PLAYER
 	termino_lectura_forzada.emit()
+
+
+func tween_entrada():
+	var tween := create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(campanita_animada,"modulate:a", 1.0, 0.45)
+
+func tween_salida():
+	var tween := create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(campanita_animada,"modulate:a", 0.0 , 0.7)
+
+
+func _on_body_exited(body: Node2D) -> void:
+	tween_salida()

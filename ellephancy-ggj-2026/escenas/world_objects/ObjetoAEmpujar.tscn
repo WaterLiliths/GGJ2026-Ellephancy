@@ -41,8 +41,6 @@ fmod_parameters/Peso/id = 8505785322959852152
 fmod_parameters/Peso = 1.0
 fmod_parameters/Peso/variant_type = 3
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-
 [node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Objetos/impacto piedra"
 event_guid = "{2c33a6f9-204b-4961-8146-ccced55c7b48}"
