@@ -4,9 +4,6 @@ extends Node2D #mascara de fuerza es la 2
 @export var activa : bool = false
 
 
-func _ready() -> void:
-	pass
-
 func usar():
 	if activa:
 		return
@@ -17,33 +14,12 @@ func usar():
 
 
 
-
 func desactivar():
 	if not activa: #si ya estaba desactivada
 		return
 	activa = false
 	Global.mascara_fuerza_desactivar.emit()
 	print("se desactivo la mascara de fuerza")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
