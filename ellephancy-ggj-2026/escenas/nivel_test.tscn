@@ -98,3 +98,6 @@ texto_encima = "Press E para agarrar la mascarad"
 [node name="ObjetoAEmpujar" parent="." instance=ExtResource("4_f2txr")]
 position = Vector2(225, 420)
 presente = true
+
+[node name="AreaMascaraOso2" parent="." instance=ExtResource("11_3mf4q")]
+position = Vector2(1157.9999, 515.99994)
