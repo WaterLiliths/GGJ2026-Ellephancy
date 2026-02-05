@@ -152,10 +152,12 @@ position = Vector2(5479, -1876)
 [node name="Tutorial" type="Node2D" parent="."]
 
 [node name="Ciervo2" parent="Tutorial" instance=ExtResource("9_g7mpo")]
+z_index = 6
 position = Vector2(2835, 233)
 textura_runa_tecla = ExtResource("10_ubqd8")
 
 [node name="Oso1" parent="Tutorial" instance=ExtResource("9_g7mpo")]
+z_index = 6
 position = Vector2(2128, 231)
 textura_runa_tecla = ExtResource("11_ubqd8")
 
