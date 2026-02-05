@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://cv0p4aotoyxyx"]
+[gd_scene load_steps=15 format=4 uid="uid://cv0p4aotoyxyx"]
 
 [ext_resource type="PackedScene" uid="uid://bnjwrlnb5pxji" path="res://escenas/world_objects/arbol.tscn" id="1_e0r3a"]
 [ext_resource type="PackedScene" uid="uid://by80hrdi7bflk" path="res://escenas/creador_de_niveles.tscn" id="1_micag"]
@@ -13,6 +13,7 @@
 [ext_resource type="Resource" uid="uid://lflkk6jkehov" path="res://dialogue/dialogo_salmon_primer_uso_poder.dialogue" id="11_uh11b"]
 [ext_resource type="Resource" uid="uid://dcguqmqeh147x" path="res://dialogue/dialogo_salmon_1.dialogue" id="12_8wk72"]
 [ext_resource type="Resource" uid="uid://cv2l8oipisadl" path="res://dialogue/dialogo_salmon_2.dialogue" id="13_4nkdi"]
+[ext_resource type="Resource" uid="uid://cwdhhs48r1h2g" path="res://dialogue/dialogo_final.dialogue" id="14_uh11b"]
 
 [node name="LevelSalmon5" type="Node2D"]
 
@@ -202,6 +203,7 @@ id_dialogo = 10
 
 [node name="AreaUltimoDialogo" parent="Dialogos" instance=ExtResource("10_nnkfi")]
 position = Vector2(-2158, -170)
+dialogo = ExtResource("14_uh11b")
 id_a_destruir = 14
 id_dialogo = 14
 
