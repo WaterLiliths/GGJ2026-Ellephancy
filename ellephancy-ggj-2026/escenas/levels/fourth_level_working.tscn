@@ -1,15 +1,12 @@
-[gd_scene load_steps=18 format=4 uid="uid://cqfbi3mqn04vl"]
+[gd_scene load_steps=15 format=4 uid="uid://cqfbi3mqn04vl"]
 
 [ext_resource type="PackedScene" uid="uid://t3ox75glka3s" path="res://escenas/world_objects/ObjetoAEmpujar.tscn" id="1_n0umg"]
 [ext_resource type="PackedScene" uid="uid://by80hrdi7bflk" path="res://escenas/creador_de_niveles.tscn" id="2_1sjo1"]
 [ext_resource type="PackedScene" uid="uid://cc8lgh4bhiut8" path="res://escenas/world_objects/tronco_pasado-presente.tscn" id="2_6imxl"]
 [ext_resource type="PackedScene" uid="uid://bnjwrlnb5pxji" path="res://escenas/world_objects/arbol.tscn" id="2_oi7hv"]
 [ext_resource type="PackedScene" uid="uid://dnsoasghkyy4y" path="res://piedra_pasado.tscn" id="4_6imxl"]
-[ext_resource type="Script" uid="uid://c0l4pquiwwpu5" path="res://escenas/masks/area_mascara_salmon.gd" id="6_sya8o"]
-[ext_resource type="Texture2D" uid="uid://bbra5fmwd6qin" path="res://assets/sprites/masks/mascara_salmon.PNG" id="7_g7mpo"]
 [ext_resource type="PackedScene" uid="uid://dj4jyhd1bexi6" path="res://escenas/checkpoint_area.tscn" id="8_ruoui"]
 [ext_resource type="PackedScene" uid="uid://cs6hrjrtl5v7x" path="res://escenas/area_mostrar_texto.tscn" id="9_g7mpo"]
-[ext_resource type="Resource" uid="uid://dt6qgqxfsmk4d" path="res://dialogue/primer_dialogo_salmon.dialogue" id="9_x3go5"]
 [ext_resource type="Texture2D" uid="uid://c2uxrmq8rai84" path="res://assets/runas-finales/Runas interfaznum2.png" id="10_ubqd8"]
 [ext_resource type="Texture2D" uid="uid://cbny52wuwpbjr" path="res://assets/runas-finales/Runas interfaznum1.png" id="11_ubqd8"]
 [ext_resource type="PackedScene" uid="uid://ccia0snrxhd0y" path="res://escenas/area_dialogo_prueba.tscn" id="12_g2qor"]
@@ -17,9 +14,6 @@
 [ext_resource type="Resource" uid="uid://bw4r8lwidlcpn" path="res://dialogue/dialogo_ciervo_2.dialogue" id="14_ku3a7"]
 [ext_resource type="Resource" uid="uid://cstoapib3neo4" path="res://dialogue/dialogo_ciervo_1.dialogue" id="14_x3go5"]
 [ext_resource type="Resource" uid="uid://d1fqiv2tb5bnh" path="res://dialogue/dialogo_cievo_3.dialogue" id="15_iqxlf"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vv721"]
-size = Vector2(330, 368)
 
 [node name="FourthLevelWorking" type="Node2D"]
 
@@ -137,24 +131,6 @@ tile_map_data = PackedByteArray("AAAXAAkABQAFAAkAAAAdAAYABQAFAAkAAAA2AO//BQACAAM
 z_index = -2
 tile_map_data = PackedByteArray("AABGAPT/BQAFAAkAAABHAPT/BQACAAkAAABIAPT/BQAGAAkAAABGAPP/BQABAAMAAABHAPP/BQACAAMAAABIAPP/BQAFAAMAAABUAOL/BQABAAMAAABUAOP/BQAFAAkAAABVAOL/BQACAAMAAABVAOP/BQACAAkAAABWAOL/BQAFAAMAAABWAOP/BQAGAAkAAAA=")
 
-[node name="AreaMascaraSalmon" type="Area2D" parent="."]
-z_index = -1
-position = Vector2(5485, -1982)
-rotation = 0.87266463
-scale = Vector2(0.2, 0.2)
-script = ExtResource("6_sya8o")
-
-[node name="Sprite2D" type="Sprite2D" parent="AreaMascaraSalmon"]
-texture = ExtResource("7_g7mpo")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaMascaraSalmon"]
-z_index = 1
-shape = SubResource("RectangleShape2D_vv721")
-
-[node name="AreaDialogoPrueba" parent="AreaMascaraSalmon" instance=ExtResource("12_g2qor")]
-unique_name_in_owner = true
-dialogo = ExtResource("9_x3go5")
-
 [node name="CheckpointArea" parent="." instance=ExtResource("8_ruoui")]
 z_index = -1
 position = Vector2(4586, -850)
@@ -204,7 +180,3 @@ mascara_necesaria_para_ver = 1
 dialogo = ExtResource("14_ku3a7")
 id_a_destruir = 12
 id_dialogo = 12
-
-[connection signal="body_entered" from="AreaMascaraSalmon" to="AreaMascaraSalmon" method="_on_body_entered"]
-[connection signal="body_exited" from="AreaMascaraSalmon" to="AreaMascaraSalmon" method="_on_body_exited"]
-[connection signal="termino_lectura_forzada" from="AreaMascaraSalmon/AreaDialogoPrueba" to="AreaMascaraSalmon" method="_on_area_dialogo_prueba_termino_lectura_forzada"]

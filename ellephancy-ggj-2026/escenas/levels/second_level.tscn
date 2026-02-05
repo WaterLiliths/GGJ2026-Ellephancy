@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=4 uid="uid://d3kk7nu2wr28k"]
+[gd_scene load_steps=9 format=4 uid="uid://d3kk7nu2wr28k"]
 
 [ext_resource type="PackedScene" uid="uid://dj4jyhd1bexi6" path="res://escenas/checkpoint_area.tscn" id="1_xqqxq"]
-[ext_resource type="PackedScene" uid="uid://deup0i7mgu0xc" path="res://escenas/masks/area_mascara_oso.tscn" id="4_qlwoe"]
 [ext_resource type="Script" uid="uid://o1jlskbd2keg" path="res://escenas/levels/reverb_area.gd" id="5_xqqxq"]
 [ext_resource type="PackedScene" uid="uid://b3kt101wc8mwl" path="res://escenas/world_objects/palanca.tscn" id="6_qqybc"]
 [ext_resource type="PackedScene" uid="uid://ccia0snrxhd0y" path="res://escenas/area_dialogo_prueba.tscn" id="6_xuxq0"]
@@ -86,16 +85,6 @@ id_puerta = 3
 z_index = -1
 position = Vector2(2417.9998, 123)
 
-[node name="AreaMascaraOso" parent="." instance=ExtResource("4_qlwoe")]
-z_index = -1
-position = Vector2(2414, 82)
-rotation = -0.2617994
-
-[node name="AreaDialogoPrueba" parent="AreaMascaraOso" instance=ExtResource("6_xuxq0")]
-unique_name_in_owner = true
-id_a_destruir = 20
-id_dialogo = 20
-
 [node name="ReverbArea" type="Area2D" parent="."]
 visible = false
 position = Vector2(-2225, 45)
@@ -119,6 +108,5 @@ position = Vector2(2439, 955)
 position = Vector2(1280, -412)
 textura_runa_tecla = ExtResource("9_dr3yk")
 
-[connection signal="termino_lectura_forzada" from="AreaMascaraOso/AreaDialogoPrueba" to="AreaMascaraOso" method="_on_area_dialogo_prueba_termino_lectura_forzada"]
 [connection signal="body_entered" from="ReverbArea" to="ReverbArea" method="_on_body_entered"]
 [connection signal="body_exited" from="ReverbArea" to="ReverbArea" method="_on_body_exited"]
