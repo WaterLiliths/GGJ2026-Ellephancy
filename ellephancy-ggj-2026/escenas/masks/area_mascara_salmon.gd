@@ -17,7 +17,6 @@ func tomar_mascara():
 	Global.tiene_mascara_traducciones = true
 	Global.agarre_mascara.emit("salmon")
 	DialogueManager.show_dialogue_balloon(dialogo, "start")
-	print("AGARRE MASCARA")
 	queue_free()
 
 func on_dialogue_started(dialogue):

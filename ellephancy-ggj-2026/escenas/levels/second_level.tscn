@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://deup0i7mgu0xc" path="res://escenas/masks/area_mascara_oso.tscn" id="4_qlwoe"]
 [ext_resource type="Script" uid="uid://o1jlskbd2keg" path="res://escenas/levels/reverb_area.gd" id="5_xqqxq"]
 [ext_resource type="PackedScene" uid="uid://b3kt101wc8mwl" path="res://escenas/world_objects/palanca.tscn" id="6_qqybc"]
-[ext_resource type="PackedScene" uid="uid://ccia0snrxhd0y" path="res://escenas/area_dialogo_prueba.tscn" id="6_xuxq0"]
+[ext_resource type="Resource" uid="uid://dlhqrfa73p3wr" path="res://dialogue/primer_dialogo_oso.dialogue" id="6_vkv5l"]
 [ext_resource type="PackedScene" uid="uid://biambmyuxxflo" path="res://escenas/world_objects/puerta.tscn" id="7_smkhk"]
 [ext_resource type="PackedScene" uid="uid://by80hrdi7bflk" path="res://escenas/creador_de_niveles.tscn" id="11_5tmwr"]
 
@@ -84,6 +84,7 @@ id_puerta = 3
 z_index = 2
 position = Vector2(2436, 146)
 rotation = -0.2617994
+dialogo = ExtResource("6_vkv5l")
 
 [node name="AreaDialogoPrueba" parent="AreaMascaraOso" instance=ExtResource("6_xuxq0")]
 unique_name_in_owner = true

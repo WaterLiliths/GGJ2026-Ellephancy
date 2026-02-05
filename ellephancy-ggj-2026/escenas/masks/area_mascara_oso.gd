@@ -1,10 +1,15 @@
 extends Area2D
 
+@export var dialogo = preload("res://dialogue/primer_dialogo_salmon.dialogue")
 var player_cerca : bool = false
 @onready var area_dialogo_prueba: Area2D = %AreaDialogoPrueba
 
 func _ready() -> void:
 	area_dialogo_prueba.monitoring = false
+
+func _ready() -> void:
+	DialogueManager.dialogue_started.connect(on_dialogue_started)
+	DialogueManager.dialogue_ended.connect(on_dialogue_ended)
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("interactuar") and player_cerca:
