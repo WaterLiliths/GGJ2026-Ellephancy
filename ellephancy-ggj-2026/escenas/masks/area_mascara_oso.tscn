@@ -12,7 +12,8 @@ scale = Vector2(0.2, 0.2)
 script = ExtResource("1_fi8fk")
 area_dialogo_prueba = NodePath("AreaDialogoPruebaOso")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2DOso" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 texture = ExtResource("1_1cuo6")
 flip_h = true
 

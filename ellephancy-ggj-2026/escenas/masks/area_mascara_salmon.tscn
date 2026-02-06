@@ -13,7 +13,8 @@ scale = Vector2(0.2, 0.2)
 script = ExtResource("1_qc2wq")
 area_dialogo_prueba = NodePath("AreaDialogoSalmon")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2DSalmon" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 texture = ExtResource("2_8x4ql")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

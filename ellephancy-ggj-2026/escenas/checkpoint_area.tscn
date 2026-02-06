@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dj4jyhd1bexi6"]
+[gd_scene load_steps=14 format=3 uid="uid://dj4jyhd1bexi6"]
 
 [ext_resource type="Script" uid="uid://dtxtcten3qngd" path="res://escenas/checkpoint_area.gd" id="1_l6r58"]
 [ext_resource type="Texture2D" uid="uid://bksx86yei4our" path="res://assets/sprites/ambient/altar_corrupto.png" id="2_3q8mo"]
@@ -15,6 +15,61 @@ point_count = 3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b2oqy"]
 size = Vector2(112, 539)
+
+[sub_resource type="Animation" id="Animation_rb8k0"]
+resource_name = "entrada_luz"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TexturaLuz:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_806o0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TexturaLuz:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_u5bur"]
+resource_name = "luz_encendida"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TexturaLuz:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.49019608), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_806o0"]
+_data = {
+&"RESET": SubResource("Animation_806o0"),
+&"entrada_luz": SubResource("Animation_rb8k0"),
+&"luz_encendida": SubResource("Animation_u5bur")
+}
 
 [node name="CheckpointArea" type="Node2D"]
 script = ExtResource("1_l6r58")
@@ -80,4 +135,11 @@ position = Vector2(-7, -53)
 scale = Vector2(8, 8)
 texture = ExtResource("2_rb8k0")
 
+[node name="AnimationCheckpoint" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_806o0")
+}
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="animation_finished" from="AnimationCheckpoint" to="." method="_on_animation_checkpoint_animation_finished"]

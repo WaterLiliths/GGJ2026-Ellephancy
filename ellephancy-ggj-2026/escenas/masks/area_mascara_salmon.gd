@@ -2,6 +2,8 @@ extends Area2D
 #salmon, me re confundia sino
 var player_cerca : bool = false
 @export var area_dialogo_prueba: Area2D
+@onready var sprite_2d_salmon: Sprite2D = %Sprite2DSalmon
+
 
 func _ready() -> void:
 	#area_dialogo_prueba.dialogue_ended.connect(termino_dialogo)
@@ -17,6 +19,7 @@ func _process(delta: float) -> void:
 func tomar_mascara():
 	Global.tiene_mascara_traducciones = true
 	Global.agarre_mascara.emit("salmon")
+	sprite_2d_salmon.hide()
 	area_dialogo_prueba.forzar_lectura()
 
 
