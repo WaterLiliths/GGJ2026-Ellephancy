@@ -79,6 +79,9 @@ func abrir_puerta():
 		tween_colision.tween_property($CollisionShape2D, "position:y" , -altura_maxima, tiempo_de_apertura)
 	esta_abierta = true
 	Global.puerta_abierta.emit(global_position, tiempo_de_apertura)
+	var conexiones = Global.get_signal_connection_list("puerta_abierta")
+	for conectadas in conexiones:
+		print("-------------- LA SEÑAL DE LA PUERTA ESTA CONECTADA AAAAAAAAAAAAAA -----------  ", conectadas["callable"])
 	
 	$TimerTiempoDeApertura.start()
 	#print("la puerta esta abierta")
