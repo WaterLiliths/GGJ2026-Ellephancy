@@ -14,6 +14,7 @@ var tiene_mascara_traducciones : bool = true
 
 signal dialogo_activo_to_player #se emite en area dialogo
 signal dialogo_desactivado_to_player #se escucha player
+signal restart #agregada para el boton de estoy atascado, solo para el showcase?
 
 var mascara_activa : int = 0
 #----------------PALANCA Y PUERTA------------------

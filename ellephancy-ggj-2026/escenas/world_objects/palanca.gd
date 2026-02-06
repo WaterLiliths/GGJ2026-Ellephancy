@@ -3,6 +3,8 @@ extends Interactivo
 
 var esta_encendida : bool = false
 var palanca_actual : Palanca = self
+@onready var luz_verde: PointLight2D = %PointLigVerde
+
 
 @export var id : int = 0
 @export_enum("buena", "oxidada", "fallada") var tipo_de_palanca : String = "buena"
@@ -13,6 +15,7 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 	$TimerPalanca.set_wait_time(timer*2.8)
+	tween_salida_luz_verde()
 	if tipo_de_palanca == "oxidada":
 		modulate = Color(0.51, 0.291, 0.291, 1.0)
 
@@ -35,6 +38,7 @@ func activar() -> void:
 		$FmodEventEmitter2D.play()
 		await $AnimationPlayer.animation_finished
 		Global.activar_palanca.emit(id)
+		tween_entrada_luz_verde()
 		return
 	if !esta_encendida and not tipo_de_palanca == "fallada":
 		if tipo_de_palanca == "buena":
@@ -45,6 +49,7 @@ func activar() -> void:
 		$FmodEventEmitter2D.play()
 		await $AnimationPlayer.animation_finished
 		Global.desactivar_palanca.emit(id)
+		tween_salida_luz_verde()
 		return
 	if tipo_de_palanca == "fallada":
 		$AnimationPlayer.play("fallada")
@@ -70,3 +75,17 @@ func _on_timer_palanca_timeout() -> void:
 		esta_encendida = !esta_encendida
 		$AnimationPlayer.play("desactivar")
 		$FmodEventEmitter2D.play()
+
+
+func tween_entrada_luz_verde():
+	var tween := create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(luz_verde,"energy", 6, 0.5)
+	tween.tween_property(luz_verde,"energy", 4, 0.5)
+
+func tween_salida_luz_verde():
+	var tween := create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(luz_verde,"energy", 0.0 , 0.8)

@@ -69,3 +69,8 @@ func _on_btn_si_2_pressed() -> void:
 func _on_boton_custom_pressed() -> void:
 	canvas_layer_main_2.hide()
 	canvas_layer_main.show()
+
+
+func _on_btn_restart_pressed() -> void:
+	pausar()
+	Global.restart.emit() #la escucha player, solo para el showcase?

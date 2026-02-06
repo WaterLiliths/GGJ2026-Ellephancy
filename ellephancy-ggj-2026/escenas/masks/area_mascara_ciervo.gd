@@ -2,6 +2,8 @@ extends Area2D
 #ciervo - forzar github
 var player_cerca : bool = false
 @export var area_dialogo_prueba: Area2D
+@onready var sprite_2d_ciervo: Sprite2D = %Sprite2DCiervo
+
 
 func _ready() -> void:
 	#area_dialogo_prueba.dialogue_ended.connect(termino_dialogo)
@@ -15,6 +17,7 @@ func _process(delta: float) -> void:
 func tomar_mascara():
 	Global.tiene_mascara_tiempo = true
 	Global.agarre_mascara.emit("ciervo")
+	sprite_2d_ciervo.hide()
 	area_dialogo_prueba.forzar_lectura()
 
 

@@ -95,6 +95,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "OPCIONES"
 
+[node name="BTNRestart" parent="CanvasLayerMain/PanelContainer/HBoxContainer/VBoxContainer" instance=ExtResource("3_0sskl")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "  ESTOY ATASCADO  "
+
 [node name="BTNSalir" parent="CanvasLayerMain/PanelContainer/HBoxContainer/VBoxContainer" instance=ExtResource("3_0sskl")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
@@ -288,6 +293,7 @@ event_guid = "{d33d5b57-a86b-4a4e-801d-720f36f1258d}"
 
 [connection signal="pressed" from="CanvasLayerMain/PanelContainer/HBoxContainer/VBoxContainer/BTNReanudar" to="." method="_on_btn_reanudar_pressed"]
 [connection signal="pressed" from="CanvasLayerMain/PanelContainer/HBoxContainer/VBoxContainer/BTNOpciones" to="." method="_on_btn_opciones_pressed"]
+[connection signal="pressed" from="CanvasLayerMain/PanelContainer/HBoxContainer/VBoxContainer/BTNRestart" to="." method="_on_btn_restart_pressed"]
 [connection signal="pressed" from="CanvasLayerMain/PanelContainer/HBoxContainer/VBoxContainer/BTNSalir" to="." method="_on_btn_salir_pressed"]
 [connection signal="pressed" from="CanvasLayerSalir/PanelContainer2/HBoxContainer/VBoxContainer/HBoxContainer/BTNSi" to="." method="_on_btn_si_pressed"]
 [connection signal="pressed" from="CanvasLayerSalir/PanelContainer2/HBoxContainer/VBoxContainer/HBoxContainer/BTNSi2" to="." method="_on_btn_si_2_pressed"]

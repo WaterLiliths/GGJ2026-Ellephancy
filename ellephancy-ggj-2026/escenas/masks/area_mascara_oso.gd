@@ -2,6 +2,8 @@ extends Area2D
 #oso
 var player_cerca : bool = false
 @export var area_dialogo_prueba: Area2D
+@onready var sprite_2d_oso: Sprite2D = %Sprite2DOso
+
 
 func _ready() -> void:
 	area_dialogo_prueba.monitoring = false
@@ -21,6 +23,7 @@ func _on_body_entered(body: Node2D) -> void:
 func tomar_mascara():
 	Global.tiene_mascara_fuerza = true
 	Global.agarre_mascara.emit("oso")
+	sprite_2d_oso.hide()
 	area_dialogo_prueba.forzar_lectura()
 
 

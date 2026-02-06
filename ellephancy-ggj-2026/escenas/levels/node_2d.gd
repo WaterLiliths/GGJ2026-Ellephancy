@@ -1,16 +1,15 @@
 extends Node2D
 
 var mover_camara : bool = false
-var factor_tiempo : float = 0.6 #para que el movimiento sea 60% mas rapido q antes, podemos ajustarlo igual
-var minimo_tiempo : float = 0.15
+@export var factor_tiempo : float = 0.7 #para que el movimiento sea 30% mas rapido q antes, podemos ajustarlo igual
+var minimo_tiempo : float = 0.25
 
 
 
 func _ready() -> void:
 	Global.puerta_abierta.connect(mover_camara_a_puerta)
 
-	
-	
+
 func _physics_process(_delta: float) -> void:
 	if mover_camara:
 		pass
