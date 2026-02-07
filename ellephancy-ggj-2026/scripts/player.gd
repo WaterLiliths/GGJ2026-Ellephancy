@@ -87,6 +87,8 @@ func _input(event: InputEvent) -> void:
 		if not Global.tiene_mascara_fuerza:
 			print("no tengo la mascara de la fuerza")
 			return
+		if Global.mascara_activa==2:#para no re activar la mascara que ya tenia puesta
+			return #la 2 en global en realidad es la del OSO
 		mascara_tiempo.desactivar()
 		mascara_fuerza.usar()
 		$FmodEventEmitter2D6.set_parameter("Mascara", "Oso")
@@ -96,6 +98,8 @@ func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("2"): #usar mascara tiempos
 		if not Global.tiene_mascara_tiempo:
 			print("no tengo la mascara del tiempo")
+			return
+		if Global.mascara_activa==1: #para no re activar la mascara que ya tenia puesta
 			return
 		mascara_tiempo.usar()
 		Global.mascara_tiempo_activa.emit()
@@ -107,6 +111,8 @@ func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("3"): #usar mascara traducciones
 		if not Global.tiene_mascara_traducciones:
 			print("no tengo la mascara de las traducciones")
+			return
+		if Global.mascara_activa==3: #para no re activar la mascara que ya tenia puesta
 			return
 		mascara_tiempo.desactivar()
 		mascara_fuerza.desactivar()
