@@ -443,6 +443,7 @@ position = Vector2(0, -18.814854)
 [node name="PuertaSalmon" type="StaticBody2D" parent="ContenedorPuerta"]
 unique_name_in_owner = true
 script = ExtResource("12_f0ung")
+tiempo_de_apertura = 2.0
 contrasena_1 = 4
 contrasena_2 = 6
 contrasena_3 = 2
