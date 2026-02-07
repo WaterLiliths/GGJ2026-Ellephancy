@@ -607,6 +607,7 @@ func resetear_mascaras_a_cero():
 	Global.tiene_mascara_fuerza = false
 	Global.tiene_mascara_tiempo = false
 	Global.tiene_mascara_traducciones = false
+	Global.mascara_activa = 0 #esto faltaba pq cuando terminabas el juego tenias la del oso puesta
 
 func on_dialogo_activo():
 	cambiar_de_estado(ESTADOS.DIALOGO_ACTIVO)
