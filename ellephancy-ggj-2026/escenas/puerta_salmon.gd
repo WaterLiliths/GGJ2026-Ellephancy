@@ -82,6 +82,7 @@ func abrir_puerta():
 	#print("la puerta esta abierta")
 	$FmodEventEmitter2D.set_parameter("peso", 5.0)
 	$FmodEventEmitter2D.play()
+	Global.puerta_abierta.emit(global_position, tiempo_de_apertura)
 
 
 func _on_timer_tiempo_de_apertura_timeout() -> void:
