@@ -1,8 +1,8 @@
 extends Node2D
 
 var mover_camara : bool = false
-@export var factor_tiempo : float = 0.7 #para que el movimiento sea 30% mas rapido q antes, podemos ajustarlo igual
-var minimo_tiempo : float = 0.25
+@export var factor_tiempo : float = 0.8 #para que el movimiento sea 20% mas rapido q antes, podemos ajustarlo igual
+var minimo_tiempo : float = 0.5
 
 
 
