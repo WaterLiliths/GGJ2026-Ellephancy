@@ -15,6 +15,7 @@ area_dialogo_prueba = NodePath("AreaDialogoSalmon")
 
 [node name="Sprite2DSalmon" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+z_index = -1
 texture = ExtResource("2_8x4ql")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
