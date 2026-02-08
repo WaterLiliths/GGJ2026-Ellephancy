@@ -10,14 +10,14 @@ func _ready() -> void:
 	$FmodEventEmitter2D2.volume = 0.0
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
 	$FmodEventEmitter2D2.play()
-	$AnimationPlayer.play("fade_in")
+	#$AnimationPlayer.play("fade_in") #la animacion ahora se inicializa directamente en el animation player
 	tween.tween_property($FmodEventEmitter2D2, "volume", Global.volumen_musica, 4)
 	Global.mascara_tiempo_activa.connect(cambiar_ambiente_pasado)
 	Global.mascara_tiempo_desactivar.connect(cambiar_sonido_presente)
 	
 #Rezá Malena rezá
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	$FmodEventEmitter2D2.volume = Global.volumen_musica
 	$FmodEventEmitter2D.volume = Global.volumen_ambiente
 	

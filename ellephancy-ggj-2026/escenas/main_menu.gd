@@ -24,7 +24,7 @@ func _process(_delta: float) -> void:
 
 func _on_boton_custom_comenzar_pressed() -> void:
 	$AnimationPlayer.play("fade_out")
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(3).timeout #TODO cambiar esto, en vez de esperar 3 segundos manualmente usar la signal animation finished
 	await get_tree().process_frame
 	get_tree().change_scene_to_file("res://escenas/levels/juego.tscn")
 
