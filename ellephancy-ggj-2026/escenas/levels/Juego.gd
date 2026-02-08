@@ -17,7 +17,7 @@ func _ready() -> void:
 	
 #Rezá Malena rezá
 
-func _physics_process(delta: float) -> void: #esto antes era process, physic consume menos recursos.
+func _process(delta: float) -> void:
 	$FmodEventEmitter2D2.volume = Global.volumen_musica
 	$FmodEventEmitter2D.volume = Global.volumen_ambiente
 	
