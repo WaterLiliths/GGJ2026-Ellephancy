@@ -54,7 +54,6 @@ tile_map_data = PackedByteArray("AAA9AB8ABQAFAAUAAAA8AB8ABQAEAAUAAAA7AB8ABQABAAU
 presente = true
 
 [node name="MapaPasado" type="Node2D" parent="."]
-visible = false
 
 [node name="Background" parent="MapaPasado" instance=ExtResource("1_owniu")]
 z_index = -6
@@ -73,7 +72,7 @@ tile_map_data = PackedByteArray("AAA4ACAABQACAAMAAAA5ACAABQADAAMAAAA6ACAABQACAAM
 
 [node name="DecoraciónSobreJugador" parent="MapaPasado" instance=ExtResource("1_owniu")]
 z_index = 2
-tile_map_data = PackedByteArray("AAA3AB8AAAAKAAQAAAA3ACAAAAAKAAUAAAA/AB8AAAAIAAQAAAA/ACAAAAAIAAUAAABEAB8AAAAIAAQAAABEACAAAAAIAAUAAABKAB8AAAAKAAQAAABKACAAAAAKAAUAAAA=")
+tile_map_data = PackedByteArray("AAA3AB8AAAAKAAQAAAA3ACAAAAAKAAUAAAA/AB8AAAAIAAQAAAA/ACAAAAAIAAUAAABEAB8AAAAIAAQAAABEACAAAAAIAAUAAABKAB8AAAAKAAQAAABKACAAAAAKAAUAAAA2ACEABQABAAkAAAA=")
 
 [node name="DecoracionTrasJugador" parent="MapaPasado" instance=ExtResource("1_owniu")]
 z_index = -3
