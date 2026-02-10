@@ -1,7 +1,8 @@
 class_name Player
 extends CharacterBody2D
 
-
+##si ponemos en true se instancia la escena de los botones como hijo de player
+@export var jugar_mobile : bool = false
 #---------- mascaras -----------
 @onready var mascara_tiempos: Node2D = %MascaraTiempos
 @onready var mascara_fuerza: Node2D = %MascaraFuerza
@@ -76,6 +77,10 @@ func _ready() -> void:
 	Global.mascara_fuerza_activa.connect(activar_mascara_fuerza)
 	Global.mascara_fuerza_desactivar.connect(desactivar_mascara_fuerza)
 	Global.restart.connect(restart)
+	if jugar_mobile:
+		var botones_android : PackedScene= preload("res://escenas/interfaz_android.tscn") #o cambiar por el uuid
+		var instancia_botones = botones_android.instantiate()
+		add_child(instancia_botones)
 	#Global.tiene_mascara_fuerza = tiene_mascara_fuerza
 	#Global.tiene_mascara_tiempo = tiene_mascara_tiempo
 	#Global.tiene_mascara_traducciones = tiene_mascara_traducciones

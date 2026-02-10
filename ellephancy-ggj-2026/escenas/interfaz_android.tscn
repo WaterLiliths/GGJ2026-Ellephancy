@@ -1,0 +1,91 @@
+[gd_scene load_steps=10 format=3 uid="uid://dp2hmta2aq6m6"]
+
+[ext_resource type="Script" uid="uid://b7jhsel2hx0ea" path="res://escenas/interfaz_android.gd" id="1_qgmmj"]
+[ext_resource type="Texture2D" uid="uid://y2vqtk5trmco" path="res://assets/botones-android/direction_left.png" id="1_wiuo0"]
+[ext_resource type="Texture2D" uid="uid://vjsdlt1s3n2f" path="res://assets/botones-android/direction_right.png" id="2_qgmmj"]
+[ext_resource type="Texture2D" uid="uid://dvsv5nle7uxw3" path="res://assets/botones-android/button_bean.png" id="3_3oiay"]
+[ext_resource type="Texture2D" uid="uid://dd8tta5ph5lx8" path="res://assets/botones-android/dpad_element_south.png" id="3_qgmmj"]
+[ext_resource type="Texture2D" uid="uid://cdps1d0lh0i42" path="res://assets/botones-android/dpad_element_north.png" id="6_gug10"]
+[ext_resource type="Texture2D" uid="uid://ck18sxufit36k" path="res://assets/sprites/masks/mascara_oso.PNG" id="7_yx7ko"]
+[ext_resource type="Texture2D" uid="uid://kffyo1y08tqr" path="res://assets/sprites/masks/mascara_ciervo.PNG" id="8_k8xml"]
+[ext_resource type="Texture2D" uid="uid://bbra5fmwd6qin" path="res://assets/sprites/masks/mascara_salmon.PNG" id="9_22kkr"]
+
+[node name="InterfazAndroid" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_qgmmj")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BtnIzq" type="TouchScreenButton" parent="CanvasLayer"]
+unique_name_in_owner = true
+position = Vector2(70, 824)
+texture_normal = ExtResource("1_wiuo0")
+texture_pressed = ExtResource("1_wiuo0")
+
+[node name="BtnDer" type="TouchScreenButton" parent="CanvasLayer"]
+unique_name_in_owner = true
+position = Vector2(321, 824)
+texture_normal = ExtResource("2_qgmmj")
+texture_pressed = ExtResource("2_qgmmj")
+
+[node name="BtnInteractuar" type="TouchScreenButton" parent="CanvasLayer"]
+unique_name_in_owner = true
+position = Vector2(1415, 875)
+texture_normal = ExtResource("3_3oiay")
+texture_pressed = ExtResource("3_3oiay")
+
+[node name="BtnSaltar" type="TouchScreenButton" parent="CanvasLayer"]
+unique_name_in_owner = true
+position = Vector2(1672, 875)
+texture_normal = ExtResource("3_qgmmj")
+texture_pressed = ExtResource("3_qgmmj")
+
+[node name="BtnAbajo" type="TouchScreenButton" parent="CanvasLayer"]
+unique_name_in_owner = true
+position = Vector2(195.055, 948)
+texture_normal = ExtResource("6_gug10")
+texture_pressed = ExtResource("6_gug10")
+
+[node name="MascaraOso" type="TouchScreenButton" parent="CanvasLayer"]
+unique_name_in_owner = true
+position = Vector2(788.00006, 0)
+scale = Vector2(0.6, 0.6)
+texture_normal = ExtResource("7_yx7ko")
+texture_pressed = ExtResource("7_yx7ko")
+
+[node name="MascaraCiervo" type="TouchScreenButton" parent="CanvasLayer"]
+unique_name_in_owner = true
+position = Vector2(960, 0)
+scale = Vector2(0.35, 0.35)
+texture_normal = ExtResource("8_k8xml")
+texture_pressed = ExtResource("8_k8xml")
+
+[node name="MascaraSalmon" type="TouchScreenButton" parent="CanvasLayer"]
+unique_name_in_owner = true
+position = Vector2(1090, 0)
+scale = Vector2(0.6, 0.6)
+texture_normal = ExtResource("9_22kkr")
+texture_pressed = ExtResource("9_22kkr")
+
+[connection signal="pressed" from="CanvasLayer/BtnIzq" to="." method="_on_btn_izq_button_down"]
+[connection signal="released" from="CanvasLayer/BtnIzq" to="." method="_on_btn_izq_button_up"]
+[connection signal="pressed" from="CanvasLayer/BtnDer" to="." method="_on_btn_der_button_down"]
+[connection signal="released" from="CanvasLayer/BtnDer" to="." method="_on_btn_der_button_up"]
+[connection signal="pressed" from="CanvasLayer/BtnInteractuar" to="." method="_on_btn_interactuar_button_down"]
+[connection signal="released" from="CanvasLayer/BtnInteractuar" to="." method="_on_btn_interactuar_button_up"]
+[connection signal="pressed" from="CanvasLayer/BtnSaltar" to="." method="_on_btn_saltar_button_down"]
+[connection signal="released" from="CanvasLayer/BtnSaltar" to="." method="_on_btn_saltar_button_up"]
+[connection signal="pressed" from="CanvasLayer/BtnAbajo" to="." method="_on_btn_abajo_pressed"]
+[connection signal="released" from="CanvasLayer/BtnAbajo" to="." method="_on_btn_abajo_released"]
+[connection signal="pressed" from="CanvasLayer/MascaraOso" to="." method="_on_mascara_oso_pressed"]
+[connection signal="released" from="CanvasLayer/MascaraOso" to="." method="_on_mascara_oso_released"]
+[connection signal="pressed" from="CanvasLayer/MascaraCiervo" to="." method="_on_mascara_ciervo_pressed"]
+[connection signal="released" from="CanvasLayer/MascaraCiervo" to="." method="_on_mascara_ciervo_released"]
+[connection signal="pressed" from="CanvasLayer/MascaraSalmon" to="." method="_on_mascara_salmon_pressed"]
+[connection signal="released" from="CanvasLayer/MascaraSalmon" to="." method="_on_mascara_salmon_released"]
