@@ -6,7 +6,7 @@ extends Control
 #@onready var btn_interactuar: TouchScreenButton = %BtnInteractuar
 #@onready var btn_abajo: TouchScreenButton = %BtnAbajo
 #al final con las señales no hacen falta referencia a los botones
-
+#forzar github
 #TESTEAR - mas adelante cambiar los botones a unos más bonitos y propios
 
 
