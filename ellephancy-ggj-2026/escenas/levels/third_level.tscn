@@ -116,7 +116,7 @@ position = Vector2(3887, 1958)
 
 [node name="Piedra1" parent="." instance=ExtResource("5_p2jn5")]
 z_index = -1
-position = Vector2(2177, 173)
+position = Vector2(2167, 161)
 presente = true
 
 [node name="Piedra2" parent="." instance=ExtResource("5_p2jn5")]

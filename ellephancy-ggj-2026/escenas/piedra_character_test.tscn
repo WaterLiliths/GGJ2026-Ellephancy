@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtyd5t1yemlld"]
+
+[ext_resource type="Texture2D" uid="uid://bb0dx0tt7b3f1" path="res://assets/sprites/ambient/rocatocha2.png" id="1_8t1tw"]
+[ext_resource type="Script" uid="uid://r5irhfbdgkvx" path="res://escenas/piedra_character.gd" id="1_aioys"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8t1tw"]
+size = Vector2(191, 292.5)
+
+[node name="PiedraCharacterTEST" type="CharacterBody2D" groups=["cajas"]]
+collision_layer = 129
+collision_mask = 3
+script = ExtResource("1_aioys")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.57, 0.57)
+texture = ExtResource("1_8t1tw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["colision_cajas"]]
+unique_name_in_owner = true
+position = Vector2(-18.5, 6.25)
+shape = SubResource("RectangleShape2D_8t1tw")
