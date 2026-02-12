@@ -67,7 +67,7 @@ var tipo_de_suelo
 func _ready() -> void:
 	Global.dialogo_activo_to_player.connect(on_dialogo_activo)
 	Global.dialogo_desactivado_to_player.connect(on_dialogo_desactivado)
-	resetear_mascaras_a_cero()
+	resetear_mascaras_a_cero(false) #true para desactivar todas, false para activarlas
 	mano_test_izq.set_deferred("disabled", true) #DESACTIVO FISICAS DE LA MANO
 	mano_test_der.set_deferred("disabled", true)
 	Global.agarre_mascara.connect(on_agarre_mascara)
@@ -217,6 +217,8 @@ func _on_area_tirar_body_exited(body: Node2D) -> void:
 #--------------------  FUNCIONES  ------------------------
 
 func conectar_caja_con_joint():
+	if not is_on_floor():
+		return
 	if not objeto_arrastrado or objeto_arrastrado is Player: #habia un bug por eso le mande que no se detecque a si mismo
 		return
 	if agarrando_caja:
@@ -224,16 +226,12 @@ func conectar_caja_con_joint():
 	var direccion_con_caja = sign(global_position.x- objeto_arrastrado.global_position.x)
 	#direccion -1 es esta a tu derecha, 1 es que esta a tu izquierda
 	if ultima_direccion_mirar == direccion_con_caja:
-		#print("NO AGARRAR MIRANDO OPUESTO A LA CAJA")
+		#print("NO AGARRAR, ESTAS MIRANDO OPUESTO A LA CAJA")
 		return
 	pin_joint_agarrar.node_b = objeto_arrastrado.get_path()
 	agarrando_caja = true
 	disminuir_velocidad_al_agarrar()
-	#if objeto_arrastrado.has_method("caja_agarrando"):
-		#print("si tiene esa funcion ---------------------------------")
-		#objeto_arrastrado.caja_agarrando(true)
 	cambiar_de_estado(ESTADOS.AGARRAR)
-#	print("EL OBJETO ARRASTRADO VALE : ", objeto_arrastrado)
 
 
 func desconectar_caja_con_joint():
@@ -488,9 +486,9 @@ func procesar_agarrar(delta):
 	velocity.x = move_toward(velocity.x,direction * velocidad, aceleracion * delta)
 	if not agarrando_caja:
 		cambiar_de_estado(ESTADOS.IDLE)
-	if objeto_arrastrado:
-		var distancia = objeto_arrastrado.global_position.x - global_position.x
-		objeto_arrastrado.global_position.x = global_position.x+distancia
+	#if objeto_arrastrado:
+	#	var distancia = objeto_arrastrado.global_position.x - global_position.x
+	#	objeto_arrastrado.global_position.x = global_position.x+distancia
 
 func procesar_dialogo_activo(delta):
 	#print("esta aca en procesar dialogoooooooooooooooooooo")
@@ -614,11 +612,16 @@ func activar_mano():
 		mano_test_der.set_deferred("disabled", true)
 
 
-func resetear_mascaras_a_cero():
-	Global.tiene_mascara_fuerza = false
-	Global.tiene_mascara_tiempo = false
-	Global.tiene_mascara_traducciones = false
-	Global.mascara_activa = 0 #esto faltaba pq cuando terminabas el juego tenias la del oso puesta
+func resetear_mascaras_a_cero(estado : bool):
+	if estado == true:
+		Global.tiene_mascara_fuerza = false
+		Global.tiene_mascara_tiempo = false
+		Global.tiene_mascara_traducciones = false
+		Global.mascara_activa = 0 #esto faltaba pq cuando terminabas el juego tenias la del oso puesta
+	else: #esto lo agrego para que sea mas facil activar y desactivar con una sola funcion
+		Global.tiene_mascara_fuerza = true
+		Global.tiene_mascara_tiempo = true
+		Global.tiene_mascara_traducciones = true
 
 func on_dialogo_activo():
 	cambiar_de_estado(ESTADOS.DIALOGO_ACTIVO)
