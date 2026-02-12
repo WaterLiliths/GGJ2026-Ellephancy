@@ -486,6 +486,10 @@ func procesar_agarrar(delta):
 	velocity.x = move_toward(velocity.x,direction * velocidad, aceleracion * delta)
 	if not agarrando_caja:
 		cambiar_de_estado(ESTADOS.IDLE)
+	if not objeto_arrastrado:
+		return
+	if objeto_arrastrado.has_method("empujar"):
+		objeto_arrastrado.empujar(velocidad)
 	#if objeto_arrastrado:
 	#	var distancia = objeto_arrastrado.global_position.x - global_position.x
 	#	objeto_arrastrado.global_position.x = global_position.x+distancia
