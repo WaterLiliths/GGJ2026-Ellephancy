@@ -416,6 +416,8 @@ position = Vector2(15, -23)
 shape = SubResource("RectangleShape2D_b787q")
 
 [node name="AreaTirar" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaTirar"]
 position = Vector2(11, 0)
@@ -424,7 +426,7 @@ debug_color = Color(1.2513996e-06, 0.6431121, 0.31144592, 0.41960785)
 
 [node name="PinJointAgarrar" type="PinJoint2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(58, -8)
+position = Vector2(15, -7)
 node_a = NodePath("..")
 node_b = NodePath("../MANO-TEST-IZQ")
 bias = 0.47

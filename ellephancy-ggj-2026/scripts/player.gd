@@ -38,7 +38,7 @@ var velocidad_inicial : float
 @export var velocidad_al_agarrar : float = 250
 @export var aceleracion_al_agarrar : float = 0.2
 @export var velocidad_correr : float = 40
-@export var fuerza_empuje : float = 0
+@export var fuerza_empuje : float = 2000 #no anda
 @export var velocidad_arrastrando : float = 100.0
 
 @onready var animated_sprite_pj: AnimatedSprite2D = %AnimatedSpritePJ
@@ -128,9 +128,10 @@ func _input(event: InputEvent) -> void:
 
 	if Input.is_action_just_pressed("tirar") and Global.mascara_activa==2 and objeto_arrastrado:
 		if not agarrando_caja:
-			conectar_caja_con_joint()
+			agarrar_caja()
 		else:
-			desconectar_caja_con_joint()
+			soltar_caja()
+			
 
 	if Input.is_action_just_pressed("r"):
 		print("Se apreto la R")
@@ -214,6 +215,7 @@ func _on_area_tirar_body_entered(body: Node2D) -> void:
 
 func _on_area_tirar_body_exited(body: Node2D) -> void:
 	if body.is_in_group("cajas") and body != Player:
+		soltar_caja()
 		objeto_arrastrado = null
 
 #--------------------  FUNCIONES  ------------------------
@@ -221,7 +223,8 @@ func _on_area_tirar_body_exited(body: Node2D) -> void:
 func conectar_caja_con_joint():
 	if not is_on_floor():
 		return
-	if not objeto_arrastrado or objeto_arrastrado is Player: #habia un bug por eso le mande que no se detecque a si mismo
+	if not objeto_arrastrado:
+#	if not objeto_arrastrado or objeto_arrastrado is Player: #habia un bug por eso le mande que no se detecque a si mismo
 		return
 	if agarrando_caja:
 		return
@@ -484,13 +487,19 @@ func procesar_caer(delta):
 
 
 func procesar_agarrar(delta):
+	#cuando hago click ya le aviso al player que cambie a la velocidad lenta
 	velocity.x = move_toward(velocity.x,direction * velocidad, aceleracion * delta)
-	if not agarrando_caja:
+	if not agarrando_caja: #para evitar bugs, porque en realidad al apretar e se cambia de estado
+		reset_velocidad_normal()
 		cambiar_de_estado(ESTADOS.IDLE)
+		return
 	if not objeto_arrastrado:
 		return
-	if objeto_arrastrado.has_method("empujar"):
-		objeto_arrastrado.empujar(velocidad)
+	
+	objeto_arrastrado.direccion = direction
+	objeto_arrastrado.velocidad = velocidad
+	objeto_arrastrado.siendo_agarrada = true
+	
 	#if objeto_arrastrado:
 	#	var distancia = objeto_arrastrado.global_position.x - global_position.x
 	#	objeto_arrastrado.global_position.x = global_position.x+distancia
@@ -636,3 +645,28 @@ func on_dialogo_desactivado():
 
 func restart():
 	matar_player()
+
+
+func agarrar_caja():
+	if not is_on_floor():
+		return
+	var direccion_con_caja = sign(global_position.x- objeto_arrastrado.global_position.x)
+	#direccion -1 es esta a tu derecha, 1 es que esta a tu izquierda
+	if ultima_direccion_mirar == direccion_con_caja: #aunque diga == significa que son direcciones opuestas
+		#print("NO AGARRAR, ESTAS MIRANDO OPUESTO A LA CAJA")
+		return
+	#pin_joint_agarrar.node_b = objeto_arrastrado.get_path()
+	disminuir_velocidad_al_agarrar()
+	cambiar_de_estado(ESTADOS.AGARRAR)
+	agarrando_caja = true
+
+
+func soltar_caja():
+	if not agarrando_caja:
+		return
+	objeto_arrastrado.siendo_agarrada = false
+	reset_velocidad_normal()
+	cambiar_de_estado(ESTADOS.IDLE)
+	pin_joint_agarrar.node_b = self.get_path()
+	agarrando_caja = false
+	activar_mano() #TEST ver si sigue haciendo falta ahora que las cajas se pueden empujar
