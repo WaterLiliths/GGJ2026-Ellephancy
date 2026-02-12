@@ -188,7 +188,6 @@ func _on_button_conectar_con_twitch_pressed() -> void:
 	cmd_handler.add_command("list", list, -1, 1)
 #	cmd_handler.add_command("join", join)
 	cmd_handler.add_alias("join", "unirse")
-	cmd_handler.add_alias("poop", "caca")
 
 	#cmd_handler.add_command("follow", seguir_a_jugador, -1, 1) #-1 sin limite de argumentos, 1 limite minimo de argumentos
 	cmd_handler.add_alias("follow", "seguir")

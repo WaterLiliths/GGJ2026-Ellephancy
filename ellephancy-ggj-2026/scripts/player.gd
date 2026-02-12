@@ -63,7 +63,7 @@ enum ESTADOS {IDLE, CAMINAR, SALTAR, CAER, INTERACTUAR, AGARRAR, DIALOGO_ACTIVO}
 var estado_actual : ESTADOS = ESTADOS.IDLE
 var tipo_de_suelo
 
-#ayuda
+
 func _ready() -> void:
 	Global.dialogo_activo_to_player.connect(on_dialogo_activo)
 	Global.dialogo_desactivado_to_player.connect(on_dialogo_desactivado)
@@ -127,9 +127,11 @@ func _input(event: InputEvent) -> void:
 	verificar_animacion_con_mascara()
 
 	if Input.is_action_just_pressed("tirar") and Global.mascara_activa==2 and objeto_arrastrado:
-		conectar_caja_con_joint()
-	if Input.is_action_just_released("tirar"): # TODO 
-		desconectar_caja_con_joint()
+		if not agarrando_caja:
+			conectar_caja_con_joint()
+		else:
+			desconectar_caja_con_joint()
+
 	if Input.is_action_just_pressed("r"):
 		print("Se apreto la R")
 		restart() #en restart llamo a matar jugador, te lleva al checkpoint
@@ -249,6 +251,7 @@ func desconectar_caja_con_joint():
 
 
 func comprobar_coyote_timer():
+	#print("COYOTE TIMER FUNCIONA")
 	if estaba_en_el_piso and not is_on_floor():#osea que recien salto
 		timer_coyote_time.start()
 		#sumo tambien para saber cuanto tiempo estaba en el aire
@@ -303,8 +306,6 @@ func reset_velocidad_normal():
 
 func detectar_caida():
 	if not estaba_en_el_piso and is_on_floor():
-		var tiempo_en_aire_actual = tiempo_maximo_en_aire - timer_tiempo_en_aire.time_left
-		#print("tiempo en aire actual vale: ", tiempo_en_aire_actual)
 		$FmodEventEmitter2D4.play()
 		$FmodEventEmitter2D5.stop()
 		sonido_caida_emitiendo = false
