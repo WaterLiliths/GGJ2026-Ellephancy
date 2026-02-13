@@ -3,7 +3,7 @@ extends Node2D
 var mover_camara : bool = false
 @export var factor_tiempo : float = 0.8 #para que el movimiento sea 20% mas rapido q antes, podemos ajustarlo igual
 var minimo_tiempo : float = 0.5
-
+@export var player : Player
 
 
 func _ready() -> void:
@@ -14,7 +14,10 @@ func _physics_process(_delta: float) -> void:
 	if mover_camara:
 		pass
 	else:
-		position = get_local_mouse_position() * 0.5
+		if Input.is_action_pressed("click der"):
+			position = get_local_mouse_position() * 0.5
+		else:
+			position = Vector2.ZERO
 	
 
 func mover_camara_a_puerta(global_position, tiempo_de_apertura):
