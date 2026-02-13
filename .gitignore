@@ -15,3 +15,6 @@ export_credentials.cfg
 data_*/
 mono_crash.*.json
 ellephancy-ggj-2026/addons/fmod/libs/windows/~libGodotFmod.windows.editor.x86_64.dll
+
+#agrego la carpeta android para que el repo no pese tanto
+/android/

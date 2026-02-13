@@ -38,7 +38,7 @@ var velocidad_inicial : float
 @export var velocidad_al_agarrar : float = 250
 @export var aceleracion_al_agarrar : float = 0.2
 @export var velocidad_correr : float = 40
-@export var fuerza_empuje : float = 0
+@export var fuerza_empuje : float = 2000 #no anda
 @export var velocidad_arrastrando : float = 100.0
 
 @onready var animated_sprite_pj: AnimatedSprite2D = %AnimatedSpritePJ
@@ -63,11 +63,11 @@ enum ESTADOS {IDLE, CAMINAR, SALTAR, CAER, INTERACTUAR, AGARRAR, DIALOGO_ACTIVO}
 var estado_actual : ESTADOS = ESTADOS.IDLE
 var tipo_de_suelo
 
-#ayuda
+
 func _ready() -> void:
 	Global.dialogo_activo_to_player.connect(on_dialogo_activo)
 	Global.dialogo_desactivado_to_player.connect(on_dialogo_desactivado)
-	resetear_mascaras_a_cero()
+	resetear_mascaras_a_cero(false) #true para desactivar todas, false para activarlas
 	mano_test_izq.set_deferred("disabled", true) #DESACTIVO FISICAS DE LA MANO
 	mano_test_der.set_deferred("disabled", true)
 	Global.agarre_mascara.connect(on_agarre_mascara)
@@ -127,9 +127,12 @@ func _input(event: InputEvent) -> void:
 	verificar_animacion_con_mascara()
 
 	if Input.is_action_just_pressed("tirar") and Global.mascara_activa==2 and objeto_arrastrado:
-		conectar_caja_con_joint()
-	if Input.is_action_just_released("tirar"): # TODO 
-		desconectar_caja_con_joint()
+		if not agarrando_caja:
+			agarrar_caja()
+		else:
+			soltar_caja()
+			
+
 	if Input.is_action_just_pressed("r"):
 		print("Se apreto la R")
 		restart() #en restart llamo a matar jugador, te lleva al checkpoint
@@ -212,28 +215,28 @@ func _on_area_tirar_body_entered(body: Node2D) -> void:
 
 func _on_area_tirar_body_exited(body: Node2D) -> void:
 	if body.is_in_group("cajas") and body != Player:
+		soltar_caja()
 		objeto_arrastrado = null
 
 #--------------------  FUNCIONES  ------------------------
 
 func conectar_caja_con_joint():
-	if not objeto_arrastrado or objeto_arrastrado is Player: #habia un bug por eso le mande que no se detecque a si mismo
+	if not is_on_floor():
+		return
+	if not objeto_arrastrado:
+#	if not objeto_arrastrado or objeto_arrastrado is Player: #habia un bug por eso le mande que no se detecque a si mismo
 		return
 	if agarrando_caja:
 		return
 	var direccion_con_caja = sign(global_position.x- objeto_arrastrado.global_position.x)
 	#direccion -1 es esta a tu derecha, 1 es que esta a tu izquierda
 	if ultima_direccion_mirar == direccion_con_caja:
-		#print("NO AGARRAR MIRANDO OPUESTO A LA CAJA")
+		#print("NO AGARRAR, ESTAS MIRANDO OPUESTO A LA CAJA")
 		return
 	pin_joint_agarrar.node_b = objeto_arrastrado.get_path()
 	agarrando_caja = true
 	disminuir_velocidad_al_agarrar()
-	#if objeto_arrastrado.has_method("caja_agarrando"):
-		#print("si tiene esa funcion ---------------------------------")
-		#objeto_arrastrado.caja_agarrando(true)
 	cambiar_de_estado(ESTADOS.AGARRAR)
-#	print("EL OBJETO ARRASTRADO VALE : ", objeto_arrastrado)
 
 
 func desconectar_caja_con_joint():
@@ -251,6 +254,7 @@ func desconectar_caja_con_joint():
 
 
 func comprobar_coyote_timer():
+	#print("COYOTE TIMER FUNCIONA")
 	if estaba_en_el_piso and not is_on_floor():#osea que recien salto
 		timer_coyote_time.start()
 		#sumo tambien para saber cuanto tiempo estaba en el aire
@@ -305,8 +309,6 @@ func reset_velocidad_normal():
 
 func detectar_caida():
 	if not estaba_en_el_piso and is_on_floor():
-		var tiempo_en_aire_actual = tiempo_maximo_en_aire - timer_tiempo_en_aire.time_left
-		#print("tiempo en aire actual vale: ", tiempo_en_aire_actual)
 		$FmodEventEmitter2D4.play()
 		$FmodEventEmitter2D5.stop()
 		sonido_caida_emitiendo = false
@@ -485,12 +487,22 @@ func procesar_caer(delta):
 
 
 func procesar_agarrar(delta):
+	#cuando hago click ya le aviso al player que cambie a la velocidad lenta
 	velocity.x = move_toward(velocity.x,direction * velocidad, aceleracion * delta)
-	if not agarrando_caja:
+	if not agarrando_caja: #para evitar bugs, porque en realidad al apretar e se cambia de estado
+		reset_velocidad_normal()
 		cambiar_de_estado(ESTADOS.IDLE)
-	if objeto_arrastrado:
-		var distancia = objeto_arrastrado.global_position.x - global_position.x
-		objeto_arrastrado.global_position.x = global_position.x+distancia
+		return
+	if not objeto_arrastrado:
+		return
+	
+	objeto_arrastrado.direccion = direction
+	objeto_arrastrado.velocidad = velocidad
+	objeto_arrastrado.siendo_agarrada = true
+	
+	#if objeto_arrastrado:
+	#	var distancia = objeto_arrastrado.global_position.x - global_position.x
+	#	objeto_arrastrado.global_position.x = global_position.x+distancia
 
 func procesar_dialogo_activo(delta):
 	#print("esta aca en procesar dialogoooooooooooooooooooo")
@@ -614,11 +626,16 @@ func activar_mano():
 		mano_test_der.set_deferred("disabled", true)
 
 
-func resetear_mascaras_a_cero():
-	Global.tiene_mascara_fuerza = false
-	Global.tiene_mascara_tiempo = false
-	Global.tiene_mascara_traducciones = false
-	Global.mascara_activa = 0 #esto faltaba pq cuando terminabas el juego tenias la del oso puesta
+func resetear_mascaras_a_cero(estado : bool):
+	if estado == true:
+		Global.tiene_mascara_fuerza = false
+		Global.tiene_mascara_tiempo = false
+		Global.tiene_mascara_traducciones = false
+		Global.mascara_activa = 0 #esto faltaba pq cuando terminabas el juego tenias la del oso puesta
+	else: #esto lo agrego para que sea mas facil activar y desactivar con una sola funcion
+		Global.tiene_mascara_fuerza = true
+		Global.tiene_mascara_tiempo = true
+		Global.tiene_mascara_traducciones = true
 
 func on_dialogo_activo():
 	cambiar_de_estado(ESTADOS.DIALOGO_ACTIVO)
@@ -628,3 +645,28 @@ func on_dialogo_desactivado():
 
 func restart():
 	matar_player()
+
+
+func agarrar_caja():
+	if not is_on_floor():
+		return
+	var direccion_con_caja = sign(global_position.x- objeto_arrastrado.global_position.x)
+	#direccion -1 es esta a tu derecha, 1 es que esta a tu izquierda
+	if ultima_direccion_mirar == direccion_con_caja: #aunque diga == significa que son direcciones opuestas
+		#print("NO AGARRAR, ESTAS MIRANDO OPUESTO A LA CAJA")
+		return
+	#pin_joint_agarrar.node_b = objeto_arrastrado.get_path()
+	disminuir_velocidad_al_agarrar()
+	cambiar_de_estado(ESTADOS.AGARRAR)
+	agarrando_caja = true
+
+
+func soltar_caja():
+	if not agarrando_caja:
+		return
+	objeto_arrastrado.siendo_agarrada = false
+	reset_velocidad_normal()
+	cambiar_de_estado(ESTADOS.IDLE)
+	pin_joint_agarrar.node_b = self.get_path()
+	agarrando_caja = false
+	activar_mano() #TEST ver si sigue haciendo falta ahora que las cajas se pueden empujar

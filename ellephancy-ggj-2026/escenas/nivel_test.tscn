@@ -4,11 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://cs3h434myxe4r" path="res://escenas/player.tscn" id="2_g44pp"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_qtnvv"]
 [ext_resource type="PackedScene" uid="uid://by80hrdi7bflk" path="res://escenas/creador_de_niveles.tscn" id="3_xgvjd"]
-[ext_resource type="PackedScene" uid="uid://t3ox75glka3s" path="res://escenas/world_objects/ObjetoAEmpujar.tscn" id="4_f2txr"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="9_3mf4q"]
 [ext_resource type="PackedScene" uid="uid://dj4jyhd1bexi6" path="res://escenas/checkpoint_area.tscn" id="10_qtnvv"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="10_xr0w3"]
 [ext_resource type="PackedScene" uid="uid://deup0i7mgu0xc" path="res://escenas/masks/area_mascara_oso.tscn" id="11_3mf4q"]
+[ext_resource type="PackedScene" uid="uid://dtyd5t1yemlld" path="res://escenas/piedra_character_test.tscn" id="12_mqba5"]
 [ext_resource type="PackedScene" uid="uid://ig75pg3uo5m" path="res://escenas/masks/area_mascara_ciervo.tscn" id="12_xr0w3"]
 [ext_resource type="PackedScene" uid="uid://gsyv06ys145u" path="res://escenas/masks/area_mascara_salmon.tscn" id="13_mqba5"]
 [ext_resource type="PackedScene" uid="uid://cs6hrjrtl5v7x" path="res://escenas/area_mostrar_texto.tscn" id="14_q0joy"]
@@ -45,6 +45,7 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="Player" parent="." instance=ExtResource("2_g44pp")]
 position = Vector2(611, 422)
+jugar_mobile = false
 
 [node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Ambiente/ambiente"
@@ -95,9 +96,8 @@ position = Vector2(548.99994, 536.00006)
 position = Vector2(288, 545)
 texto_encima = "Press E para agarrar la mascarad"
 
-[node name="ObjetoAEmpujar" parent="." instance=ExtResource("4_f2txr")]
-position = Vector2(225, 420)
-presente = true
-
 [node name="AreaMascaraOso2" parent="." instance=ExtResource("11_3mf4q")]
 position = Vector2(1157.9999, 515.99994)
+
+[node name="PiedraCharacterTEST" parent="." instance=ExtResource("12_mqba5")]
+position = Vector2(121, 426)
