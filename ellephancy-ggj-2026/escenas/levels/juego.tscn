@@ -186,6 +186,7 @@ bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res:/
 [node name="Player" parent="." instance=ExtResource("8_m34qx")]
 position = Vector2(286, 113)
 scale = Vector2(0.64, 0.64)
+jugar_mobile = false
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 1
