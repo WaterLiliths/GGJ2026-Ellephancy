@@ -163,7 +163,7 @@ id_a_destruir = 5
 id_dialogo = 5
 
 [node name="DialogoCiervo1" parent="Dialogos" instance=ExtResource("12_g2qor")]
-position = Vector2(5964, -433)
+position = Vector2(6070, -364)
 mascara_necesaria_para_ver = 1
 dialogo = ExtResource("14_x3go5")
 id_a_destruir = 6
