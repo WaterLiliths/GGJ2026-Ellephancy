@@ -207,8 +207,8 @@ texture = SubResource("GradientTexture2D_kfmqc")
 
 [node name="Runa" parent="." instance=ExtResource("6_kfmqc")]
 offset_left = -200.00076
-offset_top = -668.4412
+offset_top = 229.8872
 offset_right = 199.99924
-offset_bottom = -268.44122
+offset_bottom = 629.8872
 
 [connection signal="timeout" from="TimerPalanca" to="." method="_on_timer_palanca_timeout"]
