@@ -12,12 +12,16 @@ var palanca_actual : Palanca = self
 @export var timer : float = 1.0
 @export var usa_runas : bool = false
 @onready var runa: Runa = $Runa
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+
 var color : Color
 
 signal palanca_con_runa_activada(palanca, id, runa)
 
 
 func _ready() -> void:
+	runa.hide()
 	if usa_runas:
 		print(color)
 		runa.asignar_tipo(runa.TiposDeRunas.values().pick_random(), color)
@@ -43,19 +47,13 @@ func activar() -> void:
 			$TimerPalanca.start()
 		match tipo_de_palanca:
 			"buena":
-				$AnimationPlayer.play("activar")
-				$FmodEventEmitter2D.set_parameter("TipoDePalanca", tipo_de_palanca)
-				$FmodEventEmitter2D.play()
+				reproducir_animacion("activar")
 				await $AnimationPlayer.animation_finished
 			"oxidada":
-				$AnimationPlayer.play("activar_oxidada")
-				$FmodEventEmitter2D.set_parameter("TipoDePalanca", tipo_de_palanca)
-				$FmodEventEmitter2D.play()
+				reproducir_animacion("activar")
 				await $AnimationPlayer.animation_finished
 			"runas":
-				$AnimationPlayer.play("runas")
-				$FmodEventEmitter2D.set_parameter("TipoDePalanca", tipo_de_palanca)
-				$FmodEventEmitter2D.play()
+				reproducir_animacion("activar")
 				await get_tree().create_timer(0.5).timeout
 		emitir_señal()
 		tween_entrada_luz_verde()
@@ -63,19 +61,13 @@ func activar() -> void:
 	if !esta_encendida and not tipo_de_palanca == "fallada":
 		match tipo_de_palanca:
 			"buena":
-				$AnimationPlayer.play("desactivar")
-				$FmodEventEmitter2D.set_parameter("TipoDePalanca", tipo_de_palanca)
-				$FmodEventEmitter2D.play()
+				reproducir_animacion("desactivar")
 				await $AnimationPlayer.animation_finished
 			"oxidada":
-				$AnimationPlayer.play("desactivar_oxidada")
-				$FmodEventEmitter2D.set_parameter("TipoDePalanca", tipo_de_palanca)
-				$FmodEventEmitter2D.play()
+				reproducir_animacion("desactivar")
 				await $AnimationPlayer.animation_finished
 			"runas":
-				$AnimationPlayer.play("runas")
-				$FmodEventEmitter2D.set_parameter("TipoDePalanca", tipo_de_palanca)
-				$FmodEventEmitter2D.play()
+				reproducir_animacion("activar")
 				await get_tree().create_timer(0.5).timeout
 		emitir_señal()
 		tween_salida_luz_verde()
@@ -102,6 +94,14 @@ func _on_timer_palanca_timeout() -> void:
 		esta_encendida = !esta_encendida
 		$AnimationPlayer.play("desactivar")
 		$FmodEventEmitter2D.play()
+
+func reproducir_animacion(activar: String):
+	if animation_player.is_playing():
+		animation_player.stop()
+	animation_player.play(activar + "_" + tipo_de_palanca)
+	$FmodEventEmitter2D.set_parameter("TipoDePalanca", tipo_de_palanca)
+	$FmodEventEmitter2D.play()
+
 
 func emitir_señal():
 	if usa_runas:
