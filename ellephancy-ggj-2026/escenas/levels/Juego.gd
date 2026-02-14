@@ -1,6 +1,8 @@
 extends Node2D
 
 var tween = create_tween()
+@onready var animation_fade_out: AnimationPlayer = %AnimationPlayer
+
 
 func _ready() -> void:
 	#$Player/Camera2D/Control/IconoMascaraOso.hide()
@@ -10,6 +12,7 @@ func _ready() -> void:
 	$FmodEventEmitter2D2.volume = 0.0
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
 	$FmodEventEmitter2D2.play()
+	Global.matar_player.connect(on_matar_jugador)
 	#$AnimationPlayer.play("fade_in") #la animacion ahora se inicializa directamente en el animation player
 	tween.tween_property($FmodEventEmitter2D2, "volume", Global.volumen_musica, 4)
 	Global.mascara_tiempo_activa.connect(cambiar_ambiente_pasado)
@@ -37,6 +40,12 @@ func _process(delta: float) -> void:
 	#if Global.mascara_activa == 0:
 		#$Player/Camera2D/Control/IconoMascaraSalmon/AnimationPlayer.play("desactivar")
 		#$Player/Camera2D/Control/IconoMascaraCiervo/AnimationPlayer.play("desactivar")
+
+func on_matar_jugador():
+	animation_fade_out.play("fade-revivir")
+
+
+
 
 func cambiar_ambiente_pasado():
 	$FmodEventEmitter2D.set_parameter("Tiempo", "pasado")
