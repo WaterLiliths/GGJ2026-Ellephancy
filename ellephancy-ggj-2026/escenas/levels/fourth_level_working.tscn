@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://bnjwrlnb5pxji" path="res://escenas/world_objects/arbol.tscn" id="2_oi7hv"]
 [ext_resource type="PackedScene" uid="uid://dnsoasghkyy4y" path="res://piedra_pasado.tscn" id="4_6imxl"]
 [ext_resource type="PackedScene" uid="uid://dj4jyhd1bexi6" path="res://escenas/checkpoint_area.tscn" id="8_ruoui"]
+[ext_resource type="Texture2D" uid="uid://lhxf00ovblfe" path="res://assets/runas-finales/runa_interfaz_uno.PNG" id="9_g2qor"]
 [ext_resource type="PackedScene" uid="uid://cs6hrjrtl5v7x" path="res://escenas/area_mostrar_texto.tscn" id="9_g7mpo"]
 [ext_resource type="Texture2D" uid="uid://c2uxrmq8rai84" path="res://assets/runas-finales/Runas interfaznum2.png" id="10_ubqd8"]
-[ext_resource type="Texture2D" uid="uid://cbny52wuwpbjr" path="res://assets/runas-finales/Runas interfaznum1.png" id="11_ubqd8"]
 [ext_resource type="PackedScene" uid="uid://ccia0snrxhd0y" path="res://escenas/area_dialogo_prueba.tscn" id="12_g2qor"]
 [ext_resource type="Resource" uid="uid://cqoj5gba0lm51" path="res://dialogue/dialogo_ciervo_primer_uso_poder.dialogue" id="13_x3go5"]
 [ext_resource type="Resource" uid="uid://bw4r8lwidlcpn" path="res://dialogue/dialogo_ciervo_2.dialogue" id="14_ku3a7"]
@@ -151,7 +151,7 @@ textura_runa_tecla = ExtResource("10_ubqd8")
 [node name="Oso1" parent="Tutorial" instance=ExtResource("9_g7mpo")]
 z_index = 6
 position = Vector2(2128, 231)
-textura_runa_tecla = ExtResource("11_ubqd8")
+textura_runa_tecla = ExtResource("9_g2qor")
 
 [node name="Dialogos" type="Node2D" parent="."]
 
@@ -163,7 +163,7 @@ id_a_destruir = 5
 id_dialogo = 5
 
 [node name="DialogoCiervo1" parent="Dialogos" instance=ExtResource("12_g2qor")]
-position = Vector2(5964, -433)
+position = Vector2(6070, -364)
 mascara_necesaria_para_ver = 1
 dialogo = ExtResource("14_x3go5")
 id_a_destruir = 6

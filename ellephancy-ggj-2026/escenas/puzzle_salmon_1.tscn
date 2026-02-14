@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://b6egkrxvfwusp"]
+[gd_scene load_steps=36 format=3 uid="uid://b6egkrxvfwusp"]
 
 [ext_resource type="Script" uid="uid://ghj06urprt1g" path="res://escenas/puzzle_salmon_1.gd" id="1_6r7eb"]
 [ext_resource type="Texture2D" uid="uid://dibfv1arx47hn" path="res://assets/sprites/palanca_centro.PNG" id="1_o8y83"]
@@ -67,36 +67,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dtuov"]
 size = Vector2(325, 299.11108)
 
-[sub_resource type="Animation" id="Animation_omxlu"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../../ContenedorPuerta/PuertaSalmon/Sprite2D/CONTENEDORRUNASPUERTA:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../../ContenedorPuerta/PuertaSalmon/Sprite2D/CONTENEDORRUNASPUERTA:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="Animation" id="Animation_borjd"]
 resource_name = "esconderr_runas_sueltas"
-length = 0.8
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -104,7 +77,7 @@ tracks/0/path = NodePath(".:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.04075222, 0.8),
+"times": PackedFloat32Array(0, 0.04075222, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, true, false]
@@ -116,7 +89,7 @@ tracks/1/path = NodePath(".:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.76666665),
+"times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -128,7 +101,7 @@ tracks/2/path = NodePath("../../ContenedorPuerta/PuertaSalmon/Sprite2D/CONTENEDO
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.8),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -140,7 +113,7 @@ tracks/3/path = NodePath("../../ContenedorPuerta/PuertaSalmon/Sprite2D/CONTENEDO
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.76666665),
+"times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -200,7 +173,6 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_omxlu"]
 _data = {
-&"RESET": SubResource("Animation_omxlu"),
 &"esconderr_runas_sueltas": SubResource("Animation_borjd"),
 &"mostrarr_runas_sueltas": SubResource("Animation_tfrp0")
 }
@@ -322,12 +294,14 @@ unique_name_in_owner = true
 
 [node name="RunaCambiante1" type="Sprite2D" parent="PuzzleSalmon1/ContenedorRunas"]
 unique_name_in_owner = true
+modulate = Color(0.8301808, 0.48723996, 0.8669067, 1)
 position = Vector2(-578, -55)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("8_5j0a8")
 
 [node name="RunaCambiante2" type="Sprite2D" parent="PuzzleSalmon1/ContenedorRunas"]
 unique_name_in_owner = true
+modulate = Color(0.97904676, 0.6744338, 0.39366546, 1)
 position = Vector2(-457, -55)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("7_s1ify")
@@ -450,7 +424,6 @@ contrasena_3 = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="ContenedorPuerta/PuertaSalmon"]
 unique_name_in_owner = true
-modulate = Color(0.63550407, 0.42504865, 0.63550407, 1)
 scale = Vector2(3, 3)
 texture = ExtResource("5_6r7eb")
 
@@ -461,6 +434,7 @@ scale = Vector2(0.33333334, 0.33333334)
 
 [node name="RunaPuerta1" type="Sprite2D" parent="ContenedorPuerta/PuertaSalmon/Sprite2D/CONTENEDORRUNASPUERTA"]
 unique_name_in_owner = true
+modulate = Color(0.83137256, 0.4862745, 0.8666667, 1)
 position = Vector2(1.0000005, -142)
 scale = Vector2(0.16601563, 0.16601563)
 texture = ExtResource("5_gegfy")
@@ -472,6 +446,7 @@ script = null
 
 [node name="RunaPuerta2" type="Sprite2D" parent="ContenedorPuerta/PuertaSalmon/Sprite2D/CONTENEDORRUNASPUERTA"]
 unique_name_in_owner = true
+modulate = Color(0.98039216, 0.6745098, 0.39215687, 1)
 position = Vector2(0, -18)
 scale = Vector2(0.1640625, 0.1640625)
 texture = ExtResource("6_t1q3l")

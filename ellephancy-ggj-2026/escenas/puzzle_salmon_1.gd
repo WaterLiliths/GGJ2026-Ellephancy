@@ -16,6 +16,8 @@ extends Node2D
 @onready var palanca_salmon_1: Area2D = %PalancaSalmon1
 @onready var palanca_salmon_2: Area2D = %PalancaSalmon2
 @onready var palanca_salmon_3: Area2D = %PalancaSalmon3
+@onready var contenedor_runas_puerta: Node2D = %CONTENEDORRUNASPUERTA
+
 
 
 #si estas leyendo esto es porque el nene NO está bien
@@ -51,6 +53,7 @@ func _ready() -> void:
 	runa_cambiante_2.texture = diccionario_runas[runa_2_comienza_con]
 	runa_cambiante_3.texture = diccionario_runas[runa_3_comienza_con]
 	#print("probando, el valor del diccionario es: ", diccionario_runas[1])
+#	tween_salida()
 
 
 func cambiar_runa(palanca_id : int):
@@ -99,19 +102,23 @@ func verificar_contrasena():
 func esconder_runas():
 	contenedor_runas.hide()
 	animation_player_runas.play("esconderr_runas_sueltas")
+	tween_salida()
 
 
 func mostrar_runas():
 	contenedor_runas.show()
 	animation_player_runas.play("mostrarr_runas_sueltas")
+#	tween_entrada()
 
 
 func _on_animation_player_runas_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "mostrarr_runas_sueltas":
-		tween_brillar(contenedor_runas)
+	#if anim_name == "mostrarr_runas_sueltas":
+		#tween_brillar(contenedor_runas)
+		pass
 
-
+#este tween hacia que las runas tardaran en desaparecer, no lo borro para intentar arreglarlo
 func tween_brillar(nodo_runa):
+	return
 	var tween := create_tween()
 	#tween.kill()
 	tween.set_trans(Tween.TRANS_SINE)
@@ -120,8 +127,18 @@ func tween_brillar(nodo_runa):
 	tween.tween_property(nodo_runa,"modulate:a", 0.6, 1)
 	tween.tween_property(nodo_runa,"modulate:a", 1.0, 0.5)
 
-#func tween_salida():
-	#var tween := create_tween()
-	#tween.set_trans(Tween.TRANS_SINE)
-	#tween.set_ease(Tween.EASE_OUT)
-	#tween.tween_property(label_texto,"modulate:a", 0.0 , 0.7)
+
+
+func tween_entrada():
+	var tween := create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(contenedor_runas,"modulate:a", 1.0, 0.45) #TODO buscar la forma de que se ejecuten al mismo tiempo este y la linea de abajo 
+	tween.tween_property(contenedor_runas_puerta,"modulate:a", 1.0, 0.45)
+
+func tween_salida():
+	var tween := create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(contenedor_runas,"modulate:a", 0.0 , 0.7)
+	tween.tween_property(contenedor_runas_puerta,"modulate:a", 0.0 , 0.7)
