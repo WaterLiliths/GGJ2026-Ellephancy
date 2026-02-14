@@ -129,6 +129,7 @@ position = Vector2(-281, 136)
 usa_runas = true
 
 [node name="PuzzleFinal" parent="." instance=ExtResource("7_qqulb")]
+visible = false
 position = Vector2(-2970, -163)
 
 [node name="PuzzleSalmon1" parent="PuzzleFinal" index="0"]
@@ -196,5 +197,25 @@ position = Vector2(-2743, -157)
 dialogo = ExtResource("14_yp18c")
 id_a_destruir = 14
 id_dialogo = 14
+
+[node name="Puzzle2" type="Node2D" parent="."]
+
+[node name="Puerta" parent="Puzzle2" instance=ExtResource("8_toniv")]
+position = Vector2(-3659, -142)
+usa_runas = true
+
+[node name="Palanca" parent="Puzzle2/Puerta" instance=ExtResource("9_ngx8t")]
+position = Vector2(-167, 141)
+usa_runas = true
+
+[node name="Palanca2" parent="Puzzle2/Puerta" instance=ExtResource("9_ngx8t")]
+position = Vector2(-1867, -687)
+tipo_de_palanca = "runas"
+usa_runas = true
+
+[node name="Palanca3" parent="Puzzle2/Puerta" instance=ExtResource("9_ngx8t")]
+position = Vector2(-341, -1902)
+tipo_de_palanca = "runas"
+usa_runas = true
 
 [editable path="PuzzleFinal"]
