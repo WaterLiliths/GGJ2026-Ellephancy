@@ -11,9 +11,6 @@ size = Vector2(77, 79)
 
 [node name="NivelTest2" type="Node2D"]
 
-[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
-bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank", "res://assets/audio/FmodBanks/Desktop/UI.bank"]
-
 [node name="CreadoresDeNiveles" type="Node" parent="."]
 
 [node name="CreadorDeNiveles" parent="CreadoresDeNiveles" instance=ExtResource("2_v88yx")]
@@ -31,24 +28,7 @@ tile_map_data = PackedByteArray("AAAdAAUABQACAAEAAAAeAAUABQADAAEAAAAfAAUABQAEAAE
 tile_map_data = PackedByteArray("AAAYAAkABQADAAEAAAAZAAkABQAEAAEAAAA=")
 
 [node name="Player" parent="." instance=ExtResource("1_7lvsf")]
-position = Vector2(245, 522)
-limite_altura_morir = null
-tiempo_maximo_en_aire = null
-aceleracion = null
-desaceleracion = null
-velocidad_max = null
-gravedad_subiendo = null
-gravedad_bajando = null
-velocidad = null
-velocidad_salto = null
-velocidad_salto_con_mascara = null
-"desaceleración_al_saltar" = null
-desaceleracion_horizontal = null
-velocidad_al_agarrar = null
-aceleracion_al_agarrar = null
-velocidad_correr = null
-fuerza_empuje = null
-velocidad_arrastrando = null
+position = Vector2(17, 528)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
@@ -81,19 +61,38 @@ ENSEÑARLE AL USUARIO EL CAMBIO DE TIEMPOS
 MASCARA 1"
 
 [node name="Puerta" parent="." instance=ExtResource("4_g37p4")]
-position = Vector2(896, 397)
+position = Vector2(637, 397)
+id_puerta = null
+horizontal = null
+varias_palancas = null
+cant_palancas = null
 usa_runas = true
+empieza_abierta = null
+timeada = null
+timer = null
+altura_maxima = null
+tiempo_de_apertura = null
+tamano = null
 
 [node name="Palanca" parent="Puerta" instance=ExtResource("5_58txp")]
-position = Vector2(-539.00006, 178)
+position = Vector2(-172, 173)
+id = null
+timeada = null
+timer = null
 usa_runas = true
 
 [node name="Palanca2" parent="Puerta" instance=ExtResource("5_58txp")]
-position = Vector2(-390, 176)
+position = Vector2(-346, 175)
+id = null
+timeada = null
+timer = null
 usa_runas = true
 
 [node name="Palanca3" parent="Puerta" instance=ExtResource("5_58txp")]
-position = Vector2(-233, 180)
+position = Vector2(-515, 173)
+id = null
+timeada = null
+timer = null
 usa_runas = true
 
 [connection signal="body_entered" from="Area2DTEST" to="Area2DTEST" method="_on_body_entered"]

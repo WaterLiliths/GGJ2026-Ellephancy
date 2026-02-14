@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://bq06edhxvia6a"]
+
+[ext_resource type="Script" uid="uid://db4nt1uastqn8" path="res://escenas/luciernagas.gd" id="1_kohik"]
+
+[sub_resource type="Gradient" id="Gradient_yq8d7"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kohik"]
+gradient = SubResource("Gradient_yq8d7")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8888889, 0.508547)
+
+[sub_resource type="Curve" id="Curve_5au1i"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kohik"]
+
+[node name="Luciernagas" type="CharacterBody2D"]
+platform_floor_layers = 4294967294
+platform_wall_layers = 6
+script = ExtResource("1_kohik")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 100
+texture = SubResource("GradientTexture2D_kohik")
+lifetime = 6.27
+preprocess = 1.13
+randomness = 0.07
+lifetime_randomness = 0.1
+emission_shape = 1
+emission_sphere_radius = 43.01
+spread = 19.15
+gravity = Vector2(0, 0)
+angular_velocity_min = -361.85
+angular_velocity_max = 192.0
+linear_accel_max = 36.92
+scale_amount_min = 0.2
+scale_amount_max = 0.3
+scale_amount_curve = SubResource("Curve_5au1i")
+color = Color(0.97599995, 1, 0.64, 1)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+avoidance_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kohik")

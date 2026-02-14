@@ -165,6 +165,15 @@ scroll_active = false
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.40784314)
+theme_override_constants/shadow_outline_size = 0
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/bold_font_size = 25
+theme_override_font_sizes/bold_italics_font_size = 25
+theme_override_font_sizes/italics_font_size = 25
+theme_override_font_sizes/mono_font_size = 25
 text = "Dialogue..."
 
 [node name="Control" type="Control" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]

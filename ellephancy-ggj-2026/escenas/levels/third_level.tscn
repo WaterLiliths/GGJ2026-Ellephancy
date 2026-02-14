@@ -10,9 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://cs6hrjrtl5v7x" path="res://escenas/area_mostrar_texto.tscn" id="8_k6c24"]
 [ext_resource type="PackedScene" uid="uid://ccia0snrxhd0y" path="res://escenas/area_dialogo_prueba.tscn" id="8_mbgde"]
 [ext_resource type="Resource" uid="uid://dcphcicwvfa2p" path="res://dialogue/dialogo_oso_primer_uso_poder.dialogue" id="9_j3jvu"]
-[ext_resource type="Texture2D" uid="uid://bf6w0xuwfhbvx" path="res://assets/runas-finales/Runas interfazckickye.png" id="9_p2jn5"]
 [ext_resource type="Resource" uid="uid://dccy0tht6505s" path="res://dialogue/dialogo_oso_3.dialogue" id="10_qsl62"]
 [ext_resource type="Resource" uid="uid://dfl2154dp73yy" path="res://dialogue/dialogo_oso_1.dialogue" id="11_ul2cq"]
+[ext_resource type="Texture2D" uid="uid://dqqfvk8g6yn5t" path="res://assets/runas-finales/Runas interfaz1E.png" id="13_j3jvu"]
 [ext_resource type="PackedScene" uid="uid://dck55ah6p3ck0" path="res://escenas/no_pasar.tscn" id="15_qsl62"]
 
 [node name="ThirdLevel" type="Node2D"]
@@ -166,7 +166,7 @@ id_dialogo = 3
 
 [node name="TutoriaQ" parent="." instance=ExtResource("8_k6c24")]
 position = Vector2(820, 662)
-textura_runa_tecla = ExtResource("9_p2jn5")
+textura_runa_tecla = ExtResource("13_j3jvu")
 
 [node name="NoPasar" parent="." instance=ExtResource("15_qsl62")]
 position = Vector2(392, 430)

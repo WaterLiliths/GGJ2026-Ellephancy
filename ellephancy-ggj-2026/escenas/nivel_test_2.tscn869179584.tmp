@@ -85,15 +85,15 @@ position = Vector2(896, 397)
 usa_runas = true
 
 [node name="Palanca" parent="Puerta" instance=ExtResource("5_58txp")]
-position = Vector2(-539.00006, 178)
+position = Vector2(-513, 175)
 usa_runas = true
 
 [node name="Palanca2" parent="Puerta" instance=ExtResource("5_58txp")]
-position = Vector2(-390, 176)
+position = Vector2(-346, 175)
 usa_runas = true
 
 [node name="Palanca3" parent="Puerta" instance=ExtResource("5_58txp")]
-position = Vector2(-233, 180)
+position = Vector2(-191, 175)
 usa_runas = true
 
 [connection signal="body_entered" from="Area2DTEST" to="Area2DTEST" method="_on_body_entered"]
