@@ -19,6 +19,29 @@ texture = ExtResource("2_555dy")
 position = Vector2(0, -10.5)
 shape = SubResource("RectangleShape2D_555dy")
 
+[node name="Control" type="Control" parent="CollisionShape2D"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -44.0
+offset_top = -206.5
+offset_right = 44.0
+offset_bottom = 208.5
+
+[node name="ContenedorDeRunas" type="VBoxContainer" parent="CollisionShape2D/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 45.0
+offset_right = -12.0
+offset_bottom = -53.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
 [node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Objetos/puerta moviendo"
 event_guid = "{90f3a533-e150-435d-bc70-f426f47244f3}"
@@ -29,6 +52,10 @@ fmod_parameters/Peso/variant_type = 3
 [node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Objetos/puerta impacto"
 event_guid = "{8e09a333-65e9-4f68-87ba-6df0a185aedb}"
+
+[node name="FmodEventEmitter2D3" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Objetos/revelar palabra"
+event_guid = "{bbc29be1-3174-4355-921b-261e3f1121e0}"
 
 [node name="TimerTiempoDeApertura" type="Timer" parent="."]
 one_shot = true

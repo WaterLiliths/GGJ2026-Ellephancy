@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://b3kt101wc8mwl"]
+[gd_scene load_steps=19 format=3 uid="uid://b3kt101wc8mwl"]
 
 [ext_resource type="Script" uid="uid://cq4ck0hi4tl82" path="res://escenas/world_objects/palanca.gd" id="1_3114u"]
 [ext_resource type="Texture2D" uid="uid://dibfv1arx47hn" path="res://assets/sprites/palanca_centro.PNG" id="3_onv6i"]
 [ext_resource type="Texture2D" uid="uid://yf1ovbt7adcn" path="res://assets/sprites/base_palanca.PNG" id="4_j5e1s"]
 [ext_resource type="Texture2D" uid="uid://cfqv1dilqxxfc" path="res://assets/sprites/palanca_adorno.PNG" id="4_kfmqc"]
 [ext_resource type="Texture2D" uid="uid://csdeyuc1gerbf" path="res://escenas/animaciones/gradiente-particulas.tres" id="5_j5e1s"]
+[ext_resource type="PackedScene" uid="uid://bvq5bbgfqxbf3" path="res://escenas/runa.tscn" id="6_kfmqc"]
 
 [sub_resource type="Animation" id="Animation_vs360"]
 length = 0.001
@@ -104,6 +105,22 @@ tracks/0/keys = {
 "values": [-2.3561945, -2.988003679414292, -2.988003679414292, -2.3561945]
 }
 
+[sub_resource type="Animation" id="Animation_2bjif"]
+resource_name = "runas"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PalancaCentro:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.93333334, 1.3666667),
+"transitions": PackedFloat32Array(5.0982437, 0.09807344, 0.09807344, 5.0982437),
+"update": 0,
+"values": [-2.3561945, -2.988003679414292, -2.988003679414292, -2.3561945]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2mypw"]
 _data = {
 &"RESET": SubResource("Animation_vs360"),
@@ -112,7 +129,8 @@ _data = {
 &"desactivada": SubResource("Animation_kfmqc"),
 &"desactivar": SubResource("Animation_2mypw"),
 &"desactivar_oxidada": SubResource("Animation_wht2g"),
-&"fallada": SubResource("Animation_onv6i")
+&"fallada": SubResource("Animation_onv6i"),
+&"runas": SubResource("Animation_2bjif")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dtuov"]
@@ -186,5 +204,11 @@ energy = 4.35
 texture = SubResource("GradientTexture2D_kfmqc")
 
 [node name="TimerPalanca" type="Timer" parent="."]
+
+[node name="Runa" parent="." instance=ExtResource("6_kfmqc")]
+offset_left = -200.00076
+offset_top = -746.24915
+offset_right = 199.99924
+offset_bottom = -346.24915
 
 [connection signal="timeout" from="TimerPalanca" to="." method="_on_timer_palanca_timeout"]
