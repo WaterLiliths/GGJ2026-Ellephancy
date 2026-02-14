@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpnbuf8xcxfpf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4451n"]
+size = Vector2(2945, 1231)
+
+[node name="AreaDeAyuda" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_4451n")
+
+[node name="Marker2D" type="Marker2D" parent="."]
