@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://dvoneccgob4vn"]
+[gd_scene load_steps=17 format=4 uid="uid://dvoneccgob4vn"]
 
 [ext_resource type="Texture2D" uid="uid://c0letordwqfnu" path="res://assets/sprites/ambient/Árbol caído.png" id="1_mfy6x"]
 [ext_resource type="Script" uid="uid://61v3afknfgh6" path="res://escenas/levels/tronco_muerto.gd" id="2_undl5"]
@@ -8,7 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://by80hrdi7bflk" path="res://escenas/creador_de_niveles.tscn" id="6_i7xuu"]
 [ext_resource type="PackedScene" uid="uid://b6egkrxvfwusp" path="res://escenas/puzzle_salmon_1.tscn" id="7_qqulb"]
 [ext_resource type="PackedScene" uid="uid://cs6hrjrtl5v7x" path="res://escenas/area_mostrar_texto.tscn" id="8_geltr"]
+[ext_resource type="PackedScene" uid="uid://biambmyuxxflo" path="res://escenas/world_objects/puerta.tscn" id="8_toniv"]
 [ext_resource type="Texture2D" uid="uid://q3ics3iji43w" path="res://assets/runas-finales/Runas interfaznum3.png" id="9_07x0w"]
+[ext_resource type="PackedScene" uid="uid://b3kt101wc8mwl" path="res://escenas/world_objects/palanca.tscn" id="9_ngx8t"]
 [ext_resource type="PackedScene" uid="uid://ccia0snrxhd0y" path="res://escenas/area_dialogo_prueba.tscn" id="10_wu2ub"]
 [ext_resource type="Resource" uid="uid://lflkk6jkehov" path="res://dialogue/dialogo_salmon_primer_uso_poder.dialogue" id="11_uqa83"]
 [ext_resource type="Resource" uid="uid://dcguqmqeh147x" path="res://dialogue/dialogo_salmon_1.dialogue" id="12_r86qt"]
@@ -108,38 +110,26 @@ z_index = -2
 tile_map_data = PackedByteArray("AACn//f/BgAMAAsAAGCs//f/BgAMAAsAADCu//X/BQABAAUAAADM/+f/BQAFAAsAAADM/+r/BQAFAAsAAADE/+P/BQAGAAsAAADD/+b/BQAJAAsAAACs//7/AQAIAAcAAACs////AQAIAAgAAACs/wAAAQAIAAkAAACt//7/AQAJAAcAAACt////AQAJAAgAAACt/wAAAQAJAAkAAACu//7/AQAKAAcAAACu////AQAKAAgAAACu/wAAAQAKAAkAAADF/+H/AQAIAAcAAADF/+L/AQAIAAgAAADF/+P/AQAIAAkAAADG/+H/AQAJAAcAAADG/+L/AQAJAAgAAADG/+P/AQAJAAkAAADH/+H/AQAKAAcAAADH/+L/AQAKAAgAAADH/+P/AQAKAAkAAADJ////AQADAAsAAADJ/wAAAQADAAwAAADK////AQAEAAsAAADK/wAAAQAEAAwAAADB////AQADAAsAAADC////AQAEAAsAAACy//X/AQANAAIAAACr//P/AQANAAIAAADG/+7/AQAOAAIAAADJ/+P/AQAOAAIAAAC8/+T/AQAIAAcAAAC8/+X/AQAIAAgAAAC8/+b/AQAIAAkAAAC9/+T/AQAJAAcAAAC9/+X/AQAJAAgAAAC9/+b/AQAJAAkAAAC+/+T/AQAKAAcAAAC+/+X/AQAKAAgAAAC+/+b/AQAKAAkAAADB/wAAAQADAAwAAADC/wAAAQAEAAwAAAA=")
 presente = true
 
-[node name="PuzzleInicio" parent="." instance=ExtResource("7_qqulb")]
+[node name="PuzzleInicio" type="Node2D" parent="."]
+
+[node name="Puerta" parent="PuzzleInicio" instance=ExtResource("8_toniv")]
 position = Vector2(-4770, -138)
+usa_runas = true
 
-[node name="PuzzleSalmon1" parent="PuzzleInicio" index="0"]
-position = Vector2(98, -21)
+[node name="Palanca" parent="PuzzleInicio/Puerta" instance=ExtResource("9_ngx8t")]
+position = Vector2(-590, 136)
+usa_runas = true
 
-[node name="PalancaSalmon1" parent="PuzzleInicio/PuzzleSalmon1" index="0"]
-position = Vector2(-715, 163)
+[node name="Palanca2" parent="PuzzleInicio/Puerta" instance=ExtResource("9_ngx8t")]
+position = Vector2(-436, 136)
+usa_runas = true
 
-[node name="RunaCambiante1" parent="PuzzleInicio/PuzzleSalmon1/ContenedorRunas" index="0"]
-position = Vector2(-605, 123)
-
-[node name="RunaCambiante2" parent="PuzzleInicio/PuzzleSalmon1/ContenedorRunas" index="1"]
-position = Vector2(-382, 59.000008)
-
-[node name="RunaCambiante3" parent="PuzzleInicio/PuzzleSalmon1/ContenedorRunas" index="2"]
-z_index = 1
-position = Vector2(-267, 269)
-
-[node name="PalancaSalmon2" parent="PuzzleInicio/PuzzleSalmon1" index="2"]
-position = Vector2(-460, 162)
-
-[node name="PalancaSalmon3" parent="PuzzleInicio/PuzzleSalmon1" index="3"]
-position = Vector2(-272, 163)
-
-[node name="ContenedorPuerta" parent="PuzzleInicio" index="1"]
-z_index = -5
-
-[node name="PuertaSalmon" parent="PuzzleInicio/ContenedorPuerta" index="0"]
-position = Vector2(1, 22)
+[node name="Palanca3" parent="PuzzleInicio/Puerta" instance=ExtResource("9_ngx8t")]
+position = Vector2(-281, 136)
+usa_runas = true
 
 [node name="PuzzleFinal" parent="." instance=ExtResource("7_qqulb")]
+visible = false
 position = Vector2(-2970, -163)
 
 [node name="PuzzleSalmon1" parent="PuzzleFinal" index="0"]
@@ -208,5 +198,24 @@ dialogo = ExtResource("14_yp18c")
 id_a_destruir = 14
 id_dialogo = 14
 
-[editable path="PuzzleInicio"]
+[node name="Puzzle2" type="Node2D" parent="."]
+
+[node name="Puerta" parent="Puzzle2" instance=ExtResource("8_toniv")]
+position = Vector2(-3659, -142)
+usa_runas = true
+
+[node name="Palanca" parent="Puzzle2/Puerta" instance=ExtResource("9_ngx8t")]
+position = Vector2(-167, 141)
+usa_runas = true
+
+[node name="Palanca2" parent="Puzzle2/Puerta" instance=ExtResource("9_ngx8t")]
+position = Vector2(-1867, -687)
+tipo_de_palanca = "runas"
+usa_runas = true
+
+[node name="Palanca3" parent="Puzzle2/Puerta" instance=ExtResource("9_ngx8t")]
+position = Vector2(-341, -1902)
+tipo_de_palanca = "runas"
+usa_runas = true
+
 [editable path="PuzzleFinal"]

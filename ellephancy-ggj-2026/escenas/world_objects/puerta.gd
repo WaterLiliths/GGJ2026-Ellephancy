@@ -151,10 +151,6 @@ func setup_runas():
 			index += 1
 			runa_puerta.asignar_tipo(tipo, color)
 			palanca.color = color
-			
-			#runa_puerta.modulate = color
-			#palanca.runa.modulate = color
-			
 			runas_correctas[tipo] = palanca
 
 func _on_palanca_con_runa_activada(palanca: Palanca, id_palanca, runa: Runa):

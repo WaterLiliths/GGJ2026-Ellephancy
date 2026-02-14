@@ -22,22 +22,6 @@ tracks/0/keys = {
 "values": [-2.3561945]
 }
 
-[sub_resource type="Animation" id="Animation_neg3w"]
-resource_name = "activar"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PalancaCentro:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(5.0982437, 0.09807344),
-"update": 0,
-"values": [-2.3561945, -3.9269907]
-}
-
 [sub_resource type="Animation" id="Animation_j5e1s"]
 resource_name = "activar_oxidada"
 length = 0.8
@@ -57,22 +41,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_kfmqc"]
 resource_name = "desactivada"
 
-[sub_resource type="Animation" id="Animation_2mypw"]
-resource_name = "desactivar"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PalancaCentro:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(5.09, 0.098),
-"update": 0,
-"values": [-3.9269907, -2.3561945]
-}
-
 [sub_resource type="Animation" id="Animation_wht2g"]
 resource_name = "desactivar_oxidada"
 length = 0.8
@@ -89,9 +57,9 @@ tracks/0/keys = {
 "values": [-3.9269907, -2.3561945]
 }
 
-[sub_resource type="Animation" id="Animation_onv6i"]
-resource_name = "fallada"
-length = 2.0
+[sub_resource type="Animation" id="Animation_neg3w"]
+resource_name = "activar_buena"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -99,14 +67,30 @@ tracks/0/path = NodePath("PalancaCentro:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.93333334, 2),
-"transitions": PackedFloat32Array(5.0982437, 0.09807344, 0.09807344, 5.0982437),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(5.0982437, 0.09807344),
 "update": 0,
-"values": [-2.3561945, -2.988003679414292, -2.988003679414292, -2.3561945]
+"values": [-2.3561945, -3.9269907]
+}
+
+[sub_resource type="Animation" id="Animation_2mypw"]
+resource_name = "desactivar_buena"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PalancaCentro:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(5.09, 0.098),
+"update": 0,
+"values": [-3.9269907, -2.3561945]
 }
 
 [sub_resource type="Animation" id="Animation_2bjif"]
-resource_name = "runas"
+resource_name = "activar_runas"
 length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -121,16 +105,32 @@ tracks/0/keys = {
 "values": [-2.3561945, -2.988003679414292, -2.988003679414292, -2.3561945]
 }
 
+[sub_resource type="Animation" id="Animation_onv6i"]
+resource_name = "activar_fallada"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PalancaCentro:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.93333334, 2),
+"transitions": PackedFloat32Array(5.0982437, 0.09807344, 0.09807344, 5.0982437),
+"update": 0,
+"values": [-2.3561945, -2.988003679414292, -2.988003679414292, -2.3561945]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2mypw"]
 _data = {
 &"RESET": SubResource("Animation_vs360"),
-&"activar": SubResource("Animation_neg3w"),
+&"activar_buena": SubResource("Animation_neg3w"),
+&"activar_fallada": SubResource("Animation_onv6i"),
 &"activar_oxidada": SubResource("Animation_j5e1s"),
+&"activar_runas": SubResource("Animation_2bjif"),
 &"desactivada": SubResource("Animation_kfmqc"),
-&"desactivar": SubResource("Animation_2mypw"),
-&"desactivar_oxidada": SubResource("Animation_wht2g"),
-&"fallada": SubResource("Animation_onv6i"),
-&"runas": SubResource("Animation_2bjif")
+&"desactivar_buena": SubResource("Animation_2mypw"),
+&"desactivar_oxidada": SubResource("Animation_wht2g")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dtuov"]
@@ -207,8 +207,8 @@ texture = SubResource("GradientTexture2D_kfmqc")
 
 [node name="Runa" parent="." instance=ExtResource("6_kfmqc")]
 offset_left = -200.00076
-offset_top = -746.24915
+offset_top = 229.8872
 offset_right = 199.99924
-offset_bottom = -346.24915
+offset_bottom = 629.8872
 
 [connection signal="timeout" from="TimerPalanca" to="." method="_on_timer_palanca_timeout"]
