@@ -90,7 +90,15 @@ animations = [{
 }],
 "loop": false,
 "name": &"agarrar_oso",
-"speed": 15.0
+"speed": 17.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_0wi6y")
+}],
+"loop": false,
+"name": &"agarre_idle",
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,

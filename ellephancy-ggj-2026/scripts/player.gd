@@ -14,6 +14,7 @@ extends CharacterBody2D
 @onready var mano_test_der: CollisionShape2D = %CollisionManoDer
 
 #-------------------------------
+var animacion_agarrar_inicial_terminada : bool = false
 var ultimo_tiempo_en_aire : float = 0
 var tiempo_en_el_aire_actual: float = 0
 var dialogos_activos : bool = false
@@ -334,11 +335,7 @@ func ejecutar_animacion_saltar(forzar_id : int = 0): #por si queremos forzar una
 
 
 func ejecutar_animacion_arrastrar(): #solo puede el oso
-	return
-	#if direction and animated_sprite_pj.animation != "seguir_agarrando":
-		#animated_sprite_pj.play("seguir_agarrando") 
-	#elif direction and animated_sprite_pj.animation != "agarrar_oso":
-		#animated_sprite_pj.play("agarrar_oso")
+	animated_sprite_pj.play("seguir_agarrando")
 
 
 func ejecutar_animacion_palanca(forzar_id : int = 0): #por si queremos forzar una especifica
@@ -477,13 +474,16 @@ func procesar_agarrar(delta):
 	objeto_arrastrado.direccion = direction
 	objeto_arrastrado.velocidad = velocidad
 	objeto_arrastrado.siendo_agarrada = true
-	#ejecutar_animacion_arrastrar()
-	if direction and animated_sprite_pj.animation != "seguir_agarrando":
-		animated_sprite_pj.play("seguir_agarrando") 
-	if direction and animated_sprite_pj.animation != "agarrar_oso":
-		animated_sprite_pj.play("agarrar_oso")
-	
-	
+
+	#if not animacion_agarrar_inicial_terminada:
+		#return #espero hasta que haga la animacion de agarre para pasar a las otras
+	if direction != 0:
+		if animated_sprite_pj.animation != "seguir_agarrando":
+			animated_sprite_pj.play("seguir_agarrando")
+	else:
+		if animated_sprite_pj.animation != "agarre_idle":
+			animated_sprite_pj.play("agarre_idle")
+
 func procesar_dialogo_activo(delta):
 	#print("esta aca en procesar dialogoooooooooooooooooooo")
 	direction = 0
@@ -496,8 +496,8 @@ func _on_animated_sprite_pj_animation_finished() -> void:
 		cambiar_de_estado(ESTADOS.IDLE)
 	if animacion.begins_with("salto"):
 		ejecutar_animacion_caida()
-	#if animacion == "agarrar_oso" and estado_actual == ESTADOS.AGARRAR:
-		#animated_sprite_pj.play("seguir_agarrando") #TODO TESTEAR
+	if animacion == "agarrar_oso" and estado_actual == ESTADOS.AGARRAR:
+		animacion_agarrar_inicial_terminada = true
 
 
 func matar_player():
@@ -639,6 +639,8 @@ func agarrar_caja():
 	#pin_joint_agarrar.node_b = objeto_arrastrado.get_path()
 	disminuir_velocidad_al_agarrar()
 	cambiar_de_estado(ESTADOS.AGARRAR)
+	animacion_agarrar_inicial_terminada = false
+	animated_sprite_pj.play("agarrar_oso")
 	agarrando_caja = true
 
 
