@@ -184,14 +184,13 @@ texture = ExtResource("5_ffuyt")
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank", "res://assets/audio/FmodBanks/Desktop/UI.bank"]
 
 [node name="Player" parent="." instance=ExtResource("8_m34qx")]
-position = Vector2(2888, -41)
+position = Vector2(10637, -1060)
 scale = Vector2(0.64, 0.64)
-jugar_mobile = false
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(2888, -111)
+position = Vector2(10637, -1130)
 zoom = Vector2(1.6, 1.6)
 limit_left = 0
 limit_bottom = 1200
@@ -207,6 +206,7 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="ColorRect" type="ColorRect" parent="Player/Camera2D"]
 visible = false
+modulate = Color(1, 1, 1, 0)
 z_index = 185
 y_sort_enabled = true
 offset_left = -716.0
@@ -294,7 +294,7 @@ position = Vector2(-97, 588)
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(2888, -111)
+position = Vector2(10637, -1130)
 script = ExtResource("12_g2cn0")
 follow_mode = 2
 follow_target = NodePath("../Player/Node2D")
@@ -309,6 +309,7 @@ limit_bottom = 1200
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 libraries = {
 &"": ExtResource("18_vy46r")
 }

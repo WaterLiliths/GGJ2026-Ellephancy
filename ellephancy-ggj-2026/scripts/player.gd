@@ -14,6 +14,8 @@ extends CharacterBody2D
 @onready var mano_test_der: CollisionShape2D = %CollisionManoDer
 
 #-------------------------------
+var ultimo_tiempo_en_aire : float = 0
+var tiempo_en_el_aire_actual: float = 0
 var dialogos_activos : bool = false
 var ultimo_estado : ESTADOS
 @export var limite_altura_morir : float = 2000
@@ -22,7 +24,6 @@ var ultima_direccion_mirar : int = 1 #para derecha e izquierda solo 1 -1
 var sonido_caida_emitiendo : bool = false
 var sonido_caja_sonando : bool = false
 var agarrando_caja : bool = false
-@export_range(0,10,0.1) var tiempo_maximo_en_aire : float = 10
 @export var aceleracion : float = 1800.0
 @export var desaceleracion : float = 2200.0
 @export var velocidad_max : float = 250.0
@@ -71,7 +72,6 @@ func _ready() -> void:
 	mano_test_izq.set_deferred("disabled", true) #DESACTIVO FISICAS DE LA MANO
 	mano_test_der.set_deferred("disabled", true)
 	Global.agarre_mascara.connect(on_agarre_mascara)
-	timer_tiempo_en_aire.wait_time = tiempo_maximo_en_aire
 	velocidad_inicial = velocidad
 	velocidad_inicial_salto = velocidad_salto
 	Global.mascara_fuerza_activa.connect(activar_mascara_fuerza)
@@ -173,13 +173,13 @@ func _physics_process(delta: float) -> void:
 			procesar_dialogo_activo(delta)
 	if global_position.y > limite_altura_morir:
 		matar_player()
-	#forzar git
+	
 	move_and_slide()
+	calcular_tiempo_en_aire(delta)
 	detectar_caida()
 	comprobar_coyote_timer()
-	
-	
-	
+
+
 	if agarrando_caja and direction:
 		if not sonido_caja_sonando:
 			%FmodEventEmitter2D3.set_parameter("peso", 5.0)
@@ -192,8 +192,6 @@ func _physics_process(delta: float) -> void:
 			%FmodEventEmitter2D3.stop()
 			sonido_caja_sonando = false
 
-	#if velocity.y > 0:
-		#ejecutar_animacion_caida()
 
 	if is_on_floor():
 		timer_coyote_time.stop()
@@ -219,39 +217,6 @@ func _on_area_tirar_body_exited(body: Node2D) -> void:
 		objeto_arrastrado = null
 
 #--------------------  FUNCIONES  ------------------------
-
-func conectar_caja_con_joint():
-	if not is_on_floor():
-		return
-	if not objeto_arrastrado:
-#	if not objeto_arrastrado or objeto_arrastrado is Player: #habia un bug por eso le mande que no se detecque a si mismo
-		return
-	if agarrando_caja:
-		return
-	var direccion_con_caja = sign(global_position.x- objeto_arrastrado.global_position.x)
-	#direccion -1 es esta a tu derecha, 1 es que esta a tu izquierda
-	if ultima_direccion_mirar == direccion_con_caja:
-		#print("NO AGARRAR, ESTAS MIRANDO OPUESTO A LA CAJA")
-		return
-	pin_joint_agarrar.node_b = objeto_arrastrado.get_path()
-	agarrando_caja = true
-	disminuir_velocidad_al_agarrar()
-	cambiar_de_estado(ESTADOS.AGARRAR)
-
-
-func desconectar_caja_con_joint():
-	if not agarrando_caja:
-		return
-	pin_joint_agarrar.node_b = self.get_path()# me vuelvo a conectar a mi mismo que es lo mismo q desconectar
-	#objeto_arrastrado = null #que solo el area maneje esto con body exited
-	agarrando_caja = false
-	#if objeto_arrastrado.has_method("caja_agarrando"):
-		#print("si tiene esa funcion ---------------------------------")
-		#objeto_arrastrado.caja_agarrando(false)
-	reset_velocidad_normal()
-	cambiar_de_estado(ESTADOS.IDLE)
-	activar_mano()
-
 
 func comprobar_coyote_timer():
 	#print("COYOTE TIMER FUNCIONA")
@@ -312,8 +277,17 @@ func detectar_caida():
 		$FmodEventEmitter2D4.play()
 		$FmodEventEmitter2D5.stop()
 		sonido_caida_emitiendo = false
+	#	print("DETECTAR CAIDA - ESTUVO ", ultimo_tiempo_en_aire, " TIEMPO EN EL AIRE ")
+		if ultimo_tiempo_en_aire > 1.1: #esta harcodeado pero podria ser una variable
+			Global.player_detecto_caida.emit(ultimo_tiempo_en_aire)
 
-
+func calcular_tiempo_en_aire(delta : float):
+	if is_on_floor() and tiempo_en_el_aire_actual!=0:
+		ultimo_tiempo_en_aire = tiempo_en_el_aire_actual
+		tiempo_en_el_aire_actual = 0
+	else:
+		tiempo_en_el_aire_actual += delta
+	#	print("ESTUVO TANTO TIEMPO EN AIREEEE: ", tiempo_en_el_aire)
 
 func consultar_saltar():
 	if Input.is_action_just_pressed("w") and (is_on_floor() or puedo_usar_coyote()):
@@ -360,7 +334,11 @@ func ejecutar_animacion_saltar(forzar_id : int = 0): #por si queremos forzar una
 
 
 func ejecutar_animacion_arrastrar(): #solo puede el oso
-	animated_sprite_pj.play("seguir_agarrando")
+	return
+	#if direction and animated_sprite_pj.animation != "seguir_agarrando":
+		#animated_sprite_pj.play("seguir_agarrando") 
+	#elif direction and animated_sprite_pj.animation != "agarrar_oso":
+		#animated_sprite_pj.play("agarrar_oso")
 
 
 func ejecutar_animacion_palanca(forzar_id : int = 0): #por si queremos forzar una especifica
@@ -405,7 +383,7 @@ func ejecutar_animacion_caida(forzar_id : int = 0): #por si queremos forzar una 
 func cambiar_de_estado(estado_nuevo : ESTADOS):
 	if estado_actual == estado_nuevo:
 		return
-	ultimo_estado == estado_actual
+	ultimo_estado = estado_actual
 	estado_actual = estado_nuevo
 	match estado_actual:
 		ESTADOS.IDLE:
@@ -499,11 +477,13 @@ func procesar_agarrar(delta):
 	objeto_arrastrado.direccion = direction
 	objeto_arrastrado.velocidad = velocidad
 	objeto_arrastrado.siendo_agarrada = true
+	#ejecutar_animacion_arrastrar()
+	if direction and animated_sprite_pj.animation != "seguir_agarrando":
+		animated_sprite_pj.play("seguir_agarrando") 
+	if direction and animated_sprite_pj.animation != "agarrar_oso":
+		animated_sprite_pj.play("agarrar_oso")
 	
-	#if objeto_arrastrado:
-	#	var distancia = objeto_arrastrado.global_position.x - global_position.x
-	#	objeto_arrastrado.global_position.x = global_position.x+distancia
-
+	
 func procesar_dialogo_activo(delta):
 	#print("esta aca en procesar dialogoooooooooooooooooooo")
 	direction = 0
@@ -516,8 +496,8 @@ func _on_animated_sprite_pj_animation_finished() -> void:
 		cambiar_de_estado(ESTADOS.IDLE)
 	if animacion.begins_with("salto"):
 		ejecutar_animacion_caida()
-	if animacion == "agarrar_oso" and estado_actual == ESTADOS.AGARRAR:
-		animated_sprite_pj.play("seguir_agarrando") #TODO TESTEAR
+	#if animacion == "agarrar_oso" and estado_actual == ESTADOS.AGARRAR:
+		#animated_sprite_pj.play("seguir_agarrando") #TODO TESTEAR
 
 
 func matar_player():
@@ -525,6 +505,7 @@ func matar_player():
 		return
 	reviviendo_player = true
 	global_position = Global.get_checkpoint_position()
+	Global.matar_player.emit()
 	$FmodEventEmitter2D7.play()
 	reviviendo_player = false
 
