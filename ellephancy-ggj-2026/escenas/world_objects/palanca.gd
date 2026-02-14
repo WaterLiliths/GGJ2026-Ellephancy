@@ -19,6 +19,7 @@ signal palanca_con_runa_activada(palanca, id, runa)
 
 func _ready() -> void:
 	if usa_runas:
+		print(color)
 		runa.asignar_tipo(runa.TiposDeRunas.values().pick_random(), color)
 		runa.show()
 		tipo_de_palanca = "runas"
@@ -117,12 +118,14 @@ func tween_entrada_luz_verde():
 	tween.tween_property(luz_verde,"energy", 4, 0.5)
 
 func tween_salida_luz_verde():
-	var tween := create_tween()
-	tween.set_trans(Tween.TRANS_SINE)
-	tween.set_ease(Tween.EASE_OUT)
-	tween.tween_property(luz_verde,"energy", 0.0 , 0.8)
+	if not usa_runas:
+		var tween := create_tween()
+		tween.set_trans(Tween.TRANS_SINE)
+		tween.set_ease(Tween.EASE_OUT)
+		tween.tween_property(luz_verde,"energy", 0.0 , 0.8)
 
 func cambiar_de_runa():
 	var nueva_runa = (runa.TiposDeRunas.values().find(runa.tipo_de_runa) + 1) % runa.TiposDeRunas.size()
+	luz_verde.color = color
 	runa.asignar_tipo(nueva_runa, color)
 	

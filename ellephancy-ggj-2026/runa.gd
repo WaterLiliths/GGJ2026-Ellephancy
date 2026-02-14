@@ -14,7 +14,6 @@ var texturas_de_runas := {
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var point_light_2d: PointLight2D = $SubViewportContainer/Node2D/PointLight2D
 @export var tipo_de_runa : TiposDeRunas
-var tamaño_base = 64.0
 
 func _ready() -> void:
 	animation_player.play("pulsar")
