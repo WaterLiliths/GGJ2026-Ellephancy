@@ -475,8 +475,8 @@ func procesar_agarrar(delta):
 	objeto_arrastrado.velocidad = velocidad
 	objeto_arrastrado.siendo_agarrada = true
 
-	#if not animacion_agarrar_inicial_terminada:
-		#return #espero hasta que haga la animacion de agarre para pasar a las otras
+	if not animacion_agarrar_inicial_terminada:
+		return #espero hasta que haga la animacion de agarre para pasar a las otras
 	if direction != 0:
 		if animated_sprite_pj.animation != "seguir_agarrando":
 			animated_sprite_pj.play("seguir_agarrando")

@@ -81,16 +81,10 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("5_0wi6y")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_tn1j7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_hopxw")
 }],
 "loop": false,
 "name": &"agarrar_oso",
-"speed": 17.0
+"speed": 25.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -397,8 +391,7 @@ texture_filter = 1
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_w7fad")
 animation = &"agarrar_oso"
-frame = 5
-frame_progress = 1.0
+frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
