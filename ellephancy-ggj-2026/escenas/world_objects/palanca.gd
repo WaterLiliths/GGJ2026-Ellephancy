@@ -21,6 +21,8 @@ signal palanca_con_runa_activada(palanca, id, runa)
 
 
 func _ready() -> void:
+	Global.mascara_traducciones_activa.connect(mostrar_runas)
+	Global.mascara_traducciones_desactivar.connect(esconder_runas)
 	runa.hide()
 	if usa_runas:
 		print(color)
@@ -129,3 +131,8 @@ func cambiar_de_runa():
 	luz_verde.color = color
 	runa.asignar_tipo(nueva_runa, color)
 	
+func mostrar_runas():
+	luz_verde.show()
+
+func esconder_runas():
+	luz_verde.hide()

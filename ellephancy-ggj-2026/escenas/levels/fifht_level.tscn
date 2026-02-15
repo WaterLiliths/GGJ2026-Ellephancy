@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://dvoneccgob4vn"]
+[gd_scene load_steps=16 format=4 uid="uid://dvoneccgob4vn"]
 
 [ext_resource type="Texture2D" uid="uid://c0letordwqfnu" path="res://assets/sprites/ambient/Árbol caído.png" id="1_mfy6x"]
 [ext_resource type="Script" uid="uid://61v3afknfgh6" path="res://escenas/levels/tronco_muerto.gd" id="2_undl5"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://ds1qkhtnwbcox" path="res://escenas/world_objects/piedra_chica.tscn" id="4_ngx8t"]
 [ext_resource type="PackedScene" uid="uid://cc8lgh4bhiut8" path="res://escenas/world_objects/tronco_pasado-presente.tscn" id="5_g4m3r"]
 [ext_resource type="PackedScene" uid="uid://by80hrdi7bflk" path="res://escenas/creador_de_niveles.tscn" id="6_i7xuu"]
-[ext_resource type="PackedScene" uid="uid://b6egkrxvfwusp" path="res://escenas/puzzle_salmon_1.tscn" id="7_qqulb"]
 [ext_resource type="PackedScene" uid="uid://cs6hrjrtl5v7x" path="res://escenas/area_mostrar_texto.tscn" id="8_geltr"]
 [ext_resource type="PackedScene" uid="uid://biambmyuxxflo" path="res://escenas/world_objects/puerta.tscn" id="8_toniv"]
 [ext_resource type="Texture2D" uid="uid://q3ics3iji43w" path="res://assets/runas-finales/Runas interfaznum3.png" id="9_07x0w"]
@@ -128,41 +127,6 @@ usa_runas = true
 position = Vector2(-281, 136)
 usa_runas = true
 
-[node name="PuzzleFinal" parent="." instance=ExtResource("7_qqulb")]
-visible = false
-position = Vector2(-2970, -163)
-
-[node name="PuzzleSalmon1" parent="PuzzleFinal" index="0"]
-runa_1_comienza_con = 2
-runa_2_comienza_con = 1
-runa_3_comienza_con = 6
-
-[node name="PalancaSalmon1" parent="PuzzleFinal/PuzzleSalmon1" index="0"]
-z_index = 1
-position = Vector2(-1027, -1878.0001)
-
-[node name="RunaCambiante1" parent="PuzzleFinal/PuzzleSalmon1/ContenedorRunas" index="0"]
-position = Vector2(-707.0002, -1728)
-
-[node name="RunaCambiante2" parent="PuzzleFinal/PuzzleSalmon1/ContenedorRunas" index="1"]
-position = Vector2(-2571, -942)
-
-[node name="RunaCambiante3" parent="PuzzleFinal/PuzzleSalmon1/ContenedorRunas" index="2"]
-z_index = 1
-position = Vector2(-775, 279)
-
-[node name="PalancaSalmon2" parent="PuzzleFinal/PuzzleSalmon1" index="2"]
-z_index = 1
-position = Vector2(-2532, -663)
-
-[node name="PalancaSalmon3" parent="PuzzleFinal/PuzzleSalmon1" index="3"]
-position = Vector2(-775, 166)
-
-[node name="PuertaSalmon" parent="PuzzleFinal/ContenedorPuerta" index="0"]
-position = Vector2(-563, -1.1851501)
-contrasena_2 = 5
-contrasena_3 = 1
-
 [node name="Tutorial" type="Node2D" parent="."]
 
 [node name="Salmon3" parent="Tutorial" instance=ExtResource("8_geltr")]
@@ -217,5 +181,3 @@ usa_runas = true
 position = Vector2(-341, -1902)
 tipo_de_palanca = "runas"
 usa_runas = true
-
-[editable path="PuzzleFinal"]
