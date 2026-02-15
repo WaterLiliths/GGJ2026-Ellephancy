@@ -69,7 +69,7 @@ var tipo_de_suelo
 func _ready() -> void:
 	Global.dialogo_activo_to_player.connect(on_dialogo_activo)
 	Global.dialogo_desactivado_to_player.connect(on_dialogo_desactivado)
-	resetear_mascaras_a_cero(false) #true para desactivar todas, false para activarlas
+	resetear_mascaras_a_cero(true) #true para desactivar todas, false para activarlas
 	mano_test_izq.set_deferred("disabled", true) #DESACTIVO FISICAS DE LA MANO
 	mano_test_der.set_deferred("disabled", true)
 	Global.agarre_mascara.connect(on_agarre_mascara)
