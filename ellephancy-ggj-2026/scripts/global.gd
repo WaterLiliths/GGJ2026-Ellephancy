@@ -27,7 +27,7 @@ signal puerta_abierta(position)
 signal tipo_de_suelo
 
 var volumen_general : float = 0.8
-var volumen_musica : float = 1.0 * volumen_general
+var volumen_musica : float = 0.0 * volumen_general
 var volumen_efectos : float = 1.0 * volumen_general
 var volumen_ambiente : float = 1.0 * volumen_general
 
