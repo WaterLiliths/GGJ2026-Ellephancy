@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bvq5bbgfqxbf3"]
+[gd_scene load_steps=9 format=3 uid="uid://bvq5bbgfqxbf3"]
 
 [ext_resource type="Script" uid="uid://cg265jkd7ky3f" path="res://runa.gd" id="1_7w50b"]
 [ext_resource type="Texture2D" uid="uid://bl53phj4y0xa1" path="res://assets/runas-finales/nudo_simetrico_blanco.png" id="1_8pauy"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8pauy"]
 
 [sub_resource type="Gradient" id="Gradient_0gi8y"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -75,10 +77,13 @@ _data = {
 }
 
 [node name="Runa" type="TextureRect"]
-self_modulate = Color(0.56, 0.56, 0.56, 1)
+self_modulate = Color(0.56, 0.56, 0.56, 0.64705884)
 light_mask = 17
-offset_right = 40.0
-offset_bottom = 40.0
+z_as_relative = false
+material = SubResource("CanvasItemMaterial_8pauy")
+offset_right = 400.0
+offset_bottom = 400.0
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_8pauy")
 script = ExtResource("1_7w50b")
 

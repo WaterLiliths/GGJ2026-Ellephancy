@@ -4,3 +4,4 @@
 
 [node name="MascaraTraducciones" type="Node2D"]
 script = ExtResource("1_t3euv")
+activa = true
