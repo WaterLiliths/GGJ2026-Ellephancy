@@ -150,6 +150,7 @@ func setup_runas():
 			var color = colores[index]
 			index += 1
 			runa_puerta.asignar_tipo(tipo, color)
+			runa_puerta.z_index = 3
 			palanca.color = color
 			runas_correctas[tipo] = palanca
 
