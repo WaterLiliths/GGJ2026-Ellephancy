@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://dkaf2gav3cro1"]
+[gd_scene load_steps=9 format=4 uid="uid://dkaf2gav3cro1"]
 
 [ext_resource type="PackedScene" uid="uid://b3kt101wc8mwl" path="res://escenas/world_objects/palanca.tscn" id="1_yu7m0"]
 [ext_resource type="PackedScene" uid="uid://biambmyuxxflo" path="res://escenas/world_objects/puerta.tscn" id="2_vcr2c"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://dj4jyhd1bexi6" path="res://escenas/checkpoint_area.tscn" id="4_q20aj"]
 [ext_resource type="PackedScene" uid="uid://cs6hrjrtl5v7x" path="res://escenas/area_mostrar_texto.tscn" id="6_yjy63"]
 [ext_resource type="Texture2D" uid="uid://dqqfvk8g6yn5t" path="res://assets/runas-finales/Runas interfaz1E.png" id="7_01ib0"]
-[ext_resource type="PackedScene" uid="uid://croo183ic8glj" path="res://escenas/world_objects/campana_colgante.tscn" id="8_01ib0"]
 [ext_resource type="PackedScene" uid="uid://t3ox75glka3s" path="res://escenas/world_objects/ObjetoAEmpujar.tscn" id="9_etx5h"]
 
 [node name="FirstLevelWorks" type="Node2D"]
@@ -91,11 +90,6 @@ position = Vector2(5613, -216)
 [node name="InteraccionE" parent="." instance=ExtResource("6_yjy63")]
 position = Vector2(3453, -78)
 textura_runa_tecla = ExtResource("7_01ib0")
-
-[node name="CampanaColgante" parent="." instance=ExtResource("8_01ib0")]
-position = Vector2(4413, -944)
-scale = Vector2(0.265, 0.265)
-longitud_soga = 4
 
 [node name="Piedra1" parent="." instance=ExtResource("9_etx5h")]
 z_index = -1
