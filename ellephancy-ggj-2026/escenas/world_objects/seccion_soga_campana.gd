@@ -1,0 +1,2 @@
+class_name SeccionSoga
+extends RigidBody2D
