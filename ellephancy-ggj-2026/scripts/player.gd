@@ -66,6 +66,7 @@ enum ESTADOS {IDLE, CAMINAR, SALTAR, CAER, INTERACTUAR, AGARRAR, DIALOGO_ACTIVO}
 var estado_actual : ESTADOS = ESTADOS.IDLE
 var tipo_de_suelo
 
+var fuerza_de_empuje = 1
 
 func _ready() -> void:
 	Global.dialogo_activo_to_player.connect(on_dialogo_activo)
@@ -180,6 +181,7 @@ func _physics_process(delta: float) -> void:
 	calcular_tiempo_en_aire(delta)
 	detectar_caida()
 	comprobar_coyote_timer()
+
 
 
 	if agarrando_caja and direction:

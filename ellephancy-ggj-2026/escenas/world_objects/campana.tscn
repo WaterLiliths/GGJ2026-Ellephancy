@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnxsiuckubi5t"]
+
+[ext_resource type="Texture2D" uid="uid://bndskjnxjxxco" path="res://assets/campanita/campanita_suelta.png" id="1_7phdn"]
+[ext_resource type="Script" uid="uid://6njmdond1u4w" path="res://escenas/world_objects/campana.gd" id="1_owopq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xx2bx"]
+size = Vector2(21, 29)
+
+[node name="Campana" type="RigidBody2D"]
+collision_layer = 64
+mass = 0.001
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_owopq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.5, 26.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_7phdn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 36.5)
+shape = SubResource("RectangleShape2D_xx2bx")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+node_a = NodePath("..")
+
+[node name="SonidoCampana" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Objetos/campana colgante"
+event_guid = "{21976df1-5910-4471-896b-e1df4e9b18bb}"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
