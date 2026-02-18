@@ -2,6 +2,7 @@ extends Node2D
 
 var tween = create_tween()
 @onready var animation_fade_out: AnimationPlayer = %AnimationPlayer
+@export var manager_de_objetivos: ManagerDeObjetivos
 
 
 func _ready() -> void:
