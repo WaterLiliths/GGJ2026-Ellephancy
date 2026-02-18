@@ -25,6 +25,7 @@ func mover_camara_a_puerta(global_position, tiempo_de_apertura):
 	var tiempo_camara = max(tiempo_de_apertura * factor_tiempo, minimo_tiempo) #agregado pre showcase
 	var tween_camara = create_tween()
 	tween_camara.tween_property(self, "global_position", global_position, 0.3).set_ease(Tween.EASE_OUT)
+	global_position -= player.global_position
 	await get_tree().create_timer(tiempo_camara).timeout
 	position = Vector2.ZERO #reinicio
 	mover_camara = false

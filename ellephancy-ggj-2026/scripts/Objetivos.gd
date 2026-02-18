@@ -1,7 +1,6 @@
 class_name ManagerDeObjetivos
 extends Node
 
-signal objetivo_completado(objetivo : AreaObjetivo)
 signal objetivo
 signal objeto_activado
 
@@ -13,6 +12,8 @@ func _ready():
 
 func _es_objetivo(area_objetivo: AreaObjetivo):
 	objetivo_actual = area_objetivo
+	if objetivo_actual == null:
+		print("no hay siguiente objetivo")
+		return
 	print("marker luciernagas es:", objetivo_actual.marker_luciernagas)
 	marker_luciernagas = objetivo_actual.marker_luciernagas
-	

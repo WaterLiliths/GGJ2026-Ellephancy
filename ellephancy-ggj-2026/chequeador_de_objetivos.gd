@@ -17,3 +17,5 @@ func _input(event: InputEvent) -> void:
 		luciernaga.position = player.global_position
 		print("player pide ayuda")
 		print(Objetivos.objetivo_actual)
+	if Input.is_action_just_pressed("avanzar objetivo"):
+		Objetivos.objetivo_actual.condicion_cumplida()

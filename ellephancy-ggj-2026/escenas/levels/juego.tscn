@@ -37,6 +37,9 @@
 [ext_resource type="Texture2D" uid="uid://bn6mxnim3xf3o" path="res://assets/runas-finales/interfaz_bajar.png" id="31_g0try"]
 [ext_resource type="PackedScene" uid="uid://tbrpanj4el32" path="res://escenas/areafinjuego.tscn" id="42_nqex6"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fe420"]
+size = Vector2(304.0625, 544.375)
+
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ms3um"]
 blend_mode = 1
 light_mode = 1
@@ -76,9 +79,6 @@ point_count = 5
 [sub_resource type="Resource" id="Resource_yei3n"]
 script = ExtResource("13_8mohb")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fe420"]
-size = Vector2(304.0625, 544.375)
-
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_8mohb"]
 vertices = PackedVector2Array(16966.773, -1659.7188, 17313.531, -1342.2578, 16583.883, -1108.5781, -208.85938, -2518.1563, 108.59375, 152.04688, -166.22656, 286.10938, 13677.8125, 479.78125, 13730.0625, 628.5, 13318.609, 643.3672, 10903.1875, 110.171875, 17722.57, -377.1172, 17822.719, 563.3203, 16578.227, 525, 16582.281, -1095.9375, 22103.172, -941.28906, 20844.227, -977.6797, 20948.258, -1843.9219, 22117.969, -1787.9219, 21331.297, -5154.9688, 17841.93, -1866.0078, 16969.898, -1671.4375, 9370.781, -519.21094, 8716.297, -645.78125, 13326.602, 843.1719, 12469.789, 858.02344, 362.6328, 146.82031, 9518.867, 81.15625, 1027.3438, 395.89844, 986.90625, 477.71875, 588.3203, 460.1797, 377.42188, 249.28125, 7435.6875, -207.71875, 7212.25, 109.38281, 6395.5703, 14, 7405.0703, -525.1172, 8798.648, -504.14844, 1568.7969, 313.35938, 2151.5313, 2.9765625, 4563.0313, 17.992188, 12307.203, 894.9219, 11261.547, 828.2578, 10992.219, 544.1875, 8480.922, -614.9375)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 3), PackedInt32Array(6, 7, 8, 9), PackedInt32Array(10, 11, 12, 13), PackedInt32Array(14, 15, 16, 17), PackedInt32Array(18, 17, 16), PackedInt32Array(3, 18, 16, 19), PackedInt32Array(3, 19, 20), PackedInt32Array(3, 20, 0), PackedInt32Array(3, 2, 13, 21, 22), PackedInt32Array(8, 23, 24, 9), PackedInt32Array(13, 12, 6, 9, 21), PackedInt32Array(25, 4, 3), PackedInt32Array(9, 26, 21), PackedInt32Array(27, 28, 29, 30, 25), PackedInt32Array(31, 32, 33, 34), PackedInt32Array(21, 35, 22), PackedInt32Array(36, 27, 25, 3, 37), PackedInt32Array(38, 37, 3, 34, 33), PackedInt32Array(39, 40, 41, 9, 24), PackedInt32Array(3, 22, 42, 34)])
@@ -89,6 +89,82 @@ script = ExtResource("1_2y4ua")
 manager_de_objetivos = NodePath("ManagerDeObjetivos")
 
 [node name="ManagerDeObjetivos" parent="." instance=ExtResource("2_82r4j")]
+
+[node name="AreasDeObjetivo" type="Node2D" parent="ManagerDeObjetivos"]
+position = Vector2(2919, -55)
+scale = Vector2(0.64, 0.64)
+
+[node name="AreaObjetivoLevel1" parent="ManagerDeObjetivos/AreasDeObjetivo" node_paths=PackedStringArray("marker_luciernagas", "siguiente_objetivo", "objeto_condicion") instance=ExtResource("25_8mohb")]
+position = Vector2(1142.1875, -404.6875)
+marker_luciernagas = NodePath("Marker2D")
+siguiente_objetivo = NodePath("../AreaObjetivoLevel2")
+tipo_de_objetivo = "PRIMERO"
+objeto_condicion = NodePath("../../../Niveles/FirstLevelWorks/Puzzle1/PuertaPuzzle1")
+
+[node name="Marker2D" type="Marker2D" parent="ManagerDeObjetivos/AreasDeObjetivo/AreaObjetivoLevel1"]
+position = Vector2(-309.375, 418.75)
+
+[node name="AreaObjetivoLevel2" parent="ManagerDeObjetivos/AreasDeObjetivo" node_paths=PackedStringArray("marker_luciernagas", "siguiente_objetivo", "objeto_condicion") instance=ExtResource("25_8mohb")]
+position = Vector2(4856.25, -1860.9375)
+marker_luciernagas = NodePath("Marker2D")
+siguiente_objetivo = NodePath("../AreaObjetivo2Level2")
+objeto_condicion = NodePath("../../../Niveles/SecondLevel/Puzzle2/PuertaPuzzle2")
+
+[node name="Marker2D" type="Marker2D" parent="ManagerDeObjetivos/AreasDeObjetivo/AreaObjetivoLevel2"]
+position = Vector2(937.5, 507.8125)
+
+[node name="AreaObjetivo2Level2" parent="ManagerDeObjetivos/AreasDeObjetivo" node_paths=PackedStringArray("marker_luciernagas", "siguiente_objetivo", "objeto_condicion") instance=ExtResource("25_8mohb")]
+position = Vector2(4826.5625, 192.1875)
+marker_luciernagas = NodePath("Marker2D")
+siguiente_objetivo = NodePath("../AreaObjetivo")
+objeto_condicion = NodePath("../../../Niveles/SecondLevel/Puzzle3/Puerta")
+
+[node name="Marker2D" type="Marker2D" parent="ManagerDeObjetivos/AreasDeObjetivo/AreaObjetivo2Level2"]
+position = Vector2(64.0625, -189.0625)
+
+[node name="AreaObjetivo" parent="ManagerDeObjetivos/AreasDeObjetivo" node_paths=PackedStringArray("marker_luciernagas", "forma", "siguiente_objetivo", "objeto_condicion") instance=ExtResource("25_8mohb")]
+position = Vector2(7720.3125, -1053.125)
+marker_luciernagas = NodePath("Marker2D")
+forma = NodePath("CollisionShape2D")
+condiciones = "POSICION"
+siguiente_objetivo = NodePath("../AreaObjetivo2")
+objeto_condicion = NodePath("../../../Player")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ManagerDeObjetivos/AreasDeObjetivo/AreaObjetivo"]
+position = Vector2(-51.562805, -64.062515)
+shape = SubResource("RectangleShape2D_fe420")
+
+[node name="Marker2D" type="Marker2D" parent="ManagerDeObjetivos/AreasDeObjetivo/AreaObjetivo"]
+position = Vector2(-46.875, 131.25)
+
+[node name="AreaObjetivo2" parent="ManagerDeObjetivos/AreasDeObjetivo" node_paths=PackedStringArray("marker_luciernagas", "forma", "siguiente_objetivo", "objeto_condicion") instance=ExtResource("25_8mohb")]
+position = Vector2(9151.5625, -950)
+marker_luciernagas = NodePath("Marker2D")
+forma = NodePath("CollisionShape2D")
+condiciones = "POSICION"
+siguiente_objetivo = NodePath("../AreaObjetivo3")
+objeto_condicion = NodePath("../../../Player")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ManagerDeObjetivos/AreasDeObjetivo/AreaObjetivo2"]
+position = Vector2(-51.562805, -64.062515)
+shape = SubResource("RectangleShape2D_fe420")
+
+[node name="Marker2D" type="Marker2D" parent="ManagerDeObjetivos/AreasDeObjetivo/AreaObjetivo2"]
+position = Vector2(-46.875, 131.25)
+
+[node name="AreaObjetivo3" parent="ManagerDeObjetivos/AreasDeObjetivo" node_paths=PackedStringArray("marker_luciernagas", "forma", "objeto_condicion") instance=ExtResource("25_8mohb")]
+position = Vector2(11278.125, -1510.9375)
+marker_luciernagas = NodePath("Marker2D")
+forma = NodePath("CollisionShape2D")
+condiciones = "POSICION"
+objeto_condicion = NodePath("../../../Player")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ManagerDeObjetivos/AreasDeObjetivo/AreaObjetivo3"]
+position = Vector2(-51.562805, -64.062515)
+shape = SubResource("RectangleShape2D_fe420")
+
+[node name="Marker2D" type="Marker2D" parent="ManagerDeObjetivos/AreasDeObjetivo/AreaObjetivo3"]
+position = Vector2(-46.875, 131.25)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 position = Vector2(1230, -222)
@@ -550,52 +626,6 @@ position = Vector2(21472, -1348)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.80049086, 0.80049074, 0.80049074, 1)
-
-[node name="AreasDeObjetivo" type="Node2D" parent="."]
-position = Vector2(2919, -55)
-scale = Vector2(0.64, 0.64)
-
-[node name="AreaObjetivoLevel1" parent="AreasDeObjetivo" node_paths=PackedStringArray("marker_luciernagas", "siguiente_objetivo", "objeto_condicion") instance=ExtResource("25_8mohb")]
-position = Vector2(1142.1875, -404.6875)
-marker_luciernagas = NodePath("Marker2D")
-siguiente_objetivo = NodePath("../AreaObjetivoLevel2")
-tipo_de_objetivo = "PRIMERO"
-objeto_condicion = NodePath("../../Niveles/FirstLevelWorks/Puzzle1/PuertaPuzzle1")
-
-[node name="Marker2D" type="Marker2D" parent="AreasDeObjetivo/AreaObjetivoLevel1"]
-position = Vector2(-309.375, 418.75)
-
-[node name="AreaObjetivoLevel2" parent="AreasDeObjetivo" node_paths=PackedStringArray("marker_luciernagas", "siguiente_objetivo", "objeto_condicion") instance=ExtResource("25_8mohb")]
-position = Vector2(4856.25, -1860.9375)
-marker_luciernagas = NodePath("Marker2D")
-siguiente_objetivo = NodePath("../AreaObjetivo2Level2")
-objeto_condicion = NodePath("../../Niveles/SecondLevel/Puzzle2/PuertaPuzzle2")
-
-[node name="Marker2D" type="Marker2D" parent="AreasDeObjetivo/AreaObjetivoLevel2"]
-position = Vector2(937.5, 507.8125)
-
-[node name="AreaObjetivo2Level2" parent="AreasDeObjetivo" node_paths=PackedStringArray("marker_luciernagas", "siguiente_objetivo", "objeto_condicion") instance=ExtResource("25_8mohb")]
-position = Vector2(4826.5625, 192.1875)
-marker_luciernagas = NodePath("Marker2D")
-siguiente_objetivo = NodePath("")
-objeto_condicion = NodePath("../../Niveles/SecondLevel/Puzzle3/Puerta")
-
-[node name="Marker2D" type="Marker2D" parent="AreasDeObjetivo/AreaObjetivo2Level2"]
-position = Vector2(64.0625, -189.0625)
-
-[node name="AreaObjetivo" parent="AreasDeObjetivo" node_paths=PackedStringArray("marker_luciernagas", "forma", "objeto_condicion") instance=ExtResource("25_8mohb")]
-position = Vector2(9095.3125, -923.4375)
-marker_luciernagas = NodePath("Marker2D")
-forma = NodePath("CollisionShape2D")
-condiciones = "POSICION"
-objeto_condicion = NodePath("../../Player")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreasDeObjetivo/AreaObjetivo"]
-position = Vector2(-51.562805, -64.062515)
-shape = SubResource("RectangleShape2D_fe420")
-
-[node name="Marker2D" type="Marker2D" parent="AreasDeObjetivo/AreaObjetivo"]
-position = Vector2(-95.3125, 6.25)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 visible = false
