@@ -7,7 +7,6 @@ var direccion : int = 0
 var velocidad : float = 0.0
 var siendo_agarrada : bool = false
 @onready var impacto: FmodEventEmitter2D = $Impacto
-@onready var arrastrar: FmodEventEmitter2D = $Arrastrar
 var sonido_caja_sonando = false
 
 

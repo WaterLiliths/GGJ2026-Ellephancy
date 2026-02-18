@@ -1,3 +1,4 @@
+class_name Puerta
 extends StaticBody2D
 
 @export var id_puerta : int = 0
@@ -28,7 +29,7 @@ enum TiposDeRunas { NUDO_SIMETRICO, NUDO_ASIMETRICO, TRIQUETRA, CRUZ, TRISKELE, 
 var runas_correctas = {}
 var runas_activadas = {}
 const RUNA = preload("uid://bvq5bbgfqxbf3")
-
+signal activado
 
 
 
@@ -102,6 +103,7 @@ func abrir_puerta():
 	#print("la puerta esta abierta")
 	$FmodEventEmitter2D.set_parameter("peso", 5.0)
 	$FmodEventEmitter2D.play()
+	Objetivos.objeto_activado.emit(self)
 
 func cerrar_puerta():
 	var tween_sprite = get_tree().create_tween()

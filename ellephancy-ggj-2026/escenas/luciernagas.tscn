@@ -18,6 +18,8 @@ point_count = 3
 [sub_resource type="CircleShape2D" id="CircleShape2D_kohik"]
 
 [node name="Luciernagas" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
 platform_floor_layers = 4294967294
 platform_wall_layers = 6
 script = ExtResource("1_kohik")
@@ -25,9 +27,8 @@ script = ExtResource("1_kohik")
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 amount = 100
 texture = SubResource("GradientTexture2D_kohik")
-lifetime = 6.27
-preprocess = 1.13
-randomness = 0.07
+lifetime = 5.0
+randomness = 1.0
 lifetime_randomness = 0.1
 emission_shape = 1
 emission_sphere_radius = 43.01
@@ -42,8 +43,19 @@ scale_amount_curve = SubResource("Curve_5au1i")
 color = Color(0.97599995, 1, 0.64, 1)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_postprocessing = 1
 avoidance_enabled = true
+avoidance_layers = 3
+avoidance_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kohik")
+
+[node name="TimerReset" type="Timer" parent="."]
+process_callback = 0
+wait_time = 15.0
+
+[node name="TimerCooldown" type="Timer" parent="."]
+wait_time = 10.0
+
+[connection signal="target_reached" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_target_reached"]
+[connection signal="timeout" from="TimerReset" to="." method="_on_timer_reset_timeout"]
