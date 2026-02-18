@@ -29,6 +29,7 @@ Global="*uid://bquwd2lw2fknr"
 FmodManager="*res://addons/fmod/FmodManager.gd"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+Objetivos="*res://scripts/Objetivos.gd"
 
 [display]
 

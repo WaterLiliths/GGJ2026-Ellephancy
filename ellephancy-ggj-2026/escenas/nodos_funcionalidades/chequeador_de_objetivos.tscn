@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://de62poysm1she"]
+
+[ext_resource type="Script" uid="uid://by67x7fhnxek6" path="res://chequeador_de_objetivos.gd" id="1_12c03"]
+
+[node name="ChequeadorDeObjetivos" type="Node"]
+script = ExtResource("1_12c03")
