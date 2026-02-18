@@ -12,11 +12,13 @@ var resolucion_default = DisplayServer.screen_get_size(DisplayServer.window_get_
 
 
 func _ready() -> void:
-	return
 	h_slider_musica.value = Global.volumen_musica
 	h_slider_2_efectos.value = Global.volumen_efectos
 	h_slider_3_ambiente.value = Global.volumen_ambiente
-
+	
+	musica = h_slider_musica
+	efectos = h_slider_2_efectos
+	ambiente = h_slider_3_ambiente
 	
 	h_slider_musica.value_changed.connect(
 		Callable(self, "_on_musica_changed")

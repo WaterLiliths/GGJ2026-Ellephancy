@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4fdbwaawyx0w"]
+
+[ext_resource type="Script" uid="uid://cc1edbwr6cj5c" path="res://scripts/Objetivos.gd" id="1_6wc8r"]
+
+[node name="ManagerDeObjetivos" type="Node"]
+script = ExtResource("1_6wc8r")
