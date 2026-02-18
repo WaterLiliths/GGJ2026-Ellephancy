@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://dkudwre2b373"]
+[gd_scene load_steps=58 format=4 uid="uid://dkudwre2b373"]
 
 [ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/Juego.gd" id="1_2y4ua"]
 [ext_resource type="PackedScene" uid="uid://c4fdbwaawyx0w" path="res://escenas/nodos_funcionalidades/manager_de_objetivos.tscn" id="2_82r4j"]
@@ -34,7 +34,12 @@
 [ext_resource type="PackedScene" uid="uid://croo183ic8glj" path="res://escenas/world_objects/campana_colgante.tscn" id="28_nqex6"]
 [ext_resource type="PackedScene" uid="uid://deup0i7mgu0xc" path="res://escenas/masks/area_mascara_oso.tscn" id="29_fe420"]
 [ext_resource type="PackedScene" uid="uid://ccia0snrxhd0y" path="res://escenas/area_dialogo_prueba.tscn" id="30_3nqa5"]
+[ext_resource type="Texture2D" uid="uid://bvd8lf3jvwthk" path="res://assets/iconos/attie/mouse_mover_click_der.svg" id="30_g0try"]
+[ext_resource type="Script" uid="uid://ds60ehkkb6yr" path="res://escenas/area_mostrar_texto.gd" id="30_g2u6j"]
 [ext_resource type="Texture2D" uid="uid://bn6mxnim3xf3o" path="res://assets/runas-finales/interfaz_bajar.png" id="31_g0try"]
+[ext_resource type="Texture2D" uid="uid://8bgc1yvjtt80" path="res://assets/runas-finales/Runas interfazpiedra.png" id="32_4dne2"]
+[ext_resource type="FontFile" uid="uid://ciwhe1apfc5gi" path="res://assets/fonts/Balgruf.otf" id="32_nqex6"]
+[ext_resource type="Texture2D" uid="uid://q3ics3iji43w" path="res://assets/runas-finales/Runas interfaznum3.png" id="33_nqex6"]
 [ext_resource type="PackedScene" uid="uid://tbrpanj4el32" path="res://escenas/areafinjuego.tscn" id="42_nqex6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fe420"]
@@ -78,6 +83,76 @@ point_count = 5
 
 [sub_resource type="Resource" id="Resource_yei3n"]
 script = ExtResource("13_8mohb")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6l3tb"]
+size = Vector2(91, 362)
+
+[sub_resource type="Animation" id="Animation_d34qk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LabelTexto:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gocct"]
+resource_name = "esconder_runass"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LabelTexto:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ppkhw"]
+resource_name = "mostrar"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LabelTexto:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.7666669, 2.8666666, 4.9333334),
+"transitions": PackedFloat32Array(0.6155721, 0.45062527, 1.8660663, 3.363585),
+"update": 0,
+"values": [Vector2(-68, -100), Vector2(-68, -106.18), Vector2(-68, -100.715), Vector2(-68, -100)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("LabelTexto:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8666667, 3.78),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gocct"]
+_data = {
+&"RESET": SubResource("Animation_d34qk"),
+&"esconder_runass": SubResource("Animation_gocct"),
+&"mostrar": SubResource("Animation_ppkhw")
+}
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_8mohb"]
 vertices = PackedVector2Array(16966.773, -1659.7188, 17313.531, -1342.2578, 16583.883, -1108.5781, -208.85938, -2518.1563, 108.59375, 152.04688, -166.22656, 286.10938, 13677.8125, 479.78125, 13730.0625, 628.5, 13318.609, 643.3672, 10903.1875, 110.171875, 17722.57, -377.1172, 17822.719, 563.3203, 16578.227, 525, 16582.281, -1095.9375, 22103.172, -941.28906, 20844.227, -977.6797, 20948.258, -1843.9219, 22117.969, -1787.9219, 21331.297, -5154.9688, 17841.93, -1866.0078, 16969.898, -1671.4375, 9370.781, -519.21094, 8716.297, -645.78125, 13326.602, 843.1719, 12469.789, 858.02344, 362.6328, 146.82031, 9518.867, 81.15625, 1027.3438, 395.89844, 986.90625, 477.71875, 588.3203, 460.1797, 377.42188, 249.28125, 7435.6875, -207.71875, 7212.25, 109.38281, 6395.5703, 14, 7405.0703, -525.1172, 8798.648, -504.14844, 1568.7969, 313.35938, 2151.5313, 2.9765625, 4563.0313, 17.992188, 12307.203, 894.9219, 11261.547, 828.2578, 10992.219, 544.1875, 8480.922, -614.9375)
@@ -283,14 +358,14 @@ texture = ExtResource("5_ffuyt")
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank", "res://assets/audio/FmodBanks/Desktop/UI.bank"]
 
 [node name="Player" parent="." instance=ExtResource("8_m34qx")]
-position = Vector2(2597, -31)
+position = Vector2(263, 107)
 scale = Vector2(0.64, 0.64)
 empieza_con_mascaras = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(2597, -101)
+position = Vector2(600, 37)
 zoom = Vector2(1.6, 1.6)
 limit_left = 0
 limit_bottom = 1200
@@ -394,7 +469,7 @@ position = Vector2(-97, 588)
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(2597, -101)
+position = Vector2(600, 37)
 script = ExtResource("12_g2cn0")
 follow_mode = 2
 follow_target = NodePath("../Player/Node2D")
@@ -507,6 +582,46 @@ presente = true
 [node name="CampanaColgante" parent="Niveles/FirstLevelWorks" instance=ExtResource("28_nqex6")]
 position = Vector2(4476, -392)
 longitud_soga = 4
+
+[node name="AreaMostrarTexto" type="Area2D" parent="Niveles/FirstLevelWorks"]
+position = Vector2(790, 396)
+script = ExtResource("30_g2u6j")
+texto_encima = "Mover la camara"
+textura_runa_tecla = ExtResource("30_g0try")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Niveles/FirstLevelWorks/AreaMostrarTexto"]
+shape = SubResource("RectangleShape2D_6l3tb")
+debug_color = Color(0.76484627, 0.17087922, 0.99999994, 0.41960785)
+
+[node name="AnimationPlayerTexto" type="AnimationPlayer" parent="Niveles/FirstLevelWorks/AreaMostrarTexto"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_gocct")
+}
+autoplay = "mostrar"
+
+[node name="LabelTexto" type="Label" parent="Niveles/FirstLevelWorks/AreaMostrarTexto"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(150, 0)
+offset_left = -68.0
+offset_top = -100.09293
+offset_right = 82.0
+offset_bottom = 52.907066
+theme_override_fonts/font = ExtResource("32_nqex6")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="RunaHolder" type="Sprite2D" parent="Niveles/FirstLevelWorks/AreaMostrarTexto/LabelTexto"]
+position = Vector2(68, -35)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("32_4dne2")
+
+[node name="RunaTeclas" type="Sprite2D" parent="Niveles/FirstLevelWorks/AreaMostrarTexto/LabelTexto/RunaHolder"]
+unique_name_in_owner = true
+position = Vector2(-10, -50.00006)
+scale = Vector2(7, 7)
+texture = ExtResource("33_nqex6")
 
 [node name="SecondLevel" type="Node2D" parent="Niveles"]
 position = Vector2(5429, -776)
@@ -633,5 +748,7 @@ navigation_polygon = SubResource("NavigationPolygon_8mohb")
 
 [connection signal="body_entered" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_entered"]
 [connection signal="body_exited" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_exited"]
+[connection signal="body_entered" from="Niveles/FirstLevelWorks/AreaMostrarTexto" to="Niveles/FirstLevelWorks/AreaMostrarTexto" method="_on_body_entered"]
+[connection signal="body_exited" from="Niveles/FirstLevelWorks/AreaMostrarTexto" to="Niveles/FirstLevelWorks/AreaMostrarTexto" method="_on_body_exited"]
 [connection signal="body_entered" from="Niveles/SecondLevel/ReverbArea" to="Niveles/SecondLevel/ReverbArea" method="_on_body_entered"]
 [connection signal="body_exited" from="Niveles/SecondLevel/ReverbArea" to="Niveles/SecondLevel/ReverbArea" method="_on_body_exited"]
