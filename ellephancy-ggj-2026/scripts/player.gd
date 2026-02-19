@@ -3,6 +3,13 @@ extends CharacterBody2D
 
 ##si ponemos en true se instancia la escena de los botones como hijo de player
 @export var jugar_mobile : bool = false
+
+#---------- COMPONENTES / MANAGERS -------
+@export var input_manager : InputManager
+@export var sound_manager : SoundManager
+@export var animation_manager : AnimationManager
+@export var estados_manager : EstadosManager
+
 #---------- mascaras -----------
 @onready var mascara_tiempos: Node2D = %MascaraTiempos
 @onready var mascara_fuerza: Node2D = %MascaraFuerza
@@ -46,7 +53,6 @@ var velocidad_inicial : float
 @onready var animated_sprite_pj: AnimatedSprite2D = %AnimatedSpritePJ
 @onready var ray_cast_izq: RayCast2D = %RayCastIzq
 @onready var ray_cast_der: RayCast2D = %RayCastDer
-@onready var pin_joint_agarrar: PinJoint2D = %PinJointAgarrar
 var direction : float
 var objeto_arrastrado = null
 @onready var timer_tiempo_en_aire: Timer = %TimerTiempoEnAire
@@ -87,67 +93,67 @@ func _ready() -> void:
 	#Global.tiene_mascara_traducciones = tiene_mascara_traducciones
 	await get_tree().create_timer(0.5).timeout #el timer QUIZAS no es necesario, pero puede evitar algun q otro bug
 	Global.set_checkpoint_position(global_position)
-
-func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("1"): #usar mascara fuerza
-		if not Global.tiene_mascara_fuerza:
-			print("no tengo la mascara de la fuerza")
-			return
-		if Global.mascara_activa==2:#para no re activar la mascara que ya tenia puesta
-			return #la 2 en global en realidad es la del OSO
-		mascara_tiempo.desactivar()
-		mascara_fuerza.usar()
-		$FmodEventEmitter2D6.set_parameter("Mascara", "Oso")
-		$FmodEventEmitter2D6.play()
-		mascara_traducciones.desactivar()
-	verificar_animacion_con_mascara()
-	if Input.is_action_just_pressed("2"): #usar mascara tiempos
-		if not Global.tiene_mascara_tiempo:
-			print("no tengo la mascara del tiempo")
-			return
-		if Global.mascara_activa==1: #para no re activar la mascara que ya tenia puesta
-			return
-		mascara_tiempo.usar()
-		Global.mascara_tiempo_activa.emit()
-		$FmodEventEmitter2D6.set_parameter("Mascara", "Ciervo")
-		$FmodEventEmitter2D6.play()
-		mascara_fuerza.desactivar()
-		mascara_traducciones.desactivar()
-	verificar_animacion_con_mascara()
-	if Input.is_action_just_pressed("3"): #usar mascara traducciones
-		if not Global.tiene_mascara_traducciones:
-			print("no tengo la mascara de las traducciones")
-			return
-		if Global.mascara_activa==3: #para no re activar la mascara que ya tenia puesta
-			return
-		mascara_tiempo.desactivar()
-		mascara_fuerza.desactivar()
-		mascara_traducciones.usar()
-		$FmodEventEmitter2D6.set_parameter("Mascara", "Salmon")
-		$FmodEventEmitter2D6.play()
-	verificar_animacion_con_mascara()
-
-	if Input.is_action_just_pressed("tirar") and Global.mascara_activa==2 and objeto_arrastrado:
-		if not agarrando_caja:
-			agarrar_caja()
-		else:
-			soltar_caja()
-			
-
-	if Input.is_action_just_pressed("r"):
-		print("Se apreto la R")
-		restart() #en restart llamo a matar jugador, te lleva al checkpoint
+#
+#func _input(event: InputEvent) -> void:
+	#if Input.is_action_just_pressed("1"): #usar mascara fuerza
+		#if not Global.tiene_mascara_fuerza:
+			#print("no tengo la mascara de la fuerza")
+			#return
+		#if Global.mascara_activa==2:#para no re activar la mascara que ya tenia puesta
+			#return #la 2 en global en realidad es la del OSO
+		#mascara_tiempo.desactivar()
+		#mascara_fuerza.usar()
+		#$FmodEventEmitter2D6.set_parameter("Mascara", "Oso")
+		#$FmodEventEmitter2D6.play()
+		#mascara_traducciones.desactivar()
+	#verificar_animacion_con_mascara()
+	#if Input.is_action_just_pressed("2"): #usar mascara tiempos
+		#if not Global.tiene_mascara_tiempo:
+			#print("no tengo la mascara del tiempo")
+			#return
+		#if Global.mascara_activa==1: #para no re activar la mascara que ya tenia puesta
+			#return
+		#mascara_tiempo.usar()
+		#Global.mascara_tiempo_activa.emit()
+		#$FmodEventEmitter2D6.set_parameter("Mascara", "Ciervo")
+		#$FmodEventEmitter2D6.play()
+		#mascara_fuerza.desactivar()
+		#mascara_traducciones.desactivar()
+	#verificar_animacion_con_mascara()
+	#if Input.is_action_just_pressed("3"): #usar mascara traducciones
+		#if not Global.tiene_mascara_traducciones:
+			#print("no tengo la mascara de las traducciones")
+			#return
+		#if Global.mascara_activa==3: #para no re activar la mascara que ya tenia puesta
+			#return
+		#mascara_tiempo.desactivar()
+		#mascara_fuerza.desactivar()
+		#mascara_traducciones.usar()
+		#$FmodEventEmitter2D6.set_parameter("Mascara", "Salmon")
+		#$FmodEventEmitter2D6.play()
+	#verificar_animacion_con_mascara()
+#
+	#if Input.is_action_just_pressed("tirar") and Global.mascara_activa==2 and objeto_arrastrado:
+		#if not agarrando_caja:
+			#agarrar_caja()
+		#else:
+			#soltar_caja()
+#
+	#if Input.is_action_just_pressed("r"):
+		#print("Se apreto la R")
+		#restart() #en restart llamo a matar jugador, te lleva al checkpoint
 
 
 
 func _physics_process(delta: float) -> void:
 	detectar_tipo_de_suelo()
+	
 	%FmodEventEmitter2D.volume = Global.volumen_efectos
-	$FmodEventEmitter2D4.volume = Global.volumen_efectos
+	%FmodEventEmitter2D4.volume = Global.volumen_efectos
 	%FmodEventEmitter2D2.volume = Global.volumen_efectos
 	if tipo_de_suelo:
 		%FmodEventEmitter2D.set_parameter("Superficie", tipo_de_suelo)
-		$FmodEventEmitter2D4.set_parameter("Superficie", tipo_de_suelo)
+		%FmodEventEmitter2D4.set_parameter("Superficie", tipo_de_suelo)
 		%FmodEventEmitter2D2.set_parameter("Superficie", tipo_de_suelo)
 	if not dialogos_activos: #TEST A VER SI NOS GUSTA
 		direction = Input.get_axis("a", "d")
@@ -203,7 +209,7 @@ func _physics_process(delta: float) -> void:
 		#------------------------INTERACTUAR------------------------
 	if puede_interactuar and objeto_interactivo is Palanca and Input.is_action_just_pressed("interactuar"):
 		objeto_interactivo.activar()
-		ejecutar_animacion_palanca()
+		#ejecutar_animacion_palanca()
 
 
 #--------------------- SEÑALES  -------------------------
@@ -275,8 +281,8 @@ func reset_velocidad_normal():
 
 func detectar_caida():
 	if not estaba_en_el_piso and is_on_floor():
-		$FmodEventEmitter2D4.play()
-		$FmodEventEmitter2D5.stop()
+		%FmodEventEmitter2D4.play()
+		%FmodEventEmitter2D5.stop()
 		sonido_caida_emitiendo = false
 	#	print("DETECTAR CAIDA - ESTUVO ", ultimo_tiempo_en_aire, " TIEMPO EN EL AIRE ")
 		if ultimo_tiempo_en_aire > 1.1: #esta harcodeado pero podria ser una variable
@@ -299,7 +305,7 @@ func consultar_saltar():
 
 func emitir_sonido_caida():
 	if estaba_en_el_piso and not is_on_floor():
-		$FmodEventEmitter2D5.play()
+		%FmodEventEmitter2D5.play()
 		sonido_caida_emitiendo = true
 
 
@@ -310,72 +316,70 @@ func aplicar_gravedad(delta : float):
 		velocity += get_gravity() * gravedad_bajando * delta
 
 
-func ejecutar_animacion_caminar(forzar_id : int = 0): #por si queremos forzar una especifica
-	match Global.mascara_activa:
-		0:
-			animated_sprite_pj.play("caminar_normal")
-		1:
-			animated_sprite_pj.play("caminar_ciervo")
-		2:
-			animated_sprite_pj.play("caminar_oso")
-		3:
-			animated_sprite_pj.play("caminar_salmon")
+#func ejecutar_animacion_caminar(forzar_id : int = 0): #por si queremos forzar una especifica
+	#match Global.mascara_activa:
+		#0:
+			#animated_sprite_pj.play("caminar_normal")
+		#1:
+			#animated_sprite_pj.play("caminar_ciervo")
+		#2:
+			#animated_sprite_pj.play("caminar_oso")
+		#3:
+			#animated_sprite_pj.play("caminar_salmon")
+#
+#
+#func ejecutar_animacion_saltar(forzar_id : int = 0): #por si queremos forzar una especifica
+	#match Global.mascara_activa:
+		#0:
+			#animated_sprite_pj.play("salto-normal")
+		#1:
+			#animated_sprite_pj.play("salto_ciervo")
+		#2:
+			#animated_sprite_pj.play("salto_oso")
+		#3:
+			#animated_sprite_pj.play("salto_salmon")
+#
+#
+#func ejecutar_animacion_arrastrar(): #solo puede el oso
+	#animated_sprite_pj.play("seguir_agarrando")
+#
+#
+#func ejecutar_animacion_palanca(forzar_id : int = 0): #por si queremos forzar una especifica
+	#match Global.mascara_activa:
+		#0:
+			#animated_sprite_pj.play("palanca_normal")
+		#1:
+			#animated_sprite_pj.play("palanca_ciervo")
+		#2:
+			#animated_sprite_pj.play("palanca_oso")
+		#3:
+			#animated_sprite_pj.play("palanca_salmon")
+#
+#
+#func ejecutar_animacion_idle(forzar_id : int = 0): #por si queremos forzar una especifica
+	#match Global.mascara_activa:
+		#0:
+			#animated_sprite_pj.play("idle_normal")
+		#1:
+			#animated_sprite_pj.play("idle_ciervo")
+		#2:
+			#animated_sprite_pj.play("idle_oso")
+		#3:
+			#animated_sprite_pj.play("idle_salmon")
+#
+#
+#
+#func ejecutar_animacion_caida(forzar_id : int = 0): #por si queremos forzar una especifica
+	#match Global.mascara_activa:
+		#0:
+			#animated_sprite_pj.play("caida_normal")
+		#1:
+			#animated_sprite_pj.play("caida_ciervo")
+		#2:
+			#animated_sprite_pj.play("caida_oso")
+		#3:
+			#animated_sprite_pj.play("caida_salmon")
 
-
-func ejecutar_animacion_saltar(forzar_id : int = 0): #por si queremos forzar una especifica
-	match Global.mascara_activa:
-		0:
-			animated_sprite_pj.play("salto-normal")
-		1:
-			animated_sprite_pj.play("salto_ciervo")
-		2:
-			animated_sprite_pj.play("salto_oso")
-		3:
-			animated_sprite_pj.play("salto_salmon")
-
-
-func ejecutar_animacion_arrastrar(): #solo puede el oso
-	animated_sprite_pj.play("seguir_agarrando")
-
-
-func ejecutar_animacion_palanca(forzar_id : int = 0): #por si queremos forzar una especifica
-	match Global.mascara_activa:
-		0:
-			animated_sprite_pj.play("palanca_normal")
-		1:
-			animated_sprite_pj.play("palanca_ciervo")
-		2:
-			animated_sprite_pj.play("palanca_oso")
-		3:
-			animated_sprite_pj.play("palanca_salmon")
-
-
-func ejecutar_animacion_idle(forzar_id : int = 0): #por si queremos forzar una especifica
-	match Global.mascara_activa:
-		0:
-			animated_sprite_pj.play("idle_normal")
-		1:
-			animated_sprite_pj.play("idle_ciervo")
-		2:
-			animated_sprite_pj.play("idle_oso")
-		3:
-			animated_sprite_pj.play("idle_salmon")
-
-
-
-func ejecutar_animacion_caida(forzar_id : int = 0): #por si queremos forzar una especifica
-	match Global.mascara_activa:
-		0:
-			animated_sprite_pj.play("caida_normal")
-		1:
-			animated_sprite_pj.play("caida_ciervo")
-		2:
-			animated_sprite_pj.play("caida_oso")
-		3:
-			animated_sprite_pj.play("caida_salmon")
-
-#TODO ARREGLAR ANIMACIONES
-#TODO IDLE SE EJECUTA CUANDO NO CORRESPONDE
 
 func cambiar_de_estado(estado_nuevo : ESTADOS):
 	if estado_actual == estado_nuevo:
@@ -384,20 +388,26 @@ func cambiar_de_estado(estado_nuevo : ESTADOS):
 	estado_actual = estado_nuevo
 	match estado_actual:
 		ESTADOS.IDLE:
-			ejecutar_animacion_idle()
+			animation_manager.ejecutar_animacion_idle()
+			pass
 		ESTADOS.CAMINAR:
-			ejecutar_animacion_caminar()
+			animation_manager.ejecutar_animacion_caminar()
+			pass
 		ESTADOS.SALTAR:
-			ejecutar_animacion_saltar()
-			$FmodEventEmitter2D2.play()
+			animation_manager.ejecutar_animacion_saltar()
+			%FmodEventEmitter2D2.play()
 		ESTADOS.CAER:
-			ejecutar_animacion_caida()
+			animation_manager.ejecutar_animacion_caida()
+			pass
 		ESTADOS.INTERACTUAR:
-			ejecutar_animacion_palanca()
+			animation_manager.ejecutar_animacion_palanca()
+			pass
 		ESTADOS.AGARRAR:
-			ejecutar_animacion_arrastrar()
+			animation_manager.ejecutar_animacion_arrastrar()
+			pass
 		ESTADOS.DIALOGO_ACTIVO:
-			ejecutar_animacion_idle()
+			animation_manager.ejecutar_animacion_idle()
+			pass
 
 
 
@@ -495,7 +505,8 @@ func _on_animated_sprite_pj_animation_finished() -> void:
 	if animacion.begins_with("palanca"):
 		cambiar_de_estado(ESTADOS.IDLE)
 	if animacion.begins_with("salto"):
-		ejecutar_animacion_caida()
+		#ejecutar_animacion_caida()
+		pass
 	if animacion == "agarrar_oso" and estado_actual == ESTADOS.AGARRAR:
 		animacion_agarrar_inicial_terminada = true
 
@@ -506,7 +517,7 @@ func matar_player():
 	reviviendo_player = true
 	global_position = Global.get_checkpoint_position()
 	Global.matar_player.emit()
-	$FmodEventEmitter2D7.play()
+	%FmodEventEmitter2D7.play()
 	reviviendo_player = false
 
 
@@ -514,38 +525,38 @@ func verificar_animacion_con_mascara():
 	var animacion_actual = animated_sprite_pj.get_animation()
 	#agarro la misma animacion q se estaba ejecutando pero como ahora cambio de mascara la mando a ejecutar de nuevo
 	if animacion_actual.begins_with("idle"):
-		ejecutar_animacion_idle()
+		animation_manager.ejecutar_animacion_idle()
 	if animacion_actual.begins_with("palanca"):
-		ejecutar_animacion_palanca()
+		animation_manager.ejecutar_animacion_palanca()
 	if animacion_actual.begins_with("caminar"):
-		ejecutar_animacion_caminar()
+		animation_manager.ejecutar_animacion_caminar()
 	if animacion_actual.begins_with("salto"):
-		ejecutar_animacion_saltar()
+		animation_manager.ejecutar_animacion_saltar()
 	if animacion_actual.begins_with("caida"):
-		ejecutar_animacion_caida()
+		animation_manager.ejecutar_animacion_caida()
 	if animacion_actual.begins_with("seguir"):
-		ejecutar_animacion_arrastrar()
+		animation_manager.ejecutar_animacion_arrastrar()
 
 
 func tiene_mascara_fuerza():
 	mascara_tiempo.desactivar()
 	mascara_fuerza.usar()
 	mascara_traducciones.desactivar()
-	verificar_animacion_con_mascara()
+	#verificar_animacion_con_mascara()
 
 
 func tiene_mascara_tiempo():
 	mascara_tiempo.usar()
 	mascara_fuerza.desactivar()
 	mascara_traducciones.desactivar()
-	verificar_animacion_con_mascara()
+	#verificar_animacion_con_mascara()
 
 
 func tiene_mascara_traducciones():
 	mascara_tiempo.desactivar()
 	mascara_fuerza.desactivar()
 	mascara_traducciones.usar()
-	verificar_animacion_con_mascara()
+	#verificar_animacion_con_mascara()
 
 
 func on_agarre_mascara(nombre_mascara : String):
@@ -636,7 +647,6 @@ func agarrar_caja():
 	if ultima_direccion_mirar == direccion_con_caja: #aunque diga == significa que son direcciones opuestas
 		#print("NO AGARRAR, ESTAS MIRANDO OPUESTO A LA CAJA")
 		return
-	#pin_joint_agarrar.node_b = objeto_arrastrado.get_path()
 	disminuir_velocidad_al_agarrar()
 	cambiar_de_estado(ESTADOS.AGARRAR)
 	animacion_agarrar_inicial_terminada = false
@@ -650,6 +660,5 @@ func soltar_caja():
 	objeto_arrastrado.siendo_agarrada = false
 	reset_velocidad_normal()
 	cambiar_de_estado(ESTADOS.IDLE)
-	pin_joint_agarrar.node_b = self.get_path()
 	agarrando_caja = false
 	activar_mano() #TEST ver si sigue haciendo falta ahora que las cajas se pueden empujar

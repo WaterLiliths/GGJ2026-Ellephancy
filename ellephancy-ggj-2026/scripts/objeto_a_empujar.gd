@@ -1,3 +1,4 @@
+#TODO Agregar clases
 extends CharacterBody2D
 
 @export var presente : bool
