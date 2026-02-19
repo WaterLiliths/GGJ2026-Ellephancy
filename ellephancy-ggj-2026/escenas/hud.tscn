@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://djqldl5uq6oy4"]
+[gd_scene load_steps=10 format=3 uid="uid://djqldl5uq6oy4"]
 
 [ext_resource type="Script" uid="uid://skafeqjf1vw" path="res://escenas/hud.gd" id="1_m5lxu"]
 [ext_resource type="Theme" uid="uid://cj0o3c28vicve" path="res://escenas/themes/tema_pausa_menu.tres" id="2_5u87e"]
 [ext_resource type="PackedScene" uid="uid://d2xlg26hl7ug6" path="res://escenas/boton_custom.tscn" id="3_0sskl"]
 [ext_resource type="Script" uid="uid://c5gucwp3rnkxt" path="res://escenas/canvas_layer_main_2.gd" id="4_8qmdo"]
 [ext_resource type="Theme" uid="uid://c3il706qyjae5" path="res://escenas/themes/main_menu_boton.tres" id="5_dda1n"]
+[ext_resource type="Texture2D" uid="uid://bvd8lf3jvwthk" path="res://assets/iconos/attie/mouse_mover_click_der.svg" id="6_xuv2i"]
+[ext_resource type="Texture2D" uid="uid://mai0ivykevc" path="res://assets/iconos/attie/mouse_click_der.svg" id="7_lhg4a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0sskl"]
 bg_color = Color(0.5, 0.5, 0.5, 0.69411767)
@@ -186,14 +188,10 @@ text = "NO"
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 
-[node name="CanvasLayerMain2" type="CanvasLayer" parent="." node_paths=PackedStringArray("h_slider_musica", "h_slider_2_efectos", "h_slider_3_ambiente", "cerrar")]
+[node name="CanvasLayerMain2" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 process_mode = 3
 script = ExtResource("4_8qmdo")
-h_slider_musica = NodePath("PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HSliderMusica")
-h_slider_2_efectos = NodePath("PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HSlider2Efectos")
-h_slider_3_ambiente = NodePath("PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HSlider3Ambiente")
-cerrar = NodePath("PanelContainer/VBoxContainer/Cerrar")
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayerMain2"]
 anchors_preset = 8
@@ -215,35 +213,36 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_xuv2i")
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayerMain2/PanelContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayerMain2/PanelContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayerMain2/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 35
+theme_override_constants/margin_bottom = 25
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 39
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Control2" type="Control" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(30, 0)
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="Control" type="Control" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 22.565)
-layout_mode = 2
-
-[node name="Label2" type="Label" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("5_dda1n")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.27058825)
 theme_override_font_sizes/font_size = 50
 text = "Volumen"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 4
 
-[node name="Control" type="Control" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -251,15 +250,11 @@ theme = ExtResource("2_5u87e")
 theme_override_constants/separation = 5
 alignment = 1
 
-[node name="Control" type="Control" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 9.47)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Música"
 
-[node name="HSliderMusica" type="HSlider" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="HSliderMusica" type="HSlider" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 process_mode = 3
 layout_mode = 2
@@ -267,62 +262,46 @@ theme = ExtResource("5_dda1n")
 max_value = 1.0
 step = 0.01
 
-[node name="Label3" type="Label" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Label3" type="Label" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Efectos"
 
-[node name="HSlider2Efectos" type="HSlider" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="HSlider2Efectos" type="HSlider" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("5_dda1n")
 max_value = 1.0
 step = 0.01
 
-[node name="Label4" type="Label" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Label4" type="Label" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Ambiente"
 
-[node name="HSlider3Ambiente" type="HSlider" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="HSlider3Ambiente" type="HSlider" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("5_dda1n")
 max_value = 1.0
 step = 0.01
 
-[node name="Control2" type="Control" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 38.16)
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Control2" type="Control" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(10, 0)
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="Control" type="Control" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 22.565)
-layout_mode = 2
-
-[node name="Label2" type="Label" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="Label2" type="Label" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("5_dda1n")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.27058825)
 theme_override_font_sizes/font_size = 50
 text = "Video"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer2"]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -330,15 +309,11 @@ theme = ExtResource("2_5u87e")
 theme_override_constants/separation = 5
 alignment = 1
 
-[node name="Control" type="Control" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 9.47)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Pantalla"
 
-[node name="TipoDeVentana" type="OptionButton" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
+[node name="TipoDeVentana" type="OptionButton" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 alignment = 1
@@ -351,11 +326,11 @@ popup/item_1/id = 1
 popup/item_2/text = "Ventana"
 popup/item_2/id = 2
 
-[node name="Label3" type="Label" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
+[node name="Label3" type="Label" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Resolución"
 
-[node name="Resolucion" type="OptionButton" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
+[node name="Resolucion" type="OptionButton" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 selected = 2
@@ -373,11 +348,11 @@ popup/item_4/id = 4
 popup/item_5/text = "1280x720"
 popup/item_5/id = 5
 
-[node name="Label4" type="Label" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
+[node name="Label4" type="Label" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Vsync"
 
-[node name="Vsync" type="OptionButton" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
+[node name="Vsync" type="OptionButton" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 alignment = 1
@@ -390,17 +365,122 @@ popup/item_1/id = 1
 popup/item_2/text = "Adaptativo"
 popup/item_2/id = 2
 
-[node name="Control2" type="Control" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 38.16)
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Control2" type="Control" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
-custom_minimum_size = Vector2(10, 0)
+[node name="VBoxContainer3" type="VBoxContainer" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3"]
 layout_mode = 2
 
-[node name="Control3" type="Control" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(30, 0)
+[node name="Label2" type="Label" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer3"]
 layout_mode = 2
+theme = ExtResource("5_dda1n")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.27058825)
+theme_override_font_sizes/font_size = 50
+text = "Controles"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer3"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme = ExtResource("2_5u87e")
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer3/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer3/HBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Caminar: A/D"
+horizontal_alignment = 1
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer3/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer3/HBoxContainer/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Saltar: Espacio / W"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer3/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer3/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Cámara: "
+horizontal_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer3/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("6_xuv2i")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer3/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer3/HBoxContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Interacción: "
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer3/HBoxContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "E / "
+horizontal_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer3/HBoxContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+texture = ExtResource("7_lhg4a")
+stretch_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer3/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer3/HBoxContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Ayuda: "
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer3/HBoxContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "F"
+horizontal_alignment = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer3/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer3/HBoxContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Desatascar: "
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer3/HBoxContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "R"
+horizontal_alignment = 2
 
 [node name="Cerrar" parent="CanvasLayerMain2/PanelContainer/VBoxContainer" instance=ExtResource("3_0sskl")]
 unique_name_in_owner = true
@@ -409,9 +489,10 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Cerrar"
 
-[node name="Control" type="Control" parent="CanvasLayerMain2/PanelContainer/VBoxContainer"]
+[node name="Control2" type="Control" parent="CanvasLayerMain2/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+size_flags_vertical = 8
 
 [node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
 event_name = "snapshot:/Low Pass On"
@@ -427,10 +508,10 @@ event_guid = "{d33d5b57-a86b-4a4e-801d-720f36f1258d}"
 [connection signal="pressed" from="CanvasLayerMain/PanelContainer/HBoxContainer/VBoxContainer/BTNSalir" to="." method="_on_btn_salir_pressed"]
 [connection signal="pressed" from="CanvasLayerSalir/PanelContainer2/HBoxContainer/VBoxContainer/HBoxContainer/BTNSi" to="." method="_on_btn_si_pressed"]
 [connection signal="pressed" from="CanvasLayerSalir/PanelContainer2/HBoxContainer/VBoxContainer/HBoxContainer/BTNSi2" to="." method="_on_btn_si_2_pressed"]
-[connection signal="drag_ended" from="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HSliderMusica" to="CanvasLayerMain2" method="_on_h_slider_musica_drag_ended"]
-[connection signal="drag_ended" from="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HSlider2Efectos" to="CanvasLayerMain2" method="_on_h_slider_2_efectos_drag_ended"]
-[connection signal="drag_ended" from="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HSlider3Ambiente" to="CanvasLayerMain2" method="_on_h_slider_3_ambiente_drag_ended"]
-[connection signal="item_selected" from="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/TipoDeVentana" to="CanvasLayerMain2" method="_on_tipo_de_ventana_item_selected"]
-[connection signal="item_selected" from="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/Resolucion" to="CanvasLayerMain2" method="_on_resolucion_item_selected"]
-[connection signal="item_selected" from="CanvasLayerMain2/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/Vsync" to="CanvasLayerMain2" method="_on_vsync_item_selected"]
+[connection signal="drag_ended" from="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/HSliderMusica" to="CanvasLayerMain2" method="_on_h_slider_musica_drag_ended"]
+[connection signal="drag_ended" from="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/HSlider2Efectos" to="CanvasLayerMain2" method="_on_h_slider_2_efectos_drag_ended"]
+[connection signal="drag_ended" from="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/HSlider3Ambiente" to="CanvasLayerMain2" method="_on_h_slider_3_ambiente_drag_ended"]
+[connection signal="item_selected" from="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer2/HBoxContainer/VBoxContainer/TipoDeVentana" to="CanvasLayerMain2" method="_on_tipo_de_ventana_item_selected"]
+[connection signal="item_selected" from="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer2/HBoxContainer/VBoxContainer/Resolucion" to="CanvasLayerMain2" method="_on_resolucion_item_selected"]
+[connection signal="item_selected" from="CanvasLayerMain2/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer2/HBoxContainer/VBoxContainer/Vsync" to="CanvasLayerMain2" method="_on_vsync_item_selected"]
 [connection signal="pressed" from="CanvasLayerMain2/PanelContainer/VBoxContainer/Cerrar" to="." method="_on_boton_custom_pressed"]

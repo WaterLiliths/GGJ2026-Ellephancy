@@ -20,7 +20,7 @@ func _ready() -> void:
 		var joint: PinJoint2D = soga.get_node("PinJoint2D")
 		self.add_child(soga)
 		soga.name = "soga " + str(n)
-		soga.position.y = (n + 1) * 24
+		soga.position.y = (n + 1) * 20
 		joint.node_a = soga.get_path()
 		joint.node_b = anterior.get_path()
 		
@@ -29,7 +29,7 @@ func _ready() -> void:
 			var campana = CAMPANA.instantiate()
 			var campana_joint : PinJoint2D = campana.get_node("PinJointSoga")
 			anterior.add_child(campana)
-			campana.position.y = 24
+			campana.position.y = 20
 			campana.sonido_campana.set_parameter("nota", nota)
 			campana_joint.node_b = anterior.get_path()
 			campana_joint.node_a = campana.get_path()
