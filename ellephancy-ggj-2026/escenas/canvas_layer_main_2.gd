@@ -11,7 +11,10 @@ var resolucion_default = DisplayServer.screen_get_size(DisplayServer.window_get_
 @export var cerrar: BotonCustom
 
 
-func _ready() -> void:
+#func _ready() -> void:
+	#setup_sliders_y_botones()
+
+func setup_sliders_y_botones():
 	h_slider_musica.value = Global.volumen_musica
 	h_slider_2_efectos.value = Global.volumen_efectos
 	h_slider_3_ambiente.value = Global.volumen_ambiente
