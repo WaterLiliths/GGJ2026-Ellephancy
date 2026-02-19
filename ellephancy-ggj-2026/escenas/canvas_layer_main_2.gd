@@ -5,14 +5,14 @@ var efectos
 var ambiente
 var resolucion_default = DisplayServer.screen_get_size(DisplayServer.window_get_current_screen())
 
-@export var h_slider_musica: HSlider  #attie los cambie a export pq tiraban error, me parece que cuando no son hijos muy directos falla el %
-@export var h_slider_2_efectos: HSlider 
-@export var h_slider_3_ambiente: HSlider 
-@export var cerrar: BotonCustom
+@onready var h_slider_musica: HSlider = %HSliderMusica
+@onready var h_slider_2_efectos: HSlider = %HSlider2Efectos
+@onready var h_slider_3_ambiente: HSlider = %HSlider3Ambiente
+@onready var cerrar: BotonCustom = %Cerrar
 
 
-#func _ready() -> void:
-	#setup_sliders_y_botones()
+func _ready() -> void:
+	setup_sliders_y_botones()
 
 func setup_sliders_y_botones():
 	h_slider_musica.value = Global.volumen_musica
