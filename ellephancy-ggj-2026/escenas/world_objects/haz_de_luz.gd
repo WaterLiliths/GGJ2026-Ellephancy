@@ -12,6 +12,7 @@ var haces := []
 @onready var line_2d: Line2D = $Line2D
 @onready var haz: RayCast2D = $Haz
 @onready var particulas: CPUParticles2D = $Particulas
+@onready var point_light_2d: PointLight2D = $PointLight2D
 
 
 
@@ -57,14 +58,15 @@ func _physics_process(delta: float) -> void:
 				haces[idx+1].global_position = raycastcollision + (max_target_position.normalized())
 			if idx == haces.size() - 1:
 				particulas.global_position = raycastcollision
+				point_light_2d.global_position = raycastcollision
 	
 		else:
 			line_2d.add_point(global_position + max_target_position.rotated(global_rotation))
 			if idx == 0:
-				print("id = 0")
 				raycast.target_position = max_target_position
 				particulas.global_position = global_position + max_target_position
+				point_light_2d.global_position = global_position + max_target_position
 			else:
-				print("id != 0")
 				particulas.global_position = raycast.global_position + max_target_position
+				point_light_2d.global_position = raycast.global_position + max_target_position
 			

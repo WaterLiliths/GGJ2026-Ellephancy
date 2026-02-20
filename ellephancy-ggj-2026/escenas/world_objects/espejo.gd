@@ -3,11 +3,19 @@ extends Node2D
 
 var player_dentro_del_area
 var angular_velocity := 0.0
-var sensitivity := 0.007
+var sensitivity := 0.001
 var damping := 3.0
 var max_speed := 4.0
 
+@onready var area_de_interaccion: Area2D = $AreaDeInteraccion
+@onready var collision_shape_2d: CollisionShape2D = $AreaDeInteraccion/CollisionShape2D
+
+@export var es_movible : bool = false
+
 func _input(event):
+	if not es_movible:
+		collision_shape_2d.disabled = true
+	
 	if event is InputEventMouseMotion:
 		if player_dentro_del_area and Input.is_action_pressed("tirar"):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -24,11 +32,9 @@ func _physics_process(delta):
 
 func _on_area_de_interaccion_body_entered(body: Node2D) -> void:
 	if body is Player:
-		print("player entro al area de interaccion de la lente")
 		player_dentro_del_area = true
 
 
 func _on_area_de_interaccion_body_exited(body: Node2D) -> void:
 	if body is Player:
-		print("player salio del area de interaccion de la lente")
 		player_dentro_del_area = false

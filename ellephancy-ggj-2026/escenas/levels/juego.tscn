@@ -360,14 +360,14 @@ texture = ExtResource("5_ffuyt")
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank", "res://assets/audio/FmodBanks/Desktop/UI.bank"]
 
 [node name="Player" parent="." instance=ExtResource("8_m34qx")]
-position = Vector2(3039, -29)
+position = Vector2(2859, -34)
 scale = Vector2(0.64, 0.64)
 empieza_con_mascaras = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(3039, -99)
+position = Vector2(2859, -104)
 limit_left = 0
 limit_bottom = 1200
 editor_draw_limits = true
@@ -385,10 +385,10 @@ visible = false
 modulate = Color(1, 1, 1, 0.77516997)
 z_index = 185
 y_sort_enabled = true
-offset_left = -716.0
-offset_top = -864.0
-offset_right = 1295.0
-offset_bottom = 1122.0
+offset_left = -984.0
+offset_top = -1000.0
+offset_right = 1027.0
+offset_bottom = 986.0
 color = Color(0, 0, 0, 1)
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="Player/Camera2D"]
@@ -470,7 +470,7 @@ position = Vector2(-97, 588)
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(3039, -99)
+position = Vector2(2859, -104)
 script = ExtResource("12_g2cn0")
 follow_mode = 2
 follow_target = NodePath("../Player/Node2D")
@@ -746,21 +746,24 @@ color = Color(0.80049086, 0.80049074, 0.80049074, 1)
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_8mohb")
 
-[node name="Espejo" parent="." instance=ExtResource("42_vy46r")]
-position = Vector2(3032.0002, -33)
-rotation = -1.2854326
-
 [node name="Lente" parent="." instance=ExtResource("43_vy46r")]
-position = Vector2(2191, -187)
-rotation = 2.7521222
+position = Vector2(2915, -76)
 iniciador = true
+es_movible = true
+
+[node name="Espejo" parent="." instance=ExtResource("42_vy46r")]
+position = Vector2(3835.0002, -14)
+rotation = -1.2854326
+es_movible = true
 
 [node name="Espejo2" parent="." instance=ExtResource("42_vy46r")]
-position = Vector2(2730.0002, -223)
+position = Vector2(3602.9998, -203.99988)
 rotation = -0.5303697
+es_movible = true
 
 [node name="Lente2" parent="." instance=ExtResource("43_vy46r")]
-position = Vector2(2456, -238)
+position = Vector2(3260, -145)
+es_movible = true
 
 [connection signal="body_entered" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_entered"]
 [connection signal="body_exited" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_exited"]
