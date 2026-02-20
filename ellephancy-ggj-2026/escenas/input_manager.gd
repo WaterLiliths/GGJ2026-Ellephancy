@@ -6,15 +6,16 @@ extends Node
 @export var mascaras_manager : MascarasManager
 @export var animation_manager : AnimationManager
 
+
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("1"): #usar mascara fuerza
-		mascaras_manager.usar_mascara_oso() #DSP LLAMADAS POR SEÑALES NO DIRECTAS
+		Global.equipar_mascara.emit(2) #no olvidar que la 2 quedo como OSO
 	animation_manager.verificar_animacion_con_mascara()
 	if Input.is_action_just_pressed("2"): #usar mascara tiempos
-		mascaras_manager.usar_mascara_ciervo()
+		Global.equipar_mascara.emit(1) #y la 1 quedo como ciervo, TODO cambiar cuando recupere neuronas
 	animation_manager.verificar_animacion_con_mascara()
 	if Input.is_action_just_pressed("3"): #usar mascara traducciones
-		mascaras_manager.usar_mascara_salmon()
+		Global.equipar_mascara.emit(3)
 	animation_manager.verificar_animacion_con_mascara()
 
 	if Input.is_action_just_pressed("tirar") and Global.mascara_activa==2 and player.objeto_arrastrado:

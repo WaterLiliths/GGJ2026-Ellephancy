@@ -61,8 +61,8 @@
 [ext_resource type="Script" uid="uid://glt0x5k046kj" path="res://escenas/sound_manager.gd" id="59_5uuta"]
 [ext_resource type="Script" uid="uid://3qxmcrafe6i3" path="res://escenas/mascaras_manager.gd" id="60_b787q"]
 [ext_resource type="Script" uid="uid://bdgl3r26u8lph" path="res://escenas/animation_manager.gd" id="61_3jn0c"]
-[ext_resource type="Script" uid="uid://orfoc0ia8l3b" path="res://escenas/estados_manager.gd" id="62_hhtts"]
 [ext_resource type="Script" uid="uid://bsowsfuv3joil" path="res://escenas/detector_suelo_manager.gd" id="63_762hu"]
+[ext_resource type="Script" uid="uid://dtiq53iumksnb" path="res://scripts/resources/player_stats.gd" id="63_uxfdn"]
 
 [sub_resource type="Gradient" id="Gradient_hopxw"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -374,13 +374,12 @@ radius = 41.880783
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3jn0c"]
 size = Vector2(1, 20)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input_manager", "sound_manager", "animation_manager", "estados_manager") groups=["cajas"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input_manager", "sound_manager", "animation_manager") groups=["cajas"]]
 collision_mask = 135
 script = ExtResource("1_esbpa")
 input_manager = NodePath("InputManager")
 sound_manager = NodePath("SoundManager")
 animation_manager = NodePath("AnimationManager")
-estados_manager = NodePath("EstadosManager")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(0.7607843, 0.43137255, 0.2901961, 1)
@@ -414,11 +413,6 @@ position = Vector2(11, 0)
 shape = SubResource("CircleShape2D_j7xnp")
 debug_color = Color(1.2513996e-06, 0.6431121, 0.31144592, 0.41960785)
 
-[node name="TimerCoyoteTime" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 0.25
-one_shot = true
-
 [node name="RayCastIzq" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(-47, 0)
@@ -432,11 +426,6 @@ position = Vector2(47, 0)
 target_position = Vector2(0, 55)
 collision_mask = 130
 hit_from_inside = true
-
-[node name="TimerTiempoEnAire" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 10.0
-one_shot = true
 
 [node name="HUD" parent="." instance=ExtResource("52_hopxw")]
 z_index = 105
@@ -560,24 +549,14 @@ unique_name_in_owner = true
 [node name="MascaraTraducciones" parent="MascarasManager" instance=ExtResource("6_r4hsq")]
 unique_name_in_owner = true
 
-[node name="AnimationManager" type="Node" parent="." node_paths=PackedStringArray("player", "sound_manager", "mascaras_manager", "input_manager", "estados_manager", "animated_sprite_pj")]
+[node name="AnimationManager" type="Node" parent="." node_paths=PackedStringArray("player", "sound_manager", "mascaras_manager", "input_manager", "animated_sprite_pj")]
 unique_name_in_owner = true
 script = ExtResource("61_3jn0c")
 player = NodePath("..")
 sound_manager = NodePath("../SoundManager")
 mascaras_manager = NodePath("../MascarasManager")
 input_manager = NodePath("../InputManager")
-estados_manager = NodePath("../EstadosManager")
 animated_sprite_pj = NodePath("../AnimatedSpritePJ")
-
-[node name="EstadosManager" type="Node" parent="." node_paths=PackedStringArray("player", "sound_manager", "mascaras_manager", "animation_manager", "input_manager")]
-unique_name_in_owner = true
-script = ExtResource("62_hhtts")
-player = NodePath("..")
-sound_manager = NodePath("../SoundManager")
-mascaras_manager = NodePath("../MascarasManager")
-animation_manager = NodePath("../AnimationManager")
-input_manager = NodePath("../InputManager")
 
 [node name="MovimientoManager" type="Node" parent="."]
 unique_name_in_owner = true
@@ -589,10 +568,13 @@ player = NodePath("..")
 sound_manager = NodePath("../SoundManager")
 raycast_suelo = NodePath("../RayCast2DSuelo")
 
+[node name="PlayerStats" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("63_uxfdn")
+
 [connection signal="animation_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_animation_changed"]
-[connection signal="animation_finished" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_animation_finished"]
 [connection signal="animation_finished" from="AnimatedSpritePJ" to="AnimationManager" method="_on_animated_sprite_pj_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_frame_changed"]
 [connection signal="body_entered" from="AreaTirar" to="." method="_on_area_tirar_body_entered"]
 [connection signal="body_exited" from="AreaTirar" to="." method="_on_area_tirar_body_exited"]
-[connection signal="timeout" from="TimerTiempoEnAire" to="." method="_on_timer_tiempo_en_aire_timeout"]
+[connection signal="ejecutar_sonido_mascara" from="MascarasManager" to="SoundManager" method="_on_mascaras_manager_ejecutar_sonido_mascara"]

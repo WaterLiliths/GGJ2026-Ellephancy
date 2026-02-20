@@ -5,7 +5,7 @@ extends Node
 @export var sound_manager : SoundManager
 @export var mascaras_manager : MascarasManager
 @export var input_manager : InputManager
-@export var estados_manager : EstadosManager
+
 @export var animated_sprite_pj : AnimatedSprite2D
 
 func verificar_animacion_con_mascara():
@@ -95,5 +95,5 @@ func _on_animated_sprite_pj_animation_finished() -> void:
 		player.cambiar_de_estado(player.ESTADOS.IDLE)
 	if animacion.begins_with("salto"):
 		ejecutar_animacion_caida()
-	if animacion == "agarrar_oso" and estados_manager.estado_actual == estados_manager.ESTADOS.AGARRAR:
+	if animacion == "agarrar_oso" and player.estado_actual == player.ESTADOS.AGARRAR:
 		player.animacion_agarrar_inicial_terminada = true
