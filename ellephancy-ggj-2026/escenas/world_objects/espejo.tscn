@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://dg6y4xunbnxvq"]
+
+[ext_resource type="Script" uid="uid://bj6bigk1y3j8h" path="res://escenas/world_objects/espejo.gd" id="1_ltgtn"]
+
+[sub_resource type="Gradient" id="Gradient_ltgtn"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mvv7a"]
+gradient = SubResource("Gradient_ltgtn")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ltgtn"]
+size = Vector2(246, 16.000002)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ltgtn"]
+radius = 182.57054
+
+[node name="Espejo" type="AnimatableBody2D"]
+collision_layer = 1024
+collision_mask = 1024
+script = ExtResource("1_ltgtn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5707964
+scale = Vector2(3.8125, 0.24999999)
+texture = SubResource("GradientTexture2D_mvv7a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5707964
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_ltgtn")
+
+[node name="AreaDeInteraccion" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDeInteraccion"]
+shape = SubResource("CircleShape2D_ltgtn")
+
+[connection signal="body_entered" from="AreaDeInteraccion" to="." method="_on_area_de_interaccion_body_entered"]
+[connection signal="body_exited" from="AreaDeInteraccion" to="." method="_on_area_de_interaccion_body_exited"]
