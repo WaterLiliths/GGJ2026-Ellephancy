@@ -8,11 +8,7 @@ const HAZ_DE_LUZ = preload("uid://cpyhe3nqkhc1v")
 @export var es_movible : bool = false
 @onready var point_light_2d: PointLight2D = $PointLight2D
 @onready var sonido_rotacion: FmodEventEmitter2D = $SonidoRotacion
-
-
 @onready var collision_shape_2d: CollisionShape2D = $AreaDeInteraccion/CollisionShape2D
-@onready var ray_cast_detectar_luz: RayCast2D = $RayCastDetectarLuz
-
 
 var player_dentro_del_area : bool = false
 
@@ -21,7 +17,7 @@ var sensitivity := 0.001
 var damping := 3.0
 var max_speed := 5.0
 var rotando : bool = false
-
+@export var id_haz_iniciador : int = 0
 
 
 func _ready() -> void:
@@ -30,6 +26,7 @@ func _ready() -> void:
 	
 	if iniciador:
 		var haz = HAZ_DE_LUZ.instantiate()
+		haz.id_haz = id_haz_iniciador
 		add_child(haz)
 
 func _input(event):
