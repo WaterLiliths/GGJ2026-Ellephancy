@@ -9,7 +9,7 @@ extends CharacterBody2D
 @export var sound_manager : SoundManager
 @export var animation_manager : AnimationManager
 @export var estados_manager : EstadosManager
-
+@export var detector_suelo_manager : DetectorSueloManager
 #---------- mascaras -----------
 @onready var mascara_tiempos: Node2D = %MascaraTiempos
 @onready var mascara_fuerza: Node2D = %MascaraFuerza
@@ -25,7 +25,7 @@ var animacion_agarrar_inicial_terminada : bool = false
 var ultimo_tiempo_en_aire : float = 0
 var tiempo_en_el_aire_actual: float = 0
 var dialogos_activos : bool = false
-var ultimo_estado : ESTADOS
+#var ultimo_estado : ESTADOS
 @export var limite_altura_morir : float = 2000
 var reviviendo_player : bool = false
 var ultima_direccion_mirar : int = 1 #para derecha e izquierda solo 1 -1
@@ -65,10 +65,10 @@ var estaba_en_el_piso : bool = false
 var objeto_interactivo : Interactivo = null
 var puede_interactuar : bool = false
 
-var posicion_pies = global_position + Vector2(0, 1)
+#var posicion_pies = global_position + Vector2(0, 1)
 
-enum ESTADOS {IDLE, CAMINAR, SALTAR, CAER, INTERACTUAR, AGARRAR, DIALOGO_ACTIVO}
-var estado_actual : ESTADOS = ESTADOS.IDLE
+#enum ESTADOS {IDLE, CAMINAR, SALTAR, CAER, INTERACTUAR, AGARRAR, DIALOGO_ACTIVO}
+#var estado_actual : ESTADOS = ESTADOS.IDLE
 var tipo_de_suelo
 
 
@@ -88,73 +88,15 @@ func _ready() -> void:
 		var botones_android : PackedScene= preload("res://escenas/interfaz_android.tscn") #o cambiar por el uuid
 		var instancia_botones = botones_android.instantiate()
 		add_child(instancia_botones)
-	#Global.tiene_mascara_fuerza = tiene_mascara_fuerza
-	#Global.tiene_mascara_tiempo = tiene_mascara_tiempo
-	#Global.tiene_mascara_traducciones = tiene_mascara_traducciones
 	await get_tree().create_timer(0.5).timeout #el timer QUIZAS no es necesario, pero puede evitar algun q otro bug
 	Global.set_checkpoint_position(global_position)
-#
-#func _input(event: InputEvent) -> void:
-	#if Input.is_action_just_pressed("1"): #usar mascara fuerza
-		#if not Global.tiene_mascara_fuerza:
-			#print("no tengo la mascara de la fuerza")
-			#return
-		#if Global.mascara_activa==2:#para no re activar la mascara que ya tenia puesta
-			#return #la 2 en global en realidad es la del OSO
-		#mascara_tiempo.desactivar()
-		#mascara_fuerza.usar()
-		#$FmodEventEmitter2D6.set_parameter("Mascara", "Oso")
-		#$FmodEventEmitter2D6.play()
-		#mascara_traducciones.desactivar()
-	#verificar_animacion_con_mascara()
-	#if Input.is_action_just_pressed("2"): #usar mascara tiempos
-		#if not Global.tiene_mascara_tiempo:
-			#print("no tengo la mascara del tiempo")
-			#return
-		#if Global.mascara_activa==1: #para no re activar la mascara que ya tenia puesta
-			#return
-		#mascara_tiempo.usar()
-		#Global.mascara_tiempo_activa.emit()
-		#$FmodEventEmitter2D6.set_parameter("Mascara", "Ciervo")
-		#$FmodEventEmitter2D6.play()
-		#mascara_fuerza.desactivar()
-		#mascara_traducciones.desactivar()
-	#verificar_animacion_con_mascara()
-	#if Input.is_action_just_pressed("3"): #usar mascara traducciones
-		#if not Global.tiene_mascara_traducciones:
-			#print("no tengo la mascara de las traducciones")
-			#return
-		#if Global.mascara_activa==3: #para no re activar la mascara que ya tenia puesta
-			#return
-		#mascara_tiempo.desactivar()
-		#mascara_fuerza.desactivar()
-		#mascara_traducciones.usar()
-		#$FmodEventEmitter2D6.set_parameter("Mascara", "Salmon")
-		#$FmodEventEmitter2D6.play()
-	#verificar_animacion_con_mascara()
-#
-	#if Input.is_action_just_pressed("tirar") and Global.mascara_activa==2 and objeto_arrastrado:
-		#if not agarrando_caja:
-			#agarrar_caja()
-		#else:
-			#soltar_caja()
-#
-	#if Input.is_action_just_pressed("r"):
-		#print("Se apreto la R")
-		#restart() #en restart llamo a matar jugador, te lleva al checkpoint
-
 
 
 func _physics_process(delta: float) -> void:
-	detectar_tipo_de_suelo()
-	
 	%FmodEventEmitter2D.volume = Global.volumen_efectos
 	%FmodEventEmitter2D4.volume = Global.volumen_efectos
 	%FmodEventEmitter2D2.volume = Global.volumen_efectos
-	if tipo_de_suelo:
-		%FmodEventEmitter2D.set_parameter("Superficie", tipo_de_suelo)
-		%FmodEventEmitter2D4.set_parameter("Superficie", tipo_de_suelo)
-		%FmodEventEmitter2D2.set_parameter("Superficie", tipo_de_suelo)
+
 	if not dialogos_activos: #TEST A VER SI NOS GUSTA
 		direction = Input.get_axis("a", "d")
 	else:
@@ -163,21 +105,21 @@ func _physics_process(delta: float) -> void:
 		ultima_direccion_mirar = sign(direction)
 	aplicar_gravedad(delta)
 	
-	match estado_actual:
-		ESTADOS.IDLE:
-			procesar_idle(delta)
-		ESTADOS.CAMINAR:
-			procesar_caminar(delta)
-		ESTADOS.SALTAR:
-			procesar_saltar(delta)
-		ESTADOS.CAER:
-			procesar_caer(delta)
-		ESTADOS.INTERACTUAR:
-			pass #por si necesitan logica en process la ponemos aca
-		ESTADOS.AGARRAR:
-			procesar_agarrar(delta)
-		ESTADOS.DIALOGO_ACTIVO:
-			procesar_dialogo_activo(delta)
+	#match estado_actual:
+		#ESTADOS.IDLE:
+			#procesar_idle(delta)
+		#ESTADOS.CAMINAR:
+			#procesar_caminar(delta)
+		#ESTADOS.SALTAR:
+			#procesar_saltar(delta)
+		#ESTADOS.CAER:
+			#procesar_caer(delta)
+		#ESTADOS.INTERACTUAR:
+			#pass #por si necesitan logica en process la ponemos aca
+		#ESTADOS.AGARRAR:
+			#procesar_agarrar(delta)
+		#ESTADOS.DIALOGO_ACTIVO:
+			#procesar_dialogo_activo(delta)
 	if global_position.y > limite_altura_morir:
 		matar_player()
 	
@@ -265,10 +207,6 @@ func desactivar_mascara_fuerza():
 
 
 func disminuir_velocidad_al_agarrar():
-	#velocidad *= (1 / objeto_arrastrado.mass)
-	#print((1 / objeto_arrastrado.mass))
-	#print("la velocidad de movimiento es: " + str(velocidad))
-	#velocidad_salto *= (1 / objeto_arrastrado.mass)
 	velocidad = velocidad_arrastrando
 
 func reset_velocidad_normal():
@@ -381,48 +319,19 @@ func aplicar_gravedad(delta : float):
 			#animated_sprite_pj.play("caida_salmon")
 
 
-func cambiar_de_estado(estado_nuevo : ESTADOS):
-	if estado_actual == estado_nuevo:
-		return
-	ultimo_estado = estado_actual
-	estado_actual = estado_nuevo
-	match estado_actual:
-		ESTADOS.IDLE:
-			animation_manager.ejecutar_animacion_idle()
-			pass
-		ESTADOS.CAMINAR:
-			animation_manager.ejecutar_animacion_caminar()
-			pass
-		ESTADOS.SALTAR:
-			animation_manager.ejecutar_animacion_saltar()
-			%FmodEventEmitter2D2.play()
-		ESTADOS.CAER:
-			animation_manager.ejecutar_animacion_caida()
-			pass
-		ESTADOS.INTERACTUAR:
-			animation_manager.ejecutar_animacion_palanca()
-			pass
-		ESTADOS.AGARRAR:
-			animation_manager.ejecutar_animacion_arrastrar()
-			pass
-		ESTADOS.DIALOGO_ACTIVO:
-			animation_manager.ejecutar_animacion_idle()
-			pass
-
-
 
 func procesar_idle(delta):
 	velocity.x = move_toward(velocity.x, 0, desaceleracion * delta)
 	animated_sprite_pj.flip_h = ultima_direccion_mirar <0
 	if not is_on_floor():
-		cambiar_de_estado(ESTADOS.CAER) #o pasar a salto? TODO TESTEAR
+		estados_manager.cambiar_de_estado(estados_manager.ESTADOS.CAER)
 		return
 	if direction != 0: #moviendome
-		cambiar_de_estado(ESTADOS.CAMINAR)
+		estados_manager.cambiar_de_estado(estados_manager.ESTADOS.CAMINAR)
 		return
 	if Input.is_action_just_pressed("w") and (is_on_floor() or puedo_usar_coyote()) and not Input.is_action_pressed("s"): #cambiar a una sola funcion q me devuelva true
 		velocity.y = velocidad_salto
-		cambiar_de_estado(ESTADOS.SALTAR)
+		estados_manager.cambiar_de_estado(estados_manager.ESTADOS.SALTAR)
 	if Input.is_action_pressed("s") and Input.is_action_just_pressed("w") and is_on_floor():
 		tirarse_de_plataforma()
 
@@ -438,14 +347,14 @@ func procesar_caminar(delta):
 			timer_pasos = timer_pasos_reset
 		timer_pasos -= delta 
 	if direction == 0:
-		cambiar_de_estado(ESTADOS.IDLE)
+		estados_manager.cambiar_de_estado(estados_manager.ESTADOS.IDLE)
 		return
 	if not is_on_floor():
-		cambiar_de_estado(ESTADOS.CAER)
+		estados_manager.cambiar_de_estado(estados_manager.ESTADOS.CAER)
 		return
 	if Input.is_action_just_pressed("w") and (is_on_floor() or puedo_usar_coyote()):
 		velocity.y = velocidad_salto
-		cambiar_de_estado(ESTADOS.SALTAR)
+		estados_manager.cambiar_de_estado(estados_manager.ESTADOS.SALTAR)
 	
 
 func procesar_saltar(delta):
@@ -457,7 +366,7 @@ func procesar_saltar(delta):
 		velocity.y *= desaceleración_al_saltar
 	
 	if velocity.y >0: #TODO TESTEAR 
-		cambiar_de_estado(ESTADOS.CAER)
+		estados_manager.cambiar_de_estado(estados_manager.ESTADOS.CAER)
 
 func procesar_caer(delta):
 	if direction:
@@ -466,9 +375,9 @@ func procesar_caer(delta):
 	
 	if is_on_floor():
 		if direction != 0: #moviendome
-			cambiar_de_estado(ESTADOS.CAMINAR)
+			estados_manager.cambiar_de_estado(estados_manager.ESTADOS.CAMINAR)
 		else:
-			cambiar_de_estado(ESTADOS.IDLE)
+			estados_manager.cambiar_de_estado(estados_manager.ESTADOS.IDLE)
 
 
 func procesar_agarrar(delta):
@@ -476,7 +385,7 @@ func procesar_agarrar(delta):
 	velocity.x = move_toward(velocity.x,direction * velocidad, aceleracion * delta)
 	if not agarrando_caja: #para evitar bugs, porque en realidad al apretar e se cambia de estado
 		reset_velocidad_normal()
-		cambiar_de_estado(ESTADOS.IDLE)
+		estados_manager.cambiar_de_estado(estados_manager.ESTADOS.IDLE)
 		return
 	if not objeto_arrastrado:
 		return
@@ -500,15 +409,15 @@ func procesar_dialogo_activo(delta):
 	velocity.x = 0
 
 
-func _on_animated_sprite_pj_animation_finished() -> void:
-	var animacion = animated_sprite_pj.get_animation()
-	if animacion.begins_with("palanca"):
-		cambiar_de_estado(ESTADOS.IDLE)
-	if animacion.begins_with("salto"):
-		#ejecutar_animacion_caida()
-		pass
-	if animacion == "agarrar_oso" and estado_actual == ESTADOS.AGARRAR:
-		animacion_agarrar_inicial_terminada = true
+#func _on_animated_sprite_pj_animation_finished() -> void:
+	#var animacion = animated_sprite_pj.get_animation()
+	#if animacion.begins_with("palanca"):
+		#estados_manager.cambiar_de_estado(estados_manager.ESTADOS.IDLE)
+	#if animacion.begins_with("salto"):
+		##ejecutar_animacion_caida()
+		#pass
+	#if animacion == "agarrar_oso" and estado_actual == ESTADOS.AGARRAR:
+		#animacion_agarrar_inicial_terminada = true
 
 
 func matar_player():
@@ -571,37 +480,6 @@ func tirarse_de_plataforma():
 	position.y += 1
 
 
-
-func obtener_tile_map():
-	var tilemap : TileMapLayer
-	if $RayCast2DSuelo.is_colliding():
-		tilemap = $RayCast2DSuelo.get_collider()
-		return tilemap
-		
-
-
-func detectar_tipo_de_suelo():
-	posicion_pies = $RayCast2DSuelo.global_position
-	if $RayCast2DSuelo.is_colliding():
-		var tilemap = obtener_tile_map()
-		var coords: Vector2i = tilemap.local_to_map(tilemap.to_local(posicion_pies))
-		var tile_data : TileData = tilemap.get_cell_tile_data(coords)
-		
-		if tilemap == null:
-			return
-		#print("tile data es: " , tile_data)
-		#print("tilemap es: " , tilemap)
-		#if tilemap.get_cell_source_id(coords) == -1:
-			#print("Cell is empty")
-		
-		if tile_data:
-			tipo_de_suelo = tile_data.get_custom_data("suelo")
-		
-			#print("tipo de suelo es: " , tipo_de_suelo)
-		#tilemap = null
-
-
-
 func acaba_de_aterrizar() -> bool:
 	return is_on_floor() and velocity.y >= 0
 
@@ -630,10 +508,10 @@ func resetear_mascaras_a_cero(estado : bool):
 		Global.tiene_mascara_traducciones = true
 
 func on_dialogo_activo():
-	cambiar_de_estado(ESTADOS.DIALOGO_ACTIVO)
+	estados_manager.cambiar_de_estado(estados_manager.ESTADOS.DIALOGO_ACTIVO)
 
 func on_dialogo_desactivado():
-	cambiar_de_estado(ESTADOS.IDLE)
+	estados_manager.cambiar_de_estado(estados_manager.ESTADOS.IDLE)
 
 func restart():
 	matar_player()
@@ -648,7 +526,7 @@ func agarrar_caja():
 		#print("NO AGARRAR, ESTAS MIRANDO OPUESTO A LA CAJA")
 		return
 	disminuir_velocidad_al_agarrar()
-	cambiar_de_estado(ESTADOS.AGARRAR)
+	estados_manager.cambiar_de_estado(estados_manager.ESTADOS.AGARRAR)
 	animacion_agarrar_inicial_terminada = false
 	animated_sprite_pj.play("agarrar_oso")
 	agarrando_caja = true
@@ -659,6 +537,6 @@ func soltar_caja():
 		return
 	objeto_arrastrado.siendo_agarrada = false
 	reset_velocidad_normal()
-	cambiar_de_estado(ESTADOS.IDLE)
+	estados_manager.cambiar_de_estado(estados_manager.ESTADOS.IDLE)
 	agarrando_caja = false
 	activar_mano() #TEST ver si sigue haciendo falta ahora que las cajas se pueden empujar

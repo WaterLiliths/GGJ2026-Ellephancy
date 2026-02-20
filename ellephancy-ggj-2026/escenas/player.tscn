@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://cs3h434myxe4r"]
+[gd_scene load_steps=70 format=3 uid="uid://cs3h434myxe4r"]
 
 [ext_resource type="Script" uid="uid://d1p6o2ixegcp2" path="res://scripts/player.gd" id="1_esbpa"]
 [ext_resource type="Texture2D" uid="uid://csvm86vnc0cmo" path="res://assets/player/mascaras/Agarre oso destra 1.png" id="2_v66k4"]
@@ -62,6 +62,7 @@
 [ext_resource type="Script" uid="uid://3qxmcrafe6i3" path="res://escenas/mascaras_manager.gd" id="60_b787q"]
 [ext_resource type="Script" uid="uid://bdgl3r26u8lph" path="res://escenas/animation_manager.gd" id="61_3jn0c"]
 [ext_resource type="Script" uid="uid://orfoc0ia8l3b" path="res://escenas/estados_manager.gd" id="62_hhtts"]
+[ext_resource type="Script" uid="uid://bsowsfuv3joil" path="res://escenas/detector_suelo_manager.gd" id="63_762hu"]
 
 [sub_resource type="Gradient" id="Gradient_hopxw"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -401,7 +402,6 @@ frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
-visible = false
 position = Vector2(15, -23)
 shape = SubResource("RectangleShape2D_b787q")
 
@@ -410,7 +410,6 @@ collision_layer = 128
 collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaTirar"]
-visible = false
 position = Vector2(11, 0)
 shape = SubResource("CircleShape2D_j7xnp")
 debug_color = Color(1.2513996e-06, 0.6431121, 0.31144592, 0.41960785)
@@ -561,13 +560,14 @@ unique_name_in_owner = true
 [node name="MascaraTraducciones" parent="MascarasManager" instance=ExtResource("6_r4hsq")]
 unique_name_in_owner = true
 
-[node name="AnimationManager" type="Node" parent="." node_paths=PackedStringArray("player", "sound_manager", "mascaras_manager", "input_manager", "animated_sprite_pj")]
+[node name="AnimationManager" type="Node" parent="." node_paths=PackedStringArray("player", "sound_manager", "mascaras_manager", "input_manager", "estados_manager", "animated_sprite_pj")]
 unique_name_in_owner = true
 script = ExtResource("61_3jn0c")
 player = NodePath("..")
 sound_manager = NodePath("../SoundManager")
 mascaras_manager = NodePath("../MascarasManager")
 input_manager = NodePath("../InputManager")
+estados_manager = NodePath("../EstadosManager")
 animated_sprite_pj = NodePath("../AnimatedSpritePJ")
 
 [node name="EstadosManager" type="Node" parent="." node_paths=PackedStringArray("player", "sound_manager", "mascaras_manager", "animation_manager", "input_manager")]
@@ -578,6 +578,16 @@ sound_manager = NodePath("../SoundManager")
 mascaras_manager = NodePath("../MascarasManager")
 animation_manager = NodePath("../AnimationManager")
 input_manager = NodePath("../InputManager")
+
+[node name="MovimientoManager" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="DetectorSueloManager" type="Node" parent="." node_paths=PackedStringArray("player", "sound_manager", "raycast_suelo")]
+unique_name_in_owner = true
+script = ExtResource("63_762hu")
+player = NodePath("..")
+sound_manager = NodePath("../SoundManager")
+raycast_suelo = NodePath("../RayCast2DSuelo")
 
 [connection signal="animation_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_animation_changed"]
 [connection signal="animation_finished" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_animation_finished"]

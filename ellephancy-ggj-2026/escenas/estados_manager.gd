@@ -9,51 +9,45 @@ extends Node
 
 enum ESTADOS {IDLE, CAMINAR, SALTAR, CAER, INTERACTUAR, AGARRAR, DIALOGO_ACTIVO}
 var estado_actual : ESTADOS = ESTADOS.IDLE
+var ultimo_estado : ESTADOS
 
 
-
-#func cambiar_de_estado(estado_nuevo : ESTADOS):
-	#if estado_actual == estado_nuevo:
-		#return
-	#ultimo_estado = estado_actual
-	#estado_actual = estado_nuevo
-	#match estado_actual:
-		#ESTADOS.IDLE:
-			#animation_manager.ejecutar_animacion_idle()
-			#pass
-		#ESTADOS.CAMINAR:
-			#animation_manager.ejecutar_animacion_caminar()
-			#pass
-		#ESTADOS.SALTAR:
-			#animation_manager.ejecutar_animacion_saltar()
-			#%FmodEventEmitter2D2.play()
-		#ESTADOS.CAER:
-			#animation_manager.ejecutar_animacion_caida()
-			#pass
-		#ESTADOS.INTERACTUAR:
-			#animation_manager.ejecutar_animacion_palanca()
-			#pass
-		#ESTADOS.AGARRAR:
-			#animation_manager.ejecutar_animacion_arrastrar()
-			#pass
-		#ESTADOS.DIALOGO_ACTIVO:
-			#animation_manager.ejecutar_animacion_idle()
-			#pass
+func cambiar_de_estado(estado_nuevo : ESTADOS):
+	if estado_actual == estado_nuevo:
+		return
+	ultimo_estado = estado_actual
+	estado_actual = estado_nuevo
+	match estado_actual:
+		ESTADOS.IDLE:
+			animation_manager.ejecutar_animacion_idle()
+		ESTADOS.CAMINAR:
+			animation_manager.ejecutar_animacion_caminar()
+		ESTADOS.SALTAR:
+			animation_manager.ejecutar_animacion_saltar()
+			sound_manager.ejecutar_sonido_salto()
+		ESTADOS.CAER:
+			animation_manager.ejecutar_animacion_caida()
+		ESTADOS.INTERACTUAR:
+			animation_manager.ejecutar_animacion_palanca()
+		ESTADOS.AGARRAR:
+			animation_manager.ejecutar_animacion_arrastrar()
+		ESTADOS.DIALOGO_ACTIVO:
+			animation_manager.ejecutar_animacion_idle()
 
 
-#func _physics_process(delta: float) -> void:
-	#match estado_actual:
-		#ESTADOS.IDLE:
-			#procesar_idle(delta)
-		#ESTADOS.CAMINAR:
-			#procesar_caminar(delta)
-		#ESTADOS.SALTAR:
-			#procesar_saltar(delta)
-		#ESTADOS.CAER:
-			#procesar_caer(delta)
-		#ESTADOS.INTERACTUAR:
-			#pass #por si necesitan logica en process la ponemos aca
-		#ESTADOS.AGARRAR:
-			#procesar_agarrar(delta)
-		#ESTADOS.DIALOGO_ACTIVO:
-			#procesar_dialogo_activo(delta)
+func _physics_process(delta: float) -> void:
+	match estado_actual:
+		ESTADOS.IDLE:
+			player.procesar_idle(delta)
+		ESTADOS.CAMINAR:
+			player.procesar_caminar(delta)
+		ESTADOS.SALTAR:
+			player.procesar_saltar(delta)
+		ESTADOS.CAER:
+			player.procesar_caer(delta)
+		ESTADOS.INTERACTUAR:
+			pass #por si necesitan logica en process la ponemos aca
+		ESTADOS.AGARRAR:
+			player.procesar_agarrar(delta)
+		ESTADOS.DIALOGO_ACTIVO:
+			player.procesar_dialogo_activo(delta)
