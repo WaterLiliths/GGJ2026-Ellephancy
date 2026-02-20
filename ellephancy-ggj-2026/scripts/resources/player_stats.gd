@@ -1,7 +1,7 @@
 class_name PlayerStats
-extends Resource
+extends Node #probar pasar a resource 
 
-
+#ACA PONEMOS TODO LO QUE SEA EXPORT VAR Y/O ESTADISTICAS DE PLAYER
 @export var limite_altura_morir : float = 2000
 @export var aceleracion : float = 1800.0
 @export var desaceleracion : float = 2200.0

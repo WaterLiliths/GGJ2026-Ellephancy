@@ -374,12 +374,13 @@ radius = 41.880783
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3jn0c"]
 size = Vector2(1, 20)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input_manager", "sound_manager", "animation_manager") groups=["cajas"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input_manager", "sound_manager", "animation_manager", "detector_suelo_manager") groups=["cajas"]]
 collision_mask = 135
 script = ExtResource("1_esbpa")
 input_manager = NodePath("InputManager")
 sound_manager = NodePath("SoundManager")
 animation_manager = NodePath("AnimationManager")
+detector_suelo_manager = NodePath("DetectorSueloManager")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(0.7607843, 0.43137255, 0.2901961, 1)

@@ -15,6 +15,7 @@ func _ready() -> void:
 
 func usar_mascara_oso():
 	if puedo_usar_mascara(2)== false: #dice 2 porque quedo que la del oso era la 2, a cambiar
+		print("no puedo usar mascara de oso")
 		return
 	mascara_oso.usar()
 	mascara_ciervo.desactivar()
@@ -24,6 +25,7 @@ func usar_mascara_oso():
 
 func usar_mascara_salmon():
 	if puedo_usar_mascara(1)== false: #en global la 1 es ciervo
+		print("no puedo usar mascara de ciervo")
 		return
 	mascara_oso.desactivar()
 	mascara_ciervo.desactivar()
@@ -33,6 +35,7 @@ func usar_mascara_salmon():
 
 func usar_mascara_ciervo():
 	if puedo_usar_mascara(3)== false: #en global la 3 es salmon
+		print("no puedo usar mascara de salmon")
 		return
 	mascara_oso.desactivar()
 	mascara_ciervo.usar()

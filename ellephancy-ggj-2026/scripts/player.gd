@@ -9,41 +9,27 @@ extends CharacterBody2D
 @export var sound_manager : SoundManager
 @export var animation_manager : AnimationManager
 @export var detector_suelo_manager : DetectorSueloManager
+@onready var STATS : PlayerStats = %PlayerStats
 #------------------FIN MANAGERS -----------
 
-#-----------------------------
+#--------------"MANOS" PARA EVITAR TRABARSE CON LA CAJA---------------
 @onready var mano_test_izq: CollisionShape2D = %CollisionManoIzq
 @onready var mano_test_der: CollisionShape2D = %CollisionManoDer
-
 #-------------------------------
+
 var animacion_agarrar_inicial_terminada : bool = false
 var ultimo_tiempo_en_aire : float = 0
 var tiempo_en_el_aire_actual: float = 0
 var dialogos_activos : bool = false
-#var ultimo_estado : ESTADOS
-@export var limite_altura_morir : float = 2000
 var reviviendo_player : bool = false
 var ultima_direccion_mirar : int = 1 #para derecha e izquierda solo 1 -1
 var sonido_caida_emitiendo : bool = false
 var sonido_caja_sonando : bool = false
 var agarrando_caja : bool = false
-@export var aceleracion : float = 1800.0
-@export var desaceleracion : float = 2200.0
-@export var velocidad_max : float = 250.0
-@export var gravedad_subiendo : float = 1.0
-@export var gravedad_bajando : float = 1.4
-@export var velocidad : float = 250.0
-@export var velocidad_salto: float = -620
-@export var velocidad_salto_con_mascara = -800
-@export var desaceleración_al_saltar : float = 0.5 #arreglar igual 0.5 safa
-@export var desaceleracion_horizontal : float = 0.07 #ajustable a gusto
+
 var velocidad_inicial_salto : float
 var velocidad_inicial : float 
-@export var velocidad_al_agarrar : float = 250
-@export var aceleracion_al_agarrar : float = 0.2
-@export var velocidad_correr : float = 40
-@export var fuerza_empuje : float = 2000 #no anda
-@export var velocidad_arrastrando : float = 100.0
+
 
 @onready var animated_sprite_pj: AnimatedSprite2D = %AnimatedSpritePJ
 @onready var ray_cast_izq: RayCast2D = %RayCastIzq
@@ -67,12 +53,12 @@ var ultimo_estado : ESTADOS
 func _ready() -> void:
 	Global.dialogo_activo_to_player.connect(on_dialogo_activo)
 	Global.dialogo_desactivado_to_player.connect(on_dialogo_desactivado)
-	resetear_mascaras_a_cero(false) #true para desactivar todas, false para activarlas
+	resetear_mascaras_a_cero(true) #true para desactivar todas, false para activarlas
 	mano_test_izq.set_deferred("disabled", true) #DESACTIVO FISICAS DE LA MANO
 	mano_test_der.set_deferred("disabled", true)
 	
-	velocidad_inicial = velocidad
-	velocidad_inicial_salto = velocidad_salto
+	velocidad_inicial = STATS.velocidad
+	velocidad_inicial_salto = STATS.velocidad_salto
 	Global.mascara_fuerza_activa.connect(activar_mascara_fuerza)
 	Global.mascara_fuerza_desactivar.connect(desactivar_mascara_fuerza)
 	Global.restart.connect(restart)
@@ -112,7 +98,7 @@ func _physics_process(delta: float) -> void:
 			procesar_agarrar(delta)
 		ESTADOS.DIALOGO_ACTIVO:
 			procesar_dialogo_activo()
-	if global_position.y > limite_altura_morir:
+	if global_position.y > STATS.limite_altura_morir:
 		matar_player()
 	
 	move_and_slide()
@@ -170,23 +156,22 @@ func on_sale_de_interactivo(interactivo_actual : Interactivo):
 
 
 func activar_mascara_fuerza():
-	velocidad_salto = velocidad_salto_con_mascara
+	STATS.velocidad_salto = STATS.velocidad_salto_con_mascara
 
 
 func desactivar_mascara_fuerza():
-	velocidad_salto = velocidad_inicial_salto
+	STATS.velocidad_salto = velocidad_inicial_salto
 	print("se desactivo las mascara de fuerza")
 
-
 func disminuir_velocidad_al_agarrar():
-	velocidad = velocidad_arrastrando
+	STATS.velocidad = STATS.velocidad_arrastrando
 
 func reset_velocidad_normal():
-	velocidad = velocidad_inicial
+	STATS.velocidad = velocidad_inicial
 	if Global.mascara_activa==2:
-		velocidad_salto = velocidad_salto_con_mascara
+		STATS.velocidad_salto = STATS.velocidad_salto_con_mascara
 	else:
-		velocidad_salto = velocidad_inicial_salto
+		STATS.velocidad_salto = STATS.velocidad_inicial_salto
 
 
 func detectar_caida():
@@ -208,7 +193,7 @@ func calcular_tiempo_en_aire(delta : float):
 
 func consultar_saltar():
 	if Input.is_action_just_pressed("w") and is_on_floor():
-		velocity.y = velocidad_salto
+		velocity.y = STATS.velocidad_salto
 		$FmodEventEmitter2D2.play()
 
 
@@ -220,13 +205,13 @@ func emitir_sonido_caida():
 
 func aplicar_gravedad(delta : float):
 	if velocity.y<0:
-		velocity += get_gravity() * gravedad_subiendo * delta
+		velocity += get_gravity() * STATS.gravedad_subiendo * delta
 	else:
-		velocity += get_gravity() * gravedad_bajando * delta
+		velocity += get_gravity() * STATS.gravedad_bajando * delta
 
 
 func procesar_idle(delta):
-	velocity.x = move_toward(velocity.x, 0, desaceleracion * delta)
+	velocity.x = move_toward(velocity.x, 0, STATS.desaceleracion * delta)
 	animated_sprite_pj.flip_h = ultima_direccion_mirar <0
 	if not is_on_floor():
 		cambiar_de_estado(ESTADOS.CAER)
@@ -235,13 +220,13 @@ func procesar_idle(delta):
 		cambiar_de_estado(ESTADOS.CAMINAR)
 		return
 	if Input.is_action_just_pressed("w") and (is_on_floor()) and not Input.is_action_pressed("s"): #cambiar a una sola funcion q me devuelva true
-		velocity.y = velocidad_salto
+		velocity.y = STATS.velocidad_salto
 		cambiar_de_estado(ESTADOS.SALTAR)
 	if Input.is_action_pressed("s") and Input.is_action_just_pressed("w") and is_on_floor():
 		tirarse_de_plataforma()
 
 func procesar_caminar(delta):
-	velocity.x = move_toward(velocity.x, direction * velocidad, aceleracion * delta)
+	velocity.x = move_toward(velocity.x, direction * STATS.velocidad, STATS.aceleracion * delta)
 	animated_sprite_pj.flip_h = ultima_direccion_mirar < 0
 	if direction:
 		if timer_pasos <= 0 && is_on_floor():
@@ -257,24 +242,24 @@ func procesar_caminar(delta):
 		cambiar_de_estado(ESTADOS.CAER)
 		return
 	if Input.is_action_just_pressed("w") and is_on_floor():
-		velocity.y = velocidad_salto
+		velocity.y = STATS.velocidad_salto
 		cambiar_de_estado(ESTADOS.SALTAR)
 	
 
 func procesar_saltar(delta):
 	if direction:
-		velocity.x = move_toward(velocity.x , direction * velocidad, aceleracion * delta)
+		velocity.x = move_toward(velocity.x , direction * STATS.velocidad, STATS.aceleracion * delta)
 		animated_sprite_pj.flip_h = ultima_direccion_mirar < 0 #rotar pj segun para donde se mueve
 	
 	if Input.is_action_just_released("w") and velocity.y < 0: #probar
-		velocity.y *= desaceleración_al_saltar
+		velocity.y *= STATS.desaceleración_al_saltar
 	
 	if velocity.y >0: #TODO TESTEAR 
 		cambiar_de_estado(ESTADOS.CAER)
 
 func procesar_caer(delta):
 	if direction:
-		velocity.x = move_toward(velocity.x , direction * velocidad, aceleracion * delta)
+		velocity.x = move_toward(velocity.x , direction * STATS.velocidad, STATS.aceleracion * delta)
 		animated_sprite_pj.flip_h = ultima_direccion_mirar < 0 #rotar pj segun para donde se mueve
 	
 	if is_on_floor():
@@ -286,7 +271,7 @@ func procesar_caer(delta):
 
 func procesar_agarrar(delta):
 	#cuando hago click ya le aviso al player que cambie a la velocidad lenta
-	velocity.x = move_toward(velocity.x,direction * velocidad, aceleracion * delta)
+	velocity.x = move_toward(velocity.x,direction * STATS.velocidad, STATS.aceleracion * delta)
 	if not agarrando_caja: #para evitar bugs, porque en realidad al apretar e se cambia de estado
 		reset_velocidad_normal()
 		cambiar_de_estado(ESTADOS.IDLE)
@@ -295,7 +280,7 @@ func procesar_agarrar(delta):
 		return
 	
 	objeto_arrastrado.direccion = direction
-	objeto_arrastrado.velocidad = velocidad
+	objeto_arrastrado.velocidad = STATS.velocidad
 	objeto_arrastrado.siendo_agarrada = true
 
 	if not animacion_agarrar_inicial_terminada:
