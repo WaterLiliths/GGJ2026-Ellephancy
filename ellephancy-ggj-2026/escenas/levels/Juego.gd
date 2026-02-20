@@ -11,7 +11,8 @@ func _ready() -> void:
 	#$Player/Camera2D/Control/IconoMascaraCiervo.hide()
 #	$Opciones.visible = false
 	$FmodEventEmitter2D2.volume = 0.0
-	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
+	#Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
+	
 	$FmodEventEmitter2D2.play()
 	Global.matar_player.connect(on_matar_jugador)
 	#$AnimationPlayer.play("fade_in") #la animacion ahora se inicializa directamente en el animation player

@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=4 uid="uid://dkudwre2b373"]
+[gd_scene load_steps=60 format=4 uid="uid://dkudwre2b373"]
 
 [ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/Juego.gd" id="1_2y4ua"]
 [ext_resource type="PackedScene" uid="uid://c4fdbwaawyx0w" path="res://escenas/nodos_funcionalidades/manager_de_objetivos.tscn" id="2_82r4j"]
@@ -41,6 +41,8 @@
 [ext_resource type="FontFile" uid="uid://ciwhe1apfc5gi" path="res://assets/fonts/Balgruf.otf" id="32_nqex6"]
 [ext_resource type="Texture2D" uid="uid://q3ics3iji43w" path="res://assets/runas-finales/Runas interfaznum3.png" id="33_nqex6"]
 [ext_resource type="PackedScene" uid="uid://tbrpanj4el32" path="res://escenas/areafinjuego.tscn" id="42_nqex6"]
+[ext_resource type="PackedScene" uid="uid://dg6y4xunbnxvq" path="res://escenas/world_objects/espejo.tscn" id="42_vy46r"]
+[ext_resource type="PackedScene" uid="uid://ddadtanp2707x" path="res://escenas/world_objects/lente.tscn" id="43_vy46r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fe420"]
 size = Vector2(304.0625, 544.375)
@@ -358,15 +360,14 @@ texture = ExtResource("5_ffuyt")
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank", "res://assets/audio/FmodBanks/Desktop/UI.bank"]
 
 [node name="Player" parent="." instance=ExtResource("8_m34qx")]
-position = Vector2(263, 107)
+position = Vector2(2859, -34)
 scale = Vector2(0.64, 0.64)
 empieza_con_mascaras = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(600, 37)
-zoom = Vector2(1.6, 1.6)
+position = Vector2(2859, -104)
 limit_left = 0
 limit_bottom = 1200
 editor_draw_limits = true
@@ -384,10 +385,10 @@ visible = false
 modulate = Color(1, 1, 1, 0.77516997)
 z_index = 185
 y_sort_enabled = true
-offset_left = -716.0
-offset_top = -864.0
-offset_right = 1295.0
-offset_bottom = 1122.0
+offset_left = -984.0
+offset_top = -1000.0
+offset_right = 1027.0
+offset_bottom = 986.0
 color = Color(0, 0, 0, 1)
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="Player/Camera2D"]
@@ -469,11 +470,10 @@ position = Vector2(-97, 588)
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(600, 37)
+position = Vector2(2859, -104)
 script = ExtResource("12_g2cn0")
 follow_mode = 2
 follow_target = NodePath("../Player/Node2D")
-zoom = Vector2(1.6, 1.6)
 tween_resource = SubResource("Resource_yei3n")
 follow_offset = Vector2(0, -70)
 follow_damping = true
@@ -745,6 +745,25 @@ color = Color(0.80049086, 0.80049074, 0.80049074, 1)
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_8mohb")
+
+[node name="Lente" parent="." instance=ExtResource("43_vy46r")]
+position = Vector2(2915, -76)
+iniciador = true
+es_movible = true
+
+[node name="Espejo" parent="." instance=ExtResource("42_vy46r")]
+position = Vector2(3835.0002, -14)
+rotation = -1.2854326
+es_movible = true
+
+[node name="Espejo2" parent="." instance=ExtResource("42_vy46r")]
+position = Vector2(3602.9998, -203.99988)
+rotation = -0.5303697
+es_movible = true
+
+[node name="Lente2" parent="." instance=ExtResource("43_vy46r")]
+position = Vector2(3260, -145)
+es_movible = true
 
 [connection signal="body_entered" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_entered"]
 [connection signal="body_exited" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_exited"]
