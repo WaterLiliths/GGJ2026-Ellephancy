@@ -41,6 +41,7 @@ scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("CapsuleShape2D_ltgtn")
 
 [node name="AreaDeInteraccion" type="Area2D" parent="."]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDeInteraccion"]
 shape = SubResource("CircleShape2D_ltgtn")
@@ -50,6 +51,13 @@ energy = 4.0
 range_item_cull_mask = 512
 texture = SubResource("GradientTexture2D_ltgtn")
 texture_scale = 3.36
+
+[node name="SonidoRotacion" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Objetos/rotar optica"
+event_guid = "{f9826155-1be9-4604-a3d1-d40cb3082e7e}"
+fmod_parameters/velocidad_angular/id = -1574950914712359287
+fmod_parameters/velocidad_angular = 0.0
+fmod_parameters/velocidad_angular/variant_type = 3
 
 [connection signal="body_entered" from="AreaDeInteraccion" to="." method="_on_area_de_interaccion_body_entered"]
 [connection signal="body_exited" from="AreaDeInteraccion" to="." method="_on_area_de_interaccion_body_exited"]

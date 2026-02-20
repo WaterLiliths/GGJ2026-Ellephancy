@@ -3,7 +3,7 @@ extends Node2D
 
 const LONGITUD_MAXIMA : int = 2000
 var emisor
-var rebotes : int = 10
+var rebotes : int = 15
 var max_target_position
 var rot : float = 0.0
 
