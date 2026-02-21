@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://cs3h434myxe4r"]
+[gd_scene load_steps=71 format=3 uid="uid://cs3h434myxe4r"]
 
 [ext_resource type="Script" uid="uid://d1p6o2ixegcp2" path="res://scripts/player.gd" id="1_esbpa"]
 [ext_resource type="Texture2D" uid="uid://csvm86vnc0cmo" path="res://assets/player/mascaras/Agarre oso destra 1.png" id="2_v66k4"]
@@ -57,6 +57,13 @@
 [ext_resource type="Texture2D" uid="uid://c6eq8oqqs1sgr" path="res://assets/player/mascaras/Idle1 Salmón.png" id="39_b787q"]
 [ext_resource type="Texture2D" uid="uid://rxbr0pokkudp" path="res://assets/player/mascaras/Idle 2 Salmón.png" id="40_3jn0c"]
 [ext_resource type="PackedScene" uid="uid://djqldl5uq6oy4" path="res://escenas/hud.tscn" id="52_hopxw"]
+[ext_resource type="Script" uid="uid://dh8pbo7ldah73" path="res://escenas/input_manager.gd" id="58_vchxa"]
+[ext_resource type="Script" uid="uid://glt0x5k046kj" path="res://escenas/sound_manager.gd" id="59_5uuta"]
+[ext_resource type="Script" uid="uid://3qxmcrafe6i3" path="res://escenas/mascaras_manager.gd" id="60_b787q"]
+[ext_resource type="Script" uid="uid://bdgl3r26u8lph" path="res://escenas/animation_manager.gd" id="61_3jn0c"]
+[ext_resource type="Script" uid="uid://dosfm11gge1g5" path="res://escenas/movimiento_manager.gd" id="62_uxfdn"]
+[ext_resource type="Script" uid="uid://bsowsfuv3joil" path="res://escenas/detector_suelo_manager.gd" id="63_762hu"]
+[ext_resource type="Script" uid="uid://dtiq53iumksnb" path="res://scripts/resources/player_stats.gd" id="63_uxfdn"]
 [ext_resource type="PackedScene" uid="uid://de62poysm1she" path="res://escenas/nodos_funcionalidades/chequeador_de_objetivos.tscn" id="58_vchxa"]
 
 [sub_resource type="Gradient" id="Gradient_hopxw"]
@@ -369,10 +376,16 @@ radius = 41.880783
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3jn0c"]
 size = Vector2(1, 20)
 
-[node name="Player" type="CharacterBody2D" groups=["cajas"]]
-z_index = 1
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input_manager", "sound_manager", "animation_manager", "detector_suelo_manager", "mov_manager", "mascaras_manager") groups=["cajas"]]
 collision_mask = 135
 script = ExtResource("1_esbpa")
+input_manager = NodePath("InputManager")
+sound_manager = NodePath("SoundManager")
+animation_manager = NodePath("AnimationManager")
+detector_suelo_manager = NodePath("DetectorSueloManager")
+mov_manager = NodePath("MovimientoManager")
+mascaras_manager = NodePath("MascarasManager")
+empezar_con_mascaras = true
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(0.7607843, 0.43137255, 0.2901961, 1)
@@ -383,9 +396,6 @@ shadow_filter_smooth = 2.6
 shadow_item_cull_mask = 7
 texture = SubResource("GradientTexture2D_lrq8u")
 texture_scale = 28.55
-
-[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
-bank_paths = ["res://assets/audio/FmodBanks/Desktop/SFX.bank"]
 
 [node name="AnimatedSpritePJ" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
@@ -409,22 +419,6 @@ position = Vector2(11, 0)
 shape = SubResource("CircleShape2D_j7xnp")
 debug_color = Color(1.2513996e-06, 0.6431121, 0.31144592, 0.41960785)
 
-[node name="PinJointAgarrar" type="PinJoint2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(15, -7)
-node_a = NodePath("..")
-node_b = NodePath("../MANO-TEST-IZQ")
-bias = 0.47
-disable_collision = false
-
-[node name="TimerCoyoteTime" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 0.25
-one_shot = true
-
-[node name="MascaraTiempos" parent="." instance=ExtResource("4_k4kro")]
-unique_name_in_owner = true
-
 [node name="RayCastIzq" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(-47, 0)
@@ -439,74 +433,8 @@ target_position = Vector2(0, 55)
 collision_mask = 130
 hit_from_inside = true
 
-[node name="MascaraFuerza" parent="." instance=ExtResource("5_t3yu4")]
-unique_name_in_owner = true
-
-[node name="MascaraTraducciones" parent="." instance=ExtResource("6_r4hsq")]
-unique_name_in_owner = true
-
-[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
-event_name = "event:/Personaje/Movimiento/pasos"
-event_guid = "{60f647bc-9dc2-4ff2-9a28-3e3d5b3fb282}"
-fmod_parameters/Superficie/id = -5155162075446807488
-fmod_parameters/Superficie = "pasto"
-fmod_parameters/Superficie/labels = PackedStringArray("pasto", "madera", "piedra")
-fmod_parameters/Superficie/variant_type = 4
-unique_name_in_owner = true
-
-[node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="."]
-event_name = "event:/Personaje/Movimiento/salto"
-event_guid = "{f53bcf20-29b6-434f-bdfb-043bdc67c2fb}"
-fmod_parameters/Superficie/id = -5155162075446807488
-fmod_parameters/Superficie = "pasto"
-fmod_parameters/Superficie/labels = PackedStringArray("pasto", "madera", "piedra")
-fmod_parameters/Superficie/variant_type = 4
-unique_name_in_owner = true
-
-[node name="FmodEventEmitter2D3" type="FmodEventEmitter2D" parent="."]
-event_name = "event:/Objetos/arrastrar piedra"
-event_guid = "{2166ce82-c481-4140-ac4f-55290734fe8b}"
-fmod_parameters/Peso/id = 8505785322959852152
-fmod_parameters/Peso = 1.0
-fmod_parameters/Peso/variant_type = 3
-fmod_parameters/Material/id = -768118463292944790
-fmod_parameters/Material = "Piedra"
-fmod_parameters/Material/labels = PackedStringArray("Piedra", "Madera")
-fmod_parameters/Material/variant_type = 4
-unique_name_in_owner = true
-
-[node name="FmodEventEmitter2D4" type="FmodEventEmitter2D" parent="."]
-event_name = "event:/Personaje/Movimiento/aterrizar"
-event_guid = "{9914084c-c171-4e3c-9582-0e37728b8a1b}"
-fmod_parameters/Superficie/id = -5155162075446807488
-fmod_parameters/Superficie = "pasto"
-fmod_parameters/Superficie/labels = PackedStringArray("pasto", "madera", "piedra")
-fmod_parameters/Superficie/variant_type = 4
-
-[node name="TimerTiempoEnAire" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 10.0
-one_shot = true
-
-[node name="FmodEventEmitter2D5" type="FmodEventEmitter2D" parent="."]
-event_name = "event:/Personaje/Movimiento/caida"
-event_guid = "{fbc63101-c1f0-46e6-ab63-d76fad8983e3}"
-volume = 0.5
-
 [node name="HUD" parent="." instance=ExtResource("52_hopxw")]
 z_index = 105
-
-[node name="FmodEventEmitter2D6" type="FmodEventEmitter2D" parent="."]
-event_name = "event:/Mascaras/equipar"
-event_guid = "{16488a59-bdd1-4164-9f3c-6f66071df1d8}"
-fmod_parameters/Mascara/id = 2121631517194898223
-fmod_parameters/Mascara = "Salmon"
-fmod_parameters/Mascara/labels = PackedStringArray("Oso", "Salmon", "Ciervo")
-fmod_parameters/Mascara/variant_type = 4
-
-[node name="FmodEventEmitter2D7" type="FmodEventEmitter2D" parent="."]
-event_name = "event:/Personaje/Morir"
-event_guid = "{ea3f93cf-6587-4284-a571-252290d8e701}"
 
 [node name="RayCast2DSuelo" type="RayCast2D" parent="."]
 position = Vector2(0, 57.555)
@@ -537,12 +465,126 @@ unique_name_in_owner = true
 position = Vector2(-12, 0)
 shape = SubResource("RectangleShape2D_3jn0c")
 
+[node name="InputManager" type="Node" parent="." node_paths=PackedStringArray("player", "sound_manager", "mascaras_manager", "animation_manager")]
+unique_name_in_owner = true
+script = ExtResource("58_vchxa")
+player = NodePath("..")
+sound_manager = NodePath("../SoundManager")
+mascaras_manager = NodePath("../MascarasManager")
+animation_manager = NodePath("../AnimationManager")
+
+[node name="SoundManager" type="Node" parent="." node_paths=PackedStringArray("player")]
+unique_name_in_owner = true
+script = ExtResource("59_5uuta")
+player = NodePath("..")
+
+[node name="FmodBankLoader" type="FmodBankLoader" parent="SoundManager"]
+bank_paths = ["res://assets/audio/FmodBanks/Desktop/SFX.bank"]
+
+[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="SoundManager"]
+event_name = "event:/Personaje/Movimiento/pasos"
+event_guid = "{60f647bc-9dc2-4ff2-9a28-3e3d5b3fb282}"
+fmod_parameters/Superficie/id = -5155162075446807488
+fmod_parameters/Superficie = "pasto"
+fmod_parameters/Superficie/labels = PackedStringArray("pasto", "madera", "piedra")
+fmod_parameters/Superficie/variant_type = 4
+unique_name_in_owner = true
+
+[node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="SoundManager"]
+event_name = "event:/Personaje/Movimiento/salto"
+event_guid = "{f53bcf20-29b6-434f-bdfb-043bdc67c2fb}"
+fmod_parameters/Superficie/id = -5155162075446807488
+fmod_parameters/Superficie = "pasto"
+fmod_parameters/Superficie/labels = PackedStringArray("pasto", "madera", "piedra")
+fmod_parameters/Superficie/variant_type = 4
+unique_name_in_owner = true
+
+[node name="FmodEventEmitter2D3" type="FmodEventEmitter2D" parent="SoundManager"]
+event_name = "event:/Objetos/arrastrar piedra"
+event_guid = "{2166ce82-c481-4140-ac4f-55290734fe8b}"
+fmod_parameters/Peso/id = 8505785322959852152
+fmod_parameters/Peso = 1.0
+fmod_parameters/Peso/variant_type = 3
+fmod_parameters/Material/id = -768118463292944790
+fmod_parameters/Material = "Piedra"
+fmod_parameters/Material/labels = PackedStringArray("Piedra", "Madera")
+fmod_parameters/Material/variant_type = 4
+unique_name_in_owner = true
+
+[node name="FmodEventEmitter2D4" type="FmodEventEmitter2D" parent="SoundManager"]
+event_name = "event:/Personaje/Movimiento/aterrizar"
+event_guid = "{9914084c-c171-4e3c-9582-0e37728b8a1b}"
+fmod_parameters/Superficie/id = -5155162075446807488
+fmod_parameters/Superficie = "pasto"
+fmod_parameters/Superficie/labels = PackedStringArray("pasto", "madera", "piedra")
+fmod_parameters/Superficie/variant_type = 4
+unique_name_in_owner = true
+
+[node name="FmodEventEmitter2D5" type="FmodEventEmitter2D" parent="SoundManager"]
+event_name = "event:/Personaje/Movimiento/caida"
+event_guid = "{fbc63101-c1f0-46e6-ab63-d76fad8983e3}"
+volume = 0.5
+unique_name_in_owner = true
+
+[node name="FmodEventEmitter2D6" type="FmodEventEmitter2D" parent="SoundManager"]
+event_name = "event:/Mascaras/equipar"
+event_guid = "{16488a59-bdd1-4164-9f3c-6f66071df1d8}"
+fmod_parameters/Mascara/id = 2121631517194898223
+fmod_parameters/Mascara = "Salmon"
+fmod_parameters/Mascara/labels = PackedStringArray("Oso", "Salmon", "Ciervo")
+fmod_parameters/Mascara/variant_type = 4
+unique_name_in_owner = true
+
+[node name="FmodEventEmitter2D7" type="FmodEventEmitter2D" parent="SoundManager"]
+event_name = "event:/Personaje/Morir"
+event_guid = "{ea3f93cf-6587-4284-a571-252290d8e701}"
+unique_name_in_owner = true
+
+[node name="MascarasManager" type="Node" parent="." node_paths=PackedStringArray("sound_manager", "player")]
+unique_name_in_owner = true
+script = ExtResource("60_b787q")
+sound_manager = NodePath("../SoundManager")
+player = NodePath("..")
+
+[node name="MascaraTiempos" parent="MascarasManager" instance=ExtResource("4_k4kro")]
+unique_name_in_owner = true
+
+[node name="MascaraFuerza" parent="MascarasManager" instance=ExtResource("5_t3yu4")]
+unique_name_in_owner = true
+
+[node name="MascaraTraducciones" parent="MascarasManager" instance=ExtResource("6_r4hsq")]
+unique_name_in_owner = true
+
+[node name="AnimationManager" type="Node" parent="." node_paths=PackedStringArray("player", "sound_manager", "mascaras_manager", "input_manager", "animated_sprite_pj")]
+unique_name_in_owner = true
+script = ExtResource("61_3jn0c")
+player = NodePath("..")
+sound_manager = NodePath("../SoundManager")
+mascaras_manager = NodePath("../MascarasManager")
+input_manager = NodePath("../InputManager")
+animated_sprite_pj = NodePath("../AnimatedSpritePJ")
+
+[node name="MovimientoManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("62_uxfdn")
+
+[node name="DetectorSueloManager" type="Node" parent="." node_paths=PackedStringArray("player", "sound_manager", "raycast_suelo")]
+unique_name_in_owner = true
+script = ExtResource("63_762hu")
+player = NodePath("..")
+sound_manager = NodePath("../SoundManager")
+raycast_suelo = NodePath("../RayCast2DSuelo")
+
+[node name="PlayerStats" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("63_uxfdn")
+
 [node name="ChequeadorDeObjetivos" parent="." node_paths=PackedStringArray("player") instance=ExtResource("58_vchxa")]
 player = NodePath("..")
 
 [connection signal="animation_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_animation_changed"]
-[connection signal="animation_finished" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_animation_finished"]
+[connection signal="animation_finished" from="AnimatedSpritePJ" to="AnimationManager" method="_on_animated_sprite_pj_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_frame_changed"]
 [connection signal="body_entered" from="AreaTirar" to="." method="_on_area_tirar_body_entered"]
 [connection signal="body_exited" from="AreaTirar" to="." method="_on_area_tirar_body_exited"]
-[connection signal="timeout" from="TimerTiempoEnAire" to="." method="_on_timer_tiempo_en_aire_timeout"]
+[connection signal="ejecutar_sonido_mascara" from="MascarasManager" to="SoundManager" method="_on_mascaras_manager_ejecutar_sonido_mascara"]

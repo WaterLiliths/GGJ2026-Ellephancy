@@ -16,7 +16,7 @@ func _process(delta: float) -> void:
 #-------------FUNCIONES--------------
 func tomar_mascara():
 	Global.tiene_mascara_tiempo = true
-	Global.agarre_mascara.emit("ciervo")
+	Global.agarre_mascara.emit(1)
 	sprite_2d_ciervo.hide()
 	area_dialogo_prueba.forzar_lectura()
 
