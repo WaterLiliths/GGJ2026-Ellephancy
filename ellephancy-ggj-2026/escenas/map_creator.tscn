@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdy8afgulws27"]
+
+[ext_resource type="PackedScene" uid="uid://by80hrdi7bflk" path="res://escenas/creador_de_niveles.tscn" id="1_xauj2"]
+
+[node name="MapCreator" type="Node2D"]
+
+[node name="PresentMap" type="Node2D" parent="."]
+
+[node name="AltarZone" parent="PresentMap" instance=ExtResource("1_xauj2")]
+z_index = -1
+presente = true
+
+[node name="Floor" parent="PresentMap" instance=ExtResource("1_xauj2")]
+z_index = 2
+presente = true
+
+[node name="DetailsOverPlayer" parent="PresentMap" instance=ExtResource("1_xauj2")]
+z_index = 3
+presente = true
+
+[node name="DetailsBehindPlayer" parent="PresentMap" instance=ExtResource("1_xauj2")]
+z_index = -2
+presente = true
+
+[node name="Background" parent="PresentMap" instance=ExtResource("1_xauj2")]
+z_index = -5
+occlusion_enabled = false
+collision_enabled = false
+presente = true
+background = true
+
+[node name="PastMap" type="Node2D" parent="."]
+
+[node name="AltarZone" parent="PastMap" instance=ExtResource("1_xauj2")]
+z_index = -1
+
+[node name="Floor" parent="PastMap" instance=ExtResource("1_xauj2")]
+z_index = 2
+
+[node name="DetailsOverPlayer" parent="PastMap" instance=ExtResource("1_xauj2")]
+z_index = 3
+
+[node name="DetailsBehindPlayer" parent="PastMap" instance=ExtResource("1_xauj2")]
+z_index = -2
+
+[node name="Background" parent="PastMap" instance=ExtResource("1_xauj2")]
+z_index = -5
+occlusion_enabled = false
+collision_enabled = false
+background = true

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://0jytjwrtgc4y"
-path="res://.godot/imported/tilemapsetpiedra.png-19c91f2627fc75a6863d5ebfd4722d1e.ctex"
+path="res://.godot/imported/tileset_stone_background.png-e42c911e24455b8c19088fdf5f0561a2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tile_set/tilemapsetpiedra.png"
-dest_files=["res://.godot/imported/tilemapsetpiedra.png-19c91f2627fc75a6863d5ebfd4722d1e.ctex"]
+source_file="res://assets/tile_set/tileset_stone_background.png"
+dest_files=["res://.godot/imported/tileset_stone_background.png-e42c911e24455b8c19088fdf5f0561a2.ctex"]
 
 [params]
 

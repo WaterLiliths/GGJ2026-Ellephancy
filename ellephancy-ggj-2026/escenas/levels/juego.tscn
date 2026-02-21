@@ -771,6 +771,9 @@ position = Vector2(4702, -166)
 iniciador = true
 es_movible = true
 
+[node name="MapCreator" parent="." instance=ExtResource("44_4ti0m")]
+position = Vector2(23372, -1499)
+
 [connection signal="body_entered" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_entered"]
 [connection signal="body_exited" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_exited"]
 [connection signal="body_entered" from="Niveles/FirstLevelWorks/AreaMostrarTexto" to="Niveles/FirstLevelWorks/AreaMostrarTexto" method="_on_body_entered"]

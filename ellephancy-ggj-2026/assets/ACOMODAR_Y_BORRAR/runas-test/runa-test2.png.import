@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddro6ujs6xpo7"
-path="res://.godot/imported/alraso.png-ab167820db6db982f69d8dd2a4bd070a.ctex"
+uid="uid://ctfsfjhqfytxw"
+path="res://.godot/imported/runa-test2.png-36a88746fcf35a8f3c498cc8eaa8d712.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tile_set/alraso.png"
-dest_files=["res://.godot/imported/alraso.png-ab167820db6db982f69d8dd2a4bd070a.ctex"]
+source_file="res://assets/ACOMODAR_Y_BORRAR/runas-test/runa-test2.png"
+dest_files=["res://.godot/imported/runa-test2.png-36a88746fcf35a8f3c498cc8eaa8d712.ctex"]
 
 [params]
 

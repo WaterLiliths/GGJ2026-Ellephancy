@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://da8uq31ni7ey8"
-path="res://.godot/imported/Map Tielset.png-03c75b19df2a56292e40c02098277ea6.ctex"
+uid="uid://cgphhkpyxgf1m"
+path="res://.godot/imported/Tileset Hierba Definitivo.png-46c165dc434ac598fb5617a22f607b1c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/TILES-TEST/Map Tielset.png"
-dest_files=["res://.godot/imported/Map Tielset.png-03c75b19df2a56292e40c02098277ea6.ctex"]
+source_file="res://assets/Tileset Hierba Definitivo.png"
+dest_files=["res://.godot/imported/Tileset Hierba Definitivo.png-46c165dc434ac598fb5617a22f607b1c.ctex"]
 
 [params]
 
