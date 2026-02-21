@@ -16,6 +16,9 @@ var texturas_de_runas := {
 @export var tipo_de_runa : TiposDeRunas
 
 func _ready() -> void:
+	hide()
+	Global.mascara_traducciones_activa.connect(mostrar_runas)
+	Global.mascara_traducciones_desactivar.connect(esconder_runas)
 	animation_player.play("pulsar")
 
 func asignar_tipo(tipo : TiposDeRunas, color : Color):
@@ -25,4 +28,13 @@ func asignar_tipo(tipo : TiposDeRunas, color : Color):
 	expand_mode = TextureRect.EXPAND_FIT_HEIGHT
 	modulate = color
 	point_light_2d.color = color
+	
 	await get_tree().process_frame
+
+func mostrar_runas():
+	#var tween_opacidad = create_tween()
+	show()
+	#tween_opacidad.tween_property(self, "modulate:a", 1, 1)
+
+func esconder_runas():
+	hide()

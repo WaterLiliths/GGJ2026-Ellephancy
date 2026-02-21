@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="b" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" width="18.874" height="32.044" viewBox="0 0 18.874 32.044">
+  <g id="c" data-name="Layer 2">
+    <g>
+      <path d="M9.427,2.012v12.961c0,.582.472,1.054,1.054,1.054h6.233c.582,0,1.054-.472,1.054-1.054v-7.267c0-.093-.01-.186-.032-.277-.818-3.381-3.638-5.979-7.114-6.47-.631-.089-1.194.415-1.194,1.052Z" fill="#d3d3d3" stroke-width="0"/>
+      <path d="M17.997,9.457v13.15c0,4.72-3.83,8.56-8.57,8.56-4.71,0-8.55-3.84-8.55-8.56v-13.15c0-.65.07-1.28.21-1.89C1.947,3.737,5.367.877,9.427.877c4.74,0,8.57,3.84,8.57,8.58Z" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="1.754"/>
+      <path d="M9.431.881v5.538" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width=".721"/>
+      <path d="M9.438,13.602c-.797,0-1.443-.646-1.443-1.443v-2.264c0-.797.646-1.443,1.443-1.443s1.443.646,1.443,1.443v2.264c0,.797-.646,1.443-1.443,1.443Z" fill="#fff" stroke-width="0"/>
+      <line x1="7.995" y1="16.025" x2="1.086" y2="16.025" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width=".721"/>
+      <line x1="18.002" y1="16.025" x2="10.881" y2="16.025" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width=".721"/>
+    </g>
+  </g>
+</svg>

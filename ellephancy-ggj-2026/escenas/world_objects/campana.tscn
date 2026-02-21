@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnxsiuckubi5t"]
+
+[ext_resource type="Texture2D" uid="uid://bndskjnxjxxco" path="res://assets/campanita/campanita_suelta.png" id="1_7phdn"]
+[ext_resource type="Script" uid="uid://6njmdond1u4w" path="res://escenas/world_objects/campana.gd" id="1_owopq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xx2bx"]
+size = Vector2(21, 29)
+
+[node name="Campana" type="RigidBody2D"]
+collision_layer = 4160
+mass = 0.001
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_owopq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.5, 26.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_7phdn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 36.5)
+shape = SubResource("RectangleShape2D_xx2bx")
+
+[node name="PinJointSoga" type="PinJoint2D" parent="."]
+
+[node name="SonidoCampana" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Objetos/campanitas"
+event_guid = "{4b01fea5-0f12-44d2-9712-51da46ee5cdb}"
+fmod_parameters/nota/id = -340738917116829154
+fmod_parameters/nota = "Db"
+fmod_parameters/nota/labels = PackedStringArray("Db", "Eb", "F", "Ab", "Bb")
+fmod_parameters/nota/variant_type = 4
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="stopped" from="SonidoCampana" to="." method="_on_sonido_campana_stopped"]

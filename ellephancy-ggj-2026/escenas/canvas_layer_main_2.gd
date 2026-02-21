@@ -1,29 +1,27 @@
 extends CanvasLayer
 
-#var general
 var musica
 var efectos
 var ambiente
+var resolucion_default = DisplayServer.screen_get_size(DisplayServer.window_get_current_screen())
 
-@onready var h_slider_musica: HSlider = $PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HSliderMusica
-@onready var h_slider_2_efectos: HSlider = $PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HSlider2Efectos
-@onready var h_slider_3_ambiente: HSlider = $PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HSlider3Ambiente
-#@onready var h_slider_general: HSlider = $PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HSliderGeneral
-
-@onready var boton_custom: BotonCustom = $PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/BotonCustom
+@onready var h_slider_musica: HSlider = %HSliderMusica
+@onready var h_slider_2_efectos: HSlider = %HSlider2Efectos
+@onready var h_slider_3_ambiente: HSlider = %HSlider3Ambiente
+@onready var cerrar: BotonCustom = %Cerrar
 
 
 func _ready() -> void:
-	# Initial values
+	setup_sliders_y_botones()
+
+func setup_sliders_y_botones():
 	h_slider_musica.value = Global.volumen_musica
 	h_slider_2_efectos.value = Global.volumen_efectos
 	h_slider_3_ambiente.value = Global.volumen_ambiente
-	#h_slider_general.value = Global.volumen_general
-
-	# --- SIGNAL CONNECTIONS ---
-	#h_slider_general.value_changed.connect(
-		#Callable(self, "_on_general_changed")
-	#)
+	
+	musica = h_slider_musica
+	efectos = h_slider_2_efectos
+	ambiente = h_slider_3_ambiente
 	
 	h_slider_musica.value_changed.connect(
 		Callable(self, "_on_musica_changed")
@@ -37,14 +35,9 @@ func _ready() -> void:
 		Callable(self, "_on_ambiente_changed")
 	)
 
-	boton_custom.pressed.connect(
+	cerrar.pressed.connect(
 		Callable(self, "_on_boton_custom_pressed")
 	)
-#
-#func _on_general_changed(value: float) -> void:
-	#Global.volumen_general = value
-	#general = value
-
 
 func _on_musica_changed(value: float) -> void:
 	Global.volumen_musica = value
@@ -64,52 +57,39 @@ func _on_ambiente_changed(value: float) -> void:
 func _on_boton_custom_pressed() -> void:
 	hide()
 
-#extends CanvasLayer
-#
-#var musica
-#var efectos
-#var ambiente
-#
-#@onready var h_slider_musica: HSlider = $PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HSliderMusica
-#@onready var h_slider_2_efectos: HSlider = $PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HSlider2Efectos
-#@onready var h_slider_3_ambiente: HSlider = $PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HSlider3Ambiente
-#@onready var boton_custom: BotonCustom = $PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/BotonCustom
-#
-#
-#func _ready() -> void:
-	#h_slider_musica.value = Global.volumen_musica
-	#h_slider_2_efectos.value = Global.volumen_efectos
-	#h_slider_3_ambiente.value = Global.volumen_ambiente
-	#
-	#h_slider_musica.drag_ended.connect(
-		#Callable(self, "_on_h_slider_musica_drag_ended")
-	#)
-#
-	#h_slider_2_efectos.drag_ended.connect(
-		#Callable(self, "_on_h_slider_2_efectos_drag_ended")
-	#)
-#
-	#h_slider_3_ambiente.drag_ended.connect(
-		#Callable(self, "_on_h_slider_3_volumen_drag_ended")
-	#)
-#
-#
-#func _on_h_slider_musica_drag_ended(value_changed: bool) -> void:
-	#print("Musica slider:", h_slider_musica)
-	#Global.volumen_musica = h_slider_musica.value
-	#musica = h_slider_musica.value
-#
-#
-#func _on_h_slider_2_efectos_drag_ended(value_changed: bool) -> void:
-	#Global.volumen_efectos = h_slider_2_efectos.value
-	#efectos = h_slider_2_efectos.value
-#
-#
-#func _on_h_slider_3_volumen_drag_ended(value_changed: bool) -> void:
-	#Global.volumen_ambiente = h_slider_3_ambiente.value
-	#ambiente = h_slider_3_ambiente.value
-#
-#
-#
-#func _on_boton_custom_pressed() -> void:
-	#queue_free()
+
+func _on_tipo_de_ventana_item_selected(index: int) -> void:
+	match index:
+		0:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+		1:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		2:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+
+
+func _on_resolucion_item_selected(index: int) -> void:
+	match index:
+		0:
+			DisplayServer.window_set_size(Vector2i(3240, 2160))
+		1:
+			DisplayServer.window_set_size(Vector2i(2560, 1440))
+		2:
+			DisplayServer.window_set_size(Vector2i(1920, 1080))
+		3:
+			DisplayServer.window_set_size(Vector2i(1600, 900))
+		4:
+			DisplayServer.window_set_size(Vector2i(1366, 768))
+		5:
+			DisplayServer.window_set_size(Vector2i(1280, 720))
+
+
+func _on_vsync_item_selected(index: int) -> void:
+	match index:
+		0:
+			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+		1:
+			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+		2:
+			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ADAPTIVE)

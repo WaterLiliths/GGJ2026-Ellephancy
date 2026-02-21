@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://cpyhe3nqkhc1v"]
+
+[ext_resource type="Script" uid="uid://0njs7t1npwfr" path="res://escenas/world_objects/haz_de_luz.gd" id="1_tofwr"]
+[ext_resource type="Texture2D" uid="uid://csdeyuc1gerbf" path="res://escenas/animaciones/gradiente-particulas.tres" id="2_0lobu"]
+[ext_resource type="Curve" uid="uid://dhd5mmtw783bt" path="res://escenas/particulas/scale_curve.tres" id="3_yaswf"]
+
+[sub_resource type="Curve" id="Curve_yaswf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_dm3l8"]
+colors = PackedColorArray(1, 0.8925, 0.85, 1, 1, 0.7726667, 0.69, 0.49803922)
+
+[sub_resource type="Gradient" id="Gradient_yaswf"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 0.14509805, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qgr82"]
+gradient = SubResource("Gradient_yaswf")
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+repeat = 2
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yaswf"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_qgr82"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dm3l8"]
+gradient = SubResource("Gradient_qgr82")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="HazDeLuz" type="Node2D"]
+script = ExtResource("1_tofwr")
+
+[node name="Haz" type="RayCast2D" parent="."]
+collision_mask = 1215
+collide_with_areas = true
+
+[node name="Line2D" type="Line2D" parent="."]
+show_behind_parent = true
+light_mask = 512
+z_index = -1
+width = 50.0
+width_curve = SubResource("Curve_yaswf")
+default_color = Color(1, 0.895, 0.85, 1)
+gradient = SubResource("Gradient_dm3l8")
+texture = SubResource("GradientTexture2D_qgr82")
+texture_mode = 2
+joint_mode = 2
+end_cap_mode = 2
+sharp_limit = 5.0
+
+[node name="Particulas" type="CPUParticles2D" parent="."]
+light_mask = 512
+material = SubResource("CanvasItemMaterial_yaswf")
+amount = 20
+texture = ExtResource("2_0lobu")
+lifetime = 0.84
+preprocess = 0.18
+speed_scale = 2.06
+emission_shape = 1
+emission_sphere_radius = 0.01
+gravity = Vector2(0, 0)
+linear_accel_max = 100.0
+radial_accel_max = 100.0
+scale_amount_curve = ExtResource("3_yaswf")
+color = Color(1, 1, 1, 0.21568628)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 1.38
+texture = SubResource("GradientTexture2D_dm3l8")
+texture_scale = 3.36

@@ -170,10 +170,10 @@ tracks/0/path = NodePath("CampanitaAnimada/LabelTextArboleda:theme_override_colo
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(4.833334, 9.716667, 11.166668, 18.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(4.833334, 9.716667, 11.166668),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -414,6 +414,7 @@ grow_vertical = 0
 text = "Volver"
 
 [node name="CampanitaAnimada" parent="." instance=ExtResource("3_gdenh")]
+modulate = Color(1, 1, 1, 0)
 light_mask = 0
 z_index = 50
 position = Vector2(967, 521)
@@ -442,7 +443,7 @@ text = "Continuará."
 horizontal_alignment = 1
 
 [node name="LabelPuntos" type="Label" parent="CampanitaAnimada"]
-modulate = Color(1, 1, 1, 1.1730644)
+modulate = Color(1, 1, 1, 0)
 offset_left = -498.00003
 offset_top = 143.0
 offset_right = 410.99997
@@ -470,7 +471,6 @@ zoom = Vector2(1.2, 1.2)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
-modulate = Color(1, 1, 1, 0)
 z_index = 222
 y_sort_enabled = true
 offset_left = -582.0
@@ -500,6 +500,7 @@ texture = SubResource("GradientTexture2D_cs6f5")
 texture_scale = 49.5
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0)
 z_index = -1
 y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_60nwy")

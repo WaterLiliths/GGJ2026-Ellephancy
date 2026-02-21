@@ -20,7 +20,7 @@ signal dialogo_desactivado_to_player #se escucha player
 signal restart #agregada para el boton de estoy atascado, solo para el showcase?
 signal player_detecto_caida(tiempo_en_aire : float) #emitida por player y escuchada por juego, para la mini animacion de la camara
 
-var mascara_activa : int = 0
+var mascara_activa : int = 2
 #----------------PALANCA Y PUERTA------------------
 signal activar_palanca(id_palanca : int)
 signal desactivar_palanca(id_palanca : int)

@@ -53,6 +53,7 @@ enum ESTADOS {IDLE, CAMINAR, SALTAR, CAER, INTERACTUAR, AGARRAR, DIALOGO_ACTIVO}
 var estado_actual : ESTADOS = ESTADOS.IDLE
 var ultimo_estado : ESTADOS
 
+var fuerza_de_empuje = 1
 
 func _ready() -> void:
 	mov_manager.setup(self)
@@ -92,6 +93,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	calcular_tiempo_en_aire(delta)
 	detectar_caida()
+
 
 	if agarrando_caja and direction:
 		if not sonido_caja_sonando:

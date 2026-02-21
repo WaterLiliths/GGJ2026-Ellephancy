@@ -11,6 +11,7 @@ var palanca_actual : Palanca = self
 @export var timeada : bool = false
 @export var timer : float = 1.0
 @export var usa_runas : bool = false
+@export var posicionador_de_runa : Marker2D
 @onready var runa: Runa = $Runa
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
@@ -21,13 +22,11 @@ signal palanca_con_runa_activada(palanca, id, runa)
 
 
 func _ready() -> void:
+	Global.mascara_traducciones_activa.connect(mostrar_runas)
+	Global.mascara_traducciones_desactivar.connect(esconder_runas)
 	runa.hide()
 	if usa_runas:
-		print(color)
-		runa.asignar_tipo(runa.TiposDeRunas.values().pick_random(), color)
-		runa.show()
-		tipo_de_palanca = "runas"
-		emitir_señal()
+		setup_runas()
 		
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
@@ -129,3 +128,18 @@ func cambiar_de_runa():
 	luz_verde.color = color
 	runa.asignar_tipo(nueva_runa, color)
 	
+func mostrar_runas():
+	luz_verde.show()
+
+func esconder_runas():
+	luz_verde.hide()
+
+func setup_runas():
+	runa.asignar_tipo(runa.TiposDeRunas.values().pick_random(), color)
+	runa.show()
+	tipo_de_palanca = "runas"
+	if posicionador_de_runa:
+		runa.position = posicionador_de_runa.position - runa.size / 2 * runa.scale
+		runa.rotation = posicionador_de_runa.rotation
+		
+	emitir_señal()

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwq71a08xd4uw"]
+
+[ext_resource type="Script" uid="uid://b62q81oohgb5x" path="res://AreaObjetivo.gd" id="1_3n7jn"]
+
+[node name="AreaObjetivo" type="Area2D"]
+script = ExtResource("1_3n7jn")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -64,6 +64,7 @@
 [ext_resource type="Script" uid="uid://dosfm11gge1g5" path="res://escenas/movimiento_manager.gd" id="62_uxfdn"]
 [ext_resource type="Script" uid="uid://bsowsfuv3joil" path="res://escenas/detector_suelo_manager.gd" id="63_762hu"]
 [ext_resource type="Script" uid="uid://dtiq53iumksnb" path="res://scripts/resources/player_stats.gd" id="63_uxfdn"]
+[ext_resource type="PackedScene" uid="uid://de62poysm1she" path="res://escenas/nodos_funcionalidades/chequeador_de_objetivos.tscn" id="58_vchxa"]
 
 [sub_resource type="Gradient" id="Gradient_hopxw"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -577,6 +578,9 @@ raycast_suelo = NodePath("../RayCast2DSuelo")
 [node name="PlayerStats" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("63_uxfdn")
+
+[node name="ChequeadorDeObjetivos" parent="." node_paths=PackedStringArray("player") instance=ExtResource("58_vchxa")]
+player = NodePath("..")
 
 [connection signal="animation_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_animation_changed"]
 [connection signal="animation_finished" from="AnimatedSpritePJ" to="AnimationManager" method="_on_animated_sprite_pj_animation_finished"]

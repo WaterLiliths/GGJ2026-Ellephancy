@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://j1ggk4cfsncx"]
+
+[ext_resource type="Texture2D" uid="uid://cp8sym18jdorp" path="res://assets/campanita/seccion_soga.png" id="1_8ro16"]
+[ext_resource type="Script" uid="uid://ofqdgpx5tus4" path="res://escenas/world_objects/seccion_soga_campana.gd" id="1_fjbgi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fjbgi"]
+size = Vector2(4, 24)
+
+[node name="Soga1" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 0
+mass = 0.001
+angular_damp = 20.897
+script = ExtResource("1_fjbgi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 12)
+scale = Vector2(0.57142854, 0.94)
+texture = ExtResource("1_8ro16")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+node_a = NodePath("..")
+node_b = NodePath("../../Ancla")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_fjbgi")

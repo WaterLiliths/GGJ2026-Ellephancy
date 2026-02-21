@@ -9,18 +9,19 @@
 [ext_resource type="Texture2D" uid="uid://yf1ovbt7adcn" path="res://assets/sprites/base_palanca.PNG" id="3_gegfy"]
 [ext_resource type="Texture2D" uid="uid://qyras1off6n" path="res://assets/runas-finales/Runa3.png" id="4_borjd"]
 [ext_resource type="Texture2D" uid="uid://dt5piqibgkgel" path="res://assets/sprites/rocasucialado.png" id="5_6r7eb"]
-[ext_resource type="Texture2D" uid="uid://1ko7mcr6doos" path="res://assets/TILES-TEST/runas-test/runa-test1.png" id="5_gegfy"]
+[ext_resource type="Texture2D" uid="uid://1ko7mcr6doos" path="res://assets/ACOMODAR_Y_BORRAR/runas-test/runa-test1.png" id="5_gegfy"]
 [ext_resource type="Texture2D" uid="uid://ddtjp3rjdd7ak" path="res://assets/runas-finales/Runa4.png" id="5_omxlu"]
 [ext_resource type="Texture2D" uid="uid://b6m0pxae5ovhg" path="res://assets/runas-finales/Runa5 (1).png" id="6_42s24"]
-[ext_resource type="Texture2D" uid="uid://ctfsfjhqfytxw" path="res://assets/TILES-TEST/runas-test/runa-test2.png" id="6_t1q3l"]
+[ext_resource type="Texture2D" uid="uid://ctfsfjhqfytxw" path="res://assets/ACOMODAR_Y_BORRAR/runas-test/runa-test2.png" id="6_t1q3l"]
 [ext_resource type="Texture2D" uid="uid://dgqgmrbbmqe87" path="res://assets/runas-finales/Runa6.png" id="7_kk613"]
-[ext_resource type="Texture2D" uid="uid://bjudw1ckt6cac" path="res://assets/TILES-TEST/runas-test/runa-test-4.png" id="7_s1ify"]
-[ext_resource type="Texture2D" uid="uid://djh1ycbtamrk" path="res://assets/TILES-TEST/runas-test/runa-test-3.png" id="8_5j0a8"]
+[ext_resource type="Texture2D" uid="uid://bjudw1ckt6cac" path="res://assets/ACOMODAR_Y_BORRAR/runas-test/runa-test-4.png" id="7_s1ify"]
+[ext_resource type="Texture2D" uid="uid://djh1ycbtamrk" path="res://assets/ACOMODAR_Y_BORRAR/runas-test/runa-test-3.png" id="8_5j0a8"]
 [ext_resource type="Script" uid="uid://bfkwa4s1okq2q" path="res://escenas/palanca_salmon_2.gd" id="11_47k4l"]
 [ext_resource type="Script" uid="uid://c2uduf8ch2qat" path="res://escenas/palanca_salmon_3.gd" id="12_4e2h8"]
 [ext_resource type="Script" uid="uid://blvlclwppw6tu" path="res://escenas/puerta_salmon.gd" id="12_f0ung"]
 [ext_resource type="AnimationLibrary" uid="uid://8fnfbqiuq3br" path="res://escenas/animaciones/animaciones_palancas_salmon.res" id="16_42s24"]
 [ext_resource type="PackedScene" uid="uid://bigbvkph35hhb" path="res://escenas/portal.tscn" id="20_borjd"]
+
 
 [sub_resource type="Animation" id="Animation_neg3w"]
 resource_name = "activar"

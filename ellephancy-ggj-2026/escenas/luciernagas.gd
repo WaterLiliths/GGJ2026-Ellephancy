@@ -1,29 +1,36 @@
 class_name Luciernagas
 extends CharacterBody2D
 
-@export var movement_speed: float = 200.0
+@export var movement_speed: float = 300.0
 @export var movement_target : Marker2D
 
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
+@onready var timer_reset: Timer = $TimerReset
+@onready var timer_cooldown: Timer = $TimerCooldown
+@onready var sonido_campanitas: FmodEventEmitter2D = $SonidoCampanitas
+
 
 func _ready() -> void:
+	timer_cooldown.start()
 	navigation_agent_2d.path_desired_distance = 4.0
 	navigation_agent_2d.target_desired_distance = 4.0
-	
+	sonido_campanitas.play()
+
 	actor_setup.call_deferred()
-	
+
 func _physics_process(delta: float) -> void:
 	if navigation_agent_2d.is_navigation_finished():
 		cpu_particles_2d.gravity = Vector2.UP
 		return
 
-	
+
 	var current_agent_position: Vector2 = global_position
 	var next_path_position: Vector2 = navigation_agent_2d.get_next_path_position()
-
+	
 	velocity = current_agent_position.direction_to(next_path_position) * movement_speed
-	cpu_particles_2d.gravity = position.direction_to(next_path_position)
+	cpu_particles_2d.gravity = position.direction_to(next_path_position) * 10
+
 
 	move_and_slide()
 
@@ -31,6 +38,20 @@ func actor_setup():
 	await get_tree().physics_frame
 	
 	set_movement_target_position(movement_target)
-	
+
 func set_movement_target_position(movement_target):
 	navigation_agent_2d.target_position = movement_target.global_position
+
+
+func _on_timer_reset_timeout() -> void:
+	queue_free()
+
+
+func _on_navigation_agent_2d_target_reached() -> void:
+	cpu_particles_2d.linear_accel_max = 30
+	cpu_particles_2d.tangential_accel_max = 0
+	cpu_particles_2d.tangential_accel_min = 0
+	sonido_campanitas.play()
+	timer_reset.start()
+	var tween_luciernagas = create_tween()
+	tween_luciernagas.tween_property(cpu_particles_2d, "scale_amount_max", 0, timer_reset.wait_time)

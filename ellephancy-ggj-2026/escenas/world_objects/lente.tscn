@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://ddadtanp2707x"]
+
+[ext_resource type="Script" uid="uid://bptuievbh0s25" path="res://escenas/world_objects/lente.gd" id="1_g3bv2"]
+
+[sub_resource type="Gradient" id="Gradient_ltgtn"]
+interpolation_mode = 1
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g3bv2"]
+gradient = SubResource("Gradient_ltgtn")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.517094)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g3bv2"]
+radius = 2.0000002
+height = 142.00002
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g3bv2"]
+radius = 76.27582
+
+[sub_resource type="Gradient" id="Gradient_g3bv2"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rw1qh"]
+gradient = SubResource("Gradient_g3bv2")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="Lente" type="AnimatableBody2D"]
+collision_layer = 1024
+collision_mask = 1024
+script = ExtResource("1_g3bv2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5707964
+scale = Vector2(2.25, 0.249)
+texture = SubResource("GradientTexture2D_g3bv2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("CapsuleShape2D_g3bv2")
+
+[node name="AreaDeInteraccion" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDeInteraccion"]
+shape = SubResource("CircleShape2D_g3bv2")
+
+[node name="SonidoRotacion" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Objetos/arrastrar piedra"
+event_guid = "{2166ce82-c481-4140-ac4f-55290734fe8b}"
+fmod_parameters/Peso/id = 8505785322959852152
+fmod_parameters/Peso = 1.0
+fmod_parameters/Peso/variant_type = 3
+fmod_parameters/Material/id = -768118463292944790
+fmod_parameters/Material = "Piedra"
+fmod_parameters/Material/labels = PackedStringArray("Piedra", "Madera")
+fmod_parameters/Material/variant_type = 4
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 4.0
+range_item_cull_mask = 512
+texture = SubResource("GradientTexture2D_rw1qh")
+texture_scale = 4.14
+
+[connection signal="body_entered" from="AreaDeInteraccion" to="." method="_on_area_de_interaccion_body_entered"]
+[connection signal="body_exited" from="AreaDeInteraccion" to="." method="_on_area_de_interaccion_body_exited"]

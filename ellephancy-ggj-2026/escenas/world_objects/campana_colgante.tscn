@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://croo183ic8glj"]
+
+[ext_resource type="Script" uid="uid://tjs2n2ty0c6o" path="res://escenas/world_objects/campana_colgante.gd" id="1_7d2pw"]
+
+[node name="CampanaColgante" type="Node2D"]
+script = ExtResource("1_7d2pw")
+
+[node name="Ancla" type="RigidBody2D" parent="."]
+freeze = true
