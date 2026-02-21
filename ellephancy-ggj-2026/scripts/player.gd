@@ -22,7 +22,6 @@ extends CharacterBody2D
 @onready var mano_test_izq: CollisionShape2D = %CollisionManoIzq
 @onready var mano_test_der: CollisionShape2D = %CollisionManoDer
 #-------------------------------
-
 var animacion_agarrar_inicial_terminada : bool = false
 var ultimo_tiempo_en_aire : float = 0
 var tiempo_en_el_aire_actual: float = 0
@@ -35,7 +34,6 @@ var agarrando_caja : bool = false
 
 var velocidad_inicial_salto : float
 var velocidad_inicial : float 
-
 
 @onready var animated_sprite_pj: AnimatedSprite2D = %AnimatedSpritePJ
 @onready var ray_cast_izq: RayCast2D = %RayCastIzq
@@ -78,38 +76,22 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-
 	if not dialogos_activos: #TEST A VER SI NOS GUSTA
 		direction = Input.get_axis("a", "d")
 	else:
 		direction = 0
 	if direction:
 		ultima_direccion_mirar = sign(direction)
-	aplicar_gravedad(delta)
+	mov_manager.aplicar_gravedad(delta)
 	
-	match estado_actual:
-		ESTADOS.IDLE:
-			procesar_idle(delta)
-		ESTADOS.CAMINAR:
-			procesar_caminar(delta)
-		ESTADOS.SALTAR:
-			procesar_saltar(delta)
-		ESTADOS.CAER:
-			procesar_caer(delta)
-		ESTADOS.INTERACTUAR:
-			pass #por si necesitan logica en process la ponemos aca
-		ESTADOS.AGARRAR:
-			procesar_agarrar(delta)
-		ESTADOS.DIALOGO_ACTIVO:
-			procesar_dialogo_activo()
+	mov_manager.matchear_estado_actual(estado_actual, delta)
+
 	if global_position.y > STATS.limite_altura_morir:
 		matar_player()
 	
 	move_and_slide()
 	calcular_tiempo_en_aire(delta)
 	detectar_caida()
-
-
 
 	if agarrando_caja and direction:
 		if not sonido_caja_sonando:
@@ -124,20 +106,21 @@ func _physics_process(delta: float) -> void:
 			sonido_caja_sonando = false
 
 
-	emitir_sonido_caida()
+	sound_manager.emitir_sonido_caida()
 	estaba_en_el_piso = is_on_floor()
 	if not sonido_caida_emitiendo: 
-		emitir_sonido_caida()
+		sound_manager.emitir_sonido_caida()
 		#------------------------INTERACTUAR------------------------
+		#TODO MOVER AL INPUT MANAGER
 	if puede_interactuar and objeto_interactivo is Palanca and Input.is_action_just_pressed("interactuar"):
 		objeto_interactivo.activar()
-		#ejecutar_animacion_palanca()
+		animation_manager.ejecutar_animacion_palanca()
 
 
 #--------------------- SEÑALES  -------------------------
 func _on_area_tirar_body_entered(body: Node2D) -> void:
 #	if body is ObjetoEmpujable or body.is_in_group("cajas"):
-	if body.is_in_group("cajas") and body != Player:
+	if body.is_in_group("cajas") and body != Player: #CAMBIAR A CLASE AGARRABLE / EMPUJABLE
 		objeto_arrastrado = body
 
 func _on_area_tirar_body_exited(body: Node2D) -> void:
@@ -201,18 +184,11 @@ func consultar_saltar():
 		$FmodEventEmitter2D2.play()
 
 
-func emitir_sonido_caida():
-	if estaba_en_el_piso and not is_on_floor():
-		%FmodEventEmitter2D5.play()
-		sonido_caida_emitiendo = true
-
-
 func aplicar_gravedad(delta : float):
 	if velocity.y<0:
 		velocity += get_gravity() * STATS.gravedad_subiendo * delta
 	else:
 		velocity += get_gravity() * STATS.gravedad_bajando * delta
-
 
 func procesar_idle(delta):
 	velocity.x = move_toward(velocity.x, 0, STATS.desaceleracion * delta)
@@ -231,7 +207,7 @@ func procesar_idle(delta):
 
 func procesar_caminar(delta):
 	velocity.x = move_toward(velocity.x, direction * STATS.velocidad, STATS.aceleracion * delta)
-	animated_sprite_pj.flip_h = ultima_direccion_mirar < 0
+	animation_manager.flipear_animation(ultima_direccion_mirar)
 	if direction:
 		if timer_pasos <= 0 && is_on_floor():
 			
@@ -248,12 +224,11 @@ func procesar_caminar(delta):
 	if Input.is_action_just_pressed("w") and is_on_floor():
 		velocity.y = STATS.velocidad_salto
 		cambiar_de_estado(ESTADOS.SALTAR)
-	
 
 func procesar_saltar(delta):
 	if direction:
 		velocity.x = move_toward(velocity.x , direction * STATS.velocidad, STATS.aceleracion * delta)
-		animated_sprite_pj.flip_h = ultima_direccion_mirar < 0 #rotar pj segun para donde se mueve
+		animation_manager.flipear_animation(ultima_direccion_mirar)
 	
 	if Input.is_action_just_released("w") and velocity.y < 0: #probar
 		velocity.y *= STATS.desaceleración_al_saltar
@@ -264,7 +239,7 @@ func procesar_saltar(delta):
 func procesar_caer(delta):
 	if direction:
 		velocity.x = move_toward(velocity.x , direction * STATS.velocidad, STATS.aceleracion * delta)
-		animated_sprite_pj.flip_h = ultima_direccion_mirar < 0 #rotar pj segun para donde se mueve
+		animation_manager.flipear_animation(ultima_direccion_mirar)
 	
 	if is_on_floor():
 		if direction != 0: #moviendome
@@ -302,7 +277,6 @@ func procesar_dialogo_activo():
 	velocity.x = 0
 
 
-
 func matar_player():
 	if reviviendo_player:
 		return
@@ -319,7 +293,7 @@ func tirarse_de_plataforma():
 func acaba_de_aterrizar() -> bool:
 	return is_on_floor() and velocity.y >= 0
 
-func activar_mano():
+func activar_mano(): #TODAVIA ES NECESARIO, SE SIGUE QUEDANDO ATASCADO
 	if agarrando_caja:
 		return
 	ray_cast_izq.force_raycast_update()
@@ -332,8 +306,6 @@ func activar_mano():
 		mano_test_der.set_deferred("disabled", true)
 
 
-
-
 func on_dialogo_activo():
 	cambiar_de_estado(ESTADOS.DIALOGO_ACTIVO)
 
@@ -342,7 +314,6 @@ func on_dialogo_desactivado():
 
 func restart():
 	matar_player()
-
 
 func agarrar_caja():
 	if not is_on_floor():
@@ -390,8 +361,3 @@ func cambiar_de_estado(estado_nuevo : ESTADOS):
 			animation_manager.ejecutar_animacion_arrastrar()
 		ESTADOS.DIALOGO_ACTIVO:
 			animation_manager.ejecutar_animacion_idle()
-
-
-#si estas leyendo esto es pq termine de refactorizar a player
-#porfin pordiossssss gracias Messi
-#igual tarde pq player ya me dejo asi: https://www.youtube.com/watch?v=HdHL3j2trWk

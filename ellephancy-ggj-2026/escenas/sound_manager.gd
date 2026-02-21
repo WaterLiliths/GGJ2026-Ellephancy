@@ -7,7 +7,6 @@ extends Node
 @onready var fmod_sonido_salto : FmodEventEmitter2D  =%FmodEventEmitter2D2
 
 
-
 func _physics_process(delta: float) -> void:
 	#copie y pegue literal de player estos 3 .volume
 	%FmodEventEmitter2D.volume = Global.volumen_efectos
@@ -22,6 +21,11 @@ func ejecutar_sonido_mascaras(mascara :String): #pasarle como parametro Oso Cier
 
 func ejecutar_sonido_salto():
 	fmod_sonido_salto.play()
+
+func emitir_sonido_caida():
+	if player.estaba_en_el_piso and not player.is_on_floor():
+		%FmodEventEmitter2D5.play()
+		player.sonido_caida_emitiendo = true
 
 
 func _on_mascaras_manager_ejecutar_sonido_mascara(parametro: String) -> void:

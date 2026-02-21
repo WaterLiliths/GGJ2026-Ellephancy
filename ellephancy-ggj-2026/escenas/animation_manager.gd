@@ -93,7 +93,11 @@ func _on_animated_sprite_pj_animation_finished() -> void:
 	var animacion = animated_sprite_pj.get_animation()
 	if animacion.begins_with("palanca"):
 		player.cambiar_de_estado(player.ESTADOS.IDLE)
+		ejecutar_animacion_idle()
 	if animacion.begins_with("salto"):
 		ejecutar_animacion_caida()
 	if animacion == "agarrar_oso" and player.estado_actual == player.ESTADOS.AGARRAR:
 		player.animacion_agarrar_inicial_terminada = true
+
+func flipear_animation(ultima_direccion):
+	animated_sprite_pj.flip_h = ultima_direccion < 0

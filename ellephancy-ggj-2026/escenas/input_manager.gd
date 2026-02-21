@@ -1,5 +1,6 @@
 class_name InputManager
 extends Node
+##POR AHORA CONTROLA TODO MENOS W A S D y palanca
 
 @export var player : Player
 @export var sound_manager : SoundManager
