@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csa2luj144ovp"
-path="res://.godot/imported/Árboles Grandes.png-ac35ccfd28ea11c3886d3fc6785c8d63.ctex"
+uid="uid://d2nbkfqavfqrf"
+path="res://.godot/imported/tileset _for_shadows.png-3de48357d349bc9993351fa1d3c07e4d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tile_set/Árboles Grandes.png"
-dest_files=["res://.godot/imported/Árboles Grandes.png-ac35ccfd28ea11c3886d3fc6785c8d63.ctex"]
+source_file="res://assets/tile_set/tileset _for_shadows.png"
+dest_files=["res://.godot/imported/tileset _for_shadows.png-3de48357d349bc9993351fa1d3c07e4d.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d1ij8stxbxugo"
-path="res://.godot/imported/piedrasfondo.png-b590c64a451ec00afc6dc121cf65cc21.ctex"
+path="res://.godot/imported/stone_background.png-f57ef1ee405cc8194b2a1fbd8afd7f6d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tile_set/piedrasfondo.png"
-dest_files=["res://.godot/imported/piedrasfondo.png-b590c64a451ec00afc6dc121cf65cc21.ctex"]
+source_file="res://assets/tile_set/stone_background.png"
+dest_files=["res://.godot/imported/stone_background.png-f57ef1ee405cc8194b2a1fbd8afd7f6d.ctex"]
 
 [params]
 

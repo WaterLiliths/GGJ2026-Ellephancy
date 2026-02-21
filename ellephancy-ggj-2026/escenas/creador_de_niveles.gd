@@ -2,7 +2,7 @@ extends TileMapLayer
 
 
 @export var presente : bool
-
+@export var background : bool
 
 func _ready() -> void:
 	Global.mascara_tiempo_activa.connect(on_mascara_tiempo_activa)
@@ -32,5 +32,6 @@ func esconder_mundo():
 
 
 func mostrar_mundo():
-	collision_enabled = true
+	if not background:
+		collision_enabled = true
 	show()

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djh1ycbtamrk"
-path="res://.godot/imported/runa-test-3.png-3cfbc29c7e300994e0038782a2215270.ctex"
+uid="uid://bjudw1ckt6cac"
+path="res://.godot/imported/runa-test-4.png-72eadeb78d891d4e868cbcaa8d137108.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/TILES-TEST/runas-test/runa-test-3.png"
-dest_files=["res://.godot/imported/runa-test-3.png-3cfbc29c7e300994e0038782a2215270.ctex"]
+source_file="res://assets/ACOMODAR_Y_BORRAR/runas-test/runa-test-4.png"
+dest_files=["res://.godot/imported/runa-test-4.png-72eadeb78d891d4e868cbcaa8d137108.ctex"]
 
 [params]
 
