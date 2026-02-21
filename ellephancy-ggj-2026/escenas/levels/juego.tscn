@@ -43,7 +43,7 @@
 [ext_resource type="PackedScene" uid="uid://tbrpanj4el32" path="res://escenas/areafinjuego.tscn" id="42_nqex6"]
 [ext_resource type="PackedScene" uid="uid://dg6y4xunbnxvq" path="res://escenas/world_objects/espejo.tscn" id="42_vy46r"]
 [ext_resource type="PackedScene" uid="uid://ddadtanp2707x" path="res://escenas/world_objects/lente.tscn" id="43_vy46r"]
-[ext_resource type="PackedScene" uid="uid://bdy8afgulws27" path="res://escenas/map_creator.tscn" id="44_4ti0m"]
+[ext_resource type="PackedScene" uid="uid://bkufyuetojtvg" path="res://escenas/world_objects/objetivo_optico.tscn" id="44_4ti0m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fe420"]
 size = Vector2(304.0625, 544.375)
@@ -361,14 +361,15 @@ texture = ExtResource("5_ffuyt")
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank", "res://assets/audio/FmodBanks/Desktop/UI.bank"]
 
 [node name="Player" parent="." instance=ExtResource("8_m34qx")]
-position = Vector2(23681, -905)
+position = Vector2(4614, -86)
 scale = Vector2(0.64, 0.64)
 empieza_con_mascaras = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(23681, -975)
+position = Vector2(4614, -156)
+zoom = Vector2(1.6, 1.6)
 limit_left = 0
 limit_bottom = 1200
 editor_draw_limits = true
@@ -471,10 +472,11 @@ position = Vector2(-97, 588)
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(23681, -975)
+position = Vector2(4614, -156)
 script = ExtResource("12_g2cn0")
 follow_mode = 2
 follow_target = NodePath("../Player/Node2D")
+zoom = Vector2(1.6, 1.6)
 tween_resource = SubResource("Resource_yei3n")
 follow_offset = Vector2(0, -70)
 follow_damping = true
@@ -747,23 +749,26 @@ color = Color(0.80049086, 0.80049074, 0.80049074, 1)
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_8mohb")
 
-[node name="Lente" parent="." instance=ExtResource("43_vy46r")]
-position = Vector2(2915, -76)
-iniciador = true
-es_movible = true
-
 [node name="Espejo" parent="." instance=ExtResource("42_vy46r")]
-position = Vector2(3835.0002, -14)
+position = Vector2(5301, -158)
 rotation = -1.2854326
 es_movible = true
 
 [node name="Espejo2" parent="." instance=ExtResource("42_vy46r")]
-position = Vector2(3602.9998, -203.99988)
+position = Vector2(4429, -136.99988)
 rotation = -0.5303697
 es_movible = true
 
-[node name="Lente2" parent="." instance=ExtResource("43_vy46r")]
-position = Vector2(3260, -145)
+[node name="ObjetivoOptico" parent="." instance=ExtResource("44_4ti0m")]
+position = Vector2(4803, -208)
+temporal = true
+
+[node name="Puerta" parent="." instance=ExtResource("21_xkwlr")]
+position = Vector2(4990, -236)
+
+[node name="Lente" parent="." instance=ExtResource("43_vy46r")]
+position = Vector2(4702, -166)
+iniciador = true
 es_movible = true
 
 [node name="MapCreator" parent="." instance=ExtResource("44_4ti0m")]

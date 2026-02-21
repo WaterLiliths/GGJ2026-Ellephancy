@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://bkufyuetojtvg"]
+
+[ext_resource type="Script" uid="uid://cepa7soffrm18" path="res://escenas/world_objects/objetivo_optico.gd" id="1_pq8ld"]
+
+[sub_resource type="Gradient" id="Gradient_vqbb3"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.058139537, 0.96899223, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pq8ld"]
+gradient = SubResource("Gradient_vqbb3")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.017094018, 0.50427353)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jmbta"]
+radius = 31.0
+
+[sub_resource type="Gradient" id="Gradient_qgr82"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jmbta"]
+gradient = SubResource("Gradient_qgr82")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="ObjetivoOptico" type="AnimatableBody2D"]
+collision_layer = 1024
+collision_mask = 1024
+script = ExtResource("1_pq8ld")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_pq8ld")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jmbta")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.31622022, 0.31622016)
+energy = 0.0
+texture = SubResource("GradientTexture2D_jmbta")
+texture_scale = 3.36
+
+[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Objetos/revelar palabra"
+event_guid = "{bbc29be1-3174-4355-921b-261e3f1121e0}"
+
+[node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Objetos/cargar objetivo optico"
+event_guid = "{2aeaf81a-1324-4e28-a5f0-bfbb6545e979}"
+fmod_parameters/carga/id = -7813455046986654647
+fmod_parameters/carga = 0.0
+fmod_parameters/carga/variant_type = 3
