@@ -44,26 +44,23 @@ scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("CapsuleShape2D_g3bv2")
 
 [node name="AreaDeInteraccion" type="Area2D" parent="."]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDeInteraccion"]
 shape = SubResource("CircleShape2D_g3bv2")
-
-[node name="SonidoRotacion" type="FmodEventEmitter2D" parent="."]
-event_name = "event:/Objetos/arrastrar piedra"
-event_guid = "{2166ce82-c481-4140-ac4f-55290734fe8b}"
-fmod_parameters/Peso/id = 8505785322959852152
-fmod_parameters/Peso = 1.0
-fmod_parameters/Peso/variant_type = 3
-fmod_parameters/Material/id = -768118463292944790
-fmod_parameters/Material = "Piedra"
-fmod_parameters/Material/labels = PackedStringArray("Piedra", "Madera")
-fmod_parameters/Material/variant_type = 4
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 energy = 4.0
 range_item_cull_mask = 512
 texture = SubResource("GradientTexture2D_rw1qh")
 texture_scale = 4.14
+
+[node name="SonidoRotacion" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Objetos/rotar optica"
+event_guid = "{f9826155-1be9-4604-a3d1-d40cb3082e7e}"
+fmod_parameters/velocidad_angular/id = -1574950914712359287
+fmod_parameters/velocidad_angular = 0.0
+fmod_parameters/velocidad_angular/variant_type = 3
 
 [connection signal="body_entered" from="AreaDeInteraccion" to="." method="_on_area_de_interaccion_body_entered"]
 [connection signal="body_exited" from="AreaDeInteraccion" to="." method="_on_area_de_interaccion_body_exited"]
