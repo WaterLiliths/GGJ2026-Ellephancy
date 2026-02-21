@@ -1,16 +1,22 @@
 class_name Player
 extends CharacterBody2D
 
+@export_group("Mobile")
 ##si ponemos en true se instancia la escena de los botones como hijo de player
 @export var jugar_mobile : bool = false
 
 #---------- COMPONENTES / MANAGERS -------
+@export_group("Managers")
 @export var input_manager : InputManager
 @export var sound_manager : SoundManager
 @export var animation_manager : AnimationManager
 @export var detector_suelo_manager : DetectorSueloManager
+@export var mov_manager : MovimientoManager
+@export var mascaras_manager : MascarasManager
 @onready var STATS : PlayerStats = %PlayerStats
 #------------------FIN MANAGERS -----------
+@export_group("Empezar con mascara")
+@export var empezar_con_mascaras : bool = false
 
 #--------------"MANOS" PARA EVITAR TRABARSE CON LA CAJA---------------
 @onready var mano_test_izq: CollisionShape2D = %CollisionManoIzq
@@ -51,9 +57,10 @@ var ultimo_estado : ESTADOS
 
 
 func _ready() -> void:
+	mov_manager.setup(self)
 	Global.dialogo_activo_to_player.connect(on_dialogo_activo)
 	Global.dialogo_desactivado_to_player.connect(on_dialogo_desactivado)
-	resetear_mascaras_a_cero(true) #true para desactivar todas, false para activarlas
+	mascaras_manager.resetear_mascaras_a_cero(not empezar_con_mascaras) #marcar true o false desde el editor
 	mano_test_izq.set_deferred("disabled", true) #DESACTIVO FISICAS DE LA MANO
 	mano_test_der.set_deferred("disabled", true)
 	
@@ -71,9 +78,6 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	%FmodEventEmitter2D.volume = Global.volumen_efectos
-	%FmodEventEmitter2D4.volume = Global.volumen_efectos
-	%FmodEventEmitter2D2.volume = Global.volumen_efectos
 
 	if not dialogos_activos: #TEST A VER SI NOS GUSTA
 		direction = Input.get_axis("a", "d")
@@ -328,16 +332,7 @@ func activar_mano():
 		mano_test_der.set_deferred("disabled", true)
 
 
-func resetear_mascaras_a_cero(estado : bool):
-	if estado == true:
-		Global.tiene_mascara_fuerza = false
-		Global.tiene_mascara_tiempo = false
-		Global.tiene_mascara_traducciones = false
-		Global.mascara_activa = 0 #esto faltaba pq cuando terminabas el juego tenias la del oso puesta
-	else: #esto lo agrego para que sea mas facil activar y desactivar con una sola funcion
-		Global.tiene_mascara_fuerza = true
-		Global.tiene_mascara_tiempo = true
-		Global.tiene_mascara_traducciones = true
+
 
 func on_dialogo_activo():
 	cambiar_de_estado(ESTADOS.DIALOGO_ACTIVO)

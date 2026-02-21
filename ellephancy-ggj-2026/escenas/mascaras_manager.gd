@@ -73,3 +73,15 @@ func _on_equipar_mascara(id_mascara : int):
 			usar_mascara_oso()
 		3:
 			usar_mascara_salmon()
+
+
+func resetear_mascaras_a_cero(estado : bool):
+	if estado == true:
+		Global.tiene_mascara_fuerza = false
+		Global.tiene_mascara_tiempo = false
+		Global.tiene_mascara_traducciones = false
+		Global.mascara_activa = 0 #esto faltaba pq cuando terminabas el juego tenias la del oso puesta
+	else: #esto lo agrego para que sea mas facil activar y desactivar con una sola funcion
+		Global.tiene_mascara_fuerza = true
+		Global.tiene_mascara_tiempo = true
+		Global.tiene_mascara_traducciones = true

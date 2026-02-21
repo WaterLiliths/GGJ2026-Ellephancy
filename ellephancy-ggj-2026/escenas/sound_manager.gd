@@ -6,6 +6,14 @@ extends Node
 @onready var fmod_sonido_mascaras : FmodEventEmitter2D = %FmodEventEmitter2D6 #CAMBIAR NOMBRE AL NODO
 @onready var fmod_sonido_salto : FmodEventEmitter2D  =%FmodEventEmitter2D2
 
+
+
+func _physics_process(delta: float) -> void:
+	#copie y pegue literal de player estos 3 .volume
+	%FmodEventEmitter2D.volume = Global.volumen_efectos
+	%FmodEventEmitter2D4.volume = Global.volumen_efectos
+	%FmodEventEmitter2D2.volume = Global.volumen_efectos
+
 #esta funcion se llama en la signal
 func ejecutar_sonido_mascaras(mascara :String): #pasarle como parametro Oso Ciervo Salmon
 	fmod_sonido_mascaras.set_parameter("Mascara", mascara)

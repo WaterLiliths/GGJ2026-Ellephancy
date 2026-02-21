@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://cs3h434myxe4r"]
+[gd_scene load_steps=71 format=3 uid="uid://cs3h434myxe4r"]
 
 [ext_resource type="Script" uid="uid://d1p6o2ixegcp2" path="res://scripts/player.gd" id="1_esbpa"]
 [ext_resource type="Texture2D" uid="uid://csvm86vnc0cmo" path="res://assets/player/mascaras/Agarre oso destra 1.png" id="2_v66k4"]
@@ -61,6 +61,7 @@
 [ext_resource type="Script" uid="uid://glt0x5k046kj" path="res://escenas/sound_manager.gd" id="59_5uuta"]
 [ext_resource type="Script" uid="uid://3qxmcrafe6i3" path="res://escenas/mascaras_manager.gd" id="60_b787q"]
 [ext_resource type="Script" uid="uid://bdgl3r26u8lph" path="res://escenas/animation_manager.gd" id="61_3jn0c"]
+[ext_resource type="Script" uid="uid://dosfm11gge1g5" path="res://escenas/movimiento_manager.gd" id="62_uxfdn"]
 [ext_resource type="Script" uid="uid://bsowsfuv3joil" path="res://escenas/detector_suelo_manager.gd" id="63_762hu"]
 [ext_resource type="Script" uid="uid://dtiq53iumksnb" path="res://scripts/resources/player_stats.gd" id="63_uxfdn"]
 
@@ -374,13 +375,16 @@ radius = 41.880783
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3jn0c"]
 size = Vector2(1, 20)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input_manager", "sound_manager", "animation_manager", "detector_suelo_manager") groups=["cajas"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input_manager", "sound_manager", "animation_manager", "detector_suelo_manager", "mov_manager", "mascaras_manager") groups=["cajas"]]
 collision_mask = 135
 script = ExtResource("1_esbpa")
 input_manager = NodePath("InputManager")
 sound_manager = NodePath("SoundManager")
 animation_manager = NodePath("AnimationManager")
 detector_suelo_manager = NodePath("DetectorSueloManager")
+mov_manager = NodePath("MovimientoManager")
+mascaras_manager = NodePath("MascarasManager")
+empezar_con_mascaras = true
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(0.7607843, 0.43137255, 0.2901961, 1)
@@ -561,6 +565,7 @@ animated_sprite_pj = NodePath("../AnimatedSpritePJ")
 
 [node name="MovimientoManager" type="Node" parent="."]
 unique_name_in_owner = true
+script = ExtResource("62_uxfdn")
 
 [node name="DetectorSueloManager" type="Node" parent="." node_paths=PackedStringArray("player", "sound_manager", "raycast_suelo")]
 unique_name_in_owner = true
