@@ -12,15 +12,16 @@
 [ext_resource type="Texture2D" uid="uid://dibfv1arx47hn" path="res://assets/sprites/palanca_centro.PNG" id="10_i5tu6"]
 [ext_resource type="Texture2D" uid="uid://cfqv1dilqxxfc" path="res://assets/sprites/palanca_adorno.PNG" id="11_ex400"]
 [ext_resource type="Texture2D" uid="uid://yf1ovbt7adcn" path="res://assets/sprites/base_palanca.PNG" id="12_4bld5"]
-[ext_resource type="Texture2D" uid="uid://djh1ycbtamrk" path="res://assets/TILES-TEST/runas-test/runa-test-3.png" id="13_eudmh"]
-[ext_resource type="Texture2D" uid="uid://bjudw1ckt6cac" path="res://assets/TILES-TEST/runas-test/runa-test-4.png" id="14_wf3o7"]
-[ext_resource type="Texture2D" uid="uid://1ko7mcr6doos" path="res://assets/TILES-TEST/runas-test/runa-test1.png" id="15_a4x6d"]
+[ext_resource type="Texture2D" uid="uid://djh1ycbtamrk" path="res://assets/ACOMODAR_Y_BORRAR/runas-test/runa-test-3.png" id="13_eudmh"]
+[ext_resource type="Texture2D" uid="uid://bjudw1ckt6cac" path="res://assets/ACOMODAR_Y_BORRAR/runas-test/runa-test-4.png" id="14_wf3o7"]
+[ext_resource type="Texture2D" uid="uid://1ko7mcr6doos" path="res://assets/ACOMODAR_Y_BORRAR/runas-test/runa-test1.png" id="15_a4x6d"]
 [ext_resource type="Script" uid="uid://bfkwa4s1okq2q" path="res://escenas/palanca_salmon_2.gd" id="16_xxrfa"]
 [ext_resource type="Script" uid="uid://c2uduf8ch2qat" path="res://escenas/palanca_salmon_3.gd" id="17_xxjnt"]
 [ext_resource type="Script" uid="uid://blvlclwppw6tu" path="res://escenas/puerta_salmon.gd" id="18_d371j"]
 [ext_resource type="Texture2D" uid="uid://dt5piqibgkgel" path="res://assets/sprites/rocasucialado.png" id="19_dlggl"]
 [ext_resource type="PackedScene" uid="uid://bigbvkph35hhb" path="res://escenas/portal.tscn" id="20_qxevk"]
-[ext_resource type="Texture2D" uid="uid://ctfsfjhqfytxw" path="res://assets/TILES-TEST/runas-test/runa-test2.png" id="21_1eyf1"]
+[ext_resource type="Texture2D" uid="uid://ctfsfjhqfytxw" path="res://assets/ACOMODAR_Y_BORRAR/runas-test/runa-test2.png" id="21_1eyf1"]
+
 
 [sub_resource type="Animation" id="Animation_neg3w"]
 resource_name = "activar"

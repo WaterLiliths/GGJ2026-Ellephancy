@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1fajoe3rvnlw"
-path="res://.godot/imported/background_glacial_mountains_lightened.png-8f61ba065c20fea3775ce567d799e08c.ctex"
+uid="uid://djh1ycbtamrk"
+path="res://.godot/imported/runa-test-3.png-4551075389411e29f613fdcfed859b03.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/TILES-TEST/background_glacial_mountains_lightened.png"
-dest_files=["res://.godot/imported/background_glacial_mountains_lightened.png-8f61ba065c20fea3775ce567d799e08c.ctex"]
+source_file="res://assets/ACOMODAR_Y_BORRAR/runas-test/runa-test-3.png"
+dest_files=["res://.godot/imported/runa-test-3.png-4551075389411e29f613fdcfed859b03.ctex"]
 
 [params]
 

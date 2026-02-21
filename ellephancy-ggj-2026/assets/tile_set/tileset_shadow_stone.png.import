@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2nbkfqavfqrf"
-path="res://.godot/imported/Tileset _para_sombrear.png-d33aef945b92a6368f3f1d8bfbff7472.ctex"
+uid="uid://d4iw4hlm6iv18"
+path="res://.godot/imported/tileset_shadow_stone.png-6feb555ca58de0b55e3ff763bf92afa9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tile_set/Tileset _para_sombrear.png"
-dest_files=["res://.godot/imported/Tileset _para_sombrear.png-d33aef945b92a6368f3f1d8bfbff7472.ctex"]
+source_file="res://assets/tile_set/tileset_shadow_stone.png"
+dest_files=["res://.godot/imported/tileset_shadow_stone.png-6feb555ca58de0b55e3ff763bf92afa9.ctex"]
 
 [params]
 
