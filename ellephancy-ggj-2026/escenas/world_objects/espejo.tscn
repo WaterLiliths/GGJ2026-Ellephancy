@@ -60,5 +60,12 @@ fmod_parameters/velocidad_angular/id = -1574950914712359287
 fmod_parameters/velocidad_angular = 0.0
 fmod_parameters/velocidad_angular/variant_type = 3
 
+[node name="SonidoFrenar" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Objetos/limite optica"
+event_guid = "{89ad7594-8695-4dea-95a6-f08ae9103522}"
+fmod_parameters/velocidad_angular/id = -1574950914712359287
+fmod_parameters/velocidad_angular = 0.0
+fmod_parameters/velocidad_angular/variant_type = 3
+
 [connection signal="body_entered" from="AreaDeInteraccion" to="." method="_on_area_de_interaccion_body_entered"]
 [connection signal="body_exited" from="AreaDeInteraccion" to="." method="_on_area_de_interaccion_body_exited"]

@@ -21,16 +21,16 @@ var rotando : bool = false
 @export var cantidad_de_rebotes_haz : int = 10
 
 @export_group("Movimiento")
-@export var es_movible : bool = false
+@export var es_rotable : bool = false
 @export var rotacion_limitada : bool = false
 @export var limite_superior : float = 45.0
 @export var limite_inferior : float = -45.0
 
 
 func _ready() -> void:
-	if not es_movible:
+	if not es_rotable:
 		collision_shape_2d.disabled = true
-	
+
 	if iniciador:
 		var haz = HAZ_DE_LUZ.instantiate()
 		haz.id_haz = id_haz_iniciador
@@ -60,12 +60,9 @@ func _physics_process(delta):
 			sonido_frenar.set_parameter("velocidad_angular", velocidad_angular)
 			sonido_frenar.play()
 			velocidad_angular = 0
-			
-
 	else:
 		aplicar_velocidad_angular(delta)
-	#rotation += velocidad_angular * delta
-	#velocidad_angular = move_toward(velocidad_angular, 0.0, damping * delta)
+
 	sonido_rotacion.set_parameter("velocidad_angular", abs(velocidad_angular))
 	if velocidad_angular == 0.0:
 		sonido_rotacion.play(true)
