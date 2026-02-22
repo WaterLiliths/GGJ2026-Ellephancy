@@ -554,13 +554,14 @@ unique_name_in_owner = true
 [node name="MascaraTraducciones" parent="MascarasManager" instance=ExtResource("6_r4hsq")]
 unique_name_in_owner = true
 
-[node name="AnimationManager" type="Node" parent="." node_paths=PackedStringArray("player", "sound_manager", "mascaras_manager", "input_manager", "animated_sprite_pj")]
+[node name="AnimationManager" type="Node" parent="." node_paths=PackedStringArray("player", "sound_manager", "mascaras_manager", "input_manager", "movimiento_manager", "animated_sprite_pj")]
 unique_name_in_owner = true
 script = ExtResource("61_3jn0c")
 player = NodePath("..")
 sound_manager = NodePath("../SoundManager")
 mascaras_manager = NodePath("../MascarasManager")
 input_manager = NodePath("../InputManager")
+movimiento_manager = NodePath("../MovimientoManager")
 animated_sprite_pj = NodePath("../AnimatedSpritePJ")
 
 [node name="MovimientoManager" type="Node" parent="."]

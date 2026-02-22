@@ -2,9 +2,9 @@ class_name MovimientoManager
 extends Node
 ##ESTE MANAGER CONTROLA LOS MOVIMIENTOS DE PLAYER, INCLUYENDO EL STATE MACHINE
 
-enum ESTADOS {IDLE, CAMINAR, SALTAR, CAER, INTERACTUAR, AGARRAR, DIALOGO_ACTIVO}
-var estado_actual : ESTADOS = ESTADOS.IDLE
-var ultimo_estado : ESTADOS
+#enum ESTADOS {IDLE, CAMINAR, SALTAR, CAER, INTERACTUAR, AGARRAR, DIALOGO_ACTIVO}
+#var estado_actual : ESTADOS = ESTADOS.IDLE
+#var ultimo_estado : ESTADOS
 @onready var STATS : PlayerStats = %PlayerStats
 @onready var animation_manager : AnimationManager = %AnimationManager
 @onready var sound_manager : SoundManager = %SoundManager
@@ -15,12 +15,6 @@ var timer_pasos : float = 0
 func setup(jugador : Player):
 	body = jugador
 
-
-#func pedir_direccion():
-	#if not dialogos_activos: #TEST A VER SI NOS GUSTA
-		#direction = Input.get_axis("a", "d")
-	#else:
-		#direction = 0
 
 func aplicar_gravedad(delta : float):
 	if body.velocity.y<0:
@@ -50,63 +44,66 @@ func manejar_sonido_pasos(delta):
 		timer_pasos = 0.36 #es el valor de reset
 	timer_pasos -= delta #con esto mas o menos suena cuando timer pasos vale -0.0066
 
-
+#en el physic del player llamo a matchear estado actual mandandole IDLE
+#el mismo IDLE va chequeando si hay cambios, ej : si empieza a haber direccion, cambio de estado a CAMINAR
 func matchear_estado_actual(estado_actual, delta : float):
 	match estado_actual:
-		ESTADOS.IDLE:
+		Player.ESTADOS.IDLE:
 			procesar_idle(body.direction, delta)
-		ESTADOS.CAMINAR:
+		Player.ESTADOS.CAMINAR:
 			procesar_caminar(body.direction, delta)
-		ESTADOS.SALTAR:
+		Player.ESTADOS.SALTAR:
 			procesar_saltar(body.direction , delta)
-		ESTADOS.CAER:
+		Player.ESTADOS.CAER:
 			procesar_caer(body.direction, delta)
-		ESTADOS.INTERACTUAR:
+		Player.ESTADOS.INTERACTUAR:
 			pass #por si necesitamos logica en process la ponemos aca
-		ESTADOS.AGARRAR:
+		Player.ESTADOS.AGARRAR:
 			body.procesar_agarrar(delta)
-		ESTADOS.DIALOGO_ACTIVO:
+		Player.ESTADOS.DIALOGO_ACTIVO:
 			procesar_dialogo_activo(delta)
-
 
 
 func procesar_idle(direccion, delta : float):
 	desacelerar_a_cero(delta)
 	animation_manager.flipear_animation(body.ultima_direccion_mirar)
 	if not body.is_on_floor():
-		cambiar_de_estado(ESTADOS.CAER)
+		cambiar_de_estado(Player.ESTADOS.CAER)
 		return
 	if direccion != 0: #moviendome
-		cambiar_de_estado(ESTADOS.CAMINAR)
+		cambiar_de_estado(Player.ESTADOS.CAMINAR)
 		return
 	if puede_saltar():
 		body.velocity.y = STATS.velocidad_salto
-		cambiar_de_estado(ESTADOS.SALTAR)
+		cambiar_de_estado(Player.ESTADOS.SALTAR)
 	if Input.is_action_pressed("s") and Input.is_action_just_pressed("w") and body.is_on_floor():
 		tirarse_de_plataforma()
 
 
 
-func cambiar_de_estado(estado_nuevo : ESTADOS):
-	if estado_actual == estado_nuevo:
+func cambiar_de_estado(estado_nuevo):
+	if body.estado_actual == estado_nuevo:
 		return
-	ultimo_estado = estado_actual
-	estado_actual = estado_nuevo
-	match estado_actual:
-		ESTADOS.IDLE:
+	body.ultimo_estado = body.estado_actual
+	body.estado_actual = estado_nuevo
+	matchear_animaciones()
+
+func matchear_animaciones():
+	match body.estado_actual:
+		Player.ESTADOS.IDLE:
 			animation_manager.ejecutar_animacion_idle()
-		ESTADOS.CAMINAR:
+		Player.ESTADOS.CAMINAR:
 			animation_manager.ejecutar_animacion_caminar()
-		ESTADOS.SALTAR:
+		Player.ESTADOS.SALTAR:
 			animation_manager.ejecutar_animacion_saltar()
 			sound_manager.ejecutar_sonido_salto()
-		ESTADOS.CAER:
+		Player.ESTADOS.CAER:
 			animation_manager.ejecutar_animacion_caida()
-		ESTADOS.INTERACTUAR:
+		Player.ESTADOS.INTERACTUAR:
 			animation_manager.ejecutar_animacion_palanca()
-		ESTADOS.AGARRAR:
+		Player.ESTADOS.AGARRAR:
 			animation_manager.ejecutar_animacion_arrastrar()
-		ESTADOS.DIALOGO_ACTIVO:
+		Player.ESTADOS.DIALOGO_ACTIVO:
 			animation_manager.ejecutar_animacion_idle()
 
 
@@ -120,7 +117,7 @@ func procesar_saltar(direccion, delta : float):
 		body.velocity.y *= STATS.desaceleración_al_saltar
 	
 	if body.velocity.y >0:
-		cambiar_de_estado(ESTADOS.CAER)
+		cambiar_de_estado(Player.ESTADOS.CAER)
 
 
 func procesar_caer(direccion, delta : float):
@@ -130,9 +127,9 @@ func procesar_caer(direccion, delta : float):
 
 	if body.is_on_floor():
 		if direccion != 0: #moviendome
-			cambiar_de_estado(ESTADOS.CAMINAR)
+			cambiar_de_estado(Player.ESTADOS.CAMINAR)
 		else:
-			cambiar_de_estado(ESTADOS.IDLE)
+			cambiar_de_estado(Player.ESTADOS.IDLE)
 
 
 func procesar_dialogo_activo(delta):
@@ -149,67 +146,11 @@ func procesar_caminar(direccion, delta):
 	if direccion:
 		manejar_sonido_pasos(delta)
 	if direccion == 0:
-		cambiar_de_estado(ESTADOS.IDLE)
+		cambiar_de_estado(Player.ESTADOS.IDLE)
 		return
 	if not body.is_on_floor():
-		cambiar_de_estado(ESTADOS.CAER)
+		cambiar_de_estado(Player.ESTADOS.CAER)
 		return
 	if puede_saltar():
 		body.velocity.y = STATS.velocidad_salto
-		cambiar_de_estado(ESTADOS.SALTAR)
-
-
-
-
-
-
-#func procesar_saltar(delta):
-	#if direction:
-		#velocity.x = move_toward(velocity.x , direction * STATS.velocidad, STATS.aceleracion * delta)
-		#animated_sprite_pj.flip_h = ultima_direccion_mirar < 0 #rotar pj segun para donde se mueve
-	#
-	#if Input.is_action_just_released("w") and velocity.y < 0: #probar
-		#velocity.y *= STATS.desaceleración_al_saltar
-	#
-	#if velocity.y >0: #TODO TESTEAR 
-		#cambiar_de_estado(ESTADOS.CAER)
-#
-#func procesar_caer(delta):
-	#if direction:
-		#velocity.x = move_toward(velocity.x , direction * STATS.velocidad, STATS.aceleracion * delta)
-		#animated_sprite_pj.flip_h = ultima_direccion_mirar < 0 #rotar pj segun para donde se mueve
-	#
-	#if is_on_floor():
-		#if direction != 0: #moviendome
-			#cambiar_de_estado(ESTADOS.CAMINAR)
-		#else:
-			#cambiar_de_estado(ESTADOS.IDLE)
-#
-#
-#func procesar_agarrar(delta):
-	##cuando hago click ya le aviso al player que cambie a la velocidad lenta
-	#velocity.x = move_toward(velocity.x,direction * STATS.velocidad, STATS.aceleracion * delta)
-	#if not agarrando_caja: #para evitar bugs, porque en realidad al apretar e se cambia de estado
-		#reset_velocidad_normal()
-		#cambiar_de_estado(ESTADOS.IDLE)
-		#return
-	#if not objeto_arrastrado:
-		#return
-	#
-	#objeto_arrastrado.direccion = direction
-	#objeto_arrastrado.velocidad = STATS.velocidad
-	#objeto_arrastrado.siendo_agarrada = true
-#
-	#if not animacion_agarrar_inicial_terminada:
-		#return #espero hasta que haga la animacion de agarre para pasar a las otras
-	#if direction != 0:
-		#if animated_sprite_pj.animation != "seguir_agarrando":
-			#animated_sprite_pj.play("seguir_agarrando")
-	#else:
-		#if animated_sprite_pj.animation != "agarre_idle":
-			#animated_sprite_pj.play("agarre_idle")
-#
-#func procesar_dialogo_activo():
-	##print("esta aca en procesar dialogoooooooooooooooooooo")
-	#direction = 0
-	#velocity.x = 0
+		cambiar_de_estado(Player.ESTADOS.SALTAR)

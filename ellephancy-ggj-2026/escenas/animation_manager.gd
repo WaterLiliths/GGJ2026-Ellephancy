@@ -5,7 +5,7 @@ extends Node
 @export var sound_manager : SoundManager
 @export var mascaras_manager : MascarasManager
 @export var input_manager : InputManager
-
+@export var movimiento_manager : MovimientoManager
 @export var animated_sprite_pj : AnimatedSprite2D
 
 func verificar_animacion_con_mascara():
@@ -92,7 +92,7 @@ func ejecutar_animacion_caida(forzar_id : int = 0): #por si queremos forzar una 
 func _on_animated_sprite_pj_animation_finished() -> void:
 	var animacion = animated_sprite_pj.get_animation()
 	if animacion.begins_with("palanca"):
-		player.cambiar_de_estado(player.ESTADOS.IDLE)
+		movimiento_manager.cambiar_de_estado(player.ESTADOS.IDLE)
 		ejecutar_animacion_idle()
 	if animacion.begins_with("salto"):
 		ejecutar_animacion_caida()

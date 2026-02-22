@@ -38,8 +38,6 @@ var agarrando_caja : bool = false
 var direction : float
 var objeto_arrastrado = null
 
-var timer_pasos = 0
-var timer_pasos_reset = 0.36
 
 var estaba_en_el_piso : bool = false
 @onready var mascara_tiempo: Node2D = %MascaraTiempos
@@ -78,6 +76,7 @@ func _physics_process(delta: float) -> void:
 	pedir_direccion()
 	if direction:
 		ultima_direccion_mirar = sign(direction)
+
 	mov_manager.aplicar_gravedad(delta)
 	mov_manager.matchear_estado_actual(estado_actual, delta)
 
@@ -99,7 +98,6 @@ func _physics_process(delta: float) -> void:
 		if sonido_caja_sonando:
 			%FmodEventEmitter2D3.stop()
 			sonido_caja_sonando = false
-
 
 	sound_manager.emitir_sonido_caida()
 	estaba_en_el_piso = is_on_floor()
@@ -172,68 +170,6 @@ func consultar_saltar():
 		$FmodEventEmitter2D2.play()
 
 
-#func aplicar_gravedad(delta : float):
-	#if velocity.y<0:
-		#velocity += get_gravity() * STATS.gravedad_subiendo * delta
-	#else:
-		#velocity += get_gravity() * STATS.gravedad_bajando * delta
-#
-#func procesar_idle(delta):
-	#velocity.x = move_toward(velocity.x, 0, STATS.desaceleracion * delta)
-	#animated_sprite_pj.flip_h = ultima_direccion_mirar <0
-	#if not is_on_floor():
-		#cambiar_de_estado(ESTADOS.CAER)
-		#return
-	#if direction != 0: #moviendome
-		#cambiar_de_estado(ESTADOS.CAMINAR)
-		#return
-	#if Input.is_action_just_pressed("w") and (is_on_floor()) and not Input.is_action_pressed("s"): #cambiar a una sola funcion q me devuelva true
-		#velocity.y = STATS.velocidad_salto
-		#cambiar_de_estado(ESTADOS.SALTAR)
-	#if Input.is_action_pressed("s") and Input.is_action_just_pressed("w") and is_on_floor():
-		#tirarse_de_plataforma()
-#
-#func procesar_caminar(delta):
-	#velocity.x = move_toward(velocity.x, direction * STATS.velocidad, STATS.aceleracion * delta)
-	#animation_manager.flipear_animation(ultima_direccion_mirar)
-	#if direction:
-		#if timer_pasos <= 0 && is_on_floor():
-			#print("*********************************** TIMER PASOS VALE : ", timer_pasos)
-			#%FmodEventEmitter2D.play()
-			##pasos()
-			#timer_pasos = timer_pasos_reset
-		#timer_pasos -= delta 
-	#if direction == 0:
-		#cambiar_de_estado(ESTADOS.IDLE)
-		#return
-	#if not is_on_floor():
-		#cambiar_de_estado(ESTADOS.CAER)
-		#return
-	#if Input.is_action_just_pressed("w") and is_on_floor():
-		#velocity.y = STATS.velocidad_salto
-		#cambiar_de_estado(ESTADOS.SALTAR)
-#
-#func procesar_saltar(delta):
-	#if direction:
-		#velocity.x = move_toward(velocity.x , direction * STATS.velocidad, STATS.aceleracion * delta)
-		#animation_manager.flipear_animation(ultima_direccion_mirar)
-	#
-	#if Input.is_action_just_released("w") and velocity.y < 0: #probar
-		#velocity.y *= STATS.desaceleración_al_saltar
-	#
-	#if velocity.y >0: #TODO TESTEAR 
-		#cambiar_de_estado(ESTADOS.CAER)
-#
-#func procesar_caer(delta):
-	#if direction:
-		#velocity.x = move_toward(velocity.x , direction * STATS.velocidad, STATS.aceleracion * delta)
-		#animation_manager.flipear_animation(ultima_direccion_mirar)
-	#
-	#if is_on_floor():
-		#if direction != 0: #moviendome
-			#cambiar_de_estado(ESTADOS.CAMINAR)
-		#else:
-			#cambiar_de_estado(ESTADOS.IDLE)
 
 
 func procesar_agarrar(delta):
@@ -241,7 +177,7 @@ func procesar_agarrar(delta):
 	velocity.x = move_toward(velocity.x,direction * STATS.velocidad, STATS.aceleracion * delta)
 	if not agarrando_caja: #para evitar bugs, porque en realidad al apretar e se cambia de estado
 		reset_velocidad_normal()
-		cambiar_de_estado(ESTADOS.IDLE)
+		mov_manager.cambiar_de_estado(ESTADOS.IDLE)
 		return
 	if not objeto_arrastrado:
 		return
@@ -295,10 +231,10 @@ func activar_mano(): #TODAVIA ES NECESARIO, SE SIGUE QUEDANDO ATASCADO
 
 
 func on_dialogo_activo():
-	cambiar_de_estado(ESTADOS.DIALOGO_ACTIVO)
+	mov_manager.cambiar_de_estado(ESTADOS.DIALOGO_ACTIVO)
 
 func on_dialogo_desactivado():
-	cambiar_de_estado(ESTADOS.IDLE)
+	mov_manager.cambiar_de_estado(ESTADOS.IDLE)
 
 func restart():
 	matar_player()
@@ -312,7 +248,7 @@ func agarrar_caja():
 		#print("NO AGARRAR, ESTAS MIRANDO OPUESTO A LA CAJA")
 		return
 	disminuir_velocidad_al_agarrar()
-	cambiar_de_estado(ESTADOS.AGARRAR)
+	mov_manager.cambiar_de_estado(ESTADOS.AGARRAR)
 	animacion_agarrar_inicial_terminada = false
 	animated_sprite_pj.play("agarrar_oso")
 	agarrando_caja = true
@@ -323,29 +259,6 @@ func soltar_caja():
 		return
 	objeto_arrastrado.siendo_agarrada = false
 	reset_velocidad_normal()
-	cambiar_de_estado(ESTADOS.IDLE)
+	mov_manager.cambiar_de_estado(ESTADOS.IDLE)
 	agarrando_caja = false
 	activar_mano() #TEST ver si sigue haciendo falta ahora que las cajas se pueden empujar
-
-
-func cambiar_de_estado(estado_nuevo : ESTADOS):
-	if estado_actual == estado_nuevo:
-		return
-	ultimo_estado = estado_actual
-	estado_actual = estado_nuevo
-	match estado_actual:
-		ESTADOS.IDLE:
-			animation_manager.ejecutar_animacion_idle()
-		ESTADOS.CAMINAR:
-			animation_manager.ejecutar_animacion_caminar()
-		ESTADOS.SALTAR:
-			animation_manager.ejecutar_animacion_saltar()
-			sound_manager.ejecutar_sonido_salto()
-		ESTADOS.CAER:
-			animation_manager.ejecutar_animacion_caida()
-		ESTADOS.INTERACTUAR:
-			animation_manager.ejecutar_animacion_palanca()
-		ESTADOS.AGARRAR:
-			animation_manager.ejecutar_animacion_arrastrar()
-		ESTADOS.DIALOGO_ACTIVO:
-			animation_manager.ejecutar_animacion_idle()
