@@ -32,9 +32,6 @@ var sonido_caida_emitiendo : bool = false
 var sonido_caja_sonando : bool = false
 var agarrando_caja : bool = false
 
-var velocidad_inicial_salto : float
-var velocidad_inicial : float 
-
 @onready var animated_sprite_pj: AnimatedSprite2D = %AnimatedSpritePJ
 @onready var ray_cast_izq: RayCast2D = %RayCastIzq
 @onready var ray_cast_der: RayCast2D = %RayCastDer
@@ -61,11 +58,6 @@ func _ready() -> void:
 	mascaras_manager.resetear_mascaras_a_cero(not empezar_con_mascaras) #marcar true o false desde el editor
 	mano_test_izq.set_deferred("disabled", true) #DESACTIVO FISICAS DE LA MANO
 	mano_test_der.set_deferred("disabled", true)
-	
-	velocidad_inicial = STATS.velocidad
-	velocidad_inicial_salto = STATS.velocidad_salto
-	Global.mascara_fuerza_activa.connect(activar_mascara_fuerza)
-	Global.mascara_fuerza_desactivar.connect(desactivar_mascara_fuerza)
 	Global.restart.connect(restart)
 	if jugar_mobile:
 		var botones_android : PackedScene= preload("res://escenas/interfaz_android.tscn") #o cambiar por el uuid
@@ -142,19 +134,12 @@ func on_sale_de_interactivo(interactivo_actual : Interactivo):
 		objeto_interactivo = null
 
 
-func activar_mascara_fuerza():
-	STATS.velocidad_salto = STATS.velocidad_salto_con_mascara
-
-
-func desactivar_mascara_fuerza():
-	STATS.velocidad_salto = velocidad_inicial_salto
-	print("se desactivo las mascara de fuerza")
 
 func disminuir_velocidad_al_agarrar():
 	STATS.velocidad = STATS.velocidad_arrastrando
 
 func reset_velocidad_normal():
-	STATS.velocidad = velocidad_inicial
+	STATS.velocidad = STATS.velocidad_inicial
 	if Global.mascara_activa==2:
 		STATS.velocidad_salto = STATS.velocidad_salto_con_mascara
 	else:

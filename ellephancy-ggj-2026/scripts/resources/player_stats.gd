@@ -19,3 +19,22 @@ extends Node #probar pasar a resource
 @export var velocidad_correr : float = 40
 @export var fuerza_empuje : float = 2000 #no anda
 @export var velocidad_arrastrando : float = 100.0
+var velocidad_inicial_salto : float
+var velocidad_inicial : float
+
+func _ready() -> void:
+	Global.mascara_fuerza_activa.connect(activar_mascara_fuerza)
+	Global.mascara_fuerza_desactivar.connect(desactivar_mascara_fuerza)
+	velocidad_inicial_salto = velocidad_salto
+	velocidad_inicial = velocidad
+
+
+
+
+func activar_mascara_fuerza():
+	velocidad_salto = velocidad_salto_con_mascara
+
+
+func desactivar_mascara_fuerza():
+	velocidad_salto = velocidad_inicial_salto
+	print("se desactivo las mascara de fuerza")
