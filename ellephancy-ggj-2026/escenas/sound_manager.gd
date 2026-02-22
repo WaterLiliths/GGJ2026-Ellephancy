@@ -27,6 +27,8 @@ func emitir_sonido_caida():
 		%FmodEventEmitter2D5.play()
 		player.sonido_caida_emitiendo = true
 
+func ejecutar_sonido_pasos():
+	%FmodEventEmitter2D.play()
 
 func _on_mascaras_manager_ejecutar_sonido_mascara(parametro: String) -> void:
 	ejecutar_sonido_mascaras(parametro)

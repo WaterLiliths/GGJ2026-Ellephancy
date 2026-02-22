@@ -1,14 +1,26 @@
 class_name MovimientoManager
 extends Node
+##ESTE MANAGER CONTROLA LOS MOVIMIENTOS DE PLAYER, INCLUYENDO EL STATE MACHINE
 
 enum ESTADOS {IDLE, CAMINAR, SALTAR, CAER, INTERACTUAR, AGARRAR, DIALOGO_ACTIVO}
 var estado_actual : ESTADOS = ESTADOS.IDLE
 var ultimo_estado : ESTADOS
-
+@onready var STATS : PlayerStats = %PlayerStats
+@onready var animation_manager : AnimationManager = %AnimationManager
+@onready var sound_manager : SoundManager = %SoundManager
 var body : Player
+var timer_pasos : float = 0
+#var direction : float
 
 func setup(jugador : Player):
 	body = jugador
+
+
+#func pedir_direccion():
+	#if not dialogos_activos: #TEST A VER SI NOS GUSTA
+		#direction = Input.get_axis("a", "d")
+	#else:
+		#direction = 0
 
 func aplicar_gravedad(delta : float):
 	if body.velocity.y<0:
@@ -16,64 +28,141 @@ func aplicar_gravedad(delta : float):
 	else:
 		body.velocity += body.get_gravity() * body.STATS.gravedad_bajando * delta
 
+func puede_saltar():
+	if Input.is_action_just_pressed("w") and body.is_on_floor() and not Input.is_action_pressed("s"):
+		return true
+	else:
+		return false
+
+func tirarse_de_plataforma():
+	body.position.y += 1
+
+
+func movimiento_horizontal(direccion , delta  :float):
+	body.velocity.x = move_toward(body.velocity.x, direccion * STATS.velocidad, STATS.aceleracion * delta)
+
+func desacelerar_a_cero(delta : float):
+	body.velocity.x = move_toward(body.velocity.x, 0, STATS.desaceleracion * delta)
+
+func manejar_sonido_pasos(delta):
+	if timer_pasos <= 0 and body.is_on_floor():
+		sound_manager.ejecutar_sonido_pasos()
+		timer_pasos = 0.36 #es el valor de reset
+	timer_pasos -= delta #con esto mas o menos suena cuando timer pasos vale -0.0066
+
+
 func matchear_estado_actual(estado_actual, delta : float):
-	match body.estado_actual:
-		body.ESTADOS.IDLE:
-			body.procesar_idle(delta)
+	match estado_actual:
+		ESTADOS.IDLE:
+			procesar_idle(body.direction, delta)
 		ESTADOS.CAMINAR:
-			body.procesar_caminar(delta)
+			procesar_caminar(body.direction, delta)
 		ESTADOS.SALTAR:
-			body.procesar_saltar(delta)
+			procesar_saltar(body.direction , delta)
 		ESTADOS.CAER:
-			body.procesar_caer(delta)
+			procesar_caer(body.direction, delta)
 		ESTADOS.INTERACTUAR:
 			pass #por si necesitamos logica en process la ponemos aca
 		ESTADOS.AGARRAR:
 			body.procesar_agarrar(delta)
 		ESTADOS.DIALOGO_ACTIVO:
-			body.procesar_dialogo_activo()
-#TEST
-#
-#
-#
-#
-#
-#func procesar_idle(delta):
-	#velocity.x = move_toward(velocity.x, 0, STATS.desaceleracion * delta)
-	#animated_sprite_pj.flip_h = ultima_direccion_mirar <0
-	#if not is_on_floor():
-		#cambiar_de_estado(ESTADOS.CAER)
-		#return
-	#if direction != 0: #moviendome
-		#cambiar_de_estado(ESTADOS.CAMINAR)
-		#return
-	#if Input.is_action_just_pressed("w") and (is_on_floor()) and not Input.is_action_pressed("s"): #cambiar a una sola funcion q me devuelva true
-		#velocity.y = STATS.velocidad_salto
-		#cambiar_de_estado(ESTADOS.SALTAR)
-	#if Input.is_action_pressed("s") and Input.is_action_just_pressed("w") and is_on_floor():
-		#tirarse_de_plataforma()
-#
-#func procesar_caminar(delta):
-	#velocity.x = move_toward(velocity.x, direction * STATS.velocidad, STATS.aceleracion * delta)
-	#animated_sprite_pj.flip_h = ultima_direccion_mirar < 0
-	#if direction:
-		#if timer_pasos <= 0 && is_on_floor():
-			#
-			#%FmodEventEmitter2D.play()
-			##pasos()
-			#timer_pasos = timer_pasos_reset
-		#timer_pasos -= delta 
-	#if direction == 0:
-		#cambiar_de_estado(ESTADOS.IDLE)
-		#return
-	#if not is_on_floor():
-		#cambiar_de_estado(ESTADOS.CAER)
-		#return
-	#if Input.is_action_just_pressed("w") and is_on_floor():
-		#velocity.y = STATS.velocidad_salto
-		#cambiar_de_estado(ESTADOS.SALTAR)
-	#
-#
+			procesar_dialogo_activo(delta)
+
+
+
+func procesar_idle(direccion, delta : float):
+	desacelerar_a_cero(delta)
+	animation_manager.flipear_animation(body.ultima_direccion_mirar)
+	if not body.is_on_floor():
+		cambiar_de_estado(ESTADOS.CAER)
+		return
+	if direccion != 0: #moviendome
+		cambiar_de_estado(ESTADOS.CAMINAR)
+		return
+	if puede_saltar():
+		body.velocity.y = STATS.velocidad_salto
+		cambiar_de_estado(ESTADOS.SALTAR)
+	if Input.is_action_pressed("s") and Input.is_action_just_pressed("w") and body.is_on_floor():
+		tirarse_de_plataforma()
+
+
+
+func cambiar_de_estado(estado_nuevo : ESTADOS):
+	if estado_actual == estado_nuevo:
+		return
+	ultimo_estado = estado_actual
+	estado_actual = estado_nuevo
+	match estado_actual:
+		ESTADOS.IDLE:
+			animation_manager.ejecutar_animacion_idle()
+		ESTADOS.CAMINAR:
+			animation_manager.ejecutar_animacion_caminar()
+		ESTADOS.SALTAR:
+			animation_manager.ejecutar_animacion_saltar()
+			sound_manager.ejecutar_sonido_salto()
+		ESTADOS.CAER:
+			animation_manager.ejecutar_animacion_caida()
+		ESTADOS.INTERACTUAR:
+			animation_manager.ejecutar_animacion_palanca()
+		ESTADOS.AGARRAR:
+			animation_manager.ejecutar_animacion_arrastrar()
+		ESTADOS.DIALOGO_ACTIVO:
+			animation_manager.ejecutar_animacion_idle()
+
+
+
+func procesar_saltar(direccion, delta : float):
+	if direccion:
+		movimiento_horizontal(direccion, delta)
+		animation_manager.flipear_animation(body.ultima_direccion_mirar)
+
+	if Input.is_action_just_released("w") and body.velocity.y < 0:
+		body.velocity.y *= STATS.desaceleración_al_saltar
+	
+	if body.velocity.y >0:
+		cambiar_de_estado(ESTADOS.CAER)
+
+
+func procesar_caer(direccion, delta : float):
+	if direccion:
+		movimiento_horizontal(direccion, delta)
+		animation_manager.flipear_animation(body.ultima_direccion_mirar)
+
+	if body.is_on_floor():
+		if direccion != 0: #moviendome
+			cambiar_de_estado(ESTADOS.CAMINAR)
+		else:
+			cambiar_de_estado(ESTADOS.IDLE)
+
+
+func procesar_dialogo_activo(delta):
+	#print("esta aca en procesar dialogoooooooooooooooooooo")
+	body.direction = 0
+	desacelerar_a_cero(delta)
+
+
+
+func procesar_caminar(direccion, delta):
+	print("estoy en procesar caminar del MANAGERRRRRRRRRR")
+	movimiento_horizontal(direccion, delta)
+	animation_manager.flipear_animation(body.ultima_direccion_mirar)
+	if direccion:
+		manejar_sonido_pasos(delta)
+	if direccion == 0:
+		cambiar_de_estado(ESTADOS.IDLE)
+		return
+	if not body.is_on_floor():
+		cambiar_de_estado(ESTADOS.CAER)
+		return
+	if puede_saltar():
+		body.velocity.y = STATS.velocidad_salto
+		cambiar_de_estado(ESTADOS.SALTAR)
+
+
+
+
+
+
 #func procesar_saltar(delta):
 	#if direction:
 		#velocity.x = move_toward(velocity.x , direction * STATS.velocidad, STATS.aceleracion * delta)

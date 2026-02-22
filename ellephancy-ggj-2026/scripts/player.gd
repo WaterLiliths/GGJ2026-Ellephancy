@@ -172,68 +172,68 @@ func consultar_saltar():
 		$FmodEventEmitter2D2.play()
 
 
-func aplicar_gravedad(delta : float):
-	if velocity.y<0:
-		velocity += get_gravity() * STATS.gravedad_subiendo * delta
-	else:
-		velocity += get_gravity() * STATS.gravedad_bajando * delta
-
-func procesar_idle(delta):
-	velocity.x = move_toward(velocity.x, 0, STATS.desaceleracion * delta)
-	animated_sprite_pj.flip_h = ultima_direccion_mirar <0
-	if not is_on_floor():
-		cambiar_de_estado(ESTADOS.CAER)
-		return
-	if direction != 0: #moviendome
-		cambiar_de_estado(ESTADOS.CAMINAR)
-		return
-	if Input.is_action_just_pressed("w") and (is_on_floor()) and not Input.is_action_pressed("s"): #cambiar a una sola funcion q me devuelva true
-		velocity.y = STATS.velocidad_salto
-		cambiar_de_estado(ESTADOS.SALTAR)
-	if Input.is_action_pressed("s") and Input.is_action_just_pressed("w") and is_on_floor():
-		tirarse_de_plataforma()
-
-func procesar_caminar(delta):
-	velocity.x = move_toward(velocity.x, direction * STATS.velocidad, STATS.aceleracion * delta)
-	animation_manager.flipear_animation(ultima_direccion_mirar)
-	if direction:
-		if timer_pasos <= 0 && is_on_floor():
-			
-			%FmodEventEmitter2D.play()
-			#pasos()
-			timer_pasos = timer_pasos_reset
-		timer_pasos -= delta 
-	if direction == 0:
-		cambiar_de_estado(ESTADOS.IDLE)
-		return
-	if not is_on_floor():
-		cambiar_de_estado(ESTADOS.CAER)
-		return
-	if Input.is_action_just_pressed("w") and is_on_floor():
-		velocity.y = STATS.velocidad_salto
-		cambiar_de_estado(ESTADOS.SALTAR)
-
-func procesar_saltar(delta):
-	if direction:
-		velocity.x = move_toward(velocity.x , direction * STATS.velocidad, STATS.aceleracion * delta)
-		animation_manager.flipear_animation(ultima_direccion_mirar)
-	
-	if Input.is_action_just_released("w") and velocity.y < 0: #probar
-		velocity.y *= STATS.desaceleración_al_saltar
-	
-	if velocity.y >0: #TODO TESTEAR 
-		cambiar_de_estado(ESTADOS.CAER)
-
-func procesar_caer(delta):
-	if direction:
-		velocity.x = move_toward(velocity.x , direction * STATS.velocidad, STATS.aceleracion * delta)
-		animation_manager.flipear_animation(ultima_direccion_mirar)
-	
-	if is_on_floor():
-		if direction != 0: #moviendome
-			cambiar_de_estado(ESTADOS.CAMINAR)
-		else:
-			cambiar_de_estado(ESTADOS.IDLE)
+#func aplicar_gravedad(delta : float):
+	#if velocity.y<0:
+		#velocity += get_gravity() * STATS.gravedad_subiendo * delta
+	#else:
+		#velocity += get_gravity() * STATS.gravedad_bajando * delta
+#
+#func procesar_idle(delta):
+	#velocity.x = move_toward(velocity.x, 0, STATS.desaceleracion * delta)
+	#animated_sprite_pj.flip_h = ultima_direccion_mirar <0
+	#if not is_on_floor():
+		#cambiar_de_estado(ESTADOS.CAER)
+		#return
+	#if direction != 0: #moviendome
+		#cambiar_de_estado(ESTADOS.CAMINAR)
+		#return
+	#if Input.is_action_just_pressed("w") and (is_on_floor()) and not Input.is_action_pressed("s"): #cambiar a una sola funcion q me devuelva true
+		#velocity.y = STATS.velocidad_salto
+		#cambiar_de_estado(ESTADOS.SALTAR)
+	#if Input.is_action_pressed("s") and Input.is_action_just_pressed("w") and is_on_floor():
+		#tirarse_de_plataforma()
+#
+#func procesar_caminar(delta):
+	#velocity.x = move_toward(velocity.x, direction * STATS.velocidad, STATS.aceleracion * delta)
+	#animation_manager.flipear_animation(ultima_direccion_mirar)
+	#if direction:
+		#if timer_pasos <= 0 && is_on_floor():
+			#print("*********************************** TIMER PASOS VALE : ", timer_pasos)
+			#%FmodEventEmitter2D.play()
+			##pasos()
+			#timer_pasos = timer_pasos_reset
+		#timer_pasos -= delta 
+	#if direction == 0:
+		#cambiar_de_estado(ESTADOS.IDLE)
+		#return
+	#if not is_on_floor():
+		#cambiar_de_estado(ESTADOS.CAER)
+		#return
+	#if Input.is_action_just_pressed("w") and is_on_floor():
+		#velocity.y = STATS.velocidad_salto
+		#cambiar_de_estado(ESTADOS.SALTAR)
+#
+#func procesar_saltar(delta):
+	#if direction:
+		#velocity.x = move_toward(velocity.x , direction * STATS.velocidad, STATS.aceleracion * delta)
+		#animation_manager.flipear_animation(ultima_direccion_mirar)
+	#
+	#if Input.is_action_just_released("w") and velocity.y < 0: #probar
+		#velocity.y *= STATS.desaceleración_al_saltar
+	#
+	#if velocity.y >0: #TODO TESTEAR 
+		#cambiar_de_estado(ESTADOS.CAER)
+#
+#func procesar_caer(delta):
+	#if direction:
+		#velocity.x = move_toward(velocity.x , direction * STATS.velocidad, STATS.aceleracion * delta)
+		#animation_manager.flipear_animation(ultima_direccion_mirar)
+	#
+	#if is_on_floor():
+		#if direction != 0: #moviendome
+			#cambiar_de_estado(ESTADOS.CAMINAR)
+		#else:
+			#cambiar_de_estado(ESTADOS.IDLE)
 
 
 func procesar_agarrar(delta):
