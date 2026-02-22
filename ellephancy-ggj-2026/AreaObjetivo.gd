@@ -16,7 +16,7 @@ func _ready() -> void:
 	if tipo_de_objetivo == "PRIMERO":
 		Objetivos.objetivo_actual = self
 		Objetivos.objetivo.emit(self)
-	print("marker luciernagas vale: ", marker_luciernagas)
+
 
 func condicion_cumplida():
 	if objetivo_completado:

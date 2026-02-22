@@ -21,7 +21,7 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		if player_dentro_del_area and Input.is_action_pressed("tirar"):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			velocidad_angular += event.relative.y * sensitivity
+			velocidad_angular += event.relative.x * sensitivity
 			velocidad_angular = clamp(velocidad_angular, -max_speed, max_speed)
 	if Input.is_action_just_released("tirar"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

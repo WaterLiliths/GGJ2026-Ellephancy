@@ -4,6 +4,7 @@ extends Node2D
 const HAZ_DE_LUZ = preload("uid://cpyhe3nqkhc1v")
 
 
+
 @export var iniciador : bool = false
 @export var es_movible : bool = false
 @onready var point_light_2d: PointLight2D = $PointLight2D
@@ -33,7 +34,7 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		if player_dentro_del_area and Input.is_action_pressed("tirar"):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			velocidad_angular += event.relative.y * sensitivity
+			velocidad_angular += event.relative.x * sensitivity
 			velocidad_angular = clamp(velocidad_angular, -max_speed, max_speed)
 		else:
 			sonido_rotacion.stop()
