@@ -751,12 +751,13 @@ navigation_polygon = SubResource("NavigationPolygon_8mohb")
 [node name="Lente" parent="." instance=ExtResource("42_vy46r")]
 position = Vector2(4753, -114)
 iniciador = true
-es_movible = true
+es_rotable = true
 limite_superior = 90.0
 
 [node name="Espejo" parent="." instance=ExtResource("43_vy46r")]
-position = Vector2(4983.04, -115.75003)
-es_movible = true
+position = Vector2(4912.343, -116.01753)
+rotation = -2.6971376
+es_rotable = true
 
 [connection signal="body_entered" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_entered"]
 [connection signal="body_exited" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_exited"]
