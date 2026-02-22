@@ -22,7 +22,7 @@ func _physics_process(_delta: float) -> void:
 		if Input.is_action_just_released("click der"):
 			position = Vector2.ZERO
 		if Input.is_action_just_pressed("scroll down"):
-			if phantom_camera_2d.zoom > Vector2(0.1, 0.1):
+			if phantom_camera_2d.zoom > Vector2(1.8, 1.8):
 				phantom_camera_2d.zoom -= Vector2(0.2, 0.2)
 		if Input.is_action_just_pressed("scroll up"):
 			phantom_camera_2d.zoom += Vector2(0.2, 0.2)
