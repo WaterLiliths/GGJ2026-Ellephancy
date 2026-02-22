@@ -33,7 +33,6 @@ tile_map_data = PackedByteArray("AAAYAAkABQADAAEAAAAZAAkABQAEAAEAAAA=")
 [node name="Player" parent="." instance=ExtResource("1_7lvsf")]
 position = Vector2(245, 522)
 limite_altura_morir = null
-tiempo_maximo_en_aire = null
 aceleracion = null
 desaceleracion = null
 velocidad_max = null

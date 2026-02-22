@@ -20,7 +20,7 @@ func _on_body_entered(body: Node2D) -> void:
 		terminar_juego_omg_voy_a_llorar()
 
 
-func terminar_juego_omg_voy_a_llorar():
+func terminar_juego_omg_voy_a_llorar(): #perlita
 	%Camera2D.make_current()
 	print("omg")
 

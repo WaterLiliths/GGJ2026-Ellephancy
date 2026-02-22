@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnbkv76utcn3m"]
+[gd_scene load_steps=5 format=3 uid="uid://k08b3n8vpkrb"]
 
 [ext_resource type="Script" uid="uid://cnme1amvatsvn" path="res://scripts/piedra_grande_pasado.gd" id="1_asseb"]
 [ext_resource type="Texture2D" uid="uid://bb0dx0tt7b3f1" path="res://assets/sprites/ambient/rocatocha2.png" id="2_6tje2"]

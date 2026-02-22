@@ -1,6 +1,5 @@
-[gd_scene load_steps=14 format=4 uid="uid://cck5uwpwq01uo"]
+[gd_scene load_steps=13 format=4 uid="uid://cck5uwpwq01uo"]
 
-[ext_resource type="Texture2D" uid="uid://d1fajoe3rvnlw" path="res://assets/ACOMODAR_Y_BORRAR/background_glacial_mountains_lightened.png" id="1_6ef72"]
 [ext_resource type="PackedScene" uid="uid://cs3h434myxe4r" path="res://escenas/player.tscn" id="2_g44pp"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_qtnvv"]
 [ext_resource type="PackedScene" uid="uid://by80hrdi7bflk" path="res://escenas/creador_de_niveles.tscn" id="3_xgvjd"]
@@ -13,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://gsyv06ys145u" path="res://escenas/masks/area_mascara_salmon.tscn" id="13_mqba5"]
 [ext_resource type="PackedScene" uid="uid://cs6hrjrtl5v7x" path="res://escenas/area_mostrar_texto.tscn" id="14_q0joy"]
 
-
 [sub_resource type="Resource" id="Resource_mqba5"]
 script = ExtResource("10_xr0w3")
 
@@ -23,11 +21,6 @@ script = ExtResource("10_xr0w3")
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank"]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(552.8889, 311)
-scale = Vector2(3.8796299, 3.8796296)
-texture = ExtResource("1_6ef72")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1
@@ -46,7 +39,6 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="Player" parent="." instance=ExtResource("2_g44pp")]
 position = Vector2(611, 422)
-jugar_mobile = false
 
 [node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Ambiente/ambiente"

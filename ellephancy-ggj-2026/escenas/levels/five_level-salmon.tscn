@@ -73,9 +73,6 @@ runa_3_comienza_con = 1
 [node name="PalancaSalmon1" parent="PuzzleHolder/PuzzleSalmon1" index="0"]
 position = Vector2(-567, 191)
 
-[node name="PalancaCentro" parent="PuzzleHolder/PuzzleSalmon1/PalancaSalmon1" index="3"]
-rotation = -2.3561945
-
 [node name="RunaCambiante1" parent="PuzzleHolder/PuzzleSalmon1/ContenedorRunas" index="0"]
 position = Vector2(-128.00005, -158)
 
