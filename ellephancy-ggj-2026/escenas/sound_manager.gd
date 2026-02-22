@@ -2,10 +2,9 @@ class_name SoundManager
 extends Node
 
 @export var player : Player
-
 @onready var fmod_sonido_mascaras : FmodEventEmitter2D = %FmodEventEmitter2D6 #CAMBIAR NOMBRE AL NODO
 @onready var fmod_sonido_salto : FmodEventEmitter2D  =%FmodEventEmitter2D2
-
+var sonido_caja_sonando : bool = false
 
 func _physics_process(delta: float) -> void:
 	#copie y pegue literal de player estos 3 .volume
@@ -29,6 +28,19 @@ func emitir_sonido_caida():
 
 func ejecutar_sonido_pasos():
 	%FmodEventEmitter2D.play()
+
+func ejecutar_sonido_arrastrar(peso : float):
+	#se llama desde movimiento manager, SOLO en el estado de agarrar
+	if sonido_caja_sonando:
+		return
+	%FmodEventEmitter2D3.set_parameter("peso", peso)
+	%FmodEventEmitter2D3.play()
+	sonido_caja_sonando = true
+
+func detener_sonido_arrastrar(): #es llamado por movimiento manager en estado AGARRAR
+	sonido_caja_sonando = false
+	%FmodEventEmitter2D3.stop()
+
 
 func _on_mascaras_manager_ejecutar_sonido_mascara(parametro: String) -> void:
 	ejecutar_sonido_mascaras(parametro)

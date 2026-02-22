@@ -75,18 +75,6 @@ func _physics_process(delta: float) -> void:
 	calcular_tiempo_en_aire(delta)
 	detectar_caida()
 
-	if agarrando_caja and direction:
-		if not sonido_caja_sonando:
-			%FmodEventEmitter2D3.set_parameter("peso", 5.0)
-			%FmodEventEmitter2D3.play()
-			if objeto_arrastrado:
-				%FmodEventEmitter2D3.set_parameter("peso", 5.0)
-				sonido_caja_sonando = true
-	else:
-		if sonido_caja_sonando:
-			%FmodEventEmitter2D3.stop()
-			sonido_caja_sonando = false
-
 	sound_manager.emitir_sonido_caida()
 	estaba_en_el_piso = is_on_floor()
 	if not sonido_caida_emitiendo: 
@@ -96,8 +84,6 @@ func _physics_process(delta: float) -> void:
 	if puede_interactuar and objeto_interactivo is Palanca and Input.is_action_just_pressed("interactuar"):
 		objeto_interactivo.activar()
 		animation_manager.ejecutar_animacion_palanca()
-
-
 
 #--------------------  FUNCIONES  ------------------------
 
@@ -170,3 +156,5 @@ func acaba_de_aterrizar() -> bool:
 
 func restart():
 	matar_player()
+
+#simba, todo esto antes eran 600 lineas

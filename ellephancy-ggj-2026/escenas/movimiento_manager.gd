@@ -26,7 +26,6 @@ func on_dialogo_activo():
 func on_dialogo_desactivado():
 	cambiar_de_estado(body.ESTADOS.IDLE)
 
-
 func aplicar_gravedad(delta : float):
 	if body.velocity.y<0:
 		body.velocity += body.get_gravity() * body.STATS.gravedad_subiendo * delta
@@ -167,20 +166,18 @@ func procesar_caminar(direccion, delta):
 		cambiar_de_estado(Player.ESTADOS.SALTAR)
 
 
-
-
 func procesar_agarrar(direccion, delta):
 	#cuando hago click ya le aviso al player que cambie a la velocidad lenta
 	movimiento_horizontal(direccion, delta)
-	#if not agarrando_caja: #para evitar bugs, porque en realidad al apretar e se cambia de estado
-		#reset_velocidad_normal()
-		#mov_manager.cambiar_de_estado(ESTADOS.IDLE)
-		#return
+	if direccion!=0:
+		sound_manager.ejecutar_sonido_arrastrar(5) #5 es el peso, como no se esta usando queda es placeholder
+	else:
+		sound_manager.detener_sonido_arrastrar()
 	if not agarrar_manager.objeto_empujable:
+		sound_manager.detener_sonido_arrastrar()
 		return
 
 	#agarrar_manager.objeto_empujable.set_ser_agarrado(direccion, STATS.velocidad, true)
-	
 	agarrar_manager.objeto_empujable.direccion = direccion
 	agarrar_manager.objeto_empujable.velocidad = STATS.velocidad
 	agarrar_manager.objeto_empujable.siendo_agarrada = true

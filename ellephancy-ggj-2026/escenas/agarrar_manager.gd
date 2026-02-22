@@ -15,7 +15,7 @@ signal resetear_velocidad_normal
 @export var STATS : PlayerStats
 @export var mov_manager : MovimientoManager
 @export var animation_manager : AnimationManager
-
+@export var sound_manager : SoundManager
 
 
 func _ready() -> void:
@@ -49,6 +49,7 @@ func _on_input_manager_tirar_presionado() -> void:
 func soltar_caja():
 	if not agarrando:
 		return
+	sound_manager.detener_sonido_arrastrar() #solo POR LAS DUDAS
 	objeto_empujable.siendo_agarrada = false
 	resetear_velocidad_normal.emit()
 	mov_manager.cambiar_de_estado(body.ESTADOS.IDLE)
