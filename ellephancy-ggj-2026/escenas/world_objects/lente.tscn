@@ -1,20 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://ddadtanp2707x"]
 
 [ext_resource type="Script" uid="uid://bptuievbh0s25" path="res://escenas/world_objects/lente.gd" id="1_g3bv2"]
-
-[sub_resource type="Gradient" id="Gradient_ltgtn"]
-interpolation_mode = 1
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_g3bv2"]
-gradient = SubResource("Gradient_ltgtn")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(1, 0.517094)
+[ext_resource type="Texture2D" uid="uid://degyj1j5qxjrp" path="res://assets/sprites/optica/lente_cristal.png" id="2_rw1qh"]
+[ext_resource type="Texture2D" uid="uid://btikyqffs7gfs" path="res://assets/sprites/optica/cuadro_optica.png" id="3_d2i7h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g3bv2"]
 radius = 1.0000001
-height = 142.00002
+height = 60.000008
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g3bv2"]
 radius = 76.27582
@@ -35,21 +27,26 @@ collision_mask = 1024
 script = ExtResource("1_g3bv2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = 1.5707964
-scale = Vector2(2.25, 0.249)
-texture = SubResource("GradientTexture2D_g3bv2")
+texture_filter = 1
+texture = ExtResource("2_rw1qh")
+
+[node name="CuadroOptica" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("3_d2i7h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("CapsuleShape2D_g3bv2")
 
 [node name="AreaDeInteraccion" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDeInteraccion"]
 shape = SubResource("CircleShape2D_g3bv2")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.43025362, 0.43025362)
 energy = 4.0
 range_item_cull_mask = 512
 texture = SubResource("GradientTexture2D_rw1qh")
@@ -58,6 +55,13 @@ texture_scale = 4.14
 [node name="SonidoRotacion" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Objetos/rotar optica"
 event_guid = "{f9826155-1be9-4604-a3d1-d40cb3082e7e}"
+fmod_parameters/velocidad_angular/id = -1574950914712359287
+fmod_parameters/velocidad_angular = 0.0
+fmod_parameters/velocidad_angular/variant_type = 3
+
+[node name="SonidoFrenar" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Objetos/limite optica"
+event_guid = "{89ad7594-8695-4dea-95a6-f08ae9103522}"
 fmod_parameters/velocidad_angular/id = -1574950914712359287
 fmod_parameters/velocidad_angular = 0.0
 fmod_parameters/velocidad_angular/variant_type = 3

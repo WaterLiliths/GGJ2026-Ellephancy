@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=4 uid="uid://dkudwre2b373"]
+[gd_scene load_steps=60 format=4 uid="uid://dkudwre2b373"]
 
 [ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/Juego.gd" id="1_2y4ua"]
 [ext_resource type="PackedScene" uid="uid://c4fdbwaawyx0w" path="res://escenas/nodos_funcionalidades/manager_de_objetivos.tscn" id="2_82r4j"]
@@ -41,9 +41,8 @@
 [ext_resource type="FontFile" uid="uid://ciwhe1apfc5gi" path="res://assets/fonts/Balgruf.otf" id="32_nqex6"]
 [ext_resource type="Texture2D" uid="uid://q3ics3iji43w" path="res://assets/runas-finales/Runas interfaznum3.png" id="33_nqex6"]
 [ext_resource type="PackedScene" uid="uid://tbrpanj4el32" path="res://escenas/areafinjuego.tscn" id="42_nqex6"]
-[ext_resource type="PackedScene" uid="uid://dg6y4xunbnxvq" path="res://escenas/world_objects/espejo.tscn" id="42_vy46r"]
-[ext_resource type="PackedScene" uid="uid://ddadtanp2707x" path="res://escenas/world_objects/lente.tscn" id="43_vy46r"]
-[ext_resource type="PackedScene" uid="uid://bkufyuetojtvg" path="res://escenas/world_objects/objetivo_optico.tscn" id="44_4ti0m"]
+[ext_resource type="PackedScene" uid="uid://ddadtanp2707x" path="res://escenas/world_objects/lente.tscn" id="42_vy46r"]
+[ext_resource type="PackedScene" uid="uid://dg6y4xunbnxvq" path="res://escenas/world_objects/espejo.tscn" id="43_vy46r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fe420"]
 size = Vector2(304.0625, 544.375)
@@ -749,26 +748,15 @@ color = Color(0.80049086, 0.80049074, 0.80049074, 1)
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_8mohb")
 
-[node name="Espejo" parent="." instance=ExtResource("42_vy46r")]
-position = Vector2(5012, -172.99988)
-rotation = 0.005438801
-es_movible = true
-
-[node name="Espejo2" parent="." instance=ExtResource("42_vy46r")]
-position = Vector2(4615, -167)
-rotation = -0.05799973
-es_movible = true
-
-[node name="Lente" parent="." instance=ExtResource("43_vy46r")]
-position = Vector2(4809, -168)
+[node name="Lente" parent="." instance=ExtResource("42_vy46r")]
+position = Vector2(4753, -114)
 iniciador = true
 es_movible = true
+limite_superior = 90.0
 
-[node name="MapCreator" parent="." instance=ExtResource("44_4ti0m")]
-position = Vector2(23372, -1499)
-
-[node name="ObjetivoOptico" parent="." instance=ExtResource("44_4ti0m")]
-position = Vector2(5181, -259)
+[node name="Espejo" parent="." instance=ExtResource("43_vy46r")]
+position = Vector2(4983.04, -115.75003)
+es_movible = true
 
 [connection signal="body_entered" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_entered"]
 [connection signal="body_exited" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_exited"]

@@ -11,6 +11,8 @@ var max_speed := 5.0
 @onready var area_de_interaccion: Area2D = $AreaDeInteraccion
 @onready var collision_shape_2d: CollisionShape2D = $AreaDeInteraccion/CollisionShape2D
 @onready var sonido_rotacion: FmodEventEmitter2D = $SonidoRotacion
+@onready var cuadro_optica: Sprite2D = $CuadroOptica
+@onready var animatable_body_2d: OpticaNoReflejante = $AnimatableBody2D
 
 @export var es_movible : bool = false
 
@@ -33,6 +35,8 @@ func _physics_process(delta):
 	sonido_rotacion.set_parameter("velocidad_angular", abs(velocidad_angular))
 	if velocidad_angular == 0:
 		sonido_rotacion.play(true)
+	
+	cuadro_optica.global_rotation = 0
 
 func _on_area_de_interaccion_body_entered(body: Node2D) -> void:
 	if body is Player:
