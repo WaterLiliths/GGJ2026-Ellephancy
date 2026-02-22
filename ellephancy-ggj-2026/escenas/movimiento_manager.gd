@@ -2,18 +2,29 @@ class_name MovimientoManager
 extends Node
 ##ESTE MANAGER CONTROLA LOS MOVIMIENTOS DE PLAYER, INCLUYENDO EL STATE MACHINE
 
-#enum ESTADOS {IDLE, CAMINAR, SALTAR, CAER, INTERACTUAR, AGARRAR, DIALOGO_ACTIVO}
-#var estado_actual : ESTADOS = ESTADOS.IDLE
-#var ultimo_estado : ESTADOS
+
 @onready var STATS : PlayerStats = %PlayerStats
 @onready var animation_manager : AnimationManager = %AnimationManager
+@onready var animated_sprite : AnimatedSprite2D = %AnimatedSpritePJ
 @onready var sound_manager : SoundManager = %SoundManager
+@onready var agarrar_manager : AgarrarManager = %AgarrarManager
 var body : Player
 var timer_pasos : float = 0
 #var direction : float
 
+
+func _ready() -> void:
+	Global.dialogo_activo_to_player.connect(on_dialogo_activo)
+	Global.dialogo_desactivado_to_player.connect(on_dialogo_desactivado)
+
 func setup(jugador : Player):
 	body = jugador
+
+func on_dialogo_activo():
+	cambiar_de_estado(body.ESTADOS.DIALOGO_ACTIVO)
+
+func on_dialogo_desactivado():
+	cambiar_de_estado(body.ESTADOS.IDLE)
 
 
 func aplicar_gravedad(delta : float):
@@ -59,7 +70,7 @@ func matchear_estado_actual(estado_actual, delta : float):
 		Player.ESTADOS.INTERACTUAR:
 			pass #por si necesitamos logica en process la ponemos aca
 		Player.ESTADOS.AGARRAR:
-			body.procesar_agarrar(delta)
+			procesar_agarrar(body.direction, delta)
 		Player.ESTADOS.DIALOGO_ACTIVO:
 			procesar_dialogo_activo(delta)
 
@@ -140,7 +151,7 @@ func procesar_dialogo_activo(delta):
 
 
 func procesar_caminar(direccion, delta):
-	print("estoy en procesar caminar del MANAGERRRRRRRRRR")
+	#print("estoy en procesar caminar del MANAGERRRRRRRRRR")
 	movimiento_horizontal(direccion, delta)
 	animation_manager.flipear_animation(body.ultima_direccion_mirar)
 	if direccion:
@@ -154,3 +165,32 @@ func procesar_caminar(direccion, delta):
 	if puede_saltar():
 		body.velocity.y = STATS.velocidad_salto
 		cambiar_de_estado(Player.ESTADOS.SALTAR)
+
+
+
+
+func procesar_agarrar(direccion, delta):
+	#cuando hago click ya le aviso al player que cambie a la velocidad lenta
+	movimiento_horizontal(direccion, delta)
+	#if not agarrando_caja: #para evitar bugs, porque en realidad al apretar e se cambia de estado
+		#reset_velocidad_normal()
+		#mov_manager.cambiar_de_estado(ESTADOS.IDLE)
+		#return
+	if not agarrar_manager.objeto_empujable:
+		return
+
+	#agarrar_manager.objeto_empujable.set_ser_agarrado(direccion, STATS.velocidad, true)
+	
+	agarrar_manager.objeto_empujable.direccion = direccion
+	agarrar_manager.objeto_empujable.velocidad = STATS.velocidad
+	agarrar_manager.objeto_empujable.siendo_agarrada = true
+	#em el agarrar manager se vuelve a poner en false, en soltar_caja
+
+	if not body.animacion_agarrar_inicial_terminada:
+		return #espero hasta que haga la animacion de agarre para pasar a las otras
+	if direccion != 0:
+		if animated_sprite.animation != "seguir_agarrando":
+			animated_sprite.play("seguir_agarrando")
+	else:
+		if animated_sprite.animation != "agarre_idle":
+			animated_sprite.play("agarre_idle")

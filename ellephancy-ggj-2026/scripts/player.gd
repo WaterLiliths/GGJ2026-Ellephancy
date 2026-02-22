@@ -13,19 +13,19 @@ extends CharacterBody2D
 @export var detector_suelo_manager : DetectorSueloManager
 @export var mov_manager : MovimientoManager
 @export var mascaras_manager : MascarasManager
+@export var agarrar_manager : AgarrarManager
 @onready var STATS : PlayerStats = %PlayerStats
 #------------------FIN MANAGERS -----------
 @export_group("Empezar con mascara")
 @export var empezar_con_mascaras : bool = false
 
 #--------------"MANOS" PARA EVITAR TRABARSE CON LA CAJA---------------
-@onready var mano_test_izq: CollisionShape2D = %CollisionManoIzq
-@onready var mano_test_der: CollisionShape2D = %CollisionManoDer
+#@onready var mano_test_izq: CollisionShape2D = %CollisionManoIzq
+#@onready var mano_test_der: CollisionShape2D = %CollisionManoDer
 #-------------------------------
-var animacion_agarrar_inicial_terminada : bool = false
+var animacion_agarrar_inicial_terminada : bool = false #NO BORRAR esta variable es una EXCEPCION, la necesitan movimiento manager y agarrar manager, no me gusta que tenga tanta dependencia, pero es una solucion temporal
 var ultimo_tiempo_en_aire : float = 0
 var tiempo_en_el_aire_actual: float = 0
-var dialogos_activos : bool = false
 var reviviendo_player : bool = false
 var ultima_direccion_mirar : int = 1 #para derecha e izquierda solo 1 -1
 var sonido_caida_emitiendo : bool = false
@@ -33,14 +33,11 @@ var sonido_caja_sonando : bool = false
 var agarrando_caja : bool = false
 
 @onready var animated_sprite_pj: AnimatedSprite2D = %AnimatedSpritePJ
-@onready var ray_cast_izq: RayCast2D = %RayCastIzq
+@onready var ray_cast_izq: RayCast2D = %RayCastIzq #se usan para las "manos"
 @onready var ray_cast_der: RayCast2D = %RayCastDer
 var direction : float
 var objeto_arrastrado = null
-
-
 var estaba_en_el_piso : bool = false
-@onready var mascara_tiempo: Node2D = %MascaraTiempos
 var objeto_interactivo : Interactivo = null
 var puede_interactuar : bool = false
 
@@ -51,12 +48,9 @@ var ultimo_estado : ESTADOS
 
 func _ready() -> void:
 	mov_manager.setup(self)
-	Global.dialogo_activo_to_player.connect(on_dialogo_activo)
-	Global.dialogo_desactivado_to_player.connect(on_dialogo_desactivado)
-	mascaras_manager.resetear_mascaras_a_cero(not empezar_con_mascaras) #marcar true o false desde el editor
-	mano_test_izq.set_deferred("disabled", true) #DESACTIVO FISICAS DE LA MANO
-	mano_test_der.set_deferred("disabled", true)
 	Global.restart.connect(restart)
+	agarrar_manager.resetear_velocidad_normal.connect(reset_velocidad_normal)
+	mascaras_manager.resetear_mascaras_a_cero(not empezar_con_mascaras) #marcar true o false desde el editor
 	if jugar_mobile:
 		var botones_android : PackedScene= preload("res://escenas/interfaz_android.tscn") #o cambiar por el uuid
 		var instancia_botones = botones_android.instantiate()
@@ -65,15 +59,9 @@ func _ready() -> void:
 	Global.set_checkpoint_position(global_position)
 
 
-func pedir_direccion():
-	if not dialogos_activos: #TEST A VER SI NOS GUSTA
-		direction = Input.get_axis("a", "d")
-	else:
-		direction = 0
-
 
 func _physics_process(delta: float) -> void:
-	pedir_direccion()
+	direction = Input.get_axis("a", "d")
 	if direction:
 		ultima_direccion_mirar = sign(direction)
 
@@ -82,7 +70,7 @@ func _physics_process(delta: float) -> void:
 
 	if global_position.y > STATS.limite_altura_morir:
 		matar_player()
-	
+
 	move_and_slide()
 	calcular_tiempo_en_aire(delta)
 	detectar_caida()
@@ -110,16 +98,6 @@ func _physics_process(delta: float) -> void:
 		animation_manager.ejecutar_animacion_palanca()
 
 
-#--------------------- SEÑALES  -------------------------
-func _on_area_tirar_body_entered(body: Node2D) -> void:
-#	if body is ObjetoEmpujable or body.is_in_group("cajas"):
-	if body.is_in_group("cajas") and body != Player: #CAMBIAR A CLASE AGARRABLE / EMPUJABLE
-		objeto_arrastrado = body
-
-func _on_area_tirar_body_exited(body: Node2D) -> void:
-	if body.is_in_group("cajas") and body != Player:
-		soltar_caja()
-		objeto_arrastrado = null
 
 #--------------------  FUNCIONES  ------------------------
 
@@ -135,11 +113,7 @@ func on_sale_de_interactivo(interactivo_actual : Interactivo):
 		objeto_interactivo = null
 
 
-
-func disminuir_velocidad_al_agarrar():
-	STATS.velocidad = STATS.velocidad_arrastrando
-
-func reset_velocidad_normal():
+func reset_velocidad_normal(): #se ejecuta en la signal emitida por agarrar manager
 	STATS.velocidad = STATS.velocidad_inicial
 	if Global.mascara_activa==2:
 		STATS.velocidad_salto = STATS.velocidad_salto_con_mascara
@@ -149,7 +123,7 @@ func reset_velocidad_normal():
 
 func detectar_caida():
 	if not estaba_en_el_piso and is_on_floor():
-		%FmodEventEmitter2D4.play()
+		%FmodEventEmitter2D4.play() #TODO consultarle a attie 
 		%FmodEventEmitter2D5.stop()
 		sonido_caida_emitiendo = false
 	#	print("DETECTAR CAIDA - ESTUVO ", ultimo_tiempo_en_aire, " TIEMPO EN EL AIRE ")
@@ -170,30 +144,6 @@ func consultar_saltar():
 		$FmodEventEmitter2D2.play()
 
 
-
-
-func procesar_agarrar(delta):
-	#cuando hago click ya le aviso al player que cambie a la velocidad lenta
-	velocity.x = move_toward(velocity.x,direction * STATS.velocidad, STATS.aceleracion * delta)
-	if not agarrando_caja: #para evitar bugs, porque en realidad al apretar e se cambia de estado
-		reset_velocidad_normal()
-		mov_manager.cambiar_de_estado(ESTADOS.IDLE)
-		return
-	if not objeto_arrastrado:
-		return
-	
-	objeto_arrastrado.direccion = direction
-	objeto_arrastrado.velocidad = STATS.velocidad
-	objeto_arrastrado.siendo_agarrada = true
-
-	if not animacion_agarrar_inicial_terminada:
-		return #espero hasta que haga la animacion de agarre para pasar a las otras
-	if direction != 0:
-		if animated_sprite_pj.animation != "seguir_agarrando":
-			animated_sprite_pj.play("seguir_agarrando")
-	else:
-		if animated_sprite_pj.animation != "agarre_idle":
-			animated_sprite_pj.play("agarre_idle")
 
 func procesar_dialogo_activo():
 	#print("esta aca en procesar dialogoooooooooooooooooooo")
@@ -217,48 +167,6 @@ func tirarse_de_plataforma():
 func acaba_de_aterrizar() -> bool:
 	return is_on_floor() and velocity.y >= 0
 
-func activar_mano(): #TODAVIA ES NECESARIO, SE SIGUE QUEDANDO ATASCADO
-	if agarrando_caja:
-		return
-	ray_cast_izq.force_raycast_update()
-	ray_cast_der.force_raycast_update()
-	if ray_cast_izq.is_colliding() and ray_cast_der.is_colliding(): #ahi me aseguro que esta "encerrado" y solo en ese caso q active la mano
-		mano_test_izq.set_deferred("disabled", false) #ACTIVO FISICAS DE LA MANO
-		mano_test_der.set_deferred("disabled", false) #ACTIVO FISICAS DE LA MANO
-		await get_tree().create_timer(0.1).timeout
-		mano_test_izq.set_deferred("disabled", true) #y aca las vuelvo a desactivar
-		mano_test_der.set_deferred("disabled", true)
-
-
-func on_dialogo_activo():
-	mov_manager.cambiar_de_estado(ESTADOS.DIALOGO_ACTIVO)
-
-func on_dialogo_desactivado():
-	mov_manager.cambiar_de_estado(ESTADOS.IDLE)
 
 func restart():
 	matar_player()
-
-func agarrar_caja():
-	if not is_on_floor():
-		return
-	var direccion_con_caja = sign(global_position.x- objeto_arrastrado.global_position.x)
-	#direccion -1 es esta a tu derecha, 1 es que esta a tu izquierda
-	if ultima_direccion_mirar == direccion_con_caja: #aunque diga == significa que son direcciones opuestas
-		#print("NO AGARRAR, ESTAS MIRANDO OPUESTO A LA CAJA")
-		return
-	disminuir_velocidad_al_agarrar()
-	mov_manager.cambiar_de_estado(ESTADOS.AGARRAR)
-	animacion_agarrar_inicial_terminada = false
-	animated_sprite_pj.play("agarrar_oso")
-	agarrando_caja = true
-
-
-func soltar_caja():
-	if not agarrando_caja:
-		return
-	objeto_arrastrado.siendo_agarrada = false
-	reset_velocidad_normal()
-	mov_manager.cambiar_de_estado(ESTADOS.IDLE)
-	agarrando_caja = false
-	activar_mano() #TEST ver si sigue haciendo falta ahora que las cajas se pueden empujar

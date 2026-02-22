@@ -6,6 +6,7 @@ extends Node
 @export var sound_manager : SoundManager
 @export var mascaras_manager : MascarasManager
 @export var animation_manager : AnimationManager
+signal tirar_presionado
 
 
 func _input(event: InputEvent) -> void:
@@ -19,11 +20,8 @@ func _input(event: InputEvent) -> void:
 		Global.equipar_mascara.emit(3)
 	animation_manager.verificar_animacion_con_mascara()
 
-	if Input.is_action_just_pressed("tirar") and Global.mascara_activa==2 and player.objeto_arrastrado:
-		if not player.agarrando_caja:
-			player.agarrar_caja()
-		else:
-			player.soltar_caja()
+	if Input.is_action_just_pressed("tirar"):
+		tirar_presionado.emit()
 
 	if Input.is_action_just_pressed("r"):
 		print("Se apreto la R")

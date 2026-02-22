@@ -1,4 +1,4 @@
-#TODO Agregar clases
+class_name Empujable
 extends CharacterBody2D
 
 @export var presente : bool
@@ -53,3 +53,9 @@ func mostrar_mundo():
 	global_position = ultima_posicion
 	colision.set_deferred("disabled", false)
 	show()
+
+
+func set_ser_agarrado(direccion_player, velocidad_player : float, estado_agarrado : bool):
+	direccion = direccion_player
+	velocidad = direccion_player
+	siendo_agarrada = estado_agarrado
