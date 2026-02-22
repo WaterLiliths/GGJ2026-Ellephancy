@@ -7,7 +7,7 @@
 size = Vector2(183, 292.5)
 
 [node name="ObjetoAEmpujar" type="CharacterBody2D" groups=["cajas"]]
-collision_layer = 129
+collision_layer = 1153
 collision_mask = 131
 script = ExtResource("1_xh1mv")
 
@@ -31,10 +31,10 @@ fmod_parameters/Peso/variant_type = 3
 [node name="Arrastrar" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Objetos/arrastrar piedra"
 event_guid = "{2166ce82-c481-4140-ac4f-55290734fe8b}"
-fmod_parameters/Peso/id = 8505785322959852152
-fmod_parameters/Peso = 5.0
-fmod_parameters/Peso/variant_type = 3
 fmod_parameters/Material/id = -768118463292944790
 fmod_parameters/Material = "Piedra"
 fmod_parameters/Material/labels = PackedStringArray("Piedra", "Madera")
 fmod_parameters/Material/variant_type = 4
+fmod_parameters/peso/id = 8505785322959852152
+fmod_parameters/peso = 1.0
+fmod_parameters/peso/variant_type = 3
