@@ -67,15 +67,18 @@ func _ready() -> void:
 	Global.set_checkpoint_position(global_position)
 
 
-func _physics_process(delta: float) -> void:
+func pedir_direccion():
 	if not dialogos_activos: #TEST A VER SI NOS GUSTA
 		direction = Input.get_axis("a", "d")
 	else:
 		direction = 0
+
+
+func _physics_process(delta: float) -> void:
+	pedir_direccion()
 	if direction:
 		ultima_direccion_mirar = sign(direction)
 	mov_manager.aplicar_gravedad(delta)
-	
 	mov_manager.matchear_estado_actual(estado_actual, delta)
 
 	if global_position.y > STATS.limite_altura_morir:

@@ -29,8 +29,6 @@ func _ready() -> void:
 	velocidad_inicial = velocidad
 
 
-
-
 func activar_mascara_fuerza():
 	velocidad_salto = velocidad_salto_con_mascara
 

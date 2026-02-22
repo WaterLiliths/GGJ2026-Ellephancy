@@ -16,7 +16,6 @@ func aplicar_gravedad(delta : float):
 	else:
 		body.velocity += body.get_gravity() * body.STATS.gravedad_bajando * delta
 
-#
 func matchear_estado_actual(estado_actual, delta : float):
 	match body.estado_actual:
 		body.ESTADOS.IDLE:
