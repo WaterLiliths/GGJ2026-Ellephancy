@@ -751,24 +751,21 @@ navigation_polygon = SubResource("NavigationPolygon_8mohb")
 
 [node name="Espejo" parent="." instance=ExtResource("42_vy46r")]
 position = Vector2(5012, -172.99988)
-rotation = 0.005438801
+rotation = -1.2854326
 es_movible = true
 
 [node name="Espejo2" parent="." instance=ExtResource("42_vy46r")]
-position = Vector2(4615, -167)
-rotation = -0.05799973
+position = Vector2(4429, -136.99988)
+rotation = -0.5303697
 es_movible = true
 
 [node name="Lente" parent="." instance=ExtResource("43_vy46r")]
-position = Vector2(4809, -168)
+position = Vector2(4702, -166)
 iniciador = true
 es_movible = true
 
 [node name="MapCreator" parent="." instance=ExtResource("44_4ti0m")]
 position = Vector2(23372, -1499)
-
-[node name="ObjetivoOptico" parent="." instance=ExtResource("44_4ti0m")]
-position = Vector2(5181, -259)
 
 [connection signal="body_entered" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_entered"]
 [connection signal="body_exited" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_exited"]
