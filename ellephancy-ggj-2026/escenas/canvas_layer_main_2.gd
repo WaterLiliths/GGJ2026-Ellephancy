@@ -15,6 +15,8 @@ func _ready() -> void:
 	setup_sliders_y_botones()
 
 func setup_sliders_y_botones():
+	#si te tira un error aca poner un return
+	#igual hay que arreglarlo
 	h_slider_musica.value = Global.volumen_musica
 	h_slider_2_efectos.value = Global.volumen_efectos
 	h_slider_3_ambiente.value = Global.volumen_ambiente
