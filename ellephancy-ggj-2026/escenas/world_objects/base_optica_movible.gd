@@ -4,6 +4,7 @@ extends RigidBody2D
 @export_enum("LENTE", "ESPEJO") var tipo_de_optica : int = 0
 @export var fijo : bool = false
 @export var optica_rotable : bool = true
+@export var rotacion_inicial : int = 0
 @export var emisor : bool = false
 
 const LENTE = preload("uid://ddadtanp2707x")
@@ -29,3 +30,4 @@ func _ready() -> void:
 	if not optica_rotable:
 		optica.es_rotable = false
 	optica.position += Vector2.UP * 32
+	optica.rotation_degrees = -rotacion_inicial
