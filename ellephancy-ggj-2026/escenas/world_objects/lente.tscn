@@ -1,15 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://ddadtanp2707x"]
+[gd_scene load_steps=7 format=3 uid="uid://ddadtanp2707x"]
 
 [ext_resource type="Script" uid="uid://bptuievbh0s25" path="res://escenas/world_objects/lente.gd" id="1_g3bv2"]
-[ext_resource type="Texture2D" uid="uid://degyj1j5qxjrp" path="res://assets/sprites/optica/lente_cristal.png" id="2_rw1qh"]
-[ext_resource type="Texture2D" uid="uid://btikyqffs7gfs" path="res://assets/sprites/optica/cuadro_optica.png" id="3_d2i7h"]
+[ext_resource type="Texture2D" uid="uid://cnuj2k634jtd6" path="res://assets/sprites/optica/lente_cristal_bronce.png" id="2_rw1qh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g3bv2"]
 radius = 1.0000001
 height = 60.000008
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g3bv2"]
-radius = 76.27582
+radius = 104.019226
 
 [sub_resource type="Gradient" id="Gradient_g3bv2"]
 interpolation_mode = 2
@@ -21,28 +20,25 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
-[node name="Lente" type="AnimatableBody2D"]
+[node name="Lente" type="RigidBody2D"]
 collision_layer = 1024
 collision_mask = 1024
 script = ExtResource("1_g3bv2")
+es_rotable = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("2_rw1qh")
-
-[node name="CuadroOptica" type="Sprite2D" parent="."]
-texture_filter = 1
-texture = ExtResource("3_d2i7h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("CapsuleShape2D_g3bv2")
 
 [node name="AreaDeInteraccion" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDeInteraccion"]
+z_index = -1
 shape = SubResource("CircleShape2D_g3bv2")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
