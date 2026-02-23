@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=4 uid="uid://dkudwre2b373"]
+[gd_scene load_steps=60 format=4 uid="uid://dkudwre2b373"]
 
 [ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/Juego.gd" id="1_2y4ua"]
 [ext_resource type="PackedScene" uid="uid://c4fdbwaawyx0w" path="res://escenas/nodos_funcionalidades/manager_de_objetivos.tscn" id="2_82r4j"]
@@ -41,7 +41,8 @@
 [ext_resource type="FontFile" uid="uid://ciwhe1apfc5gi" path="res://assets/fonts/Balgruf.otf" id="32_nqex6"]
 [ext_resource type="Texture2D" uid="uid://q3ics3iji43w" path="res://assets/runas-finales/Runas interfaznum3.png" id="33_nqex6"]
 [ext_resource type="PackedScene" uid="uid://tbrpanj4el32" path="res://escenas/areafinjuego.tscn" id="42_nqex6"]
-[ext_resource type="PackedScene" uid="uid://dy8nlt4mrvp53" path="res://escenas/world_objects/lente_con_base.tscn" id="42_vy46r"]
+[ext_resource type="PackedScene" uid="uid://dfdnm440xn2ej" path="res://escenas/world_objects/base_optica_estatica.tscn" id="42_vy46r"]
+[ext_resource type="PackedScene" uid="uid://dy8nlt4mrvp53" path="res://escenas/world_objects/base_optica_movible.tscn" id="43_vy46r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fe420"]
 size = Vector2(304.0625, 544.375)
@@ -747,10 +748,16 @@ color = Color(0.80049086, 0.80049074, 0.80049074, 1)
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_8mohb")
 
-[node name="BaseLente" parent="." instance=ExtResource("42_vy46r")]
-position = Vector2(4906, -97)
-collision_layer = 0
-tipo_de_optica = "ESPEJO"
+[node name="BaseOpticaEstatica" parent="." instance=ExtResource("42_vy46r")]
+position = Vector2(4949, -89)
+
+[node name="BaseOpticaEstatica2" parent="." instance=ExtResource("42_vy46r")]
+position = Vector2(5041, -89)
+tipo_de_optica = 1
+
+[node name="BaseOpticaMovible" parent="." instance=ExtResource("43_vy46r")]
+position = Vector2(4769, -111)
+emisor = true
 
 [connection signal="body_entered" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_entered"]
 [connection signal="body_exited" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_exited"]
