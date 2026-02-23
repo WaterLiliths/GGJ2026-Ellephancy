@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://cs3h434myxe4r"]
+[gd_scene load_steps=73 format=3 uid="uid://cs3h434myxe4r"]
 
 [ext_resource type="Script" uid="uid://d1p6o2ixegcp2" path="res://scripts/player.gd" id="1_esbpa"]
 [ext_resource type="Texture2D" uid="uid://csvm86vnc0cmo" path="res://assets/player/mascaras/Agarre oso destra 1.png" id="2_v66k4"]
@@ -65,6 +65,7 @@
 [ext_resource type="Script" uid="uid://bsowsfuv3joil" path="res://escenas/detector_suelo_manager.gd" id="63_762hu"]
 [ext_resource type="Script" uid="uid://dtiq53iumksnb" path="res://scripts/resources/player_stats.gd" id="63_uxfdn"]
 [ext_resource type="Script" uid="uid://cqlbqm7f6q0k5" path="res://escenas/agarrar_manager.gd" id="65_bt67l"]
+[ext_resource type="Script" uid="uid://nya4sqv84uk6" path="res://escenas/interactuar_manager.gd" id="66_tje03"]
 
 [sub_resource type="Gradient" id="Gradient_hopxw"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -376,7 +377,7 @@ radius = 41.880783
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3jn0c"]
 size = Vector2(1, 20)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input_manager", "sound_manager", "animation_manager", "detector_suelo_manager", "mov_manager", "mascaras_manager", "agarrar_manager") groups=["cajas"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input_manager", "sound_manager", "animation_manager", "detector_suelo_manager", "mov_manager", "mascaras_manager", "agarrar_manager", "interact_manager") groups=["cajas"]]
 collision_mask = 135
 script = ExtResource("1_esbpa")
 input_manager = NodePath("InputManager")
@@ -386,6 +387,7 @@ detector_suelo_manager = NodePath("DetectorSueloManager")
 mov_manager = NodePath("MovimientoManager")
 mascaras_manager = NodePath("MascarasManager")
 agarrar_manager = NodePath("AgarrarManager")
+interact_manager = NodePath("InteractuarManager")
 empezar_con_mascaras = true
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
@@ -590,10 +592,15 @@ mov_manager = NodePath("../MovimientoManager")
 animation_manager = NodePath("../AnimationManager")
 sound_manager = NodePath("../SoundManager")
 
+[node name="InteractuarManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("66_tje03")
+
 [connection signal="animation_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_animation_changed"]
 [connection signal="animation_finished" from="AnimatedSpritePJ" to="AnimationManager" method="_on_animated_sprite_pj_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_frame_changed"]
 [connection signal="body_entered" from="AreaTirar" to="AgarrarManager" method="_on_area_tirar_body_entered"]
 [connection signal="body_exited" from="AreaTirar" to="AgarrarManager" method="_on_area_tirar_body_exited"]
+[connection signal="interactuar_presionado" from="InputManager" to="InteractuarManager" method="_on_input_manager_interactuar_presionado"]
 [connection signal="tirar_presionado" from="InputManager" to="AgarrarManager" method="_on_input_manager_tirar_presionado"]
 [connection signal="ejecutar_sonido_mascara" from="MascarasManager" to="SoundManager" method="_on_mascaras_manager_ejecutar_sonido_mascara"]

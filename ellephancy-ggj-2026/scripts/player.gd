@@ -14,6 +14,7 @@ extends CharacterBody2D
 @export var mov_manager : MovimientoManager
 @export var mascaras_manager : MascarasManager
 @export var agarrar_manager : AgarrarManager
+@export var interact_manager : InteractuarManager
 @onready var STATS : PlayerStats = %PlayerStats
 #------------------FIN MANAGERS -----------
 @export_group("Empezar con mascara")
@@ -47,6 +48,7 @@ var ultimo_estado : ESTADOS
 
 
 func _ready() -> void:
+	interact_manager.setup(self)
 	mov_manager.setup(self)
 	Global.restart.connect(restart)
 	agarrar_manager.resetear_velocidad_normal.connect(reset_velocidad_normal)
@@ -86,7 +88,6 @@ func _physics_process(delta: float) -> void:
 		animation_manager.ejecutar_animacion_palanca()
 
 #--------------------  FUNCIONES  ------------------------
-
 
 func on_entra_a_interactivo(interactivo_actual : Interactivo):
 	puede_interactuar = true
@@ -130,7 +131,6 @@ func consultar_saltar():
 		$FmodEventEmitter2D2.play()
 
 
-
 func procesar_dialogo_activo():
 	#print("esta aca en procesar dialogoooooooooooooooooooo")
 	direction = 0
@@ -153,8 +153,5 @@ func tirarse_de_plataforma():
 func acaba_de_aterrizar() -> bool:
 	return is_on_floor() and velocity.y >= 0
 
-
 func restart():
 	matar_player()
-
-#simba, todo esto antes eran 600 lineas
