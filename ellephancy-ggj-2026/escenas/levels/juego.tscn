@@ -748,15 +748,19 @@ color = Color(0.80049086, 0.80049074, 0.80049074, 1)
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_8mohb")
 
-[node name="BaseOpticaEstatica" parent="." instance=ExtResource("42_vy46r")]
-position = Vector2(4949, -89)
-
 [node name="BaseOpticaEstatica2" parent="." instance=ExtResource("42_vy46r")]
-position = Vector2(5041, -89)
+position = Vector2(5060, -136)
 tipo_de_optica = 1
 
 [node name="BaseOpticaMovible" parent="." instance=ExtResource("43_vy46r")]
 position = Vector2(4769, -111)
+tipo_de_optica = 1
+rotacion_inicial = 45
+
+[node name="BaseOpticaEstatica3" parent="." instance=ExtResource("42_vy46r")]
+position = Vector2(5060, -340)
+optica_rotable = false
+rotacion_inicial = -135
 emisor = true
 
 [connection signal="body_entered" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_entered"]
