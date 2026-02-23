@@ -65,6 +65,7 @@ controlador_runas=""
 cajas=""
 colision_cajas=""
 tilemap_suelo=""
+persistente="objetos persistentes entre saves"
 
 [input]
 

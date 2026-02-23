@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=4 uid="uid://dkudwre2b373"]
+[gd_scene load_steps=59 format=4 uid="uid://dkudwre2b373"]
 
 [ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/Juego.gd" id="1_2y4ua"]
 [ext_resource type="PackedScene" uid="uid://c4fdbwaawyx0w" path="res://escenas/nodos_funcionalidades/manager_de_objetivos.tscn" id="2_82r4j"]
@@ -31,7 +31,6 @@
 [ext_resource type="PackedScene" uid="uid://cs6hrjrtl5v7x" path="res://escenas/area_mostrar_texto.tscn" id="25_oltff"]
 [ext_resource type="Texture2D" uid="uid://dqqfvk8g6yn5t" path="res://assets/runas-finales/Runas interfaz1E.png" id="26_g2u6j"]
 [ext_resource type="PackedScene" uid="uid://t3ox75glka3s" path="res://escenas/world_objects/ObjetoAEmpujar.tscn" id="27_4dne2"]
-[ext_resource type="PackedScene" uid="uid://croo183ic8glj" path="res://escenas/world_objects/campana_colgante.tscn" id="28_nqex6"]
 [ext_resource type="PackedScene" uid="uid://deup0i7mgu0xc" path="res://escenas/masks/area_mascara_oso.tscn" id="29_fe420"]
 [ext_resource type="PackedScene" uid="uid://ccia0snrxhd0y" path="res://escenas/area_dialogo_prueba.tscn" id="30_3nqa5"]
 [ext_resource type="Texture2D" uid="uid://bvd8lf3jvwthk" path="res://assets/iconos/attie/mouse_mover_click_der.svg" id="30_g0try"]
@@ -580,10 +579,6 @@ textura_runa_tecla = ExtResource("26_g2u6j")
 z_index = -1
 position = Vector2(3604, -921)
 presente = true
-
-[node name="CampanaColgante" parent="Niveles/FirstLevelWorks" instance=ExtResource("28_nqex6")]
-position = Vector2(4476, -392)
-longitud_soga = 4
 
 [node name="AreaMostrarTexto" type="Area2D" parent="Niveles/FirstLevelWorks"]
 position = Vector2(790, 396)
