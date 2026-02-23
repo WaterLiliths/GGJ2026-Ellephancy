@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dg6y4xunbnxvq"]
+[gd_scene load_steps=7 format=3 uid="uid://dg6y4xunbnxvq"]
 
 [ext_resource type="Script" uid="uid://bj6bigk1y3j8h" path="res://escenas/world_objects/espejo.gd" id="1_ltgtn"]
-[ext_resource type="Texture2D" uid="uid://dn1djhh0hhoq3" path="res://assets/sprites/optica/espejo_cristal.png" id="2_mvv7a"]
-[ext_resource type="Texture2D" uid="uid://btikyqffs7gfs" path="res://assets/sprites/optica/cuadro_optica.png" id="3_6j13t"]
+[ext_resource type="Texture2D" uid="uid://bdbd4gvnlabpx" path="res://assets/sprites/optica/espejo_cristal_bronce.png" id="2_mvv7a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ltgtn"]
-size = Vector2(4.0000005, 56.000008)
+size = Vector2(10.000002, 58.000008)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ltgtn"]
 radius = 77.31753
@@ -21,7 +20,8 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
-[node name="Espejo" type="AnimatableBody2D"]
+[node name="Espejo" type="RigidBody2D"]
+z_index = -1
 collision_layer = 1024
 collision_mask = 1024
 script = ExtResource("1_ltgtn")
@@ -30,17 +30,12 @@ script = ExtResource("1_ltgtn")
 texture_filter = 1
 texture = ExtResource("2_mvv7a")
 
-[node name="CuadroOptica" type="Sprite2D" parent="."]
-texture_filter = 1
-texture = ExtResource("3_6j13t")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.0000002, 0)
+position = Vector2(-1.7881393e-07, 0)
 scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_ltgtn")
 
 [node name="AreaDeInteraccion" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDeInteraccion"]
