@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_555dy"]
 size = Vector2(90, 413)
 
-[node name="Puerta" type="StaticBody2D"]
+[node name="Puerta" type="StaticBody2D" groups=["persistente"]]
 z_index = -2
 collision_layer = 1025
 script = ExtResource("1_555dy")
