@@ -7,7 +7,7 @@
 size = Vector2(10.000002, 58.000008)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ltgtn"]
-radius = 77.31753
+radius = 77.0
 
 [sub_resource type="Gradient" id="Gradient_qgr82"]
 interpolation_mode = 2
@@ -20,7 +20,7 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
-[node name="Espejo" type="RigidBody2D"]
+[node name="Espejo" type="CharacterBody2D"]
 z_index = -1
 collision_layer = 1024
 collision_mask = 1024
@@ -31,7 +31,7 @@ texture_filter = 1
 texture = ExtResource("2_mvv7a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.7881393e-07, 0)
+position = Vector2(2.3841851e-07, 0)
 scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_ltgtn")
 

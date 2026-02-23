@@ -1,8 +1,7 @@
-class_name BaseLente
-extends RigidBody2D
+class_name BaseLenteEstatica
+extends Node2D
 
-@export_enum("LENTE", "ESPEJO") var tipo_de_optica = "LENTE"
-@export var fijo : bool = false
+@export_enum("LENTE", "ESPEJO") var tipo_de_optica : int = 0
 @export var optica_rotable : bool = true
 @export var emisor : bool = false
 
@@ -12,23 +11,16 @@ const ESPEJO = preload("uid://dg6y4xunbnxvq")
 var optica
 
 func _ready() -> void:
-	if fijo:
-		freeze = true
 	match tipo_de_optica:
-		"LENTE":
+		0:
 			var lente = LENTE.instantiate()
 			optica = lente
 			if emisor == true:
 				optica.iniciador = true
 			add_child(lente)
-		"ESPEJO":
+		1:
 			var espejo = ESPEJO.instantiate()
 			add_child(espejo)
 			optica = espejo
 	if not optica_rotable:
 		optica.es_rotable = false
-
-	
-
-func _physics_process(delta: float) -> void:
-	optica.global_position = position + Vector2.UP * 32
