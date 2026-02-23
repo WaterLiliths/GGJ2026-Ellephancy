@@ -6,11 +6,13 @@ signal mascara_fuerza_activa
 signal mascara_traducciones_desactivar
 signal mascara_tiempo_desactivar
 signal mascara_fuerza_desactivar
-signal agarre_mascara(nombre : String)
+signal agarre_mascara(id : int)
+signal equipar_mascara(id : int)
 #Booleano por mascara
 var tiene_mascara_fuerza : bool = true
 var tiene_mascara_tiempo : bool = true
 var tiene_mascara_traducciones : bool = true
+
 
 signal matar_player #emitida desde player y escuchada por JUEGO, es para hacer el fade out
 signal dialogo_activo_to_player #se emite en area dialogo
