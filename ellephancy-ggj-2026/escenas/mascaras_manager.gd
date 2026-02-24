@@ -24,7 +24,8 @@ func usar_mascara_oso():
 	#sound_manager.ejecutar_sonido_mascaras("Oso")
 
 func usar_mascara_salmon():
-	if puedo_usar_mascara(1)== false: #en global la 1 es ciervo
+	print("usar mascara salmon") #si
+	if puedo_usar_mascara(3)== false:
 		print("no puedo usar mascara de ciervo")
 		return
 	mascara_oso.desactivar()
@@ -34,7 +35,7 @@ func usar_mascara_salmon():
 	#sound_manager.ejecutar_sonido_mascaras("Salmon")
 
 func usar_mascara_ciervo():
-	if puedo_usar_mascara(3)== false: #en global la 3 es salmon
+	if puedo_usar_mascara(1)== false: #en global la 3 es salmon
 		print("no puedo usar mascara de salmon")
 		return
 	mascara_oso.desactivar()
@@ -72,6 +73,7 @@ func _on_equipar_mascara(id_mascara : int):
 		2:
 			usar_mascara_oso()
 		3:
+			print("MATCH EN 3")
 			usar_mascara_salmon()
 
 

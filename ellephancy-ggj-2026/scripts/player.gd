@@ -61,7 +61,6 @@ func _ready() -> void:
 	Global.set_checkpoint_position(global_position)
 
 
-
 func _physics_process(delta: float) -> void:
 	direction = Input.get_axis("a", "d")
 	if direction:
@@ -130,7 +129,6 @@ func consultar_saltar():
 		velocity.y = STATS.velocidad_salto
 		$FmodEventEmitter2D2.play()
 
-
 func procesar_dialogo_activo():
 	#print("esta aca en procesar dialogoooooooooooooooooooo")
 	direction = 0
@@ -155,3 +153,5 @@ func acaba_de_aterrizar() -> bool:
 
 func restart():
 	matar_player()
+
+#aca habian 600 lineas pode creer 

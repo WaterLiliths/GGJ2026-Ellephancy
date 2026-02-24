@@ -388,7 +388,6 @@ mov_manager = NodePath("MovimientoManager")
 mascaras_manager = NodePath("MascarasManager")
 agarrar_manager = NodePath("AgarrarManager")
 interact_manager = NodePath("InteractuarManager")
-empezar_con_mascaras = true
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(0.7607843, 0.43137255, 0.2901961, 1)
