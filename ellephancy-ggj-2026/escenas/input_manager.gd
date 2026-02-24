@@ -28,4 +28,4 @@ func _input(event: InputEvent) -> void:
 
 	if Input.is_action_just_pressed("r"):
 		print("Se apreto la R")
-		player.restart() #en restart llamo a matar jugador, te lleva al checkpoint
+		Global.restart.emit()
