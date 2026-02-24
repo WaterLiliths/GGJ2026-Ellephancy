@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=4 uid="uid://dkudwre2b373"]
+[gd_scene load_steps=61 format=4 uid="uid://dkudwre2b373"]
 
 [ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/Juego.gd" id="1_2y4ua"]
 [ext_resource type="PackedScene" uid="uid://c4fdbwaawyx0w" path="res://escenas/nodos_funcionalidades/manager_de_objetivos.tscn" id="2_82r4j"]
@@ -39,7 +39,20 @@
 [ext_resource type="Texture2D" uid="uid://8bgc1yvjtt80" path="res://assets/runas-finales/Runas interfazpiedra.png" id="32_4dne2"]
 [ext_resource type="FontFile" uid="uid://ciwhe1apfc5gi" path="res://assets/fonts/Balgruf.otf" id="32_nqex6"]
 [ext_resource type="Texture2D" uid="uid://q3ics3iji43w" path="res://assets/runas-finales/Runas interfaznum3.png" id="33_nqex6"]
+[ext_resource type="PackedScene" uid="uid://du6kq6ieeg34e" path="res://escenas/world_objects/area_trampa.tscn" id="41_4dne2"]
 [ext_resource type="PackedScene" uid="uid://tbrpanj4el32" path="res://escenas/areafinjuego.tscn" id="42_nqex6"]
+
+[sub_resource type="Environment" id="Environment_g2u6j"]
+background_mode = 2
+background_color = Color(1, 1, 1, 1)
+background_energy_multiplier = 3.4
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 16.0
+glow_enabled = true
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_g2u6j"]
+exposure_multiplier = 8.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fe420"]
 size = Vector2(304.0625, 544.375)
@@ -158,9 +171,16 @@ vertices = PackedVector2Array(16966.773, -1659.7188, 17313.531, -1342.2578, 1658
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 3), PackedInt32Array(6, 7, 8, 9), PackedInt32Array(10, 11, 12, 13), PackedInt32Array(14, 15, 16, 17), PackedInt32Array(18, 17, 16), PackedInt32Array(3, 18, 16, 19), PackedInt32Array(3, 19, 20), PackedInt32Array(3, 20, 0), PackedInt32Array(3, 2, 13, 21, 22), PackedInt32Array(8, 23, 24, 9), PackedInt32Array(13, 12, 6, 9, 21), PackedInt32Array(25, 4, 3), PackedInt32Array(9, 26, 21), PackedInt32Array(27, 28, 29, 30, 25), PackedInt32Array(31, 32, 33, 34), PackedInt32Array(21, 35, 22), PackedInt32Array(36, 27, 25, 3, 37), PackedInt32Array(38, 37, 3, 34, 33), PackedInt32Array(39, 40, 41, 9, 24), PackedInt32Array(3, 22, 42, 34)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-176, 302, -219, -2527, 21339, -5166, 22128, -1789, 22113, -931, 20833, -968, 20937, -1834, 17843, -1856, 16978, -1663, 17333, -1338, 16593, -1101, 17732, -383, 17833.883, 573.67944, 16578, 535, 13692, 490, 13744, 638, 13329, 653, 13337, 853, 12471, 868, 12308, 905, 11257, 838, 10983, 549, 10895, 120, 9511, 91, 9363, -509, 8793, -494, 8711, -635, 8482, -605, 7416, -516, 7446, -205, 7217, 120, 6395, 24, 4563, 28, 2154, 13, 1572, 323, 1034, 405, 993, 488, 584, 470, 368, 254, 354, 157, 111, 162)])
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nqex6"]
+size = Vector2(536, 189)
+
 [node name="Juego" type="Node2D" node_paths=PackedStringArray("manager_de_objetivos")]
 script = ExtResource("1_2y4ua")
 manager_de_objetivos = NodePath("ManagerDeObjetivos")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_g2u6j")
+camera_attributes = SubResource("CameraAttributesPractical_g2u6j")
 
 [node name="ManagerDeObjetivos" parent="." instance=ExtResource("2_82r4j")]
 
@@ -739,6 +759,14 @@ color = Color(0.80049086, 0.80049074, 0.80049074, 1)
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_8mohb")
+
+[node name="AreaTrampa" parent="." node_paths=PackedStringArray("colision") instance=ExtResource("41_4dne2")]
+position = Vector2(3905, -66)
+colision = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaTrampa"]
+position = Vector2(-13, -19.5)
+shape = SubResource("RectangleShape2D_nqex6")
 
 [connection signal="body_entered" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_entered"]
 [connection signal="body_exited" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_exited"]
