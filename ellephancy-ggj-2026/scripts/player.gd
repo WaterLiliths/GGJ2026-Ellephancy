@@ -50,7 +50,7 @@ var ultimo_estado : ESTADOS
 func _ready() -> void:
 	interact_manager.setup(self)
 	mov_manager.setup(self)
-	Global.restart.connect(restart)
+	Global.restart.connect(matar_player)
 	agarrar_manager.resetear_velocidad_normal.connect(reset_velocidad_normal)
 	mascaras_manager.resetear_mascaras_a_cero(not empezar_con_mascaras) #marcar true o false desde el editor
 	if jugar_mobile:
@@ -151,7 +151,5 @@ func tirarse_de_plataforma():
 func acaba_de_aterrizar() -> bool:
 	return is_on_floor() and velocity.y >= 0
 
-func restart():
-	matar_player()
 
 #aca habian 600 lineas pode creer 
