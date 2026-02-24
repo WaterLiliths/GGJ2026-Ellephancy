@@ -542,11 +542,12 @@ event_name = "event:/Personaje/Morir"
 event_guid = "{ea3f93cf-6587-4284-a571-252290d8e701}"
 unique_name_in_owner = true
 
-[node name="MascarasManager" type="Node" parent="." node_paths=PackedStringArray("sound_manager", "player")]
+[node name="MascarasManager" type="Node" parent="." node_paths=PackedStringArray("sound_manager", "player", "STATS")]
 unique_name_in_owner = true
 script = ExtResource("60_b787q")
 sound_manager = NodePath("../SoundManager")
 player = NodePath("..")
+STATS = NodePath("../PlayerStats")
 
 [node name="MascaraTiempos" parent="MascarasManager" instance=ExtResource("4_k4kro")]
 unique_name_in_owner = true
