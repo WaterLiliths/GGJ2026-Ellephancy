@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfdnm440xn2ej"]
+
+[ext_resource type="Script" uid="uid://d4bo4fw86bn6n" path="res://escenas/world_objects/base_optica_estatica.gd" id="1_detmr"]
+[ext_resource type="Texture2D" uid="uid://d3h1p0qimly7x" path="res://assets/sprites/optica/marco_optica_fijo.png" id="1_xusm4"]
+
+[node name="BaseOpticaEstatica" type="Node2D" groups=["persistente"]]
+texture_filter = 1
+script = ExtResource("1_detmr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_xusm4")

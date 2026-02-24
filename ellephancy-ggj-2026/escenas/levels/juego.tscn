@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=4 uid="uid://dkudwre2b373"]
+[gd_scene load_steps=59 format=4 uid="uid://dkudwre2b373"]
 
 [ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/Juego.gd" id="1_2y4ua"]
 [ext_resource type="PackedScene" uid="uid://c4fdbwaawyx0w" path="res://escenas/nodos_funcionalidades/manager_de_objetivos.tscn" id="2_82r4j"]
@@ -31,7 +31,6 @@
 [ext_resource type="PackedScene" uid="uid://cs6hrjrtl5v7x" path="res://escenas/area_mostrar_texto.tscn" id="25_oltff"]
 [ext_resource type="Texture2D" uid="uid://dqqfvk8g6yn5t" path="res://assets/runas-finales/Runas interfaz1E.png" id="26_g2u6j"]
 [ext_resource type="PackedScene" uid="uid://t3ox75glka3s" path="res://escenas/world_objects/ObjetoAEmpujar.tscn" id="27_4dne2"]
-[ext_resource type="PackedScene" uid="uid://croo183ic8glj" path="res://escenas/world_objects/campana_colgante.tscn" id="28_nqex6"]
 [ext_resource type="PackedScene" uid="uid://deup0i7mgu0xc" path="res://escenas/masks/area_mascara_oso.tscn" id="29_fe420"]
 [ext_resource type="PackedScene" uid="uid://ccia0snrxhd0y" path="res://escenas/area_dialogo_prueba.tscn" id="30_3nqa5"]
 [ext_resource type="Texture2D" uid="uid://bvd8lf3jvwthk" path="res://assets/iconos/attie/mouse_mover_click_der.svg" id="30_g0try"]
@@ -41,8 +40,8 @@
 [ext_resource type="FontFile" uid="uid://ciwhe1apfc5gi" path="res://assets/fonts/Balgruf.otf" id="32_nqex6"]
 [ext_resource type="Texture2D" uid="uid://q3ics3iji43w" path="res://assets/runas-finales/Runas interfaznum3.png" id="33_nqex6"]
 [ext_resource type="PackedScene" uid="uid://tbrpanj4el32" path="res://escenas/areafinjuego.tscn" id="42_nqex6"]
-[ext_resource type="PackedScene" uid="uid://ddadtanp2707x" path="res://escenas/world_objects/lente.tscn" id="42_vy46r"]
-[ext_resource type="PackedScene" uid="uid://dg6y4xunbnxvq" path="res://escenas/world_objects/espejo.tscn" id="43_vy46r"]
+[ext_resource type="PackedScene" uid="uid://dfdnm440xn2ej" path="res://escenas/world_objects/base_optica_estatica.tscn" id="42_vy46r"]
+[ext_resource type="PackedScene" uid="uid://dy8nlt4mrvp53" path="res://escenas/world_objects/base_optica_movible.tscn" id="43_vy46r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fe420"]
 size = Vector2(304.0625, 544.375)
@@ -360,13 +359,14 @@ texture = ExtResource("5_ffuyt")
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank", "res://assets/audio/FmodBanks/Desktop/UI.bank"]
 
 [node name="Player" parent="." instance=ExtResource("8_m34qx")]
-position = Vector2(17079, -2224)
+position = Vector2(4653, -71)
 scale = Vector2(0.64, 0.64)
+empieza_con_mascaras = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(17079, -2294)
+position = Vector2(4653, -141)
 zoom = Vector2(1.6, 1.6)
 limit_left = 0
 limit_bottom = 1200
@@ -382,7 +382,7 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="ColorRect" type="ColorRect" parent="Player/Camera2D"]
 visible = false
-modulate = Color(1, 1, 1, 0)
+modulate = Color(1, 1, 1, 0.77516997)
 z_index = 185
 y_sort_enabled = true
 offset_left = -984.0
@@ -470,7 +470,7 @@ position = Vector2(-97, 588)
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(17079, -2294)
+position = Vector2(4653, -141)
 script = ExtResource("12_g2cn0")
 follow_mode = 2
 follow_target = NodePath("../Player/Node2D")
@@ -579,10 +579,6 @@ textura_runa_tecla = ExtResource("26_g2u6j")
 z_index = -1
 position = Vector2(3604, -921)
 presente = true
-
-[node name="CampanaColgante" parent="Niveles/FirstLevelWorks" instance=ExtResource("28_nqex6")]
-position = Vector2(4476, -392)
-longitud_soga = 4
 
 [node name="AreaMostrarTexto" type="Area2D" parent="Niveles/FirstLevelWorks"]
 position = Vector2(790, 396)
@@ -747,16 +743,20 @@ color = Color(0.80049086, 0.80049074, 0.80049074, 1)
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_8mohb")
 
-[node name="Lente" parent="." instance=ExtResource("42_vy46r")]
-position = Vector2(4753, -114)
-iniciador = true
-es_rotable = true
-limite_superior = 90.0
+[node name="BaseOpticaEstatica2" parent="." instance=ExtResource("42_vy46r")]
+position = Vector2(5060, -136)
+tipo_de_optica = 1
 
-[node name="Espejo" parent="." instance=ExtResource("43_vy46r")]
-position = Vector2(4912.343, -116.01753)
-rotation = -2.6971376
-es_rotable = true
+[node name="BaseOpticaMovible" parent="." instance=ExtResource("43_vy46r")]
+position = Vector2(4769, -111)
+tipo_de_optica = 1
+rotacion_inicial = 45
+
+[node name="BaseOpticaEstatica3" parent="." instance=ExtResource("42_vy46r")]
+position = Vector2(5060, -340)
+optica_rotable = false
+rotacion_inicial = -135
+emisor = true
 
 [connection signal="body_entered" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_entered"]
 [connection signal="body_exited" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_exited"]
