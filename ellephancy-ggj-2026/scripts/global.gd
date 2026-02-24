@@ -6,11 +6,13 @@ signal mascara_fuerza_activa
 signal mascara_traducciones_desactivar
 signal mascara_tiempo_desactivar
 signal mascara_fuerza_desactivar
-signal agarre_mascara(nombre : String)
+signal agarre_mascara(id : int)
+signal equipar_mascara(id : int)
 #Booleano por mascara
-var tiene_mascara_fuerza : bool = true
-var tiene_mascara_tiempo : bool = true
-var tiene_mascara_traducciones : bool = true
+var tiene_mascara_fuerza : bool = false
+var tiene_mascara_tiempo : bool = false
+var tiene_mascara_traducciones : bool = false
+
 
 signal matar_player #emitida desde player y escuchada por JUEGO, es para hacer el fade out
 signal dialogo_activo_to_player #se emite en area dialogo
@@ -18,7 +20,7 @@ signal dialogo_desactivado_to_player #se escucha player
 signal restart #agregada para el boton de estoy atascado, solo para el showcase?
 signal player_detecto_caida(tiempo_en_aire : float) #emitida por player y escuchada por juego, para la mini animacion de la camara
 
-var mascara_activa : int = 2
+var mascara_activa : int = 0
 #----------------PALANCA Y PUERTA------------------
 signal activar_palanca(id_palanca : int)
 signal desactivar_palanca(id_palanca : int)
