@@ -361,6 +361,7 @@ bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res:/
 [node name="Player" parent="." instance=ExtResource("8_m34qx")]
 position = Vector2(4653, -71)
 scale = Vector2(0.64, 0.64)
+empieza_con_mascaras = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 1
@@ -381,7 +382,7 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="ColorRect" type="ColorRect" parent="Player/Camera2D"]
 visible = false
-modulate = Color(1, 1, 1, 0)
+modulate = Color(1, 1, 1, 0.77516997)
 z_index = 185
 y_sort_enabled = true
 offset_left = -984.0
