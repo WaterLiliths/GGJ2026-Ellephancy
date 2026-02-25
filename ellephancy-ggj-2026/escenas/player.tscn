@@ -435,9 +435,6 @@ target_position = Vector2(0, 55)
 collision_mask = 130
 hit_from_inside = true
 
-[node name="HUD" parent="." instance=ExtResource("52_hopxw")]
-z_index = 105
-
 [node name="RayCast2DSuelo" type="RayCast2D" parent="."]
 position = Vector2(0, 57.555)
 target_position = Vector2(0, 13.585)
@@ -477,6 +474,7 @@ animation_manager = NodePath("../AnimationManager")
 
 [node name="SoundManager" type="Node" parent="." node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
+process_mode = 3
 script = ExtResource("59_5uuta")
 player = NodePath("..")
 
@@ -595,6 +593,9 @@ sound_manager = NodePath("../SoundManager")
 [node name="InteractuarManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("66_tje03")
+
+[node name="HUD" parent="." instance=ExtResource("52_hopxw")]
+z_index = 105
 
 [connection signal="animation_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_animation_changed"]
 [connection signal="animation_finished" from="AnimatedSpritePJ" to="AnimationManager" method="_on_animated_sprite_pj_animation_finished"]

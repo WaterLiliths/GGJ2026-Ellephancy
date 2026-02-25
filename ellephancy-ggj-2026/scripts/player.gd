@@ -15,6 +15,7 @@ extends CharacterBody2D
 @export var mascaras_manager : MascarasManager
 @export var agarrar_manager : AgarrarManager
 @export var interact_manager : InteractuarManager
+@export var animation_player : AnimationPlayer
 @onready var STATS : PlayerStats = %PlayerStats
 #------------------FIN MANAGERS -----------
 @export_group("Empezar con mascara")
@@ -139,17 +140,19 @@ func matar_player():
 	if reviviendo_player:
 		return
 	reviviendo_player = true
-	global_position = Global.get_checkpoint_position()
-	Global.matar_player.emit()
 	%FmodEventEmitter2D7.play()
+	animation_player.play("fade_out_revivir")
+	Global.matar_player.emit()
+	set_physics_process(false)
+	await get_tree().create_timer(1.5).timeout
+	global_position = Global.get_checkpoint_position()
+	animation_player.play("fade_in")
 	reviviendo_player = false
-
-func tirarse_de_plataforma():
-	position.y += 1
-
+	set_physics_process(true)
 
 func acaba_de_aterrizar() -> bool:
 	return is_on_floor() and velocity.y >= 0
 
 
 #aca habian 600 lineas pode creer 
+#o.o omg

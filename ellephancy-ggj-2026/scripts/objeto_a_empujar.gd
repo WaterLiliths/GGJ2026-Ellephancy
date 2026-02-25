@@ -9,6 +9,8 @@ var velocidad : float = 0.0
 var siendo_agarrada : bool = false
 @onready var impacto: FmodEventEmitter2D = $Impacto
 var sonido_caja_sonando = false
+@onready var area_trampa: AreaTrampa = %AreaTrampa
+
 
 
 func _ready() -> void:
@@ -22,6 +24,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
+		#area_trampa.monitoring = true
 		velocity += get_gravity() * delta
 		if velocity.y > 0:
 			impacto.play()
@@ -29,6 +32,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direccion * velocidad
 	else:
 		velocity.x = move_toward(velocity.x, 0, 800 * delta)
+		#area_trampa.monitoring = false 
 	move_and_slide()
 
 #-------------FUNCIONES-------------

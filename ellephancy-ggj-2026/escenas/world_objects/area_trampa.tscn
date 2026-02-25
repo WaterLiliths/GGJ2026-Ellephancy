@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://du6kq6ieeg34e"]
+
+[ext_resource type="Script" uid="uid://dx1lfqc2xgkpc" path="res://area_trampa.gd" id="1_hfig5"]
+
+[node name="AreaTrampa" type="Area2D"]
+script = ExtResource("1_hfig5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

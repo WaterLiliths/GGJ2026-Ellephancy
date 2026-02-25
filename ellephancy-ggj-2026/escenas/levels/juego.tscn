@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=4 uid="uid://dkudwre2b373"]
+[gd_scene load_steps=58 format=4 uid="uid://dkudwre2b373"]
 
 [ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/Juego.gd" id="1_2y4ua"]
 [ext_resource type="PackedScene" uid="uid://c4fdbwaawyx0w" path="res://escenas/nodos_funcionalidades/manager_de_objetivos.tscn" id="2_82r4j"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bpl65vrr7kb85" path="res://assets/parallax/bosquepocho2.png" id="3_kypqj"]
 [ext_resource type="Texture2D" uid="uid://wt6gflni6xxd" path="res://assets/parallax/Parallaxbosque2.png" id="3_u84wv"]
 [ext_resource type="Texture2D" uid="uid://cjwyiaveg6mxo" path="res://assets/parallax/Parallaxbosque3.png" id="4_lg721"]
+[ext_resource type="Script" uid="uid://bncs6yq0q55bh" path="res://escenas/levels/musica_y_ambiente.gd" id="4_nqex6"]
 [ext_resource type="Texture2D" uid="uid://3nw72fsdndrh" path="res://assets/parallax/bosquepocho3.png" id="4_yv8to"]
 [ext_resource type="Texture2D" uid="uid://b8j7oryi85t2p" path="res://assets/parallax/Parallaxbosque4.png" id="5_ffuyt"]
 [ext_resource type="Texture2D" uid="uid://7ygv4lw6hg7s" path="res://assets/parallax/bosquepocho4.png" id="5_m34qx"]
@@ -40,8 +41,6 @@
 [ext_resource type="FontFile" uid="uid://ciwhe1apfc5gi" path="res://assets/fonts/Balgruf.otf" id="32_nqex6"]
 [ext_resource type="Texture2D" uid="uid://q3ics3iji43w" path="res://assets/runas-finales/Runas interfaznum3.png" id="33_nqex6"]
 [ext_resource type="PackedScene" uid="uid://tbrpanj4el32" path="res://escenas/areafinjuego.tscn" id="42_nqex6"]
-[ext_resource type="PackedScene" uid="uid://dfdnm440xn2ej" path="res://escenas/world_objects/base_optica_estatica.tscn" id="42_vy46r"]
-[ext_resource type="PackedScene" uid="uid://dy8nlt4mrvp53" path="res://escenas/world_objects/base_optica_movible.tscn" id="43_vy46r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fe420"]
 size = Vector2(304.0625, 544.375)
@@ -242,11 +241,40 @@ shape = SubResource("RectangleShape2D_fe420")
 [node name="Marker2D" type="Marker2D" parent="ManagerDeObjetivos/AreasDeObjetivo/AreaObjetivo3"]
 position = Vector2(-46.875, 131.25)
 
+[node name="MusicaYAmbiente" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("4_nqex6")
+
+[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="MusicaYAmbiente"]
+event_name = "event:/Ambiente/ambiente"
+event_guid = "{9318ebbc-5ee4-4da9-87ef-a11bf476df3b}"
+attached = false
+autoplay = true
+volume = 0.0
+fmod_parameters/Tiempo/id = 4399314668521438136
+fmod_parameters/Tiempo = "presente"
+fmod_parameters/Tiempo/labels = PackedStringArray("presente", "pasado")
+fmod_parameters/Tiempo/variant_type = 4
+process_mode = 3
+position = Vector2(-97, 588)
+
+[node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="MusicaYAmbiente"]
+event_name = "event:/Musica/Musica"
+event_guid = "{531f5736-0242-456e-96ac-14d316a2be4e}"
+volume = 0.0
+fmod_parameters/Pantalla/id = -2044462831851661827
+fmod_parameters/Pantalla = "Juego"
+fmod_parameters/Pantalla/labels = PackedStringArray("Menu", "Juego")
+fmod_parameters/Pantalla/variant_type = 4
+process_mode = 3
+position = Vector2(-97, 588)
+
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 position = Vector2(1230, -222)
 rotation = 0.7033677
 color = Color(0.76, 0.43016, 0.2888, 1)
 energy = 1.5
+range_item_cull_mask = 7
 shadow_enabled = true
 shadow_filter = 1
 shadow_filter_smooth = 2.3
@@ -358,14 +386,15 @@ texture = ExtResource("5_ffuyt")
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank", "res://assets/audio/FmodBanks/Desktop/UI.bank"]
 
-[node name="Player" parent="." instance=ExtResource("8_m34qx")]
-position = Vector2(11951, 358)
+[node name="Player" parent="." node_paths=PackedStringArray("animation_player") instance=ExtResource("8_m34qx")]
+position = Vector2(3496, -68)
 scale = Vector2(0.64, 0.64)
+animation_player = NodePath("../AnimationPlayer")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(11951, 288)
+position = Vector2(3496, -138)
 zoom = Vector2(1.6, 1.6)
 limit_left = 0
 limit_bottom = 1200
@@ -381,13 +410,13 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="ColorRect" type="ColorRect" parent="Player/Camera2D"]
 visible = false
-modulate = Color(1, 1, 1, 0.77516997)
 z_index = 185
 y_sort_enabled = true
 offset_left = -984.0
 offset_top = -1000.0
 offset_right = 1027.0
 offset_bottom = 986.0
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="Player/Camera2D"]
@@ -443,33 +472,9 @@ scale_amount_curve = SubResource("Curve_m34qx")
 script = ExtResource("10_e4rmv")
 player = NodePath("..")
 
-[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
-event_name = "event:/Ambiente/ambiente"
-event_guid = "{9318ebbc-5ee4-4da9-87ef-a11bf476df3b}"
-attached = false
-autoplay = true
-volume = 0.15906562
-fmod_parameters/Tiempo/id = 4399314668521438136
-fmod_parameters/Tiempo = "presente"
-fmod_parameters/Tiempo/labels = PackedStringArray("presente", "pasado")
-fmod_parameters/Tiempo/variant_type = 4
-process_mode = 3
-position = Vector2(-97, 588)
-
-[node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="."]
-event_name = "event:/Musica/Musica"
-event_guid = "{531f5736-0242-456e-96ac-14d316a2be4e}"
-volume = 0.15906562
-fmod_parameters/Pantalla/id = -2044462831851661827
-fmod_parameters/Pantalla = "Juego"
-fmod_parameters/Pantalla/labels = PackedStringArray("Menu", "Juego")
-fmod_parameters/Pantalla/variant_type = 4
-process_mode = 3
-position = Vector2(-97, 588)
-
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(11951, 288)
+position = Vector2(3496, -138)
 script = ExtResource("12_g2cn0")
 follow_mode = 2
 follow_target = NodePath("../Player/Node2D")
@@ -576,7 +581,7 @@ textura_runa_tecla = ExtResource("26_g2u6j")
 
 [node name="Piedra1" parent="Niveles/FirstLevelWorks" instance=ExtResource("27_4dne2")]
 z_index = -1
-position = Vector2(3604, -921)
+position = Vector2(3618, -917)
 presente = true
 
 [node name="AreaMostrarTexto" type="Area2D" parent="Niveles/FirstLevelWorks"]
@@ -741,21 +746,6 @@ color = Color(0.80049086, 0.80049074, 0.80049074, 1)
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_8mohb")
-
-[node name="BaseOpticaEstatica2" parent="." instance=ExtResource("42_vy46r")]
-position = Vector2(5060, -136)
-tipo_de_optica = 1
-
-[node name="BaseOpticaMovible" parent="." instance=ExtResource("43_vy46r")]
-position = Vector2(4769, -111)
-tipo_de_optica = 1
-rotacion_inicial = 45
-
-[node name="BaseOpticaEstatica3" parent="." instance=ExtResource("42_vy46r")]
-position = Vector2(5060, -340)
-optica_rotable = false
-rotacion_inicial = -135
-emisor = true
 
 [connection signal="body_entered" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_entered"]
 [connection signal="body_exited" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_exited"]
