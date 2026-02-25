@@ -149,6 +149,7 @@ func matar_player():
 	global_position = Global.get_checkpoint_position()
 	animation_player.play("fade_in")
 	reviviendo_player = false
+	componente_de_vida.vida = componente_de_vida.vida_maxima
 	set_physics_process(true)
 
 func acaba_de_aterrizar() -> bool:

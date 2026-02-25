@@ -7,6 +7,7 @@ const FLECHA = preload("uid://ccj3cuygtcfio")
 @export var ilimitado : bool = true
 @export var cargador : int = 20
 @export var velocidad_de_disparo : int = 2000
+@export var cadencia_de_disparo : float = 0.2
 
 func _ready() -> void:
 	area_de_activacion.body_entered.connect(_detectar_jugador)
@@ -24,4 +25,4 @@ func _detectar_jugador(body: Node2D):
 		for r in rafaga:
 			if cargador > 0 or ilimitado:
 				disparar_flecha()
-			await get_tree().create_timer(0.1).timeout
+			await get_tree().create_timer(cadencia_de_disparo).timeout
