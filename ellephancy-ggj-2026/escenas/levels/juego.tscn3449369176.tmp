@@ -752,14 +752,15 @@ visible = false
 navigation_polygon = SubResource("NavigationPolygon_8mohb")
 
 [node name="TrampaDeFlechas" parent="." node_paths=PackedStringArray("area_de_activacion") instance=ExtResource("42_vy46r")]
-position = Vector2(4618.0005, -72.999695)
-rotation = 2.1783752
+position = Vector2(5084, -81.00006)
+rotation = 0.8243542
 area_de_activacion = NodePath("Area2D2")
-rafaga = 3
+rafaga = 5
 cargador = 10
+velocidad_de_disparo = 500
 
 [node name="Area2D2" type="Area2D" parent="TrampaDeFlechas"]
-position = Vector2(-131.34293, -488.43164)
+position = Vector2(-145.01926, 146.4735)
 rotation = -0.7978629
 collision_layer = 0
 
