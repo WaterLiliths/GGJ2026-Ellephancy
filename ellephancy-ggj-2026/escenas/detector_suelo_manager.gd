@@ -17,24 +17,25 @@ func obtener_tile_map():
 	if raycast_suelo.is_colliding():
 		tilemap = raycast_suelo.get_collider()
 		return tilemap
-		
+
 
 
 func detectar_tipo_de_suelo():
 	posicion_pies = raycast_suelo.global_position
 	if raycast_suelo.is_colliding():
-		var tilemap = obtener_tile_map()
-		var coords: Vector2i = tilemap.local_to_map(tilemap.to_local(posicion_pies))
-		var tile_data : TileData = tilemap.get_cell_tile_data(coords)
-		
-		if tilemap == null:
-			return
+		if raycast_suelo.get_collider() is TileMapLayer:
+			var tilemap = obtener_tile_map()
+			var coords: Vector2i = tilemap.local_to_map(tilemap.to_local(posicion_pies))
+			var tile_data : TileData = tilemap.get_cell_tile_data(coords)
+			
+			if tilemap == null:
+				return
 
-		if tile_data:
-			tipo_de_suelo = tile_data.get_custom_data("suelo")
-		
-			#print("tipo de suelo es: " , tipo_de_suelo)
-		#tilemap = null
+			if tile_data:
+				tipo_de_suelo = tile_data.get_custom_data("suelo")
+			
+				#print("tipo de suelo es: " , tipo_de_suelo)
+			#tilemap = null
 
 
 func _physics_process(delta: float) -> void:
