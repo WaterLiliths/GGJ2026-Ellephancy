@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5a67yegkikkj"]
+
+[ext_resource type="Script" uid="uid://b4jjeh5lokqnf" path="res://componente_de_vida.gd" id="1_81l53"]
+
+[node name="ComponenteDeVida" type="Node"]
+script = ExtResource("1_81l53")

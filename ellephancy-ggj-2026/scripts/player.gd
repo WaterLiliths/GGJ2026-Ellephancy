@@ -16,6 +16,7 @@ extends CharacterBody2D
 @export var agarrar_manager : AgarrarManager
 @export var interact_manager : InteractuarManager
 @export var animation_player : AnimationPlayer
+@export var componente_de_vida : ComponenteDeVida
 @onready var STATS : PlayerStats = %PlayerStats
 #------------------FIN MANAGERS -----------
 @export_group("Empezar con mascara")
