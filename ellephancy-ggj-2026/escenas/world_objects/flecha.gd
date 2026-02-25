@@ -6,3 +6,13 @@ extends RigidBody2D
 
 func _ready() -> void:
 	componente_de_hurtbox.daño = daño
+
+
+func _physics_process(delta: float) -> void:
+	global_rotation = Vector2.LEFT.angle_to(linear_velocity)
+
+
+
+func _on_componente_de_hurtbox_area_entered(area: Area2D) -> void:
+	if area is ComponenteDeHitbox:
+		queue_free()
