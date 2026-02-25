@@ -50,7 +50,6 @@ script = ExtResource("1_m5lxu")
 
 [node name="CanvasLayerMain" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
-visible = false
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayerMain"]
 anchors_preset = 8
@@ -191,6 +190,7 @@ layout_mode = 2
 [node name="CanvasLayerMain2" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 process_mode = 3
+visible = false
 script = ExtResource("4_8qmdo")
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayerMain2"]
