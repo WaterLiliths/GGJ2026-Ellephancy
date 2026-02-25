@@ -425,6 +425,7 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="Player/Camera2D"]
+visible = false
 z_index = -6
 y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_ms3um")
