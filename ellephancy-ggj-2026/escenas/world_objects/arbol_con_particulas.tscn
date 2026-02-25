@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://defcvbq6uycyv"]
+
+[ext_resource type="Texture2D" uid="uid://bmsqffqvxx8so" path="res://assets/sprites/ambient/arbol.PNG" id="1_40gr1"]
+[ext_resource type="Texture2D" uid="uid://c102kiki0djqs" path="res://assets/texturas particulas/hoja_2.png" id="2_ntp3b"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ntp3b"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_ntp3b"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.50187266, 1), 0.0, 0.0, 0, 0, Vector2(0.74906373, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_umuxk"]
+curve = SubResource("Curve_ntp3b")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_umuxk"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(58.405, 49.86, 0)
+emission_shape_scale = Vector3(5, 3, 1)
+emission_shape = 1
+emission_sphere_radius = 57.58
+angle_min = -68.29999
+angle_max = 95.500015
+direction = Vector3(-1, 0, 0)
+spread = 0.0
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+angular_velocity_min = -58.590015
+angular_velocity_max = 70.91998
+gravity = Vector3(-0.5, 1, 0)
+tangential_accel_min = -2.2351742e-06
+tangential_accel_max = -2.2351742e-06
+scale_min = 0.5
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_umuxk")
+color = Color(0.17099999, 0.38, 0.18841664, 1)
+hue_variation_min = -0.12000002
+hue_variation_max = 0.14999998
+anim_speed_max = 2.9099998
+anim_offset_max = 0.242
+turbulence_noise_scale = 4.957
+
+[node name="Arbol" type="Sprite2D"]
+texture = ExtResource("1_40gr1")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_ntp3b")
+position = Vector2(30, -46)
+amount = 50
+texture = ExtResource("2_ntp3b")
+lifetime = 30.0
+preprocess = 20.0
+visibility_rect = Rect2(-200, -100, 451.415, 216.255)
+process_material = SubResource("ParticleProcessMaterial_umuxk")

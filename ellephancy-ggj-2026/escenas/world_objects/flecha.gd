@@ -10,9 +10,11 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	global_rotation = Vector2.LEFT.angle_to(linear_velocity)
-
-
-
-func _on_componente_de_hurtbox_area_entered(area: Area2D) -> void:
-	if area is ComponenteDeHitbox:
+	if get_contact_count() > 0:
 		queue_free()
+
+
+#
+#func _on_componente_de_hurtbox_area_entered(area: Area2D) -> void:
+	#if area is ComponenteDeHitbox:
+		#queue_free()

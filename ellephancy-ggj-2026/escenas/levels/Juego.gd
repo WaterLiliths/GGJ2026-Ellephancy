@@ -43,7 +43,9 @@ func _ready() -> void:
 
 
 func cambiar_ambiente_pasado():
+	return
 	$FmodEventEmitter2D.set_parameter("Tiempo", "pasado")
 	
 func cambiar_sonido_presente():
+	return
 	$FmodEventEmitter2D.set_parameter("Tiempo", "presente")

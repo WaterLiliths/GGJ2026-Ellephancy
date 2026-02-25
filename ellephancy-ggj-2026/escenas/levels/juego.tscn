@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=4 uid="uid://dkudwre2b373"]
+[gd_scene load_steps=61 format=4 uid="uid://dkudwre2b373"]
 
 [ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/Juego.gd" id="1_2y4ua"]
 [ext_resource type="PackedScene" uid="uid://c4fdbwaawyx0w" path="res://escenas/nodos_funcionalidades/manager_de_objetivos.tscn" id="2_82r4j"]
@@ -42,6 +42,7 @@
 [ext_resource type="Texture2D" uid="uid://q3ics3iji43w" path="res://assets/runas-finales/Runas interfaznum3.png" id="33_nqex6"]
 [ext_resource type="PackedScene" uid="uid://tbrpanj4el32" path="res://escenas/areafinjuego.tscn" id="42_nqex6"]
 [ext_resource type="PackedScene" uid="uid://daorm6xo8r06f" path="res://escenas/world_objects/trampa_de_flechas.tscn" id="42_vy46r"]
+[ext_resource type="PackedScene" uid="uid://defcvbq6uycyv" path="res://escenas/world_objects/arbol_con_particulas.tscn" id="43_vy46r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fe420"]
 size = Vector2(304.0625, 544.375)
@@ -391,14 +392,14 @@ texture = ExtResource("5_ffuyt")
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank", "res://assets/audio/FmodBanks/Desktop/UI.bank"]
 
 [node name="Player" parent="." node_paths=PackedStringArray("animation_player") instance=ExtResource("8_m34qx")]
-position = Vector2(4409, -48)
+position = Vector2(12158, 816)
 scale = Vector2(0.64, 0.64)
 animation_player = NodePath("../AnimationPlayer")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(4409, -118)
+position = Vector2(12158, 746)
 zoom = Vector2(1.6, 1.6)
 limit_left = 0
 limit_bottom = 1200
@@ -478,7 +479,7 @@ player = NodePath("..")
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(4409, -118)
+position = Vector2(12158, 746)
 script = ExtResource("12_g2cn0")
 follow_mode = 2
 follow_target = NodePath("../Player/Node2D")
@@ -753,19 +754,23 @@ navigation_polygon = SubResource("NavigationPolygon_8mohb")
 
 [node name="TrampaDeFlechas" parent="." node_paths=PackedStringArray("area_de_activacion") instance=ExtResource("42_vy46r")]
 position = Vector2(4618.0005, -72.999695)
-rotation = 2.1783752
+rotation = 3.0202565
 area_de_activacion = NodePath("Area2D2")
-rafaga = 3
+rafaga = 5
 cargador = 10
+cadencia_de_disparo = 0.15
 
 [node name="Area2D2" type="Area2D" parent="TrampaDeFlechas"]
-position = Vector2(-131.34293, -488.43164)
-rotation = -0.7978629
+position = Vector2(-342.101, -127.34339)
+rotation = -1.4880822
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TrampaDeFlechas/Area2D2"]
 position = Vector2(-174, 0)
 shape = SubResource("RectangleShape2D_nqex6")
+
+[node name="Arbol" parent="." instance=ExtResource("43_vy46r")]
+position = Vector2(12774, 513)
 
 [connection signal="body_entered" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_entered"]
 [connection signal="body_exited" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_exited"]
