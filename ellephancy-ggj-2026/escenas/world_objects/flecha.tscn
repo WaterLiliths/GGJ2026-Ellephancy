@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://ccj3cuygtcfio"]
+
+[ext_resource type="Script" uid="uid://b8i1n0sohhx3f" path="res://escenas/world_objects/flecha.gd" id="1_lv055"]
+[ext_resource type="Texture2D" uid="uid://c5vv1l7w7f7d8" path="res://assets/sprites/flechas.png" id="1_ucqbk"]
+[ext_resource type="PackedScene" uid="uid://0006wwsff4v2" path="res://escenas/nodos_funcionalidades/componente_de_hurtbox.tscn" id="3_hunk5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ucqbk"]
+size = Vector2(51, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_id8m8"]
+size = Vector2(12, 4)
+
+[node name="Flecha" type="RigidBody2D" node_paths=PackedStringArray("componente_de_hurtbox")]
+texture_filter = 1
+collision_mask = 135
+script = ExtResource("1_lv055")
+componente_de_hurtbox = NodePath("ComponenteDeHurtbox")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ucqbk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 0)
+shape = SubResource("RectangleShape2D_ucqbk")
+
+[node name="ComponenteDeHurtbox" parent="." instance=ExtResource("3_hunk5")]
+"daño" = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ComponenteDeHurtbox"]
+position = Vector2(-19, 0)
+shape = SubResource("RectangleShape2D_id8m8")
+
+[connection signal="body_entered" from="ComponenteDeHurtbox" to="." method="_on_componente_de_hurtbox_body_entered"]

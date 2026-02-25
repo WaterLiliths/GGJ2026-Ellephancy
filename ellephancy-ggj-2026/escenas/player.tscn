@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://cs3h434myxe4r"]
+[gd_scene load_steps=76 format=3 uid="uid://cs3h434myxe4r"]
 
 [ext_resource type="Script" uid="uid://d1p6o2ixegcp2" path="res://scripts/player.gd" id="1_esbpa"]
 [ext_resource type="Texture2D" uid="uid://csvm86vnc0cmo" path="res://assets/player/mascaras/Agarre oso destra 1.png" id="2_v66k4"]
@@ -66,6 +66,8 @@
 [ext_resource type="Script" uid="uid://dtiq53iumksnb" path="res://scripts/resources/player_stats.gd" id="63_uxfdn"]
 [ext_resource type="Script" uid="uid://cqlbqm7f6q0k5" path="res://escenas/agarrar_manager.gd" id="65_bt67l"]
 [ext_resource type="Script" uid="uid://nya4sqv84uk6" path="res://escenas/interactuar_manager.gd" id="66_tje03"]
+[ext_resource type="PackedScene" uid="uid://b5a67yegkikkj" path="res://escenas/nodos_funcionalidades/componente_de_vida.tscn" id="67_83iue"]
+[ext_resource type="PackedScene" uid="uid://6p2yn76ntww" path="res://escenas/nodos_funcionalidades/componente_de_hitbox.tscn" id="68_47ubl"]
 
 [sub_resource type="Gradient" id="Gradient_hopxw"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -377,7 +379,10 @@ radius = 41.880783
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3jn0c"]
 size = Vector2(1, 20)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input_manager", "sound_manager", "animation_manager", "detector_suelo_manager", "mov_manager", "mascaras_manager", "agarrar_manager", "interact_manager") groups=["cajas"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f1jpg"]
+size = Vector2(56, 158.5)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input_manager", "sound_manager", "animation_manager", "detector_suelo_manager", "mov_manager", "mascaras_manager", "agarrar_manager", "interact_manager", "componente_de_vida") groups=["cajas"]]
 collision_mask = 135
 script = ExtResource("1_esbpa")
 input_manager = NodePath("InputManager")
@@ -388,6 +393,7 @@ mov_manager = NodePath("MovimientoManager")
 mascaras_manager = NodePath("MascarasManager")
 agarrar_manager = NodePath("AgarrarManager")
 interact_manager = NodePath("InteractuarManager")
+componente_de_vida = NodePath("ComponenteDeVida")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(0.7607843, 0.43137255, 0.2901961, 1)
@@ -597,6 +603,15 @@ script = ExtResource("66_tje03")
 [node name="HUD" parent="." instance=ExtResource("52_hopxw")]
 z_index = 105
 
+[node name="ComponenteDeVida" parent="." instance=ExtResource("67_83iue")]
+
+[node name="ComponenteDeHitbox" parent="." node_paths=PackedStringArray("componente_de_vida") instance=ExtResource("68_47ubl")]
+componente_de_vida = NodePath("../ComponenteDeVida")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ComponenteDeHitbox"]
+position = Vector2(12, -22.75)
+shape = SubResource("RectangleShape2D_f1jpg")
+
 [connection signal="animation_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_animation_changed"]
 [connection signal="animation_finished" from="AnimatedSpritePJ" to="AnimationManager" method="_on_animated_sprite_pj_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSpritePJ" to="." method="_on_animated_sprite_pj_frame_changed"]
@@ -605,3 +620,4 @@ z_index = 105
 [connection signal="interactuar_presionado" from="InputManager" to="InteractuarManager" method="_on_input_manager_interactuar_presionado"]
 [connection signal="tirar_presionado" from="InputManager" to="AgarrarManager" method="_on_input_manager_tirar_presionado"]
 [connection signal="ejecutar_sonido_mascara" from="MascarasManager" to="SoundManager" method="_on_mascaras_manager_ejecutar_sonido_mascara"]
+[connection signal="muerte" from="ComponenteDeVida" to="." method="matar_player"]
