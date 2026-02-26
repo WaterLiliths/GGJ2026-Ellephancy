@@ -19,6 +19,7 @@ func tomar_mascara():
 	Global.agarre_mascara.emit(1)
 	sprite_2d_ciervo.hide()
 	area_dialogo_prueba.forzar_lectura()
+	Global.guardar_datos()
 
 
 #---------------SEÑALES--------------

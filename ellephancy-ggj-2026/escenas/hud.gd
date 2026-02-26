@@ -58,6 +58,8 @@ func _on_btn_si_pressed() -> void:
 	await get_tree().process_frame
 	pausa_activa = false
 	get_tree().paused = false
+	print("salir al menu de inicio")
+	Global.guardar_datos()
 	get_tree().change_scene_to_packed(escena_menu_inicio)
 
 

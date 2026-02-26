@@ -21,6 +21,7 @@ func tomar_mascara():
 	Global.agarre_mascara.emit(3)
 	sprite_2d_salmon.hide()
 	area_dialogo_prueba.forzar_lectura()
+	Global.guardar_datos()
 
 
 #---------------SEÑALES--------------
