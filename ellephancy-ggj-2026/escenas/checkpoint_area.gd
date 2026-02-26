@@ -11,6 +11,7 @@ func _ready() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player: 
 		Global.set_checkpoint_position(global_position)
+		Global.guardar_datos() #aca para guardar el checkpoint position
 		$FmodEventEmitter2D.play()
 		if not checkpoint_activo: #checkpoint activo es nuevo, podriamos usarlo tambien para que se desactive cuando activo otro
 			%CPUParticles2D.emitting = true

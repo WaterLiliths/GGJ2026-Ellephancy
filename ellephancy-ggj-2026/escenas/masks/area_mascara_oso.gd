@@ -25,6 +25,7 @@ func tomar_mascara():
 	Global.agarre_mascara.emit(2)
 	sprite_2d_oso.hide()
 	area_dialogo_prueba.forzar_lectura()
+	Global.guardar_datos()
 
 
 func _on_body_exited(body: Node2D) -> void:

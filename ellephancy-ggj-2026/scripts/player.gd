@@ -1,6 +1,9 @@
 class_name Player
 extends CharacterBody2D
 
+@export_group("MODO TESTEO")
+@export var estoy_testeando_cosas : bool = false
+
 @export_group("Mobile")
 ##si ponemos en true se instancia la escena de los botones como hijo de player
 @export var jugar_mobile : bool = false
@@ -59,8 +62,8 @@ func _ready() -> void:
 		var botones_android : PackedScene= preload("res://escenas/interfaz_android.tscn") #o cambiar por el uuid
 		var instancia_botones = botones_android.instantiate()
 		add_child(instancia_botones)
-	await get_tree().create_timer(0.5).timeout #el timer QUIZAS no es necesario, pero puede evitar algun q otro bug
-	Global.set_checkpoint_position(global_position)
+	await get_tree().create_timer(0.1).timeout #el timer QUIZAS no es necesario, pero puede evitar algun q otro bug
+	manejar_checkpoint_position()
 
 
 func _physics_process(delta: float) -> void:
@@ -155,6 +158,17 @@ func matar_player():
 func acaba_de_aterrizar() -> bool:
 	return is_on_floor() and velocity.y >= 0
 
+func manejar_checkpoint_position():
+	if estoy_testeando_cosas:
+		#solo guardo su global position como ya veniamos haciendo e ignoro al config file
+		Global.set_checkpoint_position(global_position)
+		return
+	if Global.checkpoint_position== Vector2.ZERO:
+		print("Es la primera vez que entra al juego o NO habia checkpoint en el config file")
+		Global.set_checkpoint_position(global_position)
+	else:
+		print("Ya existia un checkpoint en el config_file, muevo al player ahi")
+		global_position = Global.get_checkpoint_position()
 
 #aca habian 600 lineas pode creer 
 #o.o omg
