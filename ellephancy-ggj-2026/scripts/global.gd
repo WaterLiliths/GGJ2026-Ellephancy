@@ -46,3 +46,10 @@ func set_checkpoint_position(nueva_pos : Vector2): #la llamo en escena checkpoin
 
 func get_checkpoint_position(): #seguro la llame desde player
 	return checkpoint_position
+
+
+func guardar_datos():
+	pass
+
+func cargar_datos():
+	pass
