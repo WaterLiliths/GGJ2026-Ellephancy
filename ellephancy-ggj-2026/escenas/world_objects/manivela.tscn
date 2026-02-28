@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://b63n45mrpt02f"]
+
+[ext_resource type="Script" uid="uid://p0qikywf27pc" path="res://node_2d.gd" id="1_d3sel"]
+[ext_resource type="Texture2D" uid="uid://dhjfth687p1c4" path="res://assets/sprites/optica/manivela.png" id="2_vv1im"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d3sel"]
+radius = 62.008064
+
+[node name="Manivela" type="Node2D"]
+z_index = -1
+texture_filter = 1
+script = ExtResource("1_d3sel")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_vv1im")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_d3sel")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
