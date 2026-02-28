@@ -50,7 +50,8 @@ func ejecutar_animacion_saltar(forzar_id : int = 0): #por si queremos forzar una
 
 
 func ejecutar_animacion_arrastrar(): #solo puede el oso
-	animated_sprite_pj.play("seguir_agarrando")
+	if animated_sprite_pj.animation!= "agarrar_oso":
+		animated_sprite_pj.play("agarrar_oso")
 
 
 func ejecutar_animacion_palanca(forzar_id : int = 0): #por si queremos forzar una especifica

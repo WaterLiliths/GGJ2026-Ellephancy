@@ -9,7 +9,7 @@ var velocidad : float = 0.0
 var siendo_agarrada : bool = false
 @onready var impacto: FmodEventEmitter2D = $Impacto
 var sonido_caja_sonando = false
-@onready var area_trampa: AreaTrampa = %AreaTrampa
+#@onready var area_trampa: AreaTrampa = %AreaTrampa
 
 
 
@@ -29,6 +29,7 @@ func _physics_process(delta: float) -> void:
 		if velocity.y > 0:
 			impacto.play()
 	if siendo_agarrada:
+		#print("la caja esta siendo agarrada -------------++++++++++++++-----+-+++++++++++++++++++++++++")
 		velocity.x = direccion * velocidad
 	else:
 		velocity.x = move_toward(velocity.x, 0, 800 * delta)
@@ -62,7 +63,13 @@ func mostrar_mundo():
 	show()
 
 
-func set_ser_agarrado(direccion_player, velocidad_player : float, estado_agarrado : bool):
+func agarrar(direccion_player : float, velocidad_player : float):
 	direccion = direccion_player
-	velocidad = direccion_player
-	siendo_agarrada = estado_agarrado
+	velocidad = velocidad_player
+	siendo_agarrada = true
+
+
+func soltar():
+	direccion = 0
+	velocidad = 0
+	siendo_agarrada = false
