@@ -112,8 +112,9 @@ presente = true
 
 [node name="PuzzleInicio" type="Node2D" parent="."]
 
-[node name="Puerta" parent="PuzzleInicio" instance=ExtResource("8_toniv")]
+[node name="Puerta" parent="PuzzleInicio" node_paths=PackedStringArray("activadores") instance=ExtResource("8_toniv")]
 position = Vector2(-4770, -138)
+activadores = [NodePath("Palanca"), NodePath("Palanca2"), NodePath("Palanca3")]
 usa_runas = true
 
 [node name="Palanca" parent="PuzzleInicio/Puerta" node_paths=PackedStringArray("posicionador_de_runa") instance=ExtResource("9_ngx8t")]
@@ -180,8 +181,9 @@ id_dialogo = 14
 
 [node name="Puzzle2" type="Node2D" parent="."]
 
-[node name="Puerta" parent="Puzzle2" instance=ExtResource("8_toniv")]
+[node name="Puerta" parent="Puzzle2" node_paths=PackedStringArray("activadores") instance=ExtResource("8_toniv")]
 position = Vector2(-3659, -142)
+activadores = [NodePath("Palanca"), NodePath("Palanca2"), NodePath("Palanca3")]
 usa_runas = true
 
 [node name="Palanca" parent="Puzzle2/Puerta" instance=ExtResource("9_ngx8t")]

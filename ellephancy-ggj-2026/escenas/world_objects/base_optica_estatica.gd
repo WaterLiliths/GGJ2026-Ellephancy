@@ -8,6 +8,7 @@ extends CharacterBody2D
 
 @export_group("Movimiento")
 @export_enum("Horizontal", "Vertical") var tipo_de_movimiento : int = 0
+@export var invertido : bool = false
 @export var manivela : Manivela
 @export var velocidad : float = 10
 
@@ -42,4 +43,7 @@ func _on_manivela_moviendo(direccion : float):
 			velocity.x = direccion * velocidad
 		1:
 			velocity.y = direccion * velocidad
+	if invertido:
+		velocity = -velocity
+	print(velocity)
 	move_and_slide()
