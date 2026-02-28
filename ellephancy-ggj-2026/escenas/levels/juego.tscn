@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=4 uid="uid://dkudwre2b373"]
+[gd_scene load_steps=61 format=4 uid="uid://dkudwre2b373"]
 
 [ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/Juego.gd" id="1_2y4ua"]
 [ext_resource type="PackedScene" uid="uid://c4fdbwaawyx0w" path="res://escenas/nodos_funcionalidades/manager_de_objetivos.tscn" id="2_82r4j"]
@@ -44,7 +44,6 @@
 [ext_resource type="PackedScene" uid="uid://b63n45mrpt02f" path="res://escenas/world_objects/manivela.tscn" id="43_4ti0m"]
 [ext_resource type="PackedScene" uid="uid://defcvbq6uycyv" path="res://escenas/world_objects/arbol_con_particulas.tscn" id="43_vy46r"]
 [ext_resource type="PackedScene" uid="uid://dfdnm440xn2ej" path="res://escenas/world_objects/base_optica_estatica.tscn" id="44_4ti0m"]
-[ext_resource type="PackedScene" uid="uid://dy8nlt4mrvp53" path="res://escenas/world_objects/base_optica_movible.tscn" id="45_a3gqp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fe420"]
 size = Vector2(304.0625, 544.375)
@@ -415,6 +414,7 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="ColorRect" type="ColorRect" parent="Player/Camera2D"]
 visible = false
+modulate = Color(1, 1, 1, 0)
 z_index = 185
 y_sort_enabled = true
 offset_left = -984.0
@@ -533,7 +533,7 @@ presente = true
 
 [node name="DetallesTraseros" parent="Niveles/FirstLevelWorks/MapaPresente" instance=ExtResource("22_fe420")]
 z_index = -3
-tile_map_data = PackedByteArray("AAArAAAAAQAOAAkAAAA0AAAABQAFAAsAAAA3AAAABQAGAAsAAAA1AAAABQACAAsAAAA2AAAABQACAAsAAABHAAAABQAFAAsAAABIAAAABQACAAsAAABIAAEABQACAAsAAABHAAEABQACAAsAAAAiAAEABQAFAAsAAAAjAAEABQACAAsAAAAiAAIABQACAAsAAAAjAAIABQACAAsAAAAfAAMABQAFAAsAAAAgAAMABQACAAsAAAAgAAQABQACAAsAAAAfAAQABQACAAsAAAAcAAUABQAFAAsAAAAcAAYABQACAAsAAAAdAAUABQACAAsAAAAdAAYABQACAAsAAAAZAAYABQAFAAsAAAAZAAcABQACAAsAAAAaAAYABQACAAsAAAAaAAcABQACAAsAAAAQAAcABQAFAAsAAAAQAAgABQACAAsAAAARAAcABQACAAsAAAARAAgABQACAAsAAAABAAIABQAGAAsAAAAAAAIABQACAAsAABABAAMABQACAAsAABAAAAMABQACAAsAABD+//v/BQACAAsAAAD+//z/BQACAAsAAAD///z/BQACAAsAAAD9//f/BQACAAsAAAD9//j/BQACAAsAAAD+//f/BQAGAAsAAAD+//j/BQACAAsAAAD7//X/BQACAAsAAAD7//b/BQACAAsAAAD8//X/BQAGAAsAAAD8//b/BQACAAsAAAD6//T/BQACAAsAAAD6//X/BQACAAsAAAD7//T/BQAGAAsAAAAJAAcABQANAAsAAAAIAAcABQACAAsAAAAIAAgABQACAAsAAAAJAAgABQACAAsAAAD///v/BQAGAAsAAABUAP//BQAFAAsAAABUAAAABQACAAsAAABVAP//BQACAAsAAABVAAAABQACAAsAAABaAP//BQAGAAsAAABOAP//DAAAAAAAAABOAP7/DAAAAAAAAABOAP3/DAAAAAAAAABOAPz/DAAAAAAAAABOAPv/DAAAAAAAAABOAPr/DAAAAAAAAABOAPn/DAAAAAAAAABOAPj/DAABAAAAAABKAPr/DAAAAAAAAHBJAPr/DAAAAAAAAHBIAPr/DAAAAAAAAHBHAPr/DAAAAAAAAHBGAPr/DAAAAAAAAHBLAPr/DAABAAAAAFBFAPr/DAABAAAAAGA=")
+tile_map_data = PackedByteArray("AAArAAAAAQAOAAkAAAA0AAAABQAFAAsAAAA3AAAABQAGAAsAAAA1AAAABQACAAsAAAA2AAAABQACAAsAAABHAAAABQAFAAsAAABIAAAABQACAAsAAABIAAEABQACAAsAAABHAAEABQACAAsAAAAiAAEABQAFAAsAAAAjAAEABQACAAsAAAAiAAIABQACAAsAAAAjAAIABQACAAsAAAAfAAMABQAFAAsAAAAgAAMABQACAAsAAAAgAAQABQACAAsAAAAfAAQABQACAAsAAAAcAAUABQAFAAsAAAAcAAYABQACAAsAAAAdAAUABQACAAsAAAAdAAYABQACAAsAAAAZAAYABQAFAAsAAAAZAAcABQACAAsAAAAaAAYABQACAAsAAAAaAAcABQACAAsAAAAQAAcABQAFAAsAAAAQAAgABQACAAsAAAARAAcABQACAAsAAAARAAgABQACAAsAAAABAAIABQAGAAsAAAAAAAIABQACAAsAABABAAMABQACAAsAABAAAAMABQACAAsAABD+//v/BQACAAsAAAD+//z/BQACAAsAAAD///z/BQACAAsAAAD9//f/BQACAAsAAAD9//j/BQACAAsAAAD+//f/BQAGAAsAAAD+//j/BQACAAsAAAD7//X/BQACAAsAAAD7//b/BQACAAsAAAD8//X/BQAGAAsAAAD8//b/BQACAAsAAAD6//T/BQACAAsAAAD6//X/BQACAAsAAAD7//T/BQAGAAsAAAAJAAcABQANAAsAAAAIAAcABQACAAsAAAAIAAgABQACAAsAAAAJAAgABQACAAsAAAD///v/BQAGAAsAAABUAP//BQAFAAsAAABUAAAABQACAAsAAABVAP//BQACAAsAAABVAAAABQACAAsAAABaAP//BQAGAAsAAABOAP//DAAAAAAAAABOAP7/DAAAAAAAAABOAP3/DAAAAAAAAABOAPz/DAAAAAAAAABOAPv/DAAAAAAAAABOAPn/DAAAAAAAAABOAPj/DAABAAAAAABKAPr/DAAAAAAAAHBJAPr/DAAAAAAAAHBIAPr/DAAAAAAAAHBHAPr/DAAAAAAAAHBGAPr/DAAAAAAAAHBLAPr/DAAAAAAAAHBFAPr/DAABAAAAAGBMAPr/DAAAAAAAAHBNAPr/DAABAAAAAFBOAPr/DAAAAAAAAABQAP//DAAAAAAAAABQAP7/DAAAAAAAAABQAP3/DAAAAAAAAABQAPz/DAAAAAAAAABQAPv/DAAAAAAAAABQAPr/DAAAAAAAAABQAPn/DAAAAAAAAABQAPj/DAABAAAAAAA=")
 presente = true
 
 [node name="Suelo" parent="Niveles/FirstLevelWorks/MapaPresente" instance=ExtResource("22_fe420")]
@@ -759,13 +759,18 @@ position = Vector2(12774, 513)
 [node name="Manivela" parent="." instance=ExtResource("43_4ti0m")]
 position = Vector2(4897.2646, -133.61981)
 
-[node name="BaseOpticaEstatica" parent="." node_paths=PackedStringArray("manivela") instance=ExtResource("44_4ti0m")]
-position = Vector2(4514, -352)
-tipo_de_optica = 1
+[node name="BaseOpticaEstatica2" parent="." node_paths=PackedStringArray("manivela") instance=ExtResource("44_4ti0m")]
+position = Vector2(5024, -237)
+emisor = true
+tipo_de_movimiento = 1
 manivela = NodePath("../Manivela")
 
-[node name="BaseOpticaMovible" parent="." instance=ExtResource("45_a3gqp")]
-position = Vector2(5157.44, -154.69)
+[node name="BaseOpticaEstatica3" parent="." node_paths=PackedStringArray("manivela") instance=ExtResource("44_4ti0m")]
+position = Vector2(5152, -237)
+tipo_de_optica = 1
+tipo_de_movimiento = 1
+invertido = true
+manivela = NodePath("../Manivela")
 
 [connection signal="body_entered" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_entered"]
 [connection signal="body_exited" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_exited"]
