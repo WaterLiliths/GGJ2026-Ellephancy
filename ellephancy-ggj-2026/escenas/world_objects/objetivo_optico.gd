@@ -40,9 +40,9 @@ func cargar():
 		return
 	carga += 0.5
 	if carga >= 100.0:
-		Global.activar_palanca.emit(id)
+		Global.activar_mecanismo.emit(self)
 		cargado = true
 	if temporal and not siendo_cargado:
 		carga -= 3
-		Global.desactivar_palanca.emit(id)
+		Global.desactivar_mecanismo.emit(self)
 	siendo_cargado = false

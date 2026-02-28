@@ -45,4 +45,5 @@ func _on_manivela_moviendo(direccion : float):
 			velocity.y = direccion * velocidad
 	if invertido:
 		velocity = -velocity
+	print(velocity)
 	move_and_slide()

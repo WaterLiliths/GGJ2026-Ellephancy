@@ -96,14 +96,12 @@ position = Vector2(1599.0001, 628)
 id = 6
 tipo_de_palanca = "buena"
 
-[node name="PuertaA" parent="PuzzlePasado" instance=ExtResource("3_nds88")]
+[node name="PuertaA" parent="PuzzlePasado" node_paths=PackedStringArray("activadores") instance=ExtResource("3_nds88")]
 z_index = -5
 position = Vector2(2885.0002, 798)
 rotation = 1.5707964
 scale = Vector2(0.6, 0.62)
-id_puerta = 6
-varias_palancas = true
-cant_palancas = 2
+activadores = [NodePath("../PalancaA"), NodePath("../PalancaA2")]
 
 [node name="AreaMascaraCiervo" parent="." instance=ExtResource("4_k6c24")]
 z_index = -1

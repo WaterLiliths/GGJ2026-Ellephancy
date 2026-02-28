@@ -18,7 +18,7 @@ var palanca_actual : Palanca = self
 
 var color : Color
 
-signal palanca_con_runa_activada(palanca, id, runa)
+signal palanca_con_runa_activada(palanca, runa)
 
 
 func _ready() -> void:
@@ -54,7 +54,7 @@ func activar() -> void:
 			"runas":
 				reproducir_animacion("activar")
 				await get_tree().create_timer(0.5).timeout
-		emitir_señal()
+		emitir_señal(true)
 		tween_entrada_luz_verde()
 		return
 	if !esta_encendida and not tipo_de_palanca == "fallada":
@@ -68,7 +68,7 @@ func activar() -> void:
 			"runas":
 				reproducir_animacion("activar")
 				await get_tree().create_timer(0.5).timeout
-		emitir_señal()
+		emitir_señal(false)
 		tween_salida_luz_verde()
 		return
 	if tipo_de_palanca == "fallada":
@@ -102,12 +102,16 @@ func reproducir_animacion(activar: String):
 	$FmodEventEmitter2D.play()
 
 
-func emitir_señal():
-	if usa_runas:
-		cambiar_de_runa()
-		palanca_con_runa_activada.emit(self, id, runa)
+func emitir_señal(activar: bool):
+	if activar:
+		if usa_runas:
+			cambiar_de_runa()
+			palanca_con_runa_activada.emit(self, runa)
+		else:
+			Global.activar_mecanismo.emit(self)
 	else:
-		Global.activar_palanca.emit(id)
+		Global.desactivar_mecanismo.emit(self)
+
 
 func tween_entrada_luz_verde():
 	var tween := create_tween()
@@ -142,4 +146,4 @@ func setup_runas():
 		runa.position = posicionador_de_runa.position - runa.size / 2 * runa.scale
 		runa.rotation = posicionador_de_runa.rotation
 		
-	emitir_señal()
+	emitir_señal(true)
