@@ -1,12 +1,13 @@
 class_name BaseLenteEstatica
 extends CharacterBody2D
 
-@export_enum("LENTE", "ESPEJO") var tipo_de_optica : int = 0
+@export_enum("Lente", "Espejo") var tipo_de_optica : int = 0
 @export var optica_rotable : bool = true
 @export var rotacion_inicial : int = 0
 @export var emisor : bool = false
 
-@export_group("Vertical")
+@export_group("Movimiento")
+@export_enum("Horizontal", "Vertical") var tipo_de_movimiento : int = 0
 @export var manivela : Manivela
 @export var velocidad : float = 10
 
@@ -36,5 +37,9 @@ func _ready() -> void:
 
 
 func _on_manivela_moviendo(direccion : float):
-	velocity.y = direccion * velocidad
+	match tipo_de_movimiento:
+		0:
+			velocity.x = direccion * velocidad
+		1:
+			velocity.y = direccion * velocidad
 	move_and_slide()
