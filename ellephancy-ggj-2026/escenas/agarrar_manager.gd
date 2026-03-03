@@ -29,10 +29,10 @@ func _physics_process(delta: float) -> void:
 	objeto_empujable.agarrar(body.direction, STATS.velocidad) #le da a la caja el mismo movimiento que el player
 	
 	if body.direction!=0: #solo sonido si me estoy moviendo
-		sound_manager.ejecutar_sonido_arrastrar(5) #5 es el peso, como no se esta usando queda es placeholder
-		if animated_sprite.animation != "seguir_agarrando":
-			animated_sprite.play("seguir_agarrando")
+		sound_manager.ejecutar_sonido_arrastrar(5) #5 es el peso, como no se esta usando queda es placeholder #MOVER A LA CAJA 
+		animation_manager.ejecutar_animacion_seguir_agarrando()
 	else:
+		animation_manager.ejecutar_animacion_agarrar_idle()
 		sound_manager.detener_sonido_arrastrar()
 		#if animated_sprite.animation!= "agarre_idle"
 

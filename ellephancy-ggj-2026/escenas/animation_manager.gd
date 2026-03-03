@@ -21,8 +21,6 @@ func verificar_animacion_con_mascara():
 		ejecutar_animacion_saltar()
 	if animacion_actual.begins_with("caida"):
 		ejecutar_animacion_caida()
-	if animacion_actual.begins_with("seguir"):
-		ejecutar_animacion_arrastrar()
 
 
 func ejecutar_animacion_caminar(forzar_id : int = 0): #por si queremos forzar una especifica
@@ -53,6 +51,13 @@ func ejecutar_animacion_arrastrar(): #solo puede el oso
 	if animated_sprite_pj.animation!= "agarrar_oso":
 		animated_sprite_pj.play("agarrar_oso")
 
+func ejecutar_animacion_agarrar_idle():
+	if animated_sprite_pj.animation!= "agarre_idle":
+		animated_sprite_pj.play("agarre_idle")
+
+func ejecutar_animacion_seguir_agarrando():
+	if animated_sprite_pj.animation!= "seguir_agarrando":
+		animated_sprite_pj.play("seguir_agarrando")
 
 func ejecutar_animacion_palanca(forzar_id : int = 0): #por si queremos forzar una especifica
 	match Global.mascara_activa:
