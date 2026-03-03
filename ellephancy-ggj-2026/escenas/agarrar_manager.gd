@@ -28,6 +28,8 @@ func _physics_process(delta: float) -> void:
 		return
 	objeto_empujable.agarrar(body.direction, STATS.velocidad) #le da a la caja el mismo movimiento que el player
 	
+	if not animation_manager.termino_animacion_inicial():
+		return
 	if body.direction!=0: #solo sonido si me estoy moviendo
 		sound_manager.ejecutar_sonido_arrastrar(5) #5 es el peso, como no se esta usando queda es placeholder #MOVER A LA CAJA 
 		animation_manager.ejecutar_animacion_seguir_agarrando()
@@ -90,7 +92,6 @@ func agarrar_caja():
 	#objeto_empujable.agarrar(body.direction, STATS.velocidad) #esto se ejecuta en el process de este nodo
 	mov_manager.cambiar_de_estado(body.ESTADOS.AGARRAR)
 	#print("en teoria deberia cambiar de estado a agarrar")
-	body.animacion_agarrar_inicial_terminada = false
 	animation_manager.ejecutar_animacion_arrastrar()
 	set_physics_process(true)
 	agarrando = true
@@ -106,3 +107,4 @@ func soltar_caja():
 	agarrando = false
 	set_physics_process(false) #es una boludez, pero nos evitamos unos miles de checkeos de if not agarrando entonces return
 	activar_mano()
+	animation_manager.solto_caja()

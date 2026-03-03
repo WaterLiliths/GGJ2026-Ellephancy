@@ -29,7 +29,6 @@ extends CharacterBody2D
 #@onready var mano_test_izq: CollisionShape2D = %CollisionManoIzq
 #@onready var mano_test_der: CollisionShape2D = %CollisionManoDer
 #-------------------------------
-var animacion_agarrar_inicial_terminada : bool = false #NO BORRAR esta variable es una EXCEPCION, la necesitan movimiento manager y agarrar manager, no me gusta que tenga tanta dependencia, pero es una solucion temporal
 var ultimo_tiempo_en_aire : float = 0
 var tiempo_en_el_aire_actual: float = 0
 var reviviendo_player : bool = false

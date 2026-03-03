@@ -170,6 +170,3 @@ func procesar_agarrar(direccion, delta):
 	#cuando hago click ya le aviso al player que cambie a la velocidad lenta
 	movimiento_horizontal(direccion, delta)
 	#aca no manejo nada de objeto.agarrar , ahora lo hago en el agarrar manager
-	print("la animacion actual es : ", animated_sprite.animation)
-	if not body.animacion_agarrar_inicial_terminada:
-		return #espero hasta que haga la animacion de agarre para pasar a las otras

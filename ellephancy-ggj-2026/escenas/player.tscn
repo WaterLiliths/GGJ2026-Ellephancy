@@ -368,6 +368,23 @@ animations = [{
 "loop": true,
 "name": &"seguir_agarrando",
 "speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_0wi6y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_68uh1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_w80mn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_v66k4")
+}],
+"loop": false,
+"name": &"termino_de_agarrar",
+"speed": 25.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b787q"]
@@ -410,7 +427,7 @@ unique_name_in_owner = true
 texture_filter = 1
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_w7fad")
-animation = &"seguir_agarrando"
+animation = &"termino_de_agarrar"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true

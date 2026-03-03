@@ -1,12 +1,19 @@
 class_name AnimationManager
 extends Node
 
+#INFO Tener en cuenta que en el movimiento manager hay una funcion que se llama matchear animaciones
+#solo llama a funciones definidas aca, pero por las dudas si no encontramos algun bug
 @export var player : Player
 @export var sound_manager : SoundManager
 @export var mascaras_manager : MascarasManager
 @export var input_manager : InputManager
 @export var movimiento_manager : MovimientoManager
 @export var animated_sprite_pj : AnimatedSprite2D
+
+var animacion_agarrar_inicial_terminada : bool = false
+
+func _physics_process(delta: float) -> void:
+	print("la animacion actual es :     ", animated_sprite_pj.animation)
 
 func verificar_animacion_con_mascara():
 	var animacion_actual = animated_sprite_pj.get_animation()
@@ -59,6 +66,7 @@ func ejecutar_animacion_seguir_agarrando():
 	if animated_sprite_pj.animation!= "seguir_agarrando":
 		animated_sprite_pj.play("seguir_agarrando")
 
+
 func ejecutar_animacion_palanca(forzar_id : int = 0): #por si queremos forzar una especifica
 	match Global.mascara_activa:
 		0:
@@ -103,7 +111,17 @@ func _on_animated_sprite_pj_animation_finished() -> void:
 	if animacion.begins_with("salto"):
 		ejecutar_animacion_caida()
 	if animacion == "agarrar_oso" and player.estado_actual == player.ESTADOS.AGARRAR:
-		player.animacion_agarrar_inicial_terminada = true
+		animacion_agarrar_inicial_terminada = true
+	if animacion == "termino_de_agarrar":
+		movimiento_manager.matchear_animaciones()
 
 func flipear_animation(ultima_direccion):
 	animated_sprite_pj.flip_h = ultima_direccion < 0
+
+func termino_animacion_inicial():
+	return animacion_agarrar_inicial_terminada #para que me retorne true false
+
+func solto_caja():
+	print("SOLTO LA CAJA")
+	animacion_agarrar_inicial_terminada = false
+	animated_sprite_pj.play("termino_de_agarrar")
