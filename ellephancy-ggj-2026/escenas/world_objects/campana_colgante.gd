@@ -1,3 +1,4 @@
+@tool
 class_name CampanaColgante
 extends Node2D
 
@@ -9,8 +10,8 @@ const CAMPANA = preload("uid://bnxsiuckubi5t")
 @export var longitud_soga : int = 5
 @export var motor : bool = false
 @export var rango_de_movimiento : float = 0
-var primera_soga :SeccionSoga
 
+var primera_soga : SeccionSoga
 var campana_colgante : Campana
 var anterior: RigidBody2D
 var tween_motor = create_tween()
@@ -44,5 +45,5 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if motor:
 		tween_motor.set_trans(Tween.TRANS_SINE)
-		tween_motor.tween_property(primera_soga, "position:x", 30, 1.2)
-		tween_motor.tween_property(primera_soga, "position:x", -30, 1.2)
+		tween_motor.tween_property(primera_soga, "position:x", rango_de_movimiento, 1.2)
+		tween_motor.tween_property(primera_soga, "position:x", -rango_de_movimiento, 1.2)
