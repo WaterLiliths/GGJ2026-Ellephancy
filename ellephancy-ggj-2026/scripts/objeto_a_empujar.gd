@@ -1,8 +1,9 @@
 @icon("res://assets/iconos/Empujable.svg") #el icono ya venia con godot (en el repo oficial), es un detallito nomas
 class_name Empujable
+##NODO EMPUJABLE : para usarlo solamente tenemos que agregarle collision shape y un sprite, en caso de que queramos que cualquier otro objeto sea empujable podemos hacer de este su nodo padre
 extends CharacterBody2D
 
-@export var presente : bool
+@export var presente : bool = true
 ##El peso lo usamos para pasarle este valor a FMOD y que suene distinto. Ademas de que podriamos hacer que player empuje este objeto con una velocidad acorde al peso (más pesado = más lento)
 @export var peso : float = 5.0
 @onready var ultima_posicion : Vector2
@@ -13,8 +14,6 @@ var siendo_agarrada : bool = false
 @onready var impacto: FmodEventEmitter2D = %Impacto
 var sonido_caja_sonando = false
 @onready var fmod_arrastrar: FmodEventEmitter2D = %Arrastrar
-
-#@onready var area_trampa: AreaTrampa = %AreaTrampa
 
 
 func _ready() -> void:
