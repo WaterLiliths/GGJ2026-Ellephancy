@@ -29,7 +29,6 @@ extends CharacterBody2D
 #@onready var mano_test_izq: CollisionShape2D = %CollisionManoIzq
 #@onready var mano_test_der: CollisionShape2D = %CollisionManoDer
 #-------------------------------
-var animacion_agarrar_inicial_terminada : bool = false #NO BORRAR esta variable es una EXCEPCION, la necesitan movimiento manager y agarrar manager, no me gusta que tenga tanta dependencia, pero es una solucion temporal
 var ultimo_tiempo_en_aire : float = 0
 var tiempo_en_el_aire_actual: float = 0
 var reviviendo_player : bool = false
@@ -57,6 +56,7 @@ func _ready() -> void:
 	mov_manager.setup(self)
 	Global.restart.connect(matar_player)
 	agarrar_manager.resetear_velocidad_normal.connect(reset_velocidad_normal)
+	agarrar_manager.disminuir_velocidad_agarrando.connect(on_disminuir_velocidad_agarrando)
 	mascaras_manager.resetear_mascaras_a_cero(not empezar_con_mascaras) #marcar true o false desde el editor
 	if jugar_mobile:
 		var botones_android : PackedScene= preload("res://escenas/interfaz_android.tscn") #o cambiar por el uuid
@@ -102,6 +102,12 @@ func on_sale_de_interactivo(interactivo_actual : Interactivo):
 	if interactivo_actual == objeto_interactivo:
 		puede_interactuar = false
 		objeto_interactivo = null
+
+
+func on_disminuir_velocidad_agarrando(peso_caja : float):
+	var factor_aumento : float = 7.5
+	var velocidad_nueva = max(STATS.velocidad_minima_agarrando, STATS.velocidad_arrastrando - (peso_caja * factor_aumento))
+	STATS.velocidad = velocidad_nueva
 
 
 func reset_velocidad_normal(): #se ejecuta en la signal emitida por agarrar manager

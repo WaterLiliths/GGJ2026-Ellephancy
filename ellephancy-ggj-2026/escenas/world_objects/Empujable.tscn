@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://rbte5a07u6f4"]
+
+[ext_resource type="Script" uid="uid://cmqqpgbgf8ayt" path="res://scripts/objeto_a_empujar.gd" id="1_y074g"]
+
+[node name="Empujable" type="CharacterBody2D" groups=["cajas", "persistente"]]
+z_index = -1
+collision_layer = 1153
+collision_mask = 131
+script = ExtResource("1_y074g")
+peso = 1.0
+
+[node name="Impacto" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Objetos/impacto piedra"
+event_guid = "{2c33a6f9-204b-4961-8146-ccced55c7b48}"
+fmod_parameters/peso/id = 8505785322959852152
+fmod_parameters/peso = 1.0
+fmod_parameters/peso/variant_type = 3
+unique_name_in_owner = true
+
+[node name="Arrastrar" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Objetos/arrastrar piedra"
+event_guid = "{2166ce82-c481-4140-ac4f-55290734fe8b}"
+fmod_parameters/Material/id = -768118463292944790
+fmod_parameters/Material = "Piedra"
+fmod_parameters/Material/labels = PackedStringArray("Piedra", "Madera")
+fmod_parameters/Material/variant_type = 4
+fmod_parameters/peso/id = 8505785322959852152
+fmod_parameters/peso = 1.0
+fmod_parameters/peso/variant_type = 3
+unique_name_in_owner = true

@@ -169,25 +169,4 @@ func procesar_caminar(direccion, delta):
 func procesar_agarrar(direccion, delta):
 	#cuando hago click ya le aviso al player que cambie a la velocidad lenta
 	movimiento_horizontal(direccion, delta)
-	if direccion!=0:
-		sound_manager.ejecutar_sonido_arrastrar(5) #5 es el peso, como no se esta usando queda es placeholder
-	else:
-		sound_manager.detener_sonido_arrastrar()
-	if not agarrar_manager.objeto_empujable:
-		sound_manager.detener_sonido_arrastrar()
-		return
-
-	#agarrar_manager.objeto_empujable.set_ser_agarrado(direccion, STATS.velocidad, true)
-	agarrar_manager.objeto_empujable.direccion = direccion
-	agarrar_manager.objeto_empujable.velocidad = STATS.velocidad
-	agarrar_manager.objeto_empujable.siendo_agarrada = true
-	#em el agarrar manager se vuelve a poner en false, en soltar_caja
-
-	if not body.animacion_agarrar_inicial_terminada:
-		return #espero hasta que haga la animacion de agarre para pasar a las otras
-	if direccion != 0:
-		if animated_sprite.animation != "seguir_agarrando":
-			animated_sprite.play("seguir_agarrando")
-	else:
-		if animated_sprite.animation != "agarre_idle":
-			animated_sprite.play("agarre_idle")
+	#aca no manejo nada de objeto.agarrar , ahora lo hago en el agarrar manager

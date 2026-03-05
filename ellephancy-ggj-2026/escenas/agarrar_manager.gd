@@ -7,20 +7,34 @@ var agarrando : bool = false
 @onready var ray_cast_izq: RayCast2D = %RayCastIzq #se usan para las "manos"
 @onready var ray_cast_der: RayCast2D = %RayCastDer
 signal resetear_velocidad_normal
+signal disminuir_velocidad_agarrando(peso_objeto : float)
 #--------------"MANOS" PARA EVITAR TRABARSE CON LA CAJA---------------
 @onready var mano_test_izq: CollisionShape2D = %CollisionManoIzq
 @onready var mano_test_der: CollisionShape2D = %CollisionManoDer
-
+@onready var animated_sprite : AnimatedSprite2D = %AnimatedSpritePJ
 @export var body : Player
 @export var STATS : PlayerStats
 @export var mov_manager : MovimientoManager
 @export var animation_manager : AnimationManager
-@export var sound_manager : SoundManager
 
 
 func _ready() -> void:
 	mano_test_izq.set_deferred("disabled", true) #DESACTIVO FISICAS DE LA MANO
 	mano_test_der.set_deferred("disabled", true)
+
+
+func _physics_process(delta: float) -> void:
+	if not agarrando:
+		return
+	objeto_empujable.agarrar(body.direction, STATS.velocidad) #le da a la caja el mismo movimiento que el player
+	
+	if not animation_manager.termino_animacion_inicial():
+		return
+	if body.direction!=0: #solo sonido si me estoy moviendo
+		animation_manager.ejecutar_animacion_seguir_agarrando()
+	else:
+		animation_manager.ejecutar_animacion_agarrar_idle()
+		#if animated_sprite.animation!= "agarre_idle"
 
 
 #------------------ SEÑALES BODY ENTERED ------------
@@ -46,24 +60,6 @@ func _on_input_manager_tirar_presionado() -> void:
 		agarrar_caja()
 
 
-func soltar_caja():
-	if not agarrando:
-		return
-	sound_manager.detener_sonido_arrastrar() #solo POR LAS DUDAS
-	objeto_empujable.siendo_agarrada = false
-	resetear_velocidad_normal.emit()
-	mov_manager.cambiar_de_estado(body.ESTADOS.IDLE)
-	agarrando = false
-	activar_mano()
-
-
-
-func disminuir_velocidad_al_agarrar():
-	STATS.velocidad = STATS.velocidad_arrastrando
-
-
-
-
 func activar_mano(): #TODAVIA ES NECESARIO, SE SIGUE QUEDANDO ATASCADO
 	if agarrando:
 		return
@@ -78,17 +74,31 @@ func activar_mano(): #TODAVIA ES NECESARIO, SE SIGUE QUEDANDO ATASCADO
 
 
 func agarrar_caja():
-	print("se ejecuta agarrar caja................................")
+#	print("se ejecuta agarrar caja................................")
 	if not body.is_on_floor():
 		return
 	var direccion_con_caja = sign(body.global_position.x- objeto_empujable.global_position.x)
 	#direccion -1 es esta a tu derecha, 1 es que esta a tu izquierda
 	if body.ultima_direccion_mirar == direccion_con_caja: #aunque diga == significa que son direcciones opuestas
-		print("NO AGARRAR, ESTAS MIRANDO OPUESTO A LA CAJA")
+		#print("NO AGARRAR, PQ ESTAS MIRANDO OPUESTO A LA CAJA")
 		return
-	disminuir_velocidad_al_agarrar()
+	disminuir_velocidad_agarrando.emit(objeto_empujable.peso)
+	#disminuir_velocidad_al_agarrar()
+	#objeto_empujable.agarrar(body.direction, STATS.velocidad) #esto se ejecuta en el process de este nodo
 	mov_manager.cambiar_de_estado(body.ESTADOS.AGARRAR)
-	print("en teoria deberia cambiar de estado a agarrar")
-	body.animacion_agarrar_inicial_terminada = false
+	#print("en teoria deberia cambiar de estado a agarrar")
 	animation_manager.ejecutar_animacion_arrastrar()
+	set_physics_process(true)
 	agarrando = true
+
+
+func soltar_caja():
+	if not agarrando:
+		return
+	objeto_empujable.soltar()
+	resetear_velocidad_normal.emit()
+	mov_manager.cambiar_de_estado(body.ESTADOS.IDLE)
+	agarrando = false
+	set_physics_process(false) #es una boludez, pero nos evitamos unos miles de checkeos de if not agarrando entonces return
+	activar_mano()
+	animation_manager.solto_caja()

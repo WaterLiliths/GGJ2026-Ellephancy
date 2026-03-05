@@ -35,4 +35,4 @@ func _on_objeto_activado(objeto):
 func _on_body_entered(body: Node2D) -> void:
 	if condiciones == "POSICION" and body is Player:
 		condicion_cumplida()
-		monitoring = false
+		set_deferred("monitoring", false) #puse el set deferred porque tiraba un error

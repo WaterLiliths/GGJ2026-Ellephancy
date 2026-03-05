@@ -1,6 +1,5 @@
-[gd_scene load_steps=16 format=4 uid="uid://cqfbi3mqn04vl"]
+[gd_scene load_steps=18 format=4 uid="uid://cqfbi3mqn04vl"]
 
-[ext_resource type="PackedScene" uid="uid://t3ox75glka3s" path="res://escenas/world_objects/ObjetoAEmpujar.tscn" id="1_n0umg"]
 [ext_resource type="PackedScene" uid="uid://by80hrdi7bflk" path="res://escenas/creador_de_niveles.tscn" id="2_1sjo1"]
 [ext_resource type="PackedScene" uid="uid://cc8lgh4bhiut8" path="res://escenas/world_objects/tronco_pasado-presente.tscn" id="2_6imxl"]
 [ext_resource type="PackedScene" uid="uid://bnjwrlnb5pxji" path="res://escenas/world_objects/arbol.tscn" id="2_oi7hv"]
@@ -15,20 +14,17 @@
 [ext_resource type="Resource" uid="uid://cstoapib3neo4" path="res://dialogue/dialogo_ciervo_1.dialogue" id="14_x3go5"]
 [ext_resource type="PackedScene" uid="uid://gsyv06ys145u" path="res://escenas/masks/area_mascara_salmon.tscn" id="15_g2qor"]
 [ext_resource type="Resource" uid="uid://d1fqiv2tb5bnh" path="res://dialogue/dialogo_cievo_3.dialogue" id="15_iqxlf"]
+[ext_resource type="PackedScene" uid="uid://rbte5a07u6f4" path="res://escenas/world_objects/Empujable.tscn" id="16_x3go5"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ku3a7"]
+load_path = "res://.godot/imported/rocatocha2.png-a714510a512ae897d11ff11e56acf7a3.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iqxlf"]
+size = Vector2(180, 298)
 
 [node name="FourthLevelWorking" type="Node2D"]
 
 [node name="Presente" type="Node2D" parent="."]
-
-[node name="ObjetoAEmpujar" parent="Presente" instance=ExtResource("1_n0umg")]
-z_index = -1
-position = Vector2(2531, 121)
-presente = true
-
-[node name="ObjetoAEmpujar2" parent="Presente" instance=ExtResource("1_n0umg")]
-z_index = -1
-position = Vector2(3672, -1089)
-presente = true
 
 [node name="TroncoColisionable" parent="Presente" instance=ExtResource("2_6imxl")]
 z_index = -4
@@ -187,3 +183,27 @@ id_dialogo = 12
 [node name="AreaMascaraSalmon2" parent="." instance=ExtResource("15_g2qor")]
 position = Vector2(5482, -1982.9999)
 rotation = 0.79202884
+
+[node name="Empujable1" parent="." instance=ExtResource("16_x3go5")]
+position = Vector2(2526, 122)
+
+[node name="Sprite2D" type="Sprite2D" parent="Empujable1"]
+scale = Vector2(0.565, 0.565)
+texture = SubResource("CompressedTexture2D_ku3a7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Empujable1"]
+position = Vector2(-14, 2)
+shape = SubResource("RectangleShape2D_iqxlf")
+debug_color = Color(3.3210217e-06, 0.63581735, 0.41642454, 0.41960785)
+
+[node name="Empujable2" parent="." instance=ExtResource("16_x3go5")]
+position = Vector2(3670, -1104)
+
+[node name="Sprite2D" type="Sprite2D" parent="Empujable2"]
+scale = Vector2(0.565, 0.565)
+texture = SubResource("CompressedTexture2D_ku3a7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Empujable2"]
+position = Vector2(-14, 2)
+shape = SubResource("RectangleShape2D_iqxlf")
+debug_color = Color(3.3210217e-06, 0.63581735, 0.41642454, 0.41960785)
