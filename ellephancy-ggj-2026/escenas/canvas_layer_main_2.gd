@@ -9,7 +9,8 @@ var resolucion_default = DisplayServer.screen_get_size(DisplayServer.window_get_
 
 
 func _ready() -> void:
-	setup_sliders_y_botones()
+	#setup_sliders_y_botones()
+	pass
 
 
 func setup_sliders_y_botones():
