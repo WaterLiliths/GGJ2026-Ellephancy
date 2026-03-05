@@ -15,7 +15,6 @@ signal resetear_velocidad_normal
 @export var STATS : PlayerStats
 @export var mov_manager : MovimientoManager
 @export var animation_manager : AnimationManager
-@export var sound_manager : SoundManager
 
 
 func _ready() -> void:
@@ -31,11 +30,9 @@ func _physics_process(delta: float) -> void:
 	if not animation_manager.termino_animacion_inicial():
 		return
 	if body.direction!=0: #solo sonido si me estoy moviendo
-		sound_manager.ejecutar_sonido_arrastrar(5) #5 es el peso, como no se esta usando queda es placeholder #MOVER A LA CAJA 
 		animation_manager.ejecutar_animacion_seguir_agarrando()
 	else:
 		animation_manager.ejecutar_animacion_agarrar_idle()
-		sound_manager.detener_sonido_arrastrar()
 		#if animated_sprite.animation!= "agarre_idle"
 
 
@@ -100,7 +97,6 @@ func agarrar_caja():
 func soltar_caja():
 	if not agarrando:
 		return
-	sound_manager.detener_sonido_arrastrar() #solo POR LAS DUDAS
 	objeto_empujable.soltar()
 	resetear_velocidad_normal.emit()
 	mov_manager.cambiar_de_estado(body.ESTADOS.IDLE)

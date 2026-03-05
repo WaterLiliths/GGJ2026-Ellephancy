@@ -12,9 +12,6 @@ extends Node
 
 var animacion_agarrar_inicial_terminada : bool = false
 
-func _physics_process(delta: float) -> void:
-	print("la animacion actual es :     ", animated_sprite_pj.animation)
-
 func verificar_animacion_con_mascara():
 	var animacion_actual = animated_sprite_pj.get_animation()
 	#agarro la misma animacion q se estaba ejecutando pero como ahora cambio de mascara la mando a ejecutar de nuevo
@@ -122,6 +119,7 @@ func termino_animacion_inicial():
 	return animacion_agarrar_inicial_terminada #para que me retorne true false
 
 func solto_caja():
-	print("SOLTO LA CAJA")
+#	print("SOLTO LA CAJA")
 	animacion_agarrar_inicial_terminada = false
-	animated_sprite_pj.play("termino_de_agarrar")
+#	animated_sprite_pj.play("termino_de_agarrar")
+#estaba testeando una animacion de soltar caja, es la misma de agarrar pero invertida

@@ -29,17 +29,17 @@ func emitir_sonido_caida():
 func ejecutar_sonido_pasos():
 	%FmodEventEmitter2D.play()
 
-func ejecutar_sonido_arrastrar(peso : float):
-	#se llama desde movimiento manager, SOLO en el estado de agarrar
-	if sonido_caja_sonando:
-		return
-	%FmodEventEmitter2D3.set_parameter("peso", peso)
-	%FmodEventEmitter2D3.play()
-	sonido_caja_sonando = true
-
-func detener_sonido_arrastrar(): #es llamado por movimiento manager en estado AGARRAR
-	sonido_caja_sonando = false
-	%FmodEventEmitter2D3.stop()
+#func ejecutar_sonido_arrastrar(peso : float):
+	##se llama desde movimiento manager, SOLO en el estado de agarrar
+	#if sonido_caja_sonando:
+		#return
+	#%FmodEventEmitter2D3.set_parameter("peso", peso)
+	#%FmodEventEmitter2D3.play()
+	#sonido_caja_sonando = true
+#
+#func detener_sonido_arrastrar(): #es llamado por movimiento manager en estado AGARRAR
+	#sonido_caja_sonando = false
+	#%FmodEventEmitter2D3.stop()
 
 
 func _on_mascaras_manager_ejecutar_sonido_mascara(parametro: String) -> void:
