@@ -5,7 +5,8 @@ extends CharacterBody2D
 
 @export var presente : bool = true
 ##El peso lo usamos para pasarle este valor a FMOD y que suene distinto. Ademas de que podriamos hacer que player empuje este objeto con una velocidad acorde al peso (más pesado = más lento)
-@export var peso : float = 5.0
+
+@export_range(1.0, 10.0) var peso : float = 5.0
 @onready var ultima_posicion : Vector2
 var colision : CollisionShape2D
 var direccion : int = 0
@@ -91,13 +92,12 @@ func soltar():
 
 
 func ejecutar_sonido_arrastrar(peso : float):
-	#se llama desde movimiento manager, SOLO en el estado de agarrar
 	if sonido_caja_sonando:
 		return
 	fmod_arrastrar.set_parameter("peso", peso)
 	fmod_arrastrar.play()
 	sonido_caja_sonando = true
 
-func detener_sonido_arrastrar(): #es llamado por movimiento manager en estado AGARRAR
+func detener_sonido_arrastrar():
 	sonido_caja_sonando = false
 	fmod_arrastrar.stop()

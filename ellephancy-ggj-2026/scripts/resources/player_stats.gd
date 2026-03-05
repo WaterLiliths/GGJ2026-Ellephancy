@@ -14,11 +14,12 @@ extends Node #probar pasar a resource
 @export var velocidad_salto_con_mascara = -800
 @export var desaceleración_al_saltar : float = 0.5 #arreglar igual 0.5 safa
 @export var desaceleracion_horizontal : float = 0.07 #ajustable a gusto
-@export var velocidad_al_agarrar : float = 250
+@export var velocidad_al_agarrar : float = 250 #fijarnos si esta cosa se usa jasj
 @export var aceleracion_al_agarrar : float = 0.2
 @export var velocidad_correr : float = 40
 @export var fuerza_empuje : float = 2000 #no anda
-@export var velocidad_arrastrando : float = 100.0
+@export var velocidad_arrastrando : float = 100.0 #este SI se usa
+@export var velocidad_minima_agarrando : float = 40.0
 var velocidad_inicial_salto : float
 var velocidad_inicial : float
 

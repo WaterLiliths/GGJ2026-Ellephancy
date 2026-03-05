@@ -603,14 +603,13 @@ raycast_suelo = NodePath("../RayCast2DSuelo")
 unique_name_in_owner = true
 script = ExtResource("63_uxfdn")
 
-[node name="AgarrarManager" type="Node" parent="." node_paths=PackedStringArray("body", "STATS", "mov_manager", "animation_manager", "sound_manager")]
+[node name="AgarrarManager" type="Node" parent="." node_paths=PackedStringArray("body", "STATS", "mov_manager", "animation_manager")]
 unique_name_in_owner = true
 script = ExtResource("65_bt67l")
 body = NodePath("..")
 STATS = NodePath("../PlayerStats")
 mov_manager = NodePath("../MovimientoManager")
 animation_manager = NodePath("../AnimationManager")
-sound_manager = NodePath("../SoundManager")
 
 [node name="InteractuarManager" type="Node" parent="."]
 unique_name_in_owner = true

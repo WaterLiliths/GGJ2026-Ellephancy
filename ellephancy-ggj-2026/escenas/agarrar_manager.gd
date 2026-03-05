@@ -7,6 +7,7 @@ var agarrando : bool = false
 @onready var ray_cast_izq: RayCast2D = %RayCastIzq #se usan para las "manos"
 @onready var ray_cast_der: RayCast2D = %RayCastDer
 signal resetear_velocidad_normal
+signal disminuir_velocidad_agarrando(peso_objeto : float)
 #--------------"MANOS" PARA EVITAR TRABARSE CON LA CAJA---------------
 @onready var mano_test_izq: CollisionShape2D = %CollisionManoIzq
 @onready var mano_test_der: CollisionShape2D = %CollisionManoDer
@@ -59,10 +60,6 @@ func _on_input_manager_tirar_presionado() -> void:
 		agarrar_caja()
 
 
-func disminuir_velocidad_al_agarrar():
-	STATS.velocidad = STATS.velocidad_arrastrando
-
-
 func activar_mano(): #TODAVIA ES NECESARIO, SE SIGUE QUEDANDO ATASCADO
 	if agarrando:
 		return
@@ -85,7 +82,8 @@ func agarrar_caja():
 	if body.ultima_direccion_mirar == direccion_con_caja: #aunque diga == significa que son direcciones opuestas
 		#print("NO AGARRAR, PQ ESTAS MIRANDO OPUESTO A LA CAJA")
 		return
-	disminuir_velocidad_al_agarrar()
+	disminuir_velocidad_agarrando.emit(objeto_empujable.peso)
+	#disminuir_velocidad_al_agarrar()
 	#objeto_empujable.agarrar(body.direction, STATS.velocidad) #esto se ejecuta en el process de este nodo
 	mov_manager.cambiar_de_estado(body.ESTADOS.AGARRAR)
 	#print("en teoria deberia cambiar de estado a agarrar")
