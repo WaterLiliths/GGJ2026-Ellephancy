@@ -105,12 +105,17 @@ func on_sale_de_interactivo(interactivo_actual : Interactivo):
 
 
 func on_disminuir_velocidad_agarrando(peso_caja : float): #señal emitida desde agarrar manager
-	var factor_aumento : float = 7.4
-	var aceleracion_nueva = max(STATS.aceleracion_min_agarrando, STATS.aceleracion - (peso_caja * 200))
-	var velocidad_nueva = max(STATS.velocidad_minima_agarrando, STATS.velocidad_arrastrando - (peso_caja * factor_aumento))
+	#var factor_aumento : float = 7.4
+	#var aceleracion_nueva = max(STATS.aceleracion_min_agarrando, STATS.aceleracion - (peso_caja * 200))
+	#var velocidad_nueva = max(STATS.velocidad_minima_agarrando, STATS.velocidad_arrastrando - (peso_caja * factor_aumento))
+	#STATS.velocidad = velocidad_nueva
+	#STATS.aceleracion = aceleracion_nueva
+	var factor_peso = inverse_lerp(1, 10, peso_caja)
+	var aceleracion_nueva = lerp(STATS.aceleracion, STATS.aceleracion_min_agarrando, factor_peso)
+	var velocidad_nueva = lerp(STATS.velocidad_arrastrando, STATS.velocidad_minima_agarrando, factor_peso)
 	STATS.velocidad = velocidad_nueva
 	STATS.aceleracion = aceleracion_nueva
-	print("MOVER CAJA A VELOCIDAD: ", velocidad_nueva , " y a ACELERACION  :  ", aceleracion_nueva)
+	print("MOVER CAJA A VELOCIDAD: ", velocidad_nueva , " Y ACELERACION : ", aceleracion_nueva)
 
 
 func reset_velocidad_normal(): #se ejecuta en la signal emitida por agarrar manager
