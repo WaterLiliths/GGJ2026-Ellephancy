@@ -26,7 +26,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if not agarrando:
 		return
-	objeto_empujable.agarrar(body.direction, STATS.velocidad) #le da a la caja el mismo movimiento que el player
+	objeto_empujable.agarrar(body.direction, STATS.velocidad, STATS.aceleracion) #le da a la caja el mismo movimiento que el player
 	
 	if not animation_manager.termino_animacion_inicial():
 		return
