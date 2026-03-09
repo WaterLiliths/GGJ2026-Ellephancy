@@ -7,7 +7,7 @@ z_index = -1
 collision_layer = 1153
 collision_mask = 131
 script = ExtResource("1_y074g")
-peso = 1.0
+peso = 10.0
 
 [node name="Impacto" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Objetos/impacto piedra"

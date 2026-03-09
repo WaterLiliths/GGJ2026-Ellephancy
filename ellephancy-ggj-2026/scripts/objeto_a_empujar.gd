@@ -11,6 +11,7 @@ extends CharacterBody2D
 var colision : CollisionShape2D
 var direccion : int = 0
 var velocidad : float = 0.0
+var aceleracion : float = 0.0
 var siendo_agarrada : bool = false
 @onready var impacto: FmodEventEmitter2D = %Impacto
 var sonido_caja_sonando = false
@@ -35,7 +36,8 @@ func _physics_process(delta: float) -> void:
 			impacto.play()
 	if siendo_agarrada:
 		#print("la caja esta siendo agarrada -------------++++++++++++++-----+-+++++++++++++++++++++++++")
-		velocity.x = direccion * velocidad
+		#velocity.x = direccion * velocidad
+		movimiento_horizontal(direccion, delta)
 		if direccion!=0:
 			ejecutar_sonido_arrastrar(peso)
 		else:
@@ -79,16 +81,22 @@ func mostrar_mundo():
 	show()
 
 
-func agarrar(direccion_player : float, velocidad_player : float):
+func agarrar(direccion_player : float, velocidad_player : float, aceleracion_player : float):
 	direccion = direccion_player
 	velocidad = velocidad_player
+	aceleracion = aceleracion_player
 	siendo_agarrada = true
 
 
 func soltar():
 	direccion = 0
 	velocidad = 0
+	aceleracion = 0
 	siendo_agarrada = false
+
+
+func movimiento_horizontal(direccion , delta  :float): #literal la misma funcion q tiene player, ahora la caja no se separa de player cuando hacemos a d a d rapido
+	velocity.x = move_toward(velocity.x, direccion * velocidad, aceleracion * delta)
 
 
 func ejecutar_sonido_arrastrar(peso : float):

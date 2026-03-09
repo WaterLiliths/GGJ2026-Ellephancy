@@ -5,6 +5,7 @@ extends Node #probar pasar a resource
 
 @export var limite_altura_morir : float = 2000
 @export var aceleracion : float = 1800.0
+@export var aceleracion_min_agarrando : float = 200
 @export var desaceleracion : float = 2200.0
 @export var velocidad_max : float = 250.0
 @export var gravedad_subiendo : float = 1.0
@@ -19,10 +20,12 @@ extends Node #probar pasar a resource
 @export var velocidad_correr : float = 40
 @export var fuerza_empuje : float = 2000 #no anda
 @export var velocidad_arrastrando : float = 100.0 #este SI se usa
-@export var velocidad_minima_agarrando : float = 40.0
+@export var velocidad_minima_agarrando : float = 30.0
 var velocidad_inicial_salto : float
 var velocidad_inicial : float
+var aceleracion_inicial : float
 
 func _ready() -> void:
+	aceleracion_inicial = aceleracion
 	velocidad_inicial_salto = velocidad_salto
 	velocidad_inicial = velocidad
