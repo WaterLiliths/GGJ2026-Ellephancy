@@ -115,7 +115,7 @@ func on_disminuir_velocidad_agarrando(peso_caja : float): #señal emitida desde 
 	var velocidad_nueva = lerp(STATS.velocidad_arrastrando, STATS.velocidad_minima_agarrando, factor_peso)
 	STATS.velocidad = velocidad_nueva
 	STATS.aceleracion = aceleracion_nueva
-	print("MOVER CAJA A VELOCIDAD: ", velocidad_nueva , " Y ACELERACION : ", aceleracion_nueva)
+#	print("MOVER CAJA A VELOCIDAD: ", velocidad_nueva , " Y ACELERACION : ", aceleracion_nueva)
 
 
 func reset_velocidad_normal(): #se ejecuta en la signal emitida por agarrar manager
