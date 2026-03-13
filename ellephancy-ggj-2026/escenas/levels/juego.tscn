@@ -172,6 +172,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-176, 302, -219, -2527,
 [node name="Juego" type="Node2D" node_paths=PackedStringArray("manager_de_objetivos")]
 script = ExtResource("1_2y4ua")
 manager_de_objetivos = NodePath("ManagerDeObjetivos")
+metadata/_edit_lock_ = true
 
 [node name="ManagerDeObjetivos" parent="." instance=ExtResource("2_82r4j")]
 
@@ -397,7 +398,7 @@ texture = ExtResource("5_ffuyt")
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank", "res://assets/audio/FmodBanks/Desktop/UI.bank"]
 
 [node name="Player" parent="." node_paths=PackedStringArray("animation_player") instance=ExtResource("8_m34qx")]
-position = Vector2(20505, -1973)
+position = Vector2(185, -66)
 scale = Vector2(0.64, 0.64)
 estoy_testeando_cosas = true
 animation_player = NodePath("../AnimationPlayer")
@@ -406,7 +407,7 @@ empezar_con_mascaras = true
 [node name="Camera2D" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(20505, -2043)
+position = Vector2(600, -136)
 zoom = Vector2(1.6, 1.6)
 limit_left = 0
 limit_bottom = 1200
@@ -487,7 +488,7 @@ player = NodePath("..")
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(20505, -2043)
+position = Vector2(600, -136)
 script = ExtResource("12_g2cn0")
 follow_mode = 2
 follow_target = NodePath("../Player/Node2D")
@@ -686,6 +687,7 @@ presente = true
 [node name="Puzzle2" type="Node2D" parent="Niveles/SecondLevel"]
 
 [node name="PalancaPuzzle2" parent="Niveles/SecondLevel/Puzzle2" instance=ExtResource("20_u0ym6")]
+z_index = 0
 position = Vector2(1118, -905)
 id = 2
 tipo_de_palanca = "buena"
