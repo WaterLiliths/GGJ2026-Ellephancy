@@ -78,6 +78,7 @@ func cargar_datos():
 		tiene_mascara_traducciones = config.get_value("ningu_saves_player", "tiene_mascara_traducciones", false)
 		tiene_mascara_tiempo = config.get_value("ningu_saves_player", "tiene_mascara_tiempo", false)
 		mascara_activa = config.get_value("ningu_saves_player", "mascara_activa", 0)
+		get_tree().call_group("persistente", "cargar")
 	else:
 		print("No se encontro un archivo para cargar")
 

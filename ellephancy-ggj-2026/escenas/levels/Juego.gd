@@ -11,7 +11,7 @@ func _ready() -> void:
 	#$Player/Camera2D/Control/IconoMascaraCiervo.hide()
 #	$Opciones.visible = false
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
-
+	Global.cargar_datos() #el primer cargar datos en GLOBAL se ejecuta apenas abro el juego, luego este se ejecuta apenas arranco el juego, asi me aseguro q se carguen los estados de los objetos, igual estoy testeando
 	Global.mascara_tiempo_activa.connect(cambiar_ambiente_pasado)
 	Global.mascara_tiempo_desactivar.connect(cambiar_sonido_presente)
 	

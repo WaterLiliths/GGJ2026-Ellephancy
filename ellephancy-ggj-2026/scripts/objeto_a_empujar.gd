@@ -109,3 +109,6 @@ func ejecutar_sonido_arrastrar(peso : float):
 func detener_sonido_arrastrar():
 	sonido_caja_sonando = false
 	fmod_arrastrar.stop()
+
+func cargar():
+	print("se ejecuto cargar en el objeto empujable")
