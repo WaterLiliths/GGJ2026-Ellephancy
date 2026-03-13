@@ -119,3 +119,4 @@ layout_mode = 2
 [connection signal="drag_ended" from="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HSliderMusica" to="." method="_on_h_slider_musica_drag_ended"]
 [connection signal="drag_ended" from="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HSlider2Efectos" to="." method="_on_h_slider_2_efectos_drag_ended"]
 [connection signal="drag_ended" from="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HSlider3Ambiente" to="." method="_on_h_slider_3_ambiente_drag_ended"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/BotonCustom" to="." method="_on_boton_custom_pressed"]
