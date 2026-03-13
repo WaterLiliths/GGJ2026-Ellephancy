@@ -31,7 +31,7 @@ func setup_sliders_y_botones():
 		Callable(self, "_on_ambiente_changed")
 	)
 
-	#cerrar.pressed.connect(
+	#cerrar.pressed.connect( #INFO tiraba un error, consultarle a attie si hay q volver a ponerlo
 		#Callable(self, "_on_boton_custom_pressed")
 	#)
 
