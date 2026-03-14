@@ -78,7 +78,14 @@ func cargar_datos():
 		tiene_mascara_traducciones = config.get_value("ningu_saves_player", "tiene_mascara_traducciones", false)
 		tiene_mascara_tiempo = config.get_value("ningu_saves_player", "tiene_mascara_tiempo", false)
 		mascara_activa = config.get_value("ningu_saves_player", "mascara_activa", 0)
-		get_tree().call_group("persistente", "cargar")
+		
+		#get_tree().call_group("persistente", "cargar") #TODO pedir un ayudin pq me esta re costando wacho
+		#var cosas_persistentes = get_tree().get_nodes_in_group("persistente")
+		#var contador = 0
+		#for cosa in cosas_persistentes:
+			#contador += 1
+			#print("iteracion ", contador)
+			#print(cosa) #TODO VER LA FORMA DE GUARDAR LA ESCENA COMPLETA O NODO PERO SIN TENER QUE BORRAR EL ANTERIOR, SOLO CARGAR SU INFO NUEVAMENTE
 	else:
 		print("No se encontro un archivo para cargar")
 
