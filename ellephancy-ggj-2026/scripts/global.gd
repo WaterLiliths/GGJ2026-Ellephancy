@@ -22,8 +22,9 @@ signal player_detecto_caida(tiempo_en_aire : float) #emitida por player y escuch
 
 var mascara_activa : int = 0
 #----------------PALANCA Y PUERTA------------------
-signal activar_palanca(id_palanca : int)
-signal desactivar_palanca(id_palanca : int)
+signal activar_mecanismo(mecanismo)
+signal desactivar_mecanismo(mecanismo)
+
 
 signal puerta_abierta(position)
 signal tipo_de_suelo
