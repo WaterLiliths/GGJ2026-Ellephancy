@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=4 uid="uid://dkudwre2b373"]
+[gd_scene load_steps=65 format=4 uid="uid://dkudwre2b373"]
 
 [ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/Juego.gd" id="1_2y4ua"]
 [ext_resource type="PackedScene" uid="uid://c4fdbwaawyx0w" path="res://escenas/nodos_funcionalidades/manager_de_objetivos.tscn" id="2_82r4j"]
@@ -45,6 +45,7 @@
 [ext_resource type="PackedScene" uid="uid://defcvbq6uycyv" path="res://escenas/world_objects/arbol_con_particulas.tscn" id="43_vy46r"]
 [ext_resource type="PackedScene" uid="uid://dfdnm440xn2ej" path="res://escenas/world_objects/base_optica_estatica.tscn" id="44_4ti0m"]
 [ext_resource type="PackedScene" uid="uid://dy8nlt4mrvp53" path="res://escenas/world_objects/base_optica_movible.tscn" id="45_a3gqp"]
+[ext_resource type="PackedScene" uid="uid://c4x71yw8rmu1n" path="res://escenas/placa_de_presion.tscn" id="46_8gjer"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fe420"]
 size = Vector2(304.0625, 544.375)
@@ -398,7 +399,7 @@ texture = ExtResource("5_ffuyt")
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank", "res://assets/audio/FmodBanks/Desktop/UI.bank"]
 
 [node name="Player" parent="." node_paths=PackedStringArray("animation_player") instance=ExtResource("8_m34qx")]
-position = Vector2(185, -66)
+position = Vector2(3691.5603, -153.06122)
 scale = Vector2(0.64, 0.64)
 estoy_testeando_cosas = true
 animation_player = NodePath("../AnimationPlayer")
@@ -407,7 +408,7 @@ empezar_con_mascaras = true
 [node name="Camera2D" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(600, -136)
+position = Vector2(3691.5603, -223.06122)
 zoom = Vector2(1.6, 1.6)
 limit_left = 0
 limit_bottom = 1200
@@ -488,7 +489,7 @@ player = NodePath("..")
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(600, -136)
+position = Vector2(3691.5603, -223.06122)
 script = ExtResource("12_g2cn0")
 follow_mode = 2
 follow_target = NodePath("../Player/Node2D")
@@ -523,10 +524,10 @@ id = 1
 tipo_de_palanca = "oxidada"
 timer = 2.0
 
-[node name="PuertaPuzzle1" parent="Niveles/FirstLevelWorks/Puzzle1" instance=ExtResource("21_xkwlr")]
+[node name="PuertaPuzzle1" parent="Niveles/FirstLevelWorks/Puzzle1" node_paths=PackedStringArray("activadores") instance=ExtResource("21_xkwlr")]
 z_index = -4
 position = Vector2(18201, 2059)
-id_puerta = 1
+activadores = [NodePath("../../../../PlacaDePresion")]
 altura_maxima = 300.0
 
 [node name="MapaPresente" type="Node2D" parent="Niveles/FirstLevelWorks"]
@@ -634,7 +635,7 @@ scale = Vector2(7, 7)
 texture = ExtResource("33_nqex6")
 
 [node name="Empujable1" parent="Niveles/FirstLevelWorks" instance=ExtResource("37_a3gqp")]
-position = Vector2(3591, -926)
+position = Vector2(3839, -167)
 
 [node name="Sprite2D" type="Sprite2D" parent="Niveles/FirstLevelWorks/Empujable1"]
 scale = Vector2(0.565, 0.565)
@@ -700,9 +701,6 @@ tipo_de_palanca = "buena"
 [node name="PuertaPuzzle2" parent="Niveles/SecondLevel/Puzzle2" instance=ExtResource("21_xkwlr")]
 z_index = -5
 position = Vector2(695, 654)
-id_puerta = 2
-varias_palancas = true
-cant_palancas = 2
 altura_maxima = 350.0
 tiempo_de_apertura = 2.5
 
@@ -716,7 +714,6 @@ tipo_de_palanca = "oxidada"
 [node name="Puerta" parent="Niveles/SecondLevel/Puzzle3" instance=ExtResource("21_xkwlr")]
 z_index = -1
 position = Vector2(1799, 39)
-id_puerta = 3
 
 [node name="CheckpointArea" parent="Niveles/SecondLevel" instance=ExtResource("24_g0try")]
 z_index = -1
@@ -781,6 +778,10 @@ manivela = NodePath("../Manivela")
 
 [node name="BaseOpticaMovible" parent="." instance=ExtResource("45_a3gqp")]
 position = Vector2(5157.44, -154.69)
+collision_layer = 0
+
+[node name="PlacaDePresion" parent="." instance=ExtResource("46_8gjer")]
+position = Vector2(4035, -26)
 
 [connection signal="body_entered" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_entered"]
 [connection signal="body_exited" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_exited"]

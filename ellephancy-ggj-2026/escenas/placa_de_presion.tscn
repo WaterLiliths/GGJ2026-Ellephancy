@@ -1,6 +1,75 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4x71yw8rmu1n"]
+[gd_scene load_steps=7 format=3 uid="uid://c4x71yw8rmu1n"]
 
 [ext_resource type="Script" uid="uid://cohfxqdbat5i" path="res://placa_de_presion.gd" id="1_opkvq"]
+[ext_resource type="Texture2D" uid="uid://cue02iqs2lydg" path="res://assets/sprites/placa_de_presion/placa_presion_s1.png" id="2_0lxmu"]
+[ext_resource type="Texture2D" uid="uid://c0cl8d4vlbouf" path="res://assets/sprites/placa_de_presion/placa_presion_s2.png" id="3_2yv2v"]
+[ext_resource type="Texture2D" uid="uid://ck00htnur1lak" path="res://assets/sprites/placa_de_presion/placa_presion_s3.png" id="4_oo2gh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jv18q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0lxmu")
+}],
+"loop": false,
+"name": &"PrimerFrame",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0lxmu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2yv2v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_oo2gh")
+}],
+"loop": false,
+"name": &"activar",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_oo2gh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2yv2v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_0lxmu")
+}],
+"loop": false,
+"name": &"desactivar",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0lxmu"]
+size = Vector2(10, 38)
 
 [node name="PlacaDePresion" type="Node2D"]
 script = ExtResource("1_opkvq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(0.47, 0.3)
+sprite_frames = SubResource("SpriteFrames_jv18q")
+animation = &"PrimerFrame"
+autoplay = "PrimerFrame"
+
+[node name="AreaDetectar" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_mask = 129
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDetectar"]
+position = Vector2(0, 13)
+shape = SubResource("RectangleShape2D_0lxmu")
+debug_color = Color(6.738305e-07, 0.6421155, 0.32836702, 0.41960785)
+
+[node name="FmodActivarPlaca" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Objetos/revelar palabra"
+event_guid = "{bbc29be1-3174-4355-921b-261e3f1121e0}"
+unique_name_in_owner = true
+
+[connection signal="body_entered" from="AreaDetectar" to="." method="_on_area_detectar_body_entered"]
+[connection signal="body_exited" from="AreaDetectar" to="." method="_on_area_detectar_body_exited"]
