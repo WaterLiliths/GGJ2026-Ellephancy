@@ -2,7 +2,7 @@ extends Node2D
 
 
 @onready var animated_sprite : AnimatedSprite2D = %AnimatedSprite2D
-@export var tiempo_de_activacion : float = 1.2
+@export var tiempo_de_activacion : float = 0.8
 var activo : bool = false
 var contador_pisando : int = 0
 var tiempo_body_entered : float = 0

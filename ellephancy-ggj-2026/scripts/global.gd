@@ -68,6 +68,11 @@ func guardar_datos():
 	config.set_value("ningu_saves_player", "tiene_mascara_traducciones", tiene_mascara_traducciones)
 	config.set_value("ningu_saves_player", "tiene_mascara_tiempo", tiene_mascara_tiempo)
 	config.set_value("ningu_saves_player", "mascara_activa", mascara_activa)
+
+	#var nodos_persistentes = get_tree().get_nodes_in_group("persistente") #testeando
+	#config.set_value("ningu_saves_player", "nodos_persistentes", nodos_persistentes)
+	
+	#print("NODOS PERSISTENTES VALE : ", nodos_persistentes)
 	config.save("user://ningu_config_file.cfg")
 
 
@@ -79,6 +84,12 @@ func cargar_datos():
 		tiene_mascara_traducciones = config.get_value("ningu_saves_player", "tiene_mascara_traducciones", false)
 		tiene_mascara_tiempo = config.get_value("ningu_saves_player", "tiene_mascara_tiempo", false)
 		mascara_activa = config.get_value("ningu_saves_player", "mascara_activa", 0)
+		
+		#probandoooooooo
+		#var nodos_persistentes_actuales = get_tree().get_nodes_in_group("persistente")
+		#var nodos_persistentes_load = config.get_value("ningu_saves_player", "nodos_persistentes", 0)
+		#for nodo in nodos_persistentes_actuales:
+			#nodo.replace_by(nodos_persistentes_load[nodo], true)
 		
 		#get_tree().call_group("persistente", "cargar") #TODO pedir un ayudin pq me esta re costando wacho
 		#var cosas_persistentes = get_tree().get_nodes_in_group("persistente")
