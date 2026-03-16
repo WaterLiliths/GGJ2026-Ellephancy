@@ -21,6 +21,7 @@ func _physics_process(delta: float) -> void:
 func _on_area_detectar_body_entered(body: Node2D) -> void:
 	if body is Player or body is Empujable:
 		contador_pisando += 1
+		#mi idea de meterle tiempo para activar es q aca pongamos un sonidito de pisando la placa
 
 
 func _on_area_detectar_body_exited(body: Node2D) -> void:
