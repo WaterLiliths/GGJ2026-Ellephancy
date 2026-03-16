@@ -112,4 +112,4 @@ func detener_sonido_arrastrar():
 
 func cargar():
 	print("-- se ejecuto cargar en el objeto empujable")
-	#print("-- la ruta del objeto es : ", get_path()) #y aca no sabia como obtener el uid
+	#print("-- la ruta del objeto es : ", get_path()) 
