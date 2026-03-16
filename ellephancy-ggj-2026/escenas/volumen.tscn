@@ -78,6 +78,7 @@ layout_mode = 2
 text = "Música"
 
 [node name="HSliderMusica" type="HSlider" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 process_mode = 3
 layout_mode = 2
 theme = ExtResource("3_2t4j8")
@@ -89,6 +90,7 @@ layout_mode = 2
 text = "Efectos"
 
 [node name="HSlider2Efectos" type="HSlider" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_2t4j8")
 max_value = 1.0
@@ -99,6 +101,7 @@ layout_mode = 2
 text = "Ambiente"
 
 [node name="HSlider3Ambiente" type="HSlider" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_2t4j8")
 max_value = 1.0
@@ -109,6 +112,7 @@ custom_minimum_size = Vector2(0, 38.16)
 layout_mode = 2
 
 [node name="BotonCustom" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("4_c738a")]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Cerrar"
 
@@ -119,3 +123,4 @@ layout_mode = 2
 [connection signal="drag_ended" from="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HSliderMusica" to="." method="_on_h_slider_musica_drag_ended"]
 [connection signal="drag_ended" from="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HSlider2Efectos" to="." method="_on_h_slider_2_efectos_drag_ended"]
 [connection signal="drag_ended" from="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HSlider3Ambiente" to="." method="_on_h_slider_3_ambiente_drag_ended"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/BotonCustom" to="." method="_on_boton_custom_pressed"]

@@ -5,13 +5,12 @@ var resolucion_default = DisplayServer.screen_get_size(DisplayServer.window_get_
 @onready var h_slider_musica: HSlider = %HSliderMusica
 @onready var h_slider_2_efectos: HSlider = %HSlider2Efectos
 @onready var h_slider_3_ambiente: HSlider = %HSlider3Ambiente
-@onready var cerrar: BotonCustom = %Cerrar
+@onready var cerrar: BotonCustom = %BotonCustom
 
 
 func _ready() -> void:
-	#setup_sliders_y_botones()
-	pass
-
+	hide()
+	setup_sliders_y_botones()
 
 func setup_sliders_y_botones():
 	#si te tira un error aca poner un return
@@ -32,9 +31,9 @@ func setup_sliders_y_botones():
 		Callable(self, "_on_ambiente_changed")
 	)
 
-	cerrar.pressed.connect(
-		Callable(self, "_on_boton_custom_pressed")
-	)
+	#cerrar.pressed.connect( #INFO tiraba un error, consultarle a attie si hay q volver a ponerlo
+		#Callable(self, "_on_boton_custom_pressed")
+	#)
 
 func _on_musica_changed(value: float) -> void:
 	Global.volumen_musica = value
