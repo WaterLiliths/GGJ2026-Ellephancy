@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @export_group("MODO TESTEO")
 @export var estoy_testeando_cosas : bool = false
+@export var cargar_datos : bool = false
 
 @export_group("Mobile")
 ##si ponemos en true se instancia la escena de los botones como hijo de player
