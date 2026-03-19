@@ -110,6 +110,22 @@ func detener_sonido_arrastrar():
 	sonido_caja_sonando = false
 	fmod_arrastrar.stop()
 
+
+#se llaman en global con get_tree().call_group("persistente", "guardar") y para cargar igual
+func guardar():
+	ultima_posicion = global_position
+	#print("##### Objeto guardado con la key: ", get_path())
+	Global.diccionario_persistentes[get_path()] = ultima_posicion #justo en este caso no necesito guardar mas info que la posicion
+	#pero en los otros objetos podemos guardar mas cosas en un diccionario adentro de otro
+
+
 func cargar():
-	print("-- se ejecuto cargar en el objeto empujable")
-	#print("-- la ruta del objeto es : ", get_path()) #y aca no sabia como obtener el uid
+#	print("-- se ejecuto cargar en el objeto empujable  : ", get_path())
+	if Global.diccionario_persistentes.has(get_path()):
+		#print("-------  ENCONTRE MI KEY EN EL DICCIONARIOOOOO ")
+		ultima_posicion = Global.diccionario_persistentes[get_path()] #directamente pido lo q tenia guardado en esa key pq solo guardamos la posicion
+		global_position = ultima_posicion
+	else:
+		guardar() #si por algun motivo no se habia guardado anteriormente, lo guardo con la posicion actual
+	#	print("ATENCION ----- NO SE ENCONTRO MI INFO EN EL DICCIONARIO ")
+	

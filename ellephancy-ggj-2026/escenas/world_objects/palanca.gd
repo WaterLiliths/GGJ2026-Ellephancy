@@ -20,7 +20,7 @@ var color : Color
 
 signal palanca_con_runa_activada(palanca, runa)
 
-
+ 
 func _ready() -> void:
 	Global.mascara_traducciones_activa.connect(mostrar_runas)
 	Global.mascara_traducciones_desactivar.connect(esconder_runas)
@@ -40,7 +40,7 @@ func _process(_delta: float) -> void:
 
 #-------------FUNCIONES------------------
 func activar() -> void:
-	esta_encendida = !esta_encendida
+	esta_encendida = !esta_encendida #para que se ejecute 
 	if esta_encendida and not tipo_de_palanca == "fallada":
 		if timeada:
 			$TimerPalanca.start()
@@ -94,12 +94,21 @@ func _on_timer_palanca_timeout() -> void:
 		$AnimationPlayer.play("desactivar")
 		$FmodEventEmitter2D.play()
 
-func reproducir_animacion(activar: String):
+func reproducir_animacion(activar: String, cargando_datos : bool = false):
 	if animation_player.is_playing():
 		animation_player.stop()
+	
 	animation_player.play(activar + "_" + tipo_de_palanca)
-	$FmodEventEmitter2D.set_parameter("TipoDePalanca", tipo_de_palanca)
-	$FmodEventEmitter2D.play()
+	if not cargando_datos:
+		#solo ejecutar sonido cuando se activa de verdad
+		$FmodEventEmitter2D.set_parameter("TipoDePalanca", tipo_de_palanca)
+		$FmodEventEmitter2D.play()
+	else:
+		#si estoy cargando datos directamente salteo la animacion al final
+		var duracion_anim = animation_player.get_animation(activar + "_" + tipo_de_palanca).length
+		print("la duracion vale : ", duracion_anim)
+		animation_player.seek(duracion_anim, true) #para adelantar la animacion al final
+		animation_player.play(activar + "_" + tipo_de_palanca + "_"  +"estatico")
 
 
 func emitir_señal(activar: bool):
@@ -147,3 +156,61 @@ func setup_runas():
 		runa.rotation = posicionador_de_runa.rotation
 		
 	emitir_señal(true)
+
+#----------------------------- GUARDAR Y CARGAR -------------------------
+
+#se llaman en global con get_tree().call_group("persistente", "guardar") y para cargar igual
+func guardar():
+	#print("##### Objeto guardado con la key: ", get_path())
+	Global.diccionario_persistentes[get_path()] = {"esta_encendida" = esta_encendida} #guardo con un diccionario adentro de otro
+
+
+func cargar():
+	#print("-- se ejecuto cargar en el objeto empujable  : ", get_path())
+	if Global.diccionario_persistentes.has(get_path()):
+		#print("-------  ENCONTRE MI KEY EN EL DICCIONARIOOOOO ")
+		esta_encendida = Global.diccionario_persistentes[get_path()]["esta_encendida"]
+		simular_activacion()
+	else:
+		guardar() #si por algun motivo no se habia guardado anteriormente, lo guardo con la posicion actual
+		#print("ATENCION ----- NO SE ENCONTRO MI INFO EN EL DICCIONARIO ")
+
+
+
+func simular_activacion(): #simulamos el estado activo / inactivo pero sin emitir sonidos ni emitir señales
+	#la idea es q sea solamente visual y al momento de cargar datos
+	if not esta_encendida:
+		#la palanca ya viene con esta variable en false, si se da ese caso no hacer nada
+		return
+	if esta_encendida and not tipo_de_palanca == "fallada":
+		#if timeada:
+			#$TimerPalanca.start()
+		match tipo_de_palanca:
+			"buena":
+				reproducir_animacion("activar", true)
+				#await $AnimationPlayer.animation_finished
+			"oxidada":
+				reproducir_animacion("activar", true)
+				#await $AnimationPlayer.animation_finished
+			"runas":
+				reproducir_animacion("activar", true)
+				#await get_tree().create_timer(0.5).timeout
+		#emitir_señal(true)
+		tween_entrada_luz_verde()
+		return
+	if !esta_encendida and not tipo_de_palanca == "fallada":
+		match tipo_de_palanca:
+			"buena":
+				reproducir_animacion("desactivar", true)
+				await $AnimationPlayer.animation_finished
+			"oxidada":
+				reproducir_animacion("desactivar", true)
+				await $AnimationPlayer.animation_finished
+			"runas":
+				reproducir_animacion("activar", true)
+				await get_tree().create_timer(0.5).timeout
+		#emitir_señal(false)
+		tween_salida_luz_verde()
+		return
+	if tipo_de_palanca == "fallada":
+		$AnimationPlayer.play("fallada")

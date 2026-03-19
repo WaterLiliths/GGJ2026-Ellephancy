@@ -35,12 +35,14 @@ var volumen_general : float = 0.8
 var volumen_musica : float = 1.0 * volumen_general
 var volumen_efectos : float = 1.0 * volumen_general
 var volumen_ambiente : float = 1.0 * volumen_general
-
+var diccionario_persistentes : Dictionary = {}
 var checkpoint_position : Vector2 
 
 
 func _ready() -> void:
-	cargar_datos()
+	#cargar_datos()
+	#INFO mejor lo pongo en el ready de juego x ahora
+	pass
 
 func set_checkpoint_position(nueva_pos : Vector2): #la llamo en escena checkpoint
 	#if nueva_pos == checkpoint_position: #si son iguales, no la guardo, ya estuve en este checkpoint
@@ -68,11 +70,13 @@ func guardar_datos():
 	config.set_value("ningu_saves_player", "tiene_mascara_traducciones", tiene_mascara_traducciones)
 	config.set_value("ningu_saves_player", "tiene_mascara_tiempo", tiene_mascara_tiempo)
 	config.set_value("ningu_saves_player", "mascara_activa", mascara_activa)
-
-	#var nodos_persistentes = get_tree().get_nodes_in_group("persistente") #testeando
-	#config.set_value("ningu_saves_player", "nodos_persistentes", nodos_persistentes)
 	
-	#print("NODOS PERSISTENTES VALE : ", nodos_persistentes)
+	get_tree().call_group("persistente", "guardar")
+	#en la linea de arriba hacemos q cada objeto guarde su info en el diccionario
+	#y ahora q ya cargaron info puedo guardar el diccionario
+	config.set_value("ningu_saves_player", "diccionario_persistentes", diccionario_persistentes)
+	
+	
 	config.save("user://ningu_config_file.cfg")
 
 
@@ -85,19 +89,12 @@ func cargar_datos():
 		tiene_mascara_tiempo = config.get_value("ningu_saves_player", "tiene_mascara_tiempo", false)
 		mascara_activa = config.get_value("ningu_saves_player", "mascara_activa", 0)
 		
-		#probandoooooooo
-		#var nodos_persistentes_actuales = get_tree().get_nodes_in_group("persistente")
-		#var nodos_persistentes_load = config.get_value("ningu_saves_player", "nodos_persistentes", 0)
-		#for nodo in nodos_persistentes_actuales:
-			#nodo.replace_by(nodos_persistentes_load[nodo], true)
+		#al reves de guardar, aca primero busco el diccionario
+		diccionario_persistentes = config.get_value("ningu_saves_player","diccionario_persistentes", {})
+		#y dsp le digo a cada objeto que busque su info en el diccionario con su propia key
+		get_tree().call_group("persistente", "cargar")
+	#	print("--- de paso muestro como esta cargado el diccionario : ", diccionario_persistentes)
 		
-		#get_tree().call_group("persistente", "cargar") #TODO pedir un ayudin pq me esta re costando wacho
-		#var cosas_persistentes = get_tree().get_nodes_in_group("persistente")
-		#var contador = 0
-		#for cosa in cosas_persistentes:
-			#contador += 1
-			#print("iteracion ", contador)
-			#print(cosa) #TODO VER LA FORMA DE GUARDAR LA ESCENA COMPLETA O NODO PERO SIN TENER QUE BORRAR EL ANTERIOR, SOLO CARGAR SU INFO NUEVAMENTE
 	else:
 		print("No se encontro un archivo para cargar")
 
