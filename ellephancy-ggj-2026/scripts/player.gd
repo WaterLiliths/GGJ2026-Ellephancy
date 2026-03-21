@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @export_group("MODO TESTEO")
 @export var estoy_testeando_cosas : bool = false
+##True para que player le avise a Global que cargue los datos - False para no hacer nada (si testeamos cosas lo ponemos en false)
 @export var cargar_datos : bool = false
 
 @export_group("Mobile")
@@ -26,9 +27,6 @@ extends CharacterBody2D
 @export_group("Empezar con mascara")
 @export var empezar_con_mascaras : bool = false
 
-#--------------"MANOS" PARA EVITAR TRABARSE CON LA CAJA---------------
-#@onready var mano_test_izq: CollisionShape2D = %CollisionManoIzq
-#@onready var mano_test_der: CollisionShape2D = %CollisionManoDer
 #-------------------------------
 var ultimo_tiempo_en_aire : float = 0
 var tiempo_en_el_aire_actual: float = 0
@@ -65,6 +63,8 @@ func _ready() -> void:
 		add_child(instancia_botones)
 	await get_tree().create_timer(0.1).timeout #el timer QUIZAS no es necesario, pero puede evitar algun q otro bug
 	manejar_checkpoint_position()
+	if cargar_datos:
+		Global.cargar_datos()
 
 
 func _physics_process(delta: float) -> void:
@@ -87,7 +87,7 @@ func _physics_process(delta: float) -> void:
 	if not sonido_caida_emitiendo: 
 		sound_manager.emitir_sonido_caida()
 		#------------------------INTERACTUAR------------------------
-		#TODO MOVER AL INPUT MANAGER
+		#TODO MOVER AL INPUT MANAGER o mover a la palanca
 	if puede_interactuar and objeto_interactivo is Palanca and Input.is_action_just_pressed("interactuar"):
 		objeto_interactivo.activar()
 		animation_manager.ejecutar_animacion_palanca()
@@ -106,11 +106,6 @@ func on_sale_de_interactivo(interactivo_actual : Interactivo):
 
 
 func on_disminuir_velocidad_agarrando(peso_caja : float): #señal emitida desde agarrar manager
-	#var factor_aumento : float = 7.4
-	#var aceleracion_nueva = max(STATS.aceleracion_min_agarrando, STATS.aceleracion - (peso_caja * 200))
-	#var velocidad_nueva = max(STATS.velocidad_minima_agarrando, STATS.velocidad_arrastrando - (peso_caja * factor_aumento))
-	#STATS.velocidad = velocidad_nueva
-	#STATS.aceleracion = aceleracion_nueva
 	var factor_peso = inverse_lerp(1, 10, peso_caja)
 	var aceleracion_nueva = lerp(STATS.aceleracion, STATS.aceleracion_min_agarrando, factor_peso)
 	var velocidad_nueva = lerp(STATS.velocidad_arrastrando, STATS.velocidad_minima_agarrando, factor_peso)
@@ -154,7 +149,6 @@ func procesar_dialogo_activo():
 	#print("esta aca en procesar dialogoooooooooooooooooooo")
 	direction = 0
 	velocity.x = 0
-
 
 func matar_player():
 	if reviviendo_player:

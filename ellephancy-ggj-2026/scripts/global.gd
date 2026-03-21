@@ -37,7 +37,6 @@ var volumen_efectos : float = 1.0 * volumen_general
 var volumen_ambiente : float = 1.0 * volumen_general
 var diccionario_persistentes : Dictionary = {}
 var checkpoint_position : Vector2 
-var quiero_cargar_datos : bool = false
 
 
 func _ready() -> void:
@@ -82,9 +81,7 @@ func guardar_datos():
 
 
 func cargar_datos():
-	if not quiero_cargar_datos: #CONTINUAR PQ PLAYER NO ENVIA LA SIGNAL 
-		print("Desde Player se aviso que no quiero cargar datos")
-		return
+	print("Se llamo a cargar datos")
 	var config = ConfigFile.new()
 	if config.load("user://ningu_config_file.cfg") == OK: #ok es q no dio errores
 		checkpoint_position = config.get_value("ningu_saves_player", "checkpoint", Vector2.ZERO) #el ultimo parametro es el default por si no habia nada guardado ahi
