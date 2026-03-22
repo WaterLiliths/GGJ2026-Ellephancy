@@ -8,6 +8,10 @@ var contador_pisando : int = 0
 var tiempo_body_entered : float = 0
 
 
+@export var se_activa_con_player : bool = false
+@export var se_activa_con_empujable : bool = false
+
+
 func _physics_process(delta: float) -> void:
 	if contador_pisando > 0: #hay al menos 1 body pisando la placa
 		tiempo_body_entered += delta #empiezp a sumarle tiempo
@@ -19,7 +23,9 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_detectar_body_entered(body: Node2D) -> void:
-	if body is Player or body is Empujable:
+	if body is Player and se_activa_con_player:
+		contador_pisando += 1
+	elif body is Empujable and se_activa_con_empujable:
 		contador_pisando += 1
 		#mi idea de meterle tiempo para activar es q aca pongamos un sonidito de pisando la placa
 
