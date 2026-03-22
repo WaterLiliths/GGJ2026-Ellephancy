@@ -782,6 +782,7 @@ collision_layer = 0
 
 [node name="PlacaDePresion" parent="." instance=ExtResource("46_8gjer")]
 position = Vector2(4035, -26)
+se_activa_con_empujable = true
 
 [connection signal="body_entered" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_entered"]
 [connection signal="body_exited" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_exited"]
