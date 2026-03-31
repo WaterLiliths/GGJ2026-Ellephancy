@@ -102,9 +102,7 @@ func abrir_puerta():
 
 	esta_abierta = true
 	Global.puerta_abierta.emit(global_position, tiempo_de_apertura)
-	var conexiones = Global.get_signal_connection_list("puerta_abierta")
-	#for conectadas in conexiones:
-		#print("-------------- LA SEÑAL DE LA PUERTA ESTA CONECTADA AAAAAAAAAAAAAA -----------  ", conectadas["callable"])
+	#var conexiones = Global.get_signal_connection_list("puerta_abierta")
 	
 	timer_tiempo_de_apertura.start()
 	#print("la puerta esta abierta")
