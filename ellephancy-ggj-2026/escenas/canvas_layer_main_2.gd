@@ -1,27 +1,23 @@
 extends CanvasLayer
 
-var musica
-var efectos
-var ambiente
 var resolucion_default = DisplayServer.screen_get_size(DisplayServer.window_get_current_screen())
 
 @onready var h_slider_musica: HSlider = %HSliderMusica
 @onready var h_slider_2_efectos: HSlider = %HSlider2Efectos
 @onready var h_slider_3_ambiente: HSlider = %HSlider3Ambiente
-@onready var cerrar: BotonCustom = %Cerrar
+@onready var cerrar: BotonCustom = %BotonCustom
 
 
 func _ready() -> void:
+	hide()
 	setup_sliders_y_botones()
 
 func setup_sliders_y_botones():
+	#si te tira un error aca poner un return
+	#igual hay que arreglarlo
 	h_slider_musica.value = Global.volumen_musica
 	h_slider_2_efectos.value = Global.volumen_efectos
 	h_slider_3_ambiente.value = Global.volumen_ambiente
-	
-	musica = h_slider_musica
-	efectos = h_slider_2_efectos
-	ambiente = h_slider_3_ambiente
 	
 	h_slider_musica.value_changed.connect(
 		Callable(self, "_on_musica_changed")
@@ -35,23 +31,26 @@ func setup_sliders_y_botones():
 		Callable(self, "_on_ambiente_changed")
 	)
 
-	cerrar.pressed.connect(
-		Callable(self, "_on_boton_custom_pressed")
-	)
+	#cerrar.pressed.connect( #INFO tiraba un error, consultarle a attie si hay q volver a ponerlo
+		#Callable(self, "_on_boton_custom_pressed")
+	#)
 
 func _on_musica_changed(value: float) -> void:
 	Global.volumen_musica = value
-	musica = value
+	Global.cambiar_volumen.emit()
+	h_slider_musica.value = value
 
 
 func _on_efectos_changed(value: float) -> void:
 	Global.volumen_efectos = value
-	efectos = value
+	Global.cambiar_volumen.emit()
+	h_slider_2_efectos.value = value
 
 
 func _on_ambiente_changed(value: float) -> void:
 	Global.volumen_ambiente = value
-	ambiente = value
+	Global.cambiar_volumen.emit()
+	h_slider_3_ambiente.value = value
 
 
 func _on_boton_custom_pressed() -> void:

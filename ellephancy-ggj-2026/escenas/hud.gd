@@ -58,6 +58,8 @@ func _on_btn_si_pressed() -> void:
 	await get_tree().process_frame
 	pausa_activa = false
 	get_tree().paused = false
+	print("salir al menu de inicio")
+	Global.guardar_datos()
 	get_tree().change_scene_to_packed(escena_menu_inicio)
 
 
@@ -74,3 +76,11 @@ func _on_boton_custom_pressed() -> void:
 func _on_btn_restart_pressed() -> void:
 	pausar()
 	Global.restart.emit() #la escucha player, solo para el showcase?
+
+
+func _on_btn_cargar_test_pressed() -> void:
+	Global.cargar_datos()
+
+
+func _on_btn_guardar_test_pressed() -> void:
+	Global.guardar_datos()

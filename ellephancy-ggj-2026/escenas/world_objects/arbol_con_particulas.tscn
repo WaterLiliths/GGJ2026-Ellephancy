@@ -1,0 +1,128 @@
+[gd_scene load_steps=12 format=3 uid="uid://defcvbq6uycyv"]
+
+[ext_resource type="Texture2D" uid="uid://bmsqffqvxx8so" path="res://assets/sprites/ambient/arbol.PNG" id="1_40gr1"]
+[ext_resource type="Texture2D" uid="uid://c102kiki0djqs" path="res://assets/texturas particulas/hoja_2.png" id="2_ntp3b"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ntp3b"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_ntp3b"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.3360996, 0.7219917, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_umuxk"]
+gradient = SubResource("Gradient_ntp3b")
+
+[sub_resource type="Curve" id="Curve_ntp3b"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.26966295, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(0.7415731, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_umuxk"]
+curve = SubResource("Curve_ntp3b")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ntp3b"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(-21.335, -13.4, 0)
+emission_shape_scale = Vector3(4.295, 2.86, 1)
+emission_shape = 2
+emission_sphere_radius = 54.12
+angle_min = -68.29999
+angle_max = 95.500015
+direction = Vector3(-1, 0, 0)
+spread = 0.0
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+angular_velocity_min = -246.90001
+angular_velocity_max = 246.79997
+orbit_velocity_min = 9.49949e-08
+orbit_velocity_max = 9.49949e-08
+gravity = Vector3(-0.5, 1, 0)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = -2.2351742e-06
+radial_accel_min = -2.2351742e-06
+radial_accel_max = -2.2351742e-06
+tangential_accel_min = -2.2351742e-06
+tangential_accel_max = -2.2351742e-06
+scale_min = 0.5
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_umuxk")
+color = Color(0.1564, 0.34, 0.17475998, 1)
+color_ramp = SubResource("GradientTexture1D_umuxk")
+hue_variation_min = -0.15000002
+hue_variation_max = 0.14999998
+anim_speed_max = 2.9099998
+anim_offset_max = 0.242
+turbulence_noise_scale = 4.957
+
+[sub_resource type="Gradient" id="Gradient_umuxk"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xfwpy"]
+gradient = SubResource("Gradient_umuxk")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_umuxk"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(-21.335, -13.4, 0)
+emission_shape_scale = Vector3(4.295, 2.86, 1)
+emission_shape = 2
+emission_sphere_radius = 54.12
+angle_min = -68.29999
+angle_max = 95.500015
+direction = Vector3(-1, 0, 0)
+spread = 0.0
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+angular_velocity_min = -246.90001
+angular_velocity_max = 246.79997
+orbit_velocity_min = 9.49949e-08
+orbit_velocity_max = 9.49949e-08
+gravity = Vector3(-0.5, 0.5, 0)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = -2.2351742e-06
+radial_accel_min = -2.2351742e-06
+radial_accel_max = 1.5299977
+tangential_accel_min = -2.2351742e-06
+tangential_accel_max = -2.2351742e-06
+scale_min = 0.01
+scale_max = 0.099999994
+scale_curve = SubResource("CurveTexture_umuxk")
+color = Color(0.51589996, 0.77, 0.34649998, 1)
+color_ramp = SubResource("GradientTexture1D_umuxk")
+hue_variation_min = -0.07000002
+hue_variation_max = 0.06999998
+anim_speed_max = 2.9099998
+anim_offset_max = 0.242
+turbulence_noise_scale = 4.957
+
+[node name="Arbol" type="Sprite2D"]
+texture = ExtResource("1_40gr1")
+
+[node name="Hojas" type="GPUParticles2D" parent="."]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_ntp3b")
+position = Vector2(81, -11)
+amount = 30
+texture = ExtResource("2_ntp3b")
+lifetime = 30.0
+preprocess = 20.0
+visibility_rect = Rect2(-200, -100, 451.415, 216.255)
+process_material = SubResource("ParticleProcessMaterial_ntp3b")
+
+[node name="Polen" type="GPUParticles2D" parent="."]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_ntp3b")
+position = Vector2(81, -11)
+amount = 50
+texture = SubResource("GradientTexture2D_xfwpy")
+lifetime = 30.0
+preprocess = 20.0
+visibility_rect = Rect2(-200, -100, 451.415, 216.255)
+process_material = SubResource("ParticleProcessMaterial_umuxk")

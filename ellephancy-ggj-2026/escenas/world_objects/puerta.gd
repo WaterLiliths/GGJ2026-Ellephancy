@@ -1,21 +1,35 @@
 class_name Puerta
 extends StaticBody2D
 
-@export var id_puerta : int = 0
-@export var horizontal : bool = false
-@export var varias_palancas : bool = false
-@export_range(1,3,1) var cant_palancas : int = 1
+@export var activadores : Array[Node2D] = []
+#@export var id_puerta : int = 0
+#@export var varias_palancas : bool = false
+#@export_range(1,3,1) var cant_palancas : int = 1
 
 @export var usa_runas : bool = false
-@export var empieza_abierta : bool = false
+@export_group("Movimiento")
+@export_enum("Vertical", "Horizontal") var direccion_de_apertura : String = "Vertical"
 @export var timeada : bool = false
+@export var empieza_abierta : bool = false
 @export var timer : float = 1.0
+@export var altura_maxima : float = 250.0
+@export var tiempo_de_apertura : float = 3.0
+
+@onready var sprite_2d: Sprite2D = %Sprite2D
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var contenedor_de_runas: VBoxContainer = %Control/ContenedorDeRunas
+@onready var sonido_puerta_moviendo: FmodEventEmitter2D = $SonidoPuertaMoviendo
+@onready var sonido_puerta_impacto: FmodEventEmitter2D = $SonidoPuertaImpacto
+@onready var sonido_runas_correctas: FmodEventEmitter2D = $SonidoRunasCorrectas
+@onready var timer_tiempo_de_apertura: Timer = $TimerTiempoDeApertura
+@onready var timer_puerta: Timer = $TimerPuerta
+
+
+const RUNA = preload("uid://bvq5bbgfqxbf3")
 
 var contador_id : int = 0
-@export var altura_maxima : float = 250.0
-@export var tiempo_de_apertura : float = 1.5
-@export var tamano = Vector2(1, 1)
-@onready var sprite_2d: Sprite2D = %Sprite2D
+var activadores_activados : Array[Node2D] = []
+
 
 var posicion_original = position.y
 var esta_abierta = false
@@ -25,12 +39,10 @@ var palancas : Array[Palanca] = []
 var palancas_con_runas
 var cantidad_de_runas : int = 0
 enum TiposDeRunas { NUDO_SIMETRICO, NUDO_ASIMETRICO, TRIQUETRA, CRUZ, TRISKELE, ATOMO }
-@onready var contenedor_de_runas: VBoxContainer = %Control/ContenedorDeRunas
 var runas_correctas = {}
 var runas_activadas = {}
-const RUNA = preload("uid://bvq5bbgfqxbf3")
-signal activado
 
+signal activado
 
 
 func _ready() -> void:
@@ -39,101 +51,91 @@ func _ready() -> void:
 
 	if empieza_abierta:
 		esta_abierta = true
-		$Sprite2D.position.y = -altura_maxima
-		$CollisionShape2D.position.y = -altura_maxima
+		sprite_2d.position.y = -altura_maxima
+		collision_shape_2d.position.y = -altura_maxima
 	else:
 		esta_abierta = false
-	Global.activar_palanca.connect(cambiar_estado_puerta_abierta)
-	Global.desactivar_palanca.connect(cambiar_estado_puerta_cerrada)
-	$TimerTiempoDeApertura.set_wait_time(tiempo_de_apertura)
-	$TimerPuerta.set_wait_time(timer)
+	Global.activar_mecanismo.connect(_on_mecanismo_activado)
+	Global.desactivar_mecanismo.connect(_on_mecanismo_desactivado)
+	timer_tiempo_de_apertura.set_wait_time(tiempo_de_apertura)
+	timer_puerta.set_wait_time(timer)
+	sonido_puerta_moviendo.set_parameter("Peso", 5.0)
 
 
 func _process(_delta: float) -> void:
-	$FmodEventEmitter2D.volume = Global.volumen_efectos
-	$FmodEventEmitter2D2.volume = Global.volumen_efectos
+	sonido_puerta_moviendo.volume = Global.volumen_efectos
+	sonido_puerta_impacto.volume = Global.volumen_efectos
+	sonido_runas_correctas.volume = Global.volumen_efectos
 	
 #------------------FUNCIONES-----------------------
-func cambiar_estado_puerta_abierta(id_palanca : int):
-	if not usa_runas:
-		if id_palanca == id_puerta and empieza_abierta:
-			cerrar_puerta()
-			return
-		elif id_palanca != id_puerta or esta_abierta:
-			#print("no se abre")
-			return
-		elif !varias_palancas and !esta_abierta:
-			abrir_puerta()
-			return
-		if varias_palancas:
-			contador_id += 1
-			#print(contador_id)
-			if contador_id != cant_palancas:
-				return
-			abrir_puerta()
+func cambiar_estado():
+	if esta_abierta:
+		cerrar_puerta()
+	else:
+		abrir_puerta()
 
-func cambiar_estado_puerta_cerrada(id_palanca : int):
-	if not usa_runas:
-		if id_palanca != id_puerta:
-			return
-		contador_id -= 1
-		if id_palanca == id_puerta and not esta_abierta and empieza_abierta:
-			#print(contador_id)
-			abrir_puerta()
-		if id_palanca == id_puerta and esta_abierta and not empieza_abierta:
-			#print(contador_id)
-			cerrar_puerta()
+func _on_mecanismo_activado(mecanismo):
+	if mecanismo in activadores:
+		if mecanismo not in activadores_activados:
+			activadores_activados.append(mecanismo)
+		if activadores_activados == activadores and activadores.size() > 0:
+			cambiar_estado()
+
+func _on_mecanismo_desactivado(mecanismo):
+	if mecanismo in activadores:
+		if activadores_activados == activadores and activadores.size() > 0:
+			cambiar_estado()
+
 
 func abrir_puerta():
 	var tween_sprite = get_tree().create_tween()
 	var tween_colision = get_tree().create_tween()
-	if horizontal:
-		tween_sprite.tween_property($Sprite2D, "position:x" , -altura_maxima, tiempo_de_apertura)
-		tween_colision.tween_property($CollisionShape2D, "position:x" , -altura_maxima, tiempo_de_apertura)
-	else:
-		tween_sprite.tween_property($Sprite2D, "position:y" , -altura_maxima, tiempo_de_apertura)
-		tween_colision.tween_property($CollisionShape2D, "position:y" , -altura_maxima, tiempo_de_apertura)
+	tween_sprite.set_trans(Tween.TRANS_QUAD)
+	tween_sprite.set_ease(Tween.EASE_IN_OUT)
+	match direccion_de_apertura:
+		"Vertical":
+			tween_sprite.tween_property(sprite_2d, "position:y" , -altura_maxima, tiempo_de_apertura)
+			tween_colision.tween_property(collision_shape_2d, "position:y" , -altura_maxima, tiempo_de_apertura)
+		"Horizontal":
+			tween_sprite.tween_property(sprite_2d, "position:x" , -altura_maxima, tiempo_de_apertura)
+			tween_colision.tween_property(collision_shape_2d, "position:x" , -altura_maxima, tiempo_de_apertura)
+
 	esta_abierta = true
 	Global.puerta_abierta.emit(global_position, tiempo_de_apertura)
-	var conexiones = Global.get_signal_connection_list("puerta_abierta")
-	for conectadas in conexiones:
-		print("-------------- LA SEÑAL DE LA PUERTA ESTA CONECTADA AAAAAAAAAAAAAA -----------  ", conectadas["callable"])
+	#var conexiones = Global.get_signal_connection_list("puerta_abierta")
 	
-	$TimerTiempoDeApertura.start()
+	timer_tiempo_de_apertura.start()
 	#print("la puerta esta abierta")
-	$FmodEventEmitter2D.set_parameter("peso", 5.0)
-	$FmodEventEmitter2D.play()
+	sonido_puerta_moviendo.play()
 	Objetivos.objeto_activado.emit(self)
 
 func cerrar_puerta():
 	var tween_sprite = get_tree().create_tween()
 	var tween_colision = get_tree().create_tween()
-	if horizontal:
-		tween_sprite.tween_property($Sprite2D, "position:x" , posicion_original, tiempo_de_apertura)
-		tween_colision.tween_property($CollisionShape2D, "position:x" , posicion_original, tiempo_de_apertura)
-	else:
-		tween_sprite.tween_property($Sprite2D, "position:y" , posicion_original, tiempo_de_apertura)
-		tween_colision.tween_property($CollisionShape2D, "position:y" , posicion_original, tiempo_de_apertura)
-	$TimerTiempoDeApertura.start()
+	tween_sprite.set_trans(Tween.TRANS_QUAD)
+	tween_sprite.set_ease(Tween.EASE_IN_OUT)
+	match direccion_de_apertura:
+		"Vertical":
+			tween_sprite.tween_property(sprite_2d, "position:y" , posicion_original, tiempo_de_apertura)
+			tween_colision.tween_property(collision_shape_2d, "position:y" , posicion_original, tiempo_de_apertura)
+		"Horizontal":
+			tween_sprite.tween_property(sprite_2d, "position:x" , posicion_original, tiempo_de_apertura)
+			tween_colision.tween_property(collision_shape_2d, "position:x" , posicion_original, tiempo_de_apertura)
+	timer_tiempo_de_apertura.start()
 	esta_abierta = false
-	$FmodEventEmitter2D.set_parameter("peso", 5.0)
-	$FmodEventEmitter2D.play()
+	sonido_puerta_moviendo.play()
 
 
 func _on_timer_tiempo_de_apertura_timeout() -> void:
-	$FmodEventEmitter2D2.play()
-	$FmodEventEmitter2D.stop()
+	sonido_puerta_impacto.play()
+	sonido_puerta_moviendo.stop()
 	if timeada and esta_abierta:
-		$TimerPuerta.start()
+		timer_puerta.start()
 
 func _on_timer_puerta_timeout() -> void:
 	if timeada:
-		$TimerPuerta.stop()
-		if esta_abierta:
-			cerrar_puerta()
-		else:
-			abrir_puerta()
-			
+		timer_puerta.stop()
+		cambiar_estado()
 
 func setup_runas():
 	var tipos_disponibles = Runa.TiposDeRunas.values()
@@ -141,9 +143,9 @@ func setup_runas():
 	tipos_disponibles.shuffle()
 	colores.shuffle()
 	var index = 0
-	for child in get_children():
-		if child is Palanca:
-			var palanca = child
+	for mecanismo in activadores:
+		if mecanismo is Palanca:
+			var palanca = mecanismo
 			palancas.append(palanca)
 			palanca.palanca_con_runa_activada.connect(_on_palanca_con_runa_activada)
 			var runa_puerta = RUNA.instantiate()
@@ -156,16 +158,16 @@ func setup_runas():
 			palanca.color = color
 			runas_correctas[tipo] = palanca
 
-func _on_palanca_con_runa_activada(palanca: Palanca, id_palanca, runa: Runa):
-	if id_palanca == id_puerta:
+func _on_palanca_con_runa_activada(mecanismo, runa: Runa):
+	if mecanismo in activadores:
 		var tipo = runa.tipo_de_runa
 		for key in runas_activadas.keys():
-			if runas_activadas[key] == palanca:
+			if runas_activadas[key] == mecanismo:
 				runas_activadas.erase(key)
 				break
-		if runas_correctas.has(tipo) and runas_correctas[tipo] == palanca:
+		if runas_correctas.has(tipo) and runas_correctas[tipo] == mecanismo:
 			if not runas_activadas.has(tipo):
-				runas_activadas[tipo] = palanca
+				runas_activadas[tipo] = mecanismo
 				if runas_activadas.keys().size() == runas_correctas.keys().size():
-					$FmodEventEmitter2D3.play()
+					sonido_runas_correctas.play()
 					abrir_puerta()

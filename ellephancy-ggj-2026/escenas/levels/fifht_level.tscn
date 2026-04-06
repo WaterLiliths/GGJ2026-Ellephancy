@@ -1,9 +1,8 @@
-[gd_scene load_steps=16 format=4 uid="uid://dvoneccgob4vn"]
+[gd_scene load_steps=18 format=4 uid="uid://dvoneccgob4vn"]
 
 [ext_resource type="Texture2D" uid="uid://c0letordwqfnu" path="res://assets/sprites/ambient/Árbol caído.png" id="1_mfy6x"]
 [ext_resource type="Script" uid="uid://61v3afknfgh6" path="res://escenas/levels/tronco_muerto.gd" id="2_undl5"]
 [ext_resource type="PackedScene" uid="uid://bnjwrlnb5pxji" path="res://escenas/world_objects/arbol.tscn" id="3_toniv"]
-[ext_resource type="PackedScene" uid="uid://ds1qkhtnwbcox" path="res://escenas/world_objects/piedra_chica.tscn" id="4_ngx8t"]
 [ext_resource type="PackedScene" uid="uid://cc8lgh4bhiut8" path="res://escenas/world_objects/tronco_pasado-presente.tscn" id="5_g4m3r"]
 [ext_resource type="PackedScene" uid="uid://by80hrdi7bflk" path="res://escenas/creador_de_niveles.tscn" id="6_i7xuu"]
 [ext_resource type="PackedScene" uid="uid://cs6hrjrtl5v7x" path="res://escenas/area_mostrar_texto.tscn" id="8_geltr"]
@@ -15,6 +14,11 @@
 [ext_resource type="Resource" uid="uid://dcguqmqeh147x" path="res://dialogue/dialogo_salmon_1.dialogue" id="12_r86qt"]
 [ext_resource type="Resource" uid="uid://cv2l8oipisadl" path="res://dialogue/dialogo_salmon_2.dialogue" id="13_xhb7i"]
 [ext_resource type="Resource" uid="uid://cwdhhs48r1h2g" path="res://dialogue/dialogo_final.dialogue" id="14_yp18c"]
+[ext_resource type="PackedScene" uid="uid://rbte5a07u6f4" path="res://escenas/world_objects/Empujable.tscn" id="16_ngx8t"]
+[ext_resource type="Texture2D" uid="uid://bb0dx0tt7b3f1" path="res://assets/sprites/ambient/rocatocha2.png" id="17_g4m3r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i7xuu"]
+size = Vector2(122, 206)
 
 [node name="FifthLevel" type="Node2D"]
 
@@ -36,25 +40,37 @@ position = Vector2(-3921, -1412)
 position = Vector2(-5165, -1050)
 rotation = 0.81092405
 
-[node name="PiedraChica" parent="Presente" instance=ExtResource("4_ngx8t")]
-z_index = -1
-position = Vector2(1520.4912, -205.04457)
-rotation = -0.81092405
-scale = Vector2(0.99999994, 0.99999994)
-presente = true
-
-[node name="PiedraChica2" parent="Presente" instance=ExtResource("4_ngx8t")]
-z_index = -1
-position = Vector2(789.392, -1108.039)
-rotation = -0.81092405
-scale = Vector2(0.99999994, 0.99999994)
-presente = true
-
 [node name="TroncoColisionable2" parent="Presente" instance=ExtResource("5_g4m3r")]
 z_index = -4
 position = Vector2(-150.60991, 251.41331)
 rotation = 3.0717795
 presente = true
+
+[node name="Empujable1" parent="Presente" instance=ExtResource("16_ngx8t")]
+position = Vector2(1521.9407, -203.66699)
+rotation = -0.81092405
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="Sprite2D" type="Sprite2D" parent="Presente/Empujable1"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("17_g4m3r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Presente/Empujable1"]
+position = Vector2(-12, 2)
+shape = SubResource("RectangleShape2D_i7xuu")
+
+[node name="Empujable2" parent="Presente" instance=ExtResource("16_ngx8t")]
+position = Vector2(789.392, -1108.039)
+rotation = -0.81092405
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="Sprite2D" type="Sprite2D" parent="Presente/Empujable2"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("17_g4m3r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Presente/Empujable2"]
+position = Vector2(-12, 2)
+shape = SubResource("RectangleShape2D_i7xuu")
 
 [node name="MapaPasado" type="Node2D" parent="."]
 
@@ -112,8 +128,9 @@ presente = true
 
 [node name="PuzzleInicio" type="Node2D" parent="."]
 
-[node name="Puerta" parent="PuzzleInicio" instance=ExtResource("8_toniv")]
+[node name="Puerta" parent="PuzzleInicio" node_paths=PackedStringArray("activadores") instance=ExtResource("8_toniv")]
 position = Vector2(-4770, -138)
+activadores = [NodePath("Palanca"), NodePath("Palanca2"), NodePath("Palanca3")]
 usa_runas = true
 
 [node name="Palanca" parent="PuzzleInicio/Puerta" node_paths=PackedStringArray("posicionador_de_runa") instance=ExtResource("9_ngx8t")]
@@ -180,8 +197,9 @@ id_dialogo = 14
 
 [node name="Puzzle2" type="Node2D" parent="."]
 
-[node name="Puerta" parent="Puzzle2" instance=ExtResource("8_toniv")]
+[node name="Puerta" parent="Puzzle2" node_paths=PackedStringArray("activadores") instance=ExtResource("8_toniv")]
 position = Vector2(-3659, -142)
+activadores = [NodePath("Palanca"), NodePath("Palanca2"), NodePath("Palanca3")]
 usa_runas = true
 
 [node name="Palanca" parent="Puzzle2/Puerta" instance=ExtResource("9_ngx8t")]

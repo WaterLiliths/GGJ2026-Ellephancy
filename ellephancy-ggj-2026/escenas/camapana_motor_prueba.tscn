@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://gv4trt4opdw2"]
+
+[ext_resource type="PackedScene" uid="uid://croo183ic8glj" path="res://escenas/world_objects/campana_colgante.tscn" id="1_brnek"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CampanaColgante" parent="." instance=ExtResource("1_brnek")]
+position = Vector2(937, 282)
+longitud_soga = 8
+motor = true

@@ -1,24 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://dg6y4xunbnxvq"]
+[gd_scene load_steps=7 format=3 uid="uid://dg6y4xunbnxvq"]
 
 [ext_resource type="Script" uid="uid://bj6bigk1y3j8h" path="res://escenas/world_objects/espejo.gd" id="1_ltgtn"]
+[ext_resource type="Texture2D" uid="uid://bdbd4gvnlabpx" path="res://assets/sprites/optica/espejo_cristal_bronce.png" id="2_mvv7a"]
 
-[sub_resource type="Gradient" id="Gradient_ltgtn"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_mvv7a"]
-gradient = SubResource("Gradient_ltgtn")
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ltgtn"]
-radius = 4.0000005
-height = 144.00002
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ltgtn"]
+size = Vector2(10.000002, 58.000008)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ltgtn"]
-radius = 77.31753
+radius = 77.0
 
 [sub_resource type="Gradient" id="Gradient_qgr82"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.99497485, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0.025588572, 0.025588572, 0.025588572, 1, 0, 0, 0, 1)
+colors = PackedColorArray(1, 0.89411765, 0.8509804, 1, 0.025588572, 0.025588572, 0.025588572, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ltgtn"]
 gradient = SubResource("Gradient_qgr82")
@@ -26,19 +20,20 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
-[node name="Espejo" type="AnimatableBody2D"]
+[node name="Espejo" type="CharacterBody2D"]
+z_index = -1
 collision_layer = 1024
 collision_mask = 1024
 script = ExtResource("1_ltgtn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = 1.5707964
-scale = Vector2(2.25, 0.148)
-texture = SubResource("GradientTexture2D_mvv7a")
+texture_filter = 1
+texture = ExtResource("2_mvv7a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.3841851e-07, 0)
 scale = Vector2(0.9999998, 0.9999998)
-shape = SubResource("CapsuleShape2D_ltgtn")
+shape = SubResource("RectangleShape2D_ltgtn")
 
 [node name="AreaDeInteraccion" type="Area2D" parent="."]
 collision_layer = 0
@@ -47,6 +42,7 @@ collision_layer = 0
 shape = SubResource("CircleShape2D_ltgtn")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.55803573, 0.5580356)
 energy = 4.0
 range_item_cull_mask = 512
 texture = SubResource("GradientTexture2D_ltgtn")
@@ -55,6 +51,13 @@ texture_scale = 3.36
 [node name="SonidoRotacion" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/Objetos/rotar optica"
 event_guid = "{f9826155-1be9-4604-a3d1-d40cb3082e7e}"
+fmod_parameters/velocidad_angular/id = -1574950914712359287
+fmod_parameters/velocidad_angular = 0.0
+fmod_parameters/velocidad_angular/variant_type = 3
+
+[node name="SonidoFrenar" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Objetos/limite optica"
+event_guid = "{89ad7594-8695-4dea-95a6-f08ae9103522}"
 fmod_parameters/velocidad_angular/id = -1574950914712359287
 fmod_parameters/velocidad_angular = 0.0
 fmod_parameters/velocidad_angular/variant_type = 3

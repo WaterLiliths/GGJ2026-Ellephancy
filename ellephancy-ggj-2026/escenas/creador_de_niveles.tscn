@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://by80hrdi7bflk"]
+[gd_scene load_steps=93 format=3 uid="uid://by80hrdi7bflk"]
 
 [ext_resource type="Texture2D" uid="uid://duljulwce33br" path="res://assets/tile_set/tileset_no_collision.png" id="1_xm56w"]
 [ext_resource type="Texture2D" uid="uid://cqt2sxqweo75q" path="res://assets/tile_set/trees_stones.png" id="2_flceq"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://d1ij8stxbxugo" path="res://assets/tile_set/stone_background.png" id="5_iruho"]
 [ext_resource type="Texture2D" uid="uid://cdiyf1rhsemkm" path="res://assets/tile_set/Tileset Hierba Definitivo 2.png" id="5_nvdvt"]
 [ext_resource type="Script" uid="uid://b3bx7uo5yqmk3" path="res://escenas/creador_de_niveles.gd" id="5_nx2vk"]
+[ext_resource type="Texture2D" uid="uid://bm630kb5rwggf" path="res://assets/tile_set/engranaje_lineal.png" id="5_vmmg7"]
 [ext_resource type="Texture2D" uid="uid://d2nbkfqavfqrf" path="res://assets/tile_set/tileset _for_shadows.png" id="6_s1gxm"]
 [ext_resource type="Texture2D" uid="uid://f4onoalobwwh" path="res://assets/tile_set/plataforma_madera_pared.png" id="9_dfdpj"]
 [ext_resource type="Texture2D" uid="uid://soca15vul5w8" path="res://assets/tile_set/ventanas_placeholder.png" id="10_wmt41"]
@@ -456,6 +457,13 @@ texture_region_size = Vector2i(64, 64)
 7:1/0/terrains_peering_bit/left_side = 1
 7:1/0/terrains_peering_bit/top_side = 1
 7:1/0/custom_data_0 = "piedra"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_icrd5"]
+texture = ExtResource("5_vmmg7")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 16, 32, 16, 32, 32, -32, 32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nvdvt"]
 resource_name = "z__bigger_trees"
@@ -1502,7 +1510,8 @@ sources/7 = SubResource("TileSetAtlasSource_wmt41")
 sources/8 = SubResource("TileSetAtlasSource_vmmg7")
 sources/10 = SubResource("TileSetAtlasSource_1pb8f")
 sources/6 = SubResource("TileSetAtlasSource_ig2mc")
-tile_proxies/coords_level = [[9, Vector2i(0, 0)], [11, Vector2i(0, 0)], [9, Vector2i(1, 0)], [11, Vector2i(1, 0)], [9, Vector2i(2, 0)], [11, Vector2i(2, 0)], [9, Vector2i(3, 0)], [11, Vector2i(3, 0)], [10, Vector2i(0, 0)], [11, Vector2i(4, 0)], [10, Vector2i(0, 1)], [11, Vector2i(4, 1)], [10, Vector2i(1, 0)], [11, Vector2i(5, 0)], [10, Vector2i(1, 1)], [11, Vector2i(5, 1)], [10, Vector2i(2, 1)], [11, Vector2i(6, 1)], [10, Vector2i(3, 0)], [11, Vector2i(7, 0)], [10, Vector2i(3, 1)], [11, Vector2i(7, 1)]]
+sources/12 = SubResource("TileSetAtlasSource_icrd5")
+tile_proxies/coords_level = [[3, Vector2i(0, 0)], [12, Vector2i(0, 0)], [9, Vector2i(0, 0)], [12, Vector2i(1, 0)], [9, Vector2i(1, 0)], [11, Vector2i(1, 0)], [9, Vector2i(2, 0)], [11, Vector2i(2, 0)], [9, Vector2i(3, 0)], [11, Vector2i(3, 0)], [10, Vector2i(0, 0)], [11, Vector2i(4, 0)], [10, Vector2i(0, 1)], [11, Vector2i(4, 1)], [10, Vector2i(1, 0)], [11, Vector2i(5, 0)], [10, Vector2i(1, 1)], [11, Vector2i(5, 1)], [10, Vector2i(2, 1)], [11, Vector2i(6, 1)], [10, Vector2i(3, 0)], [11, Vector2i(7, 0)], [10, Vector2i(3, 1)], [11, Vector2i(7, 1)]]
 
 [node name="CreadorDeNiveles" type="TileMapLayer" groups=["tilemap_suelo"]]
 light_mask = 6

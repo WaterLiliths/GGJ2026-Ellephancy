@@ -5,6 +5,8 @@ var mover_camara : bool = false
 var minimo_tiempo : float = 0.5
 @export var player : Player
 @export var factor_aumento : float = 24 #se usa en on_player_detecto_caida, para que se multiplique el tiempo en el aire x esta variable
+@onready var phantom_camera_2d: PhantomCamera2D = $"../../PhantomCamera2D"
+
 
 func _ready() -> void:
 	Global.puerta_abierta.connect(mover_camara_a_puerta)
@@ -19,6 +21,11 @@ func _physics_process(_delta: float) -> void:
 			position = get_local_mouse_position() * 0.5
 		if Input.is_action_just_released("click der"):
 			position = Vector2.ZERO
+		if Input.is_action_just_pressed("scroll down"):
+			if phantom_camera_2d.zoom > Vector2(1.8, 1.8):
+				phantom_camera_2d.zoom -= Vector2(0.2, 0.2)
+		if Input.is_action_just_pressed("scroll up"):
+			phantom_camera_2d.zoom += Vector2(0.2, 0.2)
 
 func mover_camara_a_puerta(global_position, tiempo_de_apertura):
 	mover_camara = true

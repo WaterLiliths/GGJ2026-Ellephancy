@@ -5,15 +5,16 @@ extends Node2D #mascara de las traducciones es 3
 
 
 func _ready() -> void:
-	pass
+	activa = false
 
 func usar():
+	print("USAR EN LA MASCARA")
 	if activa:
 		return
 	activa = true
 	Global.mascara_activa = id
 	Global.mascara_traducciones_activa.emit()
-	print("se uso la mascara de traducciones")
+	print("-------- se uso la mascara de traducciones")
 
 
 func desactivar():

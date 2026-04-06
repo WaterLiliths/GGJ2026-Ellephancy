@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq7iqatn2v3pu"]
+
+[ext_resource type="Texture2D" uid="uid://calb3l34dp7nc" path="res://assets/sprites/optica/lente_rueda_bronce.png" id="1_flge4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6wldq"]
+radius = 8.0
+
+[node name="RuedaBase" type="RigidBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_flge4")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6wldq")

@@ -10,7 +10,6 @@ func _ready() -> void:
 	if not presente:
 		esconder_mundo()
 
-
 func on_mascara_tiempo_activa():
 	print("SE USO MASCARAAAAAAAAAAAAAAAAA")
 	if presente:

@@ -40,6 +40,7 @@ shape = SubResource("CircleShape2D_jmbta")
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(0.31622022, 0.31622016)
 energy = 0.0
+range_item_cull_mask = 1023
 texture = SubResource("GradientTexture2D_jmbta")
 texture_scale = 3.36
 

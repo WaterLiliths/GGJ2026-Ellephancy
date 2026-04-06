@@ -18,9 +18,10 @@ func _process(delta: float) -> void:
 #-------------FUNCIONES--------------
 func tomar_mascara():
 	Global.tiene_mascara_traducciones = true
-	Global.agarre_mascara.emit("salmon")
+	Global.agarre_mascara.emit(3)
 	sprite_2d_salmon.hide()
 	area_dialogo_prueba.forzar_lectura()
+	Global.guardar_datos()
 
 
 #---------------SEÑALES--------------

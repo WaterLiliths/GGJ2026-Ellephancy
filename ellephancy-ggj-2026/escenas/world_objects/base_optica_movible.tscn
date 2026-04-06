@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://dy8nlt4mrvp53"]
+
+[ext_resource type="Script" uid="uid://cmyrvos4nvi7s" path="res://escenas/world_objects/base_optica_movible.gd" id="1_8chfj"]
+[ext_resource type="Texture2D" uid="uid://djvf4eoond4tq" path="res://assets/sprites/optica/lente_base_bronce.png" id="2_llpbq"]
+[ext_resource type="Texture2D" uid="uid://calb3l34dp7nc" path="res://assets/sprites/optica/lente_rueda_bronce.png" id="3_b5upd"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8chfj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6wldq"]
+radius = 8.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6wldq"]
+size = Vector2(44, 59)
+
+[node name="BaseOpticaMovible" type="RigidBody2D" groups=["persistente"]]
+texture_filter = 1
+collision_layer = 4288
+collision_mask = 131
+mass = 20.0
+physics_material_override = SubResource("PhysicsMaterial_8chfj")
+lock_rotation = true
+linear_damp = 10.0
+script = ExtResource("1_8chfj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_llpbq")
+
+[node name="RuedaBase" type="RigidBody2D" parent="."]
+position = Vector2(-40, 56)
+collision_layer = 32768
+collision_mask = 32898
+
+[node name="Sprite2D" type="Sprite2D" parent="RuedaBase"]
+texture = ExtResource("3_b5upd")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RuedaBase"]
+node_a = NodePath("..")
+node_b = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RuedaBase"]
+shape = SubResource("CircleShape2D_6wldq")
+
+[node name="RuedaBase2" type="RigidBody2D" parent="."]
+position = Vector2(40, 56)
+collision_layer = 32768
+collision_mask = 32898
+
+[node name="Sprite2D" type="Sprite2D" parent="RuedaBase2"]
+texture = ExtResource("3_b5upd")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RuedaBase2"]
+node_a = NodePath("..")
+node_b = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RuedaBase2"]
+shape = SubResource("CircleShape2D_6wldq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 28.5)
+shape = SubResource("RectangleShape2D_6wldq")

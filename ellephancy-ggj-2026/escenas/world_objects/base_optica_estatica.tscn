@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfdnm440xn2ej"]
+
+[ext_resource type="Script" uid="uid://d4bo4fw86bn6n" path="res://escenas/world_objects/base_optica_estatica.gd" id="1_detmr"]
+[ext_resource type="Texture2D" uid="uid://d3h1p0qimly7x" path="res://assets/sprites/optica/marco_optica_fijo.png" id="1_xusm4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_detmr"]
+size = Vector2(64, 64)
+
+[node name="BaseOpticaEstatica" type="CharacterBody2D" groups=["persistente"]]
+z_index = -1
+texture_filter = 1
+collision_layer = 8192
+collision_mask = 8446
+motion_mode = 1
+script = ExtResource("1_detmr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_xusm4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_detmr")
