@@ -404,7 +404,7 @@ texture = ExtResource("5_ffuyt")
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank", "res://assets/audio/FmodBanks/Desktop/UI.bank"]
 
 [node name="Player" parent="." node_paths=PackedStringArray("animation_player") instance=ExtResource("8_m34qx")]
-position = Vector2(4431, -24)
+position = Vector2(3258, -112)
 scale = Vector2(0.64, 0.64)
 estoy_testeando_cosas = true
 animation_player = NodePath("../AnimationPlayer")
@@ -413,7 +413,7 @@ empezar_con_mascaras = true
 [node name="Camera2D" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(4431, -94)
+position = Vector2(3258, -182)
 zoom = Vector2(1.6, 1.6)
 limit_left = 0
 limit_bottom = 1200
@@ -494,7 +494,7 @@ player = NodePath("..")
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(4431, -94)
+position = Vector2(3258, -182)
 script = ExtResource("12_g2cn0")
 follow_mode = 2
 follow_target = NodePath("../Player/Node2D")
@@ -640,7 +640,7 @@ scale = Vector2(7, 7)
 texture = ExtResource("33_nqex6")
 
 [node name="Empujable1" parent="Niveles/FirstLevelWorks" instance=ExtResource("37_a3gqp")]
-position = Vector2(3906, -849)
+position = Vector2(3924, -150)
 
 [node name="Sprite2D" type="Sprite2D" parent="Niveles/FirstLevelWorks/Empujable1"]
 scale = Vector2(0.565, 0.565)
