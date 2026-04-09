@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=4 uid="uid://dkudwre2b373"]
+[gd_scene load_steps=68 format=4 uid="uid://dkudwre2b373"]
 
 [ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/Juego.gd" id="1_2y4ua"]
 [ext_resource type="PackedScene" uid="uid://c4fdbwaawyx0w" path="res://escenas/nodos_funcionalidades/manager_de_objetivos.tscn" id="2_82r4j"]
@@ -46,6 +46,8 @@
 [ext_resource type="PackedScene" uid="uid://dfdnm440xn2ej" path="res://escenas/world_objects/base_optica_estatica.tscn" id="44_4ti0m"]
 [ext_resource type="PackedScene" uid="uid://dy8nlt4mrvp53" path="res://escenas/world_objects/base_optica_movible.tscn" id="45_a3gqp"]
 [ext_resource type="PackedScene" uid="uid://c4x71yw8rmu1n" path="res://escenas/placa_de_presion.tscn" id="46_8gjer"]
+[ext_resource type="PackedScene" uid="uid://bkufyuetojtvg" path="res://escenas/world_objects/objetivo_optico.tscn" id="46_cd5vn"]
+[ext_resource type="PackedScene" uid="uid://daorm6xo8r06f" path="res://escenas/world_objects/trampa_de_flechas.tscn" id="48_a5n05"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fe420"]
 size = Vector2(304.0625, 544.375)
@@ -169,6 +171,9 @@ size = Vector2(180, 298)
 vertices = PackedVector2Array(16966.773, -1659.7188, 17313.531, -1342.2578, 16583.883, -1108.5781, -208.85938, -2518.1563, 108.59375, 152.04688, -166.22656, 286.10938, 13677.8125, 479.78125, 13730.0625, 628.5, 13318.609, 643.3672, 10903.1875, 110.171875, 17722.57, -377.1172, 17822.719, 563.3203, 16578.227, 525, 16582.281, -1095.9375, 22103.172, -941.28906, 20844.227, -977.6797, 20948.258, -1843.9219, 22117.969, -1787.9219, 21331.297, -5154.9688, 17841.93, -1866.0078, 16969.898, -1671.4375, 9370.781, -519.21094, 8716.297, -645.78125, 13326.602, 843.1719, 12469.789, 858.02344, 362.6328, 146.82031, 9518.867, 81.15625, 1027.3438, 395.89844, 986.90625, 477.71875, 588.3203, 460.1797, 377.42188, 249.28125, 7435.6875, -207.71875, 7212.25, 109.38281, 6395.5703, 14, 7405.0703, -525.1172, 8798.648, -504.14844, 1568.7969, 313.35938, 2151.5313, 2.9765625, 4563.0313, 17.992188, 12307.203, 894.9219, 11261.547, 828.2578, 10992.219, 544.1875, 8480.922, -614.9375)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 3), PackedInt32Array(6, 7, 8, 9), PackedInt32Array(10, 11, 12, 13), PackedInt32Array(14, 15, 16, 17), PackedInt32Array(18, 17, 16), PackedInt32Array(3, 18, 16, 19), PackedInt32Array(3, 19, 20), PackedInt32Array(3, 20, 0), PackedInt32Array(3, 2, 13, 21, 22), PackedInt32Array(8, 23, 24, 9), PackedInt32Array(13, 12, 6, 9, 21), PackedInt32Array(25, 4, 3), PackedInt32Array(9, 26, 21), PackedInt32Array(27, 28, 29, 30, 25), PackedInt32Array(31, 32, 33, 34), PackedInt32Array(21, 35, 22), PackedInt32Array(36, 27, 25, 3, 37), PackedInt32Array(38, 37, 3, 34, 33), PackedInt32Array(39, 40, 41, 9, 24), PackedInt32Array(3, 22, 42, 34)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-176, 302, -219, -2527, 21339, -5166, 22128, -1789, 22113, -931, 20833, -968, 20937, -1834, 17843, -1856, 16978, -1663, 17333, -1338, 16593, -1101, 17732, -383, 17833.883, 573.67944, 16578, 535, 13692, 490, 13744, 638, 13329, 653, 13337, 853, 12471, 868, 12308, 905, 11257, 838, 10983, 549, 10895, 120, 9511, 91, 9363, -509, 8793, -494, 8711, -635, 8482, -605, 7416, -516, 7446, -205, 7217, 120, 6395, 24, 4563, 28, 2154, 13, 1572, 323, 1034, 405, 993, 488, 584, 470, 368, 254, 354, 157, 111, 162)])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w33dd"]
+size = Vector2(436.5, 297)
 
 [node name="Juego" type="Node2D" node_paths=PackedStringArray("manager_de_objetivos")]
 script = ExtResource("1_2y4ua")
@@ -399,7 +404,7 @@ texture = ExtResource("5_ffuyt")
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank", "res://assets/audio/FmodBanks/Desktop/UI.bank"]
 
 [node name="Player" parent="." node_paths=PackedStringArray("animation_player") instance=ExtResource("8_m34qx")]
-position = Vector2(3691.5603, -153.06122)
+position = Vector2(4431, -24)
 scale = Vector2(0.64, 0.64)
 estoy_testeando_cosas = true
 animation_player = NodePath("../AnimationPlayer")
@@ -408,7 +413,7 @@ empezar_con_mascaras = true
 [node name="Camera2D" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(3691.5603, -223.06122)
+position = Vector2(4431, -94)
 zoom = Vector2(1.6, 1.6)
 limit_left = 0
 limit_bottom = 1200
@@ -489,7 +494,7 @@ player = NodePath("..")
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(3691.5603, -223.06122)
+position = Vector2(4431, -94)
 script = ExtResource("12_g2cn0")
 follow_mode = 2
 follow_target = NodePath("../Player/Node2D")
@@ -527,7 +532,7 @@ timer = 2.0
 [node name="PuertaPuzzle1" parent="Niveles/FirstLevelWorks/Puzzle1" node_paths=PackedStringArray("activadores") instance=ExtResource("21_xkwlr")]
 z_index = -4
 position = Vector2(18201, 2059)
-activadores = [NodePath("../../../../PlacaDePresion")]
+activadores = [NodePath("../../../../ObjetivoOptico")]
 altura_maxima = 300.0
 
 [node name="MapaPresente" type="Node2D" parent="Niveles/FirstLevelWorks"]
@@ -635,7 +640,7 @@ scale = Vector2(7, 7)
 texture = ExtResource("33_nqex6")
 
 [node name="Empujable1" parent="Niveles/FirstLevelWorks" instance=ExtResource("37_a3gqp")]
-position = Vector2(3839, -167)
+position = Vector2(3906, -849)
 
 [node name="Sprite2D" type="Sprite2D" parent="Niveles/FirstLevelWorks/Empujable1"]
 scale = Vector2(0.565, 0.565)
@@ -774,15 +779,33 @@ position = Vector2(4897.2646, -133.61981)
 [node name="BaseOpticaEstatica" parent="." node_paths=PackedStringArray("manivela") instance=ExtResource("44_4ti0m")]
 position = Vector2(4514, -352)
 tipo_de_optica = 1
+tipo_de_movimiento = 1
 manivela = NodePath("../Manivela")
 
 [node name="BaseOpticaMovible" parent="." instance=ExtResource("45_a3gqp")]
-position = Vector2(5157.44, -154.69)
-collision_layer = 0
+position = Vector2(4623, -117)
+
+[node name="ObjetivoOptico" parent="." instance=ExtResource("46_cd5vn")]
+position = Vector2(4780, -192)
+id = 1
 
 [node name="PlacaDePresion" parent="." instance=ExtResource("46_8gjer")]
-position = Vector2(4035, -26)
+position = Vector2(4028, -19)
+se_activa_con_player = true
 se_activa_con_empujable = true
+
+[node name="Area2D2" type="Area2D" parent="."]
+position = Vector2(5149, -153)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(-325.25, -23)
+shape = SubResource("RectangleShape2D_w33dd")
+
+[node name="TrampaDeFlechas" parent="." node_paths=PackedStringArray("area_de_activacion") instance=ExtResource("48_a5n05")]
+position = Vector2(4995, -82)
+rotation = -4.1276436
+area_de_activacion = NodePath("../Area2D2")
+velocidad_de_disparo = 1000
 
 [connection signal="body_entered" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_entered"]
 [connection signal="body_exited" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_exited"]
