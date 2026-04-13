@@ -108,10 +108,12 @@ theme_override_font_sizes/font_size = 25
 text = "SALIR"
 
 [node name="BTNGuardarTEST" type="Button" parent="CanvasLayerMain/PanelContainer/HBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "GUARDAR TEST"
 
 [node name="BTNCargarTEST" type="Button" parent="CanvasLayerMain/PanelContainer/HBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "CARGAR TEST"
 
