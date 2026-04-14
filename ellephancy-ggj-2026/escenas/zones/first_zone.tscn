@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://by0d0f3mesuha"]
+
+[ext_resource type="PackedScene" uid="uid://c12eerc67bjwn" path="res://escenas/new_levels/first_zone_level_one.tscn" id="1_7ge34"]
+[ext_resource type="PackedScene" uid="uid://biambmyuxxflo" path="res://escenas/world_objects/puerta.tscn" id="2_b3gn3"]
+[ext_resource type="PackedScene" uid="uid://c0d6ue4de8rc6" path="res://escenas/new_levels/first_zone_level_two.tscn" id="2_fn8b2"]
+[ext_resource type="PackedScene" uid="uid://cs3h434myxe4r" path="res://escenas/player.tscn" id="3_fn8b2"]
+[ext_resource type="PackedScene" uid="uid://b3kt101wc8mwl" path="res://escenas/world_objects/palanca.tscn" id="4_b3gn3"]
+[ext_resource type="PackedScene" uid="uid://rbte5a07u6f4" path="res://escenas/world_objects/Empujable.tscn" id="5_efnvc"]
+[ext_resource type="Texture2D" uid="uid://bb0dx0tt7b3f1" path="res://assets/sprites/ambient/rocatocha2.png" id="6_uphyy"]
+[ext_resource type="PackedScene" uid="uid://c4x71yw8rmu1n" path="res://escenas/placa_de_presion.tscn" id="7_ay5a1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ay5a1"]
+size = Vector2(119, 206)
+
+[node name="FirstZone" type="Node2D"]
+
+[node name="Map" type="Node2D" parent="."]
+
+[node name="FirstZoneLevelOne" parent="Map" instance=ExtResource("1_7ge34")]
+
+[node name="FirstZoneLevelTwo" parent="Map" instance=ExtResource("2_fn8b2")]
+position = Vector2(1792, 1856)
+
+[node name="PuertaCaída" parent="." instance=ExtResource("2_b3gn3")]
+position = Vector2(1131, 1783.9999)
+rotation = 1.7647369
+
+[node name="Puzzle1" type="Node2D" parent="."]
+
+[node name="Puerta1" parent="Puzzle1" node_paths=PackedStringArray("activadores") instance=ExtResource("2_b3gn3")]
+position = Vector2(1730, 1663)
+activadores = [NodePath("../Palanca1")]
+
+[node name="Palanca1" parent="Puzzle1" instance=ExtResource("4_b3gn3")]
+position = Vector2(126, 1137)
+tipo_de_palanca = "oxidada"
+
+[node name="Puzzle2" type="Node2D" parent="."]
+
+[node name="PuertaPiedra" parent="Puzzle2" node_paths=PackedStringArray("activadores") instance=ExtResource("2_b3gn3")]
+position = Vector2(2815, 2430)
+rotation = 1.5707964
+activadores = [NodePath("../PlacaDePresion1")]
+
+[node name="Puerta2" parent="Puzzle2" node_paths=PackedStringArray("activadores") instance=ExtResource("2_b3gn3")]
+position = Vector2(3201, 2200)
+activadores = [NodePath("../PlacaDePresion2")]
+
+[node name="PlacaDePresion1" parent="Puzzle2" instance=ExtResource("7_ay5a1")]
+position = Vector2(3077, 1949)
+tiempo_de_activacion = 0.3
+se_activa_con_player = true
+
+[node name="PlacaDePresion2" parent="Puzzle2" instance=ExtResource("7_ay5a1")]
+position = Vector2(2751, 2777)
+se_activa_con_player = true
+se_activa_con_empujable = true
+
+[node name="Roca1" parent="Puzzle2" instance=ExtResource("5_efnvc")]
+position = Vector2(2737, 2300)
+
+[node name="Sprite2D" type="Sprite2D" parent="Puzzle2/Roca1"]
+position = Vector2(27, -21)
+scale = Vector2(0.40333334, 0.40333334)
+texture = ExtResource("6_uphyy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Puzzle2/Roca1"]
+position = Vector2(14.5, -19)
+shape = SubResource("RectangleShape2D_ay5a1")
+
+[node name="Player" parent="." instance=ExtResource("3_fn8b2")]
+position = Vector2(2465, 2176)
+estoy_testeando_cosas = true
+
+[node name="Camera2D" type="Camera2D" parent="Player"]

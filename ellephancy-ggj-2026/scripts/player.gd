@@ -151,6 +151,8 @@ func procesar_dialogo_activo():
 	velocity.x = 0
 
 func matar_player():
+	if estoy_testeando_cosas:
+		return
 	if reviviendo_player:
 		return
 	reviviendo_player = true

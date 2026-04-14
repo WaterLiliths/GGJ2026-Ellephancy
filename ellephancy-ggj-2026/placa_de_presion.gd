@@ -17,6 +17,7 @@ func _physics_process(delta: float) -> void:
 		tiempo_body_entered += delta #empiezp a sumarle tiempo
 		if tiempo_body_entered > tiempo_de_activacion and not activo:
 			set_activo(true)
+			print("se activó la placa")
 	else:
 		tiempo_body_entered = 0
 
