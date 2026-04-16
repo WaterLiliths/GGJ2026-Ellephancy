@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=4 uid="uid://dkudwre2b373"]
+[gd_scene load_steps=62 format=4 uid="uid://dkudwre2b373"]
 
 [ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/Juego.gd" id="1_2y4ua"]
 [ext_resource type="PackedScene" uid="uid://c4fdbwaawyx0w" path="res://escenas/nodos_funcionalidades/manager_de_objetivos.tscn" id="2_82r4j"]
@@ -40,13 +40,11 @@
 [ext_resource type="Texture2D" uid="uid://8bgc1yvjtt80" path="res://assets/runas-finales/Runas interfazpiedra.png" id="32_4dne2"]
 [ext_resource type="FontFile" uid="uid://ciwhe1apfc5gi" path="res://assets/fonts/Balgruf.otf" id="32_nqex6"]
 [ext_resource type="Texture2D" uid="uid://q3ics3iji43w" path="res://assets/runas-finales/Runas interfaznum3.png" id="33_nqex6"]
-[ext_resource type="PackedScene" uid="uid://rbte5a07u6f4" path="res://escenas/world_objects/Empujable.tscn" id="37_a3gqp"]
 [ext_resource type="PackedScene" uid="uid://tbrpanj4el32" path="res://escenas/areafinjuego.tscn" id="42_nqex6"]
 [ext_resource type="PackedScene" uid="uid://b63n45mrpt02f" path="res://escenas/world_objects/manivela.tscn" id="43_4ti0m"]
 [ext_resource type="PackedScene" uid="uid://defcvbq6uycyv" path="res://escenas/world_objects/arbol_con_particulas.tscn" id="43_vy46r"]
 [ext_resource type="PackedScene" uid="uid://dfdnm440xn2ej" path="res://escenas/world_objects/base_optica_estatica.tscn" id="44_4ti0m"]
 [ext_resource type="PackedScene" uid="uid://dy8nlt4mrvp53" path="res://escenas/world_objects/base_optica_movible.tscn" id="45_a3gqp"]
-[ext_resource type="PackedScene" uid="uid://c4x71yw8rmu1n" path="res://escenas/placa_de_presion.tscn" id="46_8gjer"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fe420"]
 size = Vector2(304.0625, 544.375)
@@ -159,12 +157,6 @@ _data = {
 &"esconder_runass": SubResource("Animation_gocct"),
 &"mostrar": SubResource("Animation_ppkhw")
 }
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_a3gqp"]
-load_path = "res://.godot/imported/rocatocha2.png-a714510a512ae897d11ff11e56acf7a3.ctex"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8gjer"]
-size = Vector2(180, 298)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_8mohb"]
 vertices = PackedVector2Array(16966.773, -1659.7188, 17313.531, -1342.2578, 16583.883, -1108.5781, -208.85938, -2518.1563, 108.59375, 152.04688, -166.22656, 286.10938, 13677.8125, 479.78125, 13730.0625, 628.5, 13318.609, 643.3672, 10903.1875, 110.171875, 17722.57, -377.1172, 17822.719, 563.3203, 16578.227, 525, 16582.281, -1095.9375, 22103.172, -941.28906, 20844.227, -977.6797, 20948.258, -1843.9219, 22117.969, -1787.9219, 21331.297, -5154.9688, 17841.93, -1866.0078, 16969.898, -1671.4375, 9370.781, -519.21094, 8716.297, -645.78125, 13326.602, 843.1719, 12469.789, 858.02344, 362.6328, 146.82031, 9518.867, 81.15625, 1027.3438, 395.89844, 986.90625, 477.71875, 588.3203, 460.1797, 377.42188, 249.28125, 7435.6875, -207.71875, 7212.25, 109.38281, 6395.5703, 14, 7405.0703, -525.1172, 8798.648, -504.14844, 1568.7969, 313.35938, 2151.5313, 2.9765625, 4563.0313, 17.992188, 12307.203, 894.9219, 11261.547, 828.2578, 10992.219, 544.1875, 8480.922, -614.9375)
@@ -528,7 +520,7 @@ timer = 2.0
 [node name="PuertaPuzzle1" parent="Niveles/FirstLevelWorks/Puzzle1" node_paths=PackedStringArray("activadores") instance=ExtResource("21_xkwlr")]
 z_index = -4
 position = Vector2(18201, 2059)
-activadores = [NodePath("../../../../PlacaDePresion")]
+activadores = [NodePath("../PalancaPuzzle1")]
 altura_maxima = 300.0
 
 [node name="MapaPresente" type="Node2D" parent="Niveles/FirstLevelWorks"]
@@ -635,17 +627,6 @@ position = Vector2(-10, -50.00006)
 scale = Vector2(7, 7)
 texture = ExtResource("33_nqex6")
 
-[node name="Empujable1" parent="Niveles/FirstLevelWorks" instance=ExtResource("37_a3gqp")]
-position = Vector2(3924, -150)
-
-[node name="Sprite2D" type="Sprite2D" parent="Niveles/FirstLevelWorks/Empujable1"]
-scale = Vector2(0.565, 0.565)
-texture = SubResource("CompressedTexture2D_a3gqp")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Niveles/FirstLevelWorks/Empujable1"]
-position = Vector2(-14, 2)
-shape = SubResource("RectangleShape2D_8gjer")
-
 [node name="SecondLevel" type="Node2D" parent="Niveles"]
 position = Vector2(5429, -776)
 
@@ -699,9 +680,10 @@ position = Vector2(1924, -1290)
 id = 2
 tipo_de_palanca = "buena"
 
-[node name="PuertaPuzzle2" parent="Niveles/SecondLevel/Puzzle2" instance=ExtResource("21_xkwlr")]
+[node name="PuertaPuzzle2" parent="Niveles/SecondLevel/Puzzle2" node_paths=PackedStringArray("activadores") instance=ExtResource("21_xkwlr")]
 z_index = -5
 position = Vector2(695, 654)
+activadores = [NodePath("../PalancaPuzzle2"), NodePath("../PalancaPuzzle2a")]
 altura_maxima = 350.0
 tiempo_de_apertura = 2.5
 
@@ -712,9 +694,10 @@ position = Vector2(1797, 522)
 id = 3
 tipo_de_palanca = "oxidada"
 
-[node name="Puerta" parent="Niveles/SecondLevel/Puzzle3" instance=ExtResource("21_xkwlr")]
+[node name="Puerta" parent="Niveles/SecondLevel/Puzzle3" node_paths=PackedStringArray("activadores") instance=ExtResource("21_xkwlr")]
 z_index = -1
 position = Vector2(1799, 39)
+activadores = [NodePath("../PalancaPuzzle3")]
 
 [node name="CheckpointArea" parent="Niveles/SecondLevel" instance=ExtResource("24_g0try")]
 z_index = -1
@@ -783,10 +766,6 @@ collision_layer = 0
 
 [node name="Lente" parent="." instance=ExtResource("43_vy46r")]
 position = Vector2(4702, -166)
-
-[node name="PlacaDePresion" parent="." instance=ExtResource("46_8gjer")]
-position = Vector2(4035, -26)
-se_activa_con_empujable = true
 
 [connection signal="body_entered" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_entered"]
 [connection signal="body_exited" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_exited"]
