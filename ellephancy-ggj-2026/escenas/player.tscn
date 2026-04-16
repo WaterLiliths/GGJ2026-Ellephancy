@@ -603,6 +603,7 @@ raycast_suelo = NodePath("../RayCast2DSuelo")
 [node name="PlayerStats" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("63_uxfdn")
+limite_altura_morir = 50000.0
 
 [node name="AgarrarManager" type="Node" parent="." node_paths=PackedStringArray("body", "STATS", "mov_manager", "animation_manager")]
 unique_name_in_owner = true

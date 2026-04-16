@@ -157,12 +157,12 @@ func matar_player():
 		return
 	reviviendo_player = true
 	%FmodEventEmitter2D7.play()
-	animation_player.play("fade_out_revivir")
+	#animation_player.play("fade_out_revivir")
 	Global.matar_player.emit()
 	set_physics_process(false)
 	await get_tree().create_timer(1.5).timeout
 	global_position = Global.get_checkpoint_position()
-	animation_player.play("fade_in")
+	#animation_player.play("fade_in")
 	reviviendo_player = false
 	componente_de_vida.vida = componente_de_vida.vida_maxima
 	set_physics_process(true)

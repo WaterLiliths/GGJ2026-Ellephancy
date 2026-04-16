@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://by0d0f3mesuha"]
+[gd_scene load_steps=12 format=3 uid="uid://by0d0f3mesuha"]
 
 [ext_resource type="PackedScene" uid="uid://c12eerc67bjwn" path="res://escenas/new_levels/first_zone_level_one.tscn" id="1_7ge34"]
 [ext_resource type="PackedScene" uid="uid://biambmyuxxflo" path="res://escenas/world_objects/puerta.tscn" id="2_b3gn3"]
@@ -8,9 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://rbte5a07u6f4" path="res://escenas/world_objects/Empujable.tscn" id="5_efnvc"]
 [ext_resource type="Texture2D" uid="uid://bb0dx0tt7b3f1" path="res://assets/sprites/ambient/rocatocha2.png" id="6_uphyy"]
 [ext_resource type="PackedScene" uid="uid://c4x71yw8rmu1n" path="res://escenas/placa_de_presion.tscn" id="7_ay5a1"]
+[ext_resource type="PackedScene" uid="uid://du6kq6ieeg34e" path="res://escenas/world_objects/area_trampa.tscn" id="8_l1f1r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ay5a1"]
 size = Vector2(119, 206)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bqbvc"]
+size = Vector2(262, 18)
 
 [node name="FirstZone" type="Node2D"]
 
@@ -68,8 +72,16 @@ texture = ExtResource("6_uphyy")
 position = Vector2(14.5, -19)
 shape = SubResource("RectangleShape2D_ay5a1")
 
+[node name="AreaTrampa" parent="Puzzle2" node_paths=PackedStringArray("colision") instance=ExtResource("8_l1f1r")]
+position = Vector2(2755, 2802)
+colision = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Puzzle2/AreaTrampa"]
+position = Vector2(-3, 5)
+shape = SubResource("RectangleShape2D_bqbvc")
+
 [node name="Player" parent="." instance=ExtResource("3_fn8b2")]
-position = Vector2(2465, 2176)
-estoy_testeando_cosas = true
+position = Vector2(2787, 2253)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(1.6, 1.6)
