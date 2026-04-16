@@ -4,8 +4,8 @@
 
 [node name="Empujable" type="CharacterBody2D" groups=["cajas", "persistente"]]
 z_index = -1
-collision_layer = 1153
-collision_mask = 131
+collision_layer = 1152
+collision_mask = 195
 script = ExtResource("1_y074g")
 
 [node name="Impacto" type="FmodEventEmitter2D" parent="."]

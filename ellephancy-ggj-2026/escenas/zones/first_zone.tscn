@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://by0d0f3mesuha"]
+[gd_scene load_steps=13 format=3 uid="uid://by0d0f3mesuha"]
 
 [ext_resource type="PackedScene" uid="uid://c12eerc67bjwn" path="res://escenas/new_levels/first_zone_level_one.tscn" id="1_7ge34"]
 [ext_resource type="PackedScene" uid="uid://biambmyuxxflo" path="res://escenas/world_objects/puerta.tscn" id="2_b3gn3"]
 [ext_resource type="PackedScene" uid="uid://c0d6ue4de8rc6" path="res://escenas/new_levels/first_zone_level_two.tscn" id="2_fn8b2"]
+[ext_resource type="PackedScene" uid="uid://0aciuye7ivnc" path="res://escenas/new_levels/first_zone_level_three.tscn" id="3_bqbvc"]
 [ext_resource type="PackedScene" uid="uid://cs3h434myxe4r" path="res://escenas/player.tscn" id="3_fn8b2"]
 [ext_resource type="PackedScene" uid="uid://b3kt101wc8mwl" path="res://escenas/world_objects/palanca.tscn" id="4_b3gn3"]
 [ext_resource type="PackedScene" uid="uid://rbte5a07u6f4" path="res://escenas/world_objects/Empujable.tscn" id="5_efnvc"]
@@ -24,6 +25,9 @@ size = Vector2(262, 18)
 
 [node name="FirstZoneLevelTwo" parent="Map" instance=ExtResource("2_fn8b2")]
 position = Vector2(1792, 1856)
+
+[node name="FirstZoneLevelThree" parent="Map" instance=ExtResource("3_bqbvc")]
+position = Vector2(3776, 2496)
 
 [node name="PuertaCaída" parent="." instance=ExtResource("2_b3gn3")]
 position = Vector2(1131, 1783.9999)
@@ -80,8 +84,49 @@ colision = NodePath("CollisionShape2D")
 position = Vector2(-3, 5)
 shape = SubResource("RectangleShape2D_bqbvc")
 
+[node name="Puzzle3" type="Node2D" parent="."]
+position = Vector2(3544, 2288)
+
+[node name="Roca2" parent="Puzzle3" instance=ExtResource("5_efnvc")]
+position = Vector2(-176, 448)
+scale = Vector2(0.7, 0.7)
+
+[node name="Sprite2D" type="Sprite2D" parent="Puzzle3/Roca2"]
+position = Vector2(27, -21)
+scale = Vector2(0.40333334, 0.40333334)
+texture = ExtResource("6_uphyy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Puzzle3/Roca2"]
+position = Vector2(14.5, -19)
+shape = SubResource("RectangleShape2D_ay5a1")
+
+[node name="PuertaPiedra2" parent="Puzzle3" node_paths=PackedStringArray("activadores") instance=ExtResource("2_b3gn3")]
+position = Vector2(-280, 552)
+rotation = -1.5707964
+activadores = [NodePath("../Palanca2")]
+
+[node name="Palanca2" parent="Puzzle3" instance=ExtResource("4_b3gn3")]
+position = Vector2(424, 768)
+tipo_de_palanca = "oxidada"
+
+[node name="PlacaDePresion4" parent="Puzzle3" instance=ExtResource("7_ay5a1")]
+position = Vector2(-176, 816)
+tiempo_de_activacion = 0.3
+se_activa_con_player = true
+se_activa_con_empujable = true
+
+[node name="PlacaDePresion3" parent="Puzzle3" instance=ExtResource("7_ay5a1")]
+position = Vector2(-352, 816)
+tiempo_de_activacion = 0.3
+se_activa_con_player = true
+se_activa_con_empujable = true
+
+[node name="Puerta3" parent="Puzzle3" node_paths=PackedStringArray("activadores") instance=ExtResource("2_b3gn3")]
+position = Vector2(-536, 720)
+activadores = [NodePath("../PlacaDePresion4"), NodePath("../PlacaDePresion3")]
+
 [node name="Player" parent="." instance=ExtResource("3_fn8b2")]
-position = Vector2(2787, 2253)
+position = Vector2(344, 1152)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(1.6, 1.6)
