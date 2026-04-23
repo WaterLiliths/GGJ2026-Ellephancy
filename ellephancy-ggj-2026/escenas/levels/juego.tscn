@@ -392,14 +392,14 @@ texture = ExtResource("5_ffuyt")
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank", "res://assets/audio/FmodBanks/Desktop/UI.bank"]
 
 [node name="Player" parent="." instance=ExtResource("8_m34qx")]
-position = Vector2(3137, -30)
+position = Vector2(4521.489, -182.63757)
 estoy_testeando_cosas = true
 empezar_con_mascaras = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(3137, -100)
+position = Vector2(4521.489, -252.63757)
 zoom = Vector2(1.6, 1.6)
 limit_left = 0
 limit_bottom = 1200
@@ -481,7 +481,7 @@ player = NodePath("..")
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(3137, -100)
+position = Vector2(4521.489, -252.63757)
 script = ExtResource("12_g2cn0")
 follow_mode = 2
 follow_target = NodePath("../Player/Node2D")
@@ -762,7 +762,6 @@ manivela = NodePath("../Manivela")
 
 [node name="BaseOpticaMovible" parent="." instance=ExtResource("45_a3gqp")]
 position = Vector2(5157.44, -154.69)
-collision_layer = 0
 
 [node name="Lente" parent="." instance=ExtResource("43_vy46r")]
 position = Vector2(4702, -166)

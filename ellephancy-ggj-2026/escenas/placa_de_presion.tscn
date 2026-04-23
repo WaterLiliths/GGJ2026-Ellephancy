@@ -47,7 +47,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0lxmu"]
 size = Vector2(88, 30)
 
-[node name="PlacaDePresion" type="Node2D"]
+[node name="PlacaDePresion" type="Node2D" groups=["persistente"]]
 script = ExtResource("1_opkvq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
