@@ -413,6 +413,7 @@ interact_manager = NodePath("InteractuarManager")
 componente_de_vida = NodePath("ComponenteDeVida")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 color = Color(0.7607843, 0.43137255, 0.2901961, 1)
 range_item_cull_mask = 6
 shadow_enabled = true
