@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cg0px66f7q3on"]
+
+[ext_resource type="Script" uid="uid://e2ggda7oge86" path="res://escenas/puerta_dungeon.gd" id="1_5tnyr"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_dblwo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lxxud"]
+size = Vector2(499, 867)
+
+[node name="PuertaDungeon" type="Node2D"]
+script = ExtResource("1_5tnyr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(240.25, 426.74997)
+scale = Vector2(481.50003, 854.49994)
+texture = SubResource("PlaceholderTexture2D_dblwo")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(239.5, 423.5)
+shape = SubResource("RectangleShape2D_lxxud")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

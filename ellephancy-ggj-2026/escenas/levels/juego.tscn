@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=4 uid="uid://dkudwre2b373"]
+[gd_scene load_steps=70 format=4 uid="uid://dkudwre2b373"]
 
 [ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/Juego.gd" id="1_2y4ua"]
 [ext_resource type="PackedScene" uid="uid://c4fdbwaawyx0w" path="res://escenas/nodos_funcionalidades/manager_de_objetivos.tscn" id="2_82r4j"]
@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://by80hrdi7bflk" path="res://escenas/creador_de_niveles.tscn" id="22_fe420"]
 [ext_resource type="Script" uid="uid://o1jlskbd2keg" path="res://escenas/levels/reverb_area.gd" id="23_3nqa5"]
 [ext_resource type="PackedScene" uid="uid://dvoneccgob4vn" path="res://escenas/levels/fifht_level.tscn" id="23_g2cn0"]
+[ext_resource type="PackedScene" uid="uid://cg0px66f7q3on" path="res://escenas/puerta_dungeon.tscn" id="24_cnr3b"]
 [ext_resource type="PackedScene" uid="uid://dj4jyhd1bexi6" path="res://escenas/checkpoint_area.tscn" id="24_g0try"]
 [ext_resource type="PackedScene" uid="uid://bwq71a08xd4uw" path="res://escenas/area_objetivo.tscn" id="25_8mohb"]
 [ext_resource type="PackedScene" uid="uid://cs6hrjrtl5v7x" path="res://escenas/area_mostrar_texto.tscn" id="25_oltff"]
@@ -536,6 +537,9 @@ position = Vector2(17366, 2190)
 id = 1
 tipo_de_palanca = "oxidada"
 timer = 2.0
+
+[node name="PuertaDungeon" parent="Niveles/FirstLevelWorks/Puzzle1/PalancaPuzzle1" instance=ExtResource("24_cnr3b")]
+position = Vector2(6260.738, -813.44696)
 
 [node name="PuertaPuzzle1" parent="Niveles/FirstLevelWorks/Puzzle1" node_paths=PackedStringArray("activadores") instance=ExtResource("21_xkwlr")]
 z_index = -4
