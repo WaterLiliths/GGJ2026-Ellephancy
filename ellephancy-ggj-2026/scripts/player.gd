@@ -20,7 +20,6 @@ extends CharacterBody2D
 @export var mascaras_manager : MascarasManager
 @export var agarrar_manager : AgarrarManager
 @export var interact_manager : InteractuarManager
-@export var animation_player : AnimationPlayer
 @export var componente_de_vida : ComponenteDeVida
 @onready var STATS : PlayerStats = %PlayerStats
 #------------------FIN MANAGERS -----------
@@ -74,9 +73,6 @@ func _physics_process(delta: float) -> void:
 
 	mov_manager.aplicar_gravedad(delta)
 	mov_manager.matchear_estado_actual(estado_actual, delta)
-
-	if global_position.y > STATS.limite_altura_morir:
-		matar_player()
 
 	move_and_slide()
 	calcular_tiempo_en_aire(delta)
@@ -155,12 +151,12 @@ func matar_player():
 		return
 	reviviendo_player = true
 	%FmodEventEmitter2D7.play()
-	animation_player.play("fade_out_revivir")
+	Global.fade_out_revivir.emit() #cambie a signals
 	Global.matar_player.emit()
 	set_physics_process(false)
 	await get_tree().create_timer(1.5).timeout
 	global_position = Global.get_checkpoint_position()
-	animation_player.play("fade_in")
+	Global.fade_in.emit() #ahora es signal
 	reviviendo_player = false
 	componente_de_vida.vida = componente_de_vida.vida_maxima
 	set_physics_process(true)

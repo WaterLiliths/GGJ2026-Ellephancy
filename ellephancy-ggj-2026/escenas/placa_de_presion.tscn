@@ -45,9 +45,9 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0lxmu"]
-size = Vector2(10, 38)
+size = Vector2(88, 30)
 
-[node name="PlacaDePresion" type="Node2D"]
+[node name="PlacaDePresion" type="Node2D" groups=["persistente"]]
 script = ExtResource("1_opkvq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -62,7 +62,7 @@ unique_name_in_owner = true
 collision_mask = 129
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDetectar"]
-position = Vector2(0, 13)
+position = Vector2(0, 17)
 shape = SubResource("RectangleShape2D_0lxmu")
 debug_color = Color(6.738305e-07, 0.6421155, 0.32836702, 0.41960785)
 

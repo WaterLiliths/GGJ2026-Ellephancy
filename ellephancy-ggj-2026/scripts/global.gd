@@ -8,6 +8,8 @@ signal mascara_tiempo_desactivar
 signal mascara_fuerza_desactivar
 signal agarre_mascara(id : int)
 signal equipar_mascara(id : int)
+signal fade_in
+signal fade_out_revivir
 #Booleano por mascara
 var tiene_mascara_fuerza : bool = false
 var tiene_mascara_tiempo : bool = false

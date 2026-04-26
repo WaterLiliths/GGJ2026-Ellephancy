@@ -37,7 +37,7 @@ var player_en_puerta : bool = false
 
 var posicion_original = position.y
 var esta_abierta = false
-var fue_abierta = false
+#var fue_abierta = false #parece que no se usa, TODO CONSULTAR
 
 var palancas : Array[Palanca] = []
 var palancas_con_runas
@@ -96,7 +96,7 @@ func _on_mecanismo_desactivado(mecanismo):
 			cambiar_estado()
 
 
-func abrir_puerta():
+func abrir_puerta(simular : bool = false):
 	var tween_sprite = get_tree().create_tween()
 	var tween_colision = get_tree().create_tween()
 	tween_sprite.set_trans(Tween.TRANS_QUAD)
@@ -110,6 +110,8 @@ func abrir_puerta():
 			tween_colision.tween_property(collision_shape_2d, "position:x" , -altura_maxima, tiempo_de_apertura)
 
 	esta_abierta = true
+	if simular:
+		return
 	Global.puerta_abierta.emit(global_position, tiempo_de_apertura)
 	#var conexiones = Global.get_signal_connection_list("puerta_abierta")
 	
@@ -207,3 +209,24 @@ func entrar_a_dungeon():
 	await get_tree().create_timer(1).timeout
 	await get_tree().process_frame
 	get_tree().change_scene_to_packed(dungeon)
+#se llaman en global con get_tree().call_group("persistente", "guardar") y para cargar igual
+func guardar():
+	#print("##### Objeto guardado con la key: ", get_path())
+	Global.diccionario_persistentes[get_path()] = {"esta_abierta" = esta_abierta} #guardo con un diccionario adentro de otro
+
+
+
+func cargar():
+		#print("-- se ejecuto cargar en el objeto empujable  : ", get_path())
+	if Global.diccionario_persistentes.has(get_path()):
+		#print("-------  ENCONTRE MI KEY EN EL DICCIONARIOOOOO ")
+		esta_abierta = Global.diccionario_persistentes[get_path()]["esta_abierta"]
+		if esta_abierta:
+			simular_activacion()
+	else:
+		guardar() #si por algun motivo no se habia guardado anteriormente, lo guardo con la posicion actual
+		#print("ATENCION ----- NO SE ENCONTRO MI INFO EN EL DICCIONARIO ")
+
+
+func simular_activacion():
+	abrir_puerta(true) #true viende de activar la "simulacion" solo hacemos que se abra sin emitir la signal

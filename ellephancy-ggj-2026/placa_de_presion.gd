@@ -8,8 +8,8 @@ var contador_pisando : int = 0
 var tiempo_body_entered : float = 0
 
 
-@export var se_activa_con_player : bool = false
-@export var se_activa_con_empujable : bool = false
+@export var se_activa_con_player : bool = true
+@export var se_activa_con_empujable : bool = true
 
 
 func _physics_process(delta: float) -> void:
@@ -17,6 +17,7 @@ func _physics_process(delta: float) -> void:
 		tiempo_body_entered += delta #empiezp a sumarle tiempo
 		if tiempo_body_entered > tiempo_de_activacion and not activo:
 			set_activo(true)
+			print("se activó la placa")
 	else:
 		tiempo_body_entered = 0
 
@@ -38,13 +39,34 @@ func _on_area_detectar_body_exited(body: Node2D) -> void:
 			set_activo(false)
 
 
-func set_activo(estado : bool):
+func set_activo(estado : bool, simular : bool = false):
 	activo = estado
 	if activo:
 		#print("se activo la placa de presion")
 		animated_sprite.play("activar")
 		%FmodActivarPlaca.play() #placeholder, dsp lo cambiamos :D
-		Global.activar_mecanismo.emit(self)
+		if not simular:
+			Global.activar_mecanismo.emit(self)
 	else:
 		animated_sprite.play("desactivar")
-		Global.desactivar_mecanismo.emit(self)
+		if not simular:
+			Global.desactivar_mecanismo.emit(self)
+
+
+
+#se llaman en global con get_tree().call_group("persistente", "guardar") y para cargar igual
+func guardar():
+	#print("##### Objeto guardado con la key: ", get_path())
+	Global.diccionario_persistentes[get_path()] = {"activo" = activo} #guardo con un diccionario adentro de otro
+
+
+
+func cargar():
+	#print("-- se ejecuto cargar en el objeto empujable  : ", get_path())
+	if Global.diccionario_persistentes.has(get_path()):
+		#print("-------  ENCONTRE MI KEY EN EL DICCIONARIOOOOO ")
+		activo = Global.diccionario_persistentes[get_path()]["activo"]
+		set_activo(activo, true)
+	else:
+		guardar() #si por algun motivo no se habia guardado anteriormente, lo guardo con la posicion actual
+		#print("ATENCION ----- NO SE ENCONTRO MI INFO EN EL DICCIONARIO ")

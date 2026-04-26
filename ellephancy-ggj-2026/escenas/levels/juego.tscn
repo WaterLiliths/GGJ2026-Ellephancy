@@ -24,8 +24,10 @@
 [ext_resource type="PackedScene" uid="uid://bt4n0y116jpo3" path="res://escenas/HUD/nombre_de_zona.tscn" id="19_w33dd"]
 [ext_resource type="PackedScene" uid="uid://ctgi3ppkimt2c" path="res://escenas/levels/third_level.tscn" id="19_yv8to"]
 [ext_resource type="PackedScene" uid="uid://b3kt101wc8mwl" path="res://escenas/world_objects/palanca.tscn" id="20_u0ym6"]
+[ext_resource type="AnimationLibrary" uid="uid://bn0fvyyx6evyv" path="res://escenas/animaciones/fadein-fadeout.res" id="21_a5n05"]
 [ext_resource type="PackedScene" uid="uid://cqfbi3mqn04vl" path="res://escenas/levels/fourth_level_working.tscn" id="21_gdb2x"]
 [ext_resource type="PackedScene" uid="uid://biambmyuxxflo" path="res://escenas/world_objects/puerta.tscn" id="21_xkwlr"]
+[ext_resource type="Script" uid="uid://b5fdw4a5ojvs4" path="res://escenas/levels/animation_player_fade.gd" id="22_cd5vn"]
 [ext_resource type="PackedScene" uid="uid://by80hrdi7bflk" path="res://escenas/creador_de_niveles.tscn" id="22_fe420"]
 [ext_resource type="Script" uid="uid://o1jlskbd2keg" path="res://escenas/levels/reverb_area.gd" id="23_3nqa5"]
 [ext_resource type="PackedScene" uid="uid://dvoneccgob4vn" path="res://escenas/levels/fifht_level.tscn" id="23_g2cn0"]
@@ -433,7 +435,6 @@ bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res:/
 position = Vector2(6974, -1205)
 scale = Vector2(0.64, 0.64)
 estoy_testeando_cosas = true
-animation_player = NodePath("../AnimationPlayer")
 empezar_con_mascaras = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -543,12 +544,13 @@ limit_left = 0
 limit_bottom = 1200
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayerFade" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-&"": ExtResource("18_vy46r")
+&"": ExtResource("21_a5n05")
 }
 autoplay = "fade_in"
+script = ExtResource("22_cd5vn")
 
 [node name="Niveles" type="Node2D" parent="."]
 
@@ -727,9 +729,10 @@ position = Vector2(1924, -1290)
 id = 2
 tipo_de_palanca = "buena"
 
-[node name="PuertaPuzzle2" parent="Niveles/SecondLevel/Puzzle2" instance=ExtResource("21_xkwlr")]
+[node name="PuertaPuzzle2" parent="Niveles/SecondLevel/Puzzle2" node_paths=PackedStringArray("activadores") instance=ExtResource("21_xkwlr")]
 z_index = -5
 position = Vector2(695, 654)
+activadores = [NodePath("../PalancaPuzzle2"), NodePath("../PalancaPuzzle2a")]
 altura_maxima = 350.0
 tiempo_de_apertura = 2.5
 
@@ -740,9 +743,10 @@ position = Vector2(1797, 522)
 id = 3
 tipo_de_palanca = "oxidada"
 
-[node name="Puerta" parent="Niveles/SecondLevel/Puzzle3" instance=ExtResource("21_xkwlr")]
+[node name="Puerta" parent="Niveles/SecondLevel/Puzzle3" node_paths=PackedStringArray("activadores") instance=ExtResource("21_xkwlr")]
 z_index = -1
 position = Vector2(1799, 39)
+activadores = [NodePath("../PalancaPuzzle3")]
 
 [node name="CheckpointArea" parent="Niveles/SecondLevel" instance=ExtResource("24_g0try")]
 z_index = -1

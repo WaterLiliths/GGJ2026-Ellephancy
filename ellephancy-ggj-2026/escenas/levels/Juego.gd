@@ -1,7 +1,7 @@
 extends Node2D
 
 
-@onready var animation_fade_out: AnimationPlayer = %AnimationPlayer
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
 @export var manager_de_objetivos: ManagerDeObjetivos
 
 
