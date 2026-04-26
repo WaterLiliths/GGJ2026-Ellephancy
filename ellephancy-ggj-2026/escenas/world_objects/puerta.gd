@@ -1,6 +1,8 @@
 class_name Puerta
 extends StaticBody2D
 
+@export_enum("NORMAL", "DUNGEON") var tipo_de_puerta : int = 0
+@export var dungeon : PackedScene
 @export var activadores : Array[Node2D] = []
 #@export var id_puerta : int = 0
 #@export var varias_palancas : bool = false
@@ -16,6 +18,7 @@ extends StaticBody2D
 @export var tiempo_de_apertura : float = 3.0
 
 @onready var sprite_2d: Sprite2D = %Sprite2D
+@onready var sprite_2d_2: Sprite2D = %Sprite2D2
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var contenedor_de_runas: VBoxContainer = %Control/ContenedorDeRunas
 @onready var sonido_puerta_moviendo: FmodEventEmitter2D = $SonidoPuertaMoviendo
@@ -30,6 +33,7 @@ const RUNA = preload("uid://bvq5bbgfqxbf3")
 var contador_id : int = 0
 var activadores_activados : Array[Node2D] = []
 
+var player_en_puerta : bool = false
 
 var posicion_original = position.y
 var esta_abierta = false
@@ -46,6 +50,11 @@ signal activado
 
 
 func _ready() -> void:
+	if tipo_de_puerta == 1:
+		setup_puerta_dungeon()
+	elif tipo_de_puerta == 0:
+		sprite_2d_2.hide()
+		
 	if usa_runas:
 		setup_runas()
 
@@ -171,3 +180,30 @@ func _on_palanca_con_runa_activada(mecanismo, runa: Runa):
 				if runas_activadas.keys().size() == runas_correctas.keys().size():
 					sonido_runas_correctas.play()
 					abrir_puerta()
+
+
+func setup_puerta_dungeon():
+	sprite_2d_2.show()
+	collision_shape_2d.disabled = true
+
+
+func _on_area_puerta_dungeon_body_entered(body: Node2D) -> void:
+	if body is Player: 
+		player_en_puerta = true
+
+
+func _on_area_puerta_dungeon_body_exited(body: Node2D) -> void:
+	if body is Player: 
+		player_en_puerta = false
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("interactuar") and esta_abierta and player_en_puerta and tipo_de_puerta == 1:
+		entrar_a_dungeon()
+		
+
+func entrar_a_dungeon():
+	print("entraste a la dungeon")
+	Global.guardar_datos()
+	await get_tree().create_timer(1).timeout
+	await get_tree().process_frame
+	get_tree().change_scene_to_packed(dungeon)

@@ -96,7 +96,7 @@ func _physics_process(delta: float) -> void:
 
 func on_entra_a_interactivo(interactivo_actual : Interactivo):
 	puede_interactuar = true
-	if interactivo_actual is Palanca or PuertaDungeon:
+	if interactivo_actual is Palanca:
 		objeto_interactivo = interactivo_actual
 
 func on_sale_de_interactivo(interactivo_actual : Interactivo):
