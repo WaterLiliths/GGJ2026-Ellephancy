@@ -1,3 +1,4 @@
+class_name MascaraOso
 extends Node2D #mascara de fuerza es la 2
 
 @export var id : int = 2
