@@ -122,8 +122,9 @@ func activar_mascara_fuerza():
 func desactivar_mascara_fuerza():
 	#esta linea tenemos que comentar cuando le quitemos el salto al oso
 	#por ahora para testear los niveles se lo dejo
-	STATS.velocidad_salto = STATS.velocidad_inicial_salto
+	#STATS.velocidad_salto = STATS.velocidad_inicial_salto
 	#print("se desactivo las mascara de fuerza")
+	pass
 
 
 func _on_usar_habilidad_mascara(id_mascara : int):
