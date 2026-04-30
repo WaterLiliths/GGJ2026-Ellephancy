@@ -1,3 +1,4 @@
+class_name MascaraCiervo #esto esta RARO pero es temporal, en todo caso deberia hacer una clase mascara y que estas extiendan, pero todavia falta refactorizar para eso
 extends Node2D #mascara de los tiempos la 1
 
 @export var id : int = 1
@@ -20,7 +21,6 @@ func _ready() -> void:
 	color_rect_shader.material = material_shader #le asigno el duplicado
 
 func usar():
-	
 	if activa:
 		return
 	activa = true

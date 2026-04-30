@@ -25,7 +25,6 @@ extends CharacterBody2D
 #------------------FIN MANAGERS -----------
 @export_group("Empezar con mascara")
 @export var empezar_con_mascaras : bool = false
-
 #-------------------------------
 var ultimo_tiempo_en_aire : float = 0
 var tiempo_en_el_aire_actual: float = 0
