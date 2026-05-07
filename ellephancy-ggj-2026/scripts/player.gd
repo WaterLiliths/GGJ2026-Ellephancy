@@ -25,7 +25,6 @@ extends CharacterBody2D
 #------------------FIN MANAGERS -----------
 @export_group("Empezar con mascara")
 @export var empezar_con_mascaras : bool = false
-
 #-------------------------------
 var ultimo_tiempo_en_aire : float = 0
 var tiempo_en_el_aire_actual: float = 0
@@ -113,10 +112,10 @@ func on_disminuir_velocidad_agarrando(peso_caja : float): #señal emitida desde 
 func reset_velocidad_normal(): #se ejecuta en la signal emitida por agarrar manager
 	STATS.velocidad = STATS.velocidad_inicial
 	STATS.aceleracion = STATS.aceleracion_inicial
-	if Global.mascara_activa==2:
-		STATS.velocidad_salto = STATS.velocidad_salto_con_mascara
-	else:
-		STATS.velocidad_salto = STATS.velocidad_inicial_salto
+	#if Global.mascara_activa==2: lo saco pq sino el oso vuelve a tener salto cuando soltamos la piedra
+		#STATS.velocidad_salto = STATS.velocidad_salto_con_mascara
+	#else:
+		#STATS.velocidad_salto = STATS.velocidad_inicial_salto
 
 
 func detectar_caida():

@@ -1,3 +1,4 @@
+class_name MascaraSalmon
 extends Node2D #mascara de las traducciones es 3
 
 @export var id : int = 3

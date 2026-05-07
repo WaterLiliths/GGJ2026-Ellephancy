@@ -10,15 +10,18 @@ signal tirar_presionado
 signal interactuar_presionado
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("1"): #usar mascara fuerza
-		Global.equipar_mascara.emit(2) #no olvidar que la 2 quedo como OSO
+	if Input.is_action_just_pressed("1"): #ciervo
+		Global.equipar_mascara.emit(1) #no olvidar que la 2 quedo como OSO
 	animation_manager.verificar_animacion_con_mascara() #TODO Esto mas adelante tiene que ser una signal
-	if Input.is_action_just_pressed("2"): #usar mascara tiempos
-		Global.equipar_mascara.emit(1) #y la 1 quedo como ciervo, TODO cambiar cuando recupere neuronas
+	if Input.is_action_just_pressed("2"): #oso
+		Global.equipar_mascara.emit(2) #y la 1 quedo como ciervo, TODO cambiar cuando recupere neuronas
 	animation_manager.verificar_animacion_con_mascara()
-	if Input.is_action_just_pressed("3"): #usar mascara traducciones
+	if Input.is_action_just_pressed("3"): #usar mascara salmon
 		Global.equipar_mascara.emit(3)
 	animation_manager.verificar_animacion_con_mascara()
+
+	if Input.is_action_just_pressed("f"): #POR AHORA PARA Q CAMBIE AL PASADO APRETANDO F
+		mascaras_manager.usar_habilidad_mascara.emit(1)
 
 	if Input.is_action_just_pressed("tirar"):
 		tirar_presionado.emit()
