@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://45apkf4ddmvr"]
+[gd_scene load_steps=9 format=3 uid="uid://45apkf4ddmvr"]
 
 [ext_resource type="Script" uid="uid://c828ri1fboaoq" path="res://scripts/mascara_tiempos.gd" id="1_v8jvp"]
 [ext_resource type="Shader" uid="uid://dgqbbu2xdih1l" path="res://escenas/mascara_tiempos2.gdshader" id="2_dot3c"]
 [ext_resource type="Texture2D" uid="uid://bvg3w01gx6tqm" path="res://assets/2d para shader/textura.png" id="3_d7wvt"]
+[ext_resource type="Shader" uid="uid://bgp3srvx5eu3g" path="res://escenas/mascara_tiempos_shader_agua.gdshader" id="4_6l7y4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d7wvt"]
 shader = ExtResource("2_dot3c")
@@ -19,14 +20,25 @@ shader_parameter/offSetSpeed = Vector2(0.1, 0.1)
 shader_parameter/backGroundDirX = 0.01
 shader_parameter/backGroundDirY = 0.01
 
-[sub_resource type="Animation" id="Animation_d7wvt"]
-resource_name = "mascara_activa"
-length = 0.2
+[sub_resource type="Gradient" id="Gradient_6l7y4"]
+offsets = PackedFloat32Array(0.33035713, 1)
+colors = PackedColorArray(1, 1, 1, 0.49803922, 0, 0, 0, 0.3137255)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_6l7y4"]
-_data = {
-&"mascara_activa": SubResource("Animation_d7wvt")
-}
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bsadi"]
+gradient = SubResource("Gradient_6l7y4")
+fill = 1
+fill_from = Vector2(0.5, 0.5113636)
+fill_to = Vector2(0, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bsadi"]
+shader = ExtResource("4_6l7y4")
+shader_parameter/amplitude = 1.21999997273056
+shader_parameter/frequency = 1.13999997451872
+shader_parameter/rippleRate = 9.2
+shader_parameter/waveAmplitude = 0.1
+shader_parameter/waveFrequency = 1.4
+shader_parameter/blendingAmount = 0.6
+shader_parameter/noise = SubResource("GradientTexture2D_bsadi")
 
 [node name="MascaraTiempos" type="Node2D"]
 script = ExtResource("1_v8jvp")
@@ -52,7 +64,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_6l7y4")
-}
+[node name="ColorRectShaderAgua" type="ColorRect" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_bsadi")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.67058825, 0.3372549, 0.49411765)
