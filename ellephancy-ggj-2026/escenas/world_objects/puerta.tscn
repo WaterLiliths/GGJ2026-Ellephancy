@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://biambmyuxxflo"]
+[gd_scene load_steps=6 format=3 uid="uid://biambmyuxxflo"]
 
 [ext_resource type="Script" uid="uid://btdfa4vx5ods1" path="res://escenas/world_objects/puerta.gd" id="1_555dy"]
 [ext_resource type="Texture2D" uid="uid://dyufrme2ycjb5" path="res://assets/sprites/puerta_grande.png" id="2_555dy"]
+[ext_resource type="Texture2D" uid="uid://r8op15cyle2b" path="res://assets/sprites/rocasuciaplanta.png" id="3_xu3fv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_555dy"]
 size = Vector2(90, 413)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xu3fv"]
+size = Vector2(224, 400)
 
 [node name="Puerta" type="StaticBody2D" groups=["persistente"]]
 light_mask = 7
@@ -17,6 +21,12 @@ unique_name_in_owner = true
 position = Vector2(0, -5)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_555dy")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+unique_name_in_owner = true
+position = Vector2(0, -14.431365)
+scale = Vector2(4.0784316, 4.237018)
+texture = ExtResource("3_xu3fv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 7
@@ -68,5 +78,13 @@ one_shot = true
 [node name="TimerPuerta" type="Timer" parent="."]
 one_shot = true
 
+[node name="AreaPuertaDungeon" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaPuertaDungeon"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_xu3fv")
+
 [connection signal="timeout" from="TimerTiempoDeApertura" to="." method="_on_timer_tiempo_de_apertura_timeout"]
 [connection signal="timeout" from="TimerPuerta" to="." method="_on_timer_puerta_timeout"]
+[connection signal="body_entered" from="AreaPuertaDungeon" to="." method="_on_area_puerta_dungeon_body_entered"]
+[connection signal="body_exited" from="AreaPuertaDungeon" to="." method="_on_area_puerta_dungeon_body_exited"]
