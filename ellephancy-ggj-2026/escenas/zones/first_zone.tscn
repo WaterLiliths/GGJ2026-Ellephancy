@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://by0d0f3mesuha"]
+[gd_scene load_steps=14 format=3 uid="uid://by0d0f3mesuha"]
 
 [ext_resource type="PackedScene" uid="uid://c12eerc67bjwn" path="res://escenas/new_levels/first_zone_level_one.tscn" id="1_7ge34"]
 [ext_resource type="PackedScene" uid="uid://biambmyuxxflo" path="res://escenas/world_objects/puerta.tscn" id="2_b3gn3"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bb0dx0tt7b3f1" path="res://assets/sprites/ambient/rocatocha2.png" id="6_uphyy"]
 [ext_resource type="PackedScene" uid="uid://c4x71yw8rmu1n" path="res://escenas/placa_de_presion.tscn" id="7_ay5a1"]
 [ext_resource type="PackedScene" uid="uid://du6kq6ieeg34e" path="res://escenas/world_objects/area_trampa.tscn" id="8_l1f1r"]
+[ext_resource type="PackedScene" uid="uid://cgskvsuwhr6dn" path="res://escenas/mobile_platform.tscn" id="11_m4tmj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ay5a1"]
 size = Vector2(119, 206)
@@ -126,7 +127,23 @@ position = Vector2(-536, 720)
 activadores = [NodePath("../PlacaDePresion4"), NodePath("../PlacaDePresion3")]
 
 [node name="Player" parent="." instance=ExtResource("3_fn8b2")]
-position = Vector2(344, 1152)
+position = Vector2(1880, 1824)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(1.6, 1.6)
+
+[node name="MobilePlatform" parent="." node_paths=PackedStringArray("marker_start", "marker_final", "activadores") instance=ExtResource("11_m4tmj")]
+position = Vector2(2224, 1896.0001)
+scale = Vector2(0.6, 0.6)
+marker_start = NodePath("Marker2D2")
+marker_final = NodePath("Marker2D")
+activadores = [NodePath("../Palanca")]
+
+[node name="Marker2D" type="Marker2D" parent="MobilePlatform"]
+position = Vector2(1373.3333, -26.66683)
+
+[node name="Marker2D2" type="Marker2D" parent="MobilePlatform"]
+position = Vector2(-480, -13.333527)
+
+[node name="Palanca" parent="." instance=ExtResource("4_b3gn3")]
+position = Vector2(1856.0001, 1840)

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgskvsuwhr6dn"]
+
+[ext_resource type="Script" uid="uid://jnnkkfbqooov" path="res://escenas/mobile_platform.gd" id="1_vapjj"]
+[ext_resource type="Texture2D" uid="uid://dyufrme2ycjb5" path="res://assets/sprites/puerta_grande.png" id="2_q5e00"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pfict"]
+size = Vector2(552, 112)
+
+[node name="MobilePlatform" type="AnimatableBody2D"]
+disable_mode = 1
+collision_layer = 2
+collision_mask = 194
+script = ExtResource("1_vapjj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5707964
+texture = ExtResource("2_q5e00")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, 0)
+shape = SubResource("RectangleShape2D_pfict")
