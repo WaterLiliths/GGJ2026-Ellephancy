@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=12 format=3 uid="uid://cj0o3c28vicve"]
+[gd_resource type="Theme" load_steps=13 format=3 uid="uid://cj0o3c28vicve"]
 
 [ext_resource type="FontFile" uid="uid://ciwhe1apfc5gi" path="res://assets/fonts/Balgruf.otf" id="1_it2tw"]
 [ext_resource type="FontFile" uid="uid://c8jaldbo0lky" path="res://assets/fonts/Balgruf_Italic.otf" id="2_ikxgt"]
@@ -48,6 +48,13 @@ thickness = 6
 color = Color(0.18841332, 0.26, 0.1872, 1)
 thickness = 6
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ikxgt"]
+bg_color = Color(0.15487596, 0.154876, 0.15487587, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_it2tw"]
 bg_color = Color(8.904189e-07, 0.49798602, 0.3497821, 0.46666667)
 corner_radius_top_left = 12
@@ -74,6 +81,7 @@ HSlider/styles/grabber_area_highlight = SubResource("StyleBoxLine_vv2yp")
 HSlider/styles/slider = SubResource("StyleBoxLine_5o0kr")
 Label/font_sizes/font_size = 20
 Label/fonts/font = ExtResource("1_it2tw")
+Panel/styles/panel = SubResource("StyleBoxFlat_ikxgt")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_it2tw")
 RichTextLabel/fonts/italics_font = ExtResource("2_ikxgt")
 RichTextLabel/fonts/normal_font = ExtResource("1_it2tw")
