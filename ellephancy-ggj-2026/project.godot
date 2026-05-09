@@ -66,6 +66,7 @@ cajas=""
 colision_cajas=""
 tilemap_suelo=""
 persistente="objetos persistentes entre saves"
+player=""
 
 [input]
 
