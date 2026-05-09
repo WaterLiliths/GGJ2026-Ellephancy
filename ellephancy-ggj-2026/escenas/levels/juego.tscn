@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=4 uid="uid://dkudwre2b373"]
+[gd_scene load_steps=79 format=4 uid="uid://dkudwre2b373"]
 
 [ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/Juego.gd" id="1_2y4ua"]
 [ext_resource type="PackedScene" uid="uid://c4fdbwaawyx0w" path="res://escenas/nodos_funcionalidades/manager_de_objetivos.tscn" id="2_82r4j"]
@@ -20,8 +20,9 @@
 [ext_resource type="Script" uid="uid://dxat8cn5c3yh5" path="res://escenas/levels/manivela.gd" id="10_e4rmv"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="12_g2cn0"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="13_8mohb"]
-[ext_resource type="PackedScene" uid="uid://bt4n0y116jpo3" path="res://escenas/HUD/nombre_de_zona.tscn" id="19_w33dd"]
 [ext_resource type="PackedScene" uid="uid://ctgi3ppkimt2c" path="res://escenas/levels/third_level.tscn" id="19_yv8to"]
+[ext_resource type="Script" uid="uid://ghtc2odvqaxy" path="res://escenas/levels/nombre_de_zona_v_2.gd" id="20_4ecni"]
+[ext_resource type="Theme" uid="uid://cj0o3c28vicve" path="res://escenas/themes/tema_pausa_menu.tres" id="20_d0ghw"]
 [ext_resource type="PackedScene" uid="uid://b3kt101wc8mwl" path="res://escenas/world_objects/palanca.tscn" id="20_u0ym6"]
 [ext_resource type="AnimationLibrary" uid="uid://bn0fvyyx6evyv" path="res://escenas/animaciones/fadein-fadeout.res" id="21_a5n05"]
 [ext_resource type="PackedScene" uid="uid://cqfbi3mqn04vl" path="res://escenas/levels/fourth_level_working.tscn" id="21_gdb2x"]
@@ -51,6 +52,7 @@
 [ext_resource type="PackedScene" uid="uid://bkufyuetojtvg" path="res://escenas/world_objects/objetivo_optico.tscn" id="46_cd5vn"]
 [ext_resource type="PackedScene" uid="uid://daorm6xo8r06f" path="res://escenas/world_objects/trampa_de_flechas.tscn" id="48_a5n05"]
 [ext_resource type="PackedScene" uid="uid://c4ppjp23vmfi1" path="res://escenas/dungeon.tscn" id="50_cnr3b"]
+[ext_resource type="PackedScene" uid="uid://qrjybxbr7g1c" path="res://escenas/area_nombre_de_zona.tscn" id="52_tvhev"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fe420"]
 size = Vector2(304.0625, 544.375)
@@ -114,6 +116,9 @@ fill_to = Vector2(0.6111111, 0.34188035)
 [sub_resource type="Curve" id="Curve_m34qx"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.16062176, 0.68539333), 0.0, 0.0, 0, 0, Vector2(0.34715027, 0.26966298), 0.0, 0.0, 0, 0, Vector2(0.6839379, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 5
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_d0ghw"]
+light_mode = 1
 
 [sub_resource type="Resource" id="Resource_yei3n"]
 script = ExtResource("13_8mohb")
@@ -195,6 +200,9 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-176, 302, -219, -2527,
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w33dd"]
 size = Vector2(436.5, 297)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0ghw"]
+size = Vector2(1550.5454, 1436.7727)
 
 [node name="Juego" type="Node2D" node_paths=PackedStringArray("manager_de_objetivos")]
 script = ExtResource("1_2y4ua")
@@ -514,13 +522,24 @@ scale_amount_min = 0.0
 scale_amount_max = 0.3
 scale_amount_curve = SubResource("Curve_m34qx")
 
-[node name="NombreDeZona" parent="Player/Camera2D" instance=ExtResource("19_w33dd")]
-visible = false
-anchors_preset = 9
-anchor_right = 0.0
-grow_horizontal = 1
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="NombreDeZona" type="RichTextLabel" parent="Player/Camera2D"]
+light_mask = 0
+z_index = 3585
+material = SubResource("CanvasItemMaterial_d0ghw")
+anchors_preset = -1
+anchor_left = -8.6970005
+anchor_bottom = 14.51
+offset_left = -600.0
+offset_top = -255.0
+offset_right = 599.0
+offset_bottom = -131.0
+theme = ExtResource("20_d0ghw")
+theme_override_font_sizes/normal_font_size = 51
+bbcode_enabled = true
+text = "nombre de zona"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("20_4ecni")
 
 [node name="Node2D" type="Node2D" parent="Player" node_paths=PackedStringArray("player")]
 script = ExtResource("10_e4rmv")
@@ -848,6 +867,13 @@ dungeon = ExtResource("50_cnr3b")
 activadores = [NodePath("../Palanca")]
 altura_maxima = 350.0
 tiempo_de_apertura = 5.0
+
+[node name="AreaNombreDeZona" parent="." instance=ExtResource("52_tvhev")]
+position = Vector2(5324.091, -183.45459)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaNombreDeZona"]
+position = Vector2(-1749.3635, -545.15906)
+shape = SubResource("RectangleShape2D_d0ghw")
 
 [connection signal="body_entered" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_entered"]
 [connection signal="body_exited" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_exited"]
