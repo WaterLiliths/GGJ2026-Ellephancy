@@ -1,0 +1,112 @@
+[gd_scene load_steps=5 format=3 uid="uid://bsnmxmtoh41ux"]
+
+[ext_resource type="Script" uid="uid://btsgdakebiwd5" path="res://escenas/HUD/popup_ui.gd" id="1_8du0n"]
+[ext_resource type="Theme" uid="uid://cj0o3c28vicve" path="res://escenas/themes/tema_pausa_menu.tres" id="2_6gl8x"]
+[ext_resource type="Texture2D" uid="uid://bi5n023nx1e1n" path="res://assets/sprites/bosquepocho3.png" id="3_hnwlt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6gl8x"]
+
+[node name="PopupUI" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_8du0n")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Control"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1200, 800)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -300.0
+offset_right = 500.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_6gl8x")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Image" type="TextureRect" parent="Control/Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("3_hnwlt")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Text" type="RichTextLabel" parent="Control/Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_6gl8x")
+bbcode_enabled = true
+text = "[i]Texto placeholder para probar como quedaria.
+Linea nuevaaaa
+[/i]"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="PageIndicator" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1/3"
+label_settings = SubResource("LabelSettings_6gl8x")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="PrevButton" type="Button" parent="Control/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -4.0
+offset_right = 8.0
+offset_bottom = 4.0
+grow_vertical = 2
+text = "<"
+
+[node name="NextButton" type="Button" parent="Control/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -4.0
+offset_bottom = 4.0
+grow_horizontal = 0
+grow_vertical = 2
+text = ">"
+
+[node name="CloseButton" type="Button" parent="Control/Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
