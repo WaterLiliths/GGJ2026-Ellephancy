@@ -10,6 +10,7 @@ signal agarre_mascara(id : int)
 signal equipar_mascara(id : int)
 signal fade_in
 signal fade_out_revivir
+signal nombre_zona(nombre: String)
 #Booleano por mascara
 var tiene_mascara_fuerza : bool = false
 var tiene_mascara_tiempo : bool = false
@@ -55,7 +56,8 @@ func set_checkpoint_position(nueva_pos : Vector2): #la llamo en escena checkpoin
 func get_checkpoint_position(): #seguro la llame desde player
 	return checkpoint_position
 
-
+func mostrar_nombre_zona(nombre: String) -> void:
+	nombre_zona.emit(nombre)
 #---------------------- guardar y cargar datos ---------------------------
 #INFO IMPORTANTE a esta funcion de guardar datos la llamamos directamente, pero si se quisiera podriamos hacer una signal
 #ejemplo, voy al checkpoint y en la misma funcion donde se setea el checkpoint position le pongo Global.guardar_datos()
