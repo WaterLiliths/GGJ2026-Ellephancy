@@ -15,7 +15,8 @@ var tiene_mascara_fuerza : bool = false
 var tiene_mascara_tiempo : bool = false
 var tiene_mascara_traducciones : bool = false
 
-
+signal congelar_player #las emito en mascara de ciervo cuando activo el shader
+signal descongelar_player #cuando termino el shader
 signal matar_player #emitida desde player y escuchada por JUEGO, es para hacer el fade out
 signal dialogo_activo_to_player #se emite en area dialogo
 signal dialogo_desactivado_to_player #se escucha player
