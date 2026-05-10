@@ -2,7 +2,7 @@ class_name Puerta
 extends StaticBody2D
 
 @export_enum("NORMAL", "DUNGEON") var tipo_de_puerta : int = 0
-@export var dungeon : PackedScene
+#@export var dungeon : PackedScene
 @export var activadores : Array[Node2D] = []
 #@export var id_puerta : int = 0
 #@export var varias_palancas : bool = false
@@ -16,6 +16,9 @@ extends StaticBody2D
 @export var timer : float = 1.0
 @export var altura_maxima : float = 250.0
 @export var tiempo_de_apertura : float = 3.0
+
+@export_group("Dungeon")
+@export var posicion_tp : Marker2D
 
 @onready var sprite_2d: Sprite2D = %Sprite2D
 @onready var sprite_2d_2: Sprite2D = %Sprite2D2
@@ -45,6 +48,8 @@ var cantidad_de_runas : int = 0
 enum TiposDeRunas { NUDO_SIMETRICO, NUDO_ASIMETRICO, TRIQUETRA, CRUZ, TRISKELE, ATOMO }
 var runas_correctas = {}
 var runas_activadas = {}
+
+var player : Player
 
 signal activado
 
@@ -192,6 +197,7 @@ func setup_puerta_dungeon():
 func _on_area_puerta_dungeon_body_entered(body: Node2D) -> void:
 	if body is Player: 
 		player_en_puerta = true
+		player = body
 
 
 func _on_area_puerta_dungeon_body_exited(body: Node2D) -> void:
@@ -206,9 +212,10 @@ func _input(event: InputEvent) -> void:
 func entrar_a_dungeon():
 	print("entraste a la dungeon")
 	Global.guardar_datos()
-	await get_tree().create_timer(1).timeout
-	await get_tree().process_frame
-	get_tree().change_scene_to_packed(dungeon)
+	Global.teletransportar(player, posicion_tp.global_position)
+	#await get_tree().create_timer(1).timeout
+	#await get_tree().process_frame
+	#get_tree().change_scene_to_packed(dungeon)
 #se llaman en global con get_tree().call_group("persistente", "guardar") y para cargar igual
 func guardar():
 	#print("##### Objeto guardado con la key: ", get_path())

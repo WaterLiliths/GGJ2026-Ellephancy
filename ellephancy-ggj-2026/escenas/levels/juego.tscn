@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=4 uid="uid://dkudwre2b373"]
+[gd_scene load_steps=78 format=4 uid="uid://dkudwre2b373"]
 
 [ext_resource type="Script" uid="uid://c66tdff0ofy2i" path="res://escenas/levels/Juego.gd" id="1_2y4ua"]
 [ext_resource type="PackedScene" uid="uid://c4fdbwaawyx0w" path="res://escenas/nodos_funcionalidades/manager_de_objetivos.tscn" id="2_82r4j"]
@@ -51,12 +51,7 @@
 [ext_resource type="PackedScene" uid="uid://dy8nlt4mrvp53" path="res://escenas/world_objects/base_optica_movible.tscn" id="45_a3gqp"]
 [ext_resource type="PackedScene" uid="uid://c4x71yw8rmu1n" path="res://escenas/placa_de_presion.tscn" id="46_8gjer"]
 [ext_resource type="PackedScene" uid="uid://bkufyuetojtvg" path="res://escenas/world_objects/objetivo_optico.tscn" id="46_cd5vn"]
-[ext_resource type="PackedScene" uid="uid://daorm6xo8r06f" path="res://escenas/world_objects/trampa_de_flechas.tscn" id="48_a5n05"]
-[ext_resource type="PackedScene" uid="uid://c4ppjp23vmfi1" path="res://escenas/dungeon.tscn" id="50_cnr3b"]
 [ext_resource type="PackedScene" uid="uid://qrjybxbr7g1c" path="res://escenas/area_nombre_de_zona.tscn" id="52_tvhev"]
-[ext_resource type="PackedScene" uid="uid://cglqwf0liiwgf" path="res://escenas/popup_trigger.tscn" id="54_kb04s"]
-[ext_resource type="Texture2D" uid="uid://bi5n023nx1e1n" path="res://assets/sprites/bosquepocho3.png" id="55_mn6re"]
-[ext_resource type="Texture2D" uid="uid://t7pvqbwf3crw" path="res://assets/sprites/Parallaxprueba.png" id="57_a6yrn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fe420"]
 size = Vector2(304.0625, 544.375)
@@ -207,9 +202,6 @@ size = Vector2(436.5, 297)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d0ghw"]
 size = Vector2(1550.5454, 1436.7727)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kb04s"]
-size = Vector2(366.39783, 432.48547)
 
 [node name="Juego" type="Node2D" node_paths=PackedStringArray("manager_de_objetivos")]
 script = ExtResource("1_2y4ua")
@@ -446,14 +438,14 @@ texture = ExtResource("5_ffuyt")
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank", "res://assets/audio/FmodBanks/Desktop/UI.bank"]
 
 [node name="Player" parent="." instance=ExtResource("8_m34qx")]
-position = Vector2(1067, 355)
+position = Vector2(5105, -93)
 estoy_testeando_cosas = true
 empezar_con_mascaras = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(1067, 285)
+position = Vector2(5105, -163)
 zoom = Vector2(1.6, 1.6)
 limit_left = 0
 limit_bottom = 1200
@@ -520,11 +512,9 @@ emission_shape = 3
 emission_rect_extents = Vector2(1500, 1000)
 direction = Vector2(-1, 0)
 spread = 41.3
-gravity = Vector2(-1, 0.1)
+gravity = Vector2(-1, 0)
 initial_velocity_min = 5.0
 initial_velocity_max = 10.0
-tangential_accel_min = 1.0
-tangential_accel_max = 1.0
 scale_amount_min = 0.0
 scale_amount_max = 0.3
 scale_amount_curve = SubResource("Curve_m34qx")
@@ -549,6 +539,7 @@ vertical_alignment = 1
 script = ExtResource("20_4ecni")
 
 [node name="PopupUI" parent="Player/Camera2D" instance=ExtResource("21_mn6re")]
+visible = false
 
 [node name="Node2D" type="Node2D" parent="Player" node_paths=PackedStringArray("player")]
 script = ExtResource("10_e4rmv")
@@ -556,7 +547,7 @@ player = NodePath("..")
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(1067, 285)
+position = Vector2(5105, -163)
 script = ExtResource("12_g2cn0")
 follow_mode = 2
 follow_target = NodePath("../Player/Node2D")
@@ -860,22 +851,18 @@ position = Vector2(5149, -153)
 position = Vector2(-325.25, -23)
 shape = SubResource("RectangleShape2D_w33dd")
 
-[node name="TrampaDeFlechas" parent="." node_paths=PackedStringArray("area_de_activacion") instance=ExtResource("48_a5n05")]
-position = Vector2(4995, -82)
-rotation = -4.1276436
-area_de_activacion = NodePath("../Area2D2")
-velocidad_de_disparo = 1000
-
 [node name="Palanca" parent="." instance=ExtResource("20_u0ym6")]
 position = Vector2(5140, -65)
 
-[node name="Puerta" parent="." node_paths=PackedStringArray("activadores") instance=ExtResource("21_xkwlr")]
+[node name="Puerta" parent="." node_paths=PackedStringArray("activadores", "posicion_tp") instance=ExtResource("21_xkwlr")]
 position = Vector2(5324.091, -183.45459)
-tipo_de_puerta = 1
-dungeon = ExtResource("50_cnr3b")
 activadores = [NodePath("../Palanca")]
 altura_maxima = 350.0
 tiempo_de_apertura = 5.0
+posicion_tp = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="Puerta"]
+position = Vector2(736.1426, -591.937)
 
 [node name="AreaNombreDeZona" parent="." instance=ExtResource("52_tvhev")]
 position = Vector2(5324.091, -183.45459)
@@ -883,15 +870,6 @@ position = Vector2(5324.091, -183.45459)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaNombreDeZona"]
 position = Vector2(-1749.3635, -545.15906)
 shape = SubResource("RectangleShape2D_d0ghw")
-
-[node name="PopupTrigger" parent="." instance=ExtResource("54_kb04s")]
-tutorial_id = "1"
-imagenes = Array[Texture2D]([ExtResource("55_mn6re"), ExtResource("57_a6yrn")])
-textos = Array[String](["Prueba popup :)"])
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PopupTrigger"]
-position = Vector2(1420, 191)
-shape = SubResource("RectangleShape2D_kb04s")
 
 [connection signal="body_entered" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_entered"]
 [connection signal="body_exited" from="Niveles/FirstLevelWorks/ReverbArea" to="Niveles/FirstLevelWorks/ReverbArea" method="_on_body_exited"]
