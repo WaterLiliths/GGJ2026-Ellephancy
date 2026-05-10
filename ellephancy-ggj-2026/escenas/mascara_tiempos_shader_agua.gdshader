@@ -19,10 +19,6 @@ void fragment()
 {
     vec2 uv = UV;
 
-    //-----------------------------------
-    // corregir aspect ratio
-    //-----------------------------------
-
     float aspect =
         SCREEN_PIXEL_SIZE.y / SCREEN_PIXEL_SIZE.x;
 
@@ -31,27 +27,17 @@ void fragment()
         / vec2(1.0, aspect)
         + vec2(0.0, 0.5);
 
-    //-----------------------------------
-    // distancia al centro
-    //-----------------------------------
 
     float radius = progress * max_radius;
 
     float dist =
         distance(scaled_uv, center);
 
-    //-----------------------------------
-    // reveal
-    //-----------------------------------
-
     float reveal =
         smoothstep(radius - feather,
                    radius,
                    dist);
 
-    //-----------------------------------
-    // ring
-    //-----------------------------------
 
     float ring =
         smoothstep(radius - ring_width,
@@ -62,23 +48,14 @@ void fragment()
                    radius + ring_width,
                    dist);
 
-    //-----------------------------------
-    // dirección radial
-    //-----------------------------------
 
     vec2 dir =
         normalize(scaled_uv - center);
 
-    //-----------------------------------
-    // distorsión
-    //-----------------------------------
 
     vec2 distorted_uv =
         uv + dir * distortion_strength * ring;
 
-    //-----------------------------------
-    // chromatic aberration
-    //-----------------------------------
 
     vec4 r =
         texture(TEXTURE,
@@ -97,18 +74,14 @@ void fragment()
     vec3 final_color =
         vec3(r.r, g.g, b.b);
 
-    //-----------------------------------
-    // glow
-    //-----------------------------------
 
     final_color +=
         glow_color * ring * glow_strength;
 
-    //-----------------------------------
-    // resultado final
-    //-----------------------------------
 
     COLOR.rgb = final_color;
 
     COLOR.a = reveal;
 }
+//cualquier cosita, el shader base viene de aca: https://godotshaders.com/shader/za-warudo-shockwave-effect/
+//igual tiene licencia cc0 :D
