@@ -40,39 +40,36 @@ func _process(_delta: float) -> void:
 
 #-------------FUNCIONES------------------
 func activar() -> void:
-	esta_encendida = !esta_encendida #para que se ejecute 
-	if esta_encendida and not tipo_de_palanca == "fallada":
+	if tipo_de_palanca == "fallada":
+		$AnimationPlayer.play("fallada")
+		return
+
+	if tipo_de_palanca == "runas":
+		reproducir_animacion("activar")
+		await get_tree().create_timer(0.5).timeout
+		cambiar_de_runa()
+		palanca_con_runa_activada.emit(self, runa)
+		tween_entrada_luz_verde()
+		return
+
+	esta_encendida = !esta_encendida  
+
+	if esta_encendida:
 		if timeada:
 			$TimerPalanca.start()
 		match tipo_de_palanca:
-			"buena":
+			"buena", "oxidada":
 				reproducir_animacion("activar")
 				await $AnimationPlayer.animation_finished
-			"oxidada":
-				reproducir_animacion("activar")
-				await $AnimationPlayer.animation_finished
-			"runas":
-				reproducir_animacion("activar")
-				await get_tree().create_timer(0.5).timeout
 		emitir_señal(true)
 		tween_entrada_luz_verde()
-		return
-	if !esta_encendida and not tipo_de_palanca == "fallada":
+	else:
 		match tipo_de_palanca:
-			"buena":
+			"buena", "oxidada":
 				reproducir_animacion("desactivar")
 				await $AnimationPlayer.animation_finished
-			"oxidada":
-				reproducir_animacion("desactivar")
-				await $AnimationPlayer.animation_finished
-			"runas":
-				reproducir_animacion("activar")
-				await get_tree().create_timer(0.5).timeout
 		emitir_señal(false)
 		tween_salida_luz_verde()
-		return
-	if tipo_de_palanca == "fallada":
-		$AnimationPlayer.play("fallada")
 
 
 #---------------SEÑALES----------------------

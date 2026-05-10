@@ -88,6 +88,8 @@ texture = ExtResource("1_8pauy")
 script = ExtResource("1_7w50b")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+z_index = -2
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
