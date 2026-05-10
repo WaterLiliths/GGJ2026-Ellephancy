@@ -52,6 +52,8 @@ func _ready() -> void:
 	interact_manager.setup(self)
 	mov_manager.setup(self)
 	Global.restart.connect(matar_player)
+	Global.descongelar_player.connect(descongelar_player)
+	Global.congelar_player.connect(congelar_player)
 	agarrar_manager.resetear_velocidad_normal.connect(reset_velocidad_normal)
 	agarrar_manager.disminuir_velocidad_agarrando.connect(on_disminuir_velocidad_agarrando)
 	mascaras_manager.resetear_mascaras_a_cero(not empezar_con_mascaras) #marcar true o false desde el editor
@@ -158,6 +160,12 @@ func matar_player():
 	Global.fade_in.emit() #ahora es signal
 	reviviendo_player = false
 	componente_de_vida.vida = componente_de_vida.vida_maxima
+	set_physics_process(true)
+
+func congelar_player():
+	set_physics_process(false)
+
+func descongelar_player():
 	set_physics_process(true)
 
 func acaba_de_aterrizar() -> bool:
