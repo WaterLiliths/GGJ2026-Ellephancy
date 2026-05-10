@@ -54,6 +54,7 @@ func _ready() -> void:
 	Global.restart.connect(matar_player)
 	Global.descongelar_player.connect(descongelar_player)
 	Global.congelar_player.connect(congelar_player)
+	Global.pedir_posicion_a_player.connect(on_pedir_posicion_a_player)
 	agarrar_manager.resetear_velocidad_normal.connect(reset_velocidad_normal)
 	agarrar_manager.disminuir_velocidad_agarrando.connect(on_disminuir_velocidad_agarrando)
 	mascaras_manager.resetear_mascaras_a_cero(not empezar_con_mascaras) #marcar true o false desde el editor
@@ -183,5 +184,7 @@ func manejar_checkpoint_position():
 		print("Ya existia un checkpoint en el config_file, muevo al player ahi")
 		global_position = Global.get_checkpoint_position()
 
+func on_pedir_posicion_a_player(): #solo le seteo esa variable con la global position, la uso en el shader del ciervo
+	Global.player_position = global_position
 #aca habian 600 lineas pode creer 
 #o.o omg

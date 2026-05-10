@@ -53,6 +53,7 @@ func desactivar():
 func animacion_activar_shader(duracion : float = 0.2):
 	#a este shader solo hay que modificarle el parametro progress para que funcione, en cero esta como apagado y en 1.0 prendido a full
 	cambiando_mundos = true
+	calcular_player_uv_position()
 	var tween := create_tween()
 	material_shader_expansivo.set_shader_parameter("progress", 0.0) #inicializo en 0.0
 	texture_shader_expansivo.show()
@@ -66,3 +67,10 @@ func animacion_activar_shader(duracion : float = 0.2):
 	await tween.finished
 	cambiando_mundos = false
 	texture_shader_expansivo.hide()
+
+func calcular_player_uv_position(): #marge no voy a mentirte, no sabia como convertir la posicion del player en posiciones uv de pantalla asiq el chat me ayudo D:
+	var screen_size := get_viewport().get_visible_rect().size
+	var canvas_transform := get_viewport().get_canvas_transform()
+	var player_screen_pos =canvas_transform * Global.get_player_position()
+	var player_uv =player_screen_pos / screen_size
+	material_shader_expansivo.set_shader_parameter("center",player_uv)

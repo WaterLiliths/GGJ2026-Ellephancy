@@ -12,6 +12,7 @@ signal fade_in
 signal fade_out_revivir
 signal nombre_zona(nombre: String)
 signal mostrar_popup(imagenes: Array[Texture2D], textos: Array[String])
+signal pedir_posicion_a_player
 
 #Booleano por mascara
 var tiene_mascara_fuerza : bool = false
@@ -43,6 +44,7 @@ var volumen_efectos : float = 1.0 * volumen_general
 var volumen_ambiente : float = 1.0 * volumen_general
 var diccionario_persistentes : Dictionary = {}
 var checkpoint_position : Vector2 
+var player_position : Vector2
 
 
 func _ready() -> void:
@@ -64,6 +66,11 @@ func mostrar_nombre_zona(nombre: String) -> void:
 
 func popup(imagenes: Array[Texture2D], textos: Array[String]) -> void:
 	mostrar_popup.emit(imagenes, textos)
+
+func get_player_position(): #para que el shader o cualquier objeto que necesite la posicion de player la obtenga
+	pedir_posicion_a_player.emit() #para q la variable este actualizada
+	return player_position
+
 
 #---------------------- guardar y cargar datos ---------------------------
 #INFO IMPORTANTE a esta funcion de guardar datos la llamamos directamente, pero si se quisiera podriamos hacer una signal

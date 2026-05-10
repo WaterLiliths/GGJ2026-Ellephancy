@@ -30,8 +30,13 @@ void fragment()
 
     float radius = progress * max_radius;
 
-    float dist =
-        distance(scaled_uv, center);
+    vec2 scaled_center =
+    (center - vec2(0.0, 0.5))
+    / vec2(1.0, aspect)
+    + vec2(0.0, 0.5);
+
+float dist =
+    distance(scaled_uv, scaled_center);
 
     float reveal =
         smoothstep(radius - feather,
@@ -50,7 +55,7 @@ void fragment()
 
 
     vec2 dir =
-        normalize(scaled_uv - center);
+        normalize(scaled_uv - scaled_center);
 
 
     vec2 distorted_uv =
