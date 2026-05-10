@@ -57,7 +57,7 @@ signal activado
 func _ready() -> void:
 	if tipo_de_puerta == 1:
 		setup_puerta_dungeon()
-	elif tipo_de_puerta == 0:
+	if tipo_de_puerta == 0:
 		sprite_2d_2.hide()
 		
 	if usa_runas:
@@ -106,6 +106,8 @@ func abrir_puerta(simular : bool = false):
 	var tween_colision = get_tree().create_tween()
 	tween_sprite.set_trans(Tween.TRANS_QUAD)
 	tween_sprite.set_ease(Tween.EASE_IN_OUT)
+	tween_colision.set_trans(Tween.TRANS_QUAD)
+	tween_colision.set_ease(Tween.EASE_IN_OUT)
 	match direccion_de_apertura:
 		"Vertical":
 			tween_sprite.tween_property(sprite_2d, "position:y" , -altura_maxima, tiempo_de_apertura)

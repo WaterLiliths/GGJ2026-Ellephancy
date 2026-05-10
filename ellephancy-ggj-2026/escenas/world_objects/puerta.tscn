@@ -38,7 +38,6 @@ scale = Vector2(1.3333334, 1.3333334)
 occluder = SubResource("OccluderPolygon2D_xu3fv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 light_mask = 7
 visibility_layer = 7
 position = Vector2(0, -10.5)

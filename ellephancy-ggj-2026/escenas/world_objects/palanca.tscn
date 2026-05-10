@@ -240,6 +240,7 @@ texture = SubResource("GradientTexture2D_kfmqc")
 [node name="TimerPalanca" type="Timer" parent="."]
 
 [node name="Runa" parent="." instance=ExtResource("6_kfmqc")]
+z_index = -1
 offset_left = -200.00076
 offset_top = 229.8872
 offset_right = 199.99924

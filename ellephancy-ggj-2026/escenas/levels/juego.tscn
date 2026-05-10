@@ -438,14 +438,14 @@ texture = ExtResource("5_ffuyt")
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank", "res://assets/audio/FmodBanks/Desktop/UI.bank"]
 
 [node name="Player" parent="." instance=ExtResource("8_m34qx")]
-position = Vector2(5105, -93)
+position = Vector2(17934.156, -1928.0513)
 estoy_testeando_cosas = true
 empezar_con_mascaras = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(5105, -163)
+position = Vector2(17934.156, -1998.0513)
 zoom = Vector2(1.6, 1.6)
 limit_left = 0
 limit_bottom = 1200
@@ -547,7 +547,7 @@ player = NodePath("..")
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(5105, -163)
+position = Vector2(17934.156, -1998.0513)
 script = ExtResource("12_g2cn0")
 follow_mode = 2
 follow_target = NodePath("../Player/Node2D")
@@ -857,6 +857,7 @@ position = Vector2(5140, -65)
 [node name="Puerta" parent="." node_paths=PackedStringArray("activadores", "posicion_tp") instance=ExtResource("21_xkwlr")]
 position = Vector2(5324.091, -183.45459)
 activadores = [NodePath("../Palanca")]
+usa_runas = true
 altura_maxima = 350.0
 tiempo_de_apertura = 5.0
 posicion_tp = NodePath("Marker2D")
