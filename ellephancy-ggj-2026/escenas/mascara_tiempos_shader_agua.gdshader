@@ -1,50 +1,114 @@
 shader_type canvas_item;
 
-// for circles
-uniform float amplitude: hint_range(0, 2, 0.01) = 2.0;
-uniform float frequency: hint_range(0, 15, 0.01) = 12.69;
-uniform float rippleRate : hint_range(0.5, 150.0, 0.1) = 9.2;
+uniform float progress : hint_range(0.0, 1.0) = 0.0;
 
+uniform vec2 center = vec2(0.5, 0.5);
 
-// for wave
-uniform float waveAmplitude = 0.1;
-uniform float waveFrequency = 4.0;
-uniform float blendingAmount = 0.6;
+uniform float max_radius = 1.5;
+uniform float feather = 0.15;
 
+uniform float ring_width = 0.06;
 
-// other
-uniform sampler2D noise;
+uniform float distortion_strength = 0.03;
+uniform float aberration_strength = 0.008;
 
+uniform vec3 glow_color = vec3(0.4, 0.8, 1.0);
+uniform float glow_strength = 1.5;
 
+void fragment()
+{
+    vec2 uv = UV;
 
-vec2 wave(vec2 uv, float time) {
-    return vec2(
-        uv.x + sin(uv.y * waveFrequency * 5.0 + time) * waveAmplitude,
-        uv.y + sin(uv.x * waveFrequency + time) * waveAmplitude
-    );
-}
+    //-----------------------------------
+    // corregir aspect ratio
+    //-----------------------------------
 
-void fragment() {
-	vec2 wave_uv = wave(UV, TIME);
-	vec4 ns = texture(noise, wave_uv);
-	
-	vec2 motion = vec2(0.0, 1.0);
-	float pi = 3.14159265358979323846;
-	vec2 uv = UV * 2.0 - 1.0;
+    float aspect =
+        SCREEN_PIXEL_SIZE.y / SCREEN_PIXEL_SIZE.x;
 
-	float dist = length(uv);
-	ns *= 1.4142135;
-	dist += -0.1 * ns.x;
-	float ripple = sin(dist * -frequency * pi + rippleRate * TIME) * amplitude / (dist + 1.0);
+    vec2 scaled_uv =
+        (uv - vec2(0.0, 0.5))
+        / vec2(1.0, aspect)
+        + vec2(0.0, 0.5);
 
+    //-----------------------------------
+    // distancia al centro
+    //-----------------------------------
 
-	vec4 color = vec4(1.0, 1.0, 1.0, 2.0 * ripple);
-	
-	float alphaScalar = (1.0 - min(dist, 1.0)) * ns.x * 2.5; 
+    float radius = progress * max_radius;
 
+    float dist =
+        distance(scaled_uv, center);
 
-	color.a *= 1.0 * alphaScalar * (ripple + ns.x * ns.y);
-	color.a = max(color.a - (ns.y * 0.45), 0.0);
+    //-----------------------------------
+    // reveal
+    //-----------------------------------
 
-    COLOR = color;
+    float reveal =
+        smoothstep(radius - feather,
+                   radius,
+                   dist);
+
+    //-----------------------------------
+    // ring
+    //-----------------------------------
+
+    float ring =
+        smoothstep(radius - ring_width,
+                   radius,
+                   dist)
+        -
+        smoothstep(radius,
+                   radius + ring_width,
+                   dist);
+
+    //-----------------------------------
+    // dirección radial
+    //-----------------------------------
+
+    vec2 dir =
+        normalize(scaled_uv - center);
+
+    //-----------------------------------
+    // distorsión
+    //-----------------------------------
+
+    vec2 distorted_uv =
+        uv + dir * distortion_strength * ring;
+
+    //-----------------------------------
+    // chromatic aberration
+    //-----------------------------------
+
+    vec4 r =
+        texture(TEXTURE,
+                distorted_uv +
+                dir * aberration_strength * ring);
+
+    vec4 g =
+        texture(TEXTURE,
+                distorted_uv);
+
+    vec4 b =
+        texture(TEXTURE,
+                distorted_uv -
+                dir * aberration_strength * ring);
+
+    vec3 final_color =
+        vec3(r.r, g.g, b.b);
+
+    //-----------------------------------
+    // glow
+    //-----------------------------------
+
+    final_color +=
+        glow_color * ring * glow_strength;
+
+    //-----------------------------------
+    // resultado final
+    //-----------------------------------
+
+    COLOR.rgb = final_color;
+
+    COLOR.a = reveal;
 }

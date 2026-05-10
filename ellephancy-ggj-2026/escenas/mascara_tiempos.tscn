@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://45apkf4ddmvr"]
+[gd_scene load_steps=7 format=3 uid="uid://45apkf4ddmvr"]
 
 [ext_resource type="Script" uid="uid://c828ri1fboaoq" path="res://scripts/mascara_tiempos.gd" id="1_v8jvp"]
 [ext_resource type="Shader" uid="uid://dgqbbu2xdih1l" path="res://escenas/mascara_tiempos2.gdshader" id="2_dot3c"]
@@ -20,28 +20,21 @@ shader_parameter/offSetSpeed = Vector2(0.1, 0.1)
 shader_parameter/backGroundDirX = 0.01
 shader_parameter/backGroundDirY = 0.01
 
-[sub_resource type="Gradient" id="Gradient_6l7y4"]
-offsets = PackedFloat32Array(0.33035713, 1)
-colors = PackedColorArray(1, 1, 1, 0.49803922, 0, 0, 0, 0.3137255)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_bsadi"]
-gradient = SubResource("Gradient_6l7y4")
-fill = 1
-fill_from = Vector2(0.5, 0.5113636)
-fill_to = Vector2(0, 0.5)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bsadi"]
 shader = ExtResource("4_6l7y4")
-shader_parameter/amplitude = 1.21999997273056
-shader_parameter/frequency = 1.13999997451872
-shader_parameter/rippleRate = 9.2
-shader_parameter/waveAmplitude = 0.1
-shader_parameter/waveFrequency = 1.4
-shader_parameter/blendingAmount = 0.6
-shader_parameter/noise = SubResource("GradientTexture2D_bsadi")
+shader_parameter/progress = 0.0
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/max_radius = 1.5
+shader_parameter/feather = 0.135
+shader_parameter/ring_width = 0.06
+shader_parameter/distortion_strength = 0.03
+shader_parameter/aberration_strength = 0.008
+shader_parameter/glow_color = Vector3(0.4, 0.8, 1)
+shader_parameter/glow_strength = 0.7
 
-[node name="MascaraTiempos" type="Node2D"]
+[node name="MascaraTiempos" type="Node2D" node_paths=PackedStringArray("texture_shader_expansivo")]
 script = ExtResource("1_v8jvp")
+texture_shader_expansivo = NodePath("CanvasLayer/Control/TextureShaderExpansivo")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -64,9 +57,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRectShaderAgua" type="ColorRect" parent="CanvasLayer/Control"]
+[node name="TextureShaderExpansivo" type="TextureRect" parent="CanvasLayer/Control"]
 unique_name_in_owner = true
-visible = false
 material = SubResource("ShaderMaterial_bsadi")
 layout_mode = 1
 anchors_preset = 15
@@ -74,4 +66,3 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0.67058825, 0.3372549, 0.49411765)
