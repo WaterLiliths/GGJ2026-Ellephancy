@@ -3,7 +3,6 @@ extends Node2D #mascara de los tiempos la 1
 
 @export var id : int = 1
 @export var activa : bool = false
-@onready var color_rect_shader: ColorRect = %ColorRectShader
 @export var texture_shader_expansivo: TextureRect
 ##cuanto tiempo queremos que dure el efecto del shader
 @export var tiempo_shader : float = 1.3
