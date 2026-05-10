@@ -26,6 +26,7 @@ signal dialogo_desactivado_to_player #se escucha player
 signal restart #agregada para el boton de estoy atascado, solo para el showcase?
 signal player_detecto_caida(tiempo_en_aire : float) #emitida por player y escuchada por juego, para la mini animacion de la camara
 
+
 var mascara_activa : int = 0
 #----------------PALANCA Y PUERTA------------------
 signal activar_mecanismo(mecanismo)
@@ -65,6 +66,9 @@ func mostrar_nombre_zona(nombre: String) -> void:
 func popup(imagenes: Array[Texture2D], textos: Array[String]) -> void:
 	mostrar_popup.emit(imagenes, textos)
 
+func teletransportar(body : Node2D, posicion_nueva : Vector2):
+	body.global_position = posicion_nueva
+	
 #---------------------- guardar y cargar datos ---------------------------
 #INFO IMPORTANTE a esta funcion de guardar datos la llamamos directamente, pero si se quisiera podriamos hacer una signal
 #ejemplo, voy al checkpoint y en la misma funcion donde se setea el checkpoint position le pongo Global.guardar_datos()
