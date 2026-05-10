@@ -10,6 +10,9 @@ signal agarre_mascara(id : int)
 signal equipar_mascara(id : int)
 signal fade_in
 signal fade_out_revivir
+signal nombre_zona(nombre: String)
+signal mostrar_popup(imagenes: Array[Texture2D], textos: Array[String])
+
 #Booleano por mascara
 var tiene_mascara_fuerza : bool = false
 var tiene_mascara_tiempo : bool = false
@@ -56,6 +59,11 @@ func set_checkpoint_position(nueva_pos : Vector2): #la llamo en escena checkpoin
 func get_checkpoint_position(): #seguro la llame desde player
 	return checkpoint_position
 
+func mostrar_nombre_zona(nombre: String) -> void:
+	nombre_zona.emit(nombre)
+
+func popup(imagenes: Array[Texture2D], textos: Array[String]) -> void:
+	mostrar_popup.emit(imagenes, textos)
 
 #---------------------- guardar y cargar datos ---------------------------
 #INFO IMPORTANTE a esta funcion de guardar datos la llamamos directamente, pero si se quisiera podriamos hacer una signal

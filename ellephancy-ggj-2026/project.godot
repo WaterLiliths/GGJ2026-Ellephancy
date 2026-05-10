@@ -30,6 +30,7 @@ FmodManager="*res://addons/fmod/FmodManager.gd"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 Objetivos="*res://scripts/Objetivos.gd"
+TutorialManager="*res://tutorial_manager.gd"
 
 [display]
 
@@ -66,6 +67,12 @@ cajas=""
 colision_cajas=""
 tilemap_suelo=""
 persistente="objetos persistentes entre saves"
+player=""
+
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
+theme/default_font_generate_mipmaps=true
 
 [input]
 
