@@ -1,3 +1,4 @@
+@tool
 class_name BaseLenteEstatica
 extends CharacterBody2D
 

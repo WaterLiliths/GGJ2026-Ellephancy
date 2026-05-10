@@ -1,0 +1,129 @@
+[gd_scene load_steps=8 format=3 uid="uid://bt4n0y116jpo3"]
+
+[ext_resource type="Script" uid="uid://dnx5wylwlj7i7" path="res://nombre_de_zona.gd" id="1_1ja4u"]
+[ext_resource type="FontFile" uid="uid://ciwhe1apfc5gi" path="res://assets/fonts/Balgruf.otf" id="2_6ry0j"]
+[ext_resource type="FontFile" uid="uid://c8jaldbo0lky" path="res://assets/fonts/Balgruf_Italic.otf" id="3_l0id1"]
+
+[sub_resource type="FontVariation" id="FontVariation_ckuth"]
+base_font = ExtResource("2_6ry0j")
+
+[sub_resource type="Animation" id="Animation_c0r1x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:theme_override_fonts/normal_font:spacing_glyph")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RichTextLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RichTextLabel:theme_override_font_sizes/normal_font_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [96]
+}
+
+[sub_resource type="Animation" id="Animation_stugp"]
+resource_name = "animacion"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:theme_override_fonts/normal_font:spacing_glyph")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.033333335, 3, 4.000631),
+"transitions": PackedFloat32Array(0.18946481, 2.070531, 0.18946481),
+"update": 0,
+"values": [-5, 60, -5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RichTextLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.3333334, 3.3333333, 4),
+"transitions": PackedFloat32Array(0.57434905, 1, 3.0314324, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RichTextLabel:theme_override_font_sizes/normal_font_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(-0.03333333, 1.3333333, 3.3305597, 4.000631),
+"transitions": PackedFloat32Array(0.26794344, 1, 4.438277, 0.26794344),
+"update": 0,
+"values": [96, 100, 126, 11]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fid7r"]
+_data = {
+&"RESET": SubResource("Animation_c0r1x"),
+&"animacion": SubResource("Animation_stugp")
+}
+
+[node name="NombreDeZona" type="Control"]
+z_index = 1000
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1ja4u")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.093
+offset_left = -922.0
+offset_top = 53.0
+offset_right = 922.0
+offset_bottom = 306.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = SubResource("FontVariation_ckuth")
+theme_override_fonts/italics_font = ExtResource("3_l0id1")
+theme_override_font_sizes/normal_font_size = 96
+text = "Placeholder"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_fid7r")
+}

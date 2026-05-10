@@ -1,10 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://biambmyuxxflo"]
+[gd_scene load_steps=7 format=3 uid="uid://biambmyuxxflo"]
 
 [ext_resource type="Script" uid="uid://btdfa4vx5ods1" path="res://escenas/world_objects/puerta.gd" id="1_555dy"]
 [ext_resource type="Texture2D" uid="uid://dyufrme2ycjb5" path="res://assets/sprites/puerta_grande.png" id="2_555dy"]
+[ext_resource type="Texture2D" uid="uid://r8op15cyle2b" path="res://assets/sprites/rocasuciaplanta.png" id="3_xu3fv"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_xu3fv"]
+polygon = PackedVector2Array(17, -215, 27, -212, 36, -201, 41, -196, 42, -138, 31, -103, 39, -50, 42, -20, 42, 66, 42, 149, 42, 176, 35, 195, -39, 194, -51, 173, -49, 141, -49, 112, -42, 92, -47, 74, -46, -74, -49, -89, -42, -105, -35, -166, -43, -200, -28, -217)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_555dy"]
 size = Vector2(90, 413)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xu3fv"]
+size = Vector2(224, 400)
 
 [node name="Puerta" type="StaticBody2D" groups=["persistente"]]
 light_mask = 7
@@ -18,7 +25,20 @@ position = Vector2(0, -5)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_555dy")
 
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(0, -14.431365)
+scale = Vector2(4.0784316, 4.237018)
+texture = ExtResource("3_xu3fv")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite2D"]
+position = Vector2(0, 6.666667)
+scale = Vector2(1.3333334, 1.3333334)
+occluder = SubResource("OccluderPolygon2D_xu3fv")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 light_mask = 7
 visibility_layer = 7
 position = Vector2(0, -10.5)
@@ -68,5 +88,14 @@ one_shot = true
 [node name="TimerPuerta" type="Timer" parent="."]
 one_shot = true
 
+[node name="AreaPuertaDungeon" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaPuertaDungeon"]
+visible = false
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_xu3fv")
+
 [connection signal="timeout" from="TimerTiempoDeApertura" to="." method="_on_timer_tiempo_de_apertura_timeout"]
 [connection signal="timeout" from="TimerPuerta" to="." method="_on_timer_puerta_timeout"]
+[connection signal="body_entered" from="AreaPuertaDungeon" to="." method="_on_area_puerta_dungeon_body_entered"]
+[connection signal="body_exited" from="AreaPuertaDungeon" to="." method="_on_area_puerta_dungeon_body_exited"]

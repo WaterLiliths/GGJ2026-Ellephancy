@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cglqwf0liiwgf"]
+
+[ext_resource type="Script" uid="uid://dxyd83ywom1td" path="res://popup_trigger.gd" id="1_mdw7i"]
+
+[node name="PopupTrigger" type="Area2D"]
+script = ExtResource("1_mdw7i")
