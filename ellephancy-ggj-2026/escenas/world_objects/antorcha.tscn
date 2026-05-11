@@ -1,0 +1,81 @@
+[gd_scene load_steps=12 format=3 uid="uid://krirurmp3xli"]
+
+[ext_resource type="Texture2D" uid="uid://chi4s8fhy4u3a" path="res://assets/sprites/antorcha.png" id="1_comaq"]
+
+[sub_resource type="Gradient" id="Gradient_comaq"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5i44x"]
+gradient = SubResource("Gradient_comaq")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_5i44x"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m3a53"]
+gradient = SubResource("Gradient_5i44x")
+width = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8717949, 0.491453)
+
+[sub_resource type="Curve" id="Curve_comaq"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.23737374, 1), 0.0, 0.0, 0, 0, Vector2(0.81313133, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_5i44x"]
+curve = SubResource("Curve_comaq")
+
+[sub_resource type="CurveTexture" id="CurveTexture_anqwk"]
+
+[sub_resource type="Curve" id="Curve_3hft7"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.10606061, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_1nd4e"]
+curve = SubResource("Curve_3hft7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0b2al"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(4.865, 6.46, 1)
+emission_shape = 2
+emission_sphere_radius = 1.0
+angle_curve = SubResource("CurveTexture_anqwk")
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 3.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, -3, 0)
+damping_max = 1.042
+scale_min = 0.0
+scale_max = 0.29999998
+scale_curve = SubResource("CurveTexture_1nd4e")
+alpha_curve = SubResource("CurveTexture_5i44x")
+hue_variation_min = -2.2351742e-08
+hue_variation_max = 0.09999997
+turbulence_noise_strength = 0.17
+turbulence_noise_scale = 2.667
+
+[node name="Antorcha" type="Node2D"]
+z_index = -5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_comaq")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+z_as_relative = false
+position = Vector2(0, -16)
+scale = Vector2(5.78125, 5.78125)
+color = Color(1, 0.587, 0.41000003, 1)
+range_item_cull_mask = 7
+texture = SubResource("GradientTexture2D_5i44x")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(1, 0.615, 0.45, 1)
+position = Vector2(0, -13)
+amount = 25
+texture = SubResource("GradientTexture2D_m3a53")
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_0b2al")
