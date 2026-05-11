@@ -1,17 +1,20 @@
-[gd_scene load_steps=13 format=3 uid="uid://cpyhe3nqkhc1v"]
+[gd_scene load_steps=12 format=3 uid="uid://cpyhe3nqkhc1v"]
 
 [ext_resource type="Script" uid="uid://0njs7t1npwfr" path="res://escenas/world_objects/haz_de_luz.gd" id="1_tofwr"]
 [ext_resource type="Texture2D" uid="uid://csdeyuc1gerbf" path="res://escenas/animaciones/gradiente-particulas.tres" id="2_0lobu"]
+[ext_resource type="Shader" uid="uid://cn4jd1wlalhue" path="res://escenas/world_objects/haz_de_luz.gdshader" id="2_yaswf"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0lobu"]
-blend_mode = 1
-
-[sub_resource type="Curve" id="Curve_yaswf"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Gradient" id="Gradient_dm3l8"]
-colors = PackedColorArray(1, 0.8925, 0.85, 1, 1, 0.7726667, 0.69, 0.49803922)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qgr82"]
+shader = ExtResource("2_yaswf")
+shader_parameter/beam_color = Color(0.98, 0.98, 0.98, 1)
+shader_parameter/core_width = 0.0930000044175
+shader_parameter/glow_falloff = 1.8130000623675
+shader_parameter/core_intensity = 3.6000001235
+shader_parameter/glow_intensity = 1.3850000625276202
+shader_parameter/flicker_speed = 6.000000285
+shader_parameter/flicker_amount = 0.08400000399
+shader_parameter/ca_strength = 0.118000005605
+shader_parameter/ca_falloff = 0.89200004237
 
 [sub_resource type="Gradient" id="Gradient_yaswf"]
 interpolation_mode = 2
@@ -55,11 +58,9 @@ show_behind_parent = true
 top_level = true
 light_mask = 512
 z_index = -2
-material = SubResource("CanvasItemMaterial_0lobu")
+material = SubResource("ShaderMaterial_qgr82")
+points = PackedVector2Array(10, -53)
 width = 50.0
-width_curve = SubResource("Curve_yaswf")
-default_color = Color(1, 0.895, 0.85, 1)
-gradient = SubResource("Gradient_dm3l8")
 texture = SubResource("GradientTexture2D_qgr82")
 texture_mode = 2
 joint_mode = 2
