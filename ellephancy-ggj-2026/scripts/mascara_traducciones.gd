@@ -9,13 +9,13 @@ func _ready() -> void:
 	activa = false
 
 func usar():
-	print("USAR EN LA MASCARA")
+#	print("USAR EN LA MASCARA")
 	if activa:
 		return
 	activa = true
 	Global.mascara_activa = id
 	Global.mascara_traducciones_activa.emit()
-	print("-------- se uso la mascara de traducciones")
+#	print("-------- se uso la mascara de traducciones")
 
 
 func desactivar():

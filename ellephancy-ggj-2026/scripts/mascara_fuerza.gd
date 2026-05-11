@@ -11,7 +11,7 @@ func usar():
 	activa = true
 	Global.mascara_activa = id
 	Global.mascara_fuerza_activa.emit()
-	print("se uso la mascara de fuerza")
+	#print("se uso la mascara de fuerza")
 
 
 
@@ -20,7 +20,7 @@ func desactivar():
 		return
 	activa = false
 	Global.mascara_fuerza_desactivar.emit()
-	print("se desactivo la mascara de fuerza")
+	#print("se desactivo la mascara de fuerza")
 
 
 

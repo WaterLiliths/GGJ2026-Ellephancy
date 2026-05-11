@@ -1,6 +1,9 @@
 class_name Runa
 extends TextureRect
 
+@export var distancia_maxima_shader : float = 3000
+var shader_material : ShaderMaterial
+
 enum TiposDeRunas { NUDO_SIMETRICO, NUDO_ASIMETRICO, TRIQUETRA, CRUZ, TRISKELE, ATOMO }
 var texturas_de_runas := {
 		TiposDeRunas.NUDO_SIMETRICO: preload("res://assets/runas-finales/nudo_simetrico_blanco.png"),
@@ -21,6 +24,10 @@ func _ready() -> void:
 	Global.mascara_traducciones_desactivar.connect(esconder_runas)
 	animation_player.play("pulsar")
 
+	shader_material = material.duplicate()
+	material = shader_material
+	shader_material.set_shader_parameter("rune_world_position", global_position)
+
 func asignar_tipo(tipo : TiposDeRunas, color : Color):
 	tipo_de_runa = tipo
 	name = TiposDeRunas.keys()[tipo]
@@ -32,9 +39,14 @@ func asignar_tipo(tipo : TiposDeRunas, color : Color):
 	await get_tree().process_frame
 
 func mostrar_runas():
-	#var tween_opacidad = create_tween()
-	show()
-	#tween_opacidad.tween_property(self, "modulate:a", 1, 1)
+	if global_position.distance_to(Global.get_player_position()) > distancia_maxima_shader:
+		show() #en realidad hacer que la mascara ejecute el shader y mientras el shader esta activo le vaya pidiendo a todas las runas
+		#seguramente llamando a un grupo que se vayan mostrando en funcion de la distancia de player y distancia del radio
+		#osea el shader va a ir aumentando un radio, un valor, que van a leer las runas y segun eso activarse o desactivarse
+	else:
+		#aca iria el usar shader
+		pass
+	show() #por ahora dejo este siempre
 
 func esconder_runas():
 	hide()
