@@ -1,20 +1,23 @@
-[gd_scene load_steps=12 format=3 uid="uid://cpyhe3nqkhc1v"]
+[gd_scene load_steps=13 format=3 uid="uid://cpyhe3nqkhc1v"]
 
 [ext_resource type="Script" uid="uid://0njs7t1npwfr" path="res://escenas/world_objects/haz_de_luz.gd" id="1_tofwr"]
 [ext_resource type="Texture2D" uid="uid://csdeyuc1gerbf" path="res://escenas/animaciones/gradiente-particulas.tres" id="2_0lobu"]
 [ext_resource type="Shader" uid="uid://cn4jd1wlalhue" path="res://escenas/world_objects/haz_de_luz.gdshader" id="2_yaswf"]
+[ext_resource type="Shader" uid="uid://bj45qnv318h3b" path="res://escenas/world_objects/haz_de_luz_particulas.gdshader" id="3_qgr82"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qgr82"]
 shader = ExtResource("2_yaswf")
 shader_parameter/beam_color = Color(0.98, 0.98, 0.98, 1)
-shader_parameter/core_width = 0.0930000044175
-shader_parameter/glow_falloff = 1.8130000623675
-shader_parameter/core_intensity = 3.6000001235
-shader_parameter/glow_intensity = 1.3850000625276202
-shader_parameter/flicker_speed = 6.000000285
-shader_parameter/flicker_amount = 0.08400000399
-shader_parameter/ca_strength = 0.118000005605
-shader_parameter/ca_falloff = 0.89200004237
+shader_parameter/core_width = 0.4330000205675
+shader_parameter/glow_falloff = 1.1250000296875
+shader_parameter/core_intensity = 1.0
+shader_parameter/glow_intensity = 0.29800001089512
+shader_parameter/flicker_speed = 4.00000019
+shader_parameter/flicker_amount = 0.10000000475
+shader_parameter/ca_strength = 0.1090000051775
+shader_parameter/ca_falloff = 0.39200001862
+shader_parameter/opacity = 0.358000017005
+shader_parameter/distance_fade = 0.0
 
 [sub_resource type="Gradient" id="Gradient_yaswf"]
 interpolation_mode = 2
@@ -26,8 +29,11 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 repeat = 2
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yaswf"]
-blend_mode = 1
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dm3l8"]
+shader = ExtResource("3_qgr82")
+shader_parameter/core_color = Color(1, 0.95, 0.6, 1)
+shader_parameter/fringe_color = Color(0.3, 0.6, 1, 1)
+shader_parameter/ca_amount = 0.30800001463
 
 [sub_resource type="Curve" id="Curve_0lobu"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -68,7 +74,7 @@ end_cap_mode = 2
 
 [node name="Particulas" type="CPUParticles2D" parent="."]
 light_mask = 512
-material = SubResource("CanvasItemMaterial_yaswf")
+material = SubResource("ShaderMaterial_dm3l8")
 amount = 20
 texture = ExtResource("2_0lobu")
 lifetime = 0.39
@@ -87,4 +93,4 @@ color_ramp = SubResource("Gradient_0lobu")
 [node name="PointLight2D" type="PointLight2D" parent="."]
 range_item_cull_mask = 1023
 texture = SubResource("GradientTexture2D_dm3l8")
-texture_scale = 3.36
+texture_scale = 2.26

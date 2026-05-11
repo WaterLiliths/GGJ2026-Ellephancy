@@ -56,14 +56,18 @@
 [ext_resource type="PackedScene" uid="uid://krirurmp3xli" path="res://escenas/world_objects/antorcha.tscn" id="54_hecru"]
 
 [sub_resource type="Environment" id="Environment_hecru"]
-tonemap_white = 6.7
+background_mode = 3
 glow_enabled = true
-glow_intensity = 8.0
-glow_strength = 2.0
-glow_bloom = 0.52
-glow_hdr_threshold = 0.0
-glow_hdr_scale = 3.49
-glow_hdr_luminance_cap = 233.5
+glow_levels/2 = 2.0
+glow_levels/3 = 2.0
+glow_levels/4 = 2.0
+glow_levels/5 = 2.2
+glow_levels/6 = 2.4
+glow_intensity = 0.35
+glow_strength = 0.75
+glow_bloom = 0.14
+glow_blend_mode = 0
+glow_hdr_threshold = 0.15
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fe420"]
 size = Vector2(304.0625, 544.375)
@@ -333,7 +337,6 @@ position = Vector2(-97, 588)
 position = Vector2(1230, -222)
 rotation = 0.7033677
 color = Color(0.9, 0.50939995, 0.34199998, 1)
-energy = 1.5
 range_item_cull_mask = 7
 shadow_enabled = true
 shadow_filter = 2
@@ -454,14 +457,14 @@ texture = ExtResource("5_ffuyt")
 bank_paths = ["res://assets/audio/FmodBanks/Desktop/Master.strings.bank", "res://assets/audio/FmodBanks/Desktop/Master.bank", "res://assets/audio/FmodBanks/Desktop/Ambiente.bank", "res://assets/audio/FmodBanks/Desktop/Musica.bank", "res://assets/audio/FmodBanks/Desktop/SFX.bank", "res://assets/audio/FmodBanks/Desktop/UI.bank"]
 
 [node name="Player" parent="." instance=ExtResource("8_m34qx")]
-position = Vector2(29226.354, -1108.2473)
+position = Vector2(3389, -101)
 estoy_testeando_cosas = true
 empezar_con_mascaras = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(29226.354, -1178.2473)
+position = Vector2(3389, -171)
 zoom = Vector2(1.6, 1.6)
 limit_enabled = false
 limit_left = 0
@@ -564,7 +567,7 @@ player = NodePath("..")
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(29226.354, -1178.2473)
+position = Vector2(3389, -171)
 script = ExtResource("12_g2cn0")
 follow_mode = 2
 follow_target = NodePath("../Player/Node2D")
@@ -832,7 +835,7 @@ position = Vector2(23502, -1851)
 position = Vector2(21472, -1348)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.62967473, 0.62967473, 0.6296747, 1)
+color = Color(0.46229059, 0.46229059, 0.46229059, 1)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 visible = false
