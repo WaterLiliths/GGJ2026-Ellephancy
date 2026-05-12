@@ -12,7 +12,7 @@ var palanca_actual : Palanca = self
 @export var timer : float = 1.0
 @export var usa_runas : bool = false
 @export var posicionador_de_runa : Marker2D
-@onready var runa: Runa = $Runa
+@onready var runa = $Runa
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 

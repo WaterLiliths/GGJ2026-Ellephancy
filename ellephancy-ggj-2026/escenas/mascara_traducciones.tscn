@@ -1,7 +1,31 @@
-[gd_scene load_steps=2 format=3 uid="uid://x51x8ch6wkl2"]
+[gd_scene load_steps=5 format=3 uid="uid://x51x8ch6wkl2"]
 
 [ext_resource type="Script" uid="uid://bw07pfdfa5lgv" path="res://scripts/mascara_traducciones.gd" id="1_t3euv"]
+[ext_resource type="Shader" uid="uid://2wuxw5gnuh2o" path="res://escenas/onda_expansiva_salmon.gdshader" id="2_kp24f"]
+[ext_resource type="Texture2D" uid="uid://bvg3w01gx6tqm" path="res://assets/2d para shader/textura.png" id="3_m4ass"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m4ass"]
+shader = ExtResource("2_kp24f")
+shader_parameter/progress = 0.0
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/max_radius = 1.5
+shader_parameter/ring_width = -0.035
+shader_parameter/feather = 0.08
+shader_parameter/glow_color = Vector3(0.4, 0.8, 1)
+shader_parameter/glow_strength = 1.5
 
 [node name="MascaraTraducciones" type="Node2D"]
 script = ExtResource("1_t3euv")
 activa = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureShader" type="TextureRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_m4ass")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_m4ass")

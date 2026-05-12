@@ -1,15 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://bvq5bbgfqxbf3"]
 
-[ext_resource type="Shader" uid="uid://3odyt01v66rk" path="res://escenas/runa.gdshader" id="1_0gi8y"]
+[ext_resource type="Shader" uid="uid://cnl8l44nnvb7a" path="res://escenas/enmascarar_shader.gdshader" id="1_0gi8y"]
 [ext_resource type="Script" uid="uid://cg265jkd7ky3f" path="res://runa.gd" id="1_7w50b"]
 [ext_resource type="Texture2D" uid="uid://bl53phj4y0xa1" path="res://assets/runas-finales/nudo_simetrico_blanco.png" id="1_8pauy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2nj6k"]
 shader = ExtResource("1_0gi8y")
-shader_parameter/wave_origin = Vector2(0, 0)
-shader_parameter/wave_radius = 0.0
-shader_parameter/rune_world_position = Vector2(0, 0)
-shader_parameter/feather = 100.0
 
 [sub_resource type="Gradient" id="Gradient_0gi8y"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
